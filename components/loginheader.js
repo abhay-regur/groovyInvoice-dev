@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import styles from '';
 
 export default function loginheader(){
     return(<>
