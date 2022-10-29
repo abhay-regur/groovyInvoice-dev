@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import Head from 'next/head';
-import '../styles/globals.css'
+import '../styles/globals.scss'
 //for font awesome
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
