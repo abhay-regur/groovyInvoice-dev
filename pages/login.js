@@ -1,9 +1,16 @@
+import React from 'react';
 import Head from 'next/head';
+import Image from 'next/image';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faKey, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import style from '../styles/Login.module.scss';
 export default function login() {
+    const [visbilty, setvisibility] = React.useState(false);
+    const togglePasswordVisiblity = () => {
+        setvisibility(visbilty ? false : true);
+    };
+
     return (
         <div className={`${style.loginContainer} container-fluid`}>
             <Head>
@@ -12,10 +19,10 @@ export default function login() {
             <div className="row mx-0">
                 <div className="col-md-6">
                     <div className="row">
-                        <div className="col-sm-12">
+                        <div className="col-sm-12 text-center text-sm-center">
                             <h1 className={`${style.mainHeading} main-heading`}>Groovy <span className={style.green}>Invoice</span></h1>
                         </div>
-                        <div className="col-sm-12 text-center justify-content-md-center">
+                        <div className="col-sm-12 text-center">
                             <h2 className={style.subHeading}>Sign Up to <span className={style.green}>Groovy Invoice</span></h2>
                             <p>Welcome back, Please login to your account</p>
                         </div>
@@ -36,10 +43,9 @@ export default function login() {
                                                 <i>
                                                     <FontAwesomeIcon icon={faKey} />
                                                 </i>
-                                                <input type="password" className="form-control" id="loginPassword" />
-                                                <i className=''>
-                                                    <FontAwesomeIcon icon={faEye} />
-                                                    <FontAwesomeIcon icon={faEyeSlash} />
+                                                <input type={visbilty ? "text" : "password"} className="form-control" id="loginPassword" />
+                                                <i className={`${style.toggleVisibilityWrapper}`} onClick={togglePasswordVisiblity}>
+                                                    <FontAwesomeIcon icon={visbilty ? faEyeSlash : faEye} />
                                                 </i>
 
                                             </div>
@@ -60,17 +66,21 @@ export default function login() {
                                         </div>
                                     </form>
                                     <hr />
+                                    <div className="d-flex justify-content-around">
+                                        <button type="button" className="btn btn-outline-secondary d-flex jutify-content-around"> <Image className={style.buttonImage} src="/images/facebook_signin.svg" alt="facebook_signin" height={30} width={30} /> Sign In</button>
+                                        <button type="button" className="btn btn-outline-secondary d-flex jutify-content-around"><Image className={style.buttonImage} src="/images/google_signin.svg" alt="google_signin" height={30} width={30} /> Sign In</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div className="col-sm-12">
-                            <div>
+                            <div className={`${style.registrationLinkWrapper}`}>
                                 <p>Don’t have an account? <Link href="/"><a>Register Account</a></Link></p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className={`${style.loginBackground} col-md-6`}>
+                <div className={`${style.loginBackground} col-md-6 .d-none .d-lg-block .d-xl-none`}>
                 </div>
             </div>
         </div>

@@ -5,6 +5,11 @@ $border-color: #E3EBF2;
 $white: #ffffff;
 $background-primary-color: rgba($primary-color, .2);
 
+$font-size-heading: 32px;
+$font-size-text: 14px;
+
+$screen-size-sm: 576px;
+
 .loginContainer {
     color: $primary-color;
     margin: 0;
@@ -13,9 +18,13 @@ $background-primary-color: rgba($primary-color, .2);
     .mainHeading {
         height: 47px;
         font-weight: 700;
-        font-size: 32px;
+        font-size: $font-size-heading;
         line-height: 40px;
         margin-top: 37px;
+
+        @media (max-width: $screen-size-sm) {
+            font-size: $font-size-heading - 4;
+        }
     }
 
     .subHeading {
@@ -23,8 +32,12 @@ $background-primary-color: rgba($primary-color, .2);
         height: 47px;
         font-style: normal;
         font-weight: 600;
-        font-size: 32px;
+        font-size: $font-size-heading;
         line-height: 40px;
+
+        @media (max-width: $screen-size-sm) {
+            font-size: $font-size-heading - 6;
+        }
     }
 
     .green {
@@ -37,10 +50,14 @@ $background-primary-color: rgba($primary-color, .2);
         font-family: 'Mulish';
         font-style: normal;
         font-weight: 600;
-        font-size: 16px;
+        font-size: $font-size-text + 2;
         line-height: 20px;
         text-align: center;
         color: $secondary-color;
+
+        @media (max-width: $screen-size-sm) {
+            font-size: $font-size-text;
+        }
     }
 
     .loginCard {
@@ -56,9 +73,14 @@ $background-primary-color: rgba($primary-color, .2);
         border-radius: 10px;
         color: $secondary-color;
 
+        @media (max-width: $screen-size-sm) {
+            width: 345px;
+            padding: 24px 32px;
+        }
+
         label {
             font-weight: 400;
-            font-size: 14px;
+            font-size: $font-size-text;
             line-height: 18px;
         }
 
@@ -71,7 +93,7 @@ $background-primary-color: rgba($primary-color, .2);
                 pointer-events: none;
                 font-style: normal;
                 font-weight: 900;
-                font-size: 16px;
+                font-size: $font-size-text + 2;
                 line-height: 18px;
                 letter-spacing: 0.02em;
                 color: $tertiary-color;
@@ -86,12 +108,24 @@ $background-primary-color: rgba($primary-color, .2);
                 height: 44px;
                 color: $primary-color;
                 font-weight: 600;
-                font-size: 14px;
+                font-size: $font-size-text;
                 line-height: 18px;
                 padding-left: 46px;
                 border-radius: 10px;
                 border: 1px solid $border-color;
             }
+
+            .toggleVisibilityWrapper {
+                pointer-events: all;
+                color: $secondary-color;
+                top: 0;
+                right: 0;
+            }
+        }
+
+        hr {
+            margin-top: 41px;
+            margin-bottom: 36px;
         }
 
     }
@@ -100,7 +134,7 @@ $background-primary-color: rgba($primary-color, .2);
         color: $secondary-color;
         font-style: normal;
         font-weight: 400;
-        font-size: 14px;
+        font-size: $font-size-text;
         line-height: 18px;
         text-decoration-line: underline;
     }
@@ -109,20 +143,60 @@ $background-primary-color: rgba($primary-color, .2);
         height: 100vh;
         background: linear-gradient(0deg, $background-primary-color, $background-primary-color), url('/images/login_page.png') no-repeat;
         background-size: cover;
+
+        @media (max-width: $screen-size-sm) {
+            display: none;
+        }
+    }
+
+    form {
+
+        button {
+            background: $primary-color;
+            padding: 10px 0;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: $font-size-text + 2;
+            line-height: 20px;
+            color: $white;
+            border: 0;
+
+            &:hover {
+                background: $primary-color;
+                color: $white;
+            }
+        }
     }
 
     button {
-        background: $primary-color;
-        padding: 10px 0;
-        border-radius: 6px;
-        font-weight: 700;
-        font-size: 16px;
-        line-height: 20px;
-        color: $white;
-        border: 0;
+        color: $primary-color;
+        padding: 7px 20px;
+        align-items: center;
+        font-size: $font-size-text;
 
         &:hover {
-            background: $primary-color;
+            background: none;
+            color: $primary-color;
+        }
+
+        .buttonImage {
+            margin-right: 8px;
         }
     }
+
+    p {
+        a {
+            color: $primary-color;
+            font-weight: 400;
+            font-size: $font-size-text;
+            line-height: 18px;
+            text-decoration: none;
+        }
+
+    }
+
+    .registrationLinkWrapper {
+        margin-top: 28px;
+    }
+
 }
