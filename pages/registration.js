@@ -65,12 +65,12 @@ export default function Registration() {
                                             </div>
                                         </div>
                                         <div className="mb-3">
-                                            <label htmlFor="loginPassword" className="form-label">Password</label>
+                                            <label htmlFor="loginConfirmPassword" className="form-label">Confirm Password</label>
                                             <div className={style.innerInputIconWrapper}>
                                                 <i>
                                                     <FontAwesomeIcon icon={faKey} />
                                                 </i>
-                                                <input type={visbilty ? "text" : "password"} className="form-control" id="loginPassword" />
+                                                <input type={visbilty ? "text" : "password"} className="form-control" id="loginConfirmPassword" />
                                                 <i className={`${style.toggleVisibilityWrapper}`} onClick={togglePasswordVisiblity}>
                                                     <FontAwesomeIcon icon={visbilty ? faEyeSlash : faEye} />
                                                 </i>
@@ -86,7 +86,7 @@ export default function Registration() {
                         </div>
                         <div className="col-sm-12">
                             <div className={`${style.registrationLinkWrapper}`}>
-                                <p>Already have an account? <Link href="/login"><a>Sign in to your account</a></Link></p>
+                                <p>Already have an account? <Link href="/login"><a>Sign in</a></Link></p>
                             </div>
                         </div>
                     </div>
