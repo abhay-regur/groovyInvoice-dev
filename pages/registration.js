@@ -1,23 +1,22 @@
-import { React, useState } from 'react';
+import React from 'react';
 import Head from 'next/head';
-import Image from 'next/image';
 import Link from 'next/link';
+import style from '../styles/Registration.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faKey, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
-import style from '../styles/Login.module.scss';
-export default function Login() {
-    const [visbilty, setvisibility] = useState(false);
+import { faEnvelope, faKey, faEye, faEyeSlash, faMobileRetro } from '@fortawesome/free-solid-svg-icons';
+export default function Registration() {
+    const [visbilty, setvisibility] = React.useState(false);
     const togglePasswordVisiblity = () => {
         setvisibility(visbilty ? false : true);
     };
-
     return (
         <div className={`${style.loginContainer} container-fluid`}>
             <Head>
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Head>
             <div className="row mx-0">
+                <div className={`${style.loginBackground} col-md-6 .d-none .d-lg-block .d-xl-none`}>
+                </div>
                 <div className="col-md-6">
                     <div className="row">
                         <div className="col-sm-12 text-center text-sm-center">
@@ -32,10 +31,24 @@ export default function Login() {
                                 <div className="card-body p-0">
                                     <form>
                                         <div className="mb-3">
-                                            <label htmlFor="loginEmail" className="form-label">Email address</label>
+                                            <label htmlFor="registrationCompanyName" className="form-label">Comapny Name</label>
                                             <div className={style.innerInputIconWrapper}>
                                                 <i><FontAwesomeIcon icon={faEnvelope} /></i>
-                                                <input type="email" className="form-control" id="loginEmail" aria-describedby="emailHelp" />
+                                                <input type="text" className="form-control" id="registrationCompanyName" aria-describedby="companyNameHelp" />
+                                            </div>
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="registrationEmail" className="form-label">Email address</label>
+                                            <div className={style.innerInputIconWrapper}>
+                                                <i><FontAwesomeIcon icon={faEnvelope} /></i>
+                                                <input type="email" className="form-control" id="registrationEmail" aria-describedby="emailHelp" />
+                                            </div>
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="registrationContactNumber" className="form-label">Contact Number</label>
+                                            <div className={style.innerInputIconWrapper}>
+                                                <i><FontAwesomeIcon icon={faMobileRetro} /></i>
+                                                <input type="email" className="form-control" id="registrationContactNumber" aria-describedby="contactNumberHelp" />
                                             </div>
                                         </div>
                                         <div className="mb-3">
@@ -51,39 +64,34 @@ export default function Login() {
 
                                             </div>
                                         </div>
-                                        <div className="row">
-                                            <div className="col-6 justify-content-md-start pe-0">
-                                                <div className="mb-3 form-check">
-                                                    <input type="checkbox" className="form-check-input" id="keepLogged" />
-                                                    <label className="form-check-label" htmlFor="keepLogged">Keep me logged in</label>
-                                                </div>
-                                            </div>
-                                            <div className="col-6 justify-content-md-end text-end">
-                                                <Link href="/"><a>Forgot Password</a></Link>
+                                        <div className="mb-3">
+                                            <label htmlFor="loginPassword" className="form-label">Password</label>
+                                            <div className={style.innerInputIconWrapper}>
+                                                <i>
+                                                    <FontAwesomeIcon icon={faKey} />
+                                                </i>
+                                                <input type={visbilty ? "text" : "password"} className="form-control" id="loginPassword" />
+                                                <i className={`${style.toggleVisibilityWrapper}`} onClick={togglePasswordVisiblity}>
+                                                    <FontAwesomeIcon icon={visbilty ? faEyeSlash : faEye} />
+                                                </i>
+
                                             </div>
                                         </div>
                                         <div className="d-grid gap-2">
-                                            <button type="submit" className="btn btn-primary">Sign In</button>
+                                            <button type="submit" className="btn btn-primary">Create an Account</button>
                                         </div>
                                     </form>
-                                    <hr />
-                                    <div className="d-flex justify-content-around">
-                                        <button type="button" className="btn btn-outline-secondary d-flex jutify-content-around"><i className={style.buttonImage} ><FontAwesomeIcon icon={faFacebook} /></i> Sign In</button>
-                                        <button type="button" className="btn btn-outline-secondary d-flex jutify-content-around"><i className={style.buttonImage}><FontAwesomeIcon icon={faGoogle} /></i> Sign In</button>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div className="col-sm-12">
                             <div className={`${style.registrationLinkWrapper}`}>
-                                <p>Don’t have an account? <Link href="/registration"><a>Register Account</a></Link></p>
+                                <p>Already have an account? <Link href="/login"><a>Sign in to your account</a></Link></p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className={`${style.loginBackground} col-md-6 .d-none .d-lg-block .d-xl-none`}>
-                </div>
             </div>
         </div>
-    );
+    )
 }
