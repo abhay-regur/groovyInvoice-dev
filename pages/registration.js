@@ -24,7 +24,7 @@ export default function Registration() {
                         </div>
                         <div className="col-sm-12 text-center">
                             <h2 className={style.subHeading}>Sign Up to <span className={style.green}>Groovy Invoice</span></h2>
-                            <p>Welcome back, Please login to your account</p>
+                            <p>Getting Started! Please create your account</p>
                         </div>
                         <div className="col-sm-12 justify-content-md-center">
                             <div className={`${style.loginCard} card`}>
