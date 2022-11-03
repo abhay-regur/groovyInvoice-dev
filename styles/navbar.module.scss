@@ -1,0 +1,191 @@
+$font-size-heading: 32px;
+$font-size-text: 15px;
+$primary-color: #3649AB;
+$secondary-color: #8790B0;
+$tertiary-color: #43CB80;
+$line-color: #BCD5E2;
+
+.header {
+    position: sticky;
+    z-index: 30;
+    top: 0;
+
+    * {
+        color: $primary-color;
+        margin: 0;
+        padding: 0;
+        outline: none;
+        box-sizing: border-box;
+        font-family: 'Work Sans', sans-serif;
+        font-weight: 600;
+    }
+
+    nav {
+        height: 100%;
+        width: 300px;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #ffffff;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        .mainHeading {
+            height: 47px;
+            font-weight: 700;
+            font-size: $font-size-heading;
+            line-height: 40px;
+            margin-top: 25px;
+            margin-left: 29px;
+            margin-bottom: 32px;
+        }
+
+        .green {
+            color: $tertiary-color;
+
+            path {
+                color: $tertiary-color;
+            }
+        }
+
+        hr {
+            color: $line-color;
+        }
+
+        .profileDetailWrapper {
+            padding-top: 18px;
+            padding-bottom: 22px;
+            font-size: $font-size-text + 1;
+        }
+
+        .profileImage {
+            border-radius: 50%;
+        }
+
+        .profileNameWrapper {
+            font-size: $font-size-text + 1;
+            margin-top: 3px;
+        }
+
+        .active {
+            background-color: $line-color;
+        }
+
+        .profileActionWrapper {
+
+            svg {
+                width: 24px;
+                height: 22px;
+
+                &:first-of-type {
+                    margin-right: 10.5px;
+                }
+
+                &:last-of-type {
+                    margin-left: 10.5px;
+                }
+            }
+        }
+
+        form {
+            margin-top: 17px;
+            padding: 31px 16px;
+            position: relative;
+
+            input {
+                padding: 7px 17px;
+                border: $primary-color solid 1px;
+            }
+
+            i {
+                position: absolute;
+                padding: 11px 17px;
+                pointer-events: all;
+                font-style: normal;
+                font-weight: 900;
+                font-size: $font-size-text + 2;
+                line-height: 18px;
+                letter-spacing: 0.02em;
+                right: 20px;
+
+                svg {
+                    width: 15px;
+                    height: 15px;
+                }
+            }
+        }
+
+        .navItemWrapper {
+            padding: 0px 15px;
+
+            svg {
+                margin-right: 15px;
+                width: 22px;
+                height: 22px;
+            }
+        }
+
+        .nav_menu_list {
+            display: flex;
+            flex-direction: column;
+            row-gap: 24px;
+            padding: 24px 16px;
+            font-size: $font-size-text;
+
+            &.active {
+                right: 0;
+            }
+        }
+
+        .nav__link {
+            font-size: 18px;
+            position: relative;
+            transition: all 0.2s;
+
+            &:hover {
+                font-weight: bold;
+            }
+        }
+
+        .center {
+            min-height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+}
+
+@media screen and (min-width: 768px) {
+
+    .nav__menu-list {
+        position: unset;
+        flex-direction: row;
+        column-gap: 24px;
+        align-items: center;
+    }
+
+    .nav__link::before {
+        content: '';
+        position: absolute;
+        width: 0%;
+        height: 6px;
+        bottom: -16px;
+        left: 0;
+        background-color: black;
+        transition: all 0.2s;
+    }
+
+    .nav__link:hover:before {
+        width: 100%;
+    }
+}
