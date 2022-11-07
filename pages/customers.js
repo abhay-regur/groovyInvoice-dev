@@ -1,5 +1,7 @@
 export default function Customers() {
     return (<>
-        <h1>Customers</h1>
+        <div className={`container`}>
+            <h1>Customers</h1>
+        </div>
     </>)
 }

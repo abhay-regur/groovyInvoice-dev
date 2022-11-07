@@ -4,6 +4,7 @@ $primary-color: #3649AB;
 $secondary-color: #8790B0;
 $tertiary-color: #43CB80;
 $line-color: #BCD5E2;
+$navItem-hightlight: #F5FAFE;
 
 .header {
     position: sticky;
@@ -28,7 +29,6 @@ $line-color: #BCD5E2;
         top: 0;
         left: 0;
         background-color: #ffffff;
-        overflow-x: hidden;
         display: flex;
         flex-direction: column;
 
@@ -64,6 +64,7 @@ $line-color: #BCD5E2;
             padding-top: 18px;
             padding-bottom: 22px;
             font-size: $font-size-text + 1;
+            position: relative;
         }
 
         .profileImage {
@@ -76,7 +77,10 @@ $line-color: #BCD5E2;
         }
 
         .active {
-            background-color: $line-color;
+            background-color: $navItem-hightlight;
+            padding-top: 10px !important;
+            padding-bottom: 10px !important;
+            border-radius: 10px 0px 0px 10px;
         }
 
         .profileActionWrapper {
@@ -91,6 +95,24 @@ $line-color: #BCD5E2;
 
                 &:last-of-type {
                     margin-left: 10.5px;
+                }
+            }
+        }
+
+        .nav_menu_arrow {
+            background-color: $primary-color;
+            border-radius: 50%;
+            height: 35px;
+            width: 35px;
+            top: 56px;
+            right: -16px;
+            position: absolute;
+
+            svg {
+                path {
+                    color: white;
+                    width: 12px;
+                    height: 12px;
                 }
             }
         }
@@ -125,6 +147,7 @@ $line-color: #BCD5E2;
 
         .navItemWrapper {
             padding: 0px 15px;
+            transition: background-color 0.31s, padding 0.31s;
 
             svg {
                 margin-right: 15px;
@@ -137,7 +160,8 @@ $line-color: #BCD5E2;
             display: flex;
             flex-direction: column;
             row-gap: 24px;
-            padding: 24px 16px;
+            padding: 24px 0;
+            padding-left: 11px;
             font-size: $font-size-text;
 
             &.active {

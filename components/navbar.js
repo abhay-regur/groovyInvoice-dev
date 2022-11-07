@@ -4,12 +4,12 @@ import Image from "next/image";
 import style from '../styles/navbar.module.scss';
 import NavItem from "./navitem";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClockRotateLeft, faSearch, faFileLines, faUserGroup, faChartLine, faGear } from '@fortawesome/free-solid-svg-icons';
+import { faClockRotateLeft, faSearch, faFileLines, faUserGroup, faChartLine, faGear, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
 const MENU_LIST = [{ text: "Invoices", href: "/invoices", icon: faFileLines }, { text: "Customers", href: "/customers", icon: faUserGroup }, { text: "Reports", href: "/reports", icon: faChartLine }, { text: "Settings", href: "/settings", icon: faGear }];
 export default function Navbar() {
-    const [navActive, setNavActive] = useState(null);
+    const [expandedNav, setExpandedNav] = useState(false);
     const [activeIdx, setActiveIdx] = useState(-1);
     const [profileImage, setProfileImage] = useState("/images/profile_img.png");
 
@@ -17,7 +17,7 @@ export default function Navbar() {
         <div className={style.header}>
             <nav className={`nav`}>
                 <Link href={"/"}>
-                    <h3 className={`${style.mainHeading} main-heading`}>Groovy <span className={`${style.green}`}>Invoice</span></h3>
+                    <h3 className={`${style.mainHeading} main-heading`} onClick={() => { setActiveIdx(-1); }}>Groovy <span className={`${style.green}`}>Invoice</span></h3>
                 </Link>
 
                 <hr />
@@ -33,6 +33,9 @@ export default function Navbar() {
                         <FontAwesomeIcon icon={faClockRotateLeft} />
                         <FontAwesomeIcon icon={faEnvelope} />
                     </div>
+                    <div className={`${style.nav_menu_arrow} d-flex justify-content-center align-items-center`}>
+                        <FontAwesomeIcon icon={faArrowLeft}></FontAwesomeIcon>
+                    </div>
                 </div>
 
                 <hr />
@@ -46,7 +49,7 @@ export default function Navbar() {
 
                 <div className={`${style.nav_menu_list}`}>
                     {MENU_LIST.map((menu, idx) => (
-                        <div className={`${style.navItemWrapper} ${navActive ? style.active : ""} d-flex align-item-center`} onClick={() => { setActiveIdx(idx); setNavActive(false); }} key={menu.text}>
+                        <div className={`${style.navItemWrapper} ${(activeIdx === idx) ? style.active : " "} d-flex align-item-center`} onClick={() => { setActiveIdx(idx); }} key={menu.text}>
                             <FontAwesomeIcon className={`${style.green}`} icon={menu.icon} /><NavItem active={activeIdx === idx}{...menu}></NavItem>
                         </div>))}
                 </div>

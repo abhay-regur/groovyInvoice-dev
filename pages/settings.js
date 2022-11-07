@@ -1,5 +1,7 @@
 export default function Settings() {
     return (<>
-        <h1>Settings</h1>
+        <div className={`container`}>
+            <h1>Settings</h1>
+        </div>
     </>)
 }

@@ -1,5 +1,7 @@
 export default function Invoices() {
     return (<>
-        <h1>Invoices</h1>
+        <div className={`container`}>
+            <h1>Invoices</h1>
+        </div>
     </>)
 }
