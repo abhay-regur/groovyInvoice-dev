@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faKey, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
-import style from '../styles/Login.module.scss';
+import style from '../styles/login.module.scss';
 export default function Login() {
     const [visbilty, setvisibility] = useState(false);
     const togglePasswordVisiblity = () => {

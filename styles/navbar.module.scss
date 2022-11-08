@@ -1,5 +1,7 @@
 $font-size-heading: 32px;
 $font-size-text: 15px;
+$expanded-width: 300px;
+$nonexpanded-width: 97px;
 $primary-color: #3649AB;
 $secondary-color: #8790B0;
 $tertiary-color: #43CB80;
@@ -23,7 +25,9 @@ $navItem-hightlight: #F5FAFE;
 
     nav {
         height: 100%;
-        width: 300px;
+        min-width: $nonexpanded-width;
+        max-width: $expanded-width;
+        width: $nonexpanded-width;
         position: fixed;
         z-index: 1;
         top: 0;
@@ -31,6 +35,8 @@ $navItem-hightlight: #F5FAFE;
         background-color: #ffffff;
         display: flex;
         flex-direction: column;
+        -webkit-transition: width 0.31s;
+        transition: width 0.31s;
 
         a {
             text-decoration: none;
@@ -46,6 +52,8 @@ $navItem-hightlight: #F5FAFE;
             margin-top: 25px;
             margin-left: 29px;
             margin-bottom: 32px;
+            -webkit-transition: all 0.5s;
+            transition: all 0.5s 2s;
         }
 
         .green {
@@ -58,13 +66,17 @@ $navItem-hightlight: #F5FAFE;
 
         hr {
             color: $line-color;
+            width: $nonexpanded-width;
+            transition: all 0.2s;
         }
 
         .profileDetailWrapper {
+            width: $nonexpanded-width;
             padding-top: 18px;
             padding-bottom: 22px;
             font-size: $font-size-text + 1;
             position: relative;
+            transition: all 0.2s;
         }
 
         .profileImage {
@@ -72,18 +84,22 @@ $navItem-hightlight: #F5FAFE;
         }
 
         .profileNameWrapper {
+            display: none;
             font-size: $font-size-text + 1;
             margin-top: 3px;
+            transition: all 0.2s;
         }
 
         .active {
             background-color: $navItem-hightlight;
             padding-top: 10px !important;
             padding-bottom: 10px !important;
-            border-radius: 10px 0px 0px 10px;
+            border-radius: 10px;
         }
 
         .profileActionWrapper {
+            display: none;
+            transition: all 0.2s;
 
             svg {
                 width: 24px;
@@ -104,7 +120,7 @@ $navItem-hightlight: #F5FAFE;
             border-radius: 50%;
             height: 35px;
             width: 35px;
-            top: 56px;
+            top: 23px;
             right: -16px;
             position: absolute;
 
@@ -125,6 +141,13 @@ $navItem-hightlight: #F5FAFE;
             input {
                 padding: 7px 17px;
                 border: $primary-color solid 1px;
+
+                &::placeholder {
+                    color: $secondary-color;
+                    font-weight: 400;
+                    font-size: $font-size-text -1;
+                    line-height: 18px;
+                }
             }
 
             i {
@@ -145,33 +168,45 @@ $navItem-hightlight: #F5FAFE;
             }
         }
 
-        .navItemWrapper {
-            padding: 0px 15px;
-            transition: background-color 0.31s, padding 0.31s;
-
-            svg {
-                margin-right: 15px;
-                width: 22px;
-                height: 22px;
-            }
+        .searchButtonWrapper {
+            width: 97px;
+            margin-top: 109px;
         }
 
         .nav_menu_list {
             display: flex;
             flex-direction: column;
             row-gap: 24px;
-            padding: 24px 0;
+            padding: 24px 11px;
             padding-left: 11px;
             font-size: $font-size-text;
 
             &.active {
                 right: 0;
             }
+
+            .navItemWrapper {
+                padding: 0px 15px;
+                margin-right: 0px;
+                -webkit-transition: background-color 0.31s, padding 0.31s;
+                transition: background-color 0.31s, padding 0.31s;
+                justify-content: center;
+
+                svg {
+                    width: 22px;
+                    height: 22px;
+                }
+            }
+
+            .nav_menuName {
+                display: none;
+            }
         }
 
         .nav__link {
             font-size: 18px;
             position: relative;
+            -webkit-transition: all 0.2s;
             transition: all 0.2s;
 
             &:hover {
@@ -186,10 +221,79 @@ $navItem-hightlight: #F5FAFE;
             align-items: center;
         }
     }
+}
+
+.expanded {
+    width: $expanded-width !important;
+
+    .profileDetailWrapper {
+        width: 100% !important;
+        transition: all 0.2s;
+
+        .profileNameWrapper {
+            display: flex !important;
+            transition: all 0.2s;
+        }
+
+        .profileActionWrapper {
+            display: flex !important;
+            transition: all 0.2s;
+        }
+
+        .nav_menu_arrow {
+            top: 56px !important;
+            transition: all 0.2s;
+        }
+    }
+
+    hr {
+        width: $expanded-width !important;
+        transition: all 0.2s;
+    }
+
+    .active {
+        border-radius: 10px 0px 0px 10px !important;
+    }
+
+    .nav_menu_list {
+        padding-right: 0px !important;
+
+        .navItemWrapper {
+            justify-content: left !important;
+
+            svg {
+                margin-right: 15px !important;
+            }
+        }
+
+        .nav_menuName {
+            display: inline !important;
+        }
+    }
 
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 425px) {
+    .header {
+        nav {
+            height: 100%;
+            width: 100%;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            -webkit-transition: width 0.31s;
+            transition: width 0.31s;
+        }
+    }
+
+
+    .nav__menu-bar {
+        display: none;
+    }
 
     .nav__menu-list {
         position: unset;

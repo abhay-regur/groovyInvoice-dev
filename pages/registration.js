@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import style from '../styles/Registration.module.scss';
+import style from '../styles/registration.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faKey, faEye, faEyeSlash, faMobileRetro } from '@fortawesome/free-solid-svg-icons';
 export default function Registration() {

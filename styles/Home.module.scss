@@ -1,15 +1,11 @@
-@media (prefers-color-scheme: dark) {
+$font-size-heading: 32px;
+$font-size-text: 15px;
+$primary-color: #3649AB;
+$secondary-color: #8790B0;
+$tertiary-color: #43CB80;
 
-  .card,
-  .footer {
-    border-color: #222;
-  }
-
-  .code {
-    background: rgb(255, 255, 255);
-  }
-
-  .logo img {
-    filter: invert(1);
+.main {
+  .title {
+    color: $primary-color;
   }
 }

@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/Home.module.scss'
+import styles from '../styles/home.module.scss'
 
 export default function Home() {
   return (
@@ -11,9 +11,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={`${styles.main}`}>
+      <main className={`${styles.main} container`}>
         <h2 className={`${styles.title}`}>
-          Groovy<a href="https://nextjs.org">Invoice</a>
+          Dashboard
         </h2>
 
       </main>
