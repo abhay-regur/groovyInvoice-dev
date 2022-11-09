@@ -16,11 +16,11 @@ library.add(fab, faEnvelope, faKey, faEye, faEyeSlash);
 function MyApp({ Component, pageProps }) {
 
   const router = useRouter();
-  const showNavbar = router.pathname === ('/login' || '/registration') ? false : true;
+  const showNavbar = (router.pathname === '/login' || router.pathname === '/registration') ? false : true;
   return (
     <>
       <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
       </Head>
       <div className='pageContent'>
         {showNavbar && <Navbar />}
