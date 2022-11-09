@@ -16,62 +16,86 @@ export default function Navbar() {
     return (
         <div className={style.header}>
             <nav className={`nav ${expandedNav ? style.expanded : ""}`}>
-                <Link href={"/"}>
-                    {
-                        expandedNav ?
-                            <h3 className={`${style.mainHeading} main-heading`} onClick={() => { setActiveIdx(-1); }}>
-                                Groovy <span className={`${style.green}`}>Invoice</span>
-                            </h3> :
-                            <h3 className={`${style.mainHeading} main-heading`} onClick={() => { setActiveIdx(-1); }}>
-                                G<span className={`${style.green}`}>I</span>
-                            </h3>
-                    }
-                </Link>
+                <div className={`${style.navHeadingWrapper} d-flex justify-content-between`}>
+                    <Link href={"/"}>
+                        {
+                            expandedNav ?
+                                <h3 className={`${style.mainHeading} main-heading`} onClick={() => { setActiveIdx(-1); }}>
+                                    Groovy <span className={`${style.green}`}>Invoice</span>
+                                </h3> :
+                                <h3 className={`${style.mainHeading} main-heading`} onClick={() => { setActiveIdx(-1); }}>
+                                    G<span className={`${style.green}`}>I</span>
+                                </h3>
+                        }
+                    </Link>
 
-                <hr />
+                    <span className={`${style.hamburgerMenu} ${expandedNav ? style.active : style.no_animation}`} onClick={() => { setExpandedNav(prevCheck => !prevCheck) }}>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </span>
 
-                <div className={`${style.profileDetailWrapper}`}>
-                    <div className={`profileImageWrapper d-flex justify-content-center`}>
-                        <Image className={`${style.profileImage}`} src={profileImage} width={45} height={45} alt="profile_Image" />
-                    </div>
-                    <div className={`${style.profileNameWrapper} justify-content-center`}>
-                        <div className={`username`}>John Doe <span className={``}></span></div>
-                    </div>
-                    <div className={`${style.profileActionWrapper} justify-content-center`}>
-                        <FontAwesomeIcon icon={faClockRotateLeft} />
-                        <FontAwesomeIcon icon={faEnvelope} />
-                    </div>
-                    <div className={`${style.nav_menu_arrow} d-flex justify-content-center align-items-center`} onClick={() => { setExpandedNav(prevCheck => !prevCheck) }}>
-                        <FontAwesomeIcon icon={expandedNav ? faArrowLeft : faArrowRight}></FontAwesomeIcon>
-                    </div>
                 </div>
 
-                <hr />
 
-                {expandedNav ?
-                    <form className={`d-flex`} role="search">
-                        <input className={`form-control me-2`} type="search" placeholder="Global Search" aria-label="Search" />
-                        <i>
-                            <FontAwesomeIcon icon={faSearch} />
-                        </i>
-                    </form>
-                    :
-                    <div className={`d-flex justify-content-center ${style.searchButtonWrapper}`}>
-                        <button type="className" class="btn btn-outline-primary" style={{ width: '57px', height: '45px' }} onClick={() => { setExpandedNav(prevCheck => !prevCheck) }}>
+                <hr />
+                <div className={`${style.wrapperForMobileScreen}`}>
+                    <div className={`${style.profileDetailWrapper}`}>
+                        <div className={`profileImageWrapper d-flex justify-content-center`}>
+                            <Image className={`${style.profileImage}`} src={profileImage} width={45} height={45} alt="profile_Image" />
+                        </div>
+                        <div className={`${style.profileNameWrapper} justify-content-center`}>
+                            <div className={`username`}>John Doe <span className={``}></span></div>
+                        </div>
+                        <div className={`${style.profileActionWrapper} justify-content-center`}>
+                            <FontAwesomeIcon icon={faClockRotateLeft} />
+                            <FontAwesomeIcon icon={faEnvelope} />
+                        </div>
+                        <div className={`${style.nav_menu_arrow} d-flex justify-content-center align-items-center`} onClick={() => { setExpandedNav(prevCheck => !prevCheck) }}>
+                            <FontAwesomeIcon icon={expandedNav ? faArrowLeft : faArrowRight}></FontAwesomeIcon>
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    {expandedNav ?
+                        <form className={`d-flex`} role="search">
+                            <input className={`form-control me-2`} type="search" placeholder="Global Search" aria-label="Search" />
                             <i>
                                 <FontAwesomeIcon icon={faSearch} />
                             </i>
-                        </button>
-                    </div>
-                }
+                        </form>
+                        :
+                        <div className={`d-flex justify-content-center ${style.searchButtonWrapper}`}>
+                            <button className="btn btn-outline-primary" style={{ width: '57px', height: '45px' }} onClick={() => { setExpandedNav(prevCheck => !prevCheck) }}>
+                                <i>
+                                    <FontAwesomeIcon icon={faSearch} />
+                                </i>
+                            </button>
+                        </div>
+                    }
 
-                <div className={`${style.nav_menu_list}`}>
-                    {MENU_LIST.map((menu, idx) => (
-                        <div className={`${style.navItemWrapper} ${(activeIdx === idx) ? style.active : " "} d-flex align-item-center`} onClick={() => { setActiveIdx(idx); }} key={menu.text}>
-                            <Link className="nav__item" active={activeIdx === idx} href={`${menu.href}`}><a><FontAwesomeIcon className={`${style.green}`} icon={menu.icon} /><span className={`${style.nav_menuName}`}>{menu.text}</span></a></Link>
-                            {/* <NavItem active={activeIdx === idx}{...menu}></NavItem> */}
-                        </div>))}
+                    <div className={`${style.nav_menu_list}`}>
+                        {MENU_LIST.map(function (menu, idx) {
+                            if (menu.text == 'Settings') {
+                                return <>
+                                    <hr />
+                                    <div className={`${style.navItemWrapper} ${(activeIdx === idx) ? style.active : " "} d-flex align-item-center`} onClick={() => { setActiveIdx(idx); }} key={menu.text}>
+                                        <NavItem active={activeIdx === idx}{...menu}></NavItem>
+                                    </div>
+                                </>;
+                            }
+                            else {
+                                return <div className={`${style.navItemWrapper} ${(activeIdx === idx) ? style.active : " "} d-flex align-item-center`} onClick={() => { setActiveIdx(idx); }} key={menu.text}>
+                                    <NavItem active={activeIdx === idx}{...menu}></NavItem>
+                                </div>
+                            }
+
+                        })}
+                    </div>
+
                 </div>
+
             </nav>
         </div>
     )
