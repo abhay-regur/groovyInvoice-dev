@@ -1,0 +1,45 @@
+$font-size-heading: 32px;
+$font-size-text: 15px;
+$primary-color: #3649AB;
+$secondary-color: #8790B0;
+$tertiary-color: #43CB80;
+
+@media screen and (min-width: 426px) {
+    .main {
+        margin: auto 97px;
+        margin-left: 135px;
+        transition: all 0.35s;
+
+        &.expanded {
+            margin-left: 329px !important;
+            transition: all 0.35s;
+        }
+
+        .title {
+            color: $primary-color;
+            font-weight: 700;
+            font-size: 26px;
+            line-height: 33px;
+        }
+    }
+
+}
+
+@media screen and (max-width: 425px) {
+    .main {
+        margin: 89px 15px 92px 15px;
+        transition: all 0.35s;
+
+        &.expanded {
+            margin: 89px 15px 92px 15px;
+            transition: all 0.35s;
+        }
+
+        .title {
+            color: $primary-color;
+            font-weight: 700;
+            font-size: 26px;
+            line-height: 33px;
+        }
+    }
+}
