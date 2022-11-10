@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Head from 'next/head';
 import '../styles/globals.scss'
 import { useRouter } from 'next/router';
+import { useState } from "react";
 import Navbar from '../components/navbar';
 //for font awesome
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -17,14 +18,15 @@ function MyApp({ Component, pageProps }) {
 
   const router = useRouter();
   const showNavbar = (router.pathname === '/login' || router.pathname === '/registration') ? false : true;
+  const [navExpandedState, setNavExpandedState] = useState(false);
   return (
     <>
       <Head>
         <meta content="width=device-width, initial-scale=1" name="viewport" />
       </Head>
       <div className='pageContent'>
-        {showNavbar && <Navbar />}
-        <Component {...pageProps} />
+        {showNavbar && <Navbar navExpandedState={navExpandedState} setNavExpandedState={setNavExpandedState} />}
+        <Component {...pageProps} navExpandedState={navExpandedState} />
       </div>
     </>
   );

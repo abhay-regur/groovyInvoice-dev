@@ -8,28 +8,20 @@ import { faClockRotateLeft, faSearch, faFileLines, faUserGroup, faChartLine, faG
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
 const MENU_LIST = [{ text: "Invoices", href: "/invoices", icon: faFileLines }, { text: "Customers", href: "/customers", icon: faUserGroup }, { text: "Reports", href: "/reports", icon: faChartLine }, { text: "Settings", href: "/settings", icon: faGear }];
-export default function Navbar() {
-    const [expandedNav, setExpandedNav] = useState(true);
+export default function Navbar({ navExpandedState, setNavExpandedState }) {
     const [activeIdx, setActiveIdx] = useState(-1);
     const [profileImage, setProfileImage] = useState("/images/profile_img.png");
 
     return (
         <div className={style.header}>
-            <nav className={`nav ${expandedNav ? style.expanded : ""}`}>
+            <nav className={`nav ${navExpandedState ? style.expanded : ""}`}>
                 <div className={`${style.navHeadingWrapper} d-flex justify-content-between`}>
                     <Link href={"/"}>
-                        {
-                            expandedNav ?
-                                <h3 className={`${style.mainHeading} main-heading`} onClick={() => { setActiveIdx(-1); }}>
-                                    Groovy <span className={`${style.green}`}>Invoice</span>
-                                </h3> :
-                                <h3 className={`${style.mainHeading} main-heading`} onClick={() => { setActiveIdx(-1); }}>
-                                    G<span className={`${style.green}`}>I</span>
-                                </h3>
-                        }
+                        <h3 className={`${style.mainHeading} main-heading`} onClick={() => { setActiveIdx(-1); setNavExpandedState(false) }}>
+                        </h3>
                     </Link>
 
-                    <span className={`${style.hamburgerMenu} ${expandedNav ? style.active : style.no_animation}`} onClick={() => { setExpandedNav(prevCheck => !prevCheck) }}>
+                    <span className={`${style.hamburgerMenu} ${navExpandedState ? style.active : style.no_animation}`} onClick={() => { setNavExpandedState(prevCheck => !prevCheck) }}>
                         <div></div>
                         <div></div>
                         <div></div>
@@ -51,14 +43,14 @@ export default function Navbar() {
                             <FontAwesomeIcon icon={faClockRotateLeft} />
                             <FontAwesomeIcon icon={faEnvelope} />
                         </div>
-                        <div className={`${style.nav_menu_arrow} d-flex justify-content-center align-items-center`} onClick={() => { setExpandedNav(prevCheck => !prevCheck) }}>
-                            <FontAwesomeIcon icon={expandedNav ? faArrowLeft : faArrowRight}></FontAwesomeIcon>
+                        <div className={`${style.nav_menu_arrow} d-flex justify-content-center align-items-center`} onClick={() => { setNavExpandedState(prevCheck => !prevCheck) }}>
+                            <FontAwesomeIcon icon={navExpandedState ? faArrowLeft : faArrowRight}></FontAwesomeIcon>
                         </div>
                     </div>
 
                     <hr />
 
-                    {expandedNav ?
+                    {navExpandedState ?
                         <form className={`d-flex`} role="search">
                             <input className={`form-control me-2`} type="search" placeholder="Global Search" aria-label="Search" />
                             <i>
@@ -67,7 +59,7 @@ export default function Navbar() {
                         </form>
                         :
                         <div className={`d-flex justify-content-center ${style.searchButtonWrapper}`}>
-                            <button className="btn btn-outline-primary" style={{ width: '57px', height: '45px' }} onClick={() => { setExpandedNav(prevCheck => !prevCheck) }}>
+                            <button className="btn btn-outline-primary" style={{ width: '57px', height: '45px' }} onClick={() => { setNavExpandedState(prevCheck => !prevCheck) }}>
                                 <i>
                                     <FontAwesomeIcon icon={faSearch} />
                                 </i>
@@ -80,13 +72,13 @@ export default function Navbar() {
                             if (menu.text == 'Settings') {
                                 return <>
                                     <hr />
-                                    <div className={`${style.navItemWrapper} ${(activeIdx === idx) ? style.active : " "} d-flex align-item-center`} onClick={() => { setActiveIdx(idx); }} key={menu.text}>
+                                    <div className={`${style.navItemWrapper} ${(activeIdx === idx) ? style.active : " "} d-flex align-item-center`} onClick={() => { setActiveIdx(idx); setNavExpandedState(false) }} key={menu.text}>
                                         <NavItem active={activeIdx === idx}{...menu}></NavItem>
                                     </div>
                                 </>;
                             }
                             else {
-                                return <div className={`${style.navItemWrapper} ${(activeIdx === idx) ? style.active : " "} d-flex align-item-center`} onClick={() => { setActiveIdx(idx); }} key={menu.text}>
+                                return <div className={`${style.navItemWrapper} ${(activeIdx === idx) ? style.active : " "} d-flex align-item-center`} onClick={() => { setActiveIdx(idx); setNavExpandedState(false) }} key={menu.text}>
                                     <NavItem active={activeIdx === idx}{...menu}></NavItem>
                                 </div>
                             }
