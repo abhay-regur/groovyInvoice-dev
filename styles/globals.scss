@@ -18,9 +18,19 @@ body {
   color: $grey;
   min-height: 600px;
 
+  * {
+    font-family: $text-font;
+  }
+
   a {
     color: inherit;
     text-decoration: none;
+  }
+
+  input {
+    &:hover {
+      box-shadow: none;
+    }
   }
 
   .green {
