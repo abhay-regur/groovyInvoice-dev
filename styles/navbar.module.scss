@@ -14,7 +14,6 @@ $navItem-hightlight: #F5FAFE;
     top: 0;
 
     * {
-        color: $primary-color;
         margin: 0;
         padding: 0;
         outline: none;
@@ -24,12 +23,27 @@ $navItem-hightlight: #F5FAFE;
     }
 
     nav {
+        color: $primary-color;
 
         .green {
             color: $tertiary-color;
 
             path {
                 color: $tertiary-color;
+            }
+        }
+
+        .searchButtonWrapper {
+            button {
+                &:hover {
+                    border: 1px solid $primary-color;
+                    background-color: $primary-color;
+                    color: white !important;
+
+                    svg {
+                        color: white !important;
+                    }
+                }
             }
         }
     }
@@ -289,6 +303,7 @@ $navItem-hightlight: #F5FAFE;
                     display: flex !important;
                     -webkit-transition: all 0.2s;
                     transition: all 0.2s;
+                    margin-top: 16px;
                 }
 
                 .nav_menu_arrow {
@@ -544,6 +559,7 @@ $navItem-hightlight: #F5FAFE;
                     display: flex;
                     -webkit-transition: all 0.2s, opacity 0.5s linear;
                     transition: all 0.2s, opacity 0.5s linear;
+                    margin-top: 16px;
 
                     svg {
                         width: 24px;

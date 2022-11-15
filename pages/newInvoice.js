@@ -1,9 +1,19 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import RadioButton from '../components/radioButton';
 import styles from "../styles/newInvoice.module.scss"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faGear, faCalendar } from '@fortawesome/free-solid-svg-icons';
+import { useState } from 'react';
 export default function Newinvoice({ navExpandedState }) {
+    const [taxValueSelected, settaxValueSelected] = useState(false);
+    const handleTDSChange = () => {
+        settaxValueSelected('tds');
+    };
+
+    const handleTCSChange = () => {
+        settaxValueSelected('tcs');
+    };
     return (
         <div className={styles.container}>
             <Head>
@@ -86,15 +96,61 @@ export default function Newinvoice({ navExpandedState }) {
                             <hr />
                             <div className="row"></div>
                             <hr />
-                            <div className="companyInvoiceTotalWrapper">
-                                <div className="row">
-                                    <div className="col md-6">
+                            <div className={`${styles.companyInvoiceBottomWrapper}`}>
+                                <div className="row justify-content-left">
+                                    <div className="col-md-5">
                                         <div className="mb-3">
-                                            <label htmlFor="exampleFormControlTextarea1" className="form-label">Customer Notes</label>
-                                            <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                            <label htmlFor="companyInvoiceCustomerNotes" className="form-label">Customer Notes</label>
+                                            <textarea className="form-control" placeholder='Enter note' id="companyInvoiceCustomerNotes" rows="7"></textarea>
                                         </div>
                                     </div>
-                                    <div className="col md-6"></div>
+                                    <div className="col-md-4">
+                                        <div className={`${styles.card} card justify-content-between`} >
+                                            <div className="card-body">
+                                                <div className="d-flex justify-content-between">
+                                                    <div className={`${styles.subtotalLabel}`}>Sub Total</div>
+                                                    <div className={`${styles.subtotalresult}`}>Rs. 18.00</div>
+                                                </div>
+                                                <div className={`${styles.comapnyInvoiceTaxOptionWrapper} d-flex align-content-center`}>
+                                                    <span className={`${styles.taxTDSRadioButtonWrapper} d-flex align-items-center`}>
+                                                        <RadioButton
+                                                            label="TDS"
+                                                            value={taxValueSelected === 'tds'}
+                                                            onChange={handleTDSChange}
+                                                        />
+                                                    </span>
+                                                    <span className={`${styles.taxTCSRadioButtonWrapper} d-flex align-items-center`}>
+                                                        <RadioButton
+                                                            label="TCS"
+                                                            value={taxValueSelected === 'tcs'}
+                                                            onChange={handleTCSChange}
+                                                        />
+                                                    </span>
+                                                    <span className={`${styles.taxTypeSelectWrapper}`}>
+                                                        <select className={`${styles.taxTypeSelect} form-select`}>
+                                                            <option defaultValue>Select Tax</option>
+                                                            <option value="1">One</option>
+                                                            <option value="2">Two</option>
+                                                        </select>
+                                                    </span>
+                                                    <span className={`${styles.totalCalculatedTax} d-flex`}>
+                                                        <span>-0.00</span>
+                                                    </span>
+                                                </div>
+                                                <div className={`${styles.companyInvoiceAdjustmentWrapper}`}>
+
+                                                </div>
+                                                <hr />
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-8">
+                                        <div className={`${styles.companyInvoiceTermsnConditionsWrapper} mb-3`}>
+                                            <label htmlFor="companyInvoiceTerms&Conditions" className="form-label">Terms & Conditions</label>
+                                            <textarea className="form-control" placeholder='Enter the terms and conditions of your business to be displayed in your transaction' id="companyInvoiceTerms&Conditions" rows="7"></textarea>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
