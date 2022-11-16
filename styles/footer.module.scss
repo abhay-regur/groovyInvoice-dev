@@ -10,7 +10,7 @@ $tertiary-color: #43CB80;
 @media screen and (min-width: 426px) {
     .footerWrapper {
 
-        position: fixed;
+        position: static;
         background: white;
         height: 120px;
         bottom: 0;
