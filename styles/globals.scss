@@ -17,6 +17,7 @@ body {
   background: $primary-background;
   color: $grey;
   min-height: 600px;
+  height: 100vh;
 
   * {
     font-family: $text-font;
