@@ -72,13 +72,13 @@ export default function Navbar({ navExpandedState, setNavExpandedState }) {
                             if (menu.text == 'Settings') {
                                 return <>
                                     <hr />
-                                    <div className={`${style.navItemWrapper} ${(activeIdx === idx) ? style.active : " "} d-flex align-item-center`} onClick={() => { setActiveIdx(idx); setNavExpandedState(false) }} key={menu.text}>
+                                    <div className={`${style.navItemWrapper} ${(activeIdx === idx) ? style.active : " "} d-flex align-item-center`} onClick={() => { setActiveIdx(idx); setNavExpandedState(false) }} key={idx}>
                                         <NavItem active={activeIdx === idx}{...menu}></NavItem>
                                     </div>
                                 </>;
                             }
                             else {
-                                return <div className={`${style.navItemWrapper} ${(activeIdx === idx) ? style.active : " "} d-flex align-item-center`} onClick={() => { setActiveIdx(idx); setNavExpandedState(false) }} key={menu.text}>
+                                return <div className={`${style.navItemWrapper} ${(activeIdx === idx) ? style.active : " "} d-flex align-item-center`} onClick={() => { setActiveIdx(idx); setNavExpandedState(false) }} key={idx}>
                                     <NavItem active={activeIdx === idx}{...menu}></NavItem>
                                 </div>
                             }

@@ -1,12 +1,13 @@
 import Head from 'next/head';
-import Image from 'next/image';
+import InvoiceTable from '../components/invoiceTable';
 import RadioButton from '../components/radioButton';
 import styles from "../styles/newInvoice.module.scss"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faGear, faCalendar } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faGear, faCalendar, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 export default function Newinvoice({ navExpandedState }) {
-    const [taxValueSelected, settaxValueSelected] = useState(false);
+    const [taxValueSelected, settaxValueSelected] = useState();
+
     const handleTDSChange = () => {
         settaxValueSelected('tds');
     };
@@ -27,12 +28,12 @@ export default function Newinvoice({ navExpandedState }) {
                 </h2>
                 <div className="container-fluid">
                     <div className={`${styles.card} card`}>
-                        <div className="card-body">
+                        <div className={`${styles.cardBody} card-body`}>
                             <h4 className={`${styles.cardTitle} card-title`}>Customer & Invoice Details</h4>
                             <hr />
                             <div className={`${styles.mainWrapper}`}>
                                 <div className="row">
-                                    <div className="col-md-4 ">
+                                    <div className="col-md-12 col-lg-4">
                                         <div className={`${styles.companyNameWrapper} form-group`}>
                                             <label htmlFor="companyName" className="form-label control-label">Comapny Name<span className={`${styles.green}`}>*</span></label>
                                             <div className="d-flex">
@@ -46,7 +47,7 @@ export default function Newinvoice({ navExpandedState }) {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-sm-3">
+                                    <div className="col-12 col-sm-6 col-md-6 col-lg-4">
                                         <div className={`${styles.companyInvoiceNumberWrapper} mb-3`}>
                                             <label htmlFor="companyInvoiceNumber" className="form-label">Invoice#<span className={`${styles.green}`}>*</span></label>
                                             <div className={`d-flex align-content-center`}>
@@ -55,7 +56,7 @@ export default function Newinvoice({ navExpandedState }) {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-sm-3">
+                                    <div className="col-12 col-sm-6 col-md-6 col-lg-4">
                                         <div className={`${styles.companyOrderNumberWrapper} mb-3`}>
                                             <label htmlFor="companyOrderNumber" className="form-label">Order Number</label>
                                             <div className={`d-flex align-content-center`}>
@@ -65,7 +66,7 @@ export default function Newinvoice({ navExpandedState }) {
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="col-md-2">
+                                    <div className="col-12 col-sm-5 col-md-4 col-lg-2">
                                         <div className={`${styles.companyInvoiceDateWrapper} mb-3`}>
                                             <label htmlFor="companyInvoiceDate" className="form-label">Invoice Date<span className={`${styles.green}`}>*</span></label>
                                             <div className={`d-flex align-content-center`}>
@@ -74,7 +75,7 @@ export default function Newinvoice({ navExpandedState }) {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-md-2">
+                                    <div className="col-12 col-sm-5 col-md-4 col-lg-2">
                                         <div className={`${styles.companyInvoicetermsWrapper} mb-3`}>
                                             <label htmlFor="companyInvoiceterms" className="form-label">Terms</label>
                                             <div className={`d-flex align-content-center`}>
@@ -82,7 +83,7 @@ export default function Newinvoice({ navExpandedState }) {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-md-2">
+                                    <div className="col-12 col-sm-5 col-md-4 col-lg-2">
                                         <div className={`${styles.companyInvoiceDueDateWrapper} mb-3`}>
                                             <label htmlFor="companyInvoiceDueDate" className="form-label">Due Date</label>
                                             <div className={`d-flex align-content-center`}>
@@ -94,17 +95,19 @@ export default function Newinvoice({ navExpandedState }) {
                                 </div>
                             </div>
                             <hr />
-                            <div className="row"></div>
+                            <div className="row">
+                                <InvoiceTable />
+                            </div>
                             <hr />
                             <div className={`${styles.companyInvoiceBottomWrapper}`}>
                                 <div className="row justify-content-left">
-                                    <div className="col-md-5">
+                                    <div className="col-md-12 col-lg-5 col-xl-7">
                                         <div className="mb-3">
                                             <label htmlFor="companyInvoiceCustomerNotes" className="form-label">Customer Notes</label>
-                                            <textarea className="form-control" placeholder='Enter note' id="companyInvoiceCustomerNotes" rows="7"></textarea>
+                                            <textarea className="form-control" placeholder='Enter note' id="companyInvoiceCustomerNotes"></textarea>
                                         </div>
                                     </div>
-                                    <div className="col-md-4">
+                                    <div className="col-md-12 col-lg-7 col-xl-5">
                                         <div className={`${styles.card} card justify-content-between`} >
                                             <div className="card-body">
                                                 <div className="d-flex justify-content-between">
@@ -112,44 +115,83 @@ export default function Newinvoice({ navExpandedState }) {
                                                     <div className={`${styles.subtotalresult}`}>Rs. 18.00</div>
                                                 </div>
                                                 <div className={`${styles.comapnyInvoiceTaxOptionWrapper} d-flex align-content-center`}>
-                                                    <span className={`${styles.taxTDSRadioButtonWrapper} d-flex align-items-center`}>
-                                                        <RadioButton
-                                                            label="TDS"
-                                                            value={taxValueSelected === 'tds'}
-                                                            onChange={handleTDSChange}
-                                                        />
-                                                    </span>
-                                                    <span className={`${styles.taxTCSRadioButtonWrapper} d-flex align-items-center`}>
-                                                        <RadioButton
-                                                            label="TCS"
-                                                            value={taxValueSelected === 'tcs'}
-                                                            onChange={handleTCSChange}
-                                                        />
-                                                    </span>
-                                                    <span className={`${styles.taxTypeSelectWrapper}`}>
-                                                        <select className={`${styles.taxTypeSelect} form-select`}>
-                                                            <option defaultValue>Select Tax</option>
-                                                            <option value="1">One</option>
-                                                            <option value="2">Two</option>
-                                                        </select>
+                                                    <span className={`${styles.comapnyInvoiceTaxOptionInputWrapper}`}>
+                                                        <span className={`${styles.comapnyInvoiceTaxSelectorMainWrapper}`}>
+                                                            <span className={`${styles.taxTDSRadioButtonWrapper} d-flex align-items-center`}>
+                                                                <RadioButton
+                                                                    label="TDS"
+                                                                    value={taxValueSelected === 'tds'}
+                                                                    onChange={handleTDSChange}
+                                                                />
+                                                            </span>
+                                                            <span className={`${styles.taxTCSRadioButtonWrapper} d-flex align-items-center`}>
+                                                                <RadioButton
+                                                                    label="TCS"
+                                                                    value={taxValueSelected === 'tcs'}
+                                                                    onChange={handleTCSChange}
+                                                                />
+                                                            </span>
+                                                        </span>
+                                                        <span className={`${styles.taxTypeSelectWrapper}`}>
+                                                            <select className={`${styles.taxTypeSelect} form-select`}>
+                                                                <option defaultValue>Select Tax</option>
+                                                                <option value="1">One</option>
+                                                                <option value="2">Two</option>
+                                                            </select>
+                                                        </span>
                                                     </span>
                                                     <span className={`${styles.totalCalculatedTax} d-flex`}>
-                                                        <span>-0.00</span>
+                                                        <span>- Rs. 0.00</span>
                                                     </span>
                                                 </div>
-                                                <div className={`${styles.companyInvoiceAdjustmentWrapper}`}>
-
+                                                <div className={`${styles.companyInvoiceAdjustmentWrapper} d-flex row`}>
+                                                    <div className={`${styles.companyInvoiceAdjustmentInputWrapper} col-7`}>
+                                                        <div className="">
+                                                            <input type="text" className={`${styles.companyInvoicePriceAdjustment} form-control`} placeholder="Adjustment" />
+                                                        </div>
+                                                        <div className="">
+                                                            <div className="companyInvoicePriceAdjustment2Wrapper">
+                                                                <input type="text" className={`${styles.companyInvoicePriceAdjustment} form-control`} />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-5">
+                                                        <span className={`${styles.totalCalculatedAdjustment} d-flex justify-content-end`}>
+                                                            <span>- Rs. 0.00</span>
+                                                        </span>
+                                                    </div>
                                                 </div>
                                                 <hr />
+                                                <div className={`${styles.companyInvoiceTotalWrapper} row`}>
+                                                    <div className="col-6 text-start">
+                                                        <h5>Total</h5>
+                                                    </div>
+                                                    <div className="col-6 text-end">
+                                                        <h5>Rs. 18.00</h5>
+                                                    </div>
 
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-md-8">
-                                        <div className={`${styles.companyInvoiceTermsnConditionsWrapper} mb-3`}>
+                                    <div className="col-md-12 col-lg-8">
+                                        <div className={`${styles.companyInvoiceTermsnConditionsWrapper}`}>
                                             <label htmlFor="companyInvoiceTerms&Conditions" className="form-label">Terms & Conditions</label>
                                             <textarea className="form-control" placeholder='Enter the terms and conditions of your business to be displayed in your transaction' id="companyInvoiceTerms&Conditions" rows="7"></textarea>
                                         </div>
+                                    </div>
+                                    <div className="col-md-12 col-lg-7">
+                                        <span className={`${styles.companyInvoiceSaveButtonsWrapper}`}>
+                                            <button className={`${styles.companyInvoiceSaveDraftButton} btn btn-success`}>
+                                                Save as Draft
+                                            </button>
+                                            <button className={`${styles.companyInvoiceSavenSendButton} btn btn-primary`}>
+                                                Save & Send
+                                            </button>
+                                        </span>
+                                        <button className={`${styles.companyInvoiceCancelButton} btn btn-outline-primary`}>
+                                            Cancel
+                                        </button>
                                     </div>
                                 </div>
                             </div>
