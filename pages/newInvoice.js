@@ -2,7 +2,6 @@ import { useState } from 'react';
 import Head from 'next/head';
 import InvoiceTable from '../components/invoiceTable';
 import RadioButton from '../components/radioButton';
-import useWindowDimensions from "../hooks/useWindowDimensions.js";
 import styles from "../styles/newInvoice.module.scss";
 import FaCalendar from "../assets/icons/faCalendar.svg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -15,7 +14,142 @@ import FaGear from '../assets/icons/faGear.svg';
 export default function Newinvoice({ navExpandedState }) {
     const [taxValueSelected, settaxValueSelected] = useState();
 
-    const { height, width } = useWindowDimensions();
+    const ItemsData = [
+        {
+            ItemDetails: {
+                ItemName: "Test 1",
+                ItemType: "Goods",
+                ItemHSN: "070310101",
+            },
+            ItemQuantity: "2",
+            ItemRate: "20",
+            ItemTaxType: "tcs",
+            ItemTotalAmount: "48"
+        },
+        {
+            ItemDetails: {
+                ItemName: "Test 1",
+                ItemType: "Goods",
+                ItemHSN: "070310101",
+            },
+            ItemQuantity: "2",
+            ItemRate: "20",
+            ItemTaxType: "tcs",
+            ItemTotalAmount: "48"
+        },
+        {
+            ItemDetails: {
+                ItemName: "Test 1",
+                ItemType: "Goods",
+                ItemHSN: "070310101",
+            },
+            ItemQuantity: "2",
+            ItemRate: "20",
+            ItemTaxType: "tcs",
+            ItemTotalAmount: "48"
+        },
+        {
+            ItemDetails: {
+                ItemName: "Test 1",
+                ItemType: "Goods",
+                ItemHSN: "070310101",
+            },
+            ItemQuantity: "2",
+            ItemRate: "20",
+            ItemTaxType: "tcs",
+            ItemTotalAmount: "48"
+        },
+        {
+            ItemDetails: {
+                ItemName: "Test 1",
+                ItemType: "Goods",
+                ItemHSN: "070310101",
+            },
+            ItemQuantity: "2",
+            ItemRate: "20",
+            ItemTaxType: "tcs",
+            ItemTotalAmount: "48"
+        },
+        {
+            ItemDetails: {
+                ItemName: "Test 1",
+                ItemType: "Goods",
+                ItemHSN: "070310101",
+            },
+            ItemQuantity: "2",
+            ItemRate: "20",
+            ItemTaxType: "tcs",
+            ItemTotalAmount: "48"
+        },
+        {
+            ItemDetails: {
+                ItemName: "Test 1",
+                ItemType: "Goods",
+                ItemHSN: "070310101",
+            },
+            ItemQuantity: "2",
+            ItemRate: "20",
+            ItemTaxType: "tcs",
+            ItemTotalAmount: "48"
+        },
+        {
+            ItemDetails: {
+                ItemName: "Test 1",
+                ItemType: "Goods",
+                ItemHSN: "070310101",
+            },
+            ItemQuantity: "2",
+            ItemRate: "20",
+            ItemTaxType: "tcs",
+            ItemTotalAmount: "48"
+        },
+        {
+            ItemDetails: {
+                ItemName: "Test 1",
+                ItemType: "Goods",
+                ItemHSN: "070310101",
+            },
+            ItemQuantity: "2",
+            ItemRate: "20",
+            ItemTaxType: "tcs",
+            ItemTotalAmount: "48"
+        },
+        {
+            ItemDetails: {
+                ItemName: "Test 1",
+                ItemType: "Goods",
+                ItemHSN: "070310101",
+            },
+            ItemQuantity: "2",
+            ItemRate: "20",
+            ItemTaxType: "tcs",
+            ItemTotalAmount: "48"
+        },
+        {
+            ItemDetails: {
+                ItemName: "Test 1",
+                ItemType: "Goods",
+                ItemHSN: "070310101",
+            },
+            ItemQuantity: "2",
+            ItemRate: "20",
+            ItemTaxType: "tcs",
+            ItemTotalAmount: "48"
+        },
+        {
+            ItemDetails: {
+                ItemName: "Test 1",
+                ItemType: "Goods",
+                ItemHSN: "070310101",
+            },
+            ItemQuantity: "2",
+            ItemRate: "20",
+            ItemTaxType: "tcs",
+            ItemTotalAmount: "48"
+        }
+    ]
+
+    // const { height, width } = useWindowDimensions();
 
     const handleTDSChange = () => {
         settaxValueSelected('tds');
@@ -106,7 +240,7 @@ export default function Newinvoice({ navExpandedState }) {
                             <hr />
                             <div className={`${styles.companyInvoiceItemsTableMainWrapper} row`}>
                                 <div className="col-12">
-                                    <InvoiceTable />
+                                    <InvoiceTable ItemsData={ItemsData} />
                                 </div>
                                 <div className="col-12">
                                     <div className="btn-group">
