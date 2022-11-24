@@ -1,12 +1,21 @@
+import { useState } from 'react';
 import Head from 'next/head';
 import InvoiceTable from '../components/invoiceTable';
 import RadioButton from '../components/radioButton';
-import styles from "../styles/newInvoice.module.scss"
+import useWindowDimensions from "../hooks/useWindowDimensions.js";
+import styles from "../styles/newInvoice.module.scss";
+import FaCalendar from "../assets/icons/faCalendar.svg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faGear, faCalendar, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import FaCirclePlus from '../assets/icons/faCirclePlus.svg';
+import FaSave from '../assets/icons/faSave.svg';
+import FaPaperPen from '../assets/icons/faPaperPen.svg';
+import FaCircleXmark from '../assets/icons/faCircleXmark.svg';
+import FaGear from '../assets/icons/faGear.svg';
 export default function Newinvoice({ navExpandedState }) {
     const [taxValueSelected, settaxValueSelected] = useState();
+
+    const { height, width } = useWindowDimensions();
 
     const handleTDSChange = () => {
         settaxValueSelected('tds');
@@ -52,7 +61,7 @@ export default function Newinvoice({ navExpandedState }) {
                                             <label htmlFor="companyInvoiceNumber" className="form-label">Invoice#<span className={`${styles.green}`}>*</span></label>
                                             <div className={`d-flex align-content-center`}>
                                                 <input type="text" className="form-control" id="companyInvoiceNumber" aria-describedby="emailHelp" />
-                                                <i><FontAwesomeIcon icon={faGear} /></i>
+                                                <i><FaGear /></i>
                                             </div>
                                         </div>
                                     </div>
@@ -71,7 +80,7 @@ export default function Newinvoice({ navExpandedState }) {
                                             <label htmlFor="companyInvoiceDate" className="form-label">Invoice Date<span className={`${styles.green}`}>*</span></label>
                                             <div className={`d-flex align-content-center`}>
                                                 <input type="text" className="form-control" id="companyInvoiceDate" aria-describedby="emailHelp" />
-                                                <i><FontAwesomeIcon icon={faCalendar} /></i>
+                                                <i><FaCalendar /></i>
                                             </div>
                                         </div>
                                     </div>
@@ -88,15 +97,33 @@ export default function Newinvoice({ navExpandedState }) {
                                             <label htmlFor="companyInvoiceDueDate" className="form-label">Due Date</label>
                                             <div className={`d-flex align-content-center`}>
                                                 <input type="text" className="form-control" id="companyInvoiceDueDate" aria-describedby="emailHelp" />
-                                                <i><FontAwesomeIcon icon={faCalendar} /></i>
+                                                <i><FaCalendar /></i>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <hr />
-                            <div className="row">
-                                <InvoiceTable />
+                            <div className={`${styles.companyInvoiceItemsTableMainWrapper} row`}>
+                                <div className="col-12">
+                                    <InvoiceTable />
+                                </div>
+                                <div className="col-12">
+                                    <div className="btn-group">
+                                        <button type="button" className={`${styles.companyInvoiceAddlineBtn} btn btn-outline-primary dropdown-toggle`} data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i><FaCirclePlus /></i>
+                                            Add Another Line
+                                        </button>
+                                        <ul className="dropdown-menu">
+                                            <li><a className="dropdown-item" href="#">Action</a></li>
+                                            <li><a className="dropdown-item" href="#">Another action</a></li>
+                                            <li><a className="dropdown-item" href="#">Something else here</a></li>
+                                            <li><hr className="dropdown-divider" /></li>
+                                            <li><a className="dropdown-item" href="#">Separated link</a></li>
+                                        </ul>
+                                    </div>
+
+                                </div>
                             </div>
                             <hr />
                             <div className={`${styles.companyInvoiceBottomWrapper}`}>
@@ -141,7 +168,7 @@ export default function Newinvoice({ navExpandedState }) {
                                                         </span>
                                                     </span>
                                                     <span className={`${styles.totalCalculatedTax} d-flex`}>
-                                                        <span>- Rs. 0.00</span>
+                                                        <span className='text-start text-lg-right text-xl-left'>- Rs. 0.00</span>
                                                     </span>
                                                 </div>
                                                 <div className={`${styles.companyInvoiceAdjustmentWrapper} d-flex row`}>
@@ -163,10 +190,10 @@ export default function Newinvoice({ navExpandedState }) {
                                                 </div>
                                                 <hr />
                                                 <div className={`${styles.companyInvoiceTotalWrapper} row`}>
-                                                    <div className="col-6 text-start">
+                                                    <div className="col-6 d-flex text-start align-items-center">
                                                         <h5>Total</h5>
                                                     </div>
-                                                    <div className="col-6 text-end">
+                                                    <div className="col-6 text-center text-sm-end">
                                                         <h5>Rs. 18.00</h5>
                                                     </div>
 
@@ -183,22 +210,31 @@ export default function Newinvoice({ navExpandedState }) {
                                     <div className="col-md-12 col-lg-7">
                                         <span className={`${styles.companyInvoiceSaveButtonsWrapper}`}>
                                             <button className={`${styles.companyInvoiceSaveDraftButton} btn btn-success`}>
-                                                Save as Draft
+                                                <span>
+                                                    <i><FaPaperPen /></i>
+                                                    Save as Draft
+                                                </span>
                                             </button>
                                             <button className={`${styles.companyInvoiceSavenSendButton} btn btn-primary`}>
-                                                Save & Send
+                                                <span>
+                                                    <i><FaSave /></i>
+                                                    Save & Send
+                                                </span>
                                             </button>
                                         </span>
                                         <button className={`${styles.companyInvoiceCancelButton} btn btn-outline-primary`}>
-                                            Cancel
+                                            <span>
+                                                <i><FaCircleXmark /></i>
+                                                Cancel
+                                            </span>
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </main>
-        </div>
+                    </div >
+                </div >
+            </main >
+        </div >
     )
 }

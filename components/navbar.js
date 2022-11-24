@@ -3,11 +3,16 @@ import Link from "next/link";
 import Image from "next/image";
 import style from '../styles/navbar.module.scss';
 import NavItem from "./navitem";
+import FaChartLine from '../assets/icons/faChartLine.svg';
+import FaEnvelope from '../assets/icons/faEnvelope.svg';
+import FaClockRotateLeft from '../assets/icons/faClockRotateLeft.svg';
+import FaFileLines from '../assets/icons/faFileLines.svg';
+import FaUserGroup from '../assets/icons/faUserGroup.svg';
+import FaGear from '../assets/icons/faGear.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClockRotateLeft, faSearch, faFileLines, faUserGroup, faChartLine, faGear, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
+import { faSearch, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
-const MENU_LIST = [{ text: "Invoices", href: "/invoices", icon: faFileLines }, { text: "Customers", href: "/customers", icon: faUserGroup }, { text: "Reports", href: "/reports", icon: faChartLine }, { text: "Settings", href: "/settings", icon: faGear }];
+const MENU_LIST = [{ key: 100, text: "Invoices", href: "/invoices", icon: <FaFileLines /> }, { key: 101, text: "Customers", href: "/customers", icon: <FaUserGroup /> }, { key: 102, text: "Reports", href: "/reports", icon: <FaChartLine /> }, { key: 103, text: "Settings", href: "/settings", icon: <FaGear /> }];
 export default function Navbar({ navExpandedState, setNavExpandedState }) {
     const [activeIdx, setActiveIdx] = useState(-1);
     const [profileImage, setProfileImage] = useState("/images/profile_img.png");
@@ -40,8 +45,8 @@ export default function Navbar({ navExpandedState, setNavExpandedState }) {
                             <div className={`username`}>John Doe <span className={``}></span></div>
                         </div>
                         <div className={`${style.profileActionWrapper} justify-content-center`}>
-                            <FontAwesomeIcon icon={faClockRotateLeft} />
-                            <FontAwesomeIcon icon={faEnvelope} />
+                            <FaClockRotateLeft />
+                            <FaEnvelope />
                         </div>
                         <div className={`${style.nav_menu_arrow} d-flex justify-content-center align-items-center`} onClick={() => { setNavExpandedState(prevCheck => !prevCheck) }}>
                             <FontAwesomeIcon icon={navExpandedState ? faArrowLeft : faArrowRight}></FontAwesomeIcon>
@@ -72,17 +77,16 @@ export default function Navbar({ navExpandedState, setNavExpandedState }) {
                             if (menu.text == 'Settings') {
                                 return <>
                                     <hr />
-                                    <div className={`${style.navItemWrapper} ${(activeIdx === idx) ? style.active : " "} d-flex align-item-center`} onClick={() => { setActiveIdx(idx); setNavExpandedState(false) }} key={idx}>
+                                    <div key={menu.id} className={`${style.navItemWrapper} ${(activeIdx === idx) ? style.active : " "} d-flex align-item-center`} onClick={() => { setActiveIdx(idx); setNavExpandedState(false) }}>
                                         <NavItem active={activeIdx === idx}{...menu}></NavItem>
                                     </div>
                                 </>;
                             }
                             else {
-                                return <div className={`${style.navItemWrapper} ${(activeIdx === idx) ? style.active : " "} d-flex align-item-center`} onClick={() => { setActiveIdx(idx); setNavExpandedState(false) }} key={idx}>
+                                return <div key={menu.id} className={`${style.navItemWrapper} ${(activeIdx === idx) ? style.active : " "} d-flex align-item-center`} onClick={() => { setActiveIdx(idx); setNavExpandedState(false) }}>
                                     <NavItem active={activeIdx === idx}{...menu}></NavItem>
                                 </div>
                             }
-
                         })}
                     </div>
 

@@ -14,6 +14,16 @@ $primary-border-color: #E3EBF2;
     }
 }
 
+.companyInvoiceItemsTableMainWrapper {
+    div:first-of-type {
+        overflow-x: auto;
+
+        table {
+            min-width: 663px;
+        }
+    }
+}
+
 
 //Big Screen
 @media screen and (min-width: 426px) {
@@ -116,13 +126,49 @@ $primary-border-color: #E3EBF2;
                         align-self: center;
 
                         svg {
-                            width: 15px;
-                            height: 15px;
+                            width: 24px;
+                            height: 24px;
                             color: $tertiary-color;
                         }
                     }
                 }
 
+            }
+
+            .companyInvoiceAddlineBtn {
+                color: $primary-color;
+                border: 1px solid $primary-color;
+                display: flex;
+                align-items: center;
+
+                &:hover {
+                    background: $primary-color;
+                    color: white;
+
+                    i {
+                        svg {
+                            path {
+                                transition: 0.5s;
+                                fill: white;
+                            }
+                        }
+                    }
+                }
+
+                i {
+                    margin-right: 7px;
+                    display: flex;
+                    width: 18px;
+
+                    svg {
+                        width: 18px;
+                        height: 18px;
+
+                        path {
+                            transition: 0.5s
+                        }
+                    }
+                }
             }
 
             .companyInvoiceBottomWrapper {
@@ -324,6 +370,48 @@ $primary-border-color: #E3EBF2;
                         border-color: $primary-color;
                     }
                 }
+
+                .companyInvoiceSaveButtonsWrapper {
+
+                    .companyInvoiceSaveDraftButton,
+                    .companyInvoiceSavenSendButton {
+                        span {
+                            display: flex;
+                            text-align: center;
+                            justify-content: center;
+
+                            i {
+                                display: flex;
+                                margin-right: 5px;
+                                align-self: center;
+
+                                svg {
+                                    height: 20px;
+                                    width: 20px;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .companyInvoiceCancelButton {
+                    span {
+                        display: flex;
+                        text-align: center;
+                        justify-content: center;
+
+                        i {
+                            display: flex;
+                            margin-right: 5px;
+                            align-self: center;
+
+                            svg {
+                                height: 20px;
+                                width: 20px;
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -437,13 +525,55 @@ $primary-border-color: #E3EBF2;
                         align-self: center;
 
                         svg {
-                            width: 15px;
-                            height: 15px;
+                            width: 24px;
+                            height: 24px;
                             color: $tertiary-color;
                         }
                     }
                 }
 
+            }
+
+            .companyInvoiceTable {
+                thead {
+                    display: none;
+                }
+            }
+
+            .companyInvoiceAddlineBtn {
+                color: $primary-color;
+                border: 1px solid $primary-color;
+                display: flex;
+                align-items: center;
+
+                &:hover {
+                    background: $primary-color;
+                    color: white;
+
+                    i {
+                        svg {
+                            path {
+                                transition: 0.5s;
+                                fill: white;
+                            }
+                        }
+                    }
+                }
+
+                i {
+                    margin-right: 7px;
+                    display: flex;
+                    width: 18px;
+
+                    svg {
+                        width: 18px;
+                        height: 18px;
+
+                        path {
+                            transition: 0.5s
+                        }
+                    }
+                }
             }
 
             .companyInvoiceBottomWrapper {
@@ -473,7 +603,7 @@ $primary-border-color: #E3EBF2;
                     .subtotalLabel,
                     .subtotalresult {
                         font-weight: 700;
-                        font-size: 18px;
+                        font-size: 16px;
                         line-height: 28px;
                     }
 
@@ -561,6 +691,7 @@ $primary-border-color: #E3EBF2;
                                     background: white;
                                     border: 1px solid $primary-color;
                                     border-radius: 8px;
+                                    font-size: 16px;
                                     color: $primary-color;
                                 }
                             }
@@ -600,7 +731,7 @@ $primary-border-color: #E3EBF2;
 
                         span {
                             font-weight: 700;
-                            font-size: 18px;
+                            font-size: 16px;
                             color: white;
                             margin-left: auto;
                         }
@@ -624,7 +755,10 @@ $primary-border-color: #E3EBF2;
                     font-weight: 600;
                     font-size: 14px;
                     color: white;
-                    margin-right: 11px;
+
+                    &:first-of-type {
+                        margin-right: 11px;
+                    }
 
                     &.companyInvoiceSaveDraftButton {
                         background: $tertiary-color;
@@ -648,6 +782,46 @@ $primary-border-color: #E3EBF2;
                     display: flex;
                     justify-content: space-evenly;
                     margin-bottom: 21px;
+                    font-size: 14px;
+
+                    .companyInvoiceSaveDraftButton,
+                    .companyInvoiceSavenSendButton {
+                        span {
+                            display: flex;
+                            text-align: center;
+                            justify-content: center;
+
+                            i {
+                                display: flex;
+                                margin-right: 5px;
+                                align-self: center;
+
+                                svg {
+                                    height: 14px;
+                                    width: 14px;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .companyInvoiceCancelButton {
+                    span {
+                        display: flex;
+                        text-align: center;
+                        justify-content: center;
+
+                        i {
+                            display: flex;
+                            margin-right: 5px;
+                            align-self: center;
+
+                            svg {
+                                height: 17px;
+                                width: 17px;
+                            }
+                        }
+                    }
                 }
             }
         }

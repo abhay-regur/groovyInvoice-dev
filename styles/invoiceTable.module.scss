@@ -11,7 +11,7 @@ $primary-border-color: #E3EBF2;
 
 
 //Big Screen
-@media screen and (min-width: 426px) {
+@media screen and (min-width: 768px) {
     .companyInvoiceTable {
         border: 1px solid $primary-border-color;
         border-radius: 10%;
@@ -36,12 +36,22 @@ $primary-border-color: #E3EBF2;
                     &:nth-of-type(4) {
                         width: 184px;
                     }
+
+                    i {
+                        margin-left: 5px;
+                        align-items: center;
+
+                        svg {
+                            height: 14px;
+                            width: 14px;
+                        }
+                    }
                 }
             }
         }
 
         tbody {
-            tr {
+            tr.comapnyInvoiceTableItemRow {
                 td {
                     padding-bottom: 57px;
 
@@ -82,6 +92,12 @@ $primary-border-color: #E3EBF2;
                             font-weight: 600;
                             font-size: 12px;
                             margin-left: 5px;
+
+                            i {
+                                display: flex;
+                                margin-left: 5px;
+                                align-items: center;
+                            }
                         }
                     }
 
@@ -113,6 +129,7 @@ $primary-border-color: #E3EBF2;
                     .companyInvoiceTableTaxSelectWrapper {
                         select.companyInvoiceTableTaxSelect {
                             margin-top: 37px;
+                            padding: 5px 15px 5px 13px;
                             width: 142px;
                             background: white;
                             border: 1px solid $primary-color;
@@ -135,14 +152,152 @@ $primary-border-color: #E3EBF2;
 
             }
         }
-
     }
 
 }
 
 //Mobie Screen
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 768px) {
+
     .companyInvoiceTable {
-        display: none;
+        border: 1px solid $primary-border-color;
+        border-radius: 10%;
+
+        thead {
+            tr {
+                border-radius: 10% 10% 0 0;
+
+                th {
+                    font-weight: 600;
+                    font-size: 14px;
+                    color: $primary-color;
+                    background: $table-head-color;
+                    padding-top: 13px;
+                    padding-bottom: 17px;
+                    border-right: 1px solid $table-head-border-color;
+
+                    &:last-of-type {
+                        border-right: none;
+                    }
+
+                    &:nth-of-type(4) {
+                        width: 184px;
+                    }
+
+                    i {
+                        margin-left: 5px;
+                        align-items: center;
+
+                        svg {
+                            height: 14px;
+                            width: 14px;
+                        }
+                    }
+                }
+            }
+        }
+
+        tbody {
+            tr.comapnyInvoiceTableItemRow {
+                td {
+                    padding-bottom: 57px;
+
+                    p {
+                        margin-bottom: 0;
+                    }
+
+                    .companyInvoiceTableItemWarpper {
+                        margin-top: 39px;
+                        color: $primary-color;
+                        padding-left: 28px;
+
+                        .companyInvoiceTableItemName {
+                            font-weight: 700;
+                            font-size: 16px;
+                            margin-bottom: 13px;
+                        }
+
+                        .comapnayInvoiceItemDetailsExtra {
+                            width: 57px;
+                            height: 19px;
+                            border-radius: 50px;
+                            font-weight: 600;
+                            font-size: 12px;
+                            color: white;
+                            padding: 0px 9px 0px 10px;
+                            background: $tertiary-color;
+                        }
+
+                        .comapnayInvoiceItemDetailsHSN {
+                            font-weight: 600;
+                            font-size: 12px;
+                            color: $secondary-color;
+                            margin-left: 7px;
+                        }
+
+                        .comapnayInvoiceItemDetailsUpdate {
+                            font-weight: 600;
+                            font-size: 12px;
+                            margin-left: 5px;
+
+                            i {
+                                display: flex;
+                                margin-left: 5px;
+                                align-items: center;
+                            }
+                        }
+                    }
+
+                    .companyInvoiceTableItemQuantity {
+                        margin-top: 37px;
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: $secondary-color;
+                        margin-bottom: 0;
+                        text-align: end;
+                    }
+
+                    .companyInvoiceTableRecentTransaction {
+                        font-weight: 600;
+                        font-size: 12px;
+                        text-align: end;
+                        color: $primary-color;
+                    }
+
+                    .companyInvoiceTableItemRate {
+                        margin-top: 37px;
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: $secondary-color;
+                        margin-bottom: 0;
+                        text-align: center;
+                    }
+
+                    .companyInvoiceTableTaxSelectWrapper {
+                        select.companyInvoiceTableTaxSelect {
+                            margin-top: 37px;
+                            padding: 5px 15px 5px 13px;
+                            width: 142px;
+                            background: white;
+                            border: 1px solid $primary-color;
+                            font-weight: 600;
+                            font-size: 14px;
+                            border-radius: 8px;
+                            line-height: 18px;
+                            color: $primary-color;
+                        }
+                    }
+
+                    .companyInvoiceTableItemAmount {
+                        margin-top: 37px;
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: $secondary-color;
+                    }
+
+                }
+
+            }
+        }
     }
 }
