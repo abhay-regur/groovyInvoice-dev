@@ -1,0 +1,831 @@
+$font-size-heading: 32px;
+$font-size-text: 15px;
+$primary-color: #3649AB;
+$secondary-color: #8790B0;
+$tertiary-color: #43CB80;
+$input-background-color: #F5FAFE;
+$primary-border-color: #E3EBF2;
+
+.green {
+    color: $tertiary-color;
+
+    path {
+        color: $tertiary-color;
+    }
+}
+
+.companyInvoiceItemsTableMainWrapper {
+    div:first-of-type {
+        overflow-x: auto;
+
+        table {
+            min-width: 663px;
+        }
+    }
+}
+
+
+//Big Screen
+@media screen and (min-width: 426px) {
+    .main {
+        margin: auto 97px;
+        margin-left: 135px;
+        transition: all 0.35s;
+        margin-bottom: 120px;
+
+        &.expanded {
+            margin-left: 329px !important;
+            transition: all 0.35s;
+        }
+
+        select {
+            &:focus {
+                box-shadow: none;
+            }
+        }
+
+        .title {
+            font-weight: 700;
+            font-size: 36px;
+            line-height: 45px;
+            color: $primary-color;
+            margin-top: 56px;
+            margin-bottom: 49px;
+            padding-left: 12px;
+        }
+
+        .card {
+            border: 1px solid $primary-border-color;
+            border-radius: 10px;
+            padding: 31px 33px;
+
+            .cardTitle {
+                color: $primary-color;
+                font-weight: 700;
+                font-size: 22px;
+                line-height: 28px;
+            }
+
+            .mainWrapper {
+
+                .companyNameWrapper {
+                    label {
+                        color: $primary-color;
+                        font-weight: 600;
+                        font-size: 14px;
+                        line-height: 18px;
+                    }
+
+                    .companyNameSelect {
+                        border: 1px solid $primary-border-color;
+                        background: $input-background-color;
+                        border-radius: 8px 0 0 8px;
+                        color: $secondary-color;
+
+                        &::placeholder {
+                            color: $secondary-color;
+                            font-weight: 400;
+                            font-size: 14px;
+                        }
+                    }
+
+                    .companySearchbutton {
+                        border-radius: 0 8px 8px 0;
+                        background-color: $tertiary-color;
+                        color: white;
+
+                        svg {
+                            width: 15px;
+                            height: 15px;
+                        }
+                    }
+                }
+
+                .companyInvoiceNumberWrapper,
+                .companyOrderNumberWrapper,
+                .companyInvoiceDateWrapper,
+                .companyInvoicetermsWrapper,
+                .companyInvoiceDueDateWrapper {
+                    label {
+                        color: $primary-color;
+                        font-weight: 600;
+                        font-size: 14px;
+                        line-height: 18px;
+                    }
+
+                    input {
+                        border: 1px solid $primary-border-color;
+                        background: $input-background-color;
+                        color: $primary-color;
+                        font-weight: 600;
+                        font-size: 14px;
+                    }
+
+                    i {
+                        margin-left: 8px;
+                        align-self: center;
+
+                        svg {
+                            width: 24px;
+                            height: 24px;
+                            color: $tertiary-color;
+                        }
+                    }
+                }
+
+            }
+
+            .companyInvoiceAddlineBtn {
+                color: $primary-color;
+                border: 1px solid $primary-color;
+                display: flex;
+                align-items: center;
+
+                &:hover {
+                    background: $primary-color;
+                    color: white;
+
+                    i {
+                        svg {
+                            path {
+                                transition: 0.5s;
+                                fill: white;
+                            }
+                        }
+                    }
+                }
+
+                i {
+                    margin-right: 7px;
+                    display: flex;
+                    width: 18px;
+
+                    svg {
+                        width: 18px;
+                        height: 18px;
+
+                        path {
+                            transition: 0.5s
+                        }
+                    }
+                }
+            }
+
+            .companyInvoiceBottomWrapper {
+                margin-top: 45px;
+
+                label {
+                    font-weight: 600;
+                    font-size: 14px;
+                    color: $primary-color;
+                }
+
+                textarea {
+                    background: $input-background-color;
+                    border: 1px solid $primary-border-color;
+                    border-radius: 8px;
+                    height: 200px;
+                }
+
+                .card {
+                    margin-top: 32px;
+                    background: $primary-color;
+                    border-radius: 8px;
+                    border: 1px solid $primary-color;
+                    color: white;
+                    padding: 5px 12px 21px 5px;
+
+                    .subtotalLabel,
+                    .subtotalresult {
+                        font-weight: 700;
+                        font-size: 22px;
+                        line-height: 28px;
+                    }
+
+                    .comapnyInvoiceTaxOptionWrapper {
+                        margin-top: 37px;
+
+                        .comapnyInvoiceTaxOptionInputWrapper {
+                            display: flex;
+
+                            .comapnyInvoiceTaxSelectorMainWrapper {
+                                display: flex;
+
+                                .taxTDSRadioButtonWrapper,
+                                .taxTCSRadioButtonWrapper {
+                                    input {
+                                        height: 22px;
+                                        width: 22px;
+                                        visibility: hidden;
+                                    }
+
+                                    span {
+                                        color: white;
+                                        margin-right: 11px;
+                                    }
+
+                                    [type="radio"]:checked,
+                                    [type="radio"]:not(:checked) {
+                                        position: absolute;
+                                        left: -9999px;
+
+                                        &:checked+span,
+                                        &:not(:checked)+span {
+                                            position: relative;
+                                            padding-left: 28px;
+                                            cursor: pointer;
+                                            line-height: 20px;
+                                            display: inline-block;
+                                            color: white;
+                                        }
+
+                                        &:checked+span:before,
+                                        &:not(:checked)+span:before {
+                                            content: '';
+                                            position: absolute;
+                                            left: 0;
+                                            top: 0;
+                                            width: 22px;
+                                            height: 22px;
+                                            border: 1.5px solid #ddd;
+                                            border-radius: 100%;
+                                            background: $primary-color;
+                                        }
+
+                                        &:checked+span:after,
+                                        &:not(:checked)+span:after {
+                                            content: '';
+                                            width: 14px;
+                                            height: 14px;
+                                            background: white;
+                                            position: absolute;
+                                            top: 4px;
+                                            left: 4px;
+                                            border-radius: 100%;
+                                            -webkit-transition: all 0.2s ease;
+                                            transition: all 0.2s ease;
+                                        }
+
+                                        &:not(:checked)+span:after {
+                                            opacity: 0;
+                                            -webkit-transform: scale(0);
+                                            transform: scale(0);
+                                        }
+
+                                        &:checked+span:after {
+                                            opacity: 1;
+                                            -webkit-transform: scale(1);
+                                            transform: scale(1);
+                                        }
+                                    }
+                                }
+                            }
+
+                            .taxTypeSelectWrapper {
+                                select.taxTypeSelect {
+                                    background: white;
+                                    border: 1px solid $primary-color;
+                                    border-radius: 8px;
+                                    color: $primary-color;
+                                }
+                            }
+
+                        }
+
+                        .totalCalculatedTax {
+                            font-weight: 700;
+                            font-size: 18px;
+                            color: white;
+                            margin-left: auto;
+                        }
+
+
+                    }
+
+                    .companyInvoiceAdjustmentWrapper {
+                        margin-top: 33px;
+
+                        .companyInvoiceAdjustmentInputWrapper {
+                            display: flex;
+
+                            div:first-of-type {
+                                margin-right: 12px;
+                            }
+
+                            input {
+                                border: 1px solid white;
+                                background: $primary-color;
+                                color: white;
+
+                                &::placeholder {
+                                    color: white;
+                                    font-weight: 600;
+                                    font-size: 12px;
+                                    line-height: 15px;
+                                }
+                            }
+                        }
+
+
+                        span {
+                            font-weight: 700;
+                            font-size: 18px;
+                            color: white;
+                            margin-left: auto;
+                        }
+                    }
+
+                    .companyInvoiceTotalWrapper {
+                        h5 {
+                            font-weight: 700;
+                            font-size: 22px;
+                        }
+                    }
+                }
+
+                .companyInvoiceTermsnConditionsWrapper {
+                    margin-top: 73px;
+                    margin-bottom: 55px;
+                }
+
+                button {
+                    border-radius: 6px;
+                    font-weight: 600;
+                    font-size: 16px;
+                    color: white;
+                    margin-right: 11px;
+
+                    &.companyInvoiceSaveDraftButton {
+                        background: $tertiary-color;
+                        border-color: $tertiary-color;
+                    }
+
+                    &.companyInvoiceSavenSendButton {
+                        background: $primary-color;
+                        border-color: $primary-color;
+                    }
+
+                    &.companyInvoiceCancelButton {
+                        color: $primary-color;
+                        border-color: $primary-color;
+                    }
+                }
+
+                .companyInvoiceSaveButtonsWrapper {
+
+                    .companyInvoiceSaveDraftButton,
+                    .companyInvoiceSavenSendButton {
+                        span {
+                            display: flex;
+                            text-align: center;
+                            justify-content: center;
+
+                            i {
+                                display: flex;
+                                margin-right: 5px;
+                                align-self: center;
+
+                                svg {
+                                    height: 20px;
+                                    width: 20px;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .companyInvoiceCancelButton {
+                    span {
+                        display: flex;
+                        text-align: center;
+                        justify-content: center;
+
+                        i {
+                            display: flex;
+                            margin-right: 5px;
+                            align-self: center;
+
+                            svg {
+                                height: 20px;
+                                width: 20px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+}
+
+//Mobie Screen
+@media screen and (max-width: 425px) {
+    .main {
+        margin: 89px 15px 92px 15px;
+        transition: all 0.35s;
+
+        &.expanded {
+            margin: 89px 15px 92px 15px;
+            transition: all 0.35s;
+        }
+
+        select {
+            &:focus {
+                box-shadow: none;
+            }
+        }
+
+        .title {
+            color: $primary-color;
+            font-weight: 700;
+            font-size: 26px;
+            line-height: 45px;
+            margin-bottom: 27px;
+            padding-left: 12px;
+        }
+
+        .card {
+            border: 1px solid $primary-border-color;
+            border-radius: 10px;
+            padding: 0;
+
+            .cardTitle {
+                color: $primary-color;
+                font-weight: 700;
+                font-size: 18px;
+                line-height: 28px;
+            }
+
+            .cardBody {
+                padding: 24px 24px;
+            }
+
+            .mainWrapper {
+
+                .companyNameWrapper {
+                    margin-top: 27px;
+
+                    label {
+                        color: $primary-color;
+                        font-weight: 600;
+                        font-size: 14px;
+                        line-height: 18px;
+                    }
+
+                    .companyNameSelect {
+                        border: 1px solid $primary-border-color;
+                        background: $input-background-color;
+                        border-radius: 8px 0 0 8px;
+                        color: $secondary-color;
+
+                        &::placeholder {
+                            color: $secondary-color;
+                            font-weight: 400;
+                            font-size: 14px;
+                        }
+                    }
+
+                    .companySearchbutton {
+                        border-radius: 0 8px 8px 0;
+                        background-color: $tertiary-color;
+                        color: white;
+
+                        svg {
+                            width: 15px;
+                            height: 15px;
+                        }
+                    }
+                }
+
+                .companyInvoiceNumberWrapper,
+                .companyOrderNumberWrapper,
+                .companyInvoiceDateWrapper,
+                .companyInvoicetermsWrapper,
+                .companyInvoiceDueDateWrapper {
+                    margin-top: 19px;
+
+                    label {
+                        color: $primary-color;
+                        font-weight: 600;
+                        font-size: 14px;
+                        line-height: 18px;
+                    }
+
+                    input {
+                        border: 1px solid $primary-border-color;
+                        background: $input-background-color;
+                        color: $primary-color;
+                        font-weight: 600;
+                        font-size: 14px;
+                    }
+
+                    i {
+                        margin-left: 8px;
+                        align-self: center;
+
+                        svg {
+                            width: 24px;
+                            height: 24px;
+                            color: $tertiary-color;
+                        }
+                    }
+                }
+
+            }
+
+            .companyInvoiceTable {
+                thead {
+                    display: none;
+                }
+            }
+
+            .companyInvoiceAddlineBtn {
+                color: $primary-color;
+                border: 1px solid $primary-color;
+                display: flex;
+                align-items: center;
+
+                &:hover {
+                    background: $primary-color;
+                    color: white;
+
+                    i {
+                        svg {
+                            path {
+                                transition: 0.5s;
+                                fill: white;
+                            }
+                        }
+                    }
+                }
+
+                i {
+                    margin-right: 7px;
+                    display: flex;
+                    width: 18px;
+
+                    svg {
+                        width: 18px;
+                        height: 18px;
+
+                        path {
+                            transition: 0.5s
+                        }
+                    }
+                }
+            }
+
+            .companyInvoiceBottomWrapper {
+                margin-top: 45px;
+
+                label {
+                    font-weight: 600;
+                    font-size: 14px;
+                    color: $primary-color;
+                }
+
+                textarea {
+                    background: $input-background-color;
+                    border: 1px solid $primary-border-color;
+                    border-radius: 8px;
+                    height: 114px;
+                }
+
+                .card {
+                    margin-top: 27px;
+                    padding: 8px 1px 7px 3px;
+                    background: $primary-color;
+                    border-radius: 8px;
+                    border: 1px solid $primary-color;
+                    color: white;
+
+                    .subtotalLabel,
+                    .subtotalresult {
+                        font-weight: 700;
+                        font-size: 16px;
+                        line-height: 28px;
+                    }
+
+                    .comapnyInvoiceTaxOptionWrapper {
+                        margin-top: 37px;
+
+                        .comapnyInvoiceTaxOptionInputWrapper {
+                            .comapnyInvoiceTaxSelectorMainWrapper {
+                                display: flex;
+                                margin-bottom: 17px;
+
+                                .taxTDSRadioButtonWrapper,
+                                .taxTCSRadioButtonWrapper {
+                                    input {
+                                        height: 22px;
+                                        width: 22px;
+                                        visibility: hidden;
+                                    }
+
+                                    span {
+                                        color: white;
+                                        margin-right: 11px;
+                                    }
+
+                                    [type="radio"]:checked,
+                                    [type="radio"]:not(:checked) {
+                                        position: absolute;
+                                        left: -9999px;
+
+                                        &:checked+span,
+                                        &:not(:checked)+span {
+                                            position: relative;
+                                            padding-left: 28px;
+                                            cursor: pointer;
+                                            line-height: 20px;
+                                            display: inline-block;
+                                            color: white;
+                                        }
+
+                                        &:checked+span:before,
+                                        &:not(:checked)+span:before {
+                                            content: '';
+                                            position: absolute;
+                                            left: 0;
+                                            top: 0;
+                                            width: 22px;
+                                            height: 22px;
+                                            border: 1.5px solid #ddd;
+                                            border-radius: 100%;
+                                            background: $primary-color;
+                                        }
+
+                                        &:checked+span:after,
+                                        &:not(:checked)+span:after {
+                                            content: '';
+                                            width: 14px;
+                                            height: 14px;
+                                            background: white;
+                                            position: absolute;
+                                            top: 4px;
+                                            left: 4px;
+                                            border-radius: 100%;
+                                            -webkit-transition: all 0.2s ease;
+                                            transition: all 0.2s ease;
+                                        }
+
+                                        &:not(:checked)+span:after {
+                                            opacity: 0;
+                                            -webkit-transform: scale(0);
+                                            transform: scale(0);
+                                        }
+
+                                        &:checked+span:after {
+                                            opacity: 1;
+                                            -webkit-transform: scale(1);
+                                            transform: scale(1);
+                                        }
+                                    }
+                                }
+                            }
+
+
+                            .taxTypeSelectWrapper {
+                                select.taxTypeSelect {
+                                    background: white;
+                                    border: 1px solid $primary-color;
+                                    border-radius: 8px;
+                                    font-size: 16px;
+                                    color: $primary-color;
+                                }
+                            }
+                        }
+
+                        .totalCalculatedTax {
+                            font-weight: 700;
+                            font-size: 18px;
+                            color: white;
+                            margin-left: auto;
+                        }
+
+
+                    }
+
+                    .companyInvoiceAdjustmentWrapper {
+                        margin-top: 33px;
+
+                        .companyInvoiceAdjustmentInputWrapper {
+                            div:first-of-type {
+                                margin-bottom: 14px;
+                            }
+                        }
+
+                        input {
+                            border: 1px solid white;
+                            background: $primary-color;
+                            color: white;
+
+                            &::placeholder {
+                                color: white;
+                                font-weight: 600;
+                                font-size: 12px;
+                                line-height: 15px;
+                            }
+                        }
+
+                        span {
+                            font-weight: 700;
+                            font-size: 16px;
+                            color: white;
+                            margin-left: auto;
+                        }
+                    }
+
+                    .companyInvoiceTotalWrapper {
+                        h5 {
+                            font-weight: 700;
+                            font-size: 18px;
+                        }
+                    }
+                }
+
+                .companyInvoiceTermsnConditionsWrapper {
+                    margin-top: 53px;
+                    margin-bottom: 55px;
+                }
+
+                button {
+                    border-radius: 6px;
+                    font-weight: 600;
+                    font-size: 14px;
+                    color: white;
+
+                    &:first-of-type {
+                        margin-right: 11px;
+                    }
+
+                    &.companyInvoiceSaveDraftButton {
+                        background: $tertiary-color;
+                        border-color: $tertiary-color;
+                    }
+
+                    &.companyInvoiceSavenSendButton {
+                        background: $primary-color;
+                        border-color: $primary-color;
+                    }
+
+                    &.companyInvoiceCancelButton {
+                        text-align: center;
+                        width: 100%;
+                        color: $primary-color;
+                        border-color: $primary-color;
+                    }
+                }
+
+                .companyInvoiceSaveButtonsWrapper {
+                    display: flex;
+                    justify-content: space-evenly;
+                    margin-bottom: 21px;
+                    font-size: 14px;
+
+                    .companyInvoiceSaveDraftButton,
+                    .companyInvoiceSavenSendButton {
+                        span {
+                            display: flex;
+                            text-align: center;
+                            justify-content: center;
+
+                            i {
+                                display: flex;
+                                margin-right: 5px;
+                                align-self: center;
+
+                                svg {
+                                    height: 14px;
+                                    width: 14px;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .companyInvoiceCancelButton {
+                    span {
+                        display: flex;
+                        text-align: center;
+                        justify-content: center;
+
+                        i {
+                            display: flex;
+                            margin-right: 5px;
+                            align-self: center;
+
+                            svg {
+                                height: 17px;
+                                width: 17px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+}
