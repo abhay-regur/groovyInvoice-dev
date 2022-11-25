@@ -1,0 +1,37 @@
+$font-size-heading: 32px;
+$font-size-text: 15px;
+$primary-color: #3649AB;
+$secondary-color: #8790B0;
+$tertiary-color: #43CB80;
+
+
+
+
+@media screen and (min-width: 426px) {
+    .footerWrapper {
+
+        position: static;
+        background: white;
+        height: 120px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        .footertext {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 18px;
+            color: $secondary-color;
+
+            &:after {
+                content: "Groovy Invoice";
+                color: $primary-color;
+            }
+        }
+    }
+
+}
+
+@media screen and (max-width: 425px) {
+    .footerWrapper {}
+}
