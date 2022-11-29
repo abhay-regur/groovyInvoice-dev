@@ -31,9 +31,7 @@ export default function Navbar({ navExpandedState, setNavExpandedState }) {
                         <div></div>
                         <div></div>
                     </span>
-
                 </div>
-
 
                 <hr />
                 <div className={`${style.wrapperForMobileScreen}`}>

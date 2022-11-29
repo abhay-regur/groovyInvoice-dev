@@ -173,7 +173,6 @@ $screen-size-md: 950px;
     }
 
     .loginBackground {
-        height: 100vh;
         background: linear-gradient(0deg, $background-primary-color, $background-primary-color), url('/images/registration_page.png') no-repeat;
         background-size: cover;
 
@@ -186,7 +185,7 @@ $screen-size-md: 950px;
 
         button {
             background: $primary-color;
-            padding: 10px 0;
+            padding: 14px 0;
             border-radius: 6px;
             font-weight: 700;
             font-size: $font-size-text + 2;

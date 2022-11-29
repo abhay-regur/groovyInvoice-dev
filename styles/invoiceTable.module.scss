@@ -37,6 +37,10 @@ $primary-border-color: #E3EBF2;
                         width: 184px;
                     }
 
+                    &.companyInvoiceItemTableQtyHeader {
+                        width: 161px;
+                    }
+
                     i {
                         margin-left: 5px;
                         align-items: center;
@@ -53,16 +57,16 @@ $primary-border-color: #E3EBF2;
         tbody {
             tr.comapnyInvoiceTableItemRow {
                 td {
-                    padding-bottom: 57px;
+                    padding-bottom: 15px;
 
                     p {
                         margin-bottom: 0;
                     }
 
                     .companyInvoiceTableItemWarpper {
-                        margin-top: 39px;
+                        margin-top: 15px;
                         color: $primary-color;
-                        padding-left: 28px;
+                        padding-left: 8px;
 
                         .companyInvoiceTableItemName {
                             font-weight: 700;
@@ -102,7 +106,7 @@ $primary-border-color: #E3EBF2;
                     }
 
                     .companyInvoiceTableItemQuantity {
-                        margin-top: 37px;
+                        margin-top: 15px;
                         font-weight: 400;
                         font-size: 14px;
                         color: $secondary-color;
@@ -118,7 +122,7 @@ $primary-border-color: #E3EBF2;
                     }
 
                     .companyInvoiceTableItemRate {
-                        margin-top: 37px;
+                        margin-top: 15px;
                         font-weight: 400;
                         font-size: 14px;
                         color: $secondary-color;
@@ -127,8 +131,11 @@ $primary-border-color: #E3EBF2;
                     }
 
                     .companyInvoiceTableTaxSelectWrapper {
+                        display: flex;
+                        justify-content: center;
+
                         select.companyInvoiceTableTaxSelect {
-                            margin-top: 37px;
+                            margin-top: 15px;
                             padding: 5px 15px 5px 13px;
                             width: 142px;
                             background: white;
@@ -142,10 +149,11 @@ $primary-border-color: #E3EBF2;
                     }
 
                     .companyInvoiceTableItemAmount {
-                        margin-top: 37px;
+                        margin-top: 15px;
                         font-weight: 400;
                         font-size: 14px;
                         color: $secondary-color;
+                        text-align: center;
                     }
 
                 }
@@ -200,14 +208,14 @@ $primary-border-color: #E3EBF2;
         tbody {
             tr.comapnyInvoiceTableItemRow {
                 td {
-                    padding-bottom: 57px;
+                    padding-bottom: 40px;
 
                     p {
                         margin-bottom: 0;
                     }
 
                     .companyInvoiceTableItemWarpper {
-                        margin-top: 39px;
+                        margin-top: 15px;
                         color: $primary-color;
                         padding-left: 28px;
 
@@ -249,7 +257,7 @@ $primary-border-color: #E3EBF2;
                     }
 
                     .companyInvoiceTableItemQuantity {
-                        margin-top: 37px;
+                        margin-top: 15px;
                         font-weight: 400;
                         font-size: 14px;
                         color: $secondary-color;
@@ -265,7 +273,7 @@ $primary-border-color: #E3EBF2;
                     }
 
                     .companyInvoiceTableItemRate {
-                        margin-top: 37px;
+                        margin-top: 15px;
                         font-weight: 400;
                         font-size: 14px;
                         color: $secondary-color;
@@ -275,7 +283,7 @@ $primary-border-color: #E3EBF2;
 
                     .companyInvoiceTableTaxSelectWrapper {
                         select.companyInvoiceTableTaxSelect {
-                            margin-top: 37px;
+                            margin-top: 15px;
                             padding: 5px 15px 5px 13px;
                             width: 142px;
                             background: white;
@@ -289,10 +297,11 @@ $primary-border-color: #E3EBF2;
                     }
 
                     .companyInvoiceTableItemAmount {
-                        margin-top: 37px;
+                        margin-top: 15px;
                         font-weight: 400;
                         font-size: 14px;
                         color: $secondary-color;
+                        text-align: center;
                     }
 
                 }
