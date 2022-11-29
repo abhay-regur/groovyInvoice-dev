@@ -1,10 +1,10 @@
 import { React, useState } from 'react';
 import Head from 'next/head';
-import Image from 'next/image';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faKey, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
+import FaGoogle from '../assets/icons/faGoogle.svg';
+import FaFacebook from '../assets/icons/faFacebook.svg';
 import styles from '../styles/login.module.scss';
 export default function Login() {
     const [visbilty, setvisibility] = useState(false);
@@ -68,8 +68,8 @@ export default function Login() {
                                     </form>
                                     <hr />
                                     <div className="d-flex justify-content-center">
-                                        <button type="button" className={`${styles.loginButtonFacebook} btn btn-outline-secondary d-flex jutify-content-around`}><i className={styles.buttonImage} ><FontAwesomeIcon icon={faFacebook} /></i> Sign In</button>
-                                        <button type="button" className={`${styles.loginButtonGoogle} btn btn-outline-secondary d-flex jutify-content-around`}><i className={styles.buttonImage}><FontAwesomeIcon icon={faGoogle} /></i> Sign In</button>
+                                        <button type="button" className={`${styles.loginButtonFacebook} btn btn-outline-secondary d-flex jutify-content-around`}><i className={styles.buttonImage} ><FaFacebook /></i> Sign In</button>
+                                        <button type="button" className={`${styles.loginButtonGoogle} btn btn-outline-secondary d-flex jutify-content-around`}><i className={styles.buttonImage}><FaGoogle /></i> Sign In</button>
                                     </div>
                                 </div>
                             </div>

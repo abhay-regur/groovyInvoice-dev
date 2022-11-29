@@ -10,7 +10,10 @@ import FaCirclePlus from '../assets/icons/faCirclePlus.svg';
 import FaSave from '../assets/icons/faSave.svg';
 import FaPaperPen from '../assets/icons/faPaperPen.svg';
 import FaCircleXmark from '../assets/icons/faCircleXmark.svg';
+import FaCircleQuestion from '../assets/icons/faCircleQuestion.svg';
 import FaGear from '../assets/icons/faGear.svg';
+
+
 export default function Newinvoice({ navExpandedState }) {
     const [taxValueSelected, settaxValueSelected] = useState();
 
@@ -178,7 +181,7 @@ export default function Newinvoice({ navExpandedState }) {
                                 <div className="row">
                                     <div className="col-md-12 col-lg-4">
                                         <div className={`${styles.companyNameWrapper} form-group`}>
-                                            <label htmlFor="companyName" className="form-label control-label">Comapny Name<span className={`${styles.green}`}>*</span></label>
+                                            <label htmlFor="companyName" className="form-label control-label">company Name<span className={`${styles.green}`}>*</span></label>
                                             <div className="d-flex">
                                                 <select className={`${styles.companyNameSelect} form-select`}>
                                                     <option defaultValue>Select Customer</option>
@@ -209,7 +212,7 @@ export default function Newinvoice({ navExpandedState }) {
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="col-12 col-sm-5 col-md-4 col-lg-2">
+                                    <div className="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2">
                                         <div className={`${styles.companyInvoiceDateWrapper} mb-3`}>
                                             <label htmlFor="companyInvoiceDate" className="form-label">Invoice Date<span className={`${styles.green}`}>*</span></label>
                                             <div className={`d-flex align-content-center`}>
@@ -218,7 +221,7 @@ export default function Newinvoice({ navExpandedState }) {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-12 col-sm-5 col-md-4 col-lg-2">
+                                    <div className="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2">
                                         <div className={`${styles.companyInvoicetermsWrapper} mb-3`}>
                                             <label htmlFor="companyInvoiceterms" className="form-label">Terms</label>
                                             <div className={`d-flex align-content-center`}>
@@ -226,7 +229,7 @@ export default function Newinvoice({ navExpandedState }) {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-12 col-sm-5 col-md-4 col-lg-2">
+                                    <div className="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2">
                                         <div className={`${styles.companyInvoiceDueDateWrapper} mb-3`}>
                                             <label htmlFor="companyInvoiceDueDate" className="form-label">Due Date</label>
                                             <div className={`d-flex align-content-center`}>
@@ -275,9 +278,9 @@ export default function Newinvoice({ navExpandedState }) {
                                                     <div className={`${styles.subtotalLabel}`}>Sub Total</div>
                                                     <div className={`${styles.subtotalresult}`}>Rs. 18.00</div>
                                                 </div>
-                                                <div className={`${styles.comapnyInvoiceTaxOptionWrapper} d-flex align-content-center`}>
-                                                    <span className={`${styles.comapnyInvoiceTaxOptionInputWrapper}`}>
-                                                        <span className={`${styles.comapnyInvoiceTaxSelectorMainWrapper}`}>
+                                                <div className={`${styles.companyInvoiceTaxOptionWrapper} d-flex align-content-center`}>
+                                                    <span className={`${styles.companyInvoiceTaxOptionInputWrapper}`}>
+                                                        <span className={`${styles.companyInvoiceTaxSelectorMainWrapper}`}>
                                                             <span className={`${styles.taxTDSRadioButtonWrapper} d-flex align-items-center`}>
                                                                 <RadioButton
                                                                     label="TDS"
@@ -294,7 +297,7 @@ export default function Newinvoice({ navExpandedState }) {
                                                             </span>
                                                         </span>
                                                         <span className={`${styles.taxTypeSelectWrapper}`}>
-                                                            <select className={`${styles.taxTypeSelect} form-select`}>
+                                                            <select className={`${styles.taxTypeSelect}`}>
                                                                 <option defaultValue>Select Tax</option>
                                                                 <option value="1">One</option>
                                                                 <option value="2">Two</option>
@@ -306,17 +309,18 @@ export default function Newinvoice({ navExpandedState }) {
                                                     </span>
                                                 </div>
                                                 <div className={`${styles.companyInvoiceAdjustmentWrapper} d-flex row`}>
-                                                    <div className={`${styles.companyInvoiceAdjustmentInputWrapper} col-7`}>
+                                                    <div className={`${styles.companyInvoiceAdjustmentInputWrapper} col-5 order-1 order-lg-1`}>
                                                         <div className="">
                                                             <input type="text" className={`${styles.companyInvoicePriceAdjustment} form-control`} placeholder="Adjustment" />
                                                         </div>
-                                                        <div className="">
-                                                            <div className="companyInvoicePriceAdjustment2Wrapper">
-                                                                <input type="text" className={`${styles.companyInvoicePriceAdjustment} form-control`} />
-                                                            </div>
+                                                    </div>
+                                                    <div className="col-6 order-3 col-lg-4 order-lg-2">
+                                                        <div className={`${styles.companyInvoicePriceAdjustment2Wrapper} d-flex`}>
+                                                            <input type="text" className={`${styles.companyInvoicePriceAdjustment} form-control`} />
+                                                            <i><FaCircleQuestion></FaCircleQuestion></i>
                                                         </div>
                                                     </div>
-                                                    <div className="col-5">
+                                                    <div className="col-6 order-2 order-lg-3">
                                                         <span className={`${styles.totalCalculatedAdjustment} d-flex justify-content-end`}>
                                                             <span>- Rs. 0.00</span>
                                                         </span>
@@ -341,22 +345,22 @@ export default function Newinvoice({ navExpandedState }) {
                                             <textarea className="form-control" placeholder='Enter the terms and conditions of your business to be displayed in your transaction' id="companyInvoiceTerms&Conditions" rows="7"></textarea>
                                         </div>
                                     </div>
-                                    <div className="col-md-12 col-lg-7">
+                                    <div className="col-md-12 col-lg-12 col-xl-7 px-1">
                                         <span className={`${styles.companyInvoiceSaveButtonsWrapper}`}>
-                                            <button className={`${styles.companyInvoiceSaveDraftButton} btn btn-success`}>
+                                            <button className={`${styles.companyInvoiceSaveDraftButton} btn green`}>
                                                 <span>
                                                     <i><FaPaperPen /></i>
                                                     Save as Draft
                                                 </span>
                                             </button>
-                                            <button className={`${styles.companyInvoiceSavenSendButton} btn btn-primary`}>
+                                            <button className={`${styles.companyInvoiceSavenSendButton} btn blue`}>
                                                 <span>
                                                     <i><FaSave /></i>
                                                     Save & Send
                                                 </span>
                                             </button>
                                         </span>
-                                        <button className={`${styles.companyInvoiceCancelButton} btn btn-outline-primary`}>
+                                        <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`}>
                                             <span>
                                                 <i><FaCircleXmark /></i>
                                                 Cancel

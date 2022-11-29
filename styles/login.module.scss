@@ -100,7 +100,7 @@ $screen-size-md: 950px;
         color: $secondary-color;
 
         @media (max-width: $screen-size-md) {
-            width: 375px;
+            width: 360px;
             padding: 32px 24px;
         }
 
@@ -175,7 +175,6 @@ $screen-size-md: 950px;
     }
 
     .loginBackground {
-        height: 100vh;
         background: linear-gradient(0deg, $background-primary-color, $background-primary-color), url('/images/login_page.png') no-repeat;
         background-size: cover;
 
@@ -217,6 +216,8 @@ $screen-size-md: 950px;
 
         &.loginButtonFacebook {
             margin-right: 3.5px;
+            font-weight: 600;
+            font-size: 14px;
 
             @media (max-width: $screen-size-xm) {
                 font-size: $font-size-text - 2;
@@ -225,6 +226,8 @@ $screen-size-md: 950px;
 
         &.loginButtonGoogle {
             margin-left: 3.5px;
+            font-weight: 600;
+            font-size: 14px;
 
             @media (max-width: $screen-size-xm) {
                 font-size: $font-size-text - 2;

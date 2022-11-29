@@ -1,8 +1,10 @@
 $text-font: Mulish, san-serif;
 $primary-background: #f5fafe;
 $primary-color: #3649AB;
+$primary-color-hover: #455AC6;
 $secondary-color: #8790B0;
 $tertiary-color: #43CB80;
+$tertiary-color-hover: #4EDD8E;
 $grey: #8790B0;
 
 * {
@@ -29,6 +31,8 @@ body {
   }
 
   input {
+    border-radius: 6px !important;
+
     &:hover {
       box-shadow: none;
     }
@@ -39,6 +43,44 @@ body {
 
     path {
       color: $tertiary-color;
+    }
+  }
+}
+
+button {
+  &.green {
+    color: white;
+    background: $tertiary-color;
+    border: 1px solid $tertiary-color;
+
+    &:hover {
+      background: $tertiary-color-hover;
+      border: 1px solid $tertiary-color-hover;
+      color: white;
+    }
+  }
+
+  &.blue {
+    color: white;
+    background: $primary-color;
+    border: 1px solid $primary-color;
+
+    &:hover {
+      background: $primary-color-hover;
+      border: 1px solid $primary-color-hover;
+      color: white;
+    }
+  }
+
+  &.blueOutline {
+    color: $primary-color !important;
+    background: white;
+    border: 1px solid $primary-color;
+
+    &:hover {
+      background: white;
+      color: $primary-color-hover;
+      border: 1px solid $primary-color-hover;
     }
   }
 }

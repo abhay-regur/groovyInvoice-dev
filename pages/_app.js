@@ -31,7 +31,8 @@ function MyApp({ Component, pageProps }) {
         {showNavbar && <Navbar navExpandedState={navExpandedState} setNavExpandedState={setNavExpandedState} />}
         <Component {...pageProps} navExpandedState={navExpandedState} />
       </div>
-      <Footer />
+      {showNavbar && <Footer />}
+
     </>
   );
 }

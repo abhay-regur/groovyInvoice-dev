@@ -67,6 +67,7 @@ $primary-border-color: #E3EBF2;
             }
 
             .mainWrapper {
+                margin-top: 41px;
 
                 .companyNameWrapper {
                     label {
@@ -135,6 +136,10 @@ $primary-border-color: #E3EBF2;
 
             }
 
+            .companyInvoiceItemsTableMainWrapper {
+                margin-top: 45px;
+            }
+
             .companyInvoiceAddlineBtn {
                 color: $primary-color;
                 border: 1px solid $primary-color;
@@ -185,6 +190,7 @@ $primary-border-color: #E3EBF2;
                     border: 1px solid $primary-border-color;
                     border-radius: 8px;
                     height: 200px;
+                    padding: 21px 27px;
                 }
 
                 .card {
@@ -202,13 +208,13 @@ $primary-border-color: #E3EBF2;
                         line-height: 28px;
                     }
 
-                    .comapnyInvoiceTaxOptionWrapper {
+                    .companyInvoiceTaxOptionWrapper {
                         margin-top: 37px;
 
-                        .comapnyInvoiceTaxOptionInputWrapper {
+                        .companyInvoiceTaxOptionInputWrapper {
                             display: flex;
 
-                            .comapnyInvoiceTaxSelectorMainWrapper {
+                            .companyInvoiceTaxSelectorMainWrapper {
                                 display: flex;
 
                                 .taxTDSRadioButtonWrapper,
@@ -282,11 +288,23 @@ $primary-border-color: #E3EBF2;
                             }
 
                             .taxTypeSelectWrapper {
+
+                                *::before,
+                                *::after {
+                                    box-sizing: border-box;
+                                }
+
                                 select.taxTypeSelect {
                                     background: white;
                                     border: 1px solid $primary-color;
                                     border-radius: 8px;
+                                    font-weight: 600;
+                                    font-size: 12px;
                                     color: $primary-color;
+
+                                    padding: 0.5em 1em 0.5em 0;
+                                    margin: 0;
+                                    width: 100%;
                                 }
                             }
 
@@ -308,9 +326,9 @@ $primary-border-color: #E3EBF2;
                         .companyInvoiceAdjustmentInputWrapper {
                             display: flex;
 
-                            div:first-of-type {
-                                margin-right: 12px;
-                            }
+                            // div:first-of-type {
+                            //     margin-right: 12px;
+                            // }
 
                             input {
                                 border: 1px solid white;
@@ -322,6 +340,19 @@ $primary-border-color: #E3EBF2;
                                     font-weight: 600;
                                     font-size: 12px;
                                     line-height: 15px;
+                                }
+                            }
+                        }
+
+                        .companyInvoicePriceAdjustment2Wrapper {
+                            align-items: center;
+
+                            i {
+                                margin-left: 5px;
+
+                                svg {
+                                    height: 21px;
+                                    width: 21px;
                                 }
                             }
                         }
@@ -351,23 +382,23 @@ $primary-border-color: #E3EBF2;
                 button {
                     border-radius: 6px;
                     font-weight: 600;
-                    font-size: 16px;
+                    font-size: 14px;
                     color: white;
                     margin-right: 11px;
 
                     &.companyInvoiceSaveDraftButton {
-                        background: $tertiary-color;
-                        border-color: $tertiary-color;
+                        // background: $tertiary-color;
+                        // border-color: $tertiary-color;
                     }
 
                     &.companyInvoiceSavenSendButton {
-                        background: $primary-color;
-                        border-color: $primary-color;
+                        // background: $primary-color;
+                        // border-color: $primary-color;
                     }
 
                     &.companyInvoiceCancelButton {
-                        color: $primary-color;
-                        border-color: $primary-color;
+                        // color: $primary-color;
+                        // border-color: $primary-color;
                     }
                 }
 
@@ -462,6 +493,7 @@ $primary-border-color: #E3EBF2;
             }
 
             .mainWrapper {
+                margin-top: 27px;
 
                 .companyNameWrapper {
                     margin-top: 27px;
@@ -534,10 +566,8 @@ $primary-border-color: #E3EBF2;
 
             }
 
-            .companyInvoiceTable {
-                thead {
-                    display: none;
-                }
+            .companyInvoiceItemsTableMainWrapper {
+                margin-top: 40px;
             }
 
             .companyInvoiceAddlineBtn {
@@ -590,6 +620,7 @@ $primary-border-color: #E3EBF2;
                     border: 1px solid $primary-border-color;
                     border-radius: 8px;
                     height: 114px;
+                    padding: 13px 15px;
                 }
 
                 .card {
@@ -607,11 +638,11 @@ $primary-border-color: #E3EBF2;
                         line-height: 28px;
                     }
 
-                    .comapnyInvoiceTaxOptionWrapper {
+                    .companyInvoiceTaxOptionWrapper {
                         margin-top: 37px;
 
-                        .comapnyInvoiceTaxOptionInputWrapper {
-                            .comapnyInvoiceTaxSelectorMainWrapper {
+                        .companyInvoiceTaxOptionInputWrapper {
+                            .companyInvoiceTaxSelectorMainWrapper {
                                 display: flex;
                                 margin-bottom: 17px;
 
@@ -692,6 +723,9 @@ $primary-border-color: #E3EBF2;
                                     border: 1px solid $primary-color;
                                     border-radius: 8px;
                                     font-size: 16px;
+                                    font-weight: 600;
+                                    font-size: 12px;
+                                    padding: 0.5em 1em 0.5em 0;
                                     color: $primary-color;
                                 }
                             }
@@ -713,6 +747,19 @@ $primary-border-color: #E3EBF2;
                         .companyInvoiceAdjustmentInputWrapper {
                             div:first-of-type {
                                 margin-bottom: 14px;
+                            }
+                        }
+
+                        .companyInvoicePriceAdjustment2Wrapper {
+                            align-items: center;
+
+                            i {
+                                margin-left: 5px;
+
+                                svg {
+                                    height: 21px;
+                                    width: 21px;
+                                }
                             }
                         }
 
@@ -761,20 +808,20 @@ $primary-border-color: #E3EBF2;
                     }
 
                     &.companyInvoiceSaveDraftButton {
-                        background: $tertiary-color;
-                        border-color: $tertiary-color;
+                        // background: $tertiary-color;
+                        // border-color: $tertiary-color;
                     }
 
                     &.companyInvoiceSavenSendButton {
-                        background: $primary-color;
-                        border-color: $primary-color;
+                        // background: $primary-color;
+                        // border-color: $primary-color;
                     }
 
                     &.companyInvoiceCancelButton {
                         text-align: center;
                         width: 100%;
-                        color: $primary-color;
-                        border-color: $primary-color;
+                        // color: $primary-color;
+                        // border-color: $primary-color;
                     }
                 }
 
