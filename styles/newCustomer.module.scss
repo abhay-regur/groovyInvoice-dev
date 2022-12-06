@@ -6,6 +6,7 @@ $tertiary-color: #43CB80;
 $input-background-color: #F5FAFE;
 $primary-border-color: #E3EBF2;
 $secondary-border-color: #BCD5E2;
+$transprant: rgba(0, 0, 0, 0);
 
 
 .green {
@@ -531,6 +532,41 @@ $secondary-border-color: #BCD5E2;
                             }
                         }
                     }
+
+                    .companyInvoiceContactPersonListTableWrapper {
+                        .companyInvoiceContactPersonTable {
+                            margin-top: 40px;
+
+                            tr {
+                                th {
+                                    background: $primary-color;
+                                    color: white;
+                                    min-width: 144px;
+                                    font-weight: 600;
+                                    font-size: 14px;
+                                    padding: 10px;
+                                    border: 1px solid $secondary-border-color;
+
+                                    &:last-of-type {
+                                        background: $transprant;
+                                        border: none;
+                                    }
+                                }
+                            }
+                        }
+
+                        .companyInvoiceAddContectperson {
+                            cursor: pointer;
+
+                            span {
+                                margin-left: 7px;
+                                font-weight: 600;
+                                font-size: 14px;
+                                color: $secondary-color;
+                            }
+                        }
+                    }
+
                 }
 
                 .companyInvoiceFormButtonsWrapper {
@@ -1101,6 +1137,43 @@ $secondary-border-color: #BCD5E2;
                                     transform: scale(1);
                                 }
                             }
+                        }
+                    }
+                }
+
+                .companyInvoiceContactPersonListTableWrapper {
+                    overflow-x: auto;
+
+                    .companyInvoiceContactPersonTable {
+                        margin-top: 40px;
+                        min-width: 663px;
+
+                        tr {
+                            th {
+                                background: $primary-color;
+                                color: white;
+                                min-width: 144px;
+                                font-weight: 600;
+                                font-size: 14px;
+                                padding: 10px;
+                                border: 1px solid $secondary-border-color;
+
+                                &:last-of-type {
+                                    background: $transprant;
+                                    border: none;
+                                }
+                            }
+                        }
+                    }
+
+                    .companyInvoiceAddContectperson {
+                        cursor: pointer;
+
+                        span {
+                            margin-left: 7px;
+                            font-weight: 600;
+                            font-size: 14px;
+                            color: $secondary-color;
                         }
                     }
                 }
