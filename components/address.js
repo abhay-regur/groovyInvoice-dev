@@ -5,7 +5,7 @@ import FaCopy from "../assets/icons/faCopy.svg";
 export default function Address() {
     return (<div className={`${styles.tab_content}`}>
         <div className="row">
-            <div className="col-12 col-sm-6">
+            <div className="col-12 col-lg-6">
                 <h3 className={`${styles.tabtitle}`}>Billing Address</h3>
 
                 <div className={`${styles.companyInvoiceBillingAttentionWrapper} mb-3 row`}>
@@ -96,7 +96,7 @@ export default function Address() {
                     </div>
                 </div>
             </div>
-            <div className="col-12 col-sm-6">
+            <div className="col-12 col-lg-6">
                 <div className="row">
                     <div className="col-12 col-md-6">
                         <h3 className={`${styles.tabtitle}`}>Shipping Address</h3>

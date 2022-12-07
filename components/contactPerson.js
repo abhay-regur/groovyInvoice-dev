@@ -38,7 +38,7 @@ export default function ContactPerson() {
             </thead>
             <ContactPersonTable ItemsData={ItemsData} />
         </table>
-        <div className={`${styles.companyInvoiceAddContectperson} d-flex align-contect-center`}>
+        <div className={`${styles.companyInvoiceAddContectperson} d-flex align-contect-center mb-2`}>
             <FaCirclePlus />
             <span>Add Contact Person</span>
         </div>

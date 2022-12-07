@@ -450,6 +450,13 @@ $transprant: rgba(0, 0, 0, 0);
                         }
                     }
 
+                    .companyInvoiceExemptionReasonWrapper {
+                        svg {
+                            width: 25px;
+                            height: 25px;
+                        }
+                    }
+
                     .companyCustomerTaxPreferenceMainWrapper {
                         display: flex;
 
@@ -534,8 +541,11 @@ $transprant: rgba(0, 0, 0, 0);
                     }
 
                     .companyInvoiceContactPersonListTableWrapper {
+                        overflow-x: auto;
+
                         .companyInvoiceContactPersonTable {
                             margin-top: 40px;
+                            min-width: 663px;
 
                             tr {
                                 th {
@@ -614,6 +624,97 @@ $transprant: rgba(0, 0, 0, 0);
                             }
                         }
                     }
+                }
+            }
+        }
+    }
+}
+
+//Tablet Screen
+@media screen and (max-width: 991px) {
+    .main {
+        .card {
+            .cardBody {
+
+                .companyCustomerTypeOptionWrapper {
+                    label {
+                        margin-bottom: 12px;
+                    }
+                }
+
+                .companyInvoiceNameWrapper {
+                    label {
+                        margin-bottom: 6px;
+                    }
+
+                    .companySalutationSelect {
+                        margin-bottom: 21px;
+                    }
+
+                    .companyInvoiceNewCustomerLastName {
+                        margin-bottom: 0px !important;
+                    }
+
+                    input {
+                        margin-bottom: 21px;
+                    }
+
+
+                }
+
+                .companyInvoiceComapnyPhone {
+                    label {
+                        margin-bottom: 6px;
+                    }
+
+                    .companyInvoiceComapnyWorkPhone {
+                        margin-bottom: 21px;
+                    }
+
+                }
+
+                .companyInvoiceComapnyNameWrapper,
+                .companyInvoiceComapnySkypeIDWrapper,
+                .companyInvoiceComapnyDisplayNameWrapper,
+                .companyInvoiceComapnyEmailWrapper,
+                .companyInvoiceDesignationWrapper,
+                .companyInvoiceDepartmentWrapper,
+                .companyInvoiceComapnyWebsiteWrapper {
+                    label {
+                        margin-bottom: 6px;
+                    }
+                }
+
+                .tab_content_wrapper {
+                    .tab_content {
+                        padding-top: 45px;
+
+                        h3.tabtitle {
+                            margin-bottom: 10px;
+                        }
+
+                        .companyInvoiceShippingCopyBillingWrapper {
+                            margin-bottom: 19px;
+                        }
+
+                        textarea {
+                            margin-bottom: 15px;
+                        }
+
+                        .companyInvoiceComapnyGSTTreatmentWrapper,
+                        .companyInvoicePANWrapper,
+                        .companyInvoiceComapnyPlaceOfSupplyWrapper,
+                        .companyCustomerTaxPreferenceMainWrapper,
+                        .companyInvoiceExemptionReasonWrapper,
+                        .companyInvoiceCurrencyWrapper,
+                        .companyInvoiceOpeningBalanceWrapper,
+                        .companyInvoicePaymentTermsWrapper {
+                            label {
+                                margin-bottom: 6px;
+                            }
+                        }
+                    }
+
                 }
             }
         }
@@ -998,6 +1099,7 @@ $transprant: rgba(0, 0, 0, 0);
                                 font-weight: 600;
                                 font-size: 14px;
                                 color: $primary-color;
+                                margin-bottom: 6px;
                             }
 
                             input {
