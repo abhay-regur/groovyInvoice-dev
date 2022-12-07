@@ -1,0 +1,128 @@
+$font-size-heading: 32px;
+$font-size-text: 15px;
+$primary-color: #3649AB;
+$secondary-color: #8790B0;
+$tertiary-color: #43CB80;
+$table-head-color: #EEF5FC;
+$table-head-border-color: #C8D6E2;
+$input-background-color: #F5FAFE;
+$primary-border-color: #E3EBF2;
+$button-red-color: #DA5252;
+
+//Big Screen
+@media screen and (min-width: 768px) {
+    tbody {
+        tr.companyInvoiceContactPersonRow {
+            td {
+                padding: 12px 10px;
+                border: 1px solid $primary-border-color;
+
+                &:last-of-type {
+                    border: none;
+                }
+
+                select {
+                    border: none;
+                    color: $secondary-color;
+                    font-weight: 400;
+                    font-size: 14px;
+
+                    &:focus {
+                        box-shadow: none;
+                    }
+                }
+
+                span {
+                    color: $secondary-color;
+                    font-weight: 400;
+                    font-size: 14px;
+                }
+
+                &.companyInvoiceContantPersonEditRow {
+                    div {
+                        span {
+                            padding-right: 6px;
+
+                            svg {
+                                width: 22px !important;
+                                height: 22px !important;
+
+                                path {
+                                    fill: $tertiary-color;
+                                }
+                            }
+
+                            &.redColor {
+                                path {
+                                    fill: $button-red-color;
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+
+        }
+    }
+
+}
+
+//Mobie Screen
+@media screen and (max-width: 768px) {
+
+    tbody {
+        tr.companyInvoiceContactPersonRow {
+            td {
+                padding: 12px 10px;
+                border: 1px solid $primary-border-color;
+
+                &:last-of-type {
+                    border: none;
+                }
+
+                select {
+                    border: none;
+                    color: $secondary-color;
+                    font-weight: 400;
+                    font-size: 14px;
+
+                    &:focus {
+                        box-shadow: none;
+                    }
+                }
+
+                span {
+                    color: $secondary-color;
+                    font-weight: 400;
+                    font-size: 14px;
+                }
+
+                &.companyInvoiceContantPersonEditRow {
+                    div {
+                        span {
+                            padding-right: 6px;
+
+                            svg {
+                                width: 22px !important;
+                                height: 22px !important;
+
+                                path {
+                                    fill: $tertiary-color;
+                                }
+                            }
+
+                            &.redColor {
+                                path {
+                                    fill: $button-red-color;
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+
+        }
+    }
+}
