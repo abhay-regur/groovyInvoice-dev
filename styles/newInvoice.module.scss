@@ -435,6 +435,31 @@ $primary-border-color: #E3EBF2;
 
 }
 
+//Tablet Screen
+@media screen and (max-width: 991px) {
+    .main {
+        .card {
+            .mainWrapper {
+                margin-top: 21px;
+            }
+
+            .companyNameWrapper {
+                margin-bottom: 1rem;
+            }
+
+            .companyInvoiceAdjustmentWrapper {
+                margin-top: 33px;
+
+                .companyInvoiceAdjustmentInputWrapper {
+                    div:first-of-type {
+                        margin-bottom: 14px;
+                    }
+                }
+            }
+        }
+    }
+}
+
 //Mobie Screen
 @media screen and (max-width: 425px) {
     .main {
