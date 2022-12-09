@@ -33,5 +33,18 @@ $tertiary-color: #43CB80;
 }
 
 @media screen and (max-width: 425px) {
-    .footerWrapper {}
+    .footerWrapper {
+
+        .footertext {
+            font-weight: 400;
+            margin-bottom: 37px;
+            font-size: 14px;
+            color: $secondary-color;
+
+            &:after {
+                content: "Groovy Invoice";
+                color: $primary-color;
+            }
+        }
+    }
 }
