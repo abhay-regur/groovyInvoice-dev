@@ -3,9 +3,9 @@ const Checkbox = ({ label }) => {
     const [isChecked, setIsChecked] = useState(false);
     return (
         <div className="checkbox-wrapper">
-            <label>
+            <label>{label}
                 <input type="checkbox" checked={isChecked} onChange={() => setIsChecked((prev) => !prev)} />
-                <span>{label}</span>
+                <span></span>
             </label>
         </div>
     );

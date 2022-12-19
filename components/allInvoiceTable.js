@@ -1,0 +1,393 @@
+import styles from '../styles/invoice.module.scss';
+import React from 'react';
+import Image from 'next/image';
+import { useTable, usePagination } from 'react-table';
+import defaultProfile from '../public/images/profile_Default.png';
+import TablePagination from "../components/tablePagination.js";
+import CheckBox from '../components/checkBox.js';
+import FaEye from '../assets/icons/faEye.svg';
+import FaExclamationCircle from '../assets/icons/faExclamationCircle.svg';
+import FaPen from '../assets/icons/faPen.svg';
+
+const AllInvoiceTable = ({ ItemsData }) => {
+
+    const columns = React.useMemo(
+        () => [
+            {
+                Header: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='Invoice Number' /></span>,
+                accessor: 'invoiceNumber',
+            },
+            {
+                Header: 'Customer Name',
+                accessor: 'customerName',
+            },
+            {
+                Header: 'Due Date',
+                accessor: 'dueDate',
+            },
+            {
+                Header: 'Amount',
+                accessor: 'amount',
+            },
+            {
+                Header: 'Status',
+                accessor: 'status',
+            },
+            {
+                Header: 'Action',
+                accessor: 'action',
+            },
+        ],
+        []
+    )
+
+    const data = React.useMemo(
+        () => [
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus}`}>Unpaid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus} ${styles.paid}`}>Paid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus} ${styles.paid}`}>Paid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus}`}>Unpaid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus} ${styles.paid}`}>Paid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus}`}>Unpaid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus} ${styles.paid}`}>Paid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus}`}>Unpaid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus} ${styles.paid}`}>Paid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus}`}>Unpaid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus} ${styles.paid}`}>Paid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus} ${styles.paid}`}>Paid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus} ${styles.paid}`}>Paid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus}`}>Unpaid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus} ${styles.paid}`}>Paid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus} ${styles.paid}`}>Paid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus} ${styles.paid}`}>Paid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus}`}>Unpaid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus} ${styles.paid}`}>Paid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus}`}>Unpaid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus} ${styles.paid}`}>Paid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus} ${styles.paid}`}>Paid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus} ${styles.paid}`}>Paid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus}`}>Unpaid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus} ${styles.paid}`}>Paid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus} ${styles.paid}`}>Paid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus} ${styles.paid}`}>Paid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus}`}>Unpaid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus} ${styles.paid}`}>Paid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus} ${styles.paid}`}>Paid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus}`}>Unpaid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus} ${styles.paid}`}>Paid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus}`}>Unpaid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus} ${styles.paid}`}>Paid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            },
+            {
+                invoiceNumber: <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='#02235665' /></span>,
+                customerName: <div className={`${styles.companyInvoiceTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyInvoiceTableCustomerName}`} >Maximus Tempor</span></div>,
+                dueDate: <><div className={`${styles.companyInvoiceTableDueDate}`}>11/16/2021</div><div className={`${styles.companyInvoiceTableActionDueDateTime}`}>05:33am</div></>,
+                amount: <span className={`${styles.companyInvoiceTableAmount}`}>Rs. 32,312.00</span>,
+                status: <span className={`${styles.companyInvoiceTableStatus} ${styles.paid}`}>Paid</span>,
+                action: <span className={`${styles.companyInvoiceTableActionWrapper}`}><span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span><span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></span>,
+            }
+        ],
+        []
+    )
+
+    const {
+        getTableProps,
+        getTableBodyProps,
+        headerGroups,
+        page,
+        prepareRow,
+        canPreviousPage,
+        canNextPage,
+        pageOptions,
+        nextPage,
+        previousPage,
+        gotoPage,
+        state: { pageIndex, pageSize },
+    } = useTable({
+        columns,
+        data,
+        initialState: { pageIndex: 1 },
+    },
+        usePagination);
+
+
+
+    return (
+        <>
+            <table className={`${styles.companyInvoiceTable} table`} {...getTableProps()}>
+                <thead>
+                    {headerGroups.map(headerGroup => (
+                        <tr {...headerGroup.getHeaderGroupProps()}>
+                            {headerGroup.headers.map(column => (
+                                <th scope="col" className="ps-3" {...column.getHeaderProps()}>{column.render("Header")}</th>
+                            ))}
+                        </tr>
+                    ))}
+                </thead>
+                <tbody {...getTableBodyProps()}>
+                    {page.map((row, i) => {
+                        prepareRow(row);
+                        return (
+                            <tr {...row.getRowProps()}>
+                                {row.cells.map(cell => {
+                                    return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+                                })}
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
+            <div className={`${styles.companyInvoiceTablePagination} d-flex justify-content-between mb-2`}>
+                <TablePagination
+                    pageIndex={pageIndex}
+                    pageOptions={pageOptions}
+                    previousPage={previousPage}
+                    canPreviousPage={canPreviousPage}
+                    nextPage={nextPage}
+                    canNextPage={canNextPage}
+                    gotoPage={gotoPage}
+                />
+            </div>
+        </>
+
+    )
+}
+
+export default AllInvoiceTable;
