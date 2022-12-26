@@ -354,10 +354,10 @@ const AllInvoiceTable = ({ ItemsData }) => {
             <div className={`${styles.comapanyInoviceInvoiceTableWrapper} col-sm-12 p-0`}>
                 <table className={`${styles.companyInvoiceTable} table`} {...getTableProps()}>
                     <thead>
-                        {headerGroups.map(headerGroup => (
-                            <tr {...headerGroup.getHeaderGroupProps()}>
+                        {headerGroups.map((headerGroup, i) => (
+                            <tr key={i} {...headerGroup.getHeaderGroupProps()}>
                                 {headerGroup.headers.map(column => (
-                                    <th scope="col" className="ps-3" {...column.getHeaderProps()}>{column.render("Header")}</th>
+                                    <th key={i} scope="col" className="ps-3" {...column.getHeaderProps()}>{column.render("Header")}</th>
                                 ))}
                             </tr>
                         ))}
@@ -366,9 +366,9 @@ const AllInvoiceTable = ({ ItemsData }) => {
                         {page.map((row, i) => {
                             prepareRow(row);
                             return (
-                                <tr {...row.getRowProps()}>
+                                <tr key={i} {...row.getRowProps()}>
                                     {row.cells.map(cell => {
-                                        return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+                                        return <td key={i} {...cell.getCellProps()}>{cell.render("Cell")}</td>;
                                     })}
                                 </tr>
                             );
