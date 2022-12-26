@@ -13,33 +13,35 @@ export default function Invoices({ navExpandedState }) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
-                <div className={`${styles.comapnyInvoiceHeadingWrapper} row`}>
-                    <div className="col-6">
-                        <h2 className={`${styles.title}`}>
-                            All Invoices
-                        </h2>
+                <div className="container-fluid">
+                    <div className={`${styles.comapnyInvoiceHeadingWrapper} row`}>
+                        <div className="col-6">
+                            <h2 className={`${styles.title}`}>
+                                All Invoices
+                            </h2>
+                        </div>
+                        <div className="col-6 d-flex justify-content-end">
+                            <button className="green align-content-center">
+                                <FaCirclePlus />
+                                Create Invoice
+                            </button>
+                        </div>
                     </div>
-                    <div className="col-6 d-flex justify-content-end">
-                        <button className="green align-content-center">
-                            <FaCirclePlus />
-                            Create Invoice
-                        </button>
-                    </div>
-                </div>
 
-                <div className={`${styles.companyInvoiceTopInvoiceHeader} card`}>
-                    <div className={`${styles.card_body} card-body row`}>
-                        <div className={`${styles.companyInvoiceTopHeaderSVGWrapper} col-12 col-lg-1 d-flex d-lg-none justify-content-lg-start align-items-center`}><i><FaRupeeCircle /></i></div>
-                        <div className={`${styles.companyInvoiceTopHeaderTotalOutstandingWrapper} col-6 col-lg-3`}><div className="row"><div className={`${styles.companyInvoiceTopHeaderSVGWrapper} col-12 col-lg-2 d-none d-lg-flex justify-content-lg-start align-items-center`}><i><FaRupeeCircle /></i></div><div className="col-12 col-lg-10"><div className={`${styles.companyInvoiceTopInvoiceHeaderText}`}>Total Outstanding Receivables</div><div className={`${styles.companyInvoiceTopInvoiceHeaderNumber}`}>Rs. 217,416.40</div></div></div></div>
-                        <div className={`${styles.companyInvoiceTopHeaderDueTodayWrapper} col-6 col-lg-2`}><div className={`${styles.companyInvoiceTopInvoiceHeaderText}`}>Due Today</div> <div className={`${styles.companyInvoiceTopInvoiceHeaderNumber}`}>Rs. 0,0</div></div>
-                        <div className={`${styles.companyInvoiceTopHeaderDueWithinWrapper} col-6 col-lg-2`}><div className={`${styles.companyInvoiceTopInvoiceHeaderText}`}>Due Within 30 Days</div><div className={`${styles.companyInvoiceTopInvoiceHeaderNumber}`}>Rs. 0,0</div></div>
-                        <div className={`${styles.companyInvoiceTopHeaderOverdueInvoiceWrapper} col-6 col-lg-2`}><div className={`${styles.companyInvoiceTopInvoiceHeaderText}`}>Overdue Invoice</div><div className={`${styles.companyInvoiceTopInvoiceHeaderNumber}`}>Rs. 217,416.40</div></div>
-                        <div className={`${styles.companyInvoiceTopHeaderDaysGettingPaidWrapper} col-12 col-lg-3`}><div className={`${styles.companyInvoiceTopInvoiceHeaderText}`}>Average No. of Days for Getting Paid</div><div className={`${styles.companyInvoiceTopInvoiceHeaderNumber}`}>5 Days</div></div>
+                    <div className={`${styles.companyInvoiceTopInvoiceHeader} card`}>
+                        <div className={`${styles.card_body} card-body row`}>
+                            <div className={`${styles.companyInvoiceTopHeaderSVGWrapper} col-12 col-lg-1 d-flex d-lg-none justify-content-lg-start align-items-center`}><i><FaRupeeCircle /></i></div>
+                            <div className={`${styles.companyInvoiceTopHeaderTotalOutstandingWrapper} col-6 col-lg-3`}><div className="row"><div className={`${styles.companyInvoiceTopHeaderSVGWrapper} col-12 col-lg-2 d-none d-lg-flex justify-content-lg-start align-items-center`}><i><FaRupeeCircle /></i></div><div className="col-12 col-lg-10"><div className={`${styles.companyInvoiceTopInvoiceHeaderText}`}>Total Outstanding Receivables</div><div className={`${styles.companyInvoiceTopInvoiceHeaderNumber}`}>Rs. 217,416.40</div></div></div></div>
+                            <div className={`${styles.companyInvoiceTopHeaderDueTodayWrapper} col-6 col-lg-2`}><div className={`${styles.companyInvoiceTopInvoiceHeaderText}`}>Due Today</div> <div className={`${styles.companyInvoiceTopInvoiceHeaderNumber}`}>Rs. 0,0</div></div>
+                            <div className={`${styles.companyInvoiceTopHeaderDueWithinWrapper} col-6 col-lg-2`}><div className={`${styles.companyInvoiceTopInvoiceHeaderText}`}>Due Within 30 Days</div><div className={`${styles.companyInvoiceTopInvoiceHeaderNumber}`}>Rs. 0,0</div></div>
+                            <div className={`${styles.companyInvoiceTopHeaderOverdueInvoiceWrapper} col-6 col-lg-2`}><div className={`${styles.companyInvoiceTopInvoiceHeaderText}`}>Overdue Invoice</div><div className={`${styles.companyInvoiceTopInvoiceHeaderNumber}`}>Rs. 217,416.40</div></div>
+                            <div className={`${styles.companyInvoiceTopHeaderDaysGettingPaidWrapper} col-12 col-lg-3`}><div className={`${styles.companyInvoiceTopInvoiceHeaderText}`}>Average No. of Days for Getting Paid</div><div className={`${styles.companyInvoiceTopInvoiceHeaderNumber}`}>5 Days</div></div>
+                        </div>
                     </div>
-                </div>
 
-                <div className={`${styles.comapanyInoviceInvoiceTableWrapper}`}>
-                    <AllInvoiceTable />
+                    <div className='p-2 p-sm-0'>
+                        <AllInvoiceTable />
+                    </div>
                 </div>
             </main>
         </div>

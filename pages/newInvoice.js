@@ -372,7 +372,7 @@ export default function Newinvoice({ navExpandedState }) {
                         </div>
                     </div >
                 </div >
-            </main >
+            </main>
         </div >
     )
 }

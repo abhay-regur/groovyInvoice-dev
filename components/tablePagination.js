@@ -9,14 +9,14 @@ const TablePagination = ({ pageIndex, pageOptions, previousPage, canPreviousPage
 
 
     return (
-        <>
-            <div className={`${styles.companyInvoiceTablePaginationPageInfo} d-flex ms-2`}>
+        <div className={`${styles.companyInvoiceTablePagination} row justify-content-between mt-3 mt-md-2`}>
+            <div className={`${styles.companyInvoiceTablePaginationPageInfo} col-12 col-md-4 d-flex ms-2`}>
                 <span>
                     Showing  {pageIndex + 1} of {pageOptions.length}{' '}
                     Pages{' '}
                 </span>
             </div>
-            <div className={`${styles.companyInvoiceTablePaginationNavigation} d-flex me-2`} >
+            <div className={`${styles.companyInvoiceTablePaginationNavigation} col-12 col-md-2 d-flex me-2`} >
                 <button className={`${styles.companyInvoiceTablePaginationButton}`} onClick={() => previousPage()} disabled={!canPreviousPage}>
                     <FaArrowLeft />
                 </button>
@@ -50,7 +50,7 @@ const TablePagination = ({ pageIndex, pageOptions, previousPage, canPreviousPage
                     <FaArrowRight />
                 </button>
             </div>
-        </>
+        </div>
     )
 }
 export default TablePagination;

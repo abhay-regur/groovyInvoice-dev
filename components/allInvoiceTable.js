@@ -350,42 +350,48 @@ const AllInvoiceTable = ({ ItemsData }) => {
 
 
     return (
-        <>
-            <table className={`${styles.companyInvoiceTable} table`} {...getTableProps()}>
-                <thead>
-                    {headerGroups.map(headerGroup => (
-                        <tr {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map(column => (
-                                <th scope="col" className="ps-3" {...column.getHeaderProps()}>{column.render("Header")}</th>
-                            ))}
-                        </tr>
-                    ))}
-                </thead>
-                <tbody {...getTableBodyProps()}>
-                    {page.map((row, i) => {
-                        prepareRow(row);
-                        return (
-                            <tr {...row.getRowProps()}>
-                                {row.cells.map(cell => {
-                                    return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
-                                })}
+        <div className={`row`}>
+            <div className={`${styles.comapanyInoviceInvoiceTableWrapper} col-sm-12 p-0`}>
+                <table className={`${styles.companyInvoiceTable} table`} {...getTableProps()}>
+                    <thead>
+                        {headerGroups.map(headerGroup => (
+                            <tr {...headerGroup.getHeaderGroupProps()}>
+                                {headerGroup.headers.map(column => (
+                                    <th scope="col" className="ps-3" {...column.getHeaderProps()}>{column.render("Header")}</th>
+                                ))}
                             </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
-            <div className={`${styles.companyInvoiceTablePagination} d-flex justify-content-between mb-2`}>
-                <TablePagination
-                    pageIndex={pageIndex}
-                    pageOptions={pageOptions}
-                    previousPage={previousPage}
-                    canPreviousPage={canPreviousPage}
-                    nextPage={nextPage}
-                    canNextPage={canNextPage}
-                    gotoPage={gotoPage}
-                />
+                        ))}
+                    </thead>
+                    <tbody {...getTableBodyProps()}>
+                        {page.map((row, i) => {
+                            prepareRow(row);
+                            return (
+                                <tr {...row.getRowProps()}>
+                                    {row.cells.map(cell => {
+                                        return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+                                    })}
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
             </div>
-        </>
+            <div className="col-sm-12 p-0 mb-2">
+                <div className={`${styles.companyInvoiceTablePaginationWrapper} row`}>
+                    <div className="col-12">
+                        <TablePagination
+                            pageIndex={pageIndex}
+                            pageOptions={pageOptions}
+                            previousPage={previousPage}
+                            canPreviousPage={canPreviousPage}
+                            nextPage={nextPage}
+                            canNextPage={canNextPage}
+                            gotoPage={gotoPage}
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
 
     )
 }

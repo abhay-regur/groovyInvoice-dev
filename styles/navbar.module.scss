@@ -348,8 +348,8 @@ $navItem-hightlight: #F5FAFE;
     .header {
         nav {
             height: 51px;
-            max-width: 100%;
-            width: 100%;
+            // max-width: 100%;
+            width: 100vw;
             position: fixed;
             z-index: 1;
             top: 0;
