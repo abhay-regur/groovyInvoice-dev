@@ -181,7 +181,7 @@ export default function Newinvoice({ navExpandedState }) {
                                 <div className="row">
                                     <div className="col-md-12 col-lg-4">
                                         <div className={`${styles.companyNameWrapper} form-group`}>
-                                            <label htmlFor="companyName" className="form-label control-label">company Name<span className={`${styles.green}`}>*</span></label>
+                                            <label htmlFor="companyName" className="form-label control-label">Company Name<span className={`${styles.green}`}>*</span></label>
                                             <div className="d-flex">
                                                 <select className={`${styles.companyNameSelect} form-select`}>
                                                     <option defaultValue>Select Customer</option>
@@ -372,7 +372,7 @@ export default function Newinvoice({ navExpandedState }) {
                         </div>
                     </div >
                 </div >
-            </main >
+            </main>
         </div >
     )
 }
