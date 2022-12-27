@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
+import FaCirclePlus from "../assets/icons/faCirclePlus.svg";
 import styles from '../styles/customers.module.scss';
 
 export default function Customers({ navExpandedState }) {
@@ -11,10 +13,25 @@ export default function Customers({ navExpandedState }) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
-                <h2 className={`${styles.title}`}>
-                    Customers
-                </h2>
-
+                <div className="container-fluid">
+                    <div className={`${styles.comapnyInvoiceHeadingWrapper} row`}>
+                        <div className="col-6">
+                            <h2 className={`${styles.title}`}>
+                                Customers
+                            </h2>
+                        </div>
+                        <div className="col-6 d-flex justify-content-end">
+                            <Link href={'/newCustomer'}>
+                                <a>
+                                    <button className="green align-content-center">
+                                        <FaCirclePlus />
+                                        Add Customer
+                                    </button>
+                                </a>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
             </main>
         </div>
     </>)

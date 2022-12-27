@@ -31,24 +31,24 @@ export default function Registration() {
                                 <div className="card-body p-0">
                                     <form>
                                         <div className="mb-3">
-                                            <label htmlFor="registrationCompanyName" className="form-label">Comapny Name</label>
+                                            <label htmlFor="registrationCompanyName" className="form-label">Company Name</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <i><FontAwesomeIcon icon={faBriefcase} /></i>
-                                                <input type="text" className="form-control" placeholder='Name' id="registrationCompanyName" aria-describedby="companyNameHelp" />
+                                                <input type="text" className="form-control" placeholder='Company Name' id="registrationCompanyName" aria-describedby="companyNameHelp" />
                                             </div>
                                         </div>
                                         <div className="mb-3">
                                             <label htmlFor="registrationEmail" className="form-label">Email address</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <i><FontAwesomeIcon icon={faEnvelope} /></i>
-                                                <input type="email" className="form-control" placeholder="Email" id="registrationEmail" aria-describedby="emailHelp" />
+                                                <input type="email" className="form-control" placeholder="Email address" id="registrationEmail" aria-describedby="emailHelp" />
                                             </div>
                                         </div>
                                         <div className="mb-3">
                                             <label htmlFor="registrationContactNumber" className="form-label">Contact Number</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <i><FontAwesomeIcon icon={faMobileRetro} /></i>
-                                                <input type="email" className="form-control" placeholder="Number" id="registrationContactNumber" aria-describedby="contactNumberHelp" />
+                                                <input type="email" className="form-control" placeholder="Contact Number" id="registrationContactNumber" aria-describedby="contactNumberHelp" />
                                             </div>
                                         </div>
                                         <div className="mb-3">

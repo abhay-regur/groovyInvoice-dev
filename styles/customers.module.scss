@@ -6,6 +6,7 @@ $tertiary-color: #43CB80;
 
 @media screen and (min-width: 426px) {
     .main {
+        padding-top: 40px;
         margin: auto 97px;
         margin-left: 135px;
         transition: all 0.35s;
@@ -15,11 +16,30 @@ $tertiary-color: #43CB80;
             transition: all 0.35s;
         }
 
-        .title {
-            color: $primary-color;
-            font-weight: 700;
-            font-size: 26px;
-            line-height: 33px;
+        .comapnyInvoiceHeadingWrapper {
+            .title {
+                color: $primary-color;
+                font-weight: 700;
+                font-size: 26px;
+                line-height: 33px;
+                transition: all 0.35s;
+            }
+
+            button {
+                height: fit-content;
+                border-radius: 6px;
+                padding: 8px 11px;
+                font-weight: 600;
+                font-size: 16px;
+                transition: all 0.35s;
+
+                svg {
+                    margin-right: 5px;
+                    width: 18px;
+                    height: 18px;
+                    transition: all 0.35s;
+                }
+            }
         }
     }
 
