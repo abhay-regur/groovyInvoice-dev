@@ -171,9 +171,9 @@ $transprant: rgba(0, 0, 0, 0);
 
                 }
 
-                .companyInvoiceComapnyNameWrapper {
+                .companyInvoiceCompanyNameWrapper {
 
-                    .companyInvoiceComapnyNameLabel {
+                    .companyInvoiceCompanyNameLabel {
                         display: flex;
                         align-items: center;
                         font-weight: 600;
@@ -191,9 +191,9 @@ $transprant: rgba(0, 0, 0, 0);
                     }
                 }
 
-                .companyInvoiceComapnyDisplayNameWrapper {
+                .companyInvoiceCompanyDisplayNameWrapper {
 
-                    .companyInvoiceComapnyDisplayNamelabel {
+                    .companyInvoiceCompanyDisplayNamelabel {
                         display: flex;
                         align-items: center;
                         font-weight: 600;
@@ -201,7 +201,7 @@ $transprant: rgba(0, 0, 0, 0);
                         color: $primary-color;
                     }
 
-                    .companyInvoiceComapnyDisplaySelect {
+                    .companyInvoiceCompanyDisplaySelect {
                         font-weight: 400;
                         font-size: 14px;
                         color: $secondary-color;
@@ -212,30 +212,9 @@ $transprant: rgba(0, 0, 0, 0);
 
                 }
 
-                .companyInvoiceComapnyEmailWrapper {
+                .companyInvoiceCompanyEmailWrapper {
 
-                    .companyInvoiceComapnyEmailLabel {
-                        display: flex;
-                        align-items: center;
-                        font-weight: 600;
-                        font-size: 14px;
-                        color: $primary-color;
-                    }
-
-                    input {
-                        font-weight: 400;
-                        font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
-                        border-radius: 8px;
-                    }
-
-                }
-
-                .companyInvoiceComapnyPhone {
-
-                    .companyInvoiceComapnyPhoneLabel {
+                    .companyInvoiceCompanyEmailLabel {
                         display: flex;
                         align-items: center;
                         font-weight: 600;
@@ -254,9 +233,30 @@ $transprant: rgba(0, 0, 0, 0);
 
                 }
 
-                .companyInvoiceComapnySkypeIDWrapper {
+                .companyInvoiceCompanyPhone {
 
-                    .companyInvoiceComapnySkypeIDLabel {
+                    .companyInvoiceCompanyPhoneLabel {
+                        display: flex;
+                        align-items: center;
+                        font-weight: 600;
+                        font-size: 14px;
+                        color: $primary-color;
+                    }
+
+                    input {
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: $secondary-color;
+                        background: $input-background-color;
+                        border: 1px solid $primary-border-color;
+                        border-radius: 8px;
+                    }
+
+                }
+
+                .companyInvoiceCompanySkypeIDWrapper {
+
+                    .companyInvoiceCompanySkypeIDLabel {
                         display: flex;
                         align-items: center;
                         font-weight: 600;
@@ -321,9 +321,9 @@ $transprant: rgba(0, 0, 0, 0);
 
                 }
 
-                .companyInvoiceComapnyWebsiteWrapper {
+                .companyInvoiceCompanyWebsiteWrapper {
 
-                    .companyInvoiceComapnyWebsiteLabel {
+                    .companyInvoiceCompanyWebsiteLabel {
                         display: flex;
                         align-items: center;
                         font-weight: 600;
@@ -460,7 +460,7 @@ $transprant: rgba(0, 0, 0, 0);
                     .companyCustomerTaxPreferenceMainWrapper {
                         display: flex;
 
-                        .companyComapnyTaxPreferencelabel {
+                        .companyCompanyTaxPreferencelabel {
                             display: flex;
                             align-items: center;
                             font-weight: 600;
@@ -662,24 +662,24 @@ $transprant: rgba(0, 0, 0, 0);
 
                 }
 
-                .companyInvoiceComapnyPhone {
+                .companyInvoiceCompanyPhone {
                     label {
                         margin-bottom: 6px;
                     }
 
-                    .companyInvoiceComapnyWorkPhone {
+                    .companyInvoiceCompanyWorkPhone {
                         margin-bottom: 21px;
                     }
 
                 }
 
-                .companyInvoiceComapnyNameWrapper,
-                .companyInvoiceComapnySkypeIDWrapper,
-                .companyInvoiceComapnyDisplayNameWrapper,
-                .companyInvoiceComapnyEmailWrapper,
+                .companyInvoiceCompanyNameWrapper,
+                .companyInvoiceCompanySkypeIDWrapper,
+                .companyInvoiceCompanyDisplayNameWrapper,
+                .companyInvoiceCompanyEmailWrapper,
                 .companyInvoiceDesignationWrapper,
                 .companyInvoiceDepartmentWrapper,
-                .companyInvoiceComapnyWebsiteWrapper {
+                .companyInvoiceCompanyWebsiteWrapper {
                     label {
                         margin-bottom: 6px;
                     }
@@ -701,9 +701,9 @@ $transprant: rgba(0, 0, 0, 0);
                             margin-bottom: 15px;
                         }
 
-                        .companyInvoiceComapnyGSTTreatmentWrapper,
+                        .companyInvoiceCompanyGSTTreatmentWrapper,
                         .companyInvoicePANWrapper,
-                        .companyInvoiceComapnyPlaceOfSupplyWrapper,
+                        .companyInvoiceCompanyPlaceOfSupplyWrapper,
                         .companyCustomerTaxPreferenceMainWrapper,
                         .companyInvoiceExemptionReasonWrapper,
                         .companyInvoiceCurrencyWrapper,
@@ -874,9 +874,9 @@ $transprant: rgba(0, 0, 0, 0);
 
                 }
 
-                .companyInvoiceComapnyNameWrapper {
+                .companyInvoiceCompanyNameWrapper {
 
-                    .companyInvoiceComapnyNameLabel {
+                    .companyInvoiceCompanyNameLabel {
                         display: flex;
                         align-items: center;
                         font-weight: 600;
@@ -894,9 +894,9 @@ $transprant: rgba(0, 0, 0, 0);
                     }
                 }
 
-                .companyInvoiceComapnyDisplayNameWrapper {
+                .companyInvoiceCompanyDisplayNameWrapper {
 
-                    .companyInvoiceComapnyDisplayNamelabel {
+                    .companyInvoiceCompanyDisplayNamelabel {
                         display: flex;
                         align-items: center;
                         font-weight: 600;
@@ -904,7 +904,7 @@ $transprant: rgba(0, 0, 0, 0);
                         color: $primary-color;
                     }
 
-                    .companyInvoiceComapnyDisplaySelect {
+                    .companyInvoiceCompanyDisplaySelect {
                         font-weight: 400;
                         font-size: 14px;
                         color: $secondary-color;
@@ -915,9 +915,9 @@ $transprant: rgba(0, 0, 0, 0);
 
                 }
 
-                .companyInvoiceComapnyEmailWrapper {
+                .companyInvoiceCompanyEmailWrapper {
 
-                    .companyInvoiceComapnyEmailLabel {
+                    .companyInvoiceCompanyEmailLabel {
                         display: flex;
                         align-items: center;
                         font-weight: 600;
@@ -936,9 +936,9 @@ $transprant: rgba(0, 0, 0, 0);
 
                 }
 
-                .companyInvoiceComapnyPhone {
+                .companyInvoiceCompanyPhone {
 
-                    .companyInvoiceComapnyPhoneLabel {
+                    .companyInvoiceCompanyPhoneLabel {
                         display: flex;
                         align-items: center;
                         font-weight: 600;
@@ -958,9 +958,9 @@ $transprant: rgba(0, 0, 0, 0);
 
                 }
 
-                .companyInvoiceComapnySkypeIDWrapper {
+                .companyInvoiceCompanySkypeIDWrapper {
 
-                    .companyInvoiceComapnySkypeIDLabel {
+                    .companyInvoiceCompanySkypeIDLabel {
                         display: flex;
                         align-items: center;
                         font-weight: 600;
@@ -1025,9 +1025,9 @@ $transprant: rgba(0, 0, 0, 0);
 
                 }
 
-                .companyInvoiceComapnyWebsiteWrapper {
+                .companyInvoiceCompanyWebsiteWrapper {
 
-                    .companyInvoiceComapnyWebsiteLabel {
+                    .companyInvoiceCompanyWebsiteLabel {
                         display: flex;
                         align-items: center;
                         font-weight: 600;
@@ -1162,7 +1162,7 @@ $transprant: rgba(0, 0, 0, 0);
                     .companyCustomerTaxPreferenceMainWrapper {
                         display: flex;
 
-                        .companyComapnyTaxPreferencelabel {
+                        .companyCompanyTaxPreferencelabel {
                             display: flex;
                             align-items: center;
                             font-weight: 600;

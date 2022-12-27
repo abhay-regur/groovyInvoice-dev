@@ -77,21 +77,21 @@ const NewCustomer = ({ navExpandedState }) => {
                                 </div>
                             </div>
 
-                            <div className={`${styles.companyInvoiceComapnyNameWrapper} mb-3 row`}>
+                            <div className={`${styles.companyInvoiceCompanyNameWrapper} mb-3 row`}>
                                 <div className="col-12 col-lg-4 col-xl-2">
-                                    <label className={`${styles.companyInvoiceComapnyNameLabel}`}>Comapny Name</label>
+                                    <label className={`${styles.companyInvoiceCompanyNameLabel}`}>Company Name</label>
                                 </div>
                                 <div className="col-12 col-lg-6 col-xl-6">
-                                    <input type="text" className="form-control" id="companyInvoiceNewCustomerComapnyName" placeholder='Company Name' />
+                                    <input type="text" className="form-control" id="companyInvoiceNewCustomerCompanyName" placeholder='Company Name' />
                                 </div>
                             </div>
 
-                            <div className={`${styles.companyInvoiceComapnyDisplayNameWrapper} mb-3 row`}>
+                            <div className={`${styles.companyInvoiceCompanyDisplayNameWrapper} mb-3 row`}>
                                 <div className="col-12 col-lg-4 col-xl-2">
-                                    <label className={`${styles.companyInvoiceComapnyDisplayNamelabel}`}>Customer Display Name <span className={`${styles.green}`}>*</span></label>
+                                    <label className={`${styles.companyInvoiceCompanyDisplayNamelabel}`}>Customer Display Name <span className={`${styles.green}`}>*</span></label>
                                 </div>
                                 <div className="col-12 col-lg-6 col-xl-6">
-                                    <select className={`${styles.companyInvoiceComapnyDisplaySelect} form-select`}>
+                                    <select className={`${styles.companyInvoiceCompanyDisplaySelect} form-select`}>
                                         <option defaultValue>Customer Display Name</option>
                                         <option value="1">Option 1</option>
                                         <option value="2">Option 2</option>
@@ -101,35 +101,35 @@ const NewCustomer = ({ navExpandedState }) => {
                                 </div>
                             </div>
 
-                            <div className={`${styles.companyInvoiceComapnyEmailWrapper} mb-3 row`}>
+                            <div className={`${styles.companyInvoiceCompanyEmailWrapper} mb-3 row`}>
                                 <div className="col-12 col-lg-4 col-xl-2">
-                                    <label className={`${styles.companyInvoiceComapnyEmailLabel}`}>Customer Email</label>
+                                    <label className={`${styles.companyInvoiceCompanyEmailLabel}`}>Customer Email</label>
                                 </div>
                                 <div className="col-12 col-lg-6 col-xl-6">
-                                    <input type="email" className="form-control" id="companyInvoiceComapnyEmail" placeholder='Company Email' />
+                                    <input type="email" className="form-control" id="companyInvoiceCompanyEmail" placeholder='Company Email' />
                                 </div>
                             </div>
 
-                            <div className={`${styles.companyInvoiceComapnyPhone} mb-3 row`}>
+                            <div className={`${styles.companyInvoiceCompanyPhone} mb-3 row`}>
                                 <div className="col-12 col-lg-4 col-xl-2">
-                                    <label className={`${styles.companyInvoiceComapnyPhoneLabel}`}>Customer Phone</label>
+                                    <label className={`${styles.companyInvoiceCompanyPhoneLabel}`}>Customer Phone</label>
                                 </div>
                                 <div className="col-12 col-lg-4 col-xl-2">
-                                    <input type="text" className={`${styles.companyInvoiceComapnyWorkPhone} form-control`} placeholder='Work Phone' />
+                                    <input type="text" className={`${styles.companyInvoiceCompanyWorkPhone} form-control`} placeholder='Work Phone' />
                                 </div>
                                 <div className="col-12 col-lg-4 col-xl-2">
-                                    <input type="text" className={`${styles.companyInvoiceComapnyMobile} form-control`} placeholder='Mobile' />
+                                    <input type="text" className={`${styles.companyInvoiceCompanyMobile} form-control`} placeholder='Mobile' />
                                 </div>
                             </div>
 
-                            <div className={`${styles.companyInvoiceComapnySkypeIDWrapper} mb-3 row`}>
+                            <div className={`${styles.companyInvoiceCompanySkypeIDWrapper} mb-3 row`}>
                                 <div className="col-12 col-lg-4 col-xl-2">
-                                    <label className={`${styles.companyInvoiceComapnySkypeIDLabel}`}>Skype Name/Number</label>
+                                    <label className={`${styles.companyInvoiceCompanySkypeIDLabel}`}>Skype Name/Number</label>
                                 </div>
                                 <div className="col-12 col-lg-6 col-xl-6">
                                     <div className="input-group">
                                         <span className="input-group-text"><FaSkype /></span>
-                                        <input type="text" className="form-control" id="companyInvoiceComapnySkypeID" placeholder='Skype name/number' />
+                                        <input type="text" className="form-control" id="companyInvoiceCompanySkypeID" placeholder='Skype name/number' />
                                     </div>
                                 </div>
                             </div>
@@ -152,12 +152,12 @@ const NewCustomer = ({ navExpandedState }) => {
                                 </div>
                             </div>
 
-                            <div className={`${styles.companyInvoiceComapnyWebsiteWrapper} mb-3 row`}>
+                            <div className={`${styles.companyInvoiceCompanyWebsiteWrapper} mb-3 row`}>
                                 <div className="col-12 col-lg-4 col-xl-2">
-                                    <label className={`${styles.companyInvoiceComapnyWebsiteLabel}`}>Website</label>
+                                    <label className={`${styles.companyInvoiceCompanyWebsiteLabel}`}>Website</label>
                                 </div>
                                 <div className="col-12 col-lg-6 col-xl-6">
-                                    <input type="text" className="form-control" id="companyInvoiceComapnyWebsiteW" placeholder='Website' />
+                                    <input type="text" className="form-control" id="companyInvoiceCompanyWebsiteW" placeholder='Website' />
                                 </div>
                             </div>
 

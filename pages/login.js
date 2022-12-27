@@ -6,11 +6,18 @@ import { faEnvelope, faKey, faEye, faEyeSlash } from '@fortawesome/free-solid-sv
 import FaGoogle from '../assets/icons/faGoogle.svg';
 import FaFacebook from '../assets/icons/faFacebook.svg';
 import styles from '../styles/login.module.scss';
+import { useRouter } from 'next/router'
 export default function Login() {
+    const router = useRouter();
     const [visbilty, setvisibility] = useState(false);
     const togglePasswordVisiblity = () => {
         setvisibility(visbilty ? false : true);
     };
+
+    const checkValidation = function (event) {
+        event.preventDefault();
+        document.location.pathname = '/';
+    }
 
     return (
         <div className={`${styles.loginContainer} container-fluid`}>
@@ -63,7 +70,7 @@ export default function Login() {
                                             </div>
                                         </div>
                                         <div className="d-grid gap-2">
-                                            <button type="submit" className="btn btn-primary">Sign In</button>
+                                            <button onClick={(e) => checkValidation(e)} className="btn btn-primary">Sign In</button>
                                         </div>
                                     </form>
                                     <hr />

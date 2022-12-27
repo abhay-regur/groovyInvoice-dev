@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link'
 import styles from '../styles/invoice.module.scss';
 import AllInvoiceTable from '../components/allInvoiceTable.js'
 import FaCirclePlus from "../assets/icons/faCirclePlus.svg";
@@ -21,10 +22,14 @@ export default function Invoices({ navExpandedState }) {
                             </h2>
                         </div>
                         <div className="col-6 d-flex justify-content-end">
-                            <button className="green align-content-center">
-                                <FaCirclePlus />
-                                Create Invoice
-                            </button>
+                            <Link href={'/newInvoice'}>
+                                <a>
+                                    <button className="green align-content-center">
+                                        <FaCirclePlus />
+                                        Create Invoice
+                                    </button>
+                                </a>
+                            </Link>
                         </div>
                     </div>
 
