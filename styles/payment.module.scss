@@ -1,0 +1,78 @@
+$font-size-heading: 32px;
+$font-size-text: 15px;
+$primary-border-color: #E3EBF2;
+$input-background-color: #F5FAFE;
+$primary-color: #3649AB;
+$secondary-color: #8790B0;
+$tertiary-color: #43CB80;
+
+.green {
+    color: $tertiary-color;
+
+    path {
+        color: $tertiary-color;
+    }
+}
+
+@media screen and (min-width: 426px) {
+    .main {
+        margin: 56px auto 97px 97px;
+        margin-left: 135px;
+        transition: all 0.35s;
+
+        &.expanded {
+            margin-left: 329px !important;
+            transition: all 0.35s;
+        }
+
+        .title {
+            color: $primary-color;
+            font-weight: 700;
+            font-size: 36px;
+            line-height: 33px;
+        }
+
+        .card {
+            padding: 46px 31px;
+            border: 1px solid $primary-border-color;
+            border-radius: 10px;
+
+            .companyInvoiceCustomerNameWrapper {
+                .companyInvoiceCustomerNameLabel {
+                    font-weight: 600;
+                    font-size: 14px;
+                    color: $primary-color;
+                }
+
+                input {
+                    font-weight: 400;
+                    font-size: 14px;
+                    color: $secondary-color;
+                    background: $input-background-color;
+                    border: 1px solid $primary-border-color;
+                    border-radius: 8px;
+                }
+            }
+        }
+    }
+
+}
+
+@media screen and (max-width: 425px) {
+    .main {
+        margin: 89px 15px 92px 15px;
+        transition: all 0.35s;
+
+        &.expanded {
+            margin: 89px 15px 92px 15px;
+            transition: all 0.35s;
+        }
+
+        .title {
+            color: $primary-color;
+            font-weight: 700;
+            font-size: 26px;
+            line-height: 33px;
+        }
+    }
+}
