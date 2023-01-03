@@ -1,7 +1,23 @@
+import { useState } from 'react';
 import Head from 'next/head';
 import styles from '../styles/payment.module.scss';
+import FaProfile from '../assets/icons/faProfile.svg';
+import FaGear from '../assets/icons/faGear.svg';
+import FaCalendar from '../assets/icons/faCalendar.svg';
+import RadioButton from '../components/radioButton.js';
 
 export default function Reports({ navExpandedState }) {
+
+    const [tdsSelected, settdsSelected] = useState();
+
+    const handleTDSRemoved = () => {
+        settdsSelected('');
+    };
+
+    const handleTDSChange = () => {
+        settdsSelected('tds');
+    };
+
     return (<>
         <div className={styles.container}>
             <Head>
@@ -21,6 +37,113 @@ export default function Reports({ navExpandedState }) {
                             </div>
                             <div className="col-12 col-lg-5 mt-2">
                                 <input type="email" className="form-control" id="companyInvoiceCustomerName" placeholder='Company Email' />
+                            </div>
+                            <div className="col-12 mt-1">
+                                <div className={`${styles.companyInvoiceCustomerDetail}`}>
+                                    <FaProfile /> <span>View Cutomer Details</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div className={`${styles.companyInvoicePaymentNumberWrapper} mb-3 row`}>
+                            <div className="col-10">
+                                <label className={`${styles.companyInvoicePaymentNumberLabel}`}>Payment Invoice#<span className={`${styles.green}`}>*</span></label>
+                            </div>
+                            <div className="col=12 col-md-7 col-lg-5">
+                                <div className="row">
+                                    <div className="col-12 col-md-7 col-lg-6 d-flex align-items-center mt-2">
+                                        <input type="text" className="form-control" id="companyInvoicePaymentNumber" placeholder='Invoice Number' /><FaGear />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col-12 col-lg-7 col-xl-5">
+                                <div className={`${styles.companyInvoiceAmountcard} card`}>
+                                    <div className="container row">
+                                        <div className="col-12 col-lg-6">
+                                            <div className="row">
+                                                <div className="col-12">
+                                                    <label className={`${styles.companyInvoiceAmountRecivedLabel}`}>Ammount Received</label>
+                                                </div>
+                                                <div className="col-12 mt-2">
+                                                    <input type="email" className="form-control" id="companyInvoiceAmountRecived" placeholder='Add amount' />
+                                                </div>
+                                                <div className="col-12 mt-1">
+                                                    <div className={`${styles.companyInvoiceAddPan}`}><span className={`${styles.grey}`}>PAN :</span> Add PAN</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-12 col-lg-6 mt-2 mt-lg-0">
+                                            <div className="row">
+                                                <div className="col-12">
+                                                    <label className={`${styles.companyInvoiceBankChargesLabel}`}>Bank Charges <span className={`${styles.grey}`}>(If any)</span></label>
+                                                </div>
+                                                <div className="col-12 mt-2">
+                                                    <input type="email" className="form-control" id="companyInvoiceCustomerName" placeholder='Company Email' />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr />
+
+                                    <div className="row">
+                                        <div className="col-12 col-lg-6">
+                                            <span className={`${styles.companyInvoiceTDSText}`}>
+                                                Tax Deducted?
+                                            </span>
+                                        </div>
+                                        <div className="col-12 col-lg-6 mt-3 mt-lg-0">
+                                            <span className={`${styles.customerInvoicePaymentRadioButtonWrapper} d-flex justify-content-around align-items-center`}>
+                                                <RadioButton
+                                                    label="No Tax Deducted"
+                                                    value={tdsSelected === ''}
+                                                    onChange={handleTDSRemoved}
+                                                />
+                                                <RadioButton
+                                                    label="Yes, TDS (Income Tax)"
+                                                    value={tdsSelected === 'tds'}
+                                                    onChange={handleTDSChange}
+                                                />
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className={`${styles.companyInvoicePaymentDateModeWrapper} row mt-4 mt-lg-3`}>
+                            <div className="col=12 col-md-4 col-lg-2">
+                                <div className="row">
+                                    <div className="col-12">
+                                        <label className={`${styles.companyInvoicePaymentDateLabel}`}>Payment Date<span className={`${styles.green}`}>*</span></label>
+                                    </div>
+                                    <div className="col-12 d-flex align-items-center mt-2">
+                                        <input type="date" className="form-control" id="companyInvoicePaymentDate" /> <FaCalendar />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col=12 col-md-4 col-lg-2">
+                                <div className="row">
+                                    <div className="col-12">
+                                        <label className={`${styles.companyInvoicePaymentModeLabel}`}>Payment Mode<span className={`${styles.green}`}>*</span></label>
+                                    </div>
+                                    <div className="col-12 d-flex align-items-center mt-2">
+                                        <input type="text" className="form-control" id="companyInvoicePaymentModer" placeholder='Invoice Number' />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-12"></div>
+                            <div className="col-12 col-md-6">
+                                <div className="row">
+                                    <div className="col-12">
+                                        <label className={`${styles.companyInvoicePaymentModeLabel}`}>Payment Mode<span className={`${styles.green}`}>*</span></label>
+                                    </div>
+                                    <div className="col-12 d-flex align-items-center mt-2">
+                                        <textarea className="form-control" id="companyInvoicePaymentModer" placeholder='Invoice Number' />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
