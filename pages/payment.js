@@ -3,8 +3,10 @@ import Head from 'next/head';
 import styles from '../styles/payment.module.scss';
 import FaProfile from '../assets/icons/faProfile.svg';
 import FaGear from '../assets/icons/faGear.svg';
+import FaUpload from '../assets/icons/faUpload.svg';
 import FaCalendar from '../assets/icons/faCalendar.svg';
 import RadioButton from '../components/radioButton.js';
+import Checkbox from '../components/checkBox';
 
 export default function Reports({ navExpandedState }) {
 
@@ -48,7 +50,7 @@ export default function Reports({ navExpandedState }) {
                             <div className="col-10">
                                 <label className={`${styles.companyInvoicePaymentNumberLabel}`}>Payment Invoice#<span className={`${styles.green}`}>*</span></label>
                             </div>
-                            <div className="col=12 col-md-7 col-lg-5">
+                            <div className="col-12 col-md-7 col-lg-5">
                                 <div className="row">
                                     <div className="col-12 col-md-7 col-lg-6 d-flex align-items-center mt-2">
                                         <input type="text" className="form-control" id="companyInvoicePaymentNumber" placeholder='Invoice Number' /><FaGear />
@@ -114,7 +116,7 @@ export default function Reports({ navExpandedState }) {
                         </div>
 
                         <div className={`${styles.companyInvoicePaymentDateModeWrapper} row mt-4 mt-lg-3`}>
-                            <div className="col=12 col-md-4 col-lg-2">
+                            <div className="col-12 col-md-4 col-lg-2">
                                 <div className="row">
                                     <div className="col-12">
                                         <label className={`${styles.companyInvoicePaymentDateLabel}`}>Payment Date<span className={`${styles.green}`}>*</span></label>
@@ -124,7 +126,7 @@ export default function Reports({ navExpandedState }) {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col=12 col-md-4 col-lg-2">
+                            <div className="col-12 col-md-4 col-lg-2">
                                 <div className="row">
                                     <div className="col-12">
                                         <label className={`${styles.companyInvoicePaymentModeLabel}`}>Payment Mode<span className={`${styles.green}`}>*</span></label>
@@ -135,17 +137,50 @@ export default function Reports({ navExpandedState }) {
                                 </div>
                             </div>
                             <div className="col-12"></div>
-                            <div className="col-12 col-md-6">
-                                <div className="row">
+                            <div className="col-12 col-md-5 mt-3">
+                                <div className={`${styles.companyInvoicePaymentReferenceWrapper} mb-3 row`}>
                                     <div className="col-12">
-                                        <label className={`${styles.companyInvoicePaymentModeLabel}`}>Payment Mode<span className={`${styles.green}`}>*</span></label>
+                                        <label className={`${styles.companyInvoicePaymentReferenceLabel}`}>Reference<span className={`${styles.green}`}>#</span></label>
                                     </div>
-                                    <div className="col-12 d-flex align-items-center mt-2">
-                                        <textarea className="form-control" id="companyInvoicePaymentModer" placeholder='Invoice Number' />
+                                    <div className="col-12">
+                                        <input type="text" className="form-control" id="companyInvoicePaymentReference" placeholder='Reference' />
                                     </div>
                                 </div>
                             </div>
+                            <div className="col-12"></div>
+                            <div className="col-12 col-md-5">
+                                <div className="row">
+                                    <div className="col-12">
+                                        <label className={`${styles.companyInvoicePaymentModeLabel}`}>Notes</label>
+                                    </div>
+                                    <div className="col-12 d-flex align-items-center mt-2">
+                                        <textarea className="form-control" id="companyInvoicePaymentModer" placeholder='Add Notes' />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-12"></div>
+                            <div className="col-10 col-md-4 mt-3">
+                                <div className={`${styles.companyInvoicePaymentInputFileWrapper} d-flex`}>
+                                    <span className={`${styles.companyInvoicePaymentInputFileSVGWrapper}`}>
+                                        <FaUpload />
+                                    </span>
+                                    <input className={`${styles.companyInvoicePaymentInputFile}`} type="file" />
+                                </div>
+                                <div className={`${styles.companyInvoicePaymentInputFileMessage}`}>You can upload a maximum of 3 files, 5MB each</div>
+                            </div>
+                            <div className="col-12"></div>
+                            <div className="col-12 col-md-5 mt-3">
+                                <hr />
+                            </div>
+                            <div className="col-12"></div>
+                            <div className="col-12 col-md-5 mt-3">
+                                <div className={`${styles.companyInvoicePaymentThankYouCheckboxWrapper}`}>
+                                    <Checkbox label="Email a “Thank You” note for this payment" />
+                                </div>
+                            </div>
                         </div>
+
+
                     </div>
                 </div>
 

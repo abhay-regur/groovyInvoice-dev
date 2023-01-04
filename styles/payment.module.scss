@@ -1,10 +1,13 @@
 $font-size-heading: 32px;
 $font-size-text: 15px;
 $primary-border-color: #E3EBF2;
+$secondary-border-color: #C1D3E2;
 $input-background-color: #F5FAFE;
 $primary-color: #3649AB;
 $secondary-color: #8790B0;
 $tertiary-color: #43CB80;
+$file-input-border: #8DA4B8;
+$checkbox-backgound: #949FB1;
 
 .green {
     color: $tertiary-color;
@@ -238,6 +241,101 @@ $tertiary-color: #43CB80;
                     height: 24px;
                     width: 24px;
                 }
+
+                .companyInvoicePaymentInputFileWrapper {
+                    border: 1px dashed $file-input-border;
+                    background: $input-background-color;
+                    border-radius: 6px;
+
+                    .companyInvoicePaymentInputFileSVGWrapper {
+                        border-right: 1px $secondary-border-color solid;
+
+                        svg {
+                            margin: 15px 20px 16px 20px;
+                        }
+                    }
+
+
+                    .companyInvoicePaymentInputFile {
+                        border: none;
+                        border-radius: 0;
+                        margin: 15px 20px 16px 16px;
+
+                        &::-webkit-file-upload-button {
+                            visibility: hidden;
+                            width: 0;
+                        }
+                    }
+                }
+
+                .companyInvoicePaymentInputFileMessage {
+                    margin-top: 13px;
+                    font-weight: 400;
+                    font-size: 12px;
+                }
+
+                .companyInvoicePaymentThankYouCheckboxWrapper {
+
+                    label {
+                        display: block;
+                        position: relative;
+                        padding-left: 35px;
+                        cursor: pointer;
+                        font-size: 14px;
+                        -webkit-user-select: none;
+                        -moz-user-select: none;
+                        -ms-user-select: none;
+                        user-select: none;
+
+                        &:hover {
+                            input~span {
+                                background-color: $primary-color;
+                            }
+                        }
+
+                        input {
+                            position: absolute;
+                            opacity: 0;
+                            cursor: pointer;
+                            height: 0;
+                            width: 0;
+
+                            &~span {
+                                background-color: white;
+                                border: 1px solid $checkbox-backgound;
+                                border-radius: 3px;
+                            }
+
+                            &:checked~span {
+                                background-color: $primary-color;
+                            }
+                        }
+
+                        span {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            height: 20px;
+                            width: 20px;
+                            background-color: white;
+
+                            &:after {
+                                content: "";
+                                position: absolute;
+                                display: none;
+                                left: 9px;
+                                top: 5px;
+                                width: 5px;
+                                height: 10px;
+                                border: solid white;
+                                border-width: 0 3px 3px 0;
+                                -webkit-transform: rotate(45deg);
+                                -ms-transform: rotate(45deg);
+                                transform: rotate(45deg);
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -462,6 +560,107 @@ $tertiary-color: #43CB80;
                     margin-left: 7px;
                     height: 24px;
                     width: 24px;
+                }
+
+                .companyInvoicePaymentInputFileMessage {
+                    font-weight: 400;
+                    font-size: 12px;
+                    color: $secondary-color;
+                }
+            }
+
+            .companyInvoicePaymentInputFileWrapper {
+                border: 1px dashed $file-input-border;
+                background: $input-background-color;
+                border-radius: 6px;
+
+                .companyInvoicePaymentInputFileSVGWrapper {
+                    border-right: 1px $secondary-border-color solid;
+
+                    svg {
+                        margin: 15px 20px 16px 20px;
+                    }
+                }
+
+
+                .companyInvoicePaymentInputFile {
+                    border: none;
+                    border-radius: 0;
+                    margin: 15px 16px 16px 15px;
+
+                    &::-webkit-file-upload-button {
+                        visibility: hidden;
+                        width: 0;
+                    }
+                }
+            }
+
+            .companyInvoicePaymentInputFileMessage {
+                margin-top: 13px;
+                font-weight: 400;
+                font-size: 12px;
+            }
+
+            .companyInvoicePaymentThankYouCheckboxWrapper {
+
+                label {
+                    display: block;
+                    position: relative;
+                    padding-left: 35px;
+                    cursor: pointer;
+                    font-size: 14px;
+                    -webkit-user-select: none;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+                    user-select: none;
+
+                    &:hover {
+                        input~span {
+                            background-color: $primary-color;
+                        }
+                    }
+
+                    input {
+                        position: absolute;
+                        opacity: 0;
+                        cursor: pointer;
+                        height: 0;
+                        width: 0;
+
+                        &~span {
+                            background-color: white;
+                            border: 1px solid $checkbox-backgound;
+                            border-radius: 3px;
+                        }
+
+                        &:checked~span {
+                            background-color: $primary-color;
+                        }
+                    }
+
+                    span {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        height: 20px;
+                        width: 20px;
+                        background-color: white;
+
+                        &:after {
+                            content: "";
+                            position: absolute;
+                            display: none;
+                            left: 9px;
+                            top: 5px;
+                            width: 5px;
+                            height: 10px;
+                            border: solid white;
+                            border-width: 0 3px 3px 0;
+                            -webkit-transform: rotate(45deg);
+                            -ms-transform: rotate(45deg);
+                            transform: rotate(45deg);
+                        }
+                    }
                 }
             }
         }
