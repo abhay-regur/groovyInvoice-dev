@@ -46,6 +46,11 @@ body {
     }
   }
 
+  .__next,
+  .pageContent {
+    height: inherit;
+  }
+
   .green {
     color: $tertiary-color;
 

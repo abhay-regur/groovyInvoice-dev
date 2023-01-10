@@ -1,5 +1,3 @@
-import Head from 'next/head';
-import Image from 'next/image';
 import styles from "../styles/newCustomer.module.scss";
 import FaCopy from "../assets/icons/faCopy.svg";
 export default function Address() {
