@@ -88,10 +88,10 @@ export default function Home({ navExpandedState }) {
         </h2>
         <div className={`${styles.card} card`}>
           <div className="row">
-            <div className="col-12 col-md-7">
+            <div className="col-12 col-lg-7">
               <span className={`${styles.comapnyInvoiceTotalReceivablesHeading}`}>Total Receivables</span> <span className={`${styles.comapnyInvoiceTotalReceivablesSVG}`}><FaQuestionCircleOutline /></span>
             </div>
-            <div className="col-12 col-md-7">
+            <div className="col-12 col-lg-7">
               <div className={`${styles.comapnyInvoiceTotalReceivablesCard} card`}>
                 <div className={`${styles.paddingWrapper}`}>
                   <div className="row">
@@ -139,10 +139,10 @@ export default function Home({ navExpandedState }) {
             <div className="col-12">
               <div className={`${styles.comapnyInvoiceSaleChartWrapperCard} card`}>
                 <div className="row">
-                  <div className="col-12 col-md-8">
+                  <div className="col-12 col-lg-8">
                     <Bar data={salesChartData} height={300} options={salesChartOptions} />
                   </div>
-                  <div className="col-12 col-md-4">
+                  <div className="col-12 col-lg-4">
                     <div className={`${styles.companyInvoiceChartTotalWrapper}`}>
                       <div className={`${styles.companyInvoiceChartTotalSaleWrapper}`}>
                         <div className={`${styles.companyInvoiceChartTotalSaleTitle}`}>Total Sales</div>
