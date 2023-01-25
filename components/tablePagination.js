@@ -5,18 +5,15 @@ import FaArrowRight from '../assets/icons/faArrowRight.svg';
 
 const TablePagination = ({ pageIndex, pageOptions, previousPage, canPreviousPage, nextPage, canNextPage, gotoPage }) => {
 
-    // [totalCount, pageSize, siblingCount, currentPage]
-
-
     return (
-        <div className={`${styles.companyInvoiceTablePagination} row justify-content-between mt-3 mt-md-2`}>
-            <div className={`${styles.companyInvoiceTablePaginationPageInfo} col-12 col-md-4 d-flex ms-2`}>
+        <div className={`${styles.companyInvoiceTablePagination} row justify-content-between`}>
+            <div className={`${styles.companyInvoiceTablePaginationPageInfo} col-12 col-md-6 d-flex ms-2`}>
                 <span>
                     Showing  {pageIndex + 1} of {pageOptions.length}{' '}
                     Pages{' '}
                 </span>
             </div>
-            <div className={`${styles.companyInvoiceTablePaginationNavigation} col-12 col-md-2 d-flex me-2`} >
+            <div className={`${styles.companyInvoiceTablePaginationNavigation} col-12 col-md-4 d-flex me-2`} >
                 <button className={`${styles.companyInvoiceTablePaginationButton}`} onClick={() => previousPage()} disabled={!canPreviousPage}>
                     <FaArrowLeft />
                 </button>

@@ -44,7 +44,7 @@ export default function Invoices({ navExpandedState }) {
                         </div>
                     </div>
 
-                    <div className='p-2 p-sm-0'>
+                    <div className='p-2'>
                         <AllInvoiceTable />
                     </div>
                 </div>

@@ -6,6 +6,7 @@ import RadioButton from '../components/radioButton';
 import FaSkype from '../assets/icons/faSkype.svg';
 import FaSave from '../assets/icons/faSave.svg';
 import FaCircleXmark from '../assets/icons/faCircleXmark.svg';
+import FaExclamationCircle from '../assets/icons/faExclamationCircle.svg';
 import styles from "../styles/newCustomer.module.scss";
 
 const NewCustomer = ({ navExpandedState }) => {
@@ -32,8 +33,8 @@ const NewCustomer = ({ navExpandedState }) => {
 
                             <hr />
 
-                            <div className={`${styles.companyCustomerTypeOptionWrapper} mb-3 row`}>
-                                <div className="col-12 col-lg-4 col-xl-2">
+                            <div className={`${styles.companyCustomerTypeOptionWrapper} mb-4 row`}>
+                                <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
                                     <label className="">Customer Type</label>
                                 </div>
                                 <div className="col-12 col-lg-6 col-xl-6">
@@ -56,8 +57,8 @@ const NewCustomer = ({ navExpandedState }) => {
                                 </div>
                             </div>
 
-                            <div className={`${styles.companyInvoiceNameWrapper} mb-3 row`}>
-                                <div className="col-12 col-lg-4 col-xl-2">
+                            <div className={`${styles.companyInvoiceNameWrapper} mb-4 row`}>
+                                <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
                                     <label className="">Primary Contact</label>
                                 </div>
                                 <div className="col-12 col-lg-2 col-xl-2">
@@ -77,8 +78,8 @@ const NewCustomer = ({ navExpandedState }) => {
                                 </div>
                             </div>
 
-                            <div className={`${styles.companyInvoiceCompanyNameWrapper} mb-3 row`}>
-                                <div className="col-12 col-lg-4 col-xl-2">
+                            <div className={`${styles.companyInvoiceCompanyNameWrapper} mb-4 row`}>
+                                <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
                                     <label className={`${styles.companyInvoiceCompanyNameLabel}`}>Company Name</label>
                                 </div>
                                 <div className="col-12 col-lg-6 col-xl-6">
@@ -86,8 +87,8 @@ const NewCustomer = ({ navExpandedState }) => {
                                 </div>
                             </div>
 
-                            <div className={`${styles.companyInvoiceCompanyDisplayNameWrapper} mb-3 row`}>
-                                <div className="col-12 col-lg-4 col-xl-2">
+                            <div className={`${styles.companyInvoiceCompanyDisplayNameWrapper} mb-4 row`}>
+                                <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
                                     <label className={`${styles.companyInvoiceCompanyDisplayNamelabel}`}>Customer Display Name <span className={`${styles.green}`}>*</span></label>
                                 </div>
                                 <div className="col-12 col-lg-6 col-xl-6">
@@ -101,29 +102,31 @@ const NewCustomer = ({ navExpandedState }) => {
                                 </div>
                             </div>
 
-                            <div className={`${styles.companyInvoiceCompanyEmailWrapper} mb-3 row`}>
-                                <div className="col-12 col-lg-4 col-xl-2">
+                            <div className={`${styles.companyInvoiceCompanyEmailWrapper} mb-4 row`}>
+                                <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
                                     <label className={`${styles.companyInvoiceCompanyEmailLabel}`}>Customer Email</label>
                                 </div>
-                                <div className="col-12 col-lg-6 col-xl-6">
+                                <div className="col-12 col-lg-6 col-xl-6 d-flex align-items-center">
                                     <input type="email" className="form-control" id="companyInvoiceCompanyEmail" placeholder='Company Email' />
+                                    <FaExclamationCircle />
                                 </div>
                             </div>
 
-                            <div className={`${styles.companyInvoiceCompanyPhone} mb-3 row`}>
-                                <div className="col-12 col-lg-4 col-xl-2">
+                            <div className={`${styles.companyInvoiceCompanyPhone} mb-4 row`}>
+                                <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
                                     <label className={`${styles.companyInvoiceCompanyPhoneLabel}`}>Customer Phone</label>
                                 </div>
                                 <div className="col-12 col-lg-4 col-xl-2">
                                     <input type="text" className={`${styles.companyInvoiceCompanyWorkPhone} form-control`} placeholder='Work Phone' />
                                 </div>
-                                <div className="col-12 col-lg-4 col-xl-2">
+                                <div className="col-12 col-lg-4 col-xl-2 d-flex align-items-center">
                                     <input type="text" className={`${styles.companyInvoiceCompanyMobile} form-control`} placeholder='Mobile' />
+                                    <FaExclamationCircle />
                                 </div>
                             </div>
 
-                            <div className={`${styles.companyInvoiceCompanySkypeIDWrapper} mb-3 row`}>
-                                <div className="col-12 col-lg-4 col-xl-2">
+                            <div className={`${styles.companyInvoiceCompanySkypeIDWrapper} mb-4 row`}>
+                                <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
                                     <label className={`${styles.companyInvoiceCompanySkypeIDLabel}`}>Skype Name/Number</label>
                                 </div>
                                 <div className="col-12 col-lg-6 col-xl-6">
@@ -134,8 +137,8 @@ const NewCustomer = ({ navExpandedState }) => {
                                 </div>
                             </div>
 
-                            <div className={`${styles.companyInvoiceDesignationWrapper} mb-3 row`}>
-                                <div className="col-12 col-lg-4 col-xl-2">
+                            <div className={`${styles.companyInvoiceDesignationWrapper} mb-4 row`}>
+                                <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
                                     <label className={`${styles.companyInvoiceDesignationlabel}`}>Designation</label>
                                 </div>
                                 <div className="col-12 col-lg-6 col-xl-6">
@@ -143,8 +146,8 @@ const NewCustomer = ({ navExpandedState }) => {
                                 </div>
                             </div>
 
-                            <div className={`${styles.companyInvoiceDepartmentWrapper} mb-3 row`}>
-                                <div className="col-12 col-lg-4 col-xl-2">
+                            <div className={`${styles.companyInvoiceDepartmentWrapper} mb-4 row`}>
+                                <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
                                     <label className={`${styles.companyInvoiceDepartmentLabel}`}>Department</label>
                                 </div>
                                 <div className="col-12 col-lg-6 col-xl-6">
@@ -152,8 +155,8 @@ const NewCustomer = ({ navExpandedState }) => {
                                 </div>
                             </div>
 
-                            <div className={`${styles.companyInvoiceCompanyWebsiteWrapper} mb-3 row`}>
-                                <div className="col-12 col-lg-4 col-xl-2">
+                            <div className={`${styles.companyInvoiceCompanyWebsiteWrapper} mb-4 row`}>
+                                <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
                                     <label className={`${styles.companyInvoiceCompanyWebsiteLabel}`}>Website</label>
                                 </div>
                                 <div className="col-12 col-lg-6 col-xl-6">
@@ -161,7 +164,7 @@ const NewCustomer = ({ navExpandedState }) => {
                                 </div>
                             </div>
 
-                            <div className={`${styles.companyInvoiceTabViewWrapper} mb-3`}>
+                            <div className={`${styles.companyInvoiceTabViewWrapper}`}>
                                 <ul className={`nav ${styles.nav_tabs}`}>
                                     <li className={`nav-item ${styles.nav_item} ${ActiveTabID == 1 ? styles.active : " "}`} onClick={() => { setActiveTabID(1) }}>
                                         <span>
