@@ -320,7 +320,7 @@ export default function Newinvoice({ navExpandedState }) {
                                                             <i><FaCircleQuestion></FaCircleQuestion></i>
                                                         </div>
                                                     </div>
-                                                    <div className="col-6 order-2 order-lg-3">
+                                                    <div className="col-7 col-lg-3 order-2 order-lg-3">
                                                         <span className={`${styles.totalCalculatedAdjustment} d-flex justify-content-end`}>
                                                             <span>- Rs. 0.00</span>
                                                         </span>
