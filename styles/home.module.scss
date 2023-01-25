@@ -3,6 +3,9 @@ $font-size-text: 15px;
 $primary-color: #3649AB;
 $secondary-color: #8790B0;
 $tertiary-color: #43CB80;
+$red-color: #E83F35;
+$border-card-color: #E3EBF2;
+$primary-border-color: #BCD5E2;
 
 @media screen and (min-width: 426px) {
   .main {
@@ -18,8 +21,143 @@ $tertiary-color: #43CB80;
     .title {
       color: $primary-color;
       font-weight: 700;
-      font-size: 26px;
+      font-size: 36px;
       line-height: 33px;
+      margin-top: 40px;
+      margin-bottom: 49px;
+    }
+
+    .card {
+
+      padding: 31px 33px;
+      border-radius: 10px;
+      margin-bottom: 86px;
+      border: 1px solid $border-card-color;
+
+      .comapnyInvoiceTotalReceivablesHeading {
+        font-weight: 700;
+        font-size: 22px;
+        color: $primary-color;
+      }
+
+      .comapnyInvoiceTotalReceivablesSVG {
+        svg {
+          width: 15px;
+          height: 15px;
+        }
+      }
+
+      .comapnyInvoiceTotalReceivablesCard {
+        padding-top: 19px;
+        border-radius: 10px;
+        border: 1px solid $border-card-color;
+        margin-top: 14px;
+
+        .paddingWrapper {
+          padding-right: 23px;
+          padding-left: 23px;
+
+          .comapnyInvoiceTotalUnpaidInvoices {
+            font-weight: 400;
+            font-size: 14px;
+            color: $secondary-color;
+          }
+
+          .comapnyInvoiceTotalReceivedProgressBarWrapper {
+            margin-top: 16px;
+            margin-bottom: 31px;
+          }
+        }
+
+
+        .comapnyInvoiceTotalReceivablesCurrentTitle,
+        .comapnyInvoiceTotalReceivablesCurrent,
+        .comapnyInvoiceTotalReceivablesOverdueTitle,
+        .comapnyInvoiceTotalReceivablesOverdue {
+          padding-left: 40px;
+        }
+
+        .comapnyInvoiceTotalReceivablesCurrentTitle,
+        .comapnyInvoiceTotalReceivablesOverdueTitle {
+          padding-top: 14px;
+          padding-bottom: 5px;
+          font-weight: 600;
+          font-size: 15px;
+          line-height: 22px;
+        }
+
+        .comapnyInvoiceTotalReceivablesCurrent,
+        .comapnyInvoiceTotalReceivablesOverdue {
+          padding-bottom: 15px;
+          font-weight: 700;
+          font-size: 22px;
+          color: $primary-color;
+        }
+
+        .comapnyInvoiceTotalReceivablesOverdueTitle {
+          color: $red-color;
+        }
+      }
+
+      .companyInvoiceSaleTitle {
+        font-weight: 700;
+        font-size: 22px;
+        color: $primary-color;
+        margin-top: 63px;
+        margin-bottom: 16px;
+      }
+
+      .companyInvoiceSaleYearSelector {
+        margin-top: 63px;
+        margin-bottom: 16px;
+        font-weight: 600;
+        font-size: 14px;
+        border: 1px solid $primary-color;
+        border-radius: 6px;
+        max-width: 200px;
+        color: $primary-color;
+      }
+
+      .comapnyInvoiceSaleChartWrapperCard {
+        border: 1px solid $border-card-color;
+        padding: 62px 40px 24px 29px;
+        margin-bottom: 75px;
+
+        .companyInvoiceChartTotalWrapper {
+          padding: 35px 32px 30px 32px;
+          text-align: right;
+          background: $tertiary-color;
+          border-radius: 8px;
+          color: white;
+
+          .companyInvoiceChartTotalSaleWrapper {
+            margin-bottom: 25px;
+
+            .companyInvoiceChartTotalSaleTitle {
+              font-weight: 600;
+              font-size: 14px;
+            }
+
+            .companyInvoiceChartTotalSale {
+              font-weight: 700;
+              font-size: 22px;
+            }
+          }
+
+          .companyInvoiceChartTotalReceiptsWrapper {
+            .companyInvoiceChartTotalReceiptsTitle {
+              font-weight: 600;
+              font-size: 14px;
+            }
+
+            .companyInvoiceChartTotalReceipts {
+              font-weight: 700;
+              font-size: 22px;
+            }
+          }
+        }
+      }
+
     }
   }
 
@@ -40,6 +178,137 @@ $tertiary-color: #43CB80;
       font-weight: 700;
       font-size: 26px;
       line-height: 33px;
+    }
+
+    .card {
+      padding: 21px 23px;
+      border-radius: 10px;
+      margin-bottom: 86px;
+      border: 1px solid $border-card-color;
+
+      .comapnyInvoiceTotalReceivablesHeading {
+        font-weight: 700;
+        font-size: 18px;
+        color: $primary-color;
+      }
+
+      .comapnyInvoiceTotalReceivablesSVG {
+        svg {
+          width: 13px;
+          height: 13px;
+        }
+      }
+
+      .comapnyInvoiceTotalReceivablesCard {
+        padding-top: 19px;
+        border-radius: 10px;
+        border: 1px solid $border-card-color;
+        margin-top: 14px;
+
+        .paddingWrapper {
+          padding-right: 23px;
+          padding-left: 23px;
+
+          .comapnyInvoiceTotalUnpaidInvoices {
+            font-weight: 400;
+            font-size: 14px;
+            color: $secondary-color;
+          }
+
+          .comapnyInvoiceTotalReceivedProgressBarWrapper {
+            margin-top: 16px;
+            margin-bottom: 31px;
+          }
+        }
+
+
+        .comapnyInvoiceTotalReceivablesCurrentTitle,
+        .comapnyInvoiceTotalReceivablesCurrent {
+          padding-left: 13px;
+        }
+
+        .comapnyInvoiceTotalReceivablesCurrentTitle,
+        .comapnyInvoiceTotalReceivablesOverdueTitle {
+          padding-top: 14px;
+          padding-bottom: 5px;
+          font-weight: 600;
+          font-size: 14px;
+          line-height: 22px;
+        }
+
+        .comapnyInvoiceTotalReceivablesCurrent,
+        .comapnyInvoiceTotalReceivablesOverdue {
+          padding-bottom: 15px;
+          font-weight: 700;
+          font-size: 18px;
+          color: $primary-color;
+        }
+
+        .comapnyInvoiceTotalReceivablesOverdueTitle {
+          color: $red-color;
+        }
+      }
+
+      .companyInvoiceSaleTitle {
+        font-weight: 700;
+        font-size: 18px;
+        color: $primary-color;
+        margin-top: 63px;
+        margin-bottom: 16px;
+      }
+
+      .companyInvoiceSaleYearSelector {
+        margin-top: 63px;
+        margin-bottom: 16px;
+        font-weight: 600;
+        font-size: 14px;
+        border: 1px solid $primary-color;
+        border-radius: 6px;
+        max-width: 200px;
+        color: $primary-color;
+      }
+
+      .comapnyInvoiceSaleChartWrapperCard {
+        border: none;
+        margin-bottom: 75px;
+
+        .companyInvoiceChartTotalWrapper {
+          padding: 35px 32px 30px 32px;
+          text-align: right;
+          background: $tertiary-color;
+          border-radius: 8px;
+          margin-top: 30px;
+          color: white;
+
+          .companyInvoiceChartTotalSaleWrapper {
+            margin-bottom: 18px;
+
+            .companyInvoiceChartTotalSaleTitle {
+              font-weight: 600;
+              font-size: 14px;
+            }
+
+            .companyInvoiceChartTotalSale {
+              font-weight: 700;
+              font-size: 18px;
+            }
+          }
+
+          .companyInvoiceChartTotalReceiptsWrapper {
+
+            .companyInvoiceChartTotalReceiptsTitle {
+              font-weight: 600;
+              font-size: 14px;
+            }
+
+            .companyInvoiceChartTotalReceipts {
+              font-weight: 700;
+              font-size: 18px;
+            }
+          }
+        }
+      }
+
     }
   }
 }

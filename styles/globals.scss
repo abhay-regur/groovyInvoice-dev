@@ -39,11 +39,16 @@ body {
   }
 
   input {
-    border-radius: 6px !important;
+    border-radius: 6px;
 
     &:hover {
       box-shadow: none;
     }
+  }
+
+  .__next,
+  .pageContent {
+    height: inherit;
   }
 
   .green {
