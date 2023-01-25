@@ -26,6 +26,7 @@ $button-red-color: #DA5252;
                     color: $secondary-color;
                     font-weight: 400;
                     font-size: 14px;
+                    appearance: none;
 
                     &:focus {
                         box-shadow: none;
@@ -86,6 +87,7 @@ $button-red-color: #DA5252;
                     color: $secondary-color;
                     font-weight: 400;
                     font-size: 14px;
+                    appearance: none;
 
                     &:focus {
                         box-shadow: none;

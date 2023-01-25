@@ -8,7 +8,7 @@ export default function Address() {
             <div className="col-12 col-lg-6">
                 <h3 className={`${styles.tabtitle}`}>Billing Address</h3>
 
-                <div className={`${styles.companyInvoiceBillingAttentionWrapper} mb-3 row`}>
+                <div className={`${styles.companyInvoiceBillingAttentionWrapper} mb-4 row`}>
                     <div className="col-12 col-md-4 d-flex align-items-center">
                         <label className={`${styles.companyInvoiceBillingAttentionlabel}`}>Attention</label>
                     </div>
@@ -17,7 +17,7 @@ export default function Address() {
                     </div>
                 </div>
 
-                <div className={`${styles.companyInvoiceBillingComapnyCountryWrapper} mb-3 row`}>
+                <div className={`${styles.companyInvoiceBillingComapnyCountryWrapper} mb-4 row`}>
                     <div className="col-12 col-md-4 d-flex align-items-center">
                         <label className={`${styles.companyInvoiceBillingComapnyCountrylabel}`}>Country / Region</label>
                     </div>
@@ -32,7 +32,7 @@ export default function Address() {
                     </div>
                 </div>
 
-                <div className={`${styles.companyInvoiceBillingAddressWrapper} mb-3 row`}>
+                <div className={`${styles.companyInvoiceBillingAddressWrapper} mb-4 row`}>
                     <div className="col-12 col-md-4 d-flex align-items-center">
                         <label className={`${styles.companyInvoiceBillingAddresslabel}`}>Address</label>
                     </div>
@@ -41,11 +41,11 @@ export default function Address() {
                     </div>
                     <div className="col-12 col-md-4"></div>
                     <div className="col-12 col-md-8">
-                        <textarea name="Address 2" id="companyInvoiceBillingAddress2" rows="3" placeholder='Address Line 2'></textarea>
+                        <textarea className='mb-0' name="Address 2" id="companyInvoiceBillingAddress2" rows="3" placeholder='Address Line 2'></textarea>
                     </div>
                 </div>
 
-                <div className={`${styles.companyInvoiceBillingCityWrapper} mb-3 row`}>
+                <div className={`${styles.companyInvoiceBillingCityWrapper} mb-4 row`}>
                     <div className="col-12 col-md-4 d-flex align-items-center">
                         <label className={`${styles.companyInvoiceBillingCitylabel}`}>City</label>
                     </div>
@@ -54,7 +54,7 @@ export default function Address() {
                     </div>
                 </div>
 
-                <div className={`${styles.companyInvoiceBillingComapnyStateWrapper} mb-3 row`}>
+                <div className={`${styles.companyInvoiceBillingComapnyStateWrapper} mb-4 row`}>
                     <div className="col-12 col-md-4 d-flex align-items-center">
                         <label className={`${styles.companyInvoiceBillingComapnyStatelabel}`}>State</label>
                     </div>
@@ -69,7 +69,7 @@ export default function Address() {
                     </div>
                 </div>
 
-                <div className={`${styles.companyInvoiceBillingZIPCodeWrapper} mb-3 row`}>
+                <div className={`${styles.companyInvoiceBillingZIPCodeWrapper} mb-4 row`}>
                     <div className="col-12 col-md-4 d-flex align-items-center">
                         <label className={`${styles.companyInvoiceBillingZIPCodelabel}`}>ZIP Code</label>
                     </div>
@@ -78,7 +78,7 @@ export default function Address() {
                     </div>
                 </div>
 
-                <div className={`${styles.companyInvoiceBillingPhoneWrapper} mb-3 row`}>
+                <div className={`${styles.companyInvoiceBillingPhoneWrapper} mb-4 row`}>
                     <div className="col-12 col-md-4 d-flex align-items-center">
                         <label className={`${styles.companyInvoiceBillingPhonelabel}`}>Phone</label>
                     </div>
@@ -87,7 +87,7 @@ export default function Address() {
                     </div>
                 </div>
 
-                <div className={`${styles.companyInvoiceBillingFaxWrapper} mb-3 row`}>
+                <div className={`${styles.companyInvoiceBillingFaxWrapper} mb-4 row`}>
                     <div className="col-12 col-md-4 d-flex align-items-center">
                         <label className={`${styles.companyInvoiceBillingFaxlabel}`}>Fax</label>
                     </div>
@@ -96,20 +96,20 @@ export default function Address() {
                     </div>
                 </div>
             </div>
-            <div className="col-12 col-lg-6">
+            <div className="col-12 col-lg-6 mt-lg-0 mt-4">
                 <div className="row">
                     <div className="col-12 col-md-6">
                         <h3 className={`${styles.tabtitle}`}>Shipping Address</h3>
                     </div>
                     <div className="col-12 col-md-6">
-                        <div className={`${styles.companyInvoiceShippingCopyBillingWrapper} d-flex align-content-center`}>
+                        <div className={`${styles.companyInvoiceShippingCopyBillingWrapper} d-flex align-content-center justify-content-start justify-content-md-end`}>
                             <i><FaCopy /></i>
                             <span>Copy Billing Address</span>
                         </div>
                     </div>
                 </div>
 
-                <div className={`${styles.companyInvoiceShippingAttentionWrapper} mb-3 row`}>
+                <div className={`${styles.companyInvoiceShippingAttentionWrapper} mb-4 row`}>
                     <div className="col-12 col-md-4 d-flex align-items-center">
                         <label className={`${styles.companyInvoiceShippingAttentionlabel}`}>Attention</label>
                     </div>
@@ -118,7 +118,7 @@ export default function Address() {
                     </div>
                 </div>
 
-                <div className={`${styles.companyInvoiceShippingComapnyCountryWrapper} mb-3 row`}>
+                <div className={`${styles.companyInvoiceShippingComapnyCountryWrapper} mb-4 row`}>
                     <div className="col-12 col-md-4 d-flex align-items-center">
                         <label className={`${styles.companyInvoiceShippingComapnyCountrylabel}`}>Country / Region</label>
                     </div>
@@ -133,7 +133,7 @@ export default function Address() {
                     </div>
                 </div>
 
-                <div className={`${styles.companyInvoiceShippingAddressWrapper} mb-3 row`}>
+                <div className={`${styles.companyInvoiceShippingAddressWrapper} mb-4 row`}>
                     <div className="col-12 col-md-4 d-flex align-items-center">
                         <label className={`${styles.companyInvoiceShippingAddresslabel}`}>Address</label>
                     </div>
@@ -142,11 +142,11 @@ export default function Address() {
                     </div>
                     <div className="col-12 col-md-4"></div>
                     <div className="col-12 col-md-8">
-                        <textarea name="Address 2" id="companyInvoiceShippingAddress2" rows="3" placeholder='Address Line 2'></textarea>
+                        <textarea className='mb-0' name="Address 2" id="companyInvoiceShippingAddress2" rows="3" placeholder='Address Line 2'></textarea>
                     </div>
                 </div>
 
-                <div className={`${styles.companyInvoiceShippingCityWrapper} mb-3 row`}>
+                <div className={`${styles.companyInvoiceShippingCityWrapper} mb-4 row`}>
                     <div className="col-12 col-md-4 d-flex align-items-center">
                         <label className={`${styles.companyInvoiceShippingCitylabel}`}>City</label>
                     </div>
@@ -155,7 +155,7 @@ export default function Address() {
                     </div>
                 </div>
 
-                <div className={`${styles.companyInvoiceShippingComapnyStateWrapper} mb-3 row`}>
+                <div className={`${styles.companyInvoiceShippingComapnyStateWrapper} mb-4 row`}>
                     <div className="col-12 col-md-4 d-flex align-items-center">
                         <label className={`${styles.companyInvoiceShippingComapnyStatelabel}`}>State</label>
                     </div>
@@ -170,7 +170,7 @@ export default function Address() {
                     </div>
                 </div>
 
-                <div className={`${styles.companyInvoiceShippingZIPCodeWrapper} mb-3 row`}>
+                <div className={`${styles.companyInvoiceShippingZIPCodeWrapper} mb-4 row`}>
                     <div className="col-12 col-md-4 d-flex align-items-center">
                         <label className={`${styles.companyInvoiceShippingZIPCodelabel}`}>ZIP Code</label>
                     </div>
@@ -179,7 +179,7 @@ export default function Address() {
                     </div>
                 </div>
 
-                <div className={`${styles.companyInvoiceShippingPhoneWrapper} mb-3 row`}>
+                <div className={`${styles.companyInvoiceShippingPhoneWrapper} mb-4 row`}>
                     <div className="col-12 col-md-4 d-flex align-items-center">
                         <label className={`${styles.companyInvoiceShippingPhonelabel}`}>Phone</label>
                     </div>
@@ -188,7 +188,7 @@ export default function Address() {
                     </div>
                 </div>
 
-                <div className={`${styles.companyInvoiceShippingFaxWrapper} mb-3 row`}>
+                <div className={`${styles.companyInvoiceShippingFaxWrapper} mb-4 row`}>
                     <div className="col-12 col-md-4 d-flex align-items-center">
                         <label className={`${styles.companyInvoiceShippingFaxlabel}`}>Fax</label>
                     </div>

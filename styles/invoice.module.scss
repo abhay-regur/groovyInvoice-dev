@@ -31,7 +31,7 @@ $checkbox-backgound: #949FB1;
             .title {
                 color: $primary-color;
                 font-weight: 700;
-                font-size: 26px;
+                font-size: 36px;
                 line-height: 33px;
                 transition: all 0.35s;
             }
@@ -87,13 +87,13 @@ $checkbox-backgound: #949FB1;
                 .companyInvoiceTopHeaderDueTodayWrapper,
                 .companyInvoiceTopHeaderDueWithinWrapper {
                     border-right: 1px solid $header-top-border-color;
-                    margin-top: 16px;
-                    margin-bottom: 16px;
+                    margin-top: 23px;
+                    margin-bottom: 27px;
                 }
 
                 .companyInvoiceTopHeaderOverdueInvoiceWrapper {
-                    margin-top: 16px;
-                    margin-bottom: 16px;
+                    margin-top: 23px;
+                    margin-bottom: 27px;
                 }
 
                 .companyInvoiceTopHeaderDaysGettingPaidWrapper {
@@ -196,157 +196,171 @@ $checkbox-backgound: #949FB1;
             tbody {
                 background: white;
 
-                td {
-                    padding-top: 29px;
-                    padding-left: 16px;
-                    font-weight: 400;
-                    font-size: 14px;
-                    color: $secondary-color;
-                    border-bottom: 1px solid $table-border;
+                tr {
+                    &:last-child {
+                        border: none;
 
-                    &:nth-of-type(2) {
-                        padding-top: 19px;
-                    }
-
-                    .companyInvoiceTableInvoiceNumber {
-                        label {
-                            display: block;
-                            position: relative;
-                            padding-left: 35px;
-                            cursor: pointer;
-                            font-size: 14px;
-                            -webkit-user-select: none;
-                            -moz-user-select: none;
-                            -ms-user-select: none;
-                            user-select: none;
-
-                            &:hover {
-                                input~span {
-                                    background-color: $primary-color;
-                                }
-                            }
-
-                            input {
-                                position: absolute;
-                                opacity: 0;
-                                cursor: pointer;
-                                height: 0;
-                                width: 0;
-
-                                &~span {
-                                    background-color: white;
-                                    border: 1px solid $checkbox-backgound;
-                                    border-radius: 3px;
-                                }
-
-                                &:checked~span {
-                                    background-color: $primary-color;
-                                    ;
-                                }
-                            }
-
-                            span {
-                                position: absolute;
-                                top: 0;
-                                left: 0;
-                                height: 20px;
-                                width: 20px;
-                                background-color: white;
-
-                                &:after {
-                                    content: "";
-                                    position: absolute;
-                                    display: none;
-                                    left: 9px;
-                                    top: 5px;
-                                    width: 5px;
-                                    height: 10px;
-                                    border: solid white;
-                                    border-width: 0 3px 3px 0;
-                                    -webkit-transform: rotate(45deg);
-                                    -ms-transform: rotate(45deg);
-                                    transform: rotate(45deg);
-                                }
-                            }
+                        td {
+                            border: none !important;
                         }
                     }
 
-                    .companyInvoiceTableCustomerImage {
-                        display: flex;
-                        align-content: center;
-
-                        img {
-                            border-radius: 50%;
-                        }
-
-                        .companyInvoiceTableCustomerName {
-                            display: flex;
-                            align-items: center;
-                            margin-left: 10px;
-                            font-weight: 700;
-                            font-size: 16px;
-                            color: $primary-color;
-                        }
-                    }
-
-                    .companyInvoiceTableDueDate {}
-
-                    .companyInvoiceTableAmount {
-                        display: flex;
-                        align-items: center;
+                    td {
+                        padding-top: 29px;
+                        padding-left: 16px;
                         font-weight: 400;
                         font-size: 14px;
-                    }
+                        color: $secondary-color;
+                        border-bottom: 1px solid $table-border;
 
-                    .companyInvoiceTableStatus {
-                        width: 53px;
-                        border-radius: 50px;
-                        background-color: $red-color;
-                        color: white;
-                        font-weight: 600;
-                        font-size: 12px;
-                        padding: 4px 14px;
-                        width: 30px;
-                        text-align: center;
-                    }
-
-                    .paid {
-                        background-color: $primary-color !important;
-                    }
-
-                    .companyInvoiceTableActionWrapper {
-                        .companyInvoiceTableActionEdit {
-                            cursor: pointer;
-
-                            svg {
-                                height: 19px;
-                                width: 19px;
-                                fill: $tertiary-color;
-                                margin-right: 11px;
-                            }
+                        &:nth-of-type(2) {
+                            padding-top: 19px;
                         }
 
-                        .companyInvoiceTableActionInfo {
-                            cursor: pointer;
+                        .companyInvoiceTableInvoiceNumber {
+                            label {
+                                display: block;
+                                position: relative;
+                                padding-left: 35px;
+                                cursor: pointer;
+                                font-size: 14px;
+                                -webkit-user-select: none;
+                                -moz-user-select: none;
+                                -ms-user-select: none;
+                                user-select: none;
 
-                            svg {
-                                height: 19px;
-                                width: 19px;
-                                margin-right: 9px;
+                                &:hover {
+                                    input~span {
+                                        background-color: $primary-color;
+                                    }
+                                }
 
-                                path {
-                                    fill: $primary-color;
+                                input {
+                                    position: absolute;
+                                    opacity: 0;
+                                    cursor: pointer;
+                                    height: 0;
+                                    width: 0;
+
+                                    &~span {
+                                        background-color: white;
+                                        border: 1px solid $checkbox-backgound;
+                                        border-radius: 3px;
+                                    }
+
+                                    &:checked~span {
+                                        background-color: $primary-color;
+                                        ;
+                                    }
+                                }
+
+                                span {
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    height: 20px;
+                                    width: 20px;
+                                    background-color: white;
+
+                                    &:after {
+                                        content: "";
+                                        position: absolute;
+                                        display: none;
+                                        left: 9px;
+                                        top: 5px;
+                                        width: 5px;
+                                        height: 10px;
+                                        border: solid white;
+                                        border-width: 0 3px 3px 0;
+                                        -webkit-transform: rotate(45deg);
+                                        -ms-transform: rotate(45deg);
+                                        transform: rotate(45deg);
+                                    }
                                 }
                             }
                         }
 
-                        .companyInvoiceTableActionView {
-                            cursor: pointer;
+                        .companyInvoiceTableCustomerImage {
+                            display: flex;
+                            align-content: center;
 
-                            svg {
-                                height: 19px;
-                                width: 19px;
-                                fill: $secondary-color;
+                            img {
+                                border-radius: 50%;
+                            }
+
+                            .companyInvoiceTableCustomerName {
+                                display: flex;
+                                align-items: center;
+                                margin-left: 10px;
+                                font-weight: 700;
+                                font-size: 16px;
+                                color: $primary-color;
+                            }
+                        }
+
+                        .companyInvoiceTableDueDate {}
+
+                        .companyInvoiceTableActionDueDateTime {
+                            font-size: 12px;
+                        }
+
+                        .companyInvoiceTableAmount {
+                            display: flex;
+                            align-items: center;
+                            font-weight: 400;
+                            font-size: 14px;
+                        }
+
+                        .companyInvoiceTableStatus {
+                            width: 53px;
+                            border-radius: 50px;
+                            background-color: $red-color;
+                            color: white;
+                            font-weight: 600;
+                            font-size: 12px;
+                            padding: 4px 14px;
+                            width: 30px;
+                            text-align: center;
+                        }
+
+                        .paid {
+                            background-color: $primary-color !important;
+                        }
+
+                        .companyInvoiceTableActionWrapper {
+                            .companyInvoiceTableActionEdit {
+                                cursor: pointer;
+
+                                svg {
+                                    height: 19px;
+                                    width: 19px;
+                                    fill: $tertiary-color;
+                                    margin-right: 11px;
+                                }
+                            }
+
+                            .companyInvoiceTableActionInfo {
+                                cursor: pointer;
+
+                                svg {
+                                    height: 19px;
+                                    width: 19px;
+                                    margin-right: 9px;
+
+                                    path {
+                                        fill: $primary-color;
+                                    }
+                                }
+                            }
+
+                            .companyInvoiceTableActionView {
+                                cursor: pointer;
+
+                                svg {
+                                    height: 19px;
+                                    width: 19px;
+                                    fill: $secondary-color;
+                                }
                             }
                         }
                     }
@@ -355,12 +369,15 @@ $checkbox-backgound: #949FB1;
         }
 
         .companyInvoiceTablePagination {
+            margin-top: 40px;
+            margin-bottom: 70px;
+
             .companyInvoiceTablePaginationPageInfo {
                 color: $primary-color;
                 font-weight: 400;
                 font-size: 13px;
                 align-items: center;
-                justify-content: center;
+                justify-content: start;
             }
 
             .companyInvoiceTablePaginationNavigation {
@@ -508,8 +525,11 @@ $checkbox-backgound: #949FB1;
             border: 1px solid $table-border;
             border-radius: 10px;
             background: white;
+            overflow-x: auto;
 
             thead {
+                min-width: 663px;
+
                 th {
                     margin-top: 13px;
                     margin-bottom: 17px;
@@ -590,404 +610,16 @@ $checkbox-backgound: #949FB1;
 
             tbody {
                 background: white;
+                min-width: 663px;
 
-                td {
-                    padding-top: 29px;
-                    padding-left: 16px;
-                    font-weight: 400;
-                    font-size: 14px;
-                    color: $secondary-color;
-                    border-bottom: 1px solid $table-border;
+                tr {
+                    &:last-child {
+                        border: none;
 
-                    &:nth-of-type(2) {
-                        padding-top: 19px;
-                    }
-
-                    .companyInvoiceTableInvoiceNumber {
-                        label {
-                            display: block;
-                            position: relative;
-                            padding-left: 35px;
-                            cursor: pointer;
-                            font-size: 14px;
-                            -webkit-user-select: none;
-                            -moz-user-select: none;
-                            -ms-user-select: none;
-                            user-select: none;
-
-                            &:hover {
-                                input~span {
-                                    background-color: $primary-color;
-                                }
-                            }
-
-                            input {
-                                position: absolute;
-                                opacity: 0;
-                                cursor: pointer;
-                                height: 0;
-                                width: 0;
-
-                                &~span {
-                                    background-color: white;
-                                    border: 1px solid $checkbox-backgound;
-                                    border-radius: 3px;
-                                }
-
-                                &:checked~span {
-                                    background-color: $primary-color;
-                                    ;
-                                }
-                            }
-
-                            span {
-                                position: absolute;
-                                top: 0;
-                                left: 0;
-                                height: 20px;
-                                width: 20px;
-                                background-color: white;
-
-                                &:after {
-                                    content: "";
-                                    position: absolute;
-                                    display: none;
-                                    left: 9px;
-                                    top: 5px;
-                                    width: 5px;
-                                    height: 10px;
-                                    border: solid white;
-                                    border-width: 0 3px 3px 0;
-                                    -webkit-transform: rotate(45deg);
-                                    -ms-transform: rotate(45deg);
-                                    transform: rotate(45deg);
-                                }
-                            }
+                        td {
+                            border: none !important;
                         }
                     }
-
-                    .companyInvoiceTableCustomerImage {
-                        display: flex;
-                        align-content: center;
-
-                        img {
-                            border-radius: 50%;
-                        }
-
-                        .companyInvoiceTableCustomerName {
-                            display: flex;
-                            align-items: center;
-                            margin-left: 10px;
-                            font-weight: 700;
-                            font-size: 16px;
-                            color: $primary-color;
-                        }
-                    }
-
-                    .companyInvoiceTableDueDate {}
-
-                    .companyInvoiceTableAmount {
-                        display: flex;
-                        align-items: center;
-                        font-weight: 400;
-                        font-size: 14px;
-                    }
-
-                    .companyInvoiceTableStatus {
-                        width: 53px;
-                        border-radius: 50px;
-                        background-color: $red-color;
-                        color: white;
-                        font-weight: 600;
-                        font-size: 12px;
-                        padding: 4px 14px;
-                        width: 30px;
-                        text-align: center;
-                    }
-
-                    .paid {
-                        background-color: $primary-color !important;
-                    }
-
-                    .companyInvoiceTableActionWrapper {
-                        .companyInvoiceTableActionEdit {
-                            cursor: pointer;
-
-                            svg {
-                                margin-top: 5px;
-                                height: 19px;
-                                width: 19px;
-                                fill: $tertiary-color;
-                                margin-right: 11px;
-                            }
-                        }
-
-                        .companyInvoiceTableActionInfo {
-                            cursor: pointer;
-
-                            svg {
-                                margin-top: 5px;
-                                height: 19px;
-                                width: 19px;
-                                margin-right: 9px;
-
-                                path {
-                                    fill: $primary-color;
-                                }
-                            }
-                        }
-
-                        .companyInvoiceTableActionView {
-                            cursor: pointer;
-
-                            svg {
-                                margin-top: 5px;
-                                height: 19px;
-                                width: 19px;
-                                fill: $secondary-color;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        .companyInvoiceTablePagination {
-            .companyInvoiceTablePaginationPageInfo {
-                color: $primary-color;
-                font-weight: 400;
-                font-size: 13px;
-                align-items: center;
-                justify-content: center;
-            }
-
-            .companyInvoiceTablePaginationNavigation {
-                button {
-                    background: none;
-                    border: none;
-                    color: #5C5C5C;
-                }
-
-
-
-                ul {
-                    margin: 0 auto;
-
-                    .companyInvoicePaginationNumber {
-                        background: $table-pagination-background;
-                        width: 36px;
-                        height: 36px;
-                        font-weight: 600;
-                        font-size: 16px;
-                        color: $primary-color;
-                        border-radius: 50%;
-                        text-align: center;
-                        padding-top: 5px;
-                        margin: auto 3.5px;
-                        cursor: pointer;
-                    }
-
-                    .active {
-                        width: 36px;
-                        height: 36px;
-                        font-weight: 600;
-                        font-size: 16px;
-                        background: $primary-color !important;
-                        color: white !important;
-                        border-radius: 50%;
-                        text-align: center;
-                        padding-top: 5px;
-                        margin: auto 3.5px;
-                        cursor: pointer;
-                    }
-                }
-            }
-        }
-    }
-}
-
-//Mobie Screen
-@media screen and (max-width: 425px) {
-    .main {
-        margin: 89px 15px 92px 15px;
-        transition: all 0.35s;
-
-        &.expanded {
-            margin: 89px 15px 92px 15px;
-            transition: all 0.35s;
-        }
-
-        .comapnyInvoiceHeadingWrapper {
-            .title {
-                color: $primary-color;
-                font-weight: 700;
-                font-size: 26px;
-                line-height: 33px;
-            }
-
-            button {
-                height: fit-content;
-                border-radius: 6px;
-                padding: 8px 6px;
-                font-weight: 600;
-                font-size: 14px;
-                transition: all 0.35s;
-
-                svg {
-                    margin-right: 5px;
-                    width: 12px;
-                    height: 12px;
-                    transition: all 0.35s;
-                }
-            }
-        }
-
-        .companyInvoiceTopInvoiceHeader {
-            margin-top: 49px;
-            border: 1px solid $header-top-border-color;
-            border-radius: 10px;
-
-            .card_body {
-                padding: 16px 13px 0 13px;
-
-                .companyInvoiceTopHeaderSVGWrapper {
-                    svg {
-                        height: 41px;
-                        width: 41px;
-                    }
-                }
-
-                .companyInvoiceTopInvoiceHeaderText {
-                    font-weight: 600;
-                    font-size: 14px;
-                    color: $secondary-color;
-                }
-
-                .companyInvoiceTopInvoiceHeaderNumber {
-                    font-weight: 700;
-                    font-size: 18px;
-                    color: $primary-color;
-                }
-
-                .companyInvoiceTopHeaderTotalOutstandingWrapper,
-                .companyInvoiceTopHeaderDueTodayWrapper {
-                    margin-top: 10px;
-                    padding-bottom: 36px;
-                    border-bottom: 1px solid $header-top-border-color;
-                }
-
-                .companyInvoiceTopHeaderDueWithinWrapper,
-                .companyInvoiceTopHeaderOverdueInvoiceWrapper {
-                    margin-top: 28px;
-                    padding-bottom: 33px;
-                }
-
-                .companyInvoiceTopHeaderDaysGettingPaidWrapper {
-                    background: $header-top-background;
-                    padding-top: 16px;
-                    padding-bottom: 16px;
-                    padding-left: 19px;
-                    padding-right: 0;
-                }
-            }
-
-        }
-
-        .comapanyInoviceInvoiceTableWrapper {
-            margin-top: 50px;
-            border: 1px solid $table-border;
-            border-bottom: none;
-            border-radius: 10px 10px 0 0;
-            background: white;
-            overflow-x: auto;
-
-            .companyInvoiceTable {
-                // display: none;
-
-                thead {
-                    min-width: 663px;
-
-                    th {
-                        margin-top: 13px;
-                        margin-bottom: 17px;
-                        font-weight: 600;
-                        font-size: 14px;
-                        color: $primary-color;
-                        background: $table-head-background;
-                        border-right: 1px solid $table-border;
-
-                        .companyInvoiceTableInvoiceNumber {
-                            label {
-                                display: block;
-                                position: relative;
-                                padding-left: 35px;
-                                cursor: pointer;
-                                font-size: 14px;
-                                -webkit-user-select: none;
-                                -moz-user-select: none;
-                                -ms-user-select: none;
-                                user-select: none;
-
-                                &:hover {
-                                    input~span {
-                                        background-color: $primary-color;
-                                    }
-                                }
-
-                                input {
-                                    position: absolute;
-                                    opacity: 0;
-                                    cursor: pointer;
-                                    height: 0;
-                                    width: 0;
-
-                                    &~span {
-                                        background-color: white;
-                                        border: 1px solid $checkbox-backgound;
-                                        border-radius: 3px;
-                                    }
-
-                                    &:checked~span {
-                                        background-color: $primary-color;
-                                    }
-                                }
-
-                                span {
-                                    position: absolute;
-                                    top: 0;
-                                    left: 0;
-                                    height: 20px;
-                                    width: 20px;
-                                    background-color: white;
-
-                                    &:after {
-                                        content: "";
-                                        position: absolute;
-                                        display: none;
-                                        left: 9px;
-                                        top: 5px;
-                                        width: 5px;
-                                        height: 10px;
-                                        border: solid white;
-                                        border-width: 0 3px 3px 0;
-                                        -webkit-transform: rotate(45deg);
-                                        -ms-transform: rotate(45deg);
-                                        transform: rotate(45deg);
-                                    }
-                                }
-                            }
-                        }
-
-                        &:last-of-type {
-                            border: none;
-                            border-bottom: 1px solid $table-border;
-                        }
-                    }
-                }
-
-                tbody {
-                    background: white;
-                    min-width: 663px;
 
                     td {
                         padding-top: 29px;
@@ -1084,6 +716,10 @@ $checkbox-backgound: #949FB1;
 
                         .companyInvoiceTableDueDate {}
 
+                        .companyInvoiceTableActionDueDateTime {
+                            font-size: 12px;
+                        }
+
                         .companyInvoiceTableAmount {
                             display: flex;
                             align-items: center;
@@ -1112,6 +748,7 @@ $checkbox-backgound: #949FB1;
                                 cursor: pointer;
 
                                 svg {
+                                    margin-top: 5px;
                                     height: 19px;
                                     width: 19px;
                                     fill: $tertiary-color;
@@ -1123,6 +760,7 @@ $checkbox-backgound: #949FB1;
                                 cursor: pointer;
 
                                 svg {
+                                    margin-top: 5px;
                                     height: 19px;
                                     width: 19px;
                                     margin-right: 9px;
@@ -1137,6 +775,7 @@ $checkbox-backgound: #949FB1;
                                 cursor: pointer;
 
                                 svg {
+                                    margin-top: 5px;
                                     height: 19px;
                                     width: 19px;
                                     fill: $secondary-color;
@@ -1145,24 +784,440 @@ $checkbox-backgound: #949FB1;
                         }
                     }
                 }
+
+            }
+        }
+
+        .companyInvoiceTablePagination {
+            margin-top: 40px;
+            margin-bottom: 70px;
+
+            .companyInvoiceTablePaginationPageInfo {
+                color: $primary-color;
+                font-weight: 400;
+                font-size: 13px;
+                align-items: center;
+                justify-content: start;
+            }
+
+            .companyInvoiceTablePaginationNavigation {
+                button {
+                    background: none;
+                    border: none;
+                    color: #5C5C5C;
+                }
+
+
+
+                ul {
+                    margin: 0 auto;
+
+                    .companyInvoicePaginationNumber {
+                        background: $table-pagination-background;
+                        width: 36px;
+                        height: 36px;
+                        font-weight: 600;
+                        font-size: 16px;
+                        color: $primary-color;
+                        border-radius: 50%;
+                        text-align: center;
+                        padding-top: 5px;
+                        margin: auto 3.5px;
+                        cursor: pointer;
+                    }
+
+                    .active {
+                        width: 36px;
+                        height: 36px;
+                        font-weight: 600;
+                        font-size: 16px;
+                        background: $primary-color !important;
+                        color: white !important;
+                        border-radius: 50%;
+                        text-align: center;
+                        padding-top: 5px;
+                        margin: auto 3.5px;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//Mobie Screen
+@media screen and (max-width: 425px) {
+    .main {
+        margin: 89px 15px 92px 15px;
+        transition: all 0.35s;
+
+        &.expanded {
+            margin: 89px 15px 92px 15px;
+            transition: all 0.35s;
+        }
+
+        .comapnyInvoiceHeadingWrapper {
+            .title {
+                color: $primary-color;
+                font-weight: 700;
+                font-size: 26px;
+                line-height: 33px;
+            }
+
+            button {
+                height: fit-content;
+                border-radius: 6px;
+                padding: 8px 6px;
+                font-weight: 600;
+                font-size: 14px;
+                transition: all 0.35s;
+
+                svg {
+                    margin-right: 5px;
+                    width: 12px;
+                    height: 12px;
+                    transition: all 0.35s;
+                }
+            }
+        }
+
+        .companyInvoiceTopInvoiceHeader {
+            margin-top: 27px;
+            border: 1px solid $header-top-border-color;
+            border-radius: 10px;
+
+            .card_body {
+                padding: 16px 13px 0 13px;
+
+                .companyInvoiceTopHeaderSVGWrapper {
+                    svg {
+                        height: 41px;
+                        width: 41px;
+                    }
+                }
+
+                .companyInvoiceTopInvoiceHeaderText {
+                    font-weight: 600;
+                    font-size: 14px;
+                    color: $secondary-color;
+                }
+
+                .companyInvoiceTopInvoiceHeaderNumber {
+                    font-weight: 700;
+                    font-size: 18px;
+                    color: $primary-color;
+                }
+
+                .companyInvoiceTopHeaderTotalOutstandingWrapper,
+                .companyInvoiceTopHeaderDueTodayWrapper {
+                    margin-top: 10px;
+                    padding-bottom: 36px;
+                    border-bottom: 1px solid $header-top-border-color;
+                }
+
+                .companyInvoiceTopHeaderDueWithinWrapper,
+                .companyInvoiceTopHeaderOverdueInvoiceWrapper {
+                    margin-top: 28px;
+                    padding-bottom: 33px;
+                }
+
+                .companyInvoiceTopHeaderDaysGettingPaidWrapper {
+                    background: $header-top-background;
+                    padding-top: 16px;
+                    padding-bottom: 16px;
+                    padding-left: 19px;
+                    padding-right: 0;
+                }
+            }
+
+        }
+
+        .comapanyInoviceInvoiceTableWrapper {
+            margin-top: 50px;
+            border: 1px solid $table-border;
+            border-bottom: none;
+            border-radius: 10px;
+            background: white;
+            overflow-x: auto;
+
+            .companyInvoiceTable {
+
+                thead {
+                    min-width: 663px;
+
+                    th {
+                        margin-top: 13px;
+                        margin-bottom: 17px;
+                        font-weight: 600;
+                        font-size: 14px;
+                        color: $primary-color;
+                        background: $table-head-background;
+                        border-right: 1px solid $table-border;
+
+                        .companyInvoiceTableInvoiceNumber {
+                            label {
+                                display: block;
+                                position: relative;
+                                padding-left: 35px;
+                                cursor: pointer;
+                                font-size: 14px;
+                                -webkit-user-select: none;
+                                -moz-user-select: none;
+                                -ms-user-select: none;
+                                user-select: none;
+
+                                &:hover {
+                                    input~span {
+                                        background-color: $primary-color;
+                                    }
+                                }
+
+                                input {
+                                    position: absolute;
+                                    opacity: 0;
+                                    cursor: pointer;
+                                    height: 0;
+                                    width: 0;
+
+                                    &~span {
+                                        background-color: white;
+                                        border: 1px solid $checkbox-backgound;
+                                        border-radius: 3px;
+                                    }
+
+                                    &:checked~span {
+                                        background-color: $primary-color;
+                                    }
+                                }
+
+                                span {
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    height: 20px;
+                                    width: 20px;
+                                    background-color: white;
+
+                                    &:after {
+                                        content: "";
+                                        position: absolute;
+                                        display: none;
+                                        left: 9px;
+                                        top: 5px;
+                                        width: 5px;
+                                        height: 10px;
+                                        border: solid white;
+                                        border-width: 0 3px 3px 0;
+                                        -webkit-transform: rotate(45deg);
+                                        -ms-transform: rotate(45deg);
+                                        transform: rotate(45deg);
+                                    }
+                                }
+                            }
+                        }
+
+                        &:last-of-type {
+                            border: none;
+                            border-bottom: 1px solid $table-border;
+                        }
+                    }
+                }
+
+                tbody {
+                    background: white;
+                    min-width: 663px;
+
+                    tr {
+                        &:last-child {
+                            border: none;
+
+                            td {
+                                border: none !important;
+                            }
+                        }
+
+                        td {
+                            padding-top: 29px;
+                            padding-left: 16px;
+                            font-weight: 400;
+                            font-size: 14px;
+                            color: $secondary-color;
+                            border-bottom: 1px solid $table-border;
+
+                            &:nth-of-type(2) {
+                                padding-top: 19px;
+                            }
+
+                            .companyInvoiceTableInvoiceNumber {
+                                label {
+                                    display: block;
+                                    position: relative;
+                                    padding-left: 35px;
+                                    cursor: pointer;
+                                    font-size: 14px;
+                                    -webkit-user-select: none;
+                                    -moz-user-select: none;
+                                    -ms-user-select: none;
+                                    user-select: none;
+
+                                    &:hover {
+                                        input~span {
+                                            background-color: $primary-color;
+                                        }
+                                    }
+
+                                    input {
+                                        position: absolute;
+                                        opacity: 0;
+                                        cursor: pointer;
+                                        height: 0;
+                                        width: 0;
+
+                                        &~span {
+                                            background-color: white;
+                                            border: 1px solid $checkbox-backgound;
+                                            border-radius: 3px;
+                                        }
+
+                                        &:checked~span {
+                                            background-color: $primary-color;
+                                            ;
+                                        }
+                                    }
+
+                                    span {
+                                        position: absolute;
+                                        top: 0;
+                                        left: 0;
+                                        height: 20px;
+                                        width: 20px;
+                                        background-color: white;
+
+                                        &:after {
+                                            content: "";
+                                            position: absolute;
+                                            display: none;
+                                            left: 9px;
+                                            top: 5px;
+                                            width: 5px;
+                                            height: 10px;
+                                            border: solid white;
+                                            border-width: 0 3px 3px 0;
+                                            -webkit-transform: rotate(45deg);
+                                            -ms-transform: rotate(45deg);
+                                            transform: rotate(45deg);
+                                        }
+                                    }
+                                }
+                            }
+
+                            .companyInvoiceTableCustomerImage {
+                                display: flex;
+                                align-content: center;
+
+                                img {
+                                    border-radius: 50%;
+                                }
+
+                                .companyInvoiceTableCustomerName {
+                                    display: flex;
+                                    align-items: center;
+                                    margin-left: 10px;
+                                    font-weight: 700;
+                                    font-size: 16px;
+                                    color: $primary-color;
+                                }
+                            }
+
+                            .companyInvoiceTableDueDate {}
+
+                            .companyInvoiceTableActionDueDateTime {
+                                font-size: 12px;
+                            }
+
+                            .companyInvoiceTableAmount {
+                                display: flex;
+                                align-items: center;
+                                font-weight: 400;
+                                font-size: 14px;
+                            }
+
+                            .companyInvoiceTableStatus {
+                                width: 53px;
+                                border-radius: 50px;
+                                background-color: $red-color;
+                                color: white;
+                                font-weight: 600;
+                                font-size: 12px;
+                                padding: 4px 14px;
+                                width: 30px;
+                                text-align: center;
+                            }
+
+                            .paid {
+                                background-color: $primary-color !important;
+                            }
+
+                            .companyInvoiceTableActionWrapper {
+                                .companyInvoiceTableActionEdit {
+                                    cursor: pointer;
+
+                                    svg {
+                                        height: 19px;
+                                        width: 19px;
+                                        fill: $tertiary-color;
+                                        margin-right: 11px;
+                                    }
+                                }
+
+                                .companyInvoiceTableActionInfo {
+                                    cursor: pointer;
+
+                                    svg {
+                                        height: 19px;
+                                        width: 19px;
+                                        margin-right: 9px;
+
+                                        path {
+                                            fill: $primary-color;
+                                        }
+                                    }
+                                }
+
+                                .companyInvoiceTableActionView {
+                                    cursor: pointer;
+
+                                    svg {
+                                        height: 19px;
+                                        width: 19px;
+                                        fill: $secondary-color;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
             }
 
         }
 
         .companyInvoiceTablePaginationWrapper {
-            border: 1px solid $table-border;
             border-top: none;
             border-radius: 0 0 10px 10px;
-            background: white;
             padding-bottom: 10px;
 
             .companyInvoiceTablePagination {
+                margin-top: 30px;
+                margin-bottom: 30px;
+
                 .companyInvoiceTablePaginationPageInfo {
                     color: $primary-color;
                     font-weight: 400;
                     font-size: 13px;
                     align-items: center;
                     justify-content: center;
+                    margin-bottom: 27px;
                 }
 
                 .companyInvoiceTablePaginationNavigation {
