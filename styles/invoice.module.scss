@@ -381,6 +381,8 @@ $checkbox-backgound: #949FB1;
             }
 
             .companyInvoiceTablePaginationNavigation {
+                justify-content: flex-end;
+
                 button {
                     background: none;
                     border: none;
@@ -390,7 +392,7 @@ $checkbox-backgound: #949FB1;
 
 
                 ul {
-                    margin: 0 auto;
+                    margin: 0;
 
                     .companyInvoicePaginationNumber {
                         background: $table-pagination-background;
@@ -411,7 +413,7 @@ $checkbox-backgound: #949FB1;
                         height: 36px;
                         font-weight: 600;
                         font-size: 16px;
-                        background: $primary-color !important;
+                        background: $tertiary-color !important;
                         color: white !important;
                         border-radius: 50%;
                         text-align: center;
@@ -430,8 +432,6 @@ $checkbox-backgound: #949FB1;
 //Tablet Screen
 @media screen and (max-width: 991px) {
     .main {
-
-        padding-top: 40px;
         margin: auto 97px;
         margin-left: 135px;
         transition: all 0.35s;
