@@ -157,6 +157,10 @@ $checkbox-backgound: #949FB1;
 
                                 &:checked~span {
                                     background-color: $primary-color;
+
+                                    &::after {
+                                        display: block;
+                                    }
                                 }
                             }
 
@@ -168,15 +172,16 @@ $checkbox-backgound: #949FB1;
                                 width: 20px;
                                 background-color: white;
 
-                                &:after {
+                                &::after {
                                     content: "";
                                     position: absolute;
                                     display: none;
-                                    left: 9px;
-                                    top: 5px;
-                                    width: 5px;
-                                    height: 10px;
+                                    left: 6px;
+                                    top: 1px;
+                                    width: 7px;
+                                    height: 13px;
                                     border: solid white;
+                                    border-radius: 1px;
                                     border-width: 0 3px 3px 0;
                                     -webkit-transform: rotate(45deg);
                                     -ms-transform: rotate(45deg);
@@ -250,7 +255,10 @@ $checkbox-backgound: #949FB1;
 
                                     &:checked~span {
                                         background-color: $primary-color;
-                                        ;
+
+                                        &::after {
+                                            display: block;
+                                        }
                                     }
                                 }
 
@@ -262,15 +270,16 @@ $checkbox-backgound: #949FB1;
                                     width: 20px;
                                     background-color: white;
 
-                                    &:after {
+                                    &::after {
                                         content: "";
                                         position: absolute;
                                         display: none;
-                                        left: 9px;
-                                        top: 5px;
-                                        width: 5px;
-                                        height: 10px;
+                                        left: 6px;
+                                        top: 1px;
+                                        width: 7px;
+                                        height: 13px;
                                         border: solid white;
+                                        border-radius: 1px;
                                         border-width: 0 3px 3px 0;
                                         -webkit-transform: rotate(45deg);
                                         -ms-transform: rotate(45deg);
@@ -572,7 +581,12 @@ $checkbox-backgound: #949FB1;
 
                                 &:checked~span {
                                     background-color: $primary-color;
+
+                                    &::after {
+                                        display: block;
+                                    }
                                 }
+
                             }
 
                             span {
@@ -583,15 +597,16 @@ $checkbox-backgound: #949FB1;
                                 width: 20px;
                                 background-color: white;
 
-                                &:after {
+                                &::after {
                                     content: "";
                                     position: absolute;
                                     display: none;
-                                    left: 9px;
-                                    top: 5px;
-                                    width: 5px;
-                                    height: 10px;
+                                    left: 6px;
+                                    top: 1px;
+                                    width: 7px;
+                                    height: 13px;
                                     border: solid white;
+                                    border-radius: 1px;
                                     border-width: 0 3px 3px 0;
                                     -webkit-transform: rotate(45deg);
                                     -ms-transform: rotate(45deg);
@@ -666,7 +681,10 @@ $checkbox-backgound: #949FB1;
 
                                     &:checked~span {
                                         background-color: $primary-color;
-                                        ;
+
+                                        &::after {
+                                            display: block;
+                                        }
                                     }
                                 }
 
@@ -678,15 +696,16 @@ $checkbox-backgound: #949FB1;
                                     width: 20px;
                                     background-color: white;
 
-                                    &:after {
+                                    &::after {
                                         content: "";
                                         position: absolute;
                                         display: none;
-                                        left: 9px;
-                                        top: 5px;
-                                        width: 5px;
-                                        height: 10px;
+                                        left: 6px;
+                                        top: 1px;
+                                        width: 7px;
+                                        height: 13px;
                                         border: solid white;
+                                        border-radius: 1px;
                                         border-width: 0 3px 3px 0;
                                         -webkit-transform: rotate(45deg);
                                         -ms-transform: rotate(45deg);
@@ -987,6 +1006,10 @@ $checkbox-backgound: #949FB1;
 
                                     &:checked~span {
                                         background-color: $primary-color;
+
+                                        &::after {
+                                            display: block;
+                                        }
                                     }
                                 }
 
@@ -998,15 +1021,16 @@ $checkbox-backgound: #949FB1;
                                     width: 20px;
                                     background-color: white;
 
-                                    &:after {
+                                    &::after {
                                         content: "";
                                         position: absolute;
                                         display: none;
-                                        left: 9px;
-                                        top: 5px;
-                                        width: 5px;
-                                        height: 10px;
+                                        left: 6px;
+                                        top: 1px;
+                                        width: 7px;
+                                        height: 13px;
                                         border: solid white;
+                                        border-radius: 1px;
                                         border-width: 0 3px 3px 0;
                                         -webkit-transform: rotate(45deg);
                                         -ms-transform: rotate(45deg);
@@ -1081,7 +1105,10 @@ $checkbox-backgound: #949FB1;
 
                                         &:checked~span {
                                             background-color: $primary-color;
-                                            ;
+
+                                            &::after {
+                                                display: block;
+                                            }
                                         }
                                     }
 
@@ -1097,11 +1124,12 @@ $checkbox-backgound: #949FB1;
                                             content: "";
                                             position: absolute;
                                             display: none;
-                                            left: 9px;
-                                            top: 5px;
-                                            width: 5px;
-                                            height: 10px;
+                                            left: 6px;
+                                            top: 1px;
+                                            width: 7px;
+                                            height: 13px;
                                             border: solid white;
+                                            border-radius: 1px;
                                             border-width: 0 3px 3px 0;
                                             -webkit-transform: rotate(45deg);
                                             -ms-transform: rotate(45deg);

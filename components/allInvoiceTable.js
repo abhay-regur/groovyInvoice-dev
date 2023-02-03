@@ -343,7 +343,7 @@ const AllInvoiceTable = ({ ItemsData }) => {
     } = useTable({
         columns,
         data,
-        initialState: { pageIndex: 1 },
+        initialState: { pageIndex: 0 },
     },
         usePagination);
 
