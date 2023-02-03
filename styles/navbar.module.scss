@@ -72,6 +72,8 @@ $navItem-hightlight: #F5FAFE;
             }
 
             .navHeadingWrapper {
+                cursor: pointer;
+
                 .mainHeading {
                     height: min-content;
                     font-weight: 700;
