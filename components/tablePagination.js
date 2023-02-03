@@ -1,4 +1,3 @@
-
 import styles from '../styles/invoice.module.scss';
 import FaArrowLeft from '../assets/icons/faArrowLeft.svg';
 import FaArrowRight from '../assets/icons/faArrowRight.svg';
