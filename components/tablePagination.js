@@ -5,7 +5,7 @@ import FaArrowRight from '../assets/icons/faArrowRight.svg';
 const TablePagination = ({ pageIndex, pageOptions, previousPage, canPreviousPage, nextPage, canNextPage, gotoPage }) => {
 
     return (
-        <div className={`${styles.companyInvoiceTablePagination} row justify-content-between`}>
+        <div className={`${styles.companyInvoiceTablePagination} row justify-content-lg-between`}>
             <div className={`${styles.companyInvoiceTablePaginationPageInfo} col-12 col-md-6 d-flex ms-2`}>
                 <span>
                     Showing  {pageIndex + 1} of {pageOptions.length}{' '}

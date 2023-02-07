@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Head from 'next/head';
+import DatePicker from "react-datepicker";
 import InvoiceTable from '../components/invoiceTable';
 import RadioButton from '../components/radioButton';
 import styles from "../styles/newInvoice.module.scss";
@@ -12,6 +13,7 @@ import FaPaperPen from '../assets/icons/faPaperPen.svg';
 import FaCircleXmark from '../assets/icons/faCircleXmark.svg';
 import FaCircleQuestion from '../assets/icons/faCircleQuestion.svg';
 import FaGear from '../assets/icons/faGear.svg';
+import "react-datepicker/dist/react-datepicker.css";
 
 
 export default function Newinvoice({ navExpandedState }) {
@@ -152,6 +154,7 @@ export default function Newinvoice({ navExpandedState }) {
         }
     ]
 
+    const [startDate, setStartDate] = useState(new Date());
     // const { height, width } = useWindowDimensions();
 
     const handleTDSChange = () => {
@@ -216,7 +219,8 @@ export default function Newinvoice({ navExpandedState }) {
                                         <div className={`${styles.companyInvoiceDateWrapper} mb-3`}>
                                             <label htmlFor="companyInvoiceDate" className="form-label">Invoice Date<span className={`${styles.green}`}>*</span></label>
                                             <div className={`d-flex align-content-center`}>
-                                                <input type="text" className="form-control" id="companyInvoiceDate" aria-describedby="emailHelp" />
+                                                <DatePicker className="form-control" id="companyInvoiceDate" aria-describedby="emailHelp" selected={startDate} onChange={(date) => setStartDate(date)} />
+                                                {/* <input type="text" /> */}
                                                 <i><FaCalendar /></i>
                                             </div>
                                         </div>
@@ -233,7 +237,7 @@ export default function Newinvoice({ navExpandedState }) {
                                         <div className={`${styles.companyInvoiceDueDateWrapper} mb-3`}>
                                             <label htmlFor="companyInvoiceDueDate" className="form-label">Due Date</label>
                                             <div className={`d-flex align-content-center`}>
-                                                <input type="text" className="form-control" id="companyInvoiceDueDate" aria-describedby="emailHelp" />
+                                                <DatePicker type="text" className="form-control" id="companyInvoiceDueDate" aria-describedby="emailHelp" selected={startDate} onChange={(date) => setStartDate(date)} />
                                                 <i><FaCalendar /></i>
                                             </div>
                                         </div>
