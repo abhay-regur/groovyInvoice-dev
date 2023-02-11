@@ -49,6 +49,11 @@ body {
     }
   }
 
+  select.form-select {
+    appearance: auto;
+    color: $primary-color;
+  }
+
   .__next,
   .pageContent {
     height: inherit;
