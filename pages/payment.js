@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Head from 'next/head';
+import DatePicker from "react-datepicker";
 import styles from '../styles/payment.module.scss';
 import FaProfile from '../assets/icons/faProfile.svg';
 import FaGear from '../assets/icons/faGear.svg';
@@ -7,10 +8,13 @@ import FaUpload from '../assets/icons/faUpload.svg';
 import FaCalendar from '../assets/icons/faCalendar.svg';
 import RadioButton from '../components/radioButton.js';
 import Checkbox from '../components/checkBox';
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function Reports({ navExpandedState }) {
 
     const [tdsSelected, settdsSelected] = useState();
+
+    const [startDate, setStartDate] = useState(new Date());
 
     const handleTDSRemoved = () => {
         settdsSelected('');
@@ -90,12 +94,12 @@ export default function Reports({ navExpandedState }) {
                                     <hr />
 
                                     <div className="row">
-                                        <div className="col-12 col-lg-6">
+                                        <div className="col-12 col-lg-3">
                                             <span className={`${styles.companyInvoiceTDSText}`}>
                                                 Tax Deducted?
                                             </span>
                                         </div>
-                                        <div className="col-12 col-lg-6 mt-3 mt-lg-0">
+                                        <div className="col-12 col-lg-8 mt-3 mt-lg-0">
                                             <span className={`${styles.customerInvoicePaymentRadioButtonWrapper} d-flex justify-content-around align-items-center`}>
                                                 <RadioButton
                                                     label="No Tax Deducted"
@@ -122,7 +126,7 @@ export default function Reports({ navExpandedState }) {
                                         <label className={`${styles.companyInvoicePaymentDateLabel}`}>Payment Date<span className={`${styles.green}`}>*</span></label>
                                     </div>
                                     <div className="col-12 d-flex align-items-center mt-2">
-                                        <input type="date" className="form-control" id="companyInvoicePaymentDate" /> <FaCalendar />
+                                        <DatePicker className="form-control" id="companyInvoicePaymentDate" aria-describedby="emailHelp" selected={startDate} onChange={(date) => setStartDate(date)} />  <FaCalendar />
                                     </div>
                                 </div>
                             </div>
@@ -132,14 +136,19 @@ export default function Reports({ navExpandedState }) {
                                         <label className={`${styles.companyInvoicePaymentModeLabel}`}>Payment Mode<span className={`${styles.green}`}>*</span></label>
                                     </div>
                                     <div className="col-12 d-flex align-items-center mt-2">
-                                        <input type="text" className="form-control" id="companyInvoicePaymentModer" placeholder='Invoice Number' />
+                                        <select className={`${styles.companyInvoicePaymentModeSelect}  form-select`} id="companyInvoicePaymentModeSelect">
+                                            <option defaultValue>Select Mode</option>
+                                            <option value="1">Cash</option>
+                                            <option value="2">Card</option>
+                                            <option value="3">UPI</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                             <div className="col-12"></div>
                             <div className="col-12 col-md-5 mt-3">
                                 <div className={`${styles.companyInvoicePaymentReferenceWrapper} mb-3 row`}>
-                                    <div className="col-12">
+                                    <div className="col-12 mb-2">
                                         <label className={`${styles.companyInvoicePaymentReferenceLabel}`}>Reference<span className={`${styles.green}`}>#</span></label>
                                     </div>
                                     <div className="col-12">
@@ -179,8 +188,6 @@ export default function Reports({ navExpandedState }) {
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
 
