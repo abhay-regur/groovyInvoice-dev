@@ -59,14 +59,15 @@ export default function Home({ navExpandedState }) {
           display: false,
         }
       },
-      yAxes: [{
+      yAxes: {
+        display: false,
         max: 700,
         ticks: {
           color: "#E83F35",
           fontSize: 14,
           beginAtZero: true,
         },
-      }],
+      },
       x: {
         grid: {
           display: false
