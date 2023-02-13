@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import style from '../styles/navbar.module.scss';
@@ -14,6 +14,7 @@ import { faSearch, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg
 
 const MENU_LIST = [{ key: 100, text: "Invoices", href: "/invoices", icon: <FaFileLines /> }, { key: 101, text: "Customers", href: "/customers", icon: <FaUserGroup /> }, { key: 102, text: "Reports", href: "/reports", icon: <FaChartLine /> }, { key: 103, text: "Settings", href: "/settings", icon: <FaGear /> }];
 export default function Navbar({ navExpandedState, setNavExpandedState }) {
+
     const [activeIdx, setActiveIdx] = useState(-1);
     const [profileImage, setProfileImage] = useState("/images/profile_img.png");
 
@@ -22,7 +23,7 @@ export default function Navbar({ navExpandedState, setNavExpandedState }) {
             <nav className={`nav ${navExpandedState ? style.expanded : ""}`}>
                 <div className={`${style.navHeadingWrapper} d-flex justify-content-between`}>
                     <Link href={"/"}>
-                        <h3 className={`${style.mainHeading} main-heading`} onClick={() => { setActiveIdx(-1); setNavExpandedState(false) }}>
+                        <h3 className={`${style.mainHeading} main-heading`} onClick={() => { setActiveIdx(-1); }}>
                         </h3>
                     </Link>
 
@@ -75,13 +76,13 @@ export default function Navbar({ navExpandedState, setNavExpandedState }) {
                             if (menu.text == 'Settings') {
                                 return <>
                                     <hr />
-                                    <div key={menu.id} className={`${style.navItemWrapper} ${(activeIdx === idx) ? style.active : " "} d-flex align-item-center`} onClick={() => { setActiveIdx(idx); setNavExpandedState(false) }}>
+                                    <div key={menu.id} className={`${style.navItemWrapper} ${(activeIdx === idx) ? style.active : " "} d-flex align-item-center`} onClick={() => { setActiveIdx(idx); }}>
                                         <NavItem active={activeIdx === idx}{...menu}></NavItem>
                                     </div>
                                 </>;
                             }
                             else {
-                                return <div key={menu.id} className={`${style.navItemWrapper} ${(activeIdx === idx) ? style.active : " "} d-flex align-item-center`} onClick={() => { setActiveIdx(idx); setNavExpandedState(false) }}>
+                                return <div key={menu.id} className={`${style.navItemWrapper} ${(activeIdx === idx) ? style.active : " "} d-flex align-item-center`} onClick={() => { setActiveIdx(idx); }}>
                                     <NavItem active={activeIdx === idx}{...menu}></NavItem>
                                 </div>
                             }

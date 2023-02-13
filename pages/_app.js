@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Head from 'next/head';
 import '../styles/globals.scss'
 import { useRouter } from 'next/router';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 //for font awesome
@@ -19,9 +19,21 @@ library.add(fab, faEnvelope, faKey, faEye, faEyeSlash);
 
 function MyApp({ Component, pageProps }) {
 
+  const [navExpandedState, setNavExpandedState] = useState();
+  useEffect(() => {
+    var navState = window.localStorage.navExpandedState;
+    if (navState != undefined) {
+      setNavExpandedState(false);
+    }
+
+  }, [])
+
+  useEffect(() => {
+    window.localStorage.setItem('navExpandedState', JSON.stringify(navExpandedState));
+  }, [navExpandedState]);
+
   const router = useRouter();
   const showNavbar = (router.pathname === '/login' || router.pathname === '/registration') ? false : true;
-  const [navExpandedState, setNavExpandedState] = useState(false);
   return (
     <>
       <Head>
