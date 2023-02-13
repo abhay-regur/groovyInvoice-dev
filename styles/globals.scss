@@ -1,3 +1,5 @@
+@import 'node_modules/react-datepicker/src/stylesheets/datepicker.scss';
+
 $text-font: Mulish, san-serif;
 $primary-background: #f5fafe;
 $primary-color: #3649AB;
@@ -6,6 +8,7 @@ $secondary-color: #8790B0;
 $tertiary-color: #43CB80;
 $tertiary-color-hover: #4EDD8E;
 $grey: #8790B0;
+$primary-border-color: #E3EBF2;
 
 * {
   box-sizing: border-box;
@@ -44,6 +47,11 @@ body {
     &:hover {
       box-shadow: none;
     }
+  }
+
+  select.form-select {
+    appearance: auto;
+    color: $primary-color;
   }
 
   .__next,
@@ -103,6 +111,83 @@ button {
     }
   }
 }
+
+.react-datepicker {
+  border: 1px solid $primary-border-color !important;
+
+  .react-datepicker__navigation {
+    margin-top: 8px;
+
+    .react-datepicker__navigation-icon::before {
+      border-color: white;
+    }
+  }
+
+  .react-datepicker__month-container {
+    background-color: white;
+    color: #969eac;
+    font-weight: 600;
+    font-family: inherit;
+
+    .react-datepicker__header {
+      background-color: $tertiary-color;
+      border: 1px solid $primary-border-color;
+
+      .react-datepicker__current-month {
+        color: white;
+      }
+
+      .react-datepicker__day-names {
+        .react-datepicker__day-name {
+          color: white;
+          font-family: inherit;
+        }
+      }
+    }
+
+    .react-datepicker__month {
+      padding: 1rem 0;
+      color: white;
+    }
+
+    .react-datepicker__day {
+      color: $primary-color;
+      font-weight: 600;
+    }
+
+    .react-datepicker__day--selected {
+      color: white;
+      background-color: $primary-color;
+    }
+
+    .react-datepicker__month-text {
+      display: inline-block;
+      width: 5rem;
+      margin: 0.5rem;
+      font-size: 1rem;
+      padding: 0.2rem;
+
+      &:hover {
+        background-color: $primary-background;
+      }
+    }
+
+
+  }
+}
+
+.react-datepicker-popper[data-placement^='bottom'] .react-datepicker__triangle::after {
+  border-bottom-color: $primary-border-color !important;
+}
+
+.react-datepicker-popper[data-placement^='bottom'] .react-datepicker__triangle::before {
+  border-bottom-color: $primary-border-color !important;
+}
+
+.react-datepicker-popper[data-placement^='top'] .react-datepicker__triangle::before {
+  border-top-color: $primary-border-color !important;
+}
+
 
 @media (prefers-color-scheme: dark) {
   html {

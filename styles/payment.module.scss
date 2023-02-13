@@ -65,6 +65,7 @@ $checkbox-backgound: #949FB1;
                     cursor: pointer;
                     font-weight: 400;
                     font-size: 14px;
+                    margin-top: 10px;
 
                     span {
                         color: $primary-color;
@@ -89,6 +90,7 @@ $checkbox-backgound: #949FB1;
                 }
 
                 svg {
+                    margin-left: 8px;
                     height: 18px;
                     width: 18px;
                 }
@@ -96,6 +98,7 @@ $checkbox-backgound: #949FB1;
             }
 
             .companyInvoiceAmountcard {
+                border-color: $primary-border-color;
                 padding: 31px 30px 26px 30px;
 
                 .companyInvoiceAmountRecivedLabel {
@@ -209,9 +212,11 @@ $checkbox-backgound: #949FB1;
                 }
             }
 
-            .companyInvoicePaymentDateModeWrapper {
+            .companyInvoicePaymentDateModeWrapper,
+            .companyInvoicePaymentReferenceWrapper {
 
                 .companyInvoicePaymentDateLabel,
+                .companyInvoicePaymentReferenceLabel,
                 .companyInvoicePaymentModeLabel {
                     font-weight: 600;
                     font-size: 14px;
@@ -219,7 +224,16 @@ $checkbox-backgound: #949FB1;
                 }
 
                 input {
-                    font-weight: 400;
+                    font-weight: 600;
+                    font-size: 14px;
+                    color: $primary-color;
+                    background: $input-background-color;
+                    border: 1px solid $primary-border-color;
+                    border-radius: 8px;
+                }
+
+                .companyInvoicePaymentModeSelect {
+                    font-weight: 600;
                     font-size: 14px;
                     color: $primary-color;
                     background: $input-background-color;
@@ -228,7 +242,7 @@ $checkbox-backgound: #949FB1;
                 }
 
                 textarea {
-                    font-weight: 400;
+                    font-weight: 600;
                     font-size: 14px;
                     color: $primary-color;
                     background: $input-background-color;
@@ -308,6 +322,10 @@ $checkbox-backgound: #949FB1;
 
                             &:checked~span {
                                 background-color: $primary-color;
+
+                                &::after {
+                                    display: block;
+                                }
                             }
                         }
 
@@ -319,15 +337,16 @@ $checkbox-backgound: #949FB1;
                             width: 20px;
                             background-color: white;
 
-                            &:after {
+                            &::after {
                                 content: "";
                                 position: absolute;
                                 display: none;
-                                left: 9px;
-                                top: 5px;
-                                width: 5px;
-                                height: 10px;
+                                left: 6px;
+                                top: 1px;
+                                width: 7px;
+                                height: 13px;
                                 border: solid white;
+                                border-radius: 1px;
                                 border-width: 0 3px 3px 0;
                                 -webkit-transform: rotate(45deg);
                                 -ms-transform: rotate(45deg);
@@ -385,6 +404,7 @@ $checkbox-backgound: #949FB1;
                     cursor: pointer;
                     font-weight: 400;
                     font-size: 14px;
+                    margin-top: 10px;
 
                     span {
                         color: $primary-color;
@@ -409,6 +429,7 @@ $checkbox-backgound: #949FB1;
                 }
 
                 svg {
+                    margin-left: 8px;
                     height: 18px;
                     width: 18px;
                 }
@@ -416,6 +437,7 @@ $checkbox-backgound: #949FB1;
             }
 
             .companyInvoiceAmountcard {
+                border-color: $primary-border-color;
                 padding: 31px 30px 26px 30px;
 
                 .companyInvoiceAmountRecivedLabel {
@@ -532,6 +554,7 @@ $checkbox-backgound: #949FB1;
             .companyInvoicePaymentDateModeWrapper {
 
                 .companyInvoicePaymentDateLabel,
+                .companyInvoicePaymentReferenceLabel,
                 .companyInvoicePaymentModeLabel {
                     font-weight: 600;
                     font-size: 14px;
@@ -539,7 +562,7 @@ $checkbox-backgound: #949FB1;
                 }
 
                 input {
-                    font-weight: 400;
+                    font-weight: 600;
                     font-size: 14px;
                     color: $primary-color;
                     background: $input-background-color;
@@ -547,8 +570,18 @@ $checkbox-backgound: #949FB1;
                     border-radius: 8px;
                 }
 
-                textarea {
+                .companyInvoicePaymentModeSelect {
                     font-weight: 400;
+                    font-size: 14px;
+                    color: $primary-color;
+                    background: $input-background-color;
+                    border: 1px solid $primary-border-color;
+                    border-radius: 8px;
+                    appearance: none !important;
+                }
+
+                textarea {
+                    font-weight: 600;
                     font-size: 14px;
                     color: $primary-color;
                     background: $input-background-color;
@@ -635,6 +668,10 @@ $checkbox-backgound: #949FB1;
 
                         &:checked~span {
                             background-color: $primary-color;
+
+                            &::after {
+                                display: block;
+                            }
                         }
                     }
 
@@ -646,15 +683,16 @@ $checkbox-backgound: #949FB1;
                         width: 20px;
                         background-color: white;
 
-                        &:after {
+                        &::after {
                             content: "";
                             position: absolute;
                             display: none;
-                            left: 9px;
-                            top: 5px;
-                            width: 5px;
-                            height: 10px;
+                            left: 6px;
+                            top: 1px;
+                            width: 7px;
+                            height: 13px;
                             border: solid white;
+                            border-radius: 1px;
                             border-width: 0 3px 3px 0;
                             -webkit-transform: rotate(45deg);
                             -ms-transform: rotate(45deg);

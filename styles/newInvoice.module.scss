@@ -81,7 +81,8 @@ $primary-border-color: #E3EBF2;
                         border: 1px solid $primary-border-color;
                         background: $input-background-color;
                         border-radius: 8px 0 0 8px;
-                        color: $secondary-color;
+                        color: $primary-color;
+                        appearance: auto;
 
                         &::placeholder {
                             color: $secondary-color;
