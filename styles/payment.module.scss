@@ -212,11 +212,9 @@ $checkbox-backgound: #949FB1;
                 }
             }
 
-            .companyInvoicePaymentDateModeWrapper,
-            .companyInvoicePaymentReferenceWrapper {
+            .companyInvoicePaymentDateModeWrapper {
 
                 .companyInvoicePaymentDateLabel,
-                .companyInvoicePaymentReferenceLabel,
                 .companyInvoicePaymentModeLabel {
                     font-weight: 600;
                     font-size: 14px;
@@ -224,25 +222,45 @@ $checkbox-backgound: #949FB1;
                 }
 
                 input {
-                    font-weight: 600;
+                    font-weight: 400;
                     font-size: 14px;
                     color: $primary-color;
                     background: $input-background-color;
                     border: 1px solid $primary-border-color;
                     border-radius: 8px;
+                }
+
+                .companyInvoicePaymentReferenceWrapper,
+                .companyInvoicePaymentNoteWrapper {
+
+                    .companyInvoicePaymentReferenceLabel,
+                    .companyInvoicePaymentNoteLabel {
+                        font-weight: 600;
+                        font-size: 14px;
+                        color: $primary-color;
+                    }
+
+                    input {
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: $primary-color;
+                        background: $input-background-color;
+                        border: 1px solid $primary-border-color;
+                        border-radius: 8px;
+                    }
+
+                    textarea {
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: $primary-color;
+                        background: $input-background-color;
+                        border: 1px solid $primary-border-color;
+                        border-radius: 8px;
+                    }
                 }
 
                 .companyInvoicePaymentModeSelect {
-                    font-weight: 600;
-                    font-size: 14px;
-                    color: $primary-color;
-                    background: $input-background-color;
-                    border: 1px solid $primary-border-color;
-                    border-radius: 8px;
-                }
-
-                textarea {
-                    font-weight: 600;
+                    font-weight: 400;
                     font-size: 14px;
                     color: $primary-color;
                     background: $input-background-color;
@@ -254,6 +272,12 @@ $checkbox-backgound: #949FB1;
                     margin-left: 7px;
                     height: 24px;
                     width: 24px;
+                }
+
+                .companyInvoicePaymentInputFilelabel {
+                    font-weight: 600;
+                    font-size: 14px;
+                    color: $primary-color;
                 }
 
                 .companyInvoicePaymentInputFileWrapper {
@@ -438,7 +462,7 @@ $checkbox-backgound: #949FB1;
 
             .companyInvoiceAmountcard {
                 border-color: $primary-border-color;
-                padding: 31px 30px 26px 30px;
+                padding: 31px 15px 26px 15px;
 
                 .companyInvoiceAmountRecivedLabel {
                     color: $primary-color;
@@ -551,18 +575,38 @@ $checkbox-backgound: #949FB1;
                 }
             }
 
+
             .companyInvoicePaymentDateModeWrapper {
 
                 .companyInvoicePaymentDateLabel,
-                .companyInvoicePaymentReferenceLabel,
                 .companyInvoicePaymentModeLabel {
                     font-weight: 600;
                     font-size: 14px;
                     color: $primary-color;
                 }
 
+                .companyInvoicePaymentReferenceWrapper,
+                .companyInvoicePaymentNoteWrapper {
+
+                    .companyInvoicePaymentReferenceLabel,
+                    .companyInvoicePaymentNoteLabel {
+                        font-weight: 600;
+                        font-size: 14px;
+                        color: $primary-color;
+                    }
+
+                    input {
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: $primary-color;
+                        background: $input-background-color;
+                        border: 1px solid $primary-border-color;
+                        border-radius: 8px;
+                    }
+                }
+
                 input {
-                    font-weight: 600;
+                    font-weight: 400;
                     font-size: 14px;
                     color: $primary-color;
                     background: $input-background-color;
@@ -581,7 +625,7 @@ $checkbox-backgound: #949FB1;
                 }
 
                 textarea {
-                    font-weight: 600;
+                    font-weight: 400;
                     font-size: 14px;
                     color: $primary-color;
                     background: $input-background-color;
@@ -600,103 +644,109 @@ $checkbox-backgound: #949FB1;
                     font-size: 12px;
                     color: $secondary-color;
                 }
-            }
 
-            .companyInvoicePaymentInputFileWrapper {
-                border: 1px dashed $file-input-border;
-                background: $input-background-color;
-                border-radius: 6px;
-
-                .companyInvoicePaymentInputFileSVGWrapper {
-                    border-right: 1px $secondary-border-color solid;
-
-                    svg {
-                        margin: 15px 20px 16px 20px;
-                    }
-                }
-
-
-                .companyInvoicePaymentInputFile {
-                    border: none;
-                    border-radius: 0;
-                    margin: 15px 16px 16px 15px;
-
-                    &::-webkit-file-upload-button {
-                        visibility: hidden;
-                        width: 0;
-                    }
-                }
-            }
-
-            .companyInvoicePaymentInputFileMessage {
-                margin-top: 13px;
-                font-weight: 400;
-                font-size: 12px;
-            }
-
-            .companyInvoicePaymentThankYouCheckboxWrapper {
-
-                label {
-                    display: block;
-                    position: relative;
-                    padding-left: 35px;
-                    cursor: pointer;
+                .companyInvoicePaymentInputFilelabel {
+                    font-weight: 600;
                     font-size: 14px;
-                    -webkit-user-select: none;
-                    -moz-user-select: none;
-                    -ms-user-select: none;
-                    user-select: none;
+                    color: $primary-color;
+                }
 
-                    &:hover {
-                        input~span {
-                            background-color: $primary-color;
+                .companyInvoicePaymentInputFileWrapper {
+                    border: 1px dashed $file-input-border;
+                    background: $input-background-color;
+                    border-radius: 6px;
+
+                    .companyInvoicePaymentInputFileSVGWrapper {
+                        border-right: 1px $secondary-border-color solid;
+
+                        svg {
+                            margin: 15px 20px 16px 20px;
                         }
                     }
 
-                    input {
-                        position: absolute;
-                        opacity: 0;
-                        cursor: pointer;
-                        height: 0;
-                        width: 0;
 
-                        &~span {
-                            background-color: white;
-                            border: 1px solid $checkbox-backgound;
-                            border-radius: 3px;
+                    .companyInvoicePaymentInputFile {
+                        border: none;
+                        border-radius: 0;
+                        margin: 15px 16px 16px 15px;
+
+                        &::-webkit-file-upload-button {
+                            visibility: hidden;
+                            width: 0;
                         }
+                    }
+                }
 
-                        &:checked~span {
-                            background-color: $primary-color;
+                .companyInvoicePaymentInputFileMessage {
+                    margin-top: 13px;
+                    font-weight: 400;
+                    font-size: 12px;
+                }
 
-                            &::after {
-                                display: block;
+                .companyInvoicePaymentThankYouCheckboxWrapper {
+
+                    label {
+                        display: block;
+                        position: relative;
+                        padding-left: 35px;
+                        cursor: pointer;
+                        font-size: 14px;
+                        -webkit-user-select: none;
+                        -moz-user-select: none;
+                        -ms-user-select: none;
+                        user-select: none;
+
+                        &:hover {
+                            input~span {
+                                background-color: $primary-color;
                             }
                         }
-                    }
 
-                    span {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        height: 20px;
-                        width: 20px;
-                        background-color: white;
-
-                        &::after {
-                            content: "";
+                        input {
                             position: absolute;
-                            display: none;
-                            left: 6px;
-                            top: 1px;
-                            width: 7px;
-                            height: 13px;
-                            border: solid white;
-                            border-radius: 1px;
-                            border-width: 0 3px 3px 0;
-                            -webkit-transform: rotate(45deg);
-                            -ms-transform: rotate(45deg);
-                            transform: rotate(45deg);
+                            opacity: 0;
+                            cursor: pointer;
+                            height: 0;
+                            width: 0;
+
+                            &~span {
+                                background-color: white;
+                                border: 1px solid $checkbox-backgound;
+                                border-radius: 3px;
+                            }
+
+                            &:checked~span {
+                                background-color: $primary-color;
+
+                                &::after {
+                                    display: block;
+                                }
+                            }
+                        }
+
+                        span {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            height: 20px;
+                            width: 20px;
+                            background-color: white;
+
+                            &::after {
+                                content: "";
+                                position: absolute;
+                                display: none;
+                                left: 6px;
+                                top: 1px;
+                                width: 7px;
+                                height: 13px;
+                                border: solid white;
+                                border-radius: 1px;
+                                border-width: 0 3px 3px 0;
+                                -webkit-transform: rotate(45deg);
+                                -ms-transform: rotate(45deg);
+                                transform: rotate(45deg);
+                            }
                         }
                     }
                 }
