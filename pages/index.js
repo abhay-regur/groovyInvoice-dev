@@ -61,7 +61,6 @@ export default function Home({ navExpandedState }) {
       },
       yAxes: {
         display: false,
-        max: 700,
         ticks: {
           color: "#E83F35",
           fontSize: 14,
@@ -73,6 +72,9 @@ export default function Home({ navExpandedState }) {
           display: false
         }
       },
+      y: {
+        max: 700,
+      }
     }
   };
 
