@@ -57,7 +57,7 @@ const NewCustomer = ({ navExpandedState }) => {
                                 </div>
                             </div>
 
-                            <div className={`${styles.companyInvoiceNameWrapper} mb-4 row`}>
+                            <div className={`${styles.companyInvoiceNameWrapper} mb-0 mb-md-4 row`}>
                                 <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
                                     <label className="">Primary Contact</label>
                                 </div>
@@ -116,7 +116,7 @@ const NewCustomer = ({ navExpandedState }) => {
                                 <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
                                     <label className={`${styles.companyInvoiceCompanyPhoneLabel}`}>Customer Phone</label>
                                 </div>
-                                <div className="col-12 col-lg-4 col-xl-2">
+                                <div className="col-12 col-lg-4 col-xl-2 d-flex align-items-center">
                                     <input type="text" className={`${styles.companyInvoiceCompanyWorkPhone} form-control`} placeholder='Work Phone' />
                                 </div>
                                 <div className="col-12 col-lg-4 col-xl-2 d-flex align-items-center">

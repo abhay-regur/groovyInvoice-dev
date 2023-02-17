@@ -56,17 +56,17 @@ export default function Reports({ navExpandedState }) {
                             </div>
                             <div className="col-12 col-md-7 col-lg-5">
                                 <div className="row">
-                                    <div className="col-12 col-md-7 col-lg-6 d-flex align-items-center mt-2">
+                                    <div className="col-12 col-md-7 col-lg-12 d-flex align-items-center mt-2">
                                         <input type="text" className="form-control" id="companyInvoicePaymentNumber" placeholder='Invoice Number' /><FaGear />
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="row">
-                            <div className="col-12 col-lg-7 col-xl-5">
+                        <div className="row mb-3">
+                            <div className="col-12 col-lg-10 col-xl-5">
                                 <div className={`${styles.companyInvoiceAmountcard} card`}>
-                                    <div className="container row">
+                                    <div className="container row p-0">
                                         <div className="col-12 col-lg-6">
                                             <div className="row">
                                                 <div className="col-12">
@@ -100,14 +100,14 @@ export default function Reports({ navExpandedState }) {
                                             </span>
                                         </div>
                                         <div className="col-12 col-lg-8 mt-3 mt-lg-0">
-                                            <span className={`${styles.customerInvoicePaymentRadioButtonWrapper} d-flex justify-content-around align-items-center`}>
+                                            <span className={`${styles.customerInvoicePaymentRadioButtonWrapper} d-flex justify-content-start align-items-center`}>
                                                 <RadioButton
-                                                    label="No Tax Deducted"
+                                                    label="No Tax"
                                                     value={tdsSelected === ''}
                                                     onChange={handleTDSRemoved}
                                                 />
                                                 <RadioButton
-                                                    label="Yes, TDS (Income Tax)"
+                                                    label="Yes, TDS"
                                                     value={tdsSelected === 'tds'}
                                                     onChange={handleTDSChange}
                                                 />
@@ -119,7 +119,7 @@ export default function Reports({ navExpandedState }) {
                             </div>
                         </div>
 
-                        <div className={`${styles.companyInvoicePaymentDateModeWrapper} row mt-4 mt-lg-3`}>
+                        <div className={`${styles.companyInvoicePaymentDateModeWrapper} row`}>
                             <div className="col-12 col-md-4 col-lg-2">
                                 <div className="row">
                                     <div className="col-12">
@@ -130,7 +130,7 @@ export default function Reports({ navExpandedState }) {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-12 col-md-4 col-lg-2">
+                            <div className="col-12 col-md-4 col-lg-2 mt-2">
                                 <div className="row">
                                     <div className="col-12">
                                         <label className={`${styles.companyInvoicePaymentModeLabel}`}>Payment Mode<span className={`${styles.green}`}>*</span></label>
@@ -146,7 +146,7 @@ export default function Reports({ navExpandedState }) {
                                 </div>
                             </div>
                             <div className="col-12"></div>
-                            <div className="col-12 col-md-5 mt-3">
+                            <div className="col-12 col-md-5 mt-2">
                                 <div className={`${styles.companyInvoicePaymentReferenceWrapper} mb-3 row`}>
                                     <div className="col-12 mb-2">
                                         <label className={`${styles.companyInvoicePaymentReferenceLabel}`}>Reference<span className={`${styles.green}`}>#</span></label>
@@ -158,17 +158,18 @@ export default function Reports({ navExpandedState }) {
                             </div>
                             <div className="col-12"></div>
                             <div className="col-12 col-md-5">
-                                <div className="row">
+                                <div className={`${styles.companyInvoicePaymentNoteWrapper} mb-3 row`}>
                                     <div className="col-12">
-                                        <label className={`${styles.companyInvoicePaymentModeLabel}`}>Notes</label>
+                                        <label className={`${styles.companyInvoicePaymentNoteLabel}`}>Notes</label>
                                     </div>
                                     <div className="col-12 d-flex align-items-center mt-2">
                                         <textarea className="form-control" id="companyInvoicePaymentModer" placeholder='Add Notes' />
                                     </div>
                                 </div>
                             </div>
+                            <div className="col-12"><label className={`${styles.companyInvoicePaymentInputFilelabel}`}>Attach File(s)</label></div>
                             <div className="col-12"></div>
-                            <div className="col-10 col-md-4 mt-3">
+                            <div className="col-11 col-md-6 col-lg-3 mt-2">
                                 <div className={`${styles.companyInvoicePaymentInputFileWrapper} d-flex`}>
                                     <span className={`${styles.companyInvoicePaymentInputFileSVGWrapper}`}>
                                         <FaUpload />
