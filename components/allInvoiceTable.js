@@ -387,6 +387,7 @@ const AllInvoiceTable = ({ ItemsData }) => {
                             nextPage={nextPage}
                             canNextPage={canNextPage}
                             gotoPage={gotoPage}
+                            styles={styles}
                         />
                     </div>
                 </div>
