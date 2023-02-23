@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import AllCustomerTable from '../components/allCustomerTable.js';
 import FaCirclePlus from "../assets/icons/faCirclePlus.svg";
 import styles from '../styles/customers.module.scss';
 
@@ -17,7 +18,7 @@ export default function Customers({ navExpandedState }) {
                     <div className={`${styles.comapnyInvoiceHeadingWrapper} row`}>
                         <div className="col-6">
                             <h2 className={`${styles.title}`}>
-                                Customers
+                                All Customers
                             </h2>
                         </div>
                         <div className="col-6 d-flex justify-content-end">
@@ -30,6 +31,9 @@ export default function Customers({ navExpandedState }) {
                                 </a>
                             </Link>
                         </div>
+                    </div>
+                    <div className='p-2'>
+                        <AllCustomerTable />
                     </div>
                 </div>
             </main>

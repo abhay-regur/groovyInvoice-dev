@@ -1,8 +1,7 @@
-import styles from '../styles/invoice.module.scss';
 import FaArrowLeft from '../assets/icons/faArrowLeft.svg';
 import FaArrowRight from '../assets/icons/faArrowRight.svg';
 
-const TablePagination = ({ pageIndex, pageOptions, previousPage, canPreviousPage, nextPage, canNextPage, gotoPage }) => {
+const TablePagination = ({ pageIndex, pageOptions, previousPage, canPreviousPage, nextPage, canNextPage, gotoPage, styles }) => {
 
     return (
         <div className={`${styles.companyInvoiceTablePagination} row justify-content-lg-between`}>
