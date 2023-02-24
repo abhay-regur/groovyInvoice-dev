@@ -1,0 +1,181 @@
+$font-size-heading: 32px;
+$font-size-text: 15px;
+$primary-color: #3649AB;
+$secondary-color: #8790B0;
+$tertiary-color: #43CB80;
+$red-color: #DA5252;
+
+$header-top-border-color: #D3D8EB;
+$action-bar-border-color: #E3EBF2;
+
+.main {
+    height: inherit;
+}
+
+@media screen and (min-width: 992px) {
+    .main {
+        padding-top: 40px;
+        margin: auto 49px;
+        margin-left: 135px;
+        transition: all 0.35s;
+
+        &.expanded {
+            margin-left: 329px !important;
+            transition: all 0.35s;
+        }
+
+        .comapnyInvoiceViewInvoiceHeadWrapper {
+            .comapnyInvoiceViewInvoiceMainHeading {
+                font-weight: 700;
+                font-size: 36px;
+                line-height: 53px;
+                color: $primary-color;
+            }
+
+            .comapnyInvoiceViewInvoiceSubHeading {
+                font-weight: 700;
+                font-size: 20px;
+                line-height: 53px;
+                color: $secondary-color;
+            }
+
+            .companyInvoiceViewInvoiceActionBar {
+                margin-top: 49px;
+                max-width: 891px;
+                background: white;
+                border: 1px solid $action-bar-border-color;
+                border-radius: 10px;
+                padding: 0;
+
+                .companyInvoiceViewInvoiceActionBarAction {
+                    display: none;
+                }
+
+                .companyInvoiceViewInvoiceActionBarCollapse {
+                    justify-content: center;
+
+                    .companyInvoiceViewInvoiceActionBarActionItem {
+                        border-right: 1px solid $action-bar-border-color;
+                        min-width: 109px;
+
+                        &:last-of-type {
+                            border: none;
+                        }
+
+                        .companyInvoiceViewInvoiceActionBarActionItemText {
+                            font-weight: 600;
+                            font-size: 16px;
+                            line-height: 24px;
+                            justify-content: center;
+                            color: $primary-color;
+
+                            .companyInvoiceViewInvoiceActionBarActionItemIcon {
+                                margin-right: 7px;
+
+                                svg {
+                                    height: 17px;
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 991px) and (min-width: 426px) {
+    .main {
+        padding-top: 40px;
+        margin: auto 49px;
+        margin-left: 135px;
+        transition: all 0.35s;
+
+        &.expanded {
+            margin-left: 329px !important;
+            transition: all 0.35s;
+        }
+
+        .comapnyInvoiceViewInvoiceHeadWrapper {
+            .comapnyInvoiceViewInvoiceMainHeading {
+                font-weight: 700;
+                font-size: 36px;
+                line-height: 53px;
+                color: $primary-color;
+            }
+
+            .comapnyInvoiceViewInvoiceSubHeading {
+                font-weight: 700;
+                font-size: 20px;
+                line-height: 53px;
+                color: $secondary-color;
+            }
+
+            .companyInvoiceViewInvoiceActionBar {
+                margin-top: 29px;
+                background: white;
+                border: 1px solid $action-bar-border-color;
+                border-radius: 10px;
+
+                button {
+                    border: none;
+                }
+
+                .companyInvoiceViewInvoiceActionBarAction {
+                    display: block;
+                    font-weight: 600;
+                    font-size: 16px;
+                    line-height: 24px;
+                    color: $primary-color;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .main {
+        margin: 89px 15px 92px 15px;
+        transition: all 0.35s;
+
+        &.expanded {
+            margin: 89px 15px 92px 15px;
+            transition: all 0.35s;
+        }
+
+        .comapnyInvoiceViewInvoiceHeadWrapper {
+            .comapnyInvoiceViewInvoiceMainHeading {
+                font-weight: 700;
+                font-size: 26px;
+                line-height: 38px;
+                color: $primary-color;
+            }
+
+            .comapnyInvoiceViewInvoiceSubHeading {
+                font-weight: 700;
+                font-size: 16px;
+                line-height: 24px;
+                color: $secondary-color;
+            }
+
+            .companyInvoiceViewInvoiceActionBar {
+                margin-top: 29px;
+                background: white;
+                border: 1px solid $action-bar-border-color;
+                border-radius: 10px;
+
+                button {
+                    border: none;
+                }
+
+                .companyInvoiceViewInvoiceActionBarAction {
+                    font-weight: 600;
+                    font-size: 16px;
+                    line-height: 24px;
+                    color: $primary-color;
+                }
+            }
+        }
+    }
+}
