@@ -7,7 +7,7 @@ import FaShare from '../assets/icons/faShare.svg';
 import FaBell from '../assets/icons/faBell.svg';
 import FaPDF from '../assets/icons/faPDF.svg';
 import FaRupee from '../assets/icons/faRupee.svg';
-
+// <div className={`${styles.}`}></div>
 export default function viewInvoice({ navExpandedState }) {
     return (<>
         <div className={styles.container}>
@@ -70,6 +70,85 @@ export default function viewInvoice({ navExpandedState }) {
                                     </div>
                                 </div>
                             </nav>
+                        </div>
+                        <div className="col-12">
+                            <div className={`${styles.companyInvoiceViewInvoiceViewWrapper}`}>
+                                <div className="row">
+                                    <div className="col-6">
+                                        <div className={`${styles.companyInvoiceViewInvoiceComapnyName}`}>Verities Systems</div>
+                                        <div className={`${styles.comapanyInvoiceViewInvoiceComapanyDescription}`}>Donec libero massa lacinia maximus tempor ante, phasellus auctor varius libero varius purus</div>
+                                    </div>
+                                    <div className="col-6">
+                                        <div className={`${styles.comapnyInvoiceViewInvoiceHeading} d-flex justify-content-end`}>Tax Invoice</div>
+                                        <div className={`${styles.comapnyInvoiceViewInvoiceInvoiceDate} d-flex justify-content-end`}>#2022/09-04</div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div className="row">
+                                    <div className="col-6">
+                                        <div className={`${styles.companyInvoiceViewInvoiceBillToHeading}`}>Bill To</div>
+                                        <div className={`${styles.companyInvoiceViewInvoiceBillToAddressWrapper}`}>
+                                            <div className={`${styles.companyInvoiceViewInvoiceBillToName}`}>Molestiequis ornare dignissim</div>
+                                            <div className={`${styles.companyInvoiceViewInvoiceBillToAddress}`}>Tempor ante phasellus auctor varius libero varius purus</div>
+                                        </div>
+                                    </div>
+                                    <div className="col-6">
+                                        <div className={`${styles.comapnyInvoiceViewInvoiceDetails} row`}>
+                                            <span className={`${styles.comapnyInvoiceViewInvoiceDetailsHeading} col-6 text-align-start`}>Invoice#</span>
+                                            <span className={`${styles.comapnyInvoiceViewInvoiceDetailsEntry} col-6 text-align-start`}>VS-22/02/2022/01</span>
+                                        </div>
+                                        <div className={`${styles.comapnyInvoiceViewInvoiceDetails} row`}>
+                                            <span className={`${styles.comapnyInvoiceViewInvoiceDetailsHeading} col-6 text-align-start`}>Invoice Date</span>
+                                            <span className={`${styles.comapnyInvoiceViewInvoiceDetailsEntry} col-6 text-align-start`}>22/02/2022</span>
+                                        </div>
+                                        <div className={`${styles.comapnyInvoiceViewInvoiceDetails} row`}>
+                                            <span className={`${styles.comapnyInvoiceViewInvoiceDetailsHeading} col-6 text-align-start`}>Terms</span>
+                                            <span className={`${styles.comapnyInvoiceViewInvoiceDetailsEntry} col-6 text-align-start`}>Due On Receipt</span>
+                                        </div>
+                                        <div className={`${styles.comapnyInvoiceViewInvoiceDetails} row`}>
+                                            <span className={`${styles.comapnyInvoiceViewInvoiceDetailsHeading} col-6 text-align-start`}>Due Date</span>
+                                            <span className={`${styles.comapnyInvoiceViewInvoiceDetailsEntry} col-6 text-align-start`}>22/02/2022</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                {/* Table */}
+                                <div className="row">
+                                    <div className="col-6">
+                                        <div className={`${styles.companyInvoiceViewInvoiceTotalInWordsWrapper}`}>
+                                            <div className={`${styles.companyInvoiceViewInvoiceTotalInWordsLabel}`}>Total In Words</div>
+                                            <div className={`${styles.companyInvoiceViewInvoiceTotalInWords}`}>One Thousand Three Hundred Twenty Rupees</div>
+                                        </div>
+                                        <div className={`${styles.companyInvoiceViewInvoiceThankYouWrapper}`}>
+                                            <div className={`${styles.companyInvoiceViewInvoiceThankYou}`}>Thanks For Your Business.</div>
+                                        </div>
+                                        <div className={`${styles.companyInvoiceViewInvoicePaymentMethodWrapper}`}>
+                                            <div className={`${styles.companyInvoiceViewInvoicePaymentMethodLabel}`}>Payment Method</div>
+                                            <div className={`${styles.companyInvoiceViewInvoicePaymentMethod}`}>Bank</div>
+                                        </div>
+                                    </div>
+                                    <div className="col-6">
+                                        <div className={`${styles.companyInvoiceViewInvoiceTotalCard} card`}>
+                                            <div className="d-flex justify-content-between">
+                                                <span>Sub Total</span>
+                                                <span>Rs. 1320.00</span>
+                                            </div>
+                                            <div className="d-flex justify-content-between">
+                                                <span>Total</span>
+                                                <span>Rs. 1320.00</span>
+                                            </div>
+                                            <div className="d-flex justify-content-between">
+                                                <span>Payment Made</span>
+                                                <span>-Rs. 1320.00</span>
+                                            </div>
+                                            <hr />
+                                            <div className="d-flex justify-content-between">
+                                                <span>Balance Due</span>
+                                                <span>Rs. 1320.00</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
