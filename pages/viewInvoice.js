@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../styles/viewInvoice.module.scss';
+import ViewInvoiceTable from '../components/viewInvoiceTable.js';
 import FaPen from '../assets/icons/faPen.svg';
 import FaMail from '../assets/icons/faEnvelopeGreen.svg';
 import FaShare from '../assets/icons/faShare.svg';
@@ -111,7 +112,7 @@ export default function viewInvoice({ navExpandedState }) {
                                         </div>
                                     </div>
                                 </div>
-                                {/* Table */}
+                                <ViewInvoiceTable />
                                 <div className="row">
                                     <div className="col-6">
                                         <div className={`${styles.companyInvoiceViewInvoiceTotalInWordsWrapper}`}>

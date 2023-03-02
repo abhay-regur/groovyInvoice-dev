@@ -90,6 +90,9 @@ $card-background: #F5FAFE;
                 background: white;
                 border: 1px solid $primary-color;
                 border-radius: 10px;
+                // max-height: 900px;
+                // overflow-y: auto;
+                // overflow-x: hidden;
 
                 .companyInvoiceViewInvoiceComapnyName {
                     font-weight: 700;
@@ -128,6 +131,54 @@ $card-background: #F5FAFE;
                 hr {
                     color: $border-color;
                 }
+
+                .companyInvoiceViewTableWrapper {
+                    .companyInvoiceViewTable {
+
+                        border-color: $border-color;
+
+                        thead {
+                            background: $primary-color;
+                            color: white;
+
+                            tr {
+                                th {
+                                    border: 1px solid $border-color;
+                                }
+                            }
+                        }
+
+                        tbody {
+                            tr {
+                                td {
+                                    padding: 25px;
+                                    font-weight: 400;
+                                    font-size: 14px;
+                                    line-height: 21px;
+                                    color: $secondary-color;
+                                    border: 1px solid $border-color;
+                                }
+
+                                .companyInvoiceViewTableIndex,
+                                .companyInvoiceViewTableQuantity,
+                                .companyInvoiceViewTableRate,
+                                .companyInvoiceViewTableAmount {
+                                    text-align: center;
+                                }
+
+                                .companyInvoiceViewTableItemDescription {
+                                    font-weight: 600;
+                                    font-size: 14px;
+                                    line-height: 21px;
+                                    color: $primary-color;
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+
 
                 .companyInvoiceViewInvoiceBillToHeading {
                     font-weight: 700;
