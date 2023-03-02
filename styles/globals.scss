@@ -14,6 +14,10 @@ $primary-border-color: #E3EBF2;
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+}
+
 html,
 body {
   padding: 0;
@@ -23,13 +27,13 @@ body {
   color: $grey;
 
   @media screen and (min-width: 992px) {
-    height: 1200px;
-    min-height: 1000px;
+    // height: 1200px;
+    min-height: 100%;
   }
 
   @media screen and (max-width: 425px) {
-    height: 1600px;
-    min-height: 600px;
+    // height: 1600px;
+    min-height: 100%;
   }
 
   * {
