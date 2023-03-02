@@ -161,6 +161,41 @@ const AllCustomerTable = ({ ItemsData }) => {
                 companyName: <span className={`${styles.companyCustomerCompanyName}`}>Regur Technology Solutions</span>,
                 emailAddress: <span className={`${styles.companyCustomerTableEmailAddress}`}>test@gmail.com</span>,
                 receivables: <span className={`${styles.companyCustomerTableReceivables}`}>Rs. 42,000.00</span>,
+            },
+            {
+                customerName: <div className={`${styles.companyCustomerTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyCustomerTableCustomerNameWrapper}`}><div className={`${styles.companyCustomerTableCustomerName}`} >Maximus Tempor</div><div className={`${styles.companyCustomerTableCustomerEdit} ps-2`}><FaPen /></div></span></div>,
+                contactNumber: <><div className={`${styles.companyCustomerTableContactNumber}`}>408-545-4861</div></>,
+                companyName: <span className={`${styles.companyCustomerCompanyName}`}>Regur Technology Solutions</span>,
+                emailAddress: <span className={`${styles.companyCustomerTableEmailAddress}`}>test@gmail.com</span>,
+                receivables: <span className={`${styles.companyCustomerTableReceivables}`}>Rs. 42,000.00</span>,
+            },
+            {
+                customerName: <div className={`${styles.companyCustomerTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyCustomerTableCustomerNameWrapper}`}><div className={`${styles.companyCustomerTableCustomerName}`} >Maximus Tempor</div><div className={`${styles.companyCustomerTableCustomerEdit} ps-2`}><FaPen /></div></span></div>,
+                contactNumber: <><div className={`${styles.companyCustomerTableContactNumber}`}>408-545-4861</div></>,
+                companyName: <span className={`${styles.companyCustomerCompanyName}`}>Regur Technology Solutions</span>,
+                emailAddress: <span className={`${styles.companyCustomerTableEmailAddress}`}>test@gmail.com</span>,
+                receivables: <span className={`${styles.companyCustomerTableReceivables}`}>Rs. 42,000.00</span>,
+            },
+            {
+                customerName: <div className={`${styles.companyCustomerTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyCustomerTableCustomerNameWrapper}`}><div className={`${styles.companyCustomerTableCustomerName}`} >Maximus Tempor</div><div className={`${styles.companyCustomerTableCustomerEdit} ps-2`}><FaPen /></div></span></div>,
+                contactNumber: <><div className={`${styles.companyCustomerTableContactNumber}`}>408-545-4861</div></>,
+                companyName: <span className={`${styles.companyCustomerCompanyName}`}>Regur Technology Solutions</span>,
+                emailAddress: <span className={`${styles.companyCustomerTableEmailAddress}`}>test@gmail.com</span>,
+                receivables: <span className={`${styles.companyCustomerTableReceivables}`}>Rs. 42,000.00</span>,
+            },
+            {
+                customerName: <div className={`${styles.companyCustomerTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyCustomerTableCustomerNameWrapper}`}><div className={`${styles.companyCustomerTableCustomerName}`} >Maximus Tempor</div><div className={`${styles.companyCustomerTableCustomerEdit} ps-2`}><FaPen /></div></span></div>,
+                contactNumber: <><div className={`${styles.companyCustomerTableContactNumber}`}>408-545-4861</div></>,
+                companyName: <span className={`${styles.companyCustomerCompanyName}`}>Regur Technology Solutions</span>,
+                emailAddress: <span className={`${styles.companyCustomerTableEmailAddress}`}>test@gmail.com</span>,
+                receivables: <span className={`${styles.companyCustomerTableReceivables}`}>Rs. 42,000.00</span>,
+            },
+            {
+                customerName: <div className={`${styles.companyCustomerTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyCustomerTableCustomerNameWrapper}`}><div className={`${styles.companyCustomerTableCustomerName}`} >Maximus Tempor</div><div className={`${styles.companyCustomerTableCustomerEdit} ps-2`}><FaPen /></div></span></div>,
+                contactNumber: <><div className={`${styles.companyCustomerTableContactNumber}`}>408-545-4861</div></>,
+                companyName: <span className={`${styles.companyCustomerCompanyName}`}>Regur Technology Solutions</span>,
+                emailAddress: <span className={`${styles.companyCustomerTableEmailAddress}`}>test@gmail.com</span>,
+                receivables: <span className={`${styles.companyCustomerTableReceivables}`}>Rs. 42,000.00</span>,
             }
         ],
         []
