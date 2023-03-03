@@ -111,30 +111,32 @@ const ViewInvoiceTable = ({ ItemsData }) => {
 
     return (
         <div className="row">
-            <div className={`${styles.companyInvoiceViewTableWrapper} col-sm-12`}>
-                <table className={`${styles.companyInvoiceViewTable} table`} {...getTableProps()}>
-                    <thead>
-                        {headerGroups.map((headerGroup, i) => (
-                            <tr key={i} {...headerGroup.getHeaderGroupProps()}>
-                                {headerGroup.headers.map(column => (
-                                    <th key={i} scope="col" className="ps-3" {...column.getHeaderProps()}>{column.render("Header")}</th>
-                                ))}
-                            </tr>
-                        ))}
-                    </thead>
-                    <tbody {...getTableBodyProps()}>
-                        {page.map((row, i) => {
-                            prepareRow(row);
-                            return (
-                                <tr key={i} {...row.getRowProps()}>
-                                    {row.cells.map(cell => {
-                                        return <td key={i} {...cell.getCellProps()}>{cell.render("Cell")}</td>;
-                                    })}
+            <div className={`col-sm-12`}>
+                <div className={`${styles.companyInvoiceViewTableWrapper}`}>
+                    <table className={`${styles.companyInvoiceViewTable} table`} {...getTableProps()}>
+                        <thead>
+                            {headerGroups.map((headerGroup, i) => (
+                                <tr key={i} {...headerGroup.getHeaderGroupProps()}>
+                                    {headerGroup.headers.map(column => (
+                                        <th key={i} scope="col" className="ps-3" {...column.getHeaderProps()}>{column.render("Header")}</th>
+                                    ))}
                                 </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
+                            ))}
+                        </thead>
+                        <tbody {...getTableBodyProps()}>
+                            {page.map((row, i) => {
+                                prepareRow(row);
+                                return (
+                                    <tr key={i} {...row.getRowProps()}>
+                                        {row.cells.map(cell => {
+                                            return <td key={i} {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+                                        })}
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     );
