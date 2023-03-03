@@ -175,6 +175,7 @@ $screen-size-md: 950px;
     .loginBackground {
         background: linear-gradient(0deg, $background-primary-color, $background-primary-color), url('/images/registration_page.png') no-repeat;
         background-size: cover;
+        height: 100vh;
 
         @media (max-width: $screen-size-mm) {
             display: none;
