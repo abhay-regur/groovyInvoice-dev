@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import { useState } from 'react';
 import styles from '../styles/viewInvoice.module.scss';
 import ViewInvoiceTable from '../components/viewInvoiceTable.js';
 import FaPen from '../assets/icons/faPen.svg';
@@ -8,8 +9,12 @@ import FaShare from '../assets/icons/faShare.svg';
 import FaBell from '../assets/icons/faBell.svg';
 import FaPDF from '../assets/icons/faPDF.svg';
 import FaRupee from '../assets/icons/faRupee.svg';
-// <div className={`${styles.}`}></div>
-export default function viewInvoice({ navExpandedState }) {
+import FaDropDown from '../assets/icons/faDropDownGreen.svg';
+
+
+export default function ViewInvoice({ navExpandedState }) {
+
+    const [actionBarExpandedState, setactionBarExpandedState] = useState(false)
     return (<>
         <div className={styles.container}>
             <Head>
@@ -21,14 +26,14 @@ export default function viewInvoice({ navExpandedState }) {
                 <div className="container-fluid">
                     <div className={`${styles.comapnyInvoiceViewInvoiceHeadWrapper} row`}>
                         <div className={`${styles.comapnyInvoiceViewInvoiceMainHeading} col-9 col-md-10 col-lg-5`}>Maximus Tempor <span className={`${styles.comapnyInvoiceViewInvoiceSubHeading}`}>#2022/09-04</span></div>
-                        <div className={`${styles.companyInvoiceViewInvoiceActionBarWrapper} col-12 col-md-11`}>
+                        <div className={`${styles.companyInvoiceViewInvoiceActionBarWrapper} col-12 col-lg-11`}>
                             <nav className={`${styles.companyInvoiceViewInvoiceActionBar} navbar navbar-expand-lg`}>
                                 <div className="container-fluid">
                                     <span className={`${styles.companyInvoiceViewInvoiceActionBarAction} navbar-brand`}>Action</span>
-                                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                                        <span className="navbar-toggler-icon"></span>
+                                    <button className={`${actionBarExpandedState ? styles.rotate : ""} navbar-toggler`} type="button" onClick={() => { setactionBarExpandedState(prevCheck => !prevCheck) }}>
+                                        <FaDropDown />
                                     </button>
-                                    <div className={`${styles.companyInvoiceViewInvoiceActionBarCollapse} collapse navbar-collapse`} id="navbarNavDropdown">
+                                    <div className={`${styles.companyInvoiceViewInvoiceActionBarCollapse} ${actionBarExpandedState ? "" : styles.collapse} navbar-collapse`} id="navbarNavDropdown">
                                         <ul className="navbar-nav">
                                             <li className={`${styles.companyInvoiceViewInvoiceActionBarActionItem} nav-item`}>
                                                 <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText} nav-link`}> <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}><FaPen /></span> Edit</span>
@@ -75,25 +80,25 @@ export default function viewInvoice({ navExpandedState }) {
                         <div className="col-12">
                             <div className={`${styles.companyInvoiceViewInvoiceViewWrapper}`}>
                                 <div className="row">
-                                    <div className="col-6">
+                                    <div className="col-12 col-lg-6 order-1 order-lg-0">
                                         <div className={`${styles.companyInvoiceViewInvoiceComapnyName}`}>Verities Systems</div>
                                         <div className={`${styles.comapanyInvoiceViewInvoiceComapanyDescription}`}>Donec libero massa lacinia maximus tempor ante, phasellus auctor varius libero varius purus</div>
                                     </div>
-                                    <div className="col-6">
+                                    <div className="col-12 col-lg-6 order-0 order-lg-1">
                                         <div className={`${styles.comapnyInvoiceViewInvoiceHeading} d-flex justify-content-end`}>Tax Invoice</div>
                                         <div className={`${styles.comapnyInvoiceViewInvoiceInvoiceDate} d-flex justify-content-end`}>#2022/09-04</div>
                                     </div>
                                 </div>
                                 <hr />
                                 <div className="row">
-                                    <div className="col-6">
+                                    <div className="col-12 col-lg-6">
                                         <div className={`${styles.companyInvoiceViewInvoiceBillToHeading}`}>Bill To</div>
                                         <div className={`${styles.companyInvoiceViewInvoiceBillToAddressWrapper}`}>
                                             <div className={`${styles.companyInvoiceViewInvoiceBillToName}`}>Molestiequis ornare dignissim</div>
                                             <div className={`${styles.companyInvoiceViewInvoiceBillToAddress}`}>Tempor ante phasellus auctor varius libero varius purus</div>
                                         </div>
                                     </div>
-                                    <div className="col-6">
+                                    <div className="col-12 col-lg-6">
                                         <div className={`${styles.comapnyInvoiceViewInvoiceDetails} row`}>
                                             <span className={`${styles.comapnyInvoiceViewInvoiceDetailsHeading} col-6 text-align-start`}>Invoice#</span>
                                             <span className={`${styles.comapnyInvoiceViewInvoiceDetailsEntry} col-6 text-align-start`}>VS-22/02/2022/01</span>
@@ -114,7 +119,7 @@ export default function viewInvoice({ navExpandedState }) {
                                 </div>
                                 <ViewInvoiceTable />
                                 <div className="row">
-                                    <div className="col-6">
+                                    <div className="col-12 col-lg-6 order-1 order-lg-0">
                                         <div className={`${styles.companyInvoiceViewInvoiceTotalInWordsWrapper}`}>
                                             <div className={`${styles.companyInvoiceViewInvoiceTotalInWordsLabel}`}>Total In Words</div>
                                             <div className={`${styles.companyInvoiceViewInvoiceTotalInWords}`}>One Thousand Three Hundred Twenty Rupees</div>
@@ -127,7 +132,7 @@ export default function viewInvoice({ navExpandedState }) {
                                             <div className={`${styles.companyInvoiceViewInvoicePaymentMethod}`}>Bank</div>
                                         </div>
                                     </div>
-                                    <div className="col-6">
+                                    <div className="col-12 col-lg-6 order-0 order-lg-1">
                                         <div className={`${styles.companyInvoiceViewInvoiceTotalCard} card`}>
                                             <div className="d-flex justify-content-between">
                                                 <span>Sub Total</span>
