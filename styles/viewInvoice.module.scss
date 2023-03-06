@@ -45,10 +45,6 @@ $card-background: #F5FAFE;
 
             .companyInvoiceViewInvoiceActionBar {
                 margin-top: 49px;
-                max-width: 891px;
-                background: white;
-                border: 1px solid $action-bar-border-color;
-                border-radius: 10px;
                 padding: 0;
 
                 .companyInvoiceViewInvoiceActionBarAction {
@@ -58,30 +54,40 @@ $card-background: #F5FAFE;
                 .companyInvoiceViewInvoiceActionBarCollapse {
                     justify-content: center;
 
-                    .companyInvoiceViewInvoiceActionBarActionItem {
-                        border-right: 1px solid $action-bar-border-color;
-                        min-width: 109px;
+                    ul {
+                        background: white;
+                        border: 1px solid $action-bar-border-color;
+                        border-radius: 10px;
 
-                        &:last-of-type {
-                            border: none;
-                        }
+                        .companyInvoiceViewInvoiceActionBarActionItem {
+                            border-right: 1px solid $action-bar-border-color;
+                            min-width: 109px;
 
-                        .companyInvoiceViewInvoiceActionBarActionItemText {
-                            font-weight: 600;
-                            font-size: 16px;
-                            line-height: 24px;
-                            justify-content: center;
-                            color: $primary-color;
+                            &:last-of-type {
+                                border: none;
+                            }
 
-                            .companyInvoiceViewInvoiceActionBarActionItemIcon {
-                                margin-right: 7px;
+                            .companyInvoiceViewInvoiceActionBarActionItemText {
+                                text-align: center;
+                                font-weight: 600;
+                                font-size: 16px;
+                                line-height: 24px;
+                                justify-content: center;
+                                padding: 15px;
+                                color: $primary-color;
 
-                                svg {
-                                    height: 17px;
+                                .companyInvoiceViewInvoiceActionBarActionItemIcon {
+                                    margin-right: 7px;
+
+                                    svg {
+                                        height: 17px;
+                                    }
                                 }
                             }
                         }
+
                     }
+
                 }
 
             }
@@ -368,27 +374,31 @@ $card-background: #F5FAFE;
                     color: $primary-color;
                 }
 
-                .companyInvoiceViewInvoiceActionBarActionItem {
-                    border-right: 1px solid $action-bar-border-color;
-                    min-width: 109px;
+                .companyInvoiceViewInvoiceActionBarnavbarNav {
+                    margin: 0 -10px;
 
-                    &:last-of-type {
-                        border: none;
-                    }
+                    .companyInvoiceViewInvoiceActionBarActionItem {
+                        border-bottom: 1px solid $action-bar-border-color;
+                        min-width: 109px;
 
-                    .companyInvoiceViewInvoiceActionBarActionItemText {
-                        font-weight: 600;
-                        font-size: 16px;
-                        line-height: 24px;
-                        justify-content: center;
-                        color: $primary-color;
+                        &:last-of-type {
+                            border: none;
+                        }
 
-                        .companyInvoiceViewInvoiceActionBarActionItemIcon {
-                            // margin-right: 7px;
-                            padding: 5px;
+                        .companyInvoiceViewInvoiceActionBarActionItemText {
+                            font-weight: 600;
+                            font-size: 16px;
+                            line-height: 24px;
+                            justify-content: center;
+                            color: $primary-color;
 
-                            svg {
-                                height: 17px;
+                            .companyInvoiceViewInvoiceActionBarActionItemIcon {
+                                // margin-right: 7px;
+                                padding: 5px;
+
+                                svg {
+                                    height: 17px;
+                                }
                             }
                         }
                     }
@@ -676,30 +686,35 @@ $card-background: #F5FAFE;
                     color: $primary-color;
                 }
 
-                .companyInvoiceViewInvoiceActionBarActionItem {
-                    border-right: 1px solid $action-bar-border-color;
-                    min-width: 109px;
+                .companyInvoiceViewInvoiceActionBarnavbarNav {
+                    margin: 0 -10px;
 
-                    &:last-of-type {
-                        border: none;
-                    }
+                    .companyInvoiceViewInvoiceActionBarActionItem {
+                        border-right: 1px solid $action-bar-border-color;
+                        min-width: 109px;
 
-                    .companyInvoiceViewInvoiceActionBarActionItemText {
-                        font-weight: 600;
-                        font-size: 16px;
-                        line-height: 24px;
-                        justify-content: center;
-                        color: $primary-color;
+                        &:last-of-type {
+                            border: none;
+                        }
 
-                        .companyInvoiceViewInvoiceActionBarActionItemIcon {
-                            margin-right: 7px;
+                        .companyInvoiceViewInvoiceActionBarActionItemText {
+                            font-weight: 600;
+                            font-size: 16px;
+                            line-height: 24px;
+                            justify-content: center;
+                            color: $primary-color;
 
-                            svg {
-                                height: 17px;
+                            .companyInvoiceViewInvoiceActionBarActionItemIcon {
+                                margin-right: 7px;
+
+                                svg {
+                                    height: 17px;
+                                }
                             }
                         }
                     }
                 }
+
             }
 
             .companyInvoiceViewInvoiceViewWrapper {

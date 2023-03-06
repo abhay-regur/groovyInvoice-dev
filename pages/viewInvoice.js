@@ -25,8 +25,8 @@ export default function ViewInvoice({ navExpandedState }) {
             <main className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
                 <div className="container-fluid">
                     <div className={`${styles.comapnyInvoiceViewInvoiceHeadWrapper} row`}>
-                        <div className={`${styles.comapnyInvoiceViewInvoiceMainHeading} col-9 col-md-10 col-lg-5`}>Maximus Tempor <span className={`${styles.comapnyInvoiceViewInvoiceSubHeading}`}>#2022/09-04</span></div>
-                        <div className={`${styles.companyInvoiceViewInvoiceActionBarWrapper} col-12 col-lg-11`}>
+                        <div className={`${styles.comapnyInvoiceViewInvoiceMainHeading} col-9 col-md-10 col-lg-7`}>Maximus Tempor <span className={`${styles.comapnyInvoiceViewInvoiceSubHeading}`}>#2022/09-04</span></div>
+                        <div className={`${styles.companyInvoiceViewInvoiceActionBarWrapper} col-12 col-lg-7`}>
                             <nav className={`${styles.companyInvoiceViewInvoiceActionBar} navbar navbar-expand-lg`}>
                                 <div className="container-fluid">
                                     <span className={`${styles.companyInvoiceViewInvoiceActionBarAction} navbar-brand`}>Action</span>
@@ -34,7 +34,7 @@ export default function ViewInvoice({ navExpandedState }) {
                                         <FaDropDown />
                                     </button>
                                     <div className={`${styles.companyInvoiceViewInvoiceActionBarCollapse} ${actionBarExpandedState ? "" : styles.collapse} navbar-collapse`} id="navbarNavDropdown">
-                                        <ul className="navbar-nav">
+                                        <ul className={`${styles.companyInvoiceViewInvoiceActionBarnavbarNav} navbar-nav`}>
                                             <li className={`${styles.companyInvoiceViewInvoiceActionBarActionItem} nav-item`}>
                                                 <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText} nav-link`}> <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}><FaPen /></span> Edit</span>
                                             </li>
