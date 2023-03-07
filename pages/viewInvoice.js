@@ -36,12 +36,18 @@ export default function ViewInvoice({ navExpandedState }) {
                                     <div className={`${styles.companyInvoiceViewInvoiceActionBarCollapse} ${actionBarExpandedState ? "" : styles.collapse} navbar-collapse`} id="navbarNavDropdown">
                                         <ul className={`${styles.companyInvoiceViewInvoiceActionBarnavbarNav} navbar-nav`}>
                                             <li className={`${styles.companyInvoiceViewInvoiceActionBarActionItem} nav-item`}>
-                                                <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText} nav-link`}> <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}><FaPen /></span> Edit</span>
+                                                <div className="nav-link d-flex justify-content-lg-center">
+                                                    <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}><FaPen /></span>
+                                                    <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText}`}> Edit</span>
+                                                </div>
                                             </li>
                                             <li className={`${styles.companyInvoiceViewInvoiceActionBarActionItem} nav-item dropdown`}>
-                                                <a className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText} nav-link dropdown-toggle`} href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}><FaMail /></span>  Mail / SMS
-                                                </a>
+                                                <div className="nav-link d-flex">
+                                                    <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}><FaMail /></span>
+                                                    <a className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText}`} role="button">
+                                                        Mail / SMS
+                                                    </a>
+                                                </div>
                                                 <ul className="dropdown-menu">
                                                     <li><span className="dropdown-item">Action</span></li>
                                                     <li><span className="dropdown-item">Another action</span></li>
@@ -49,28 +55,40 @@ export default function ViewInvoice({ navExpandedState }) {
                                                 </ul>
                                             </li>
                                             <li className={`${styles.companyInvoiceViewInvoiceActionBarActionItem} nav-item`}>
-                                                <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText} nav-link`}><span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}><FaShare /></span>Share</span>
+                                                <div className="nav-link d-flex">
+                                                    <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}><FaShare /></span>
+                                                    <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText}`}>Share</span>
+                                                </div>
                                             </li>
                                             <li className={`${styles.companyInvoiceViewInvoiceActionBarActionItem} nav-item dropdown`}>
-                                                <a className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText} nav-link dropdown-toggle`} href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}><FaBell /></span>  Reminders
-                                                </a>
+                                                <div className="nav-link d-flex">
+                                                    <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}><FaBell /></span>
+                                                    <a className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText}`}>
+                                                        Reminders
+                                                    </a>
+                                                </div>
                                                 <ul className="dropdown-menu">
                                                     <li><span className="dropdown-item">Action</span></li>
                                                     <li><span className="dropdown-item">Another action</span></li>
                                                 </ul>
                                             </li>
                                             <li className={`${styles.companyInvoiceViewInvoiceActionBarActionItem} nav-item dropdown`}>
-                                                <a className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText} nav-link dropdown-toggle`} href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}><FaPDF /></span>  PDF / Print
-                                                </a>
+                                                <div className="nav-link d-flex">
+                                                    <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}><FaPDF /></span>
+                                                    <a className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText}`}>
+                                                        PDF / Print
+                                                    </a>
+                                                </div>
                                                 <ul className="dropdown-menu">
                                                     <li><span className="dropdown-item">Action</span></li>
                                                     <li><span className="dropdown-item">Another action</span></li>
                                                 </ul>
                                             </li>
                                             <li className={`${styles.companyInvoiceViewInvoiceActionBarActionItem} nav-item`}>
-                                                <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText} nav-link`}><span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}><FaRupee /></span>Record Payment</span>
+                                                <div className="nav-link d-flex">
+                                                    <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}><FaRupee /></span>
+                                                    <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText}`}>Record Payment</span>
+                                                </div>
                                             </li>
                                         </ul>
                                     </div>

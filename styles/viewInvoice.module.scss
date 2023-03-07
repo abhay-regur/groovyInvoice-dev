@@ -67,6 +67,17 @@ $card-background: #F5FAFE;
                                 border: none;
                             }
 
+                            .companyInvoiceViewInvoiceActionBarActionItemIcon {
+                                margin-right: 7px;
+                                justify-content: center;
+                                display: flex;
+                                align-items: center;
+
+                                svg {
+                                    height: 17px;
+                                }
+                            }
+
                             .companyInvoiceViewInvoiceActionBarActionItemText {
                                 text-align: center;
                                 font-weight: 600;
@@ -75,14 +86,6 @@ $card-background: #F5FAFE;
                                 justify-content: center;
                                 padding: 15px;
                                 color: $primary-color;
-
-                                .companyInvoiceViewInvoiceActionBarActionItemIcon {
-                                    margin-right: 7px;
-
-                                    svg {
-                                        height: 17px;
-                                    }
-                                }
                             }
                         }
 
@@ -379,10 +382,25 @@ $card-background: #F5FAFE;
 
                     .companyInvoiceViewInvoiceActionBarActionItem {
                         border-bottom: 1px solid $action-bar-border-color;
+                        padding-left: 10px;
+                        padding-right: 10px;
                         min-width: 109px;
 
                         &:last-of-type {
                             border: none;
+                        }
+
+                        .companyInvoiceViewInvoiceActionBarActionItemIcon {
+                            height: 30px;
+                            width: 30px;
+                            padding: 5px;
+                            justify-content: center;
+                            display: flex;
+                            align-items: center;
+
+                            svg {
+                                height: 17px;
+                            }
                         }
 
                         .companyInvoiceViewInvoiceActionBarActionItemText {
@@ -391,15 +409,6 @@ $card-background: #F5FAFE;
                             line-height: 24px;
                             justify-content: center;
                             color: $primary-color;
-
-                            .companyInvoiceViewInvoiceActionBarActionItemIcon {
-                                // margin-right: 7px;
-                                padding: 5px;
-
-                                svg {
-                                    height: 17px;
-                                }
-                            }
                         }
                     }
                 }
@@ -690,11 +699,26 @@ $card-background: #F5FAFE;
                     margin: 0 -10px;
 
                     .companyInvoiceViewInvoiceActionBarActionItem {
-                        border-right: 1px solid $action-bar-border-color;
+                        border-bottom: 1px solid $action-bar-border-color;
+                        padding-left: 10px;
+                        padding-right: 10px;
                         min-width: 109px;
 
                         &:last-of-type {
                             border: none;
+                        }
+
+                        .companyInvoiceViewInvoiceActionBarActionItemIcon {
+                            margin-right: 7px;
+                            height: 30px;
+                            width: 30px;
+                            justify-content: center;
+                            display: flex;
+                            align-items: center;
+
+                            svg {
+                                height: 17px;
+                            }
                         }
 
                         .companyInvoiceViewInvoiceActionBarActionItemText {
@@ -703,14 +727,6 @@ $card-background: #F5FAFE;
                             line-height: 24px;
                             justify-content: center;
                             color: $primary-color;
-
-                            .companyInvoiceViewInvoiceActionBarActionItemIcon {
-                                margin-right: 7px;
-
-                                svg {
-                                    height: 17px;
-                                }
-                            }
                         }
                     }
                 }
