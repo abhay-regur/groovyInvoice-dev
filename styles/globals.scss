@@ -8,6 +8,7 @@ $secondary-color: #8790B0;
 $tertiary-color: #43CB80;
 $tertiary-color-hover: #4EDD8E;
 $grey: #8790B0;
+$red-color: #F46E6E;
 $primary-border-color: #E3EBF2;
 
 * {
@@ -67,6 +68,10 @@ body {
     path {
       color: $tertiary-color;
     }
+  }
+
+  .red {
+    color: $red-color !important;
   }
 }
 

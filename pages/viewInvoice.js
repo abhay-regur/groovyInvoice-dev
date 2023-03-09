@@ -137,7 +137,7 @@ export default function ViewInvoice({ navExpandedState }) {
                                 </div>
                                 <ViewInvoiceTable />
                                 <div className="row">
-                                    <div className="col-12 col-lg-6 order-1 order-lg-0">
+                                    <div className="col-12 col-lg-5 order-1 order-lg-0">
                                         <div className={`${styles.companyInvoiceViewInvoiceTotalInWordsWrapper}`}>
                                             <div className={`${styles.companyInvoiceViewInvoiceTotalInWordsLabel}`}>Total In Words</div>
                                             <div className={`${styles.companyInvoiceViewInvoiceTotalInWords}`}>One Thousand Three Hundred Twenty Rupees</div>
@@ -150,7 +150,7 @@ export default function ViewInvoice({ navExpandedState }) {
                                             <div className={`${styles.companyInvoiceViewInvoicePaymentMethod}`}>Bank</div>
                                         </div>
                                     </div>
-                                    <div className="col-12 col-lg-6 order-0 order-lg-1">
+                                    <div className="col-12 col-lg-7 order-0 order-lg-1">
                                         <div className={`${styles.companyInvoiceViewInvoiceTotalCard} card`}>
                                             <div className="d-flex justify-content-between">
                                                 <span>Sub Total</span>
@@ -162,7 +162,7 @@ export default function ViewInvoice({ navExpandedState }) {
                                             </div>
                                             <div className="d-flex justify-content-between">
                                                 <span>Payment Made</span>
-                                                <span>-Rs. 1320.00</span>
+                                                <span class="red">-Rs. 1320.00</span>
                                             </div>
                                             <hr />
                                             <div className="d-flex justify-content-between">
