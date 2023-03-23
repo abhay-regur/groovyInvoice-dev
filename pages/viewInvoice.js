@@ -34,7 +34,7 @@ export default function ViewInvoice({ navExpandedState }) {
                                         <FaDropDown />
                                     </button>
                                     <div className={`${styles.companyInvoiceViewInvoiceActionBarCollapse} ${actionBarExpandedState ? "" : styles.collapse} navbar-collapse justify-content-lg-start`} id="navbarNavDropdown">
-                                        <ul className={`${styles.companyInvoiceViewInvoiceActionBarnavbarNav} navbar-nav`}>
+                                        <ul className={`${styles.companyInvoiceViewInvoiceActionBarnavbarNav} navbar-nav nav-fill`}>
                                             <li className={`${styles.companyInvoiceViewInvoiceActionBarActionItem} nav-item`}>
                                                 <div className="nav-link d-flex justify-content-lg-center">
                                                     <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}><FaPen /></span>
