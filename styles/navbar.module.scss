@@ -88,6 +88,27 @@ $navItem-hightlight: #F5FAFE;
     }
 }
 
+@keyframes openSideBar_small-screen {
+    from {
+        height: 51px;
+    }
+
+    to {
+        height: 100%;
+    }
+}
+
+@keyframes closeSlider_large-screen {
+    from {
+        height: 100%;
+    }
+
+    to {
+        height: 51px;
+    }
+}
+
+
 @media screen and (min-width: 426px) {
     .header {
         nav {
@@ -105,9 +126,9 @@ $navItem-hightlight: #F5FAFE;
             flex-direction: column;
             // -webkit-transition: width 0.31s;
             // transition: width 0.31s;
-            animation-name: closeSlider_large;
-            animation-duration: 1s;
-            animation-delay: 1s;
+            animation-name: closeSlider_large-screen;
+            animation-duration: 0.2s;
+            animation-delay: 0s;
 
             a {
                 text-decoration: none;
@@ -411,9 +432,12 @@ $navItem-hightlight: #F5FAFE;
             top: 0;
             left: 0;
             background-color: #ffffff;
-            -webkit-transition: width 0.31s;
-            transition: height 0.31s;
+            // -webkit-transition: width 0.31s;
+            // transition: height 0.31s;
             align-content: baseline;
+            animation-name: closeSlider_large-screen;
+            animation-duration: 0.5s;
+            animation-delay: 0s;
 
             .navHeadingWrapper {
                 flex-direction: row;
@@ -581,7 +605,10 @@ $navItem-hightlight: #F5FAFE;
 
     .expanded {
         height: 100% !important;
-        transition: all 0.3s;
+        // transition: all 0.3s;
+        animation-name: openSideBar_small-screen;
+        animation-duration: 0.5s;
+        animation-delay: 0s;
 
         .wrapperForMobileScreen {
             height: 519px !important;
