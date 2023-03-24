@@ -48,6 +48,67 @@ $navItem-hightlight: #F5FAFE;
     }
 }
 
+@keyframes openSideBar_large-screen {
+    from {
+        width: $nonexpanded-width;
+    }
+
+    to {
+        width: $expanded-width;
+    }
+}
+
+@keyframes closeSlider_large-screen {
+    from {
+        width: $expanded-width;
+    }
+
+    to {
+        width: $nonexpanded-width;
+    }
+}
+
+@keyframes display_element {
+    from {
+        display: none;
+    }
+
+    to {
+        display: flex;
+    }
+}
+
+@keyframes hide_element {
+    from {
+        display: flex;
+    }
+
+    to {
+        display: none;
+    }
+}
+
+@keyframes openSideBar_small-screen {
+    from {
+        height: 51px;
+    }
+
+    to {
+        height: 100%;
+    }
+}
+
+@keyframes closeSlider_large-screen {
+    from {
+        height: 100%;
+    }
+
+    to {
+        height: 51px;
+    }
+}
+
+
 @media screen and (min-width: 426px) {
     .header {
         nav {
@@ -63,8 +124,11 @@ $navItem-hightlight: #F5FAFE;
             background-color: #ffffff;
             display: flex;
             flex-direction: column;
-            -webkit-transition: width 0.31s;
-            transition: width 0.31s;
+            // -webkit-transition: width 0.31s;
+            // transition: width 0.31s;
+            animation-name: closeSlider_large-screen;
+            animation-duration: 0.2s;
+            animation-delay: 0s;
 
             a {
                 text-decoration: none;
@@ -122,11 +186,12 @@ $navItem-hightlight: #F5FAFE;
             }
 
             .profileNameWrapper {
+                animation-name: hide_element;
                 display: none;
                 font-size: $font-size-text + 1;
                 margin-top: 3px;
-                -webkit-transition: all 0.2s;
-                transition: all 0.2s;
+                // -webkit-transition: all 0.2s;
+                // transition: all 0.2s;
             }
 
             .active {
@@ -137,6 +202,7 @@ $navItem-hightlight: #F5FAFE;
             }
 
             .profileActionWrapper {
+                animation-name: hide_element;
                 display: none;
                 -webkit-transition: all 0.2s;
                 transition: all 0.2s;
@@ -263,6 +329,9 @@ $navItem-hightlight: #F5FAFE;
 
         .expanded {
             width: 100% !important;
+            animation-name: openSideBar_large-screen;
+            animation-duration: 1s;
+            animation-delay: 1s;
 
             .navHeadingWrapper {
                 .mainHeading {
@@ -295,23 +364,29 @@ $navItem-hightlight: #F5FAFE;
                 transition: all 0.2s;
 
                 .profileNameWrapper {
+                    animation-name: display_element;
                     display: flex !important;
-                    -webkit-transition: all 0.2s;
-                    transition: all 0.2s;
+                    // -webkit-transition: all 0.2s;
+                    // transition: all 0.2s;
+                    animation-duration: 1s;
+                    animation-delay: 1s;
                 }
 
                 .profileActionWrapper {
+                    animation-name: display_element;
                     display: flex !important;
-                    -webkit-transition: all 0.2s;
-                    transition: all 0.2s;
+                    // -webkit-transition: all 0.2s;
+                    // transition: all 0.2s;
                     margin-top: 16px;
+                    animation-duration: 1s;
+                    animation-delay: 1s;
                 }
 
                 .nav_menu_arrow {
                     top: 56px !important;
                     right: -6px !important;
                     -webkit-transition: all 0.2s;
-                    transition: all 0.2s;
+                    transition: all 0.5s;
                 }
             }
 
@@ -357,9 +432,12 @@ $navItem-hightlight: #F5FAFE;
             top: 0;
             left: 0;
             background-color: #ffffff;
-            -webkit-transition: width 0.31s;
-            transition: height 0.31s;
+            // -webkit-transition: width 0.31s;
+            // transition: height 0.31s;
             align-content: baseline;
+            animation-name: closeSlider_large-screen;
+            animation-duration: 0.5s;
+            animation-delay: 0s;
 
             .navHeadingWrapper {
                 flex-direction: row;
@@ -527,7 +605,10 @@ $navItem-hightlight: #F5FAFE;
 
     .expanded {
         height: 100% !important;
-        transition: all 0.3s;
+        // transition: all 0.3s;
+        animation-name: openSideBar_small-screen;
+        animation-duration: 0.5s;
+        animation-delay: 0s;
 
         .wrapperForMobileScreen {
             height: 519px !important;
