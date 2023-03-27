@@ -425,18 +425,15 @@ $navItem-hightlight: #F5FAFE;
     .header {
         nav {
             height: 51px;
-            // max-width: 100%;
             width: 100vw;
             position: fixed;
             z-index: 1;
             top: 0;
             left: 0;
             background-color: #ffffff;
-            // -webkit-transition: width 0.31s;
-            // transition: height 0.31s;
             align-content: baseline;
             animation-name: closeSlider_large-screen;
-            animation-duration: 0.5s;
+            animation-duration: 0.9s;
             animation-delay: 0s;
 
             .navHeadingWrapper {
@@ -605,15 +602,12 @@ $navItem-hightlight: #F5FAFE;
 
     .expanded {
         height: 100% !important;
-        // transition: all 0.3s;
         animation-name: openSideBar_small-screen;
-        animation-duration: 0.5s;
+        animation-duration: 0.9s;
         animation-delay: 0s;
 
         .wrapperForMobileScreen {
             height: 519px !important;
-            -webkit-transition: all 0.2s, opacity 0.5s linear;
-            transition: all 0.2s, opacity 0.5s linear;
 
             .profileDetailWrapper {
                 display: block !important;
