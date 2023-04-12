@@ -6,9 +6,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faKey, faEye, faEyeSlash, faMobileRetro, faBriefcase } from '@fortawesome/free-solid-svg-icons';
 export default function Registration() {
     const [visbilty, setvisibility] = React.useState(false);
+    const [email, setEmail] = React.useState("");
+    const [comapnyName, setComapnyName] = React.useState("");
+    const [firstName, setFirstName] = React.useState("");
+    const [lastName, setName] = React.useState("");
+    const [cellNumber, setCellNumber] = React.useState("");
+    const [password, setPassword] = React.useState("");
+    const [confirmPassword, setConfirmPassword] = React.useState("");
+
     const togglePasswordVisiblity = () => {
         setvisibility(visbilty ? false : true);
     };
+
+    const handleSubmit = function (event) {
+        event.preventDefault();
+
+    }
+
     return (
         <div className={`${styles.loginContainer} container-fluid`}>
             <Head>
@@ -29,26 +43,26 @@ export default function Registration() {
                         <div className="col-sm-12 justify-content-md-center">
                             <div className={`${styles.loginCard} card`}>
                                 <div className="card-body p-0">
-                                    <form>
+                                    <form onSubmit={handleSubmit}>
                                         <div className="mb-3">
                                             <label htmlFor="registrationCompanyName" className="form-label">Company Name</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <i><FontAwesomeIcon icon={faBriefcase} /></i>
-                                                <input type="text" className="form-control" placeholder='Company Name' id="registrationCompanyName" aria-describedby="companyNameHelp" />
+                                                <input type="text" className="form-control" placeholder='Company Name' id="registrationCompanyName" value={comapnyName} onChange={(e) => setComapnyName(e.target.value)} aria-describedby="companyNameHelp" />
                                             </div>
                                         </div>
                                         <div className="mb-3">
                                             <label htmlFor="registrationEmail" className="form-label">Email address</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <i><FontAwesomeIcon icon={faEnvelope} /></i>
-                                                <input type="email" className="form-control" placeholder="Email address" id="registrationEmail" aria-describedby="emailHelp" />
+                                                <input type="email" className="form-control" placeholder="Email address" id="registrationEmail" value={email} onChange={(e) => setEmail(e.target.value)} aria-describedby="emailHelp" />
                                             </div>
                                         </div>
                                         <div className="mb-3">
                                             <label htmlFor="registrationContactNumber" className="form-label">Contact Number</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <i><FontAwesomeIcon icon={faMobileRetro} /></i>
-                                                <input type="email" className="form-control" placeholder="Contact Number" id="registrationContactNumber" aria-describedby="contactNumberHelp" />
+                                                <input type="email" className="form-control" placeholder="Contact Number" id="registrationContactNumber" value={cellNumber} onChange={(e) => setCellNumber(e.target.value)} aria-describedby="contactNumberHelp" />
                                             </div>
                                         </div>
                                         <div className="mb-3">
@@ -57,7 +71,7 @@ export default function Registration() {
                                                 <i>
                                                     <FontAwesomeIcon icon={faKey} />
                                                 </i>
-                                                <input type={visbilty ? "text" : "password"} className="form-control" placeholder="Password" id="loginPassword" />
+                                                <input type={visbilty ? "text" : "password"} className="form-control" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} id="loginPassword" />
                                                 <i className={`${styles.toggleVisibilityWrapper}`} onClick={togglePasswordVisiblity}>
                                                     <FontAwesomeIcon icon={visbilty ? faEyeSlash : faEye} />
                                                 </i>
@@ -70,7 +84,7 @@ export default function Registration() {
                                                 <i>
                                                     <FontAwesomeIcon icon={faKey} />
                                                 </i>
-                                                <input type={visbilty ? "text" : "password"} className="form-control" placeholder='Password' id="loginConfirmPassword" />
+                                                <input type={visbilty ? "text" : "password"} className="form-control" placeholder='Password' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} id="loginConfirmPassword" />
                                                 <i className={`${styles.toggleVisibilityWrapper}`} onClick={togglePasswordVisiblity}>
                                                     <FontAwesomeIcon icon={visbilty ? faEyeSlash : faEye} />
                                                 </i>
