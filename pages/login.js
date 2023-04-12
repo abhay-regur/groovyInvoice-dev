@@ -6,19 +6,76 @@ import { faEnvelope, faKey, faEye, faEyeSlash } from '@fortawesome/free-solid-sv
 import FaGoogle from '../assets/icons/faGoogle.svg';
 import FaFacebook from '../assets/icons/faFacebook.svg';
 import styles from '../styles/login.module.scss';
-import { useRouter } from 'next/router'
+import ModalForgotPassword from '../components/modalForgotPassword.js'
+import Modal from 'react-modal';
+import { useRouter } from 'next/router';
+
+Modal.setAppElement('#__next');
+
 export default function Login() {
     const router = useRouter();
     const [visbilty, setvisibility] = useState(false);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+
+    //temp
+    const [comments, setComments] = useState([]);
+    const [comment, setComment] = useState('');
+
+    const fetchComments = async () => {
+        const response = await fetch('api/comments');
+        const data = await response.json()
+        setComments(data);
+    }
+
+    const submitComment = async () => {
+
+        const response = await fetch('api/comments', {
+            method: 'POST',
+            body: JSON.stringify({ comment: comment }),
+            headers: {
+                'Content-Type': 'application/JSON'
+            }
+        });
+
+        const data = await response.json();
+
+        console.log(data);
+
+    }
+
+    const deleteComment = async commentId => {
+        const response = await fetch(`api/comments/${commentId}`, {
+            method: "DELETE"
+        });
+        const data = await response.json()
+        console.log(data);
+        fetchComments();
+    }
+
+    //temp end
     const togglePasswordVisiblity = () => {
         setvisibility(visbilty ? false : true);
     };
+
+    const [modalIsOpen, setIsOpen] = useState(false);
+
+    function openModal() {
+        setIsOpen(true);
+    }
+
+    function afterOpenModal() {
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
 
     const checkValidation = function (event) {
         event.preventDefault();
         document.location.pathname = '/';
     }
-
     return (
         <div className={`${styles.loginContainer} container-fluid`}>
             <Head>
@@ -42,7 +99,7 @@ export default function Login() {
                                             <label htmlFor="loginEmail" className="form-label">Email address</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <i><FontAwesomeIcon icon={faEnvelope} /></i>
-                                                <input type="email" className="form-control" placeholder='Email' id="loginEmail" aria-describedby="emailHelp" />
+                                                <input type="email" className="form-control" placeholder='Email' id="loginEmail" value={email} onChange={(e) => setEmail(e.target.value)} aria-describedby="emailHelp" />
                                             </div>
                                         </div>
                                         <div className="mb-3">
@@ -51,7 +108,7 @@ export default function Login() {
                                                 <i>
                                                     <FontAwesomeIcon icon={faKey} />
                                                 </i>
-                                                <input type={visbilty ? "text" : "password"} placeholder="Password" className="form-control" id="loginPassword" />
+                                                <input type={visbilty ? "text" : "password"} placeholder="Password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} id="loginPassword" />
                                                 <i className={`${styles.toggleVisibilityWrapper}`} onClick={togglePasswordVisiblity}>
                                                     <FontAwesomeIcon icon={visbilty ? faEyeSlash : faEye} />
                                                 </i>
@@ -66,7 +123,7 @@ export default function Login() {
                                                 </div>
                                             </div>
                                             <div className="col-6 justify-content-md-end text-end">
-                                                <Link href="/"><a>Forgot Password</a></Link>
+                                                <span className={`${styles.companyInvoiceLoginPageForgotPassword}`} onClick={openModal}>Forgot Password?</span>
                                             </div>
                                         </div>
                                         <div className="d-grid gap-2">
@@ -91,6 +148,59 @@ export default function Login() {
                 <div className={`${styles.loginBackground} col-md-6 .d-none .d-lg-block .d-xl-none`}>
                 </div>
             </div>
+
+            <Modal
+                className={styles.passwordResetModel}
+                isOpen={modalIsOpen}
+                onAfterOpen={afterOpenModal}
+                onRequestClose={closeModal}
+                style={customStyles}
+                contentLabel="Forgot Password Modal"
+            >
+                <ModalForgotPassword closeModal={closeModal} faEnvelope={faEnvelope} comment={comment} setComment={setComment} submitComment={submitComment} />
+
+                {/* <div className={`${styles.mainModelWrapper}`}>
+                    <div className="d-flex justify-content-end">
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" onClick={closeModal}></button>
+                    </div>
+                    <h2 ref={(_mainModelHeading) => (mainModelHeading = _mainModelHeading)}>Forgot Password</h2>
+                    <div className="mb-3">
+                        <label ref={(_forgottonEmailLabel) => (forgottonEmailLabel = _forgottonEmailLabel)} htmlFor="loginEmail" className="form-label">Email address</label>
+                        <div className={`input-group position-relative ${styles.innerInputIconWrapper}`}>
+                            <i ref={(_iconTag) => (iconTag = _iconTag)} className={`${styles.iconTag}`}><FontAwesomeIcon icon={faEnvelope} /></i>
+                            <input ref={(_emailInput) => (emailInput = _emailInput)} type="email" className="form-control" placeholder='Email' value={comment} onChange={(e) => setComment(e.target.value)} aria-describedby="emailHelp" />
+                            <button className="btn btn-primary" type="button" onClick={submitComment}>Submit</button>
+                        </div>
+                    </div>
+                    <div>
+                        <div className="input-group mb-3">
+                            <input type="text" className="form-control" id="forgotPasswordEmail" placeholder="Email" value={comment} onChange={(e) => setComment(e.target.value)} aria-label="Email" />
+                        </div>
+                        <button className="btn btn-outline-secondary" onClick={fetchComments}>Fetch Comment</button>
+                        {comments.map((comment) => {
+                            return (
+                                <div key={comment.id}>
+                                    {comment.id} {comment.name} {comment.email}
+                                    <button className="btn btn-outline-secondary" onClick={() => { deleteComment(comment.id) }}>delete</button>
+                                </div>
+                            )
+                        })}
+                    </div>
+                </div> */}
+            </Modal>
         </div>
     );
 }
+
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        borderRadius: '10px',
+        border: '1px solid #E3EBF2',
+    },
+};

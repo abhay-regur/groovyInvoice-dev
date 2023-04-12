@@ -163,6 +163,14 @@ $screen-size-md: 950px;
             margin-bottom: 36px;
         }
 
+        .companyInvoiceLoginPageForgotPassword {
+            color: $secondary-color;
+            font-weight: 400;
+            font-size: 14px;
+            text-decoration-line: underline;
+            cursor: pointer;
+        }
+
     }
 
     a {
@@ -265,5 +273,83 @@ $screen-size-md: 950px;
     .registrationLinkWrapper {
         margin-top: 28px;
     }
+}
 
+.mainModelWrapper {
+    h2 {
+        color: $tertiary-color;
+        margin-bottom: 20px;
+        margin-top: -20px;
+    }
+
+    label {
+        color: $secondary-color;
+    }
+
+    h2 {
+        height: 27px;
+        font-style: normal;
+        font-weight: 600;
+        font-size: $font-size-heading - 10;
+        line-height: 40px;
+
+        @media (max-width: $screen-size-md) {
+            font-size: $font-size-heading - 14;
+        }
+
+        @media (max-width: $screen-size-sm) {
+            font-size: $font-size-heading - 16;
+        }
+
+        @media (max-width: $screen-size-xm) {
+            font-size: $font-size-heading -1 9;
+        }
+    }
+
+    .innerInputIconWrapper {
+        position: relative;
+
+        i {
+            position: absolute;
+            padding: 13px 16px;
+            pointer-events: none;
+            font-style: normal;
+            font-weight: 900;
+            font-size: $font-size-text + 1;
+            line-height: 18px;
+            letter-spacing: 0.02em;
+            color: $tertiary-color;
+            z-index: 99;
+
+            svg {
+                width: 16px;
+                height: 18px;
+            }
+        }
+
+        input {
+            height: 44px;
+            color: $primary-color;
+            font-weight: 600;
+            font-size: $font-size-text;
+            line-height: 18px;
+            padding-left: 46px;
+            border-radius: 10px;
+            border: 1px solid $border-color;
+
+            &::placeholder {
+                /* Chrome, Firefox, Opera, Safari 10.1+ */
+                color: $border-color;
+                opacity: 1;
+                /* Firefox */
+            }
+        }
+
+        .toggleVisibilityWrapper {
+            pointer-events: all;
+            color: $secondary-color;
+            top: 0;
+            right: 0;
+        }
+    }
 }
