@@ -40,7 +40,6 @@ export default function Login() {
         });
 
         const data = await response.json();
-
         console.log(data);
 
     }
@@ -72,9 +71,26 @@ export default function Login() {
         setIsOpen(false);
     }
 
-    const checkValidation = function (event) {
+    const sendData = async (data) => {
+        const response = await fetch('', {
+            method: '',
+            headers: {
+                Authorization: `Bearer Regur`
+            },
+            body: data,
+        });
+    }
+
+    const validateLoginInput = function (event) {
         event.preventDefault();
-        document.location.pathname = '/';
+        let data = {
+            "username": email,
+            "password": password
+        }
+        console.log(data);
+        sendData(data);
+
+        // document.location.pathname = '/';
     }
     return (
         <div className={`${styles.loginContainer} container-fluid`}>
@@ -94,7 +110,7 @@ export default function Login() {
                         <div className="col-sm-12 justify-content-md-center">
                             <div className={`${styles.loginCard} card`}>
                                 <div className="card-body p-0">
-                                    <form>
+                                    <form onSubmit={validateLoginInput}>
                                         <div className="mb-3">
                                             <label htmlFor="loginEmail" className="form-label">Email address</label>
                                             <div className={styles.innerInputIconWrapper}>
@@ -127,7 +143,7 @@ export default function Login() {
                                             </div>
                                         </div>
                                         <div className="d-grid gap-2">
-                                            <button onClick={(e) => checkValidation(e)} className="btn btn-primary">Sign In</button>
+                                            <button type="submit" className="btn btn-primary">Sign In</button>
                                         </div>
                                     </form>
                                     <hr />

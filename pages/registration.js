@@ -20,7 +20,6 @@ export default function Registration() {
 
     const handleSubmit = function (event) {
         event.preventDefault();
-
     }
 
     return (
