@@ -13,47 +13,11 @@ import { useRouter } from 'next/router';
 Modal.setAppElement('#__next');
 
 export default function Login() {
-    const router = useRouter();
+    const URL = process.env.NEXT_PUBLIC_HOST;
     const [visbilty, setvisibility] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-
-    //temp
-    const [comments, setComments] = useState([]);
-    const [comment, setComment] = useState('');
-
-    const fetchComments = async () => {
-        const response = await fetch('api/comments');
-        const data = await response.json()
-        setComments(data);
-    }
-
-    const submitComment = async () => {
-
-        const response = await fetch('api/comments', {
-            method: 'POST',
-            body: JSON.stringify({ comment: comment }),
-            headers: {
-                'Content-Type': 'application/JSON'
-            }
-        });
-
-        const data = await response.json();
-        console.log(data);
-
-    }
-
-    const deleteComment = async commentId => {
-        const response = await fetch(`api/comments/${commentId}`, {
-            method: "DELETE"
-        });
-        const data = await response.json()
-        console.log(data);
-        fetchComments();
-    }
-
-    //temp end
     const togglePasswordVisiblity = () => {
         setvisibility(visbilty ? false : true);
     };
@@ -72,25 +36,40 @@ export default function Login() {
     }
 
     const sendData = async (data) => {
-        const response = await fetch('', {
-            method: '',
-            headers: {
-                Authorization: `Bearer Regur`
-            },
-            body: data,
-        });
+        try {
+            const response = await fetch(URL + '/company-users/login', {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/JSON'
+                }
+            });
+
+            const responseData = await response.json();
+
+            if (typeof (responseData.access_token) != 'undefined' && responseData.access_token != "") {
+                localStorage.setItem("accessToken", responseData.access_token);
+                document.location.pathname = '/';
+            } else {
+                console.log(responseData.message);
+            }
+
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     const validateLoginInput = function (event) {
         event.preventDefault();
-        let data = {
-            "username": email,
-            "password": password
+        if (email != '' && password != '') {
+            let data = {
+                "username": email,
+                "password": password
+            }
+            sendData(data);
+        } else {
+            console.log('Email or Password cannot be Empty')
         }
-        console.log(data);
-        sendData(data);
-
-        // document.location.pathname = '/';
     }
     return (
         <div className={`${styles.loginContainer} container-fluid`}>
