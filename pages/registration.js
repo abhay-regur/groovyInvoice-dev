@@ -5,11 +5,14 @@ import styles from '../styles/registration.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faKey, faEye, faEyeSlash, faMobileRetro, faBriefcase } from '@fortawesome/free-solid-svg-icons';
 export default function Registration() {
+    const URL = process.env.NEXT_PUBLIC_HOST;
     const [visbilty, setvisibility] = React.useState(false);
+    const [errorMessage, setErrorMessage] = React.useState("");
+    const [hasError, setHasError] = React.useState(false)
     const [email, setEmail] = React.useState("");
     const [comapnyName, setComapnyName] = React.useState("");
-    const [firstName, setFirstName] = React.useState("");
-    const [lastName, setName] = React.useState("");
+    const [firstName, setFirstName] = React.useState("John");
+    const [lastName, setName] = React.useState("Doe");
     const [cellNumber, setCellNumber] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [confirmPassword, setConfirmPassword] = React.useState("");
@@ -18,8 +21,51 @@ export default function Registration() {
         setvisibility(visbilty ? false : true);
     };
 
+    const sendData = async (data) => {
+        try {
+            const response = await fetch(URL + '/company-users/sign-up', {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/JSON'
+                }
+            });
+
+            const responseData = await response.json();
+            if (typeof (responseData.access_token) != 'undefined' && responseData.access_token != "") {
+                localStorage.setItem("accessToken", responseData.access_token);
+                document.location.pathname = '/';
+            } else {
+                console.log(responseData.statusCode);
+                setHasError(true);
+                setErrorMessage(responseData.message);
+            }
+
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     const handleSubmit = function (event) {
+        setHasError(false);
+        setErrorMessage('');
         event.preventDefault();
+        if (email != '' && cellNumber != "" && password != "" && confirmPassword != "" && comapnyName != "") {
+            let data = {
+                "email": email,
+                "companyId": comapnyName,
+                "firstName": "John",
+                "lastName": "Doe",
+                "cellNumber": cellNumber,
+                "password": password,
+                "confirmPassword": confirmPassword
+            };
+            sendData(data);
+        } else {
+            setHasError(true);
+            setErrorMessage('No input can be empty');
+        }
+
     }
 
     return (
@@ -42,26 +88,29 @@ export default function Registration() {
                         <div className="col-sm-12 justify-content-md-center">
                             <div className={`${styles.loginCard} card`}>
                                 <div className="card-body p-0">
+                                    <div className={`${styles.loginErrorMessageWrapper} ${hasError ? "" : styles.hide} `} >
+                                        <div className={`${styles.loginErrorMessage}`}>{errorMessage}</div>
+                                    </div>
                                     <form onSubmit={handleSubmit}>
                                         <div className="mb-3">
                                             <label htmlFor="registrationCompanyName" className="form-label">Company Name</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <i><FontAwesomeIcon icon={faBriefcase} /></i>
-                                                <input type="text" className="form-control" placeholder='Company Name' id="registrationCompanyName" value={comapnyName} onChange={(e) => setComapnyName(e.target.value)} aria-describedby="companyNameHelp" />
+                                                <input type="text" className="form-control" placeholder='Company Name' id="registrationCompanyName" value={comapnyName} onChange={(e) => { setComapnyName(e.target.value); setHasError(false); setErrorMessage(''); }} aria-describedby="companyNameHelp" />
                                             </div>
                                         </div>
                                         <div className="mb-3">
                                             <label htmlFor="registrationEmail" className="form-label">Email address</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <i><FontAwesomeIcon icon={faEnvelope} /></i>
-                                                <input type="email" className="form-control" placeholder="Email address" id="registrationEmail" value={email} onChange={(e) => setEmail(e.target.value)} aria-describedby="emailHelp" />
+                                                <input type="email" className="form-control" placeholder="Email address" id="registrationEmail" value={email} onChange={(e) => { setEmail(e.target.value); setHasError(false); setErrorMessage(''); }} aria-describedby="emailHelp" />
                                             </div>
                                         </div>
                                         <div className="mb-3">
                                             <label htmlFor="registrationContactNumber" className="form-label">Contact Number</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <i><FontAwesomeIcon icon={faMobileRetro} /></i>
-                                                <input type="email" className="form-control" placeholder="Contact Number" id="registrationContactNumber" value={cellNumber} onChange={(e) => setCellNumber(e.target.value)} aria-describedby="contactNumberHelp" />
+                                                <input type="text" className="form-control" placeholder="Contact Number" id="registrationContactNumber" value={cellNumber} onChange={(e) => { setCellNumber(e.target.value); setHasError(false); setErrorMessage(''); }} aria-describedby="contactNumberHelp" />
                                             </div>
                                         </div>
                                         <div className="mb-3">
@@ -70,7 +119,7 @@ export default function Registration() {
                                                 <i>
                                                     <FontAwesomeIcon icon={faKey} />
                                                 </i>
-                                                <input type={visbilty ? "text" : "password"} className="form-control" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} id="loginPassword" />
+                                                <input type={visbilty ? "text" : "password"} className="form-control" placeholder="Password" value={password} onChange={(e) => { setPassword(e.target.value); setHasError(false); setErrorMessage(''); }} id="loginPassword" />
                                                 <i className={`${styles.toggleVisibilityWrapper}`} onClick={togglePasswordVisiblity}>
                                                     <FontAwesomeIcon icon={visbilty ? faEyeSlash : faEye} />
                                                 </i>
@@ -83,7 +132,7 @@ export default function Registration() {
                                                 <i>
                                                     <FontAwesomeIcon icon={faKey} />
                                                 </i>
-                                                <input type={visbilty ? "text" : "password"} className="form-control" placeholder='Password' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} id="loginConfirmPassword" />
+                                                <input type={visbilty ? "text" : "password"} className="form-control" placeholder='Password' value={confirmPassword} onChange={(e) => { setConfirmPassword(e.target.value); setHasError(false); setErrorMessage(''); }} id="loginConfirmPassword" />
                                                 <i className={`${styles.toggleVisibilityWrapper}`} onClick={togglePasswordVisiblity}>
                                                     <FontAwesomeIcon icon={visbilty ? faEyeSlash : faEye} />
                                                 </i>

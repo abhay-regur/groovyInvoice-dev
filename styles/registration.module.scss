@@ -65,6 +65,24 @@ $screen-size-md: 950px;
         }
     }
 
+    .hide {
+        display: none;
+    }
+
+    .loginErrorMessageWrapper {
+        border: 1px solid #ff8f8f;
+        border-radius: 10px;
+        background: #e5adadb6;
+        padding: 10px;
+
+        .loginErrorMessage {
+            font-size: 14px;
+            font-weight: 400;
+            color: #ff0000;
+            text-align: center;
+        }
+    }
+
     .green {
         color: $tertiary-color;
     }
