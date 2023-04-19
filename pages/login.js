@@ -14,6 +14,8 @@ Modal.setAppElement('#__next');
 
 export default function Login() {
     const URL = process.env.NEXT_PUBLIC_HOST;
+    const [errorMessage, setErrorMessage] = useState("");
+    const [hasError, setHasError] = useState(false)
     const [visbilty, setvisibility] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -46,12 +48,13 @@ export default function Login() {
             });
 
             const responseData = await response.json();
-
             if (typeof (responseData.access_token) != 'undefined' && responseData.access_token != "") {
                 localStorage.setItem("accessToken", responseData.access_token);
                 document.location.pathname = '/';
             } else {
-                console.log(responseData.message);
+                // console.log(responseData.message);
+                setHasError(true);
+                setErrorMessage(responseData.message);
             }
 
         } catch (err) {
@@ -61,6 +64,8 @@ export default function Login() {
 
     const validateLoginInput = function (event) {
         event.preventDefault();
+        setHasError(false);
+        setErrorMessage('');
         if (email != '' && password != '') {
             let data = {
                 "username": email,
@@ -68,7 +73,8 @@ export default function Login() {
             }
             sendData(data);
         } else {
-            console.log('Email or Password cannot be Empty')
+            setHasError(true);
+            setErrorMessage('Email or Password cannot be empty');
         }
     }
     return (
@@ -89,12 +95,15 @@ export default function Login() {
                         <div className="col-sm-12 justify-content-md-center">
                             <div className={`${styles.loginCard} card`}>
                                 <div className="card-body p-0">
+                                    <div className={`${styles.loginErrorMessageWrapper} ${hasError ? "" : styles.hide} `} >
+                                        <div className={`${styles.loginErrorMessage}`}>{errorMessage}</div>
+                                    </div>
                                     <form onSubmit={validateLoginInput}>
                                         <div className="mb-3">
                                             <label htmlFor="loginEmail" className="form-label">Email address</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <i><FontAwesomeIcon icon={faEnvelope} /></i>
-                                                <input type="email" className="form-control" placeholder='Email' id="loginEmail" value={email} onChange={(e) => setEmail(e.target.value)} aria-describedby="emailHelp" />
+                                                <input type="email" className="form-control" placeholder='Email' id="loginEmail" value={email} onChange={(e) => { setEmail(e.target.value); setHasError(false); setErrorMessage('') }} aria-describedby="emailHelp" />
                                             </div>
                                         </div>
                                         <div className="mb-3">
@@ -103,7 +112,7 @@ export default function Login() {
                                                 <i>
                                                     <FontAwesomeIcon icon={faKey} />
                                                 </i>
-                                                <input type={visbilty ? "text" : "password"} placeholder="Password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} id="loginPassword" />
+                                                <input type={visbilty ? "text" : "password"} placeholder="Password" className="form-control" value={password} onChange={(e) => { setPassword(e.target.value); setHasError(false); setErrorMessage('') }} id="loginPassword" />
                                                 <i className={`${styles.toggleVisibilityWrapper}`} onClick={togglePasswordVisiblity}>
                                                     <FontAwesomeIcon icon={visbilty ? faEyeSlash : faEye} />
                                                 </i>
@@ -152,7 +161,7 @@ export default function Login() {
                 style={customStyles}
                 contentLabel="Forgot Password Modal"
             >
-                <ModalForgotPassword closeModal={closeModal} faEnvelope={faEnvelope} comment={comment} setComment={setComment} submitComment={submitComment} />
+                <ModalForgotPassword closeModal={closeModal} faEnvelope={faEnvelope} />
 
                 {/* <div className={`${styles.mainModelWrapper}`}>
                     <div className="d-flex justify-content-end">
