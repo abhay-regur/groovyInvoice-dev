@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from "react";
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
+import { SessionProvider } from 'next-auth/react'
 //for font awesome
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -26,6 +27,8 @@ function MyApp({ Component, pageProps }) {
       setNavExpandedState(false);
     }
 
+    // Initalize Google API's
+
   }, [])
 
   useEffect(() => {
@@ -35,7 +38,7 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const showNavbar = (router.pathname === '/login' || router.pathname === '/registration') ? false : true;
   return (
-    <>
+    <SessionProvider session={pageProps.session} >
       <Head>
         <meta content="width=device-width, initial-scale=1" name="viewport" />
       </Head>
@@ -45,7 +48,7 @@ function MyApp({ Component, pageProps }) {
       </div>
       {showNavbar && <Footer />}
 
-    </>
+    </SessionProvider>
   );
 }
 

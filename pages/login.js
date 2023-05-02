@@ -1,3 +1,4 @@
+"use client"
 import { React, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -8,7 +9,7 @@ import FaFacebook from '../assets/icons/faFacebook.svg';
 import styles from '../styles/login.module.scss';
 import ModalForgotPassword from '../components/modalForgotPassword.js'
 import Modal from 'react-modal';
-import { useRouter } from 'next/router';
+import { useSession, signIn, signOut } from 'next-auth/react';
 
 Modal.setAppElement('#__next');
 
@@ -19,6 +20,9 @@ export default function Login() {
     const [visbilty, setvisibility] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const { data, status } = useSession();
+
+    console.log(data);
 
     const togglePasswordVisiblity = () => {
         setvisibility(visbilty ? false : true);
@@ -68,10 +72,17 @@ export default function Login() {
         setErrorMessage('');
         if (email != '' && password != '') {
             let data = {
-                "username": email,
+                "user": email,
                 "password": password
             }
             sendData(data);
+
+
+            // signIn('credentials', {
+            //     redirect: false,
+            //     email,
+            //     password
+            // });
         } else {
             setHasError(true);
             setErrorMessage('Email or Password cannot be empty');
@@ -137,14 +148,14 @@ export default function Login() {
                                     <hr />
                                     <div className="d-flex justify-content-center">
                                         <button type="button" className={`${styles.loginButtonFacebook} btn btn-outline-secondary d-flex jutify-content-around`}><i className={styles.buttonImage} ><FaFacebook /></i> Sign In</button>
-                                        <button type="button" className={`${styles.loginButtonGoogle} btn btn-outline-secondary d-flex jutify-content-around`}><i className={styles.buttonImage}><FaGoogle /></i> Sign In</button>
+                                        <button type="button" className={`${styles.loginButtonGoogle} btn btn-outline-secondary d-flex jutify-content-around`} onClick={() => signIn('google')}><i className={styles.buttonImage}><FaGoogle /></i> Sign In</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="col-sm-12">
                             <div className={`${styles.registrationLinkWrapper}`}>
-                                <p>Don’t have an account? <Link href="/registration"><a>Register Account</a></Link></p>
+                                <p>Don’t have an account? <Link href="/registration">Register Account</Link></p>
                             </div>
                         </div>
                     </div>
