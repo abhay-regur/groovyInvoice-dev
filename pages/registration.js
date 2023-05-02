@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../styles/registration.module.scss';
@@ -6,16 +6,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faKey, faEye, faEyeSlash, faMobileRetro, faBriefcase } from '@fortawesome/free-solid-svg-icons';
 export default function Registration() {
     const URL = process.env.NEXT_PUBLIC_HOST;
-    const [visbilty, setvisibility] = React.useState(false);
-    const [errorMessage, setErrorMessage] = React.useState("");
-    const [hasError, setHasError] = React.useState(false)
-    const [email, setEmail] = React.useState("");
-    const [comapnyName, setComapnyName] = React.useState("");
-    const [firstName, setFirstName] = React.useState("John");
-    const [lastName, setName] = React.useState("Doe");
-    const [cellNumber, setCellNumber] = React.useState("");
-    const [password, setPassword] = React.useState("");
-    const [confirmPassword, setConfirmPassword] = React.useState("");
+    const [visbilty, setvisibility] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+    const [hasError, setHasError] = useState(false)
+    const [email, setEmail] = useState("");
+    const [comapnyName, setComapnyName] = useState("");
+    const [firstName, setFirstName] = useState("John");
+    const [lastName, setName] = useState("Doe");
+    const [cellNumber, setCellNumber] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
 
     const togglePasswordVisiblity = () => {
         setvisibility(visbilty ? false : true);
@@ -88,7 +88,7 @@ export default function Registration() {
                         <div className="col-sm-12 justify-content-md-center">
                             <div className={`${styles.loginCard} card`}>
                                 <div className="card-body p-0">
-                                    <div className={`${styles.loginErrorMessageWrapper} ${hasError ? "" : styles.hide} `} >
+                                    <div className={`${styles.loginErrorMessageWrapper} ${hasError ? "" : styles.hide} mb-2`} >
                                         <div className={`${styles.loginErrorMessage}`}>{errorMessage}</div>
                                     </div>
                                     <form onSubmit={handleSubmit}>
@@ -148,7 +148,7 @@ export default function Registration() {
                         </div>
                         <div className="col-sm-12">
                             <div className={`${styles.registrationLinkWrapper}`}>
-                                <p>Already have an account? <Link href="/login"><a>Sign in</a></Link></p>
+                                <p>Already have an account? <Link href="/login">Sign in</Link></p>
                             </div>
                         </div>
                     </div>
