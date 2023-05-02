@@ -22,8 +22,6 @@ export default function Login() {
     const [password, setPassword] = useState("");
     const { data, status } = useSession();
 
-    console.log(data);
-
     const togglePasswordVisiblity = () => {
         setvisibility(visbilty ? false : true);
     };
