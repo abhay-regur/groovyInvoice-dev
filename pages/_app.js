@@ -36,7 +36,7 @@ function MyApp({ Component, pageProps }) {
   }, [navExpandedState]);
 
   const router = useRouter();
-  const showNavbar = (router.pathname === '/login' || router.pathname === '/registration') ? false : true;
+  const showNavbar = (router.pathname === '/login' || router.pathname === '/registration' || router.pathname === '/forgotPassword') ? false : true;
   return (
     <SessionProvider session={pageProps.session} >
       <Head>
