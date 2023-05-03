@@ -7,11 +7,7 @@ import { faEnvelope, faKey, faEye, faEyeSlash } from '@fortawesome/free-solid-sv
 import FaGoogle from '../assets/icons/faGoogle.svg';
 import FaFacebook from '../assets/icons/faFacebook.svg';
 import styles from '../styles/login.module.scss';
-import ModalForgotPassword from '../components/modalForgotPassword.js'
-import Modal from 'react-modal';
 import { useSession, signIn, signOut } from 'next-auth/react';
-
-Modal.setAppElement('#__next');
 
 export default function Login() {
     const URL = process.env.NEXT_PUBLIC_HOST;
@@ -26,22 +22,10 @@ export default function Login() {
         setvisibility(visbilty ? false : true);
     };
 
-    const [modalIsOpen, setIsOpen] = useState(false);
-
-    function openModal() {
-        setIsOpen(true);
-    }
-
-    function afterOpenModal() {
-    }
-
-    function closeModal() {
-        setIsOpen(false);
-    }
 
     const sendData = async (data) => {
         try {
-            const response = await fetch(URL + '/company-users/login', {
+            const response = await fetch(URL + '/users/login', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {
@@ -70,7 +54,7 @@ export default function Login() {
         setErrorMessage('');
         if (email != '' && password != '') {
             let data = {
-                "user": email,
+                "username": email,
                 "password": password
             }
             sendData(data);
@@ -136,7 +120,7 @@ export default function Login() {
                                                 </div>
                                             </div>
                                             <div className="col-6 justify-content-md-end text-end">
-                                                <span className={`${styles.companyInvoiceLoginPageForgotPassword}`} onClick={openModal}>Forgot Password?</span>
+                                                <span className={`${styles.companyInvoiceLoginPageForgotPassword}`}><Link href="/forgotPassword">Forgot Password?</Link></span>
                                             </div>
                                         </div>
                                         <div className="d-grid gap-2">
@@ -161,59 +145,6 @@ export default function Login() {
                 <div className={`${styles.loginBackground} col-md-6 .d-none .d-lg-block .d-xl-none`}>
                 </div>
             </div>
-
-            <Modal
-                className={styles.passwordResetModel}
-                isOpen={modalIsOpen}
-                onAfterOpen={afterOpenModal}
-                onRequestClose={closeModal}
-                style={customStyles}
-                contentLabel="Forgot Password Modal"
-            >
-                <ModalForgotPassword closeModal={closeModal} faEnvelope={faEnvelope} />
-
-                {/* <div className={`${styles.mainModelWrapper}`}>
-                    <div className="d-flex justify-content-end">
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" onClick={closeModal}></button>
-                    </div>
-                    <h2 ref={(_mainModelHeading) => (mainModelHeading = _mainModelHeading)}>Forgot Password</h2>
-                    <div className="mb-3">
-                        <label ref={(_forgottonEmailLabel) => (forgottonEmailLabel = _forgottonEmailLabel)} htmlFor="loginEmail" className="form-label">Email address</label>
-                        <div className={`input-group position-relative ${styles.innerInputIconWrapper}`}>
-                            <i ref={(_iconTag) => (iconTag = _iconTag)} className={`${styles.iconTag}`}><FontAwesomeIcon icon={faEnvelope} /></i>
-                            <input ref={(_emailInput) => (emailInput = _emailInput)} type="email" className="form-control" placeholder='Email' value={comment} onChange={(e) => setComment(e.target.value)} aria-describedby="emailHelp" />
-                            <button className="btn btn-primary" type="button" onClick={submitComment}>Submit</button>
-                        </div>
-                    </div>
-                    <div>
-                        <div className="input-group mb-3">
-                            <input type="text" className="form-control" id="forgotPasswordEmail" placeholder="Email" value={comment} onChange={(e) => setComment(e.target.value)} aria-label="Email" />
-                        </div>
-                        <button className="btn btn-outline-secondary" onClick={fetchComments}>Fetch Comment</button>
-                        {comments.map((comment) => {
-                            return (
-                                <div key={comment.id}>
-                                    {comment.id} {comment.name} {comment.email}
-                                    <button className="btn btn-outline-secondary" onClick={() => { deleteComment(comment.id) }}>delete</button>
-                                </div>
-                            )
-                        })}
-                    </div>
-                </div> */}
-            </Modal>
         </div>
     );
 }
-
-const customStyles = {
-    content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-        borderRadius: '10px',
-        border: '1px solid #E3EBF2',
-    },
-};
