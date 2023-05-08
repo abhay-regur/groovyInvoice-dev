@@ -9,12 +9,16 @@ import FaFacebook from '../assets/icons/faFacebook.svg';
 import styles from '../styles/login.module.scss';
 import ModalForgotPassword from '../components/modalForgotPassword.js'
 import Modal from 'react-modal';
-import { useSession, signIn, signOut } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
+import ErrorList from '../components/errorList';
 import { login } from '../services/users/users-login';
+import { disableSubmitButton, enableSubmitButton } from '../utils/form.utils'
+import { useRouter  } from 'next/navigation';
 
 Modal.setAppElement('#__next');
 
 export default function Login() {
+    const { push } = useRouter();
     const [errors, setErrors] = useState([])
     const formErrors = []
     const [visbilty, setvisibility] = useState(false);
@@ -45,11 +49,15 @@ export default function Login() {
         if (formErrors.length > 0) {
             setErrors(formErrors)
             return
-        }
-        try {
-            await login(data)
-        } catch (error) {
-            setErrors(error.response.data.message)
+        } else {
+            try {
+                disableSubmitButton(e.target)
+                await login(data)
+                push('/')
+            } catch (error) {
+                setErrors(error.response.data.message)
+            }
+            enableSubmitButton(e.target)
         }
     }
 
@@ -88,6 +96,7 @@ export default function Login() {
                         <div className="col-sm-12 justify-content-md-center">
                             <div className={`${styles.loginCard} card`}>
                                 <div className="card-body p-0">
+                                    <ErrorList errors={errors} />
 
                                     <form onSubmit={handleSubmit}>
                                         <div className="mb-3">
@@ -122,7 +131,7 @@ export default function Login() {
                                             </div>
                                         </div>
                                         <div className="d-grid gap-2">
-                                            <button type="submit" className="btn btn-primary">Sign In</button>
+                                            <button type="submit" name="btn-submit" className="btn btn-primary">Sign In</button>
                                         </div>
                                     </form>
                                     <hr />
