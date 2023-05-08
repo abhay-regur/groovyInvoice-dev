@@ -10,17 +10,48 @@ import styles from '../styles/login.module.scss';
 import ModalForgotPassword from '../components/modalForgotPassword.js'
 import Modal from 'react-modal';
 import { useSession, signIn, signOut } from 'next-auth/react';
+import { login } from '../services/users/users-login';
 
 Modal.setAppElement('#__next');
 
 export default function Login() {
-    const URL = process.env.NEXT_PUBLIC_HOST;
-    const [errorMessage, setErrorMessage] = useState("");
-    const [hasError, setHasError] = useState(false)
+    const [errors, setErrors] = useState([])
+    const formErrors = []
     const [visbilty, setvisibility] = useState(false);
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const { data, status } = useSession();
+    const [data, setData] = useState({
+        username: '',
+        password: ''
+    });
+
+    const handleInput = ({ target }) => {
+        data[target.name] = target.value
+        let temp = Object.assign({}, data)
+        setData(temp)
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        formErrors.splice(0)
+        setErrors(formErrors)
+
+        if (data.username.trim() === '') {
+            formErrors.push('Email Address is required')
+        }
+        if (data.password.trim() === '') {
+            formErrors.push('Password is required')
+        }
+
+        if (formErrors.length > 0) {
+            setErrors(formErrors)
+            return
+        }
+        try {
+            await login(data)
+        } catch (error) {
+            setErrors(error.response.data.message)
+        }
+    }
 
     const togglePasswordVisiblity = () => {
         setvisibility(visbilty ? false : true);
@@ -39,53 +70,6 @@ export default function Login() {
         setIsOpen(false);
     }
 
-    const sendData = async (data) => {
-        try {
-            const response = await fetch(URL + '/company-users/login', {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/JSON'
-                }
-            });
-
-            const responseData = await response.json();
-            if (typeof (responseData.access_token) != 'undefined' && responseData.access_token != "") {
-                localStorage.setItem("accessToken", responseData.access_token);
-                document.location.pathname = '/';
-            } else {
-                // console.log(responseData.message);
-                setHasError(true);
-                setErrorMessage(responseData.message);
-            }
-
-        } catch (err) {
-            console.log(err);
-        }
-    }
-
-    const validateLoginInput = function (event) {
-        event.preventDefault();
-        setHasError(false);
-        setErrorMessage('');
-        if (email != '' && password != '') {
-            let data = {
-                "user": email,
-                "password": password
-            }
-            sendData(data);
-
-
-            // signIn('credentials', {
-            //     redirect: false,
-            //     email,
-            //     password
-            // });
-        } else {
-            setHasError(true);
-            setErrorMessage('Email or Password cannot be empty');
-        }
-    }
     return (
         <div className={`${styles.loginContainer} container-fluid`}>
             <Head>
@@ -104,15 +88,13 @@ export default function Login() {
                         <div className="col-sm-12 justify-content-md-center">
                             <div className={`${styles.loginCard} card`}>
                                 <div className="card-body p-0">
-                                    <div className={`${styles.loginErrorMessageWrapper} ${hasError ? "" : styles.hide} `} >
-                                        <div className={`${styles.loginErrorMessage}`}>{errorMessage}</div>
-                                    </div>
-                                    <form onSubmit={validateLoginInput}>
+
+                                    <form onSubmit={handleSubmit}>
                                         <div className="mb-3">
                                             <label htmlFor="loginEmail" className="form-label">Email address</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <i><FontAwesomeIcon icon={faEnvelope} /></i>
-                                                <input type="email" className="form-control" placeholder='Email' id="loginEmail" value={email} onChange={(e) => { setEmail(e.target.value); setHasError(false); setErrorMessage('') }} aria-describedby="emailHelp" />
+                                                <input type="email" className="form-control" placeholder='Email' id="loginEmail" name="username" value={data.username} onChange={handleInput} aria-describedby="emailHelp" />
                                             </div>
                                         </div>
                                         <div className="mb-3">
@@ -121,7 +103,7 @@ export default function Login() {
                                                 <i>
                                                     <FontAwesomeIcon icon={faKey} />
                                                 </i>
-                                                <input type={visbilty ? "text" : "password"} placeholder="Password" className="form-control" value={password} onChange={(e) => { setPassword(e.target.value); setHasError(false); setErrorMessage('') }} id="loginPassword" />
+                                                <input type={visbilty ? "text" : "password"} placeholder="Password" className="form-control" name="password" value={data.password} onChange={handleInput} id="loginPassword" />
                                                 <i className={`${styles.toggleVisibilityWrapper}`} onClick={togglePasswordVisiblity}>
                                                     <FontAwesomeIcon icon={visbilty ? faEyeSlash : faEye} />
                                                 </i>
