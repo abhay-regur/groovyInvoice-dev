@@ -7,7 +7,6 @@ import { faEnvelope, faKey, faEye, faEyeSlash } from '@fortawesome/free-solid-sv
 import FaGoogle from '../assets/icons/faGoogle.svg';
 import FaFacebook from '../assets/icons/faFacebook.svg';
 import styles from '../styles/login.module.scss';
-import { useSession, signIn, signOut } from 'next-auth/react';
 
 export default function Login() {
     const URL = process.env.NEXT_PUBLIC_HOST;
@@ -16,7 +15,6 @@ export default function Login() {
     const [visbilty, setvisibility] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { data, status } = useSession();
 
     const togglePasswordVisiblity = () => {
         setvisibility(visbilty ? false : true);
@@ -38,7 +36,6 @@ export default function Login() {
                 localStorage.setItem("accessToken", responseData.access_token);
                 document.location.pathname = '/';
             } else {
-                // console.log(responseData.message);
                 setHasError(true);
                 setErrorMessage(responseData.message);
             }
@@ -58,18 +55,12 @@ export default function Login() {
                 "password": password
             }
             sendData(data);
-
-
-            // signIn('credentials', {
-            //     redirect: false,
-            //     email,
-            //     password
-            // });
         } else {
             setHasError(true);
             setErrorMessage('Email or Password cannot be empty');
         }
     }
+
     return (
         <div className={`${styles.loginContainer} container-fluid`}>
             <Head>
@@ -109,7 +100,6 @@ export default function Login() {
                                                 <i className={`${styles.toggleVisibilityWrapper}`} onClick={togglePasswordVisiblity}>
                                                     <FontAwesomeIcon icon={visbilty ? faEyeSlash : faEye} />
                                                 </i>
-
                                             </div>
                                         </div>
                                         <div className="row">
@@ -120,7 +110,7 @@ export default function Login() {
                                                 </div>
                                             </div>
                                             <div className="col-6 justify-content-md-end text-end">
-                                                <span className={`${styles.companyInvoiceLoginPageForgotPassword}`}><Link href="/forgotPassword">Forgot Password?</Link></span>
+                                                <span className={`${styles.companyInvoiceLoginPageForgotPassword}`}><Link href="/password/forgot">Forgot Password?</Link></span>
                                             </div>
                                         </div>
                                         <div className="d-grid gap-2">
