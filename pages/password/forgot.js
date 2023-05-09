@@ -3,18 +3,14 @@ import { React, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faKey, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import FaGoogle from '../assets/icons/faGoogle.svg';
-import FaFacebook from '../assets/icons/faFacebook.svg';
-import styles from '../styles/forgotPassword.module.scss';
-import { useSession, signIn, signOut } from 'next-auth/react';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import styles from '../../styles/forgotPassword.module.scss';
 
-export default function Login() {
+export default function ForgotPassword() {
     const URL = process.env.NEXT_PUBLIC_HOST;
     const [errorMessage, setErrorMessage] = useState("");
     const [hasError, setHasError] = useState(false);
     const [email, setEmail] = useState("");
-    const { data, status } = useSession();
 
 
     const sendData = async (data) => {
@@ -26,6 +22,8 @@ export default function Login() {
                     'Content-Type': 'application/JSON'
                 }
             });
+
+
 
             const responseData = await response.json();
             if (typeof (responseData.access_token) != 'undefined' && responseData.access_token != "") {
@@ -51,12 +49,6 @@ export default function Login() {
             }
             sendData(data);
 
-
-            // signIn('credentials', {
-            //     redirect: false,
-            //     email,
-            //     password
-            // })
         } else {
             setHasError(true);
             setErrorMessage('Email or Password cannot be empty');
@@ -111,16 +103,3 @@ export default function Login() {
         </div>
     );
 }
-
-const customStyles = {
-    content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-        borderRadius: '10px',
-        border: '1px solid #E3EBF2',
-    },
-};
