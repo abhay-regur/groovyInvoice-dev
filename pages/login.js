@@ -1,5 +1,5 @@
 "use client"
-import { React, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -22,10 +22,27 @@ export default function Login() {
     const [errors, setErrors] = useState([])
     const formErrors = []
     const [visbilty, setvisibility] = useState(false);
+    const [rememberMe, setRememberMe] = useState(false);
     const [data, setData] = useState({
         username: '',
         password: ''
     });
+
+    useEffect(() => {
+        const isRememberMe = localStorage.getItem('rememberMe')  === 'true'
+        if (isRememberMe) {
+            document.getElementById('keepLogged').checked = true
+            toggleRememberMe()
+            data.username = localStorage.getItem('username');
+            data.password = localStorage.getItem('password');
+            let temp = Object.assign({}, data)
+            setData(temp)
+        }
+    }, [])
+
+    const toggleRememberMe = () => {
+        setRememberMe(current => !current)
+    }
 
     const handleInput = ({ target }) => {
         data[target.name] = target.value
@@ -52,7 +69,7 @@ export default function Login() {
         } else {
             try {
                 disableSubmitButton(e.target)
-                await login(data)
+                await login(data, rememberMe)
                 push('/')
             } catch (error) {
                 setErrors(error.response.data.message)
@@ -122,7 +139,7 @@ export default function Login() {
                                         <div className="row">
                                             <div className="col-6 justify-content-md-start pe-0">
                                                 <div className="mb-3 form-check">
-                                                    <input type="checkbox" className="form-check-input" id="keepLogged" />
+                                                    <input type="checkbox" className="form-check-input" id="keepLogged" value={rememberMe} onChange={toggleRememberMe}/>
                                                     <label className="form-check-label" htmlFor="keepLogged">Keep me logged in</label>
                                                 </div>
                                             </div>
