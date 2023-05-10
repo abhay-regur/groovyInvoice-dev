@@ -7,15 +7,10 @@ import { faEnvelope, faKey, faEye, faEyeSlash } from '@fortawesome/free-solid-sv
 import FaGoogle from '../assets/icons/faGoogle.svg';
 import FaFacebook from '../assets/icons/faFacebook.svg';
 import styles from '../styles/login.module.scss';
-import ModalForgotPassword from '../components/modalForgotPassword.js'
-import Modal from 'react-modal';
-import { signIn } from 'next-auth/react';
+import { disableSubmitButton, enableSubmitButton } from '../utils/form.utils'
 import ErrorList from '../components/errorList';
 import { login } from '../services/users/users-login';
-import { disableSubmitButton, enableSubmitButton } from '../utils/form.utils'
-import { useRouter  } from 'next/navigation';
-
-Modal.setAppElement('#__next');
+import { useRouter } from 'next/navigation';
 
 export default function Login() {
     const { push } = useRouter();
@@ -83,17 +78,6 @@ export default function Login() {
     };
 
     const [modalIsOpen, setIsOpen] = useState(false);
-
-    function openModal() {
-        setIsOpen(true);
-    }
-
-    function afterOpenModal() {
-    }
-
-    function closeModal() {
-        setIsOpen(false);
-    }
 
     return (
         <div className={`${styles.loginContainer} container-fluid`}>
