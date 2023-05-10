@@ -1,5 +1,5 @@
 "use client"
-import { React, useEffect, useState } from 'react';
+import { React, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -17,27 +17,10 @@ export default function Login() {
     const [errors, setErrors] = useState([])
     const formErrors = []
     const [visbilty, setvisibility] = useState(false);
-    const [rememberMe, setRememberMe] = useState(false);
     const [data, setData] = useState({
         username: '',
         password: ''
     });
-
-    useEffect(() => {
-        const isRememberMe = localStorage.getItem('rememberMe')  === 'true'
-        if (isRememberMe) {
-            document.getElementById('keepLogged').checked = true
-            toggleRememberMe()
-            data.username = localStorage.getItem('username');
-            data.password = localStorage.getItem('password');
-            let temp = Object.assign({}, data)
-            setData(temp)
-        }
-    }, [])
-
-    const toggleRememberMe = () => {
-        setRememberMe(current => !current)
-    }
 
     const handleInput = ({ target }) => {
         data[target.name] = target.value
@@ -64,7 +47,7 @@ export default function Login() {
         } else {
             try {
                 disableSubmitButton(e.target)
-                await login(data, rememberMe)
+                await login(data)
                 push('/')
             } catch (error) {
                 setErrors(error.response.data.message)
@@ -77,7 +60,6 @@ export default function Login() {
         setvisibility(visbilty ? false : true);
     };
 
-    const [modalIsOpen, setIsOpen] = useState(false);
 
     return (
         <div className={`${styles.loginContainer} container-fluid`}>
@@ -117,18 +99,17 @@ export default function Login() {
                                                 <i className={`${styles.toggleVisibilityWrapper}`} onClick={togglePasswordVisiblity}>
                                                     <FontAwesomeIcon icon={visbilty ? faEyeSlash : faEye} />
                                                 </i>
-
                                             </div>
                                         </div>
                                         <div className="row">
                                             <div className="col-6 justify-content-md-start pe-0">
                                                 <div className="mb-3 form-check">
-                                                    <input type="checkbox" className="form-check-input" id="keepLogged" value={rememberMe} onChange={toggleRememberMe}/>
+                                                    <input type="checkbox" className="form-check-input" id="keepLogged" />
                                                     <label className="form-check-label" htmlFor="keepLogged">Keep me logged in</label>
                                                 </div>
                                             </div>
                                             <div className="col-6 justify-content-md-end text-end">
-                                                <span className={`${styles.companyInvoiceLoginPageForgotPassword}`} onClick={openModal}>Forgot Password?</span>
+                                                <span className={`${styles.companyInvoiceLoginPageForgotPassword}`}><Link href="/password/forgot">Forgot Password?</Link></span>
                                             </div>
                                         </div>
                                         <div className="d-grid gap-2">
@@ -153,59 +134,6 @@ export default function Login() {
                 <div className={`${styles.loginBackground} col-md-6 .d-none .d-lg-block .d-xl-none`}>
                 </div>
             </div>
-
-            <Modal
-                className={styles.passwordResetModel}
-                isOpen={modalIsOpen}
-                onAfterOpen={afterOpenModal}
-                onRequestClose={closeModal}
-                style={customStyles}
-                contentLabel="Forgot Password Modal"
-            >
-                <ModalForgotPassword closeModal={closeModal} faEnvelope={faEnvelope} />
-
-                {/* <div className={`${styles.mainModelWrapper}`}>
-                    <div className="d-flex justify-content-end">
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" onClick={closeModal}></button>
-                    </div>
-                    <h2 ref={(_mainModelHeading) => (mainModelHeading = _mainModelHeading)}>Forgot Password</h2>
-                    <div className="mb-3">
-                        <label ref={(_forgottonEmailLabel) => (forgottonEmailLabel = _forgottonEmailLabel)} htmlFor="loginEmail" className="form-label">Email address</label>
-                        <div className={`input-group position-relative ${styles.innerInputIconWrapper}`}>
-                            <i ref={(_iconTag) => (iconTag = _iconTag)} className={`${styles.iconTag}`}><FontAwesomeIcon icon={faEnvelope} /></i>
-                            <input ref={(_emailInput) => (emailInput = _emailInput)} type="email" className="form-control" placeholder='Email' value={comment} onChange={(e) => setComment(e.target.value)} aria-describedby="emailHelp" />
-                            <button className="btn btn-primary" type="button" onClick={submitComment}>Submit</button>
-                        </div>
-                    </div>
-                    <div>
-                        <div className="input-group mb-3">
-                            <input type="text" className="form-control" id="forgotPasswordEmail" placeholder="Email" value={comment} onChange={(e) => setComment(e.target.value)} aria-label="Email" />
-                        </div>
-                        <button className="btn btn-outline-secondary" onClick={fetchComments}>Fetch Comment</button>
-                        {comments.map((comment) => {
-                            return (
-                                <div key={comment.id}>
-                                    {comment.id} {comment.name} {comment.email}
-                                    <button className="btn btn-outline-secondary" onClick={() => { deleteComment(comment.id) }}>delete</button>
-                                </div>
-                            )
-                        })}
-                    </div>
-                </div> */}
-            </Modal>
         </div>
     );
 }
-
-const customStyles = {
-    content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-        borderRadius: '10px',
-        border: '1px solid #E3EBF2',
-    },
-};
