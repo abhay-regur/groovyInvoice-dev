@@ -7,15 +7,16 @@ export const login = async (data, rememberMe) => {
     const result = await httpService.post('users/login', data)
     httpService.saveToken(result.data.access_token)
     if (rememberMe) {
-      localStorage.setItem('username', data.username)
-      localStorage.setItem('password', data.password)
       localStorage.setItem('rememberMe', rememberMe)
+      httpService.saveRefreshToken(result.data.refresh_token)
     } else {
-      localStorage.removeItem('username')
-      localStorage.removeItem('password')
       localStorage.removeItem('rememberMe')
     }
   } catch (error) {
     throw error
   }
+}
+
+export const myProfile = async () => {
+  return await httpService.get('users/myprofile')
 }

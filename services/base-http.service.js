@@ -5,6 +5,7 @@ export default class BaseHttpService {
   BASE_URL = process.env.NEXT_PUBLIC_APP_BASE_URL || 'http://localhost:3000'
   _accessToken = null
   _accessTokenKey = null
+  _accessRefreshTokenKey = null
   _headers = {}
 
   //constructor() {}
@@ -44,6 +45,26 @@ export default class BaseHttpService {
       .catch((error) => this._handleHttpError(error))
   }
 
+  _handleHttpErrorForRefreshToken(error) {
+    const { statusCode } = error.response.data
+
+    if (statusCode !== 401) {
+      throw error
+    } else {
+      if (
+        window.location.pathname.search('/login') > -1
+      ) {
+        throw error
+      } else {
+        this.removeToken() //remove any existing token of this user..
+        if (this.userType === 'user') {
+          window.location = '/login'
+        }
+        throw new Error('No user type specified in _handle401() method')
+      }
+    }
+  }
+
   _handleHttpError(error) {
     const { statusCode } = error.response.data
 
@@ -54,17 +75,36 @@ export default class BaseHttpService {
     }
   }
 
+  async refreshAccessToken(options = {}) {
+    const accessRefreshToken = this.loadRefreshToken()
+    this.saveToken(accessRefreshToken)
+
+    Object.assign(options, this._getCommonOptions())
+    const result = await axios
+      .get(`${this.BASE_URL}/users/refresh-auth-token`, options)
+      .catch((error) => this._handleHttpErrorForRefreshToken(error))
+    this.saveToken(result.data.access_token)
+    this.saveRefreshToken(result.data.refresh_token)
+    window.location.reload()
+  }
+
   _handle401(error) {
-    if (
-      window.location.pathname.search('/login') > -1
-    ) {
-      throw error
+    const rememberMe = localStorage.getItem('rememberMe') === 'true'
+    console.log(rememberMe);
+    if (rememberMe) {
+      this.refreshAccessToken()
     } else {
-      this.removeToken() //remove any existing token of this user..
-      if (this.userType === 'user') {
-        window.location = '/login'
+      if (
+        window.location.pathname.search('/login') > -1
+      ) {
+        throw error
+      } else {
+        this.removeToken() //remove any existing token of this user..
+        if (this.userType === 'user') {
+          window.location = '/login'
+        }
+        throw new Error('No user type specified in _handle401() method')
       }
-      throw new Error('No user type specified in _handle401() method')
     }
   }
 
@@ -100,6 +140,15 @@ export default class BaseHttpService {
   loadToken() {
     const token = tokenService.getToken(this._accessTokenKey)
     this._accessToken = token
+    return token
+  }
+
+  saveRefreshToken(accessRefreshToken) {
+    tokenService.saveToken(this._accessRefreshTokenKey, accessRefreshToken)
+  }
+
+  loadRefreshToken() {
+    const token = tokenService.getToken(this._accessRefreshTokenKey)
     return token
   }
 
