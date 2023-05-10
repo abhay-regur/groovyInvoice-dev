@@ -1,5 +1,5 @@
 "use client"
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -14,6 +14,7 @@ import { useRouter } from 'next/navigation';
 
 export default function Login() {
     const { push } = useRouter();
+    const [rememberMe, setRememberMe] = useState(false);
     const [errors, setErrors] = useState([])
     const formErrors = []
     const [visbilty, setvisibility] = useState(false);
@@ -26,6 +27,10 @@ export default function Login() {
         data[target.name] = target.value
         let temp = Object.assign({}, data)
         setData(temp)
+    }
+
+    const toggleRememberMe = () => {
+        setRememberMe(current => !current)
     }
 
     const handleSubmit = async (e) => {
@@ -46,8 +51,9 @@ export default function Login() {
             return
         } else {
             try {
+                console.log(rememberMe);
                 disableSubmitButton(e.target)
-                await login(data)
+                await login(data, rememberMe)
                 push('/')
             } catch (error) {
                 setErrors(error.response.data.message)
@@ -104,7 +110,7 @@ export default function Login() {
                                         <div className="row">
                                             <div className="col-6 justify-content-md-start pe-0">
                                                 <div className="mb-3 form-check">
-                                                    <input type="checkbox" className="form-check-input" id="keepLogged" />
+                                                    <input type="checkbox" className="form-check-input" id="keepLogged" value={rememberMe} onChange={toggleRememberMe} />
                                                     <label className="form-check-label" htmlFor="keepLogged">Keep me logged in</label>
                                                 </div>
                                             </div>
