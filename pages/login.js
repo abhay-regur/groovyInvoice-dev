@@ -7,59 +7,59 @@ import { faEnvelope, faKey, faEye, faEyeSlash } from '@fortawesome/free-solid-sv
 import FaGoogle from '../assets/icons/faGoogle.svg';
 import FaFacebook from '../assets/icons/faFacebook.svg';
 import styles from '../styles/login.module.scss';
+import { disableSubmitButton, enableSubmitButton } from '../utils/form.utils'
+import ErrorList from '../components/errorList';
+import { login } from '../services/users/users-login';
+import { useRouter } from 'next/navigation';
 
 export default function Login() {
-    const URL = process.env.NEXT_PUBLIC_HOST;
-    const [errorMessage, setErrorMessage] = useState("");
-    const [hasError, setHasError] = useState(false)
+    const { push } = useRouter();
+    const [errors, setErrors] = useState([])
+    const formErrors = []
     const [visbilty, setvisibility] = useState(false);
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [data, setData] = useState({
+        username: '',
+        password: ''
+    });
+
+    const handleInput = ({ target }) => {
+        data[target.name] = target.value
+        let temp = Object.assign({}, data)
+        setData(temp)
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        formErrors.splice(0)
+        setErrors(formErrors)
+
+        if (data.username.trim() === '') {
+            formErrors.push('Email Address is required')
+        }
+        if (data.password.trim() === '') {
+            formErrors.push('Password is required')
+        }
+
+        if (formErrors.length > 0) {
+            setErrors(formErrors)
+            return
+        } else {
+            try {
+                disableSubmitButton(e.target)
+                await login(data)
+                push('/')
+            } catch (error) {
+                setErrors(error.response.data.message)
+            }
+            enableSubmitButton(e.target)
+        }
+    }
 
     const togglePasswordVisiblity = () => {
         setvisibility(visbilty ? false : true);
     };
 
-
-    const sendData = async (data) => {
-        try {
-            const response = await fetch(URL + '/users/login', {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/JSON'
-                }
-            });
-
-            const responseData = await response.json();
-            if (typeof (responseData.access_token) != 'undefined' && responseData.access_token != "") {
-                localStorage.setItem("accessToken", responseData.access_token);
-                document.location.pathname = '/';
-            } else {
-                setHasError(true);
-                setErrorMessage(responseData.message);
-            }
-
-        } catch (err) {
-            console.log(err);
-        }
-    }
-
-    const validateLoginInput = function (event) {
-        event.preventDefault();
-        setHasError(false);
-        setErrorMessage('');
-        if (email != '' && password != '') {
-            let data = {
-                "username": email,
-                "password": password
-            }
-            sendData(data);
-        } else {
-            setHasError(true);
-            setErrorMessage('Email or Password cannot be empty');
-        }
-    }
 
     return (
         <div className={`${styles.loginContainer} container-fluid`}>
@@ -79,15 +79,14 @@ export default function Login() {
                         <div className="col-sm-12 justify-content-md-center">
                             <div className={`${styles.loginCard} card`}>
                                 <div className="card-body p-0">
-                                    <div className={`${styles.loginErrorMessageWrapper} ${hasError ? "" : styles.hide} `} >
-                                        <div className={`${styles.loginErrorMessage}`}>{errorMessage}</div>
-                                    </div>
-                                    <form onSubmit={validateLoginInput}>
+                                    <ErrorList errors={errors} />
+
+                                    <form onSubmit={handleSubmit}>
                                         <div className="mb-3">
                                             <label htmlFor="loginEmail" className="form-label">Email address</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <i><FontAwesomeIcon icon={faEnvelope} /></i>
-                                                <input type="email" className="form-control" placeholder='Email' id="loginEmail" value={email} onChange={(e) => { setEmail(e.target.value); setHasError(false); setErrorMessage('') }} aria-describedby="emailHelp" />
+                                                <input type="email" className="form-control" placeholder='Email' id="loginEmail" name="username" value={data.username} onChange={handleInput} aria-describedby="emailHelp" />
                                             </div>
                                         </div>
                                         <div className="mb-3">
@@ -96,7 +95,7 @@ export default function Login() {
                                                 <i>
                                                     <FontAwesomeIcon icon={faKey} />
                                                 </i>
-                                                <input type={visbilty ? "text" : "password"} placeholder="Password" className="form-control" value={password} onChange={(e) => { setPassword(e.target.value); setHasError(false); setErrorMessage('') }} id="loginPassword" />
+                                                <input type={visbilty ? "text" : "password"} placeholder="Password" className="form-control" name="password" value={data.password} onChange={handleInput} id="loginPassword" />
                                                 <i className={`${styles.toggleVisibilityWrapper}`} onClick={togglePasswordVisiblity}>
                                                     <FontAwesomeIcon icon={visbilty ? faEyeSlash : faEye} />
                                                 </i>
@@ -114,7 +113,7 @@ export default function Login() {
                                             </div>
                                         </div>
                                         <div className="d-grid gap-2">
-                                            <button type="submit" className="btn btn-primary">Sign In</button>
+                                            <button type="submit" name="btn-submit" className="btn btn-primary">Sign In</button>
                                         </div>
                                     </form>
                                     <hr />
