@@ -5,55 +5,49 @@ import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import styles from '../../styles/forgotPassword.module.scss';
+import { useRouter } from 'next/router';
+import { forgotPassword } from '../../services/password/password.services.js';
+import ErrorList from '../../components/errorList';
+import { disableSubmitButton, enableSubmitButton } from '../../utils/form.utils';
 
 export default function ForgotPassword() {
-    const URL = process.env.NEXT_PUBLIC_HOST;
-    const [errorMessage, setErrorMessage] = useState("");
-    const [hasError, setHasError] = useState(false);
-    const [email, setEmail] = useState("");
+    const formErrors = [];
+    const { push } = useRouter();
+    const [errors, setErrors] = useState([]);
+    const [data, setData] = useState({ email: '' });
 
-
-    const sendData = async (data) => {
-        try {
-            const response = await fetch(URL + '/users/password-reset', {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/JSON'
-                }
-            });
-
-
-
-            const responseData = await response.json();
-            if (typeof (responseData.access_token) != 'undefined' && responseData.access_token != "") {
-                localStorage.setItem("accessToken", responseData.access_token);
-                document.location.pathname = '/';
-            } else {
-                setHasError(true);
-                setErrorMessage(responseData.message);
-            }
-
-        } catch (err) {
-            console.log(err);
-        }
+    const handleInput = ({ target }) => {
+        data[target.name] = target.value;
+        let temp = Object.assign({}, data);
+        setData(temp);
     }
 
-    const validateLoginInput = function (event) {
-        event.preventDefault();
-        setHasError(false);
-        setErrorMessage('');
-        if (email != '') {
-            let data = {
-                "email": email
-            }
-            sendData(data);
+    const handelSubmit = async (e) => {
+        e.preventDefault();
 
+        formErrors.splice(0)
+        setErrors(formErrors);
+
+        if (data.email.trim() === '') {
+            formErrors.push('Valid Email Address is required')
+        }
+
+        if (formErrors.length > 0) {
+            setErrors(formErrors)
+            return
         } else {
-            setHasError(true);
-            setErrorMessage('Email or Password cannot be empty');
+            try {
+                disableSubmitButton(e.target)
+                await forgotPassword(data)
+                push('/login');
+            } catch (error) {
+                setErrors(error.response.data.message)
+            }
+            enableSubmitButton(e.target)
         }
     }
+
+
     return (
         <div className={`${styles.forgotPasswordContainer} container-fluid`}>
             <Head>
@@ -72,19 +66,17 @@ export default function ForgotPassword() {
                         <div className="col-sm-12 justify-content-md-center">
                             <div className={`${styles.forgotPasswordCard} card`}>
                                 <div className="card-body p-0">
-                                    <div className={`${styles.forgotPasswordErrorMessageWrapper} ${hasError ? "" : styles.hide} `} >
-                                        <div className={`${styles.forgotPasswordErrorMessage}`}>{errorMessage}</div>
-                                    </div>
-                                    <form onSubmit={validateLoginInput}>
+                                    <ErrorList errors={errors} />
+                                    <form id="forgot-form" onSubmit={handelSubmit}>
                                         <div className="mb-3">
                                             <label htmlFor="forgotPasswordEmail" className="form-label">Email address</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <i><FontAwesomeIcon icon={faEnvelope} /></i>
-                                                <input type="email" className="form-control" placeholder='Email' id="forgotPasswordEmail" value={email} onChange={(e) => { setEmail(e.target.value); setHasError(false); setErrorMessage('') }} aria-describedby="emailHelp" />
+                                                <input type="email" className="form-control" name='email' placeholder='Email' id="forgotPasswordEmail" onChange={handleInput} aria-describedby="emailHelp" />
                                             </div>
                                         </div>
                                         <div className="d-grid gap-2">
-                                            <button type="submit" className="btn btn-primary">Forgot Password</button>
+                                            <button name='btn-submit' type="submit" className="btn btn-primary">Forgot Password</button>
                                         </div>
                                     </form>
                                 </div>
