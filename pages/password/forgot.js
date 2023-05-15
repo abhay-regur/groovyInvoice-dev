@@ -48,8 +48,8 @@ export default function ForgotPassword() {
                 }])
 
                 setTimeout(function () {
-                    // push('/login');
-                }, 5000);
+                    push('/login');
+                }, 6000);
             } catch (error) {
                 setErrors(error.response.data.message)
             }
@@ -103,7 +103,7 @@ export default function ForgotPassword() {
                 </div>
                 <Toast
                     toastList={list}
-                    autoDeleteTime={15000}
+                    autoDeleteTime={4000}
                 />
             </div>
         </div>
