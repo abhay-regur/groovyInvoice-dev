@@ -205,6 +205,7 @@ button {
 .loading {
   position: relative;
 }
+
 .loading::after {
   content: "";
   background: url(../assets/icons/circle-notch-solid.svg) no-repeat top left;
@@ -213,23 +214,30 @@ button {
   height: 13.5px;
   width: 13.5px;
   position: absolute;
-  top: 11.5px;
-  right: 7px;
+  top: 17.5px;
+  right: 125px;
   animation: spin infinite 1s linear;
 }
 
-.icon-loading svg{
+.icon-loading svg {
   display: none;
 }
+
 .icon-loading::after {
   top: unset;
   right: unset;
 }
+
 @keyframes spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+#errors-list {
+  list-style: none;
 }
