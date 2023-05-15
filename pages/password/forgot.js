@@ -2,6 +2,7 @@
 import { React, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import Toast from '../../components/toast';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import styles from '../../styles/forgotPassword.module.scss';
@@ -15,6 +16,7 @@ export default function ForgotPassword() {
     const { push } = useRouter();
     const [errors, setErrors] = useState([]);
     const [data, setData] = useState({ email: '' });
+    const [list, setList] = useState([]);
 
     const handleInput = ({ target }) => {
         data[target.name] = target.value;
@@ -39,7 +41,15 @@ export default function ForgotPassword() {
             try {
                 disableSubmitButton(e.target)
                 await forgotPassword(data)
-                push('/login');
+                setList([{
+                    id: Math.floor((Math.random() * 101) + 1),
+                    title: 'Email Sent',
+                    description: 'Please check your email for reset link!',
+                }])
+
+                setTimeout(function () {
+                    // push('/login');
+                }, 5000);
             } catch (error) {
                 setErrors(error.response.data.message)
             }
@@ -91,6 +101,10 @@ export default function ForgotPassword() {
                 </div>
                 <div className={`${styles.forgotPasswordBackground} col-md-6 .d-none .d-lg-block .d-xl-none`}>
                 </div>
+                <Toast
+                    toastList={list}
+                    autoDeleteTime={15000}
+                />
             </div>
         </div>
     );
