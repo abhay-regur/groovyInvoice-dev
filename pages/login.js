@@ -9,7 +9,7 @@ import FaFacebook from '../assets/icons/faFacebook.svg';
 import styles from '../styles/login.module.scss';
 import { disableSubmitButton, enableSubmitButton } from '../utils/form.utils'
 import ErrorList from '../components/errorList';
-import { login } from '../services/users/users-login';
+import { login } from '../services/users/auth.service';
 import { useRouter } from 'next/navigation';
 
 export default function Login() {

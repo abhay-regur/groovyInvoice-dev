@@ -1,72 +1,49 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import styles from '../styles/registration.module.scss';
+import styles from '../../styles/registration.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faKey, faEye, faEyeSlash, faMobileRetro, faBriefcase } from '@fortawesome/free-solid-svg-icons';
+import { signUp } from '../../services/users/registration.service';
+import { disableSubmitButton, enableSubmitButton } from '../../utils/form.utils';
+import { useRouter } from 'next/navigation';
+import ErrorList from '../../components/errorList';
+
 export default function Registration() {
-    const URL = process.env.NEXT_PUBLIC_HOST;
+    const { push } = useRouter();
     const [visbilty, setvisibility] = useState(false);
-    const [errorMessage, setErrorMessage] = useState("");
-    const [hasError, setHasError] = useState(false)
-    const [email, setEmail] = useState("");
-    const [comapnyName, setComapnyName] = useState("");
-    const [firstName, setFirstName] = useState("John");
-    const [lastName, setName] = useState("Doe");
-    const [cellNumber, setCellNumber] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+    const [errors, setErrors] = useState([])
+
+    const [data, setData] = useState({
+        email: '',
+        companyName: '',
+        cellNumber: '',
+        password: '',
+        confirmPassword: ''
+    })
+
+    const handleInput = ({ target }) => {
+        data[target.name] = target.value
+        let temp = Object.assign({}, data)
+        setData(temp)
+    }
 
     const togglePasswordVisiblity = () => {
         setvisibility(visbilty ? false : true);
     };
 
-    const sendData = async (data) => {
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        disableSubmitButton(e.target)
         try {
-            const response = await fetch(URL + '/company-users/sign-up', {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/JSON'
-                }
-            });
-
-            const responseData = await response.json();
-            if (typeof (responseData.access_token) != 'undefined' && responseData.access_token != "") {
-                localStorage.setItem("accessToken", responseData.access_token);
-                document.location.pathname = '/';
-            } else {
-                console.log(responseData.statusCode);
-                setHasError(true);
-                setErrorMessage(responseData.message);
-            }
-
-        } catch (err) {
-            console.log(err);
+          await signUp(data)
+          push('/registration/success')
+        } catch (e) {
+          setErrors(e.response.data.message)
         }
-    }
-
-    const handleSubmit = function (event) {
-        setHasError(false);
-        setErrorMessage('');
-        event.preventDefault();
-        if (email != '' && cellNumber != "" && password != "" && confirmPassword != "" && comapnyName != "") {
-            let data = {
-                "email": email,
-                "companyId": comapnyName,
-                "firstName": "John",
-                "lastName": "Doe",
-                "cellNumber": cellNumber,
-                "password": password,
-                "confirmPassword": confirmPassword
-            };
-            sendData(data);
-        } else {
-            setHasError(true);
-            setErrorMessage('No input can be empty');
-        }
-
-    }
+    
+        enableSubmitButton(e.target)
+      }    
 
     return (
         <div className={`${styles.loginContainer} container-fluid`}>
@@ -88,29 +65,27 @@ export default function Registration() {
                         <div className="col-sm-12 justify-content-md-center">
                             <div className={`${styles.loginCard} card`}>
                                 <div className="card-body p-0">
-                                    <div className={`${styles.loginErrorMessageWrapper} ${hasError ? "" : styles.hide} mb-2`} >
-                                        <div className={`${styles.loginErrorMessage}`}>{errorMessage}</div>
-                                    </div>
+                                    <ErrorList errors={errors} />
                                     <form onSubmit={handleSubmit}>
                                         <div className="mb-3">
                                             <label htmlFor="registrationCompanyName" className="form-label">Company Name</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <i><FontAwesomeIcon icon={faBriefcase} /></i>
-                                                <input type="text" className="form-control" placeholder='Company Name' id="registrationCompanyName" value={comapnyName} onChange={(e) => { setComapnyName(e.target.value); setHasError(false); setErrorMessage(''); }} aria-describedby="companyNameHelp" />
+                                                <input type="text" className="form-control" placeholder='Company Name' id="registrationCompanyName" name="companyName" value={data.companyName} onChange={handleInput} aria-describedby="companyNameHelp" />
                                             </div>
                                         </div>
                                         <div className="mb-3">
                                             <label htmlFor="registrationEmail" className="form-label">Email address</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <i><FontAwesomeIcon icon={faEnvelope} /></i>
-                                                <input type="email" className="form-control" placeholder="Email address" id="registrationEmail" value={email} onChange={(e) => { setEmail(e.target.value); setHasError(false); setErrorMessage(''); }} aria-describedby="emailHelp" />
+                                                <input type="email" className="form-control" placeholder="Email address" id="registrationEmail" name="email" value={data.email} onChange={handleInput} aria-describedby="emailHelp" />
                                             </div>
                                         </div>
                                         <div className="mb-3">
                                             <label htmlFor="registrationContactNumber" className="form-label">Contact Number</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <i><FontAwesomeIcon icon={faMobileRetro} /></i>
-                                                <input type="text" className="form-control" placeholder="Contact Number" id="registrationContactNumber" value={cellNumber} onChange={(e) => { setCellNumber(e.target.value); setHasError(false); setErrorMessage(''); }} aria-describedby="contactNumberHelp" />
+                                                <input type="text" className="form-control" placeholder="Contact Number" id="registrationContactNumber" name="cellNumber" value={data.cellNumber} onChange={handleInput} aria-describedby="contactNumberHelp" />
                                             </div>
                                         </div>
                                         <div className="mb-3">
@@ -119,7 +94,7 @@ export default function Registration() {
                                                 <i>
                                                     <FontAwesomeIcon icon={faKey} />
                                                 </i>
-                                                <input type={visbilty ? "text" : "password"} className="form-control" placeholder="Password" value={password} onChange={(e) => { setPassword(e.target.value); setHasError(false); setErrorMessage(''); }} id="loginPassword" />
+                                                <input type={visbilty ? "text" : "password"} className="form-control" placeholder="Password" name="password" value={data.password} onChange={handleInput} id="loginPassword" />
                                                 <i className={`${styles.toggleVisibilityWrapper}`} onClick={togglePasswordVisiblity}>
                                                     <FontAwesomeIcon icon={visbilty ? faEyeSlash : faEye} />
                                                 </i>
@@ -132,7 +107,7 @@ export default function Registration() {
                                                 <i>
                                                     <FontAwesomeIcon icon={faKey} />
                                                 </i>
-                                                <input type={visbilty ? "text" : "password"} className="form-control" placeholder='Password' value={confirmPassword} onChange={(e) => { setConfirmPassword(e.target.value); setHasError(false); setErrorMessage(''); }} id="loginConfirmPassword" />
+                                                <input type={visbilty ? "text" : "password"} className="form-control" placeholder='Password' name="confirmPassword" value={data.confirmPassword} onChange={handleInput} />
                                                 <i className={`${styles.toggleVisibilityWrapper}`} onClick={togglePasswordVisiblity}>
                                                     <FontAwesomeIcon icon={visbilty ? faEyeSlash : faEye} />
                                                 </i>
@@ -140,7 +115,7 @@ export default function Registration() {
                                             </div>
                                         </div>
                                         <div className="d-grid gap-2">
-                                            <button type="submit" className="btn btn-primary">Create an Account</button>
+                                            <button type="submit" name="btn-submit" className="btn btn-primary">Create an Account</button>
                                         </div>
                                     </form>
                                 </div>
