@@ -10,7 +10,7 @@ import { forgotPassword } from '../../services/password/password.services.js';
 import ErrorList from '../../components/errorList';
 import { disableSubmitButton, enableSubmitButton } from '../../utils/form.utils';
 
-export default function ForgotPassword() {
+export default function ForgotPassword(props) {
     const formErrors = [];
     const { push } = useRouter();
     const [errors, setErrors] = useState([]);
@@ -39,6 +39,11 @@ export default function ForgotPassword() {
             try {
                 disableSubmitButton(e.target)
                 await forgotPassword(data)
+                props.setList([{
+                    id: Math.floor((Math.random() * 101) + 1),
+                    title: 'Email Sent',
+                    description: 'Please check your email for reset link!',
+                }])
                 push('/login');
             } catch (error) {
                 setErrors(error.response.data.message)

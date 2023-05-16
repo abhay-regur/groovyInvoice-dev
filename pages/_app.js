@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from "react";
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
+import Toast from '../components/toast';
 //for font awesome
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -43,7 +44,11 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <div className='pageContent'>
         {showNavbar && <Navbar navExpandedState={navExpandedState} setNavExpandedState={setNavExpandedState} />}
-        <Component {...pageProps} navExpandedState={navExpandedState} />
+        <Component {...pageProps} navExpandedState={navExpandedState} setList={setList} />
+        <Toast
+          toastList={list}
+          autoDeleteTime={5000}
+        />
       </div>
       {showNavbar && <Footer />}
 

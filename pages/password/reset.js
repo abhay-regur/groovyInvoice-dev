@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faKey, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import styles from '../../styles/resetPassword.module.scss';
 
-export default function ResetPassword() {
+export default function ResetPassword(props) {
     const [visbilty, setvisibility] = useState(false);
     const formErrors = [];
     const [errors, setErrors] = useState([])
@@ -55,8 +55,12 @@ export default function ResetPassword() {
             disableSubmitButton(event.target)
             try {
                 await resetPassword(token, data);
-                setErrors('Your Password is reset please login again')
-                // push('/login');
+                props.setList([{
+                    id: Math.floor((Math.random() * 101) + 1),
+                    title: 'Success',
+                    description: 'Your Password is reset please login with new password',
+                }]);
+                push('/login');
             } catch (error) {
                 setErrors(error.response.data.message);
             }
