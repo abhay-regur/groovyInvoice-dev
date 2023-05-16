@@ -1,3 +1,4 @@
+"use client"
 import { React, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -6,18 +7,59 @@ import { faEnvelope, faKey, faEye, faEyeSlash } from '@fortawesome/free-solid-sv
 import FaGoogle from '../assets/icons/faGoogle.svg';
 import FaFacebook from '../assets/icons/faFacebook.svg';
 import styles from '../styles/login.module.scss';
-import { useRouter } from 'next/router'
+import { disableSubmitButton, enableSubmitButton } from '../utils/form.utils'
+import ErrorList from '../components/errorList';
+import { login } from '../services/users/users-login';
+import { useRouter } from 'next/navigation';
+
 export default function Login() {
-    const router = useRouter();
+    const { push } = useRouter();
+    const [errors, setErrors] = useState([])
+    const formErrors = []
     const [visbilty, setvisibility] = useState(false);
+    const [data, setData] = useState({
+        username: '',
+        password: ''
+    });
+
+    const handleInput = ({ target }) => {
+        data[target.name] = target.value
+        let temp = Object.assign({}, data)
+        setData(temp)
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        formErrors.splice(0)
+        setErrors(formErrors)
+
+        if (data.username.trim() === '') {
+            formErrors.push('Email Address is required')
+        }
+        if (data.password.trim() === '') {
+            formErrors.push('Password is required')
+        }
+
+        if (formErrors.length > 0) {
+            setErrors(formErrors)
+            return
+        } else {
+            try {
+                disableSubmitButton(e.target)
+                await login(data)
+                push('/')
+            } catch (error) {
+                setErrors(error.response.data.message)
+            }
+            enableSubmitButton(e.target)
+        }
+    }
+
     const togglePasswordVisiblity = () => {
         setvisibility(visbilty ? false : true);
     };
 
-    const checkValidation = function (event) {
-        event.preventDefault();
-        document.location.pathname = '/';
-    }
 
     return (
         <div className={`${styles.loginContainer} container-fluid`}>
@@ -37,12 +79,14 @@ export default function Login() {
                         <div className="col-sm-12 justify-content-md-center">
                             <div className={`${styles.loginCard} card`}>
                                 <div className="card-body p-0">
-                                    <form>
+                                    <ErrorList errors={errors} />
+
+                                    <form onSubmit={handleSubmit}>
                                         <div className="mb-3">
                                             <label htmlFor="loginEmail" className="form-label">Email address</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <i><FontAwesomeIcon icon={faEnvelope} /></i>
-                                                <input type="email" className="form-control" placeholder='Email' id="loginEmail" aria-describedby="emailHelp" />
+                                                <input type="email" className="form-control" placeholder='Email' id="loginEmail" name="username" value={data.username} onChange={handleInput} aria-describedby="emailHelp" />
                                             </div>
                                         </div>
                                         <div className="mb-3">
@@ -51,11 +95,10 @@ export default function Login() {
                                                 <i>
                                                     <FontAwesomeIcon icon={faKey} />
                                                 </i>
-                                                <input type={visbilty ? "text" : "password"} placeholder="Password" className="form-control" id="loginPassword" />
+                                                <input type={visbilty ? "text" : "password"} placeholder="Password" className="form-control" name="password" value={data.password} onChange={handleInput} id="loginPassword" />
                                                 <i className={`${styles.toggleVisibilityWrapper}`} onClick={togglePasswordVisiblity}>
                                                     <FontAwesomeIcon icon={visbilty ? faEyeSlash : faEye} />
                                                 </i>
-
                                             </div>
                                         </div>
                                         <div className="row">
@@ -66,24 +109,24 @@ export default function Login() {
                                                 </div>
                                             </div>
                                             <div className="col-6 justify-content-md-end text-end">
-                                                <Link href="/"><a>Forgot Password</a></Link>
+                                                <span className={`${styles.companyInvoiceLoginPageForgotPassword}`}><Link href="/password/forgot">Forgot Password?</Link></span>
                                             </div>
                                         </div>
                                         <div className="d-grid gap-2">
-                                            <button onClick={(e) => checkValidation(e)} className="btn btn-primary">Sign In</button>
+                                            <button type="submit" name="btn-submit" className="btn btn-primary">Sign In</button>
                                         </div>
                                     </form>
                                     <hr />
                                     <div className="d-flex justify-content-center">
                                         <button type="button" className={`${styles.loginButtonFacebook} btn btn-outline-secondary d-flex jutify-content-around`}><i className={styles.buttonImage} ><FaFacebook /></i> Sign In</button>
-                                        <button type="button" className={`${styles.loginButtonGoogle} btn btn-outline-secondary d-flex jutify-content-around`}><i className={styles.buttonImage}><FaGoogle /></i> Sign In</button>
+                                        <button type="button" className={`${styles.loginButtonGoogle} btn btn-outline-secondary d-flex jutify-content-around`} onClick={() => signIn('google')}><i className={styles.buttonImage}><FaGoogle /></i> Sign In</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="col-sm-12">
                             <div className={`${styles.registrationLinkWrapper}`}>
-                                <p>Don’t have an account? <Link href="/registration"><a>Register Account</a></Link></p>
+                                <p>Don’t have an account? <Link href="/registration">Register Account</Link></p>
                             </div>
                         </div>
                     </div>

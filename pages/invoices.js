@@ -23,12 +23,10 @@ export default function Invoices({ navExpandedState }) {
                         </div>
                         <div className="col-6 d-flex justify-content-end">
                             <Link href={'/newInvoice'}>
-                                <a>
-                                    <button className="green align-content-center">
-                                        <FaCirclePlus />
-                                        Create Invoice
-                                    </button>
-                                </a>
+                                <button className="green align-content-center">
+                                    <FaCirclePlus />
+                                    Create Invoice
+                                </button>
                             </Link>
                         </div>
                     </div>

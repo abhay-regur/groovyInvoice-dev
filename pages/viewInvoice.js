@@ -42,7 +42,7 @@ export default function ViewInvoice({ navExpandedState }) {
                                                 </div>
                                             </li>
                                             <li className={`${styles.companyInvoiceViewInvoiceActionBarActionItem} nav-item dropdown`}>
-                                                <div className="nav-link d-flex">
+                                                <div className="nav-link d-flex justify-content-lg-center">
                                                     <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}><FaMail /></span>
                                                     <a className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText}`} role="button">
                                                         Mail / SMS
@@ -55,13 +55,13 @@ export default function ViewInvoice({ navExpandedState }) {
                                                 </ul>
                                             </li>
                                             <li className={`${styles.companyInvoiceViewInvoiceActionBarActionItem} nav-item`}>
-                                                <div className="nav-link d-flex">
+                                                <div className="nav-link d-flex justify-content-lg-center">
                                                     <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}><FaShare /></span>
                                                     <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText}`}>Share</span>
                                                 </div>
                                             </li>
                                             <li className={`${styles.companyInvoiceViewInvoiceActionBarActionItem} nav-item dropdown`}>
-                                                <div className="nav-link d-flex">
+                                                <div className="nav-link d-flex justify-content-lg-center">
                                                     <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}><FaBell /></span>
                                                     <a className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText}`}>
                                                         Reminders
@@ -73,7 +73,7 @@ export default function ViewInvoice({ navExpandedState }) {
                                                 </ul>
                                             </li>
                                             <li className={`${styles.companyInvoiceViewInvoiceActionBarActionItem} nav-item dropdown`}>
-                                                <div className="nav-link d-flex">
+                                                <div className="nav-link d-flex justify-content-lg-center">
                                                     <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}><FaPDF /></span>
                                                     <a className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText}`}>
                                                         PDF / Print
@@ -85,7 +85,7 @@ export default function ViewInvoice({ navExpandedState }) {
                                                 </ul>
                                             </li>
                                             <li className={`${styles.companyInvoiceViewInvoiceActionBarActionItem} nav-item`}>
-                                                <div className="nav-link d-flex">
+                                                <div className="nav-link d-flex justify-content-lg-center">
                                                     <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}><FaRupee /></span>
                                                     <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText}`}>Record Payment</span>
                                                 </div>

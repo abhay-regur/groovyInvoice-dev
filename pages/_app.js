@@ -26,6 +26,8 @@ function MyApp({ Component, pageProps }) {
       setNavExpandedState(false);
     }
 
+    // Initalize Google API's
+
   }, [])
 
   useEffect(() => {
@@ -33,7 +35,7 @@ function MyApp({ Component, pageProps }) {
   }, [navExpandedState]);
 
   const router = useRouter();
-  const showNavbar = (router.pathname === '/login' || router.pathname === '/registration') ? false : true;
+  const showNavbar = (router.pathname === '/login' || router.pathname === '/registration' || router.pathname === '/password/forgot' || router.pathname === '/password/reset') ? false : true;
   return (
     <>
       <Head>
