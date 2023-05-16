@@ -10,9 +10,10 @@ $tertiary-color-hover: #4EDD8E;
     box-sizing: border-box;
     position: fixed;
     top: 12px;
-    left: 12px;
+    right: 12px;
     transition: transform .6s ease-in;
-    animation: toast-in-left .7s;
+    animation-name: toast_in_left;
+    animation-duration: 1s;
 
     .toastMain {
         background: $primary-color;
@@ -82,7 +83,7 @@ $tertiary-color-hover: #4EDD8E;
         }
     }
 
-    @keyframes toast-in-left {
+    @keyframes toast_in_left {
         from {
             transform: translateX(-100%);
 
