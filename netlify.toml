@@ -1,0 +1,9 @@
+[[redirects]]
+  from = "/api/:path*"
+  to = "http://ec2-16-16-205-182.eu-north-1.compute.amazonaws.com/:path*"
+  status = 200
+  
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
