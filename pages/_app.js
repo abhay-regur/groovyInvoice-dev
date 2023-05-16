@@ -35,7 +35,7 @@ function MyApp({ Component, pageProps }) {
   }, [navExpandedState]);
 
   const router = useRouter();
-  const showNavbar = (router.pathname === '/login' || router.pathname === '/registration' || router.pathname === '/registration/success' || router.pathname === '/password/forgot' || router.pathname === '/password/reset') ? false : true;
+  const showNavbar = (router.pathname === '/login' || router.pathname === '/registration' || router.pathname === '/registration/success' || router.pathname === '/registration/verify-email' || router.pathname === '/password/forgot' || router.pathname === '/password/reset') ? false : true;
   return (
     <>
       <Head>
