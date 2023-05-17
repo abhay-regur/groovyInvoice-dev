@@ -166,13 +166,7 @@ $screen-size-md: 950px;
                 border-radius: 10px;
                 border: 1px solid $border-color;
             }
-
-            .toggleVisibilityWrapper {
-                pointer-events: all;
-                color: $secondary-color;
-                top: 0;
-                right: 0;
-            }
+            
         }
 
         hr {
@@ -360,13 +354,6 @@ $screen-size-md: 950px;
                 opacity: 1;
                 /* Firefox */
             }
-        }
-
-        .toggleVisibilityWrapper {
-            pointer-events: all;
-            color: $secondary-color;
-            top: 0;
-            right: 0;
         }
     }
 }

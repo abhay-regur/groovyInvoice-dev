@@ -3,13 +3,14 @@ import { React, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faKey, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faKey } from '@fortawesome/free-solid-svg-icons';
 import FaGoogle from '../assets/icons/faGoogle.svg';
 import FaFacebook from '../assets/icons/faFacebook.svg';
 import styles from '../styles/login.module.scss';
 import { disableSubmitButton, enableSubmitButton } from '../utils/form.utils'
 import ErrorList from '../components/errorList';
 import { login } from '../services/users/users-login';
+import PasswordToggler from '../components/passwordToggler';
 import { useRouter } from 'next/navigation';
 
 export default function Login() {
@@ -95,10 +96,8 @@ export default function Login() {
                                                 <i>
                                                     <FontAwesomeIcon icon={faKey} />
                                                 </i>
-                                                <input type={visbilty ? "text" : "password"} placeholder="Password" className="form-control" name="password" value={data.password} onChange={handleInput} id="loginPassword" />
-                                                <i className={`${styles.toggleVisibilityWrapper}`} onClick={togglePasswordVisiblity}>
-                                                    <FontAwesomeIcon icon={visbilty ? faEyeSlash : faEye} />
-                                                </i>
+                                                <input type={visbilty ? "text" : "password"} placeholder="Password" className="form-control" name="password" value={data.password} onChange={handleInput} id="password" />
+                                                <PasswordToggler refId="password" />
                                             </div>
                                         </div>
                                         <div className="row">

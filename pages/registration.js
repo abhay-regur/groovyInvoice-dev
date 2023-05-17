@@ -4,6 +4,8 @@ import Link from 'next/link';
 import styles from '../styles/registration.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faKey, faEye, faEyeSlash, faMobileRetro, faBriefcase } from '@fortawesome/free-solid-svg-icons';
+import PasswordToggler from '../components/passwordToggler';
+
 export default function Registration() {
     const URL = process.env.NEXT_PUBLIC_HOST;
     const [visbilty, setvisibility] = useState(false);
@@ -119,11 +121,8 @@ export default function Registration() {
                                                 <i>
                                                     <FontAwesomeIcon icon={faKey} />
                                                 </i>
-                                                <input type={visbilty ? "text" : "password"} className="form-control" placeholder="Password" value={password} onChange={(e) => { setPassword(e.target.value); setHasError(false); setErrorMessage(''); }} id="loginPassword" />
-                                                <i className={`${styles.toggleVisibilityWrapper}`} onClick={togglePasswordVisiblity}>
-                                                    <FontAwesomeIcon icon={visbilty ? faEyeSlash : faEye} />
-                                                </i>
-
+                                                <input type={visbilty ? "text" : "password"} className="form-control" placeholder="Password" value={password} onChange={(e) => { setPassword(e.target.value); setHasError(false); setErrorMessage(''); }} id="password" />
+                                                <PasswordToggler refId="password" />
                                             </div>
                                         </div>
                                         <div className="mb-3">
@@ -132,11 +131,8 @@ export default function Registration() {
                                                 <i>
                                                     <FontAwesomeIcon icon={faKey} />
                                                 </i>
-                                                <input type={visbilty ? "text" : "password"} className="form-control" placeholder='Password' value={confirmPassword} onChange={(e) => { setConfirmPassword(e.target.value); setHasError(false); setErrorMessage(''); }} id="loginConfirmPassword" />
-                                                <i className={`${styles.toggleVisibilityWrapper}`} onClick={togglePasswordVisiblity}>
-                                                    <FontAwesomeIcon icon={visbilty ? faEyeSlash : faEye} />
-                                                </i>
-
+                                                <input type={visbilty ? "text" : "password"} className="form-control" placeholder='Password' value={confirmPassword} onChange={(e) => { setConfirmPassword(e.target.value); setHasError(false); setErrorMessage(''); }} id="confirm-password" />
+                                                <PasswordToggler refId="confirm-password" />
                                             </div>
                                         </div>
                                         <div className="d-grid gap-2">
