@@ -39,12 +39,12 @@ export default function ForgotPassword(props) {
             try {
                 disableSubmitButton(e.target)
                 await forgotPassword(data)
-                props.setList([{
-                    id: Math.floor((Math.random() * 101) + 1),
-                    title: 'Email Sent',
-                    description: 'Please check your email for reset link!',
-                }])
-                push('/login');
+                props.setMessage({
+                    message: 'We have sent you a link on your email address. Please click on the link to update your password.',
+                    subHeading: 'Email Verified!',
+                    showLink: false,
+                });
+                push('/success');
             } catch (error) {
                 setErrors(error.response.data.message)
             }

@@ -1,0 +1,141 @@
+$primary-color: #3649AB;
+$secondary-color: #8790B0;
+$tertiary-color: #43CB80;
+$border-color: #E3EBF2;
+$white: #ffffff;
+$background-primary-color: rgba($primary-color, .2);
+
+$font-size-heading: 32px;
+$font-size-text: 14px;
+
+$screen-size-xm: 368px;
+$screen-size-sm: 576px;
+$screen-size-mm: 767px;
+$screen-size-md: 950px;
+
+.successContainer {
+    color: $primary-color;
+    margin: 0;
+    padding: 0;
+
+    .mainHeading {
+        height: 47px;
+        font-weight: 700;
+        font-size: $font-size-heading;
+        line-height: 40px;
+        margin-top: 37px;
+        margin-bottom: 79px;
+        margin-left: 60px;
+
+        @media (max-width: $screen-size-mm) {
+            font-size: $font-size-heading - 2;
+            margin-left: 0;
+        }
+
+        @media (max-width: $screen-size-sm) {
+            font-size: $font-size-heading - 4;
+            margin-bottom: 43px;
+        }
+    }
+
+    .subHeading {
+
+        height: 47px;
+        font-style: normal;
+        font-weight: 600;
+        font-size: $font-size-heading;
+        line-height: 40px;
+
+        @media (max-width: $screen-size-md) {
+            font-size: $font-size-heading - 4;
+        }
+
+        @media (max-width: $screen-size-sm) {
+            font-size: $font-size-heading - 6;
+        }
+
+        @media (max-width: $screen-size-xm) {
+            font-size: $font-size-heading - 9;
+        }
+    }
+
+    .hide {
+        display: none;
+    }
+
+    .green {
+        color: $tertiary-color;
+    }
+
+    p {
+        height: 24px;
+        font-family: 'Mulish';
+        font-style: normal;
+        font-weight: 600;
+        font-size: $font-size-text + 2;
+        line-height: 20px;
+        text-align: center;
+        color: $secondary-color;
+
+        @media (max-width: $screen-size-sm) {
+            font-size: $font-size-text;
+        }
+    }
+
+    .successCard {
+        box-sizing: border-box;
+
+        width: 650px;
+        padding: 39px 50px;
+        margin: 0 auto;
+
+        background: #FFFFFF;
+        border: 1px solid $border-color;
+        border-radius: 10px;
+        color: $primary-color;
+        font-size: 20px;
+
+        @media (max-width: $screen-size-md) {
+            width: 375px;
+            padding: 32px 24px;
+        }
+
+        @media (max-width: $screen-size-sm) {
+            width: 375px;
+        }
+
+        @media (max-width: $screen-size-xm) {
+            width: 300px;
+        }
+
+        label {
+            font-weight: 400;
+            font-size: $font-size-text;
+            line-height: 18px;
+        }
+
+    }
+
+    .successBackground {
+        background: linear-gradient(0deg, $background-primary-color, $background-primary-color), url('/images/registration_page.png') no-repeat;
+        background-size: cover;
+        height: 100vh;
+
+        @media (max-width: $screen-size-mm) {
+            display: none;
+        }
+    }
+
+    .registrationLinkWrapper {
+        margin-top: 28px;
+
+        a {
+            color: $primary-color;
+            font-weight: 600;
+            font-size: $font-size-text;
+            line-height: 18px;
+            text-decoration: none;
+        }
+    }
+
+}

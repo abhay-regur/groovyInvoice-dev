@@ -55,12 +55,13 @@ export default function ResetPassword(props) {
             disableSubmitButton(event.target)
             try {
                 await resetPassword(token, data);
-                props.setList([{
-                    id: Math.floor((Math.random() * 101) + 1),
-                    title: 'Success',
-                    description: 'Your Password is reset please login with new password',
-                }]);
-                push('/login');
+                props.setMessage({
+                    message: 'Please login with the new password',
+                    subHeading: 'Password Reset Successful!',
+                    showLink: true,
+                });
+
+                push('/success');
             } catch (error) {
                 setErrors(error.response.data.message);
             }
