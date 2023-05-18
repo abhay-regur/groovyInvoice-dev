@@ -11,13 +11,20 @@ import FaUserGroup from '../assets/icons/faUserGroup.svg';
 import FaGear from '../assets/icons/faGear.svg';
 import FaLogout from '../assets/icons/faLogout.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { isLoggedIn } from '../services/auth.service';
 import { faSearch, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { useRouter } from 'next/navigation';
 
 const MENU_LIST = [{ key: 100, text: "Invoices", href: "/invoices", icon: <FaFileLines /> }, { key: 101, text: "Customers", href: "/customers", icon: <FaUserGroup /> }, { key: 102, text: "Reports", href: "/reports", icon: <FaChartLine /> }, { key: 103, text: "Settings", href: "/settings", icon: <FaGear /> }, { key: 103, text: "Logout", href: "users/logout", icon: <FaLogout /> }];
 export default function Navbar({ navExpandedState, setNavExpandedState }) {
-
+    const router = useRouter();
     const [activeIdx, setActiveIdx] = useState(-1);
     const [profileImage, setProfileImage] = useState("/images/profile_img.png");
+    useEffect(() => {
+        if (!isLoggedIn('user')) {
+            router.push('/login')
+        }
+    }, [])
 
     return (
         <div className={style.header}>
