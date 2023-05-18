@@ -17,7 +17,6 @@ export default function Login() {
     const { push } = useRouter();
     const [errors, setErrors] = useState([])
     const formErrors = []
-    const [visbilty, setvisibility] = useState(false);
     const [data, setData] = useState({
         username: '',
         password: ''
@@ -57,11 +56,6 @@ export default function Login() {
         }
     }
 
-    const togglePasswordVisiblity = () => {
-        setvisibility(visbilty ? false : true);
-    };
-
-
     return (
         <div className={`${styles.loginContainer} container-fluid`}>
             <Head>
@@ -96,7 +90,7 @@ export default function Login() {
                                                 <i>
                                                     <FontAwesomeIcon icon={faKey} />
                                                 </i>
-                                                <input type={visbilty ? "text" : "password"} placeholder="Password" className="form-control" name="password" value={data.password} onChange={handleInput} id="password" />
+                                                <input type="password" placeholder="Password" className="form-control" name="password" value={data.password} onChange={handleInput} id="password" />
                                                 <PasswordToggler refId="password" />
                                             </div>
                                         </div>

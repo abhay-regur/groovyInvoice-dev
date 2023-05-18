@@ -3,21 +3,17 @@ import { React, useState, useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faKey, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faKey } from '@fortawesome/free-solid-svg-icons';
 import styles from '../../styles/forgotPassword.module.scss';
+import PasswordToggler from '../../components/passwordToggler';
 
 export default function ResetPassword() {
     const URL = process.env.NEXT_PUBLIC_HOST;
     const [errorMessage, setErrorMessage] = useState("");
-    const [visbilty, setvisibility] = useState(false);
     const [hasError, setHasError] = useState(false);
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const router = useRouter()
-
-    const togglePasswordVisiblity = () => {
-        setvisibility(visbilty ? false : true);
-    };
 
     useEffect(() => {
         var paramObj = router.query;
@@ -114,10 +110,8 @@ export default function ResetPassword() {
                                                 <i>
                                                     <FontAwesomeIcon icon={faKey} />
                                                 </i>
-                                                <input type={visbilty ? "text" : "password"} className="form-control" placeholder="Password" value={password} onChange={(e) => { setPassword(e.target.value); setHasError(false); setErrorMessage(''); }} id="loginPassword" />
-                                                <i className={`${styles.toggleVisibilityWrapper}`} onClick={togglePasswordVisiblity}>
-                                                    <FontAwesomeIcon icon={visbilty ? faEyeSlash : faEye} />
-                                                </i>
+                                                <input type="password" className="form-control" placeholder="Password" value={password} onChange={(e) => { setPassword(e.target.value); setHasError(false); setErrorMessage(''); }} id="password" />
+                                                <PasswordToggler refId="password" />
 
                                             </div>
                                         </div>
@@ -127,10 +121,8 @@ export default function ResetPassword() {
                                                 <i>
                                                     <FontAwesomeIcon icon={faKey} />
                                                 </i>
-                                                <input type={visbilty ? "text" : "password"} className="form-control" placeholder='Password' value={confirmPassword} onChange={(e) => { setConfirmPassword(e.target.value); setHasError(false); setErrorMessage(''); }} id="loginConfirmPassword" />
-                                                <i className={`${styles.toggleVisibilityWrapper}`} onClick={togglePasswordVisiblity}>
-                                                    <FontAwesomeIcon icon={visbilty ? faEyeSlash : faEye} />
-                                                </i>
+                                                <input type="password" className="form-control" placeholder='Password' value={confirmPassword} onChange={(e) => { setConfirmPassword(e.target.value); setHasError(false); setErrorMessage(''); }} id="confirm-password" />
+                                                <PasswordToggler refId="confirm-password" />
 
                                             </div>
                                         </div>

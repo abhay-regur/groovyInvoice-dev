@@ -3,25 +3,18 @@ import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../styles/registration.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faKey, faEye, faEyeSlash, faMobileRetro, faBriefcase } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faKey, faMobileRetro, faBriefcase } from '@fortawesome/free-solid-svg-icons';
 import PasswordToggler from '../components/passwordToggler';
 
 export default function Registration() {
     const URL = process.env.NEXT_PUBLIC_HOST;
-    const [visbilty, setvisibility] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
     const [hasError, setHasError] = useState(false)
     const [email, setEmail] = useState("");
     const [comapnyName, setComapnyName] = useState("");
-    const [firstName, setFirstName] = useState("John");
-    const [lastName, setName] = useState("Doe");
     const [cellNumber, setCellNumber] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-
-    const togglePasswordVisiblity = () => {
-        setvisibility(visbilty ? false : true);
-    };
 
     const sendData = async (data) => {
         try {
@@ -121,7 +114,7 @@ export default function Registration() {
                                                 <i>
                                                     <FontAwesomeIcon icon={faKey} />
                                                 </i>
-                                                <input type={visbilty ? "text" : "password"} className="form-control" placeholder="Password" value={password} onChange={(e) => { setPassword(e.target.value); setHasError(false); setErrorMessage(''); }} id="password" />
+                                                <input type="password" className="form-control" placeholder="Password" value={password} onChange={(e) => { setPassword(e.target.value); setHasError(false); setErrorMessage(''); }} id="password" />
                                                 <PasswordToggler refId="password" />
                                             </div>
                                         </div>
@@ -131,7 +124,7 @@ export default function Registration() {
                                                 <i>
                                                     <FontAwesomeIcon icon={faKey} />
                                                 </i>
-                                                <input type={visbilty ? "text" : "password"} className="form-control" placeholder='Password' value={confirmPassword} onChange={(e) => { setConfirmPassword(e.target.value); setHasError(false); setErrorMessage(''); }} id="confirm-password" />
+                                                <input type="password" className="form-control" placeholder='Password' value={confirmPassword} onChange={(e) => { setConfirmPassword(e.target.value); setHasError(false); setErrorMessage(''); }} id="confirm-password" />
                                                 <PasswordToggler refId="confirm-password" />
                                             </div>
                                         </div>

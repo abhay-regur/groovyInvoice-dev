@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export default function(props) {
+export default function PasswordToggler(props) {
   //Show password on eye icon click
   const [passwordShown, setPasswordShown] = useState(false)
 
