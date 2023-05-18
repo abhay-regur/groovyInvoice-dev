@@ -3,20 +3,20 @@ import { React, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faKey, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faKey } from '@fortawesome/free-solid-svg-icons';
 import FaGoogle from '../assets/icons/faGoogle.svg';
 import FaFacebook from '../assets/icons/faFacebook.svg';
 import styles from '../styles/login.module.scss';
 import { disableSubmitButton, enableSubmitButton } from '../utils/form.utils'
 import ErrorList from '../components/errorList';
 import { login } from '../services/users/auth.service';
+import PasswordToggler from '../components/passwordToggler';
 import { useRouter } from 'next/navigation';
 
 export default function Login() {
     const { push } = useRouter();
     const [errors, setErrors] = useState([])
     const formErrors = []
-    const [visbilty, setvisibility] = useState(false);
     const [data, setData] = useState({
         username: '',
         password: ''
@@ -56,11 +56,6 @@ export default function Login() {
         }
     }
 
-    const togglePasswordVisiblity = () => {
-        setvisibility(visbilty ? false : true);
-    };
-
-
     return (
         <div className={`${styles.loginContainer} container-fluid`}>
             <Head>
@@ -95,10 +90,8 @@ export default function Login() {
                                                 <i>
                                                     <FontAwesomeIcon icon={faKey} />
                                                 </i>
-                                                <input type={visbilty ? "text" : "password"} placeholder="Password" className="form-control" name="password" value={data.password} onChange={handleInput} id="loginPassword" />
-                                                <i className={`${styles.toggleVisibilityWrapper}`} onClick={togglePasswordVisiblity}>
-                                                    <FontAwesomeIcon icon={visbilty ? faEyeSlash : faEye} />
-                                                </i>
+                                                <input type="password" placeholder="Password" className="form-control" name="password" value={data.password} onChange={handleInput} id="password" />
+                                                <PasswordToggler refId="password" />
                                             </div>
                                         </div>
                                         <div className="row">

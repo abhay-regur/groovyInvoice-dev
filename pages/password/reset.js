@@ -8,11 +8,11 @@ import ErrorList from '../../components/errorList';
 import { verifyPasswordResetToken, resetPassword } from '../../services/password/password.services'
 import { disableSubmitButton, enableSubmitButton } from '../../utils/form.utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faKey, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faKey } from '@fortawesome/free-solid-svg-icons';
 import styles from '../../styles/resetPassword.module.scss';
+import PasswordToggler from '../../components/passwordToggler';
 
 export default function ResetPassword(props) {
-    const [visbilty, setvisibility] = useState(false);
     const formErrors = [];
     const [errors, setErrors] = useState([])
     const [data, setData] = useState({ password: '', confirmPassword: '' })
@@ -21,10 +21,6 @@ export default function ResetPassword(props) {
     const router = useRouter();
     const { push } = useRouter();
 
-    const togglePasswordVisiblity = () => {
-        setvisibility(visbilty ? false : true);
-    };
-
     useEffect(() => {
         if (!router.isReady) return;
         verifyToken();
@@ -32,7 +28,8 @@ export default function ResetPassword(props) {
 
     const handleInput = ({ target }) => {
         data[target.name] = target.value
-        setData(data)
+        let temp = Object.assign({}, data)
+        setData(temp)
     }
 
     const verifyToken = async () => {
@@ -96,10 +93,8 @@ export default function ResetPassword(props) {
                                                     <i>
                                                         <FontAwesomeIcon icon={faKey} />
                                                     </i>
-                                                    <input type={visbilty ? "text" : "password"} className="form-control" placeholder="Password" name="password" onChange={(e) => { handleInput(e); }} id="loginPassword" />
-                                                    <i className={`${styles.toggleVisibilityWrapper}`} onClick={togglePasswordVisiblity}>
-                                                        <FontAwesomeIcon icon={visbilty ? faEyeSlash : faEye} />
-                                                    </i>
+                                                    <input type="password" className="form-control" placeholder="Password" name="password" value={data.password} onChange={handleInput} id="password" />
+                                                    <PasswordToggler refId="password" />
 
                                                 </div>
                                             </div>
@@ -109,10 +104,8 @@ export default function ResetPassword(props) {
                                                     <i>
                                                         <FontAwesomeIcon icon={faKey} />
                                                     </i>
-                                                    <input type={visbilty ? "text" : "password"} className="form-control" placeholder='Password' name="confirmPassword" onChange={(e) => { handleInput(e); }} id="loginConfirmPassword" />
-                                                    <i className={`${styles.toggleVisibilityWrapper}`} onClick={togglePasswordVisiblity}>
-                                                        <FontAwesomeIcon icon={visbilty ? faEyeSlash : faEye} />
-                                                    </i>
+                                                    <input type="password" className="form-control" placeholder='Password' name="confirmPassword" value={data.confirmPassword} onChange={handleInput} id="confirm-password" />
+                                                    <PasswordToggler refId="confirm-password" />
 
                                                 </div>
                                             </div>

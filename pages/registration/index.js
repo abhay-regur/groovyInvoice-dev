@@ -8,10 +8,10 @@ import { signUp } from '../../services/users/registration.service';
 import { disableSubmitButton, enableSubmitButton } from '../../utils/form.utils';
 import { useRouter } from 'next/navigation';
 import ErrorList from '../../components/errorList';
+import PasswordToggler from '../../components/passwordToggler';
 
 export default function Registration() {
     const { push } = useRouter();
-    const [visbilty, setvisibility] = useState(false);
     const [errors, setErrors] = useState([])
 
     const [data, setData] = useState({
@@ -27,10 +27,6 @@ export default function Registration() {
         let temp = Object.assign({}, data)
         setData(temp)
     }
-
-    const togglePasswordVisiblity = () => {
-        setvisibility(visbilty ? false : true);
-    };
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -94,11 +90,8 @@ export default function Registration() {
                                                 <i>
                                                     <FontAwesomeIcon icon={faKey} />
                                                 </i>
-                                                <input type={visbilty ? "text" : "password"} className="form-control" placeholder="Password" name="password" value={data.password} onChange={handleInput} id="loginPassword" />
-                                                <i className={`${styles.toggleVisibilityWrapper}`} onClick={togglePasswordVisiblity}>
-                                                    <FontAwesomeIcon icon={visbilty ? faEyeSlash : faEye} />
-                                                </i>
-
+                                                <input type="password" className="form-control" placeholder="Password" name="password" value={data.password} onChange={handleInput} id="password" />
+                                                <PasswordToggler refId="password" />
                                             </div>
                                         </div>
                                         <div className="mb-3">
@@ -107,11 +100,8 @@ export default function Registration() {
                                                 <i>
                                                     <FontAwesomeIcon icon={faKey} />
                                                 </i>
-                                                <input type={visbilty ? "text" : "password"} className="form-control" placeholder='Password' name="confirmPassword" value={data.confirmPassword} onChange={handleInput} />
-                                                <i className={`${styles.toggleVisibilityWrapper}`} onClick={togglePasswordVisiblity}>
-                                                    <FontAwesomeIcon icon={visbilty ? faEyeSlash : faEye} />
-                                                </i>
-
+                                                <input type="password" className="form-control" placeholder='Password' name="confirmPassword" value={data.confirmPassword} onChange={handleInput} id="confirm-password"/>
+                                                <PasswordToggler refId="confirm-password" />
                                             </div>
                                         </div>
                                         <div className="d-grid gap-2">
