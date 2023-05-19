@@ -42,7 +42,7 @@ function MyApp({ Component, pageProps }) {
     subHeading: '',
     showLink: true,
   });
-  const showNavbar = (router.pathname === '/login' || router.pathname === '/registration' || router.pathname === '/registration/success' || router.pathname === '/registration/verify-email' || router.pathname === '/password/forgot' || router.pathname === '/password/reset' || router.pathname === '/success') ? false : true;
+  const showNavbar = (router.pathname === '/login' || router.pathname === '/registration' || router.pathname === '/registration/success' || router.pathname === '/registration/verify-email' || router.pathname === '/password/forgot' || router.pathname === '/password/forgot/success' || router.pathname === '/password/reset' || router.pathname === '/password/reset/success' || router.pathname === '/password/success' || router.pathname === '/password/success' || router.pathname === '/registration/success') ? false : true;
   return (
     <>
       <Head>

@@ -42,7 +42,7 @@ export default function Registration(props) {
                 subHeading: 'Sign up successful!',
                 showLink: false,
             });
-            push('/success');
+            push('/registration/success');
         } catch (e) {
             setErrors(e.response.data.message)
         }

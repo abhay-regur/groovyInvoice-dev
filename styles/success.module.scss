@@ -126,6 +126,16 @@ $screen-size-md: 950px;
         }
     }
 
+    .successPasswordBackground {
+        background: linear-gradient(0deg, $background-primary-color, $background-primary-color), url('/images/login_page.png') no-repeat;
+        background-size: cover;
+        height: 100vh;
+
+        @media (max-width: $screen-size-mm) {
+            display: none;
+        }
+    }
+
     .registrationLinkWrapper {
         margin-top: 28px;
 

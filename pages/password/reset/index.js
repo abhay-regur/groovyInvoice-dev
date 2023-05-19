@@ -4,12 +4,12 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import ErrorList from '../../components/errorList';
-import { verifyPasswordResetToken, resetPassword } from '../../services/password/password.services'
-import { disableSubmitButton, enableSubmitButton } from '../../utils/form.utils';
+import ErrorList from '../../../components/errorList';
+import { verifyPasswordResetToken, resetPassword } from '../../../services/password/password.services'
+import { disableSubmitButton, enableSubmitButton } from '../../../utils/form.utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faKey, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import styles from '../../styles/resetPassword.module.scss';
+import styles from '../../../styles/resetPassword.module.scss';
 
 export default function ResetPassword(props) {
     const [visbilty, setvisibility] = useState(false);
@@ -61,7 +61,7 @@ export default function ResetPassword(props) {
                     showLink: true,
                 });
 
-                push('/success');
+                push('/password/reset/success');
             } catch (error) {
                 setErrors(error.response.data.message);
             }
