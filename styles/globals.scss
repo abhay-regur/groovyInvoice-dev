@@ -241,3 +241,10 @@ button {
 #errors-list {
   list-style: none;
 }
+
+.toggle-visibility-wrapper {
+  pointer-events: all !important;
+  color: $secondary-color !important;
+  top: 0;
+  right: 0;
+}
