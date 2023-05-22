@@ -10,14 +10,14 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope, faKey, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import '@fortawesome/fontawesome-svg-core/styles.css'
+import { isLoggedIn } from '../services/auth.service';
 
 library.autoAddCss = false
 library.add(fab, faEnvelope, faKey, faEye, faEyeSlash);
 //end for font awesome
 
 
-
-function MyApp({ Component, pageProps }) {
+function GroovyInvoiceApp({ Component, pageProps }) {
 
   const [navExpandedState, setNavExpandedState] = useState();
   useEffect(() => {
@@ -34,6 +34,20 @@ function MyApp({ Component, pageProps }) {
     window.localStorage.setItem('navExpandedState', JSON.stringify(navExpandedState));
   }, [navExpandedState]);
 
+  const UserAppPrivateLayout = () => {
+    useEffect(() => {
+      if (!isLoggedIn('user') && router.isReady) {
+        router.push('/login')
+      }
+    }, [router.isReady])
+    return (
+      <>
+        <Navbar navExpandedState={navExpandedState} setNavExpandedState={setNavExpandedState} />
+      </>
+    )
+  }
+  
+
   const router = useRouter();
   const showNavbar = (router.pathname === '/login' || router.pathname === '/registration' || router.pathname === '/password/forgot' || router.pathname === '/password/reset') ? false : true;
   return (
@@ -42,7 +56,7 @@ function MyApp({ Component, pageProps }) {
         <meta content="width=device-width, initial-scale=1" name="viewport" />
       </Head>
       <div className='pageContent'>
-        {showNavbar && <Navbar navExpandedState={navExpandedState} setNavExpandedState={setNavExpandedState} />}
+        {showNavbar && <UserAppPrivateLayout />}
         <Component {...pageProps} navExpandedState={navExpandedState} />
       </div>
       {showNavbar && <Footer />}
@@ -51,4 +65,4 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export default MyApp
+export default GroovyInvoiceApp
