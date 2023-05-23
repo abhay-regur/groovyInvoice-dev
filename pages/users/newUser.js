@@ -1,9 +1,6 @@
 import { useState } from 'react';
-import RadioButton from '../../components/radioButton';
-import FaSkype from '../../assets/icons/faSkype.svg';
 import FaSave from '../../assets/icons/faSave.svg';
 import FaCircleXmark from '../../assets/icons/faCircleXmark.svg';
-import FaExclamationCircle from '../../assets/icons/faExclamationCircle.svg';
 import styles from "../../styles/newUser.module.scss";
 
 const NewUser = ({ navExpandedState }) => {
@@ -30,35 +27,22 @@ const NewUser = ({ navExpandedState }) => {
 
                             <hr />
 
-                            <div className={`${styles.companyUserTypeOptionWrapper} mb-4 row`}>
+                            <div className={`${styles.companyUserPrimaryUserWrapper} mb-4 row`}>
                                 <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
-                                    <label className="">Primay User</label>
+                                    <label className="">Primary User</label>
                                 </div>
                                 <div className="col-12 col-lg-6 col-xl-6">
-                                    <span className={`${styles.companyUserTypeSelectorMainWrapper}`}>
-                                        <span className={`${styles.userTypeBusinessRadioButtonWrapper} d-flex align-items-center`}>
-                                            <RadioButton
-                                                label="Business"
-                                                value={userTypeSelected === 'business'}
-                                                onChange={handleBusinessChange}
-                                            />
-                                        </span>
-                                        <span className={`${styles.userTypeIndividualRadioButtonWrapper} d-flex align-items-center`}>
-                                            <RadioButton
-                                                label="Individual"
-                                                value={userTypeSelected === 'individual'}
-                                                onChange={handleIndividualChange}
-                                            />
-                                        </span>
-                                    </span>
+                                    <div className={`${styles.companyUserPrimaryUserSwitchWrapper} form-check form-switch align-items-center d-flex`}>
+                                        <input className={`${styles.companyUserPrimaryUserSwitch} form-check-input`} type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                                    </div>
                                 </div>
                             </div>
 
-                            <div className={`${styles.companyInvoiceNameWrapper} mb-0 mb-md-4 row`}>
+                            <div className={`${styles.companyInvoiceUserNameWrapper} mb-0 mb-md-4 row`}>
                                 <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
                                     <label className="">Name</label>
                                 </div>
-                                <div className="col-12 col-lg-2 col-xl-2">
+                                {/* <div className="col-12 col-lg-2 col-xl-2">
                                     <select className={`${styles.companySalutationSelect} form-select`}>
                                         <option defaultValue>Salutation</option>
                                         <option value="ms">Ms.</option>
@@ -66,51 +50,49 @@ const NewUser = ({ navExpandedState }) => {
                                         <option value="mrs">Mrs.</option>
                                         <option value="dr">Dr.</option>
                                     </select>
+                                </div> */}
+                                <div className="col-12 col-lg-3 col-xl-3">
+                                    <input type="text" className={`${styles.companyInvoiceUserFirstName} form-control`} placeholder='First Name' />
                                 </div>
-                                <div className="col-12 col-lg-3 col-xl-2">
-                                    <input type="text" className={`${styles.companyInvoiceNewUserFirstName} form-control`} placeholder='First Name' />
-                                </div>
-                                <div className="col-12 col-lg-3 col-xl-2">
-                                    <input type="text" className={`${styles.companyInvoiceNewUserLastName} form-control`} placeholder='Last Name' />
+                                <div className="col-12 col-lg-3 col-xl-3">
+                                    <input type="text" className={`${styles.companyInvoiceUserLastName} form-control`} placeholder='Last Name' />
                                 </div>
                             </div>
 
-                            <div className={`${styles.companyInvoiceCompanyEmailWrapper} mb-4 row`}>
+                            <div className={`${styles.companyInvoiceUserEmailWrapper} mb-4 row`}>
                                 <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
-                                    <label className={`${styles.companyInvoiceCompanyEmailLabel}`}>User Email</label>
+                                    <label className={`${styles.companyInvoiceUserEmailLabel}`}>User Email</label>
                                 </div>
                                 <div className="col-12 col-lg-6 col-xl-6 d-flex align-items-center">
-                                    <input type="email" className="form-control" id="companyInvoiceCompanyEmail" placeholder='Company Email' />
-                                    <FaExclamationCircle />
+                                    <input type="email" className="form-control" id="companyInvoiceUserEmail" placeholder='User Email' />
                                 </div>
                             </div>
 
-                            <div className={`${styles.companyInvoiceCompanyPhone} mb-4 row`}>
+                            <div className={`${styles.companyInvoiceUserPhone} mb-4 row`}>
                                 <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
-                                    <label className={`${styles.companyInvoiceCompanyPhoneLabel}`}>User Phone</label>
+                                    <label className={`${styles.companyInvoiceUserPhoneLabel}`}>User Phone</label>
                                 </div>
 
                                 <div className="col-12 col-lg-6 col-xl-6 d-flex align-items-center">
-                                    <input type="text" className={`${styles.companyInvoiceCompanyMobile} form-control`} placeholder='Mobile' />
-                                    <FaExclamationCircle />
+                                    <input type="text" className={`${styles.companyInvoiceUserMobile} form-control`} placeholder='Mobile' />
                                 </div>
                             </div>
 
-                            <div className={`${styles.companyInvoiceDesignationWrapper} mb-4 row`}>
+                            <div className={`${styles.companyInvoiceUserPasswordWrapper} mb-4 row`}>
                                 <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
-                                    <label className={`${styles.companyInvoiceDesignationlabel}`}>Password</label>
+                                    <label className={`${styles.companyInvoiceUserPasswordLabel}`}>Password</label>
                                 </div>
                                 <div className="col-12 col-lg-6 col-xl-6">
-                                    <input type="text" className="form-control" id="companyInvoiceDesignation" placeholder='Password' />
+                                    <input type="text" className="form-control" id="companyInvoiceUserPassword" placeholder='Password' />
                                 </div>
                             </div>
 
-                            <div className={`${styles.companyInvoiceDepartmentWrapper} mb-4 row`}>
+                            <div className={`${styles.companyInvoiceUserPasswordWrapper} mb-4 row`}>
                                 <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
-                                    <label className={`${styles.companyInvoiceDepartmentLabel}`}>Confirm Password</label>
+                                    <label className={`${styles.companyInvoiceUserPasswordLabel}`}>Confirm Password</label>
                                 </div>
                                 <div className="col-12 col-lg-6 col-xl-6">
-                                    <input type="text" className="form-control" id="companyInvoiceDepartment" placeholder='Confirm Password' />
+                                    <input type="text" className="form-control" id="companyInvoiceDesignation" placeholder='Confirm Password' />
                                 </div>
                             </div>
 
