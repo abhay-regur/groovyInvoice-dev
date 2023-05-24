@@ -65,7 +65,7 @@ $transprant: rgba(0, 0, 0, 0);
                 margin-top: 14px;
             }
 
-            .companyUserPrimaryUserWrapper {
+            .companyUserActiveUserWrapper {
                 display: flex;
 
                 label {
@@ -76,10 +76,10 @@ $transprant: rgba(0, 0, 0, 0);
                     color: $primary-color;
                 }
 
-                .companyUserPrimaryUserSwitchWrapper {
+                .companyUserActiveUserSwitchWrapper {
                     display: flex;
 
-                    .companyUserPrimaryUserSwitch {
+                    .companyUserActiveUserSwitch {
                         height: 2em;
                         width: 3em;
 
@@ -188,6 +188,17 @@ $transprant: rgba(0, 0, 0, 0);
                     border-radius: 8px;
                 }
 
+                button {
+                    display: flex;
+                    margin-left: 5px;
+                    align-self: center;
+
+                    svg {
+                        height: 20px;
+                        width: 20px;
+                    }
+                }
+
             }
 
             .companyInvoiceFormButtonsWrapper {
@@ -276,7 +287,7 @@ $transprant: rgba(0, 0, 0, 0);
                     line-height: 28px;
                 }
 
-                .companyUserPrimaryUserWrapper {
+                .companyUserActiveUserWrapper {
                     display: flex;
 
                     label {
@@ -288,10 +299,10 @@ $transprant: rgba(0, 0, 0, 0);
                         margin-bottom: 10px;
                     }
 
-                    .companyUserPrimaryUserSwitchWrapper {
+                    .companyUserActiveUserSwitchWrapper {
                         display: flex;
 
-                        .companyUserPrimaryUserSwitch {
+                        .companyUserActiveUserSwitch {
                             height: 2em;
                             width: 3em;
 
@@ -496,7 +507,7 @@ $transprant: rgba(0, 0, 0, 0);
                     line-height: 28px;
                 }
 
-                .companyUserPrimaryUserWrapper {
+                .companyUserActiveUserWrapper {
                     display: flex;
 
                     label {
@@ -508,10 +519,10 @@ $transprant: rgba(0, 0, 0, 0);
                         margin-bottom: 10px;
                     }
 
-                    .companyUserPrimaryUserSwitchWrapper {
+                    .companyUserActiveUserSwitchWrapper {
                         display: flex;
 
-                        .companyUserPrimaryUserSwitch {
+                        .companyUserActiveUserSwitch {
                             height: 2em;
                             width: 3em;
 
