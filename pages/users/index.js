@@ -22,7 +22,7 @@ export default function Customers({ navExpandedState }) {
                             </h2>
                         </div>
                         <div className="col-6 d-flex justify-content-end">
-                            <Link href={'/users/newUser'}>
+                            <Link href={'/users/add'}>
                                 <button className="green align-content-center">
                                     <FaCirclePlus />
                                     Add User
