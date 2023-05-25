@@ -4,8 +4,9 @@ import { generatePassword } from '../../utils/genratePassword.utils';
 import FaCircleXmark from '../../assets/icons/faCircleXmark.svg';
 import styles from "../../styles/newUser.module.scss";
 import FaGear from '../../assets/icons/faGear.svg';
+import { Tooltip } from '../../components/tooltip';
 
-const NewUser = ({ navExpandedState }) => {
+const AddUser = ({ navExpandedState }) => {
     // const [userTypeSelected, setuserTypeSelected] = useState();
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -85,7 +86,9 @@ const NewUser = ({ navExpandedState }) => {
                                 </div>
                                 <div className="col-12 col-lg-6 col-xl-6 d-flex">
                                     <input type="text" className="form-control" value={password} onInput={(e) => setPassword(e.value)} id="companyInvoiceUserPassword" placeholder='Password' />
-                                    <button className="btn blueOutline" onClick={() => { genrateNewPassword() }}><FaGear /></button>
+                                    <Tooltip text='Genrate random password'>
+                                        <button className="btn blueOutline" onClick={() => { genrateNewPassword() }}><FaGear /></button>
+                                    </Tooltip>
                                 </div>
                             </div>
 
@@ -128,4 +131,4 @@ const NewUser = ({ navExpandedState }) => {
     )
 }
 
-export default NewUser;
+export default AddUser;
