@@ -192,10 +192,15 @@ $transprant: rgba(0, 0, 0, 0);
                     display: flex;
                     margin-left: 5px;
                     align-self: center;
+                    border: none;
 
                     svg {
                         height: 20px;
                         width: 20px;
+
+                        path {
+                            fill: $primary-color;
+                        }
                     }
                 }
 
