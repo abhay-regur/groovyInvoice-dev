@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation';
 import ErrorList from '../../components/errorList';
 import PasswordToggler from '../../components/passwordToggler';
 
-export default function Registration() {
+export default function Registration(props) {
     const { push } = useRouter();
     const [errors, setErrors] = useState([])
 
@@ -32,14 +32,19 @@ export default function Registration() {
         e.preventDefault()
         disableSubmitButton(e.target)
         try {
-          await signUp(data)
-          push('/registration/success')
+            await signUp(data)
+            props.setMessage({
+                message: 'We have sent you a link on your registered email address. Please click on the link to verify your account.',
+                subHeading: 'Sign up successful!',
+                showLink: false,
+            });
+            push('/registration/success');
         } catch (e) {
-          setErrors(e.response.data.message)
+            setErrors(e.response.data.message)
         }
-    
+
         enableSubmitButton(e.target)
-      }    
+    }
 
     return (
         <div className={`${styles.loginContainer} container-fluid`}>

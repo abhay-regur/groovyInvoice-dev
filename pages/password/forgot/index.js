@@ -4,11 +4,11 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import styles from '../../styles/forgotPassword.module.scss';
+import styles from '../../../styles/forgotPassword.module.scss';
 import { useRouter } from 'next/router';
-import { forgotPassword } from '../../services/password/password.services.js';
-import ErrorList from '../../components/errorList';
-import { disableSubmitButton, enableSubmitButton } from '../../utils/form.utils';
+import { forgotPassword } from '../../../services/password/password.services.js';
+import ErrorList from '../../../components/errorList';
+import { disableSubmitButton, enableSubmitButton } from '../../../utils/form.utils';
 
 export default function ForgotPassword(props) {
     const formErrors = [];
@@ -39,12 +39,12 @@ export default function ForgotPassword(props) {
             try {
                 disableSubmitButton(e.target)
                 await forgotPassword(data)
-                props.setList([{
-                    id: Math.floor((Math.random() * 101) + 1),
-                    title: 'Email Sent',
-                    description: 'Please check your email for reset link!',
-                }])
-                push('/login');
+                props.setMessage({
+                    message: 'We have sent you a link on your email address. Please click on the link to update your password.',
+                    subHeading: 'Email Verified!',
+                    showLink: false,
+                });
+                push('/password/forgot/success');
             } catch (error) {
                 setErrors(error.response.data.message)
             }

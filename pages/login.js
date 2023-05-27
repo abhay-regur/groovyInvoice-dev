@@ -50,7 +50,12 @@ export default function Login() {
                 await login(data)
                 push('/')
             } catch (error) {
-                setErrors(error.response.data.message)
+                var status = error.response.status;
+                if (status == '404' || status == '401') {
+                    setErrors("Username or Password is incorrect please try again.")
+                } else {
+                    setErrors(error.response.data.message);
+                }
             }
             enableSubmitButton(e.target)
         }
