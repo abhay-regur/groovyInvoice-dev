@@ -86,9 +86,10 @@ const AddUser = ({ navExpandedState }) => {
                                 </div>
                                 <div className="col-12 col-lg-6 col-xl-6 d-flex">
                                     <input type="text" className="form-control" value={password} onInput={(e) => setPassword(e.value)} id="companyInvoiceUserPassword" placeholder='Password' />
-                                    <Tooltip text='Genrate random password'>
-                                        <button className="btn blueOutline" onClick={() => { genrateNewPassword() }}><FaGear /></button>
-                                    </Tooltip>
+                                    <button className="btn blueOutline" onClick={() => { genrateNewPassword() }}><FaGear /></button>
+                                    {/* <Tooltip text='Genrate random password'>
+                                        
+                                    </Tooltip> */}
                                 </div>
                             </div>
 
