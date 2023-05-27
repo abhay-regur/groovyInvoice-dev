@@ -4,13 +4,14 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import ErrorList from '../../components/errorList';
-import { verifyPasswordResetToken, resetPassword } from '../../services/password/password.services'
-import { disableSubmitButton, enableSubmitButton } from '../../utils/form.utils';
+import ErrorList from '../../../components/errorList';
+import { verifyPasswordResetToken, resetPassword } from '../../../services/password/password.services'
+import { disableSubmitButton, enableSubmitButton } from '../../../utils/form.utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faKey } from '@fortawesome/free-solid-svg-icons';
-import styles from '../../styles/resetPassword.module.scss';
-import PasswordToggler from '../../components/passwordToggler';
+import styles from '../../../styles/resetPassword.module.scss';
+import PasswordToggler from '../../../components/passwordToggler';
+
 
 export default function ResetPassword(props) {
     const formErrors = [];
@@ -52,12 +53,13 @@ export default function ResetPassword(props) {
             disableSubmitButton(event.target)
             try {
                 await resetPassword(token, data);
-                props.setList([{
-                    id: Math.floor((Math.random() * 101) + 1),
-                    title: 'Success',
-                    description: 'Your Password is reset please login with new password',
-                }]);
-                push('/login');
+                props.setMessage({
+                    message: 'Please login with the new password',
+                    subHeading: 'Password Reset Successful!',
+                    showLink: true,
+                });
+
+                push('/password/reset/success');
             } catch (error) {
                 setErrors(error.response.data.message);
             }

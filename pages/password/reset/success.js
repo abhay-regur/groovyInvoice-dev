@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../../styles/success.module.scss';
+import styles from '../../../styles/success.module.scss';
 import Link from 'next/link';
 import Head from 'next/head';
 
@@ -10,8 +10,6 @@ export default function Success(props) {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Head>
             <div className="row mx-0">
-                <div className={`${styles.successBackground} col-md-6 .d-none .d-lg-block .d-xl-none`}>
-                </div>
                 <div className="col-md-6">
                     <div className="row">
                         <div className="col-sm-12 d-flex justify-content-center justify-content-md-start">
@@ -34,6 +32,8 @@ export default function Success(props) {
                             </div>
                         </div>
                     </div>
+                </div>
+                <div className={`${styles.successPasswordBackground} col-md-6 .d-none .d-lg-block .d-xl-none`}>
                 </div>
             </div>
         </div>

@@ -37,7 +37,12 @@ function MyApp({ Component, pageProps }) {
 
   const router = useRouter();
   const [list, setList] = useState([]);
-  const showNavbar = (router.pathname === '/login' || router.pathname === '/registration' || router.pathname === '/registration/success' || router.pathname === '/registration/verify-email' || router.pathname === '/password/forgot' || router.pathname === '/password/reset') ? false : true;
+  const [successMessage, setSuccessMessage] = useState({
+    message: '',
+    subHeading: '',
+    showLink: true,
+  });
+  const showNavbar = (router.pathname === '/login' || router.pathname === '/registration' || router.pathname === '/registration/success' || router.pathname === '/registration/verify-email' || router.pathname === '/password/forgot' || router.pathname === '/password/forgot/success' || router.pathname === '/password/reset' || router.pathname === '/password/reset/success' || router.pathname === '/password/success' || router.pathname === '/password/success' || router.pathname === '/registration/success') ? false : true;
   return (
     <>
       <Head>
@@ -45,7 +50,7 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <div className='pageContent'>
         {showNavbar && <Navbar navExpandedState={navExpandedState} setNavExpandedState={setNavExpandedState} />}
-        <Component {...pageProps} navExpandedState={navExpandedState} setList={setList} />
+        <Component {...pageProps} navExpandedState={navExpandedState} setList={setList} message={successMessage} setMessage={setSuccessMessage} />
         <Toast
           toastList={list}
           autoDeleteTime={5000}
