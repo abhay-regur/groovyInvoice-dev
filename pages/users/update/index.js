@@ -53,16 +53,16 @@ const AddUser = ({ navExpandedState }) => {
 
                             <div className={`${styles.companyInvoiceUserEmailWrapper} mb-4 row`}>
                                 <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
-                                    <label className={`${styles.companyInvoiceUserEmailLabel}`}>User Email</label>
+                                    <label className={`${styles.companyInvoiceUserEmailLabel}`}>Email</label>
                                 </div>
                                 <div className="col-12 col-lg-6 col-xl-6 d-flex align-items-center">
-                                    <input type="email" className="form-control" id="companyInvoiceUserEmail" placeholder='User Email' />
+                                    <input type="email" className="form-control" id="companyInvoiceUserEmail" placeholder='Email' />
                                 </div>
                             </div>
 
                             <div className={`${styles.companyInvoiceUserPhone} mb-4 row`}>
                                 <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
-                                    <label className={`${styles.companyInvoiceUserPhoneLabel}`}>User Phone</label>
+                                    <label className={`${styles.companyInvoiceUserPhoneLabel}`}>Phone</label>
                                 </div>
 
                                 <div className="col-12 col-lg-6 col-xl-6 d-flex align-items-center">
