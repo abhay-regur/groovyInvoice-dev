@@ -246,6 +246,26 @@ $table-pagination-background: #D9E6F3;
                             }
 
                             .companyUserTableReceivables {}
+
+                            .companyUserActiveUserSwitchWrapper {
+                                display: flex;
+
+                                .companyUserActiveUserSwitch {
+                                    height: 2em;
+                                    width: 3em;
+
+                                    &:checked {
+                                        background-color: $primary-color;
+                                        border-color: $primary-color;
+                                    }
+
+                                    &:focus {
+                                        border-color: #364aab5e;
+                                        outline: 0;
+                                        box-shadow: none;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
