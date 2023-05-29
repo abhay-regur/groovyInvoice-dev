@@ -1,20 +1,21 @@
-import { useLayoutEffect, useState } from 'react';
-import FaSave from '../../assets/icons/faSave.svg';
-import { generatePassword } from '../../utils/genratePassword.utils';
-import FaCircleXmark from '../../assets/icons/faCircleXmark.svg';
-import styles from "../../styles/userForm.module.scss";
-import FaGear from '../../assets/icons/faGear.svg';
+import { useState } from 'react';
+import FaSave from '../../../assets/icons/faSave.svg';
+import { generatePassword } from '../../../utils/genratePassword.utils';
+import FaCircleXmark from '../../../assets/icons/faCircleXmark.svg';
+import styles from "../../../styles/userForm.module.scss";
+import FaGear from '../../../assets/icons/faGear.svg';
+// import { Tooltip } from '../../../components/tooltip';
 
 const AddUser = ({ navExpandedState }) => {
     // const [userTypeSelected, setuserTypeSelected] = useState();
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+
     const genrateNewPassword = () => {
         var temp = generatePassword()
         setPassword(temp);
         setConfirmPassword(temp);
     }
-
     return (
         <div>
             <main className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
@@ -23,7 +24,7 @@ const AddUser = ({ navExpandedState }) => {
                 <div className="container-fluid">
                     <div className={`${styles.card} card`}>
                         <div className={`${styles.cardBody} card-body`}>
-                            <h4 className={`${styles.cardTitle} card-title`}>Add New User</h4>
+                            <h4 className={`${styles.cardTitle} card-title`}>Update User</h4>
 
                             <hr />
 
@@ -110,6 +111,7 @@ const AddUser = ({ navExpandedState }) => {
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>

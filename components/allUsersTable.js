@@ -1,6 +1,7 @@
 import styles from '../styles/user.module.scss';
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useTable, usePagination } from 'react-table';
 import defaultProfile from '../public/images/profile_Default.png';
 import TablePagination from "./tablePagination.js";
@@ -23,7 +24,7 @@ const AllUserTable = ({ ItemsData }) => {
                 accessor: 'emailAddress',
             },
             {
-                Header: '',
+                Header: 'Active',
                 accessor: 'extraFunction',
             },
         ],
@@ -33,94 +34,14 @@ const AllUserTable = ({ ItemsData }) => {
     const data = React.useMemo(
         () => [
             {
-                userName: <div className={`${styles.companyUserTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyUserTableCustomerNameWrapper}`}><div className={`${styles.companyUserTableCustomerName}`} >Maximus Tempor</div><div className={`${styles.companyUserTableCustomerEdit} ps-2`}><FaPen /></div></span></div>,
+                userName: <div className={`${styles.companyUserTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyUserTableCustomerNameWrapper}`}><div className={`${styles.companyUserTableCustomerName}`} >Maximus Tempor</div><div className={`${styles.companyUserTableCustomerEdit} ps-2`}> <Link href="users/update"><FaPen /></Link></div></span></div>,
                 contactNumber: <><div className={`${styles.companyUserTableContactNumber}`}>408-545-4861</div></>,
                 emailAddress: <span className={`${styles.companyUserTableEmailAddress}`}>test@gmail.com</span>,
-                extraFunction: <span className={`${styles.companyUserTableExtraFunction}`}></span>,
-            },
-            {
-                userName: <div className={`${styles.companyUserTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyUserTableCustomerNameWrapper}`}><div className={`${styles.companyUserTableCustomerName}`} >Maximus Tempor</div><div className={`${styles.companyUserTableCustomerEdit} ps-2`}><FaPen /></div></span></div>,
-                contactNumber: <><div className={`${styles.companyUserTableContactNumber}`}>408-545-4861</div></>,
-                emailAddress: <span className={`${styles.companyUserTableEmailAddress}`}>test@gmail.com</span>,
-                extraFunction: <span className={`${styles.companyUserTableExtraFunction}`}></span>,
-            },
-            {
-                userName: <div className={`${styles.companyUserTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyUserTableCustomerNameWrapper}`}><div className={`${styles.companyUserTableCustomerName}`} >Maximus Tempor</div><div className={`${styles.companyUserTableCustomerEdit} ps-2`}><FaPen /></div></span></div>,
-                contactNumber: <><div className={`${styles.companyUserTableContactNumber}`}>408-545-4861</div></>,
-                emailAddress: <span className={`${styles.companyUserTableEmailAddress}`}>test@gmail.com</span>,
-                extraFunction: <span className={`${styles.companyUserTableExtraFunction}`}></span>,
-            },
-            {
-                userName: <div className={`${styles.companyUserTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyUserTableCustomerNameWrapper}`}><div className={`${styles.companyUserTableCustomerName}`} >Maximus Tempor</div><div className={`${styles.companyUserTableCustomerEdit} ps-2`}><FaPen /></div></span></div>,
-                contactNumber: <><div className={`${styles.companyUserTableContactNumber}`}>408-545-4861</div></>,
-                emailAddress: <span className={`${styles.companyUserTableEmailAddress}`}>test@gmail.com</span>,
-                extraFunction: <span className={`${styles.companyUserTableExtraFunction}`}></span>,
-            },
-            {
-                userName: <div className={`${styles.companyUserTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyUserTableCustomerNameWrapper}`}><div className={`${styles.companyUserTableCustomerName}`} >Maximus Tempor</div><div className={`${styles.companyUserTableCustomerEdit} ps-2`}><FaPen /></div></span></div>,
-                contactNumber: <><div className={`${styles.companyUserTableContactNumber}`}>408-545-4861</div></>,
-                emailAddress: <span className={`${styles.companyUserTableEmailAddress}`}>test@gmail.com</span>,
-                extraFunction: <span className={`${styles.companyUserTableExtraFunction}`}></span>,
-            },
-            {
-                userName: <div className={`${styles.companyUserTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyUserTableCustomerNameWrapper}`}><div className={`${styles.companyUserTableCustomerName}`} >Maximus Tempor</div><div className={`${styles.companyUserTableCustomerEdit} ps-2`}><FaPen /></div></span></div>,
-                contactNumber: <><div className={`${styles.companyUserTableContactNumber}`}>408-545-4861</div></>,
-                emailAddress: <span className={`${styles.companyUserTableEmailAddress}`}>test@gmail.com</span>,
-                extraFunction: <span className={`${styles.companyUserTableExtraFunction}`}></span>,
-            },
-            {
-                userName: <div className={`${styles.companyUserTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyUserTableCustomerNameWrapper}`}><div className={`${styles.companyUserTableCustomerName}`} >Maximus Tempor</div><div className={`${styles.companyUserTableCustomerEdit} ps-2`}><FaPen /></div></span></div>,
-                contactNumber: <><div className={`${styles.companyUserTableContactNumber}`}>408-545-4861</div></>,
-                emailAddress: <span className={`${styles.companyUserTableEmailAddress}`}>test@gmail.com</span>,
-                extraFunction: <span className={`${styles.companyUserTableExtraFunction}`}></span>,
-            },
-            {
-                userName: <div className={`${styles.companyUserTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyUserTableCustomerNameWrapper}`}><div className={`${styles.companyUserTableCustomerName}`} >Maximus Tempor</div><div className={`${styles.companyUserTableCustomerEdit} ps-2`}><FaPen /></div></span></div>,
-                contactNumber: <><div className={`${styles.companyUserTableContactNumber}`}>408-545-4861</div></>,
-                emailAddress: <span className={`${styles.companyUserTableEmailAddress}`}>test@gmail.com</span>,
-                extraFunction: <span className={`${styles.companyUserTableExtraFunction}`}></span>,
-            },
-            {
-                userName: <div className={`${styles.companyUserTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyUserTableCustomerNameWrapper}`}><div className={`${styles.companyUserTableCustomerName}`} >Maximus Tempor</div><div className={`${styles.companyUserTableCustomerEdit} ps-2`}><FaPen /></div></span></div>,
-                contactNumber: <><div className={`${styles.companyUserTableContactNumber}`}>408-545-4861</div></>,
-                emailAddress: <span className={`${styles.companyUserTableEmailAddress}`}>test@gmail.com</span>,
-                extraFunction: <span className={`${styles.companyUserTableExtraFunction}`}></span>,
-            },
-            {
-                userName: <div className={`${styles.companyUserTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyUserTableCustomerNameWrapper}`}><div className={`${styles.companyUserTableCustomerName}`} >Maximus Tempor</div><div className={`${styles.companyUserTableCustomerEdit} ps-2`}><FaPen /></div></span></div>,
-                contactNumber: <><div className={`${styles.companyUserTableContactNumber}`}>408-545-4861</div></>,
-                emailAddress: <span className={`${styles.companyUserTableEmailAddress}`}>test@gmail.com</span>,
-                extraFunction: <span className={`${styles.companyUserTableExtraFunction}`}></span>,
-            },
-            {
-                userName: <div className={`${styles.companyUserTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyUserTableCustomerNameWrapper}`}><div className={`${styles.companyUserTableCustomerName}`} >Maximus Tempor</div><div className={`${styles.companyUserTableCustomerEdit} ps-2`}><FaPen /></div></span></div>,
-                contactNumber: <><div className={`${styles.companyUserTableContactNumber}`}>408-545-4861</div></>,
-                emailAddress: <span className={`${styles.companyUserTableEmailAddress}`}>test@gmail.com</span>,
-                extraFunction: <span className={`${styles.companyUserTableExtraFunction}`}></span>,
-            },
-            {
-                userName: <div className={`${styles.companyUserTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyUserTableCustomerNameWrapper}`}><div className={`${styles.companyUserTableCustomerName}`} >Maximus Tempor</div><div className={`${styles.companyUserTableCustomerEdit} ps-2`}><FaPen /></div></span></div>,
-                contactNumber: <><div className={`${styles.companyUserTableContactNumber}`}>408-545-4861</div></>,
-                emailAddress: <span className={`${styles.companyUserTableEmailAddress}`}>test@gmail.com</span>,
-                extraFunction: <span className={`${styles.companyUserTableExtraFunction}`}></span>,
-            },
-            {
-                userName: <div className={`${styles.companyUserTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyUserTableCustomerNameWrapper}`}><div className={`${styles.companyUserTableCustomerName}`} >Maximus Tempor</div><div className={`${styles.companyUserTableCustomerEdit} ps-2`}><FaPen /></div></span></div>,
-                contactNumber: <><div className={`${styles.companyUserTableContactNumber}`}>408-545-4861</div></>,
-                emailAddress: <span className={`${styles.companyUserTableEmailAddress}`}>test@gmail.com</span>,
-                extraFunction: <span className={`${styles.companyUserTableExtraFunction}`}></span>,
-            },
-            {
-                userName: <div className={`${styles.companyUserTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyUserTableCustomerNameWrapper}`}><div className={`${styles.companyUserTableCustomerName}`} >Maximus Tempor</div><div className={`${styles.companyUserTableCustomerEdit} ps-2`}><FaPen /></div></span></div>,
-                contactNumber: <><div className={`${styles.companyUserTableContactNumber}`}>408-545-4861</div></>,
-                emailAddress: <span className={`${styles.companyUserTableEmailAddress}`}>test@gmail.com</span>,
-                extraFunction: <span className={`${styles.companyUserTableExtraFunction}`}></span>,
-            },
-            {
-                userName: <div className={`${styles.companyUserTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyUserTableCustomerNameWrapper}`}><div className={`${styles.companyUserTableCustomerName}`} >Maximus Tempor</div><div className={`${styles.companyUserTableCustomerEdit} ps-2`}><FaPen /></div></span></div>,
-                contactNumber: <><div className={`${styles.companyUserTableContactNumber}`}>408-545-4861</div></>,
-                emailAddress: <span className={`${styles.companyUserTableEmailAddress}`}>test@gmail.com</span>,
-                extraFunction: <span className={`${styles.companyUserTableExtraFunction}`}></span>,
+                extraFunction: <span className={`${styles.companyUserTableExtraFunction}`}>
+                    <div className={`${styles.companyUserActiveUserSwitchWrapper} form-check form-switch align-items-center d-flex`}>
+                        <input className={`${styles.companyUserActiveUserSwitch} form-check-input`} type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                    </div>
+                </span>,
             },
 
         ],
