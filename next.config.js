@@ -1,10 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-}
-
-module.exports = nextConfig
 
 module.exports = {
   webpack(config) {
@@ -15,4 +9,7 @@ module.exports = {
     })
     return config
   },
+  reactStrictMode: true,
+  swcMinify: true,
+  experimental: { appDir: true },
 }
