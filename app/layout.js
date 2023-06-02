@@ -11,7 +11,7 @@ const mulish = Mulish({
 
 function RootLayout({ children }) {
     return (
-        <html lang="en" className={mulish.className}>
+        <html lang="en" className={`${mulish.variable}`}>
             <body>
                 {children}
             </body>
