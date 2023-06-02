@@ -1,5 +1,5 @@
 "use client"
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import ContactPerson from '../../../../components/contactPerson';
 import Address from '../../../../components/address';
 import OtherDetails from '../../../../components/otherDetails';
@@ -9,8 +9,10 @@ import FaSave from '../../../../assets/icons/faSave.svg';
 import FaCircleXmark from '../../../../assets/icons/faCircleXmark.svg';
 import FaExclamationCircle from '../../../../assets/icons/FaExclamationCircle.svg';
 import styles from "../../../../styles/newCustomer.module.scss";
+import { NavExpandedState } from '../../../../context/NavState.context';
 
-const NewCustomer = ({ navExpandedState }) => {
+const NewCustomer = () => {
+    const { navExpandedState } = useContext(NavExpandedState);
     const [customerTypeSelected, setcustomerTypeSelected] = useState();
     const [ActiveTabID, setActiveTabID] = useState(1)
 

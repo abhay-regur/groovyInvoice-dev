@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from "react";
+import { useState, useContext } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import style from '../styles/navbar.module.scss';
@@ -12,11 +12,14 @@ import FaUserGroup from '../assets/icons/faUserGroup.svg';
 import FaGear from '../assets/icons/faGear.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { NavExpandedState } from '../context/NavState.context';
 
 const MENU_LIST = [{ key: 100, text: "Invoices", href: "/invoices", icon: <FaFileLines /> }, { key: 201, text: "Customers", href: "/customers", icon: <FaUserGroup /> }, { key: 302, text: "Reports", href: "/reports", icon: <FaChartLine /> }, { key: 403, text: "Settings", href: "/settings", icon: <FaGear /> }];
-export default function Navbar({ navExpandedState, setNavExpandedState }) {
+export default function Navbar() {
+    // const [navExpandedState, setNavExpandedState] = useState(false);
     const [activeIdx, setActiveIdx] = useState(-1);
     const [profileImage, setProfileImage] = useState("/images/profile_img.png");
+    const { navExpandedState, setNavExpandedState } = useContext(NavExpandedState);
 
     return (
         <div className={style.header}>

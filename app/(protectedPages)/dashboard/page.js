@@ -1,11 +1,12 @@
 "use client"
 import Head from 'next/head';
-import React from "react";
+import { useEffect, useContext } from "react";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, LineElement, Title, Tooltip, Legend, Filler, elements, } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import ProgressBar from "@ramonak/react-progress-bar";
 import styles from '../../../styles/home.module.scss';
 import FaQuestionCircleOutline from '../../../assets/icons/faQuestionCircleOutline.svg';
+import { NavExpandedState } from '../../../context/NavState.context';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, LineElement, Title, Tooltip, Legend);
 
@@ -14,7 +15,20 @@ export const metadata = {
   description: '',
 };
 
-export default function Home({ navExpandedState }) {
+export default function Home() {
+  const { navExpandedState } = useContext(NavExpandedState);
+
+  useEffect(() => {
+    const listenStorageChange = () => {
+      if (localStorage.getItem("language") === null) {
+        setLangua("english");
+      } else {
+        setLangua(localStorage.getItem("language"));
+      }
+    };
+    window.addEventListener("storage", listenStorageChange);
+    return () => window.removeEventListener("storage", listenStorageChange);
+  });
 
   const salesChartData = {
     labels: [

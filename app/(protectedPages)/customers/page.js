@@ -1,12 +1,15 @@
 "use client"
 import Head from 'next/head';
+import { useEffect, useContext } from "react";
 import Image from 'next/image';
 import Link from 'next/link';
 import AllCustomerTable from '../../../components/allCustomerTable.js';
 import FaCirclePlus from "../../../assets/icons/FaCirclePlus.svg";
 import styles from '../../../styles/customers.module.scss';
+import { NavExpandedState } from '../../../context/NavState.context';
 
-export default function Customers({ navExpandedState }) {
+export default function Customers() {
+    const { navExpandedState } = useContext(NavExpandedState);
     return (<>
         <div className={styles.container}>
             <Head>
@@ -23,7 +26,7 @@ export default function Customers({ navExpandedState }) {
                             </h2>
                         </div>
                         <div className="col-6 d-flex justify-content-end">
-                            <Link href={'/newCustomer'}>
+                            <Link href={'/customers/add'}>
                                 <button className="green align-content-center">
                                     <FaCirclePlus />
                                     Add Customer
