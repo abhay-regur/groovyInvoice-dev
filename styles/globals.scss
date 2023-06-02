@@ -26,6 +26,7 @@ body {
   font-family: $text-font;
   background: $primary-background;
   color: $grey;
+  background: $primary-background !important;
 
   @media screen and (min-width: 992px) {
     min-height: 100vh;
@@ -60,6 +61,7 @@ body {
   #__next,
   .pageContent {
     height: inherit;
+    background: $primary-background !important;
   }
 
   .green {
