@@ -18,17 +18,17 @@ export const metadata = {
 export default function Home() {
   const { navExpandedState } = useContext(NavExpandedState);
 
-  useEffect(() => {
-    const listenStorageChange = () => {
-      if (localStorage.getItem("language") === null) {
-        setLangua("english");
-      } else {
-        setLangua(localStorage.getItem("language"));
-      }
-    };
-    window.addEventListener("storage", listenStorageChange);
-    return () => window.removeEventListener("storage", listenStorageChange);
-  });
+  // useEffect(() => {
+  //   const listenStorageChange = () => {
+  //     if (localStorage.getItem("language") === null) {
+  //       setLangua("english");
+  //     } else {
+  //       setLangua(localStorage.getItem("language"));
+  //     }
+  //   };
+  //   window.addEventListener("storage", listenStorageChange);
+  //   return () => window.removeEventListener("storage", listenStorageChange);
+  // });
 
   const salesChartData = {
     labels: [
