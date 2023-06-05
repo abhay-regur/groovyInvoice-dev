@@ -1,12 +1,18 @@
 "use client"
 import Head from 'next/head';
 import Link from 'next/link';
+import { useContext } from 'react';
+import { NavExpandedState } from '../../../context/NavState.context';
 import styles from '../../../styles/invoice.module.scss';
 import AllInvoiceTable from '../../../components/allInvoiceTable.js'
 import FaCirclePlus from "../../../assets/icons/FaCirclePlus.svg";
 import FaRupeeCircle from "../../../assets/icons/FaRupeeCircle.svg";
+export const metadata = {
+    title: 'Invoice',
+};
 
-export default function Invoices({ navExpandedState }) {
+export default function Invoices() {
+    const { navExpandedState } = useContext(NavExpandedState);
     return (<>
         <div className={styles.container}>
             <Head>
@@ -23,7 +29,7 @@ export default function Invoices({ navExpandedState }) {
                             </h2>
                         </div>
                         <div className="col-6 d-flex justify-content-end">
-                            <Link href={'/newInvoice'}>
+                            <Link href={'/invoices/add'}>
                                 <button className="green align-content-center">
                                     <FaCirclePlus />
                                     Create Invoice
