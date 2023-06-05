@@ -9,6 +9,14 @@ const mulish = Mulish({
     display: 'swap',
 });
 
+export const metadata = {
+    title: {
+        default: 'Groovy Invoice',
+        template: '%s | Groovy Invoice',
+    },
+    description: ' ',
+};
+
 function RootLayout({ children }) {
     return (
         <html lang="en" className={`${mulish.variable}`}>
