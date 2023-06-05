@@ -1,6 +1,6 @@
 "use client"
 import Head from 'next/head';
-import { useEffect, useContext } from "react";
+import { useContext } from "react";
 import Image from 'next/image';
 import Link from 'next/link';
 import AllCustomerTable from '../../../components/allCustomerTable.js';

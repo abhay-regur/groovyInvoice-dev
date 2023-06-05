@@ -1,3 +1,4 @@
+"use client"
 import Head from 'next/head';
 import Link from 'next/link';
 import { useState, useContext } from 'react';
@@ -163,7 +164,7 @@ export default function ViewInvoice() {
                                             </div>
                                             <div className="d-flex justify-content-between">
                                                 <span>Payment Made</span>
-                                                <span class="red">-Rs. 1320.00</span>
+                                                <span className="red">-Rs. 1320.00</span>
                                             </div>
                                             <hr />
                                             <div className="d-flex justify-content-between">
