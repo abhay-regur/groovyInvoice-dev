@@ -54,6 +54,7 @@ body {
   }
 
   select.form-select {
+    -webkit-appearance: auto;
     appearance: auto;
     color: $primary-color;
   }
