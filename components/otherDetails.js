@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { useState } from 'react';
 import RadioButton from '../components/radioButton';
-import FaExclamationCircle from '../assets/icons/faExclamationCircle.svg';
+import FaExclamationCircle from '../assets/icons/FaExclamationCircle.svg';
 import FaQuestionCircleOutline from '../assets/icons/faQuestionCircleOutline.svg'
 import styles from "../styles/newCustomer.module.scss";
 export default function OtherDetails() {

@@ -6,7 +6,7 @@ import defaultProfile from '../public/images/profile_Default.png';
 import TablePagination from "../components/tablePagination.js";
 import CheckBox from '../components/checkBox.js';
 import FaEye from '../assets/icons/faEye.svg';
-import FaExclamationCircle from '../assets/icons/faExclamationCircle.svg';
+import FaExclamationCircle from '../assets/icons/FaExclamationCircle.svg';
 import FaPen from '../assets/icons/faPen.svg';
 import Link from 'next/link';
 

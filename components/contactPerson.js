@@ -1,6 +1,6 @@
 import styles from "../styles/newCustomer.module.scss";
 import ContactPersonTable from "../components/contactPersonTable.js";
-import FaCirclePlus from "../assets/icons/faCirclePlus.svg";
+import FaCirclePlus from "../assets/icons/FaCirclePlus.svg";
 
 export default function ContactPerson() {
     const ItemsData = [

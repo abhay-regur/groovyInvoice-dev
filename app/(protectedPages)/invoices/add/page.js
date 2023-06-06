@@ -9,7 +9,7 @@ import FaCalendar from "../../../../assets/icons/faCalendar.svg";
 import { NavExpandedState } from '../../../../context/NavState.context';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import FaCirclePlus from '../../../../assets/icons/faCirclePlus.svg';
+import FaCirclePlus from '../../../../assets/icons/FaCirclePlus.svg';
 import FaSave from '../../../../assets/icons/faSave.svg';
 import FaPaperPen from '../../../../assets/icons/faPaperPen.svg';
 import FaCircleXmark from '../../../../assets/icons/faCircleXmark.svg';
