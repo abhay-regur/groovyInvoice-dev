@@ -1,5 +1,5 @@
 "use client"
-import { useState, useContext } from "react";
+import { useState, useContext, Fragment } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import style from '../styles/navbar.module.scss';
@@ -76,18 +76,21 @@ export default function Navbar() {
 
                     <div className={`${style.nav_menu_list}`}>
                         {MENU_LIST.map(function (menu, idx) {
-                            if (menu.text == 'Settings') {
-                                return <>
-                                    <hr />
-                                    <div key={menu.id} className={`${style.navItemWrapper} ${(activeIdx === idx) ? style.active : " "} d-flex align-item-center`} onClick={() => { setActiveIdx(idx); }}>
-                                        <NavItem key={menu.id} active={activeIdx === idx} text={menu.text} href={menu.href} icon={menu.icon}></NavItem>
+                            if (menu.text === 'Settings') {
+                                return (
+                                    <Fragment key={idx}>
+                                        <hr />
+                                        <div className={`${style.navItemWrapper} ${(activeIdx === idx) ? style.active : " "} d-flex align-item-center`} onClick={() => { setActiveIdx(idx); }}>
+                                            <NavItem active={activeIdx === idx} text={menu.text} href={menu.href} icon={menu.icon}></NavItem>
+                                        </div>
+                                    </Fragment>
+                                );
+                            } else {
+                                return (
+                                    <div key={idx} className={`${style.navItemWrapper} ${(activeIdx === idx) ? style.active : " "} d-flex align-item-center`} onClick={() => { setActiveIdx(idx); }}>
+                                        <NavItem active={activeIdx === idx} text={menu.text} href={menu.href} icon={menu.icon}></NavItem>
                                     </div>
-                                </>;
-                            }
-                            else {
-                                return <div key={menu.id} className={`${style.navItemWrapper} ${(activeIdx === idx) ? style.active : " "} d-flex align-item-center`} onClick={() => { setActiveIdx(idx); }}>
-                                    <NavItem key={menu.id} active={activeIdx === idx} text={menu.text} href={menu.href} icon={menu.icon}></NavItem>
-                                </div>
+                                );
                             }
                         })}
                     </div>
