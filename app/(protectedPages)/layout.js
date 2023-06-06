@@ -7,6 +7,7 @@ import NavExpandedState from '../../context/NavState.context';
 import { isLoggedIn } from '../../services/auth.service';
 
 function Layout({ children }) {
+
     if (!isLoggedIn('user')) {
         redirect('/login')
     } else {
