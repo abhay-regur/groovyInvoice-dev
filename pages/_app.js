@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from "react";
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
+import Toast from '../components/toast';
 //for font awesome
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -35,7 +36,13 @@ function MyApp({ Component, pageProps }) {
   }, [navExpandedState]);
 
   const router = useRouter();
-  const showNavbar = (router.pathname === '/login' || router.pathname === '/registration' || router.pathname === '/password/forgot' || router.pathname === '/password/reset') ? false : true;
+  const [list, setList] = useState([]);
+  const [successMessage, setSuccessMessage] = useState({
+    message: '',
+    subHeading: '',
+    showLink: true,
+  });
+  const showNavbar = (router.pathname === '/login' || router.pathname === '/registration' || router.pathname === '/registration/success' || router.pathname === '/registration/verify-email' || router.pathname === '/password/forgot' || router.pathname === '/password/forgot/success' || router.pathname === '/password/reset' || router.pathname === '/password/reset/success' || router.pathname === '/password/success' || router.pathname === '/password/success' || router.pathname === '/registration/success') ? false : true;
   return (
     <>
       <Head>
@@ -43,7 +50,11 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <div className='pageContent'>
         {showNavbar && <Navbar navExpandedState={navExpandedState} setNavExpandedState={setNavExpandedState} />}
-        <Component {...pageProps} navExpandedState={navExpandedState} />
+        <Component {...pageProps} navExpandedState={navExpandedState} setList={setList} message={successMessage} setMessage={setSuccessMessage} />
+        <Toast
+          toastList={list}
+          autoDeleteTime={5000}
+        />
       </div>
       {showNavbar && <Footer />}
 
