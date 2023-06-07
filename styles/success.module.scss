@@ -13,16 +13,10 @@ $screen-size-sm: 576px;
 $screen-size-mm: 767px;
 $screen-size-md: 950px;
 
-.loginContainer {
+.successContainer {
     color: $primary-color;
     margin: 0;
     padding: 0;
-
-    input {
-        &::placeholder {
-            color: #8790b08a;
-        }
-    }
 
     .mainHeading {
         height: 47px;
@@ -69,27 +63,13 @@ $screen-size-md: 950px;
         display: none;
     }
 
-    .loginErrorMessageWrapper {
-        border: 1px solid #ff8f8f;
-        border-radius: 10px;
-        background: #e5adadb6;
-        padding: 10px;
-
-        .loginErrorMessage {
-            font-size: 14px;
-            font-weight: 400;
-            color: #ff0000;
-            text-align: center;
-        }
-    }
-
     .green {
         color: $tertiary-color;
     }
 
     p {
-
         height: 24px;
+        font-family: 'Mulish';
         font-style: normal;
         font-weight: 600;
         font-size: $font-size-text + 2;
@@ -102,17 +82,18 @@ $screen-size-md: 950px;
         }
     }
 
-    .loginCard {
+    .successCard {
         box-sizing: border-box;
 
-        width: 450px;
+        width: 650px;
         padding: 39px 50px;
         margin: 0 auto;
 
         background: #FFFFFF;
         border: 1px solid $border-color;
         border-radius: 10px;
-        color: $secondary-color;
+        color: $primary-color;
+        font-size: 20px;
 
         @media (max-width: $screen-size-md) {
             width: 375px;
@@ -133,62 +114,9 @@ $screen-size-md: 950px;
             line-height: 18px;
         }
 
-        .innerInputIconWrapper {
-            position: relative;
-
-            i {
-                position: absolute;
-                padding: 13px 16px;
-                pointer-events: none;
-                font-style: normal;
-                font-weight: 900;
-                font-size: $font-size-text + 2;
-                line-height: 18px;
-                letter-spacing: 0.02em;
-                color: $tertiary-color;
-
-                svg {
-                    width: 16px;
-                    height: 18px;
-                }
-            }
-
-            input {
-                height: 44px;
-                color: $primary-color;
-                font-weight: 600;
-                font-size: $font-size-text;
-                line-height: 18px;
-                padding-left: 46px;
-                border-radius: 10px;
-                border: 1px solid $border-color;
-            }
-
-            .toggleVisibilityWrapper {
-                pointer-events: all;
-                color: $secondary-color;
-                top: 0;
-                right: 0;
-            }
-        }
-
-        hr {
-            margin-top: 41px;
-            margin-bottom: 36px;
-        }
-
     }
 
-    a {
-        color: $secondary-color;
-        font-style: normal;
-        font-weight: 400;
-        font-size: $font-size-text;
-        line-height: 18px;
-        text-decoration-line: underline;
-    }
-
-    .loginBackground {
+    .successBackground {
         background: linear-gradient(0deg, $background-primary-color, $background-primary-color), url('/images/registration_page.png') no-repeat;
         background-size: cover;
         height: 100vh;
@@ -198,29 +126,18 @@ $screen-size-md: 950px;
         }
     }
 
-    form {
+    .successPasswordBackground {
+        background: linear-gradient(0deg, $background-primary-color, $background-primary-color), url('/images/login_page.png') no-repeat;
+        background-size: cover;
+        height: 100vh;
 
-        button {
-            background: $primary-color;
-            padding: 14px 0;
-            border-radius: 6px;
-            font-weight: 700;
-            font-size: $font-size-text + 2;
-            line-height: 20px;
-            color: $white;
-            border: 0;
-            margin-top: 25px;
-
-            &:hover {
-                background: $primary-color;
-                color: $white;
-            }
+        @media (max-width: $screen-size-mm) {
+            display: none;
         }
     }
 
-    p {
-        font-size: $font-size-text;
-        font-weight: 400;
+    .registrationLinkWrapper {
+        margin-top: 28px;
 
         a {
             color: $primary-color;
@@ -229,11 +146,6 @@ $screen-size-md: 950px;
             line-height: 18px;
             text-decoration: none;
         }
-
-    }
-
-    .registrationLinkWrapper {
-        margin-top: 28px;
     }
 
 }
