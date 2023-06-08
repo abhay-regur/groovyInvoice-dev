@@ -1,4 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css';
+import { Suspense } from "react";
+import Loading from "./loading";
 import '../styles/globals.scss';
 import { Mulish } from "@next/font/google";
 
@@ -21,7 +23,7 @@ function RootLayout({ children }) {
     return (
         <html lang="en" className={`${mulish.variable}`}>
             <body>
-                {children}
+                <Suspense fallback={<Loading />}>{children}</Suspense>
             </body>
         </html>)
 }

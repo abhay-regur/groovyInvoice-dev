@@ -8,22 +8,22 @@ import { verifyEmail } from '../../services/users/registration.service';
 export default function VerifyEmail() {
     const [errors, setErrors] = useState([])
     const router = useRouter();
-    const {token} = router.query;
+    const { token } = router.query;
 
-    const  verifyTokenHandler = async () => {
+    const verifyTokenHandler = async () => {
         if (token !== '') {
-          try {
-            await verifyEmail(token)
-            router.push('/login')
-          } catch (e) {
+            try {
+                await verifyEmail(token)
+                router.push('/login')
+            } catch (e) {
 
-            setErrors(e.response.data.message)
-          }
+                setErrors(e.response.data.message)
+            }
         }
-      }
+    }
 
     useEffect(() => {
-        if(router.isReady) {
+        if (router.isReady) {
             verifyTokenHandler(token);
         }
     }, [router.isReady])

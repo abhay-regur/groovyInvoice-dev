@@ -9,6 +9,7 @@ import { disableSubmitButton, enableSubmitButton } from '../../utils/form.utils'
 import { useRouter } from 'next/navigation';
 import ErrorList from '../../components/errorList';
 import PasswordToggler from '../../components/passwordToggler';
+import { log } from 'console';
 
 export default function Registration(props) {
     const { push } = useRouter();
@@ -40,6 +41,7 @@ export default function Registration(props) {
             });
             push('/registration/success');
         } catch (e) {
+            log
             setErrors(e.response.data.message)
         }
 

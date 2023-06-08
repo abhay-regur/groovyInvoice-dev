@@ -1,7 +1,5 @@
 import DashboardComponent from "./dashboardComponent";
 
-
-
 export const metadata = {
   title: 'Dashboard',
   description: '',

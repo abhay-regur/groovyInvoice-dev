@@ -5,6 +5,8 @@ import Footer from '../../components/footer';
 import { redirect } from 'next/navigation';
 import NavExpandedState from '../../context/NavState.context';
 import { isLoggedIn } from '../../services/auth.service';
+import { Suspense } from 'react';
+import Loading from './loading';
 
 function Layout({ children }) {
 
@@ -16,7 +18,9 @@ function Layout({ children }) {
                 <div className='pageContent'>
                     <NavExpandedState>
                         <Navbar />
-                        {children}
+                        <Suspense fallback={<Loading />}>
+                            {children}
+                        </Suspense>
                     </NavExpandedState>
                 </div>
                 <Footer />

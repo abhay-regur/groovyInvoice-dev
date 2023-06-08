@@ -4,6 +4,7 @@ $tertiary-color: #43CB80;
 $border-color: #E3EBF2;
 $white: #ffffff;
 $background-primary-color: rgba($primary-color, .2);
+$text-font: var(--font-mulish);
 
 $font-size-heading: 32px;
 $font-size-text: 14px;
@@ -69,7 +70,7 @@ $screen-size-md: 950px;
 
     p {
         height: 24px;
-        font-family: 'Mulish';
+        font-family: $text-font;
         font-style: normal;
         font-weight: 600;
         font-size: $font-size-text + 2;
