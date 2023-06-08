@@ -7,7 +7,7 @@ import RadioButton from '../../../../../components/radioButton';
 import FaSkype from '../../../../../assets/icons/faSkype.svg';
 import FaSave from '../../../../../assets/icons/faSave.svg';
 import FaCircleXmark from '../../../../../assets/icons/faCircleXmark.svg';
-import FaExclamationCircle from '../../../../../assets/icons/FaExclamationCircle.svg';
+import FaExclamationCircle from '../../../../../assets/icons/faExclamationCircle.svg';
 import styles from "../../../../../styles/newCustomer.module.scss";
 import { NavExpandedState } from '../../../../../context/NavState.context';
 
