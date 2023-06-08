@@ -1,6 +1,6 @@
 import styles from "../styles/invoiceTable.module.scss";
 import FaPen from "../assets/icons/faPen.svg";
-import FaExclamationCircle from '../assets/icons/faExclamationCircle.svg';
+import FaExclamationCircle from '../assets/icons/FaExclamationCircle.svg';
 const InvoiceTable = ({ ItemsData }) => {
     return (
         <table className={`${styles.companyInvoiceTable} table`}>

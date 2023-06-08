@@ -12,7 +12,6 @@ export const signUp = async (data) => {
 
 export const verifyEmail = async (token) => {
   try {
-    console.log(token);
     return await httpService.get(`users/verify-email/${token}`)
   } catch (error) {
     throw error

@@ -1,6 +1,6 @@
 @import 'node_modules/react-datepicker/src/stylesheets/datepicker.scss';
 
-$text-font: Mulish, san-serif;
+$text-font: var(--font-mulish);
 $primary-background: #f5fafe;
 $primary-color: #3649AB;
 $primary-color-hover: #455AC6;
@@ -26,6 +26,7 @@ body {
   font-family: $text-font;
   background: $primary-background;
   color: $grey;
+  background: $primary-background !important;
 
   @media screen and (min-width: 992px) {
     min-height: 100vh;
@@ -53,6 +54,7 @@ body {
   }
 
   select.form-select {
+    -webkit-appearance: auto;
     appearance: auto;
     color: $primary-color;
   }
@@ -60,6 +62,7 @@ body {
   #__next,
   .pageContent {
     height: inherit;
+    background: $primary-background !important;
   }
 
   .green {

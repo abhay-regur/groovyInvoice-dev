@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+"use client"
+import { useState, useContext, Fragment } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import style from '../styles/navbar.module.scss';
@@ -10,27 +11,22 @@ import FaFileLines from '../assets/icons/faFileLines.svg';
 import FaUserGroup from '../assets/icons/faUserGroup.svg';
 import FaGear from '../assets/icons/faGear.svg';
 import FaLogout from '../assets/icons/faLogout.svg';
+import FaUsers from '../assets/icons/FaUsers.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { isLoggedIn } from '../services/auth.service';
 import { faSearch, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { useRouter } from 'next/navigation';
+import { NavExpandedState } from '../context/NavState.context';
 
-const MENU_LIST = [{ key: 100, text: "Invoices", href: "/invoices", icon: <FaFileLines /> }, { key: 101, text: "Customers", href: "/customers", icon: <FaUserGroup /> }, { key: 102, text: "Reports", href: "/reports", icon: <FaChartLine /> }, { key: 103, text: "Settings", href: "/settings", icon: <FaGear /> }, { key: 103, text: "Logout", href: "users/logout", icon: <FaLogout /> }];
-export default function Navbar({ navExpandedState, setNavExpandedState }) {
-    const router = useRouter();
+const MENU_LIST = [{ key: 100, text: "Invoices", href: "/invoices", icon: <FaFileLines /> }, { key: 101, text: "Customers", href: "/customers", icon: <FaUserGroup /> }, { key: 102, text: "Users", href: "/users", icon: <FaUsers /> }, { key: 102, text: "Reports", href: "/reports", icon: <FaChartLine /> }, { key: 103, text: "Settings", href: "/settings", icon: <FaGear /> }, { key: 103, text: "Logout", href: "/logout", icon: <FaLogout /> }];
+export default function Navbar() {
     const [activeIdx, setActiveIdx] = useState(-1);
     const [profileImage, setProfileImage] = useState("/images/profile_img.png");
-    useEffect(() => {
-        if (!isLoggedIn('user')) {
-            router.push('/login')
-        }
-    }, [])
+    const { navExpandedState, setNavExpandedState } = useContext(NavExpandedState);
 
     return (
         <div className={style.header}>
             <nav className={`nav ${navExpandedState ? style.expanded : ""}`}>
                 <div className={`${style.navHeadingWrapper} d-flex justify-content-between`}>
-                    <Link href={"/"}>
+                    <Link href={"/dashboard"}>
                         <h3 className={`${style.mainHeading} main-heading`} onClick={() => { setActiveIdx(-1); }}>
                         </h3>
                     </Link>
@@ -81,18 +77,21 @@ export default function Navbar({ navExpandedState, setNavExpandedState }) {
 
                     <div className={`${style.nav_menu_list}`}>
                         {MENU_LIST.map(function (menu, idx) {
-                            if (menu.text == 'Settings') {
-                                return <>
-                                    <hr />
-                                    <div key={menu.id} className={`${style.navItemWrapper} ${(activeIdx === idx) ? style.active : " "} d-flex align-item-center`} onClick={() => { setActiveIdx(idx); }}>
-                                        <NavItem active={activeIdx === idx}{...menu}></NavItem>
+                            if (menu.text === 'Settings') {
+                                return (
+                                    <Fragment key={idx}>
+                                        <hr />
+                                        <div className={`${style.navItemWrapper} ${(activeIdx === idx) ? style.active : " "} d-flex align-item-center`} onClick={() => { setActiveIdx(idx); }}>
+                                            <NavItem active={activeIdx === idx} text={menu.text} href={menu.href} icon={menu.icon}></NavItem>
+                                        </div>
+                                    </Fragment>
+                                );
+                            } else {
+                                return (
+                                    <div key={idx} className={`${style.navItemWrapper} ${(activeIdx === idx) ? style.active : " "} d-flex align-item-center`} onClick={() => { setActiveIdx(idx); }}>
+                                        <NavItem active={activeIdx === idx} text={menu.text} href={menu.href} icon={menu.icon}></NavItem>
                                     </div>
-                                </>;
-                            }
-                            else {
-                                return <div key={menu.id} className={`${style.navItemWrapper} ${(activeIdx === idx) ? style.active : " "} d-flex align-item-center`} onClick={() => { setActiveIdx(idx); }}>
-                                    <NavItem active={activeIdx === idx}{...menu}></NavItem>
-                                </div>
+                                );
                             }
                         })}
                     </div>
