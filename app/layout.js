@@ -1,4 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.css';
+import React from 'react';
 import { Suspense } from "react";
 import Loading from "./loading";
 import '../styles/globals.scss';
@@ -23,7 +24,9 @@ function RootLayout({ children }) {
     return (
         <html lang="en" className={`${mulish.variable}`}>
             <body>
-                <Suspense fallback={<Loading />}>{children}</Suspense>
+                <React.StrictMode>
+                    <Suspense fallback={<Loading />}>{children}</Suspense>
+                </React.StrictMode>
             </body>
         </html>)
 }

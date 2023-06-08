@@ -116,7 +116,7 @@ $navItem-hightlight: #F5FAFE;
             min-width: $nonexpanded-width;
             max-width: $expanded-width;
             width: $nonexpanded-width;
-            height: 100vh;
+            height: 1900px;
             position: fixed;
             z-index: 1;
             top: 0;
@@ -424,7 +424,7 @@ $navItem-hightlight: #F5FAFE;
 @media screen and (max-width: 425px) {
     .header {
         nav {
-            height: 51px;
+            height: 100vh;
             width: 100vw;
             position: fixed;
             z-index: 1;
