@@ -11,7 +11,7 @@ import FaFileLines from '../assets/icons/faFileLines.svg';
 import FaUserGroup from '../assets/icons/faUserGroup.svg';
 import FaGear from '../assets/icons/faGear.svg';
 import FaLogout from '../assets/icons/faLogout.svg';
-import FaUsers from '../assets/icons/FaUsers.svg'
+import FaUsers from '../assets/icons/faUsers.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { NavExpandedState } from '../context/NavState.context';

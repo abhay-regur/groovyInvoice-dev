@@ -4,8 +4,8 @@ import { useContext } from 'react';
 import { NavExpandedState } from '../../../context/NavState.context';
 import styles from '../../../styles/invoice.module.scss';
 import AllInvoiceTable from '../../../components/allInvoiceTable.js'
-import FaCirclePlus from "../../../assets/icons/FaCirclePlus.svg";
-import FaRupeeCircle from "../../../assets/icons/FaRupeeCircle.svg";
+import FaCirclePlus from "../../../assets/icons/faCirclePlus.svg";
+import FaRupeeCircle from "../../../assets/icons/faRupeeCircle.svg";
 
 export default function InvoiceListComponent() {
     const { navExpandedState } = useContext(NavExpandedState);

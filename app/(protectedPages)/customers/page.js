@@ -1,4 +1,4 @@
-import CustomerListComponent from "./CustomerListComponent"
+import CustomerListComponent from "/customerListComponent.js";
 export const metadata = {
     title: 'Customers',
     description: '',
