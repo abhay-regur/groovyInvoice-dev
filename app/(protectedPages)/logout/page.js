@@ -2,15 +2,15 @@
 import { useEffect, useContext } from 'react'
 import { logout } from '../../../services/auth.service'
 import { UserLoggedState } from '../../../context/UserState.context';
+import { redirect } from 'next/navigation';
 import Loading from '../../loading';
 
 const Logout = () => {
-  const { userLoggedState, setUserLoggedState } = useContext(UserLoggedState);
+  const { setUserLoggedState } = useContext(UserLoggedState);
   useEffect(() => {
-    if (userLoggedState) {
-      logout('user')
-      setUserLoggedState(false);
-    }
+    logout('user')
+    setUserLoggedState(false);
+    redirect('/login')
   }, [])
 
   return <Loading />;
