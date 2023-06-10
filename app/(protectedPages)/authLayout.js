@@ -12,14 +12,14 @@ import { UserLoggedState } from '../../context/UserState.context';
 function AuthLayout({ children }) {
     const { userLoggedState, setUserLoggedState } = useContext(UserLoggedState);
     useEffect(() => {
-        // console.log(userLoggedState);
         setUserLoggedState(isLoggedIn('user'));
+        if (!userLoggedState) {
+            redirect('/login')
+        }
     }, []);
 
     return (
-        <>{
-            !userLoggedState ? redirect('/login') : <><div className='pageContent'><NavExpandedState><Navbar /><Suspense fallback={<Loading />}>{children}</Suspense></NavExpandedState></div><Footer /></>
-        }</>
+        <><div className='pageContent'><NavExpandedState><Navbar /><Suspense fallback={<Loading />}>{children}</Suspense></NavExpandedState></div><Footer /></>
     )
 
 }
