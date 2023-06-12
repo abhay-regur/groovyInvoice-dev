@@ -10,9 +10,8 @@ const Logout = () => {
   useEffect(() => {
     logout('user')
     setUserLoggedState(false);
-    redirect('/login')
+    redirect('/login');
   }, [])
-
   return <Loading />;
 }
 
