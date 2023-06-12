@@ -5,7 +5,7 @@ import Image from 'next/image';
 import 'datatables.net-dt/js/dataTables.dataTables'
 import 'datatables.net-dt/css/jquery.dataTables.min.css'
 import ServerSideDataTables from './serverSideDataTable';
-import ReactDOM from 'react-dom'
+import ReactDOM from "react-dom/client";
 import defaultProfile from '../public/images/profile_Default.png';
 import FaPen from '../assets/icons/faPen.svg';
 
@@ -35,15 +35,13 @@ const AllUserTable = () => {
         authUserType: 'user',
         columns: [
             {
-                data: 'firstName', name: 'fName', searchable: true,
+                data: 'firstName', name: 'firstName', searchable: true,
                 createdCell: function (cell, cellData, rowData, rowIndex, colIndex) {
-                    ReactDOM.render(draw_userName(rowData), cell)
+                    const root = ReactDOM.createRoot(cell)
+                    root.render(draw_userName(rowData))
                 },
                 searchable: true,
                 orderable: true,
-            },
-            {
-                data: 'lastName', name: 'lName', visible: false,
             },
             {
                 data: 'cellNumber', name: 'cellNumber', searchable: true,
@@ -52,7 +50,8 @@ const AllUserTable = () => {
             {
                 data: 'email', name: 'email', searchable: true,
                 orderable: true,
-            }, {
+            },
+             {
                 data: null, name: 'active',
                 render: () => {
                     return ('<span class=' + styles.companyUserTableExtraFunction + '><div class="' + styles.companyUserActiveUserSwitchWrapper + ' form-check form-switch align-items-center d-flex"><input class="' + styles.companyUserActiveUserSwitch + ' form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" /></div></span>');
@@ -70,7 +69,6 @@ const AllUserTable = () => {
                     <thead>
                         <tr>
                             <th scope="col" className="ps-3" >User Name</th>
-                            <th scope="col" className="ps-3" >User Last Name</th>
                             <th scope="col" className="ps-3" >Contact Number</th>
                             <th scope="col" className="ps-3" >Email Address</th>
                             <th scope="col" className="ps-3" >Active</th>
