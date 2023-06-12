@@ -31,7 +31,7 @@ export default function Navbar() {
                         </h3>
                     </Link>
 
-                    <span className={`${style.hamburgerMenu} ${navExpandedState ? style.active : style.no_animation}`} onClick={() => { setNavExpandedState(prevCheck => !prevCheck) }}>
+                    <span className={`${style.hamburgerMenu} ${navExpandedState ? style.active : ""}`} onClick={() => { setNavExpandedState(prevCheck => !prevCheck) }}>
                         <div></div>
                         <div></div>
                         <div></div>
