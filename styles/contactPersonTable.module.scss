@@ -10,7 +10,7 @@ $primary-border-color: #E3EBF2;
 $button-red-color: #DA5252;
 
 //Big Screen
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 676px) {
     tbody {
         tr.companyInvoiceContactPersonRow {
             td {
@@ -70,7 +70,7 @@ $button-red-color: #DA5252;
 }
 
 //Mobie Screen
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 675px) {
 
     tbody {
         tr.companyInvoiceContactPersonRow {

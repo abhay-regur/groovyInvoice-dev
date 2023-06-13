@@ -620,7 +620,7 @@ $card-background: #F5FAFE;
     }
 }
 
-@media screen and (max-width: 991px) and (min-width: 426px) {
+@media screen and (max-width: 991px) and (min-width: 676px) {
     .main {
         padding-top: 40px;
         margin: auto 49px;
@@ -940,7 +940,7 @@ $card-background: #F5FAFE;
     }
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 675px) {
     .main {
         margin: 89px 0 92px 0;
         transition: all 0.35s;

@@ -7,7 +7,7 @@ $tertiary-color: #43CB80;
 
 
 
-@media screen and (min-width: 426px) {
+@media screen and (min-width: 676px) {
     .footerWrapper {
 
         position: static;
@@ -32,7 +32,7 @@ $tertiary-color: #43CB80;
 
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 675px) {
     .footerWrapper {
         position: static;
         background: white;

@@ -11,7 +11,7 @@ $primary-border-color: #E3EBF2;
 
 
 //Big Screen
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 676px) {
     .companyInvoiceTable {
         border: 1px solid $primary-border-color;
         border-radius: 10%;
@@ -165,7 +165,7 @@ $primary-border-color: #E3EBF2;
 }
 
 //Mobie Screen
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 675px) {
 
     .companyInvoiceTable {
         border: 1px solid $primary-border-color;
