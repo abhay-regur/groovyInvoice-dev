@@ -1,0 +1,92 @@
+$text-font: var(--font-mulish);
+$primary-background: #f5fafe;
+$primary-color: #3649AB;
+$primary-color-hover: #455AC6;
+$secondary-color: #8790B0;
+$tertiary-color: #43CB80;
+$tertiary-color-hover: #4EDD8E;
+$grey: #8790B0;
+$red-color: #F46E6E;
+$primary-border-color: #E3EBF2;
+$table-pagination-background: #D9E6F3;
+
+// DataTable 
+.dataTables_wrapper {
+
+    &#manage-user--table_wrapper {
+
+        .filter-wrapper {
+            label {
+                color: $primary-color;
+                background: $table-pagination-background;
+                border-radius: 8px 0 0 8px;
+                margin-bottom: 10px;
+                margin-top: 10px;
+            }
+
+            input {
+                font-weight: 500;
+                font-size: 14px;
+                color: $primary-color;
+                background: #ffffff;
+                border: 1px solid #e3ebf2;
+                border-radius: 0 8px 8px 0;
+                margin-bottom: 10px;
+                margin-top: 10px;
+            }
+        }
+
+        .bottom {
+            .dataTables_info {
+                color: $primary-color;
+                font-weight: 400;
+                font-size: 13px;
+                align-items: center;
+                justify-content: start;
+            }
+
+            .dataTables_paginate {
+                margin-bottom: 70px;
+
+                a {
+                    svg {
+                        fill: $primary-color
+                    }
+                }
+
+                span {
+                    .paginate_button {
+                        background: $table-pagination-background;
+                        width: 36px;
+                        height: 36px;
+                        font-weight: 600;
+                        font-size: 16px;
+                        color: $primary-color !important;
+                        border-radius: 50%;
+                        text-align: center;
+                        padding-top: 5px;
+                        margin: auto 3.5px;
+                        cursor: pointer;
+                        border: none;
+                        padding-right: 5px;
+                        padding-left: 5px;
+
+                        &.current {
+                            width: 36px;
+                            height: 36px;
+                            font-weight: 600;
+                            font-size: 16px;
+                            background: $tertiary-color !important;
+                            color: white !important;
+                            border-radius: 50%;
+                            text-align: center;
+                            padding-top: 5px;
+                            margin: auto 3.5px;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

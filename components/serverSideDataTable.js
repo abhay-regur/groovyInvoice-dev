@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, forwardRef, useImperativeHandle } from 'react'
 import styles from '../styles/user.module.scss';
+import '../styles/table.style.scss';
 import $ from 'jquery'
 import 'datatables.net-dt/js/dataTables.dataTables'
 import 'datatables.net-dt/css/jquery.dataTables.css'
@@ -62,18 +63,17 @@ function ServerSideDT(props, ref) {
             ...props.options,
         })
 
-        window.setTimeout(() => {
-            $('.dataTables_filter input')
-                .closest('label')
-                .replaceWith($('.dataTables_filter input')[0])
-            $('.dataTables_filter').addClass('form-input-group')
-            $('.filter-wrapper').addClass('row')
-            $('.dataTables_filter').addClass('col-sm-3 col-6')
-            $('.dataTables_filter input').addClass('form-control')
-            $('.dataTables_filter input').attr('placeholder', 'Search')
 
-            $('.dataTables_length').addClass('form-input-group')
-            $('.dataTables_length select').addClass('form-select')
+        window.setTimeout(() => {
+            $('.filter-wrapper').addClass('row');
+            $('.dataTables_length').addClass('form-input-group');
+            $('.dataTables_filter:not(.input-group)').wrap('<div class="col-sm-3 col-6 mb-3"></div>');
+            $('.dataTables_filter').addClass('input-group');
+            $('.dataTables_filter label').addClass('input-group-text');
+            $('.dataTables_filter input').detach().appendTo('.dataTables_filter');
+            $('.dataTables_filter input').addClass('form-control');
+            $('.dataTables_filter input').attr('placeholder', 'Search');
+            $('.dataTables_length select').addClass('form-select');
         }, 100)
     }
 
