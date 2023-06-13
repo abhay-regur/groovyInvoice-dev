@@ -65,13 +65,13 @@ const AllUserTable = () => {
     return (
         <div className={`row`}>
             <div className={`${styles.comapanyInoviceUserTableWrapper} col-sm-12 p-0`}>
-                <ServerSideDataTables ref={dtRef} id="manage-user--table" {...dtOptions} className={`table`}>
+                <ServerSideDataTables ref={dtRef} id="manage-user--table" {...dtOptions} className={`table responsive`}>
                     <thead>
                         <tr>
-                            <th scope="col" className="ps-3" >User Name</th>
-                            <th scope="col" className="ps-3" >Contact Number</th>
-                            <th scope="col" className="ps-3" >Email Address</th>
-                            <th scope="col" className="ps-3" >Active</th>
+                            <th scope="col" className="ps-3" data-priority="1" >User Name</th>
+                            <th scope="col" className="ps-3" data-priority="99">Contact Number</th>
+                            <th scope="col" className="ps-3" data-priority="99">Email Address</th>
+                            <th scope="col" className="ps-3" data-priority="2" >Active</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
