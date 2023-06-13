@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect, forwardRef, useImperativeHandle } from 'react'
+import { useEffect, forwardRef, useImperativeHandle, Suspense } from 'react'
 import styles from '../styles/user.module.scss';
 import '../styles/table.style.scss';
+import Loading from '../app/(protectedPages)/loading';
 import $ from 'jquery'
 import 'datatables.net-dt/js/dataTables.dataTables'
 import 'datatables.net-dt/css/jquery.dataTables.css'
@@ -10,6 +11,7 @@ import { getToken } from '../services/token.service'
 
 function ServerSideDT(props, ref) {
     let alreadyInitializing = false
+    const searchPlaceholder = "Name";
     useImperativeHandle(ref, () => ({
         reload(cb = null, resetPaging = true) {
             const table = $('#' + props.id).DataTable()
@@ -72,7 +74,7 @@ function ServerSideDT(props, ref) {
             $('.dataTables_filter label').addClass('input-group-text');
             $('.dataTables_filter input').detach().appendTo('.dataTables_filter');
             $('.dataTables_filter input').addClass('form-control');
-            $('.dataTables_filter input').attr('placeholder', 'Search');
+            $('.dataTables_filter input').attr('placeholder', searchPlaceholder);
             $('.dataTables_length select').addClass('form-select');
         }, 100)
     }
@@ -83,9 +85,11 @@ function ServerSideDT(props, ref) {
     }, [])
 
     return (
-        <table id={props.id} className={styles.companyCustomerTable + " " + props.className}>
-            {props.children}
-        </table>
+        <Suspense fallback={<Loading />}>
+            <table id={props.id} className={styles.companyCustomerTable + " " + props.className}>
+                {props.children}
+            </table>
+        </Suspense>
     )
 }
 const ServerSideDataTables = forwardRef(ServerSideDT)

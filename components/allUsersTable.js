@@ -1,6 +1,6 @@
 "use client"
 import styles from '../styles/user.module.scss';
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import Image from 'next/image';
 import 'datatables.net-dt/js/dataTables.dataTables'
 import 'datatables.net-dt/css/jquery.dataTables.min.css'
@@ -51,7 +51,7 @@ const AllUserTable = () => {
                 data: 'email', name: 'email', searchable: true,
                 orderable: true,
             },
-             {
+            {
                 data: null, name: 'active',
                 render: () => {
                     return ('<span class=' + styles.companyUserTableExtraFunction + '><div class="' + styles.companyUserActiveUserSwitchWrapper + ' form-check form-switch align-items-center d-flex"><input class="' + styles.companyUserActiveUserSwitch + ' form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" /></div></span>');
@@ -77,7 +77,7 @@ const AllUserTable = () => {
                     <tbody></tbody>
                 </ServerSideDataTables>
             </div>
-        </div>
+        </div >
 
     )
 

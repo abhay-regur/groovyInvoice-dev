@@ -1,9 +1,10 @@
 "use client"
 import Link from 'next/link';
-import { useContext } from 'react';
+import { useContext, Suspense } from 'react';
 // import AllUserTable from "../../../components/allUsersTable";
 import FaCirclePlus from "../../../assets/icons/FaCirclePlus.svg";
 import styles from '../../../styles/user.module.scss';
+import Loading from '../loading';
 import { NavExpandedState } from '../../../context/NavState.context';
 import dynamic from 'next/dynamic';
 
@@ -33,7 +34,9 @@ export default function UserListComponnt() {
                         </div>
                     </div>
                     <div className='p-2'>
-                        <AllUserTable />
+                        <Suspense fallback={<Loading />}>
+                            <AllUserTable />
+                        </Suspense>
                     </div>
                 </div>
             </main>
