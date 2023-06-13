@@ -1,117 +1,83 @@
+"use client"
 import styles from '../styles/user.module.scss';
-import React from 'react';
+import { useRef } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
-import { useTable, usePagination } from 'react-table';
+import 'datatables.net-dt/js/dataTables.dataTables'
+import 'datatables.net-dt/css/jquery.dataTables.min.css'
+import ServerSideDataTables from './serverSideDataTable';
+import ReactDOM from "react-dom/client";
 import defaultProfile from '../public/images/profile_Default.png';
-import TablePagination from "./tablePagination.js";
 import FaPen from '../assets/icons/faPen.svg';
 
-const AllUserTable = ({ ItemsData }) => {
+const AllUserTable = () => {
 
-    const columns = React.useMemo(
-        () => [
+    const dtRef = useRef();
+    const draw_userName = (row) => {
+        return (
+            <>
+                <div className={`${styles.companyUserTableCustomerImage}`}>
+                    <Image src={defaultProfile} alt="Picture of the author" width={42} height={42} />
+                    <span className={`${styles.companyUserTableCustomerNameWrapper}`} >
+                        <div className={`${styles.companyUserTableCustomerName}`}>
+                            {row.firstName + ' ' + row.lastName}
+                        </div>
+                        <div className={`${styles.companyUserTableCustomerEdit} ps-2`}>
+                            <FaPen />
+                        </div>
+                    </span >
+                </div >
+            </>
+        )
+    }
+
+    const dtOptions = {
+        ajaxUrl: '/users/dt/list',
+        authUserType: 'user',
+        columns: [
             {
-                Header: 'User Name',
-                accessor: 'userName',
+                data: 'firstName', name: 'firstName', searchable: true,
+                createdCell: function (cell, cellData, rowData, rowIndex, colIndex) {
+                    const root = ReactDOM.createRoot(cell)
+                    root.render(draw_userName(rowData))
+                },
+                searchable: true,
+                orderable: true,
             },
             {
-                Header: 'Contact Number',
-                accessor: 'contactNumber',
+                data: 'cellNumber', name: 'cellNumber', searchable: true,
+                orderable: true,
             },
             {
-                Header: 'Email Address',
-                accessor: 'emailAddress',
+                data: 'email', name: 'email', searchable: true,
+                orderable: true,
             },
             {
-                Header: 'Active',
-                accessor: 'extraFunction',
-            },
+                data: null, name: 'active',
+                render: () => {
+                    return ('<span class=' + styles.companyUserTableExtraFunction + '><div class="' + styles.companyUserActiveUserSwitchWrapper + ' form-check form-switch align-items-center d-flex"><input class="' + styles.companyUserActiveUserSwitch + ' form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" /></div></span>');
+                },
+                searchable: false,
+                orderable: false,
+            }
         ],
-        []
-    )
-
-    const data = React.useMemo(
-        () => [
-            {
-                userName: <div className={`${styles.companyUserTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyUserTableCustomerNameWrapper}`}><div className={`${styles.companyUserTableCustomerName}`} >Maximus Tempor</div><div className={`${styles.companyUserTableCustomerEdit} ps-2`}> <Link href="users/update"><FaPen /></Link></div></span></div>,
-                contactNumber: <><div className={`${styles.companyUserTableContactNumber}`}>408-545-4861</div></>,
-                emailAddress: <span className={`${styles.companyUserTableEmailAddress}`}>test@gmail.com</span>,
-                extraFunction: <span className={`${styles.companyUserTableExtraFunction}`}>
-                    <div className={`${styles.companyUserActiveUserSwitchWrapper} form-check form-switch align-items-center d-flex`}>
-                        <input className={`${styles.companyUserActiveUserSwitch} form-check-input`} type="checkbox" role="switch" id="flexSwitchCheckDefault" />
-                    </div>
-                </span>,
-            },
-
-        ],
-        []
-    )
-
-    const {
-        getTableProps,
-        getTableBodyProps,
-        headerGroups,
-        page,
-        prepareRow,
-        canPreviousPage,
-        canNextPage,
-        pageOptions,
-        nextPage,
-        previousPage,
-        gotoPage,
-        state: { pageIndex, pageSize },
-    } = useTable({
-        columns,
-        data,
-        initialState: { pageIndex: 0 },
-    }, usePagination);
-
+    }
 
     return (
         <div className={`row`}>
             <div className={`${styles.comapanyInoviceUserTableWrapper} col-sm-12 p-0`}>
-                <table className={`${styles.companyUserTable} table`} {...getTableProps()}>
+                <ServerSideDataTables ref={dtRef} id="manage-user--table" {...dtOptions} className={`table`}>
                     <thead>
-                        {headerGroups.map((headerGroup, i) => (
-                            <tr key={i} {...headerGroup.getHeaderGroupProps()}>
-                                {headerGroup.headers.map(column => (
-                                    <th key={i} scope="col" className="ps-3" {...column.getHeaderProps()}>{column.render("Header")}</th>
-                                ))}
-                            </tr>
-                        ))}
+                        <tr>
+                            <th scope="col" className="ps-3" >User Name</th>
+                            <th scope="col" className="ps-3" >Contact Number</th>
+                            <th scope="col" className="ps-3" >Email Address</th>
+                            <th scope="col" className="ps-3" >Active</th>
+                        </tr>
                     </thead>
-                    <tbody {...getTableBodyProps()}>
-                        {page.map((row, i) => {
-                            prepareRow(row);
-                            return (
-                                <tr key={i} {...row.getRowProps()}>
-                                    {row.cells.map(cell => {
-                                        return <td key={i} {...cell.getCellProps()}>{cell.render("Cell")}</td>;
-                                    })}
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
+                    <tbody></tbody>
+                </ServerSideDataTables>
             </div>
-            <div className="col-sm-12 p-0 mb-2">
-                <div className={`${styles.companyUserTablePaginationWrapper} row`}>
-                    <div className="col-12">
-                        <TablePagination
-                            pageIndex={pageIndex}
-                            pageOptions={pageOptions}
-                            previousPage={previousPage}
-                            canPreviousPage={canPreviousPage}
-                            nextPage={nextPage}
-                            canNextPage={canNextPage}
-                            gotoPage={gotoPage}
-                            styles={styles}
-                        />
-                    </div>
-                </div>
-            </div>
-        </div>
+        </div >
 
     )
 

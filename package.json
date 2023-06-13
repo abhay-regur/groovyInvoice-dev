@@ -26,7 +26,10 @@
     "react-datepicker": "^4.10.0",
     "react-dom": "^18.2.0",
     "react-table": "^7.8.0",
-    "sass": "^1.55.0"
+    "sass": "^1.55.0",
+    "datatables.net": "^1.13.4",
+    "datatables.net-dt": "^1.13.4",
+    "jquery": "^3.7.0"
   },
   "devDependencies": {
     "@svgr/webpack": "^6.5.1",

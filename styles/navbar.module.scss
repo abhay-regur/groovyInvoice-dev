@@ -23,6 +23,7 @@ $navItem-hightlight: #F5FAFE;
 
     nav {
         color: $primary-color;
+        height: 1900px !important;
 
         .green {
             color: $tertiary-color;
@@ -90,7 +91,7 @@ $navItem-hightlight: #F5FAFE;
 
 @keyframes openSideBar_small-screen {
     from {
-        height: 51px;
+        height: 90px;
     }
 
     to {
@@ -104,7 +105,7 @@ $navItem-hightlight: #F5FAFE;
     }
 
     to {
-        height: 51px;
+        height: 90px;
     }
 }
 
@@ -424,7 +425,7 @@ $navItem-hightlight: #F5FAFE;
 @media screen and (max-width: 425px) {
     .header {
         nav {
-            height: 100vh;
+            height: 100%;
             width: 100vw;
             position: fixed;
             z-index: 1;
@@ -601,7 +602,6 @@ $navItem-hightlight: #F5FAFE;
     }
 
     .expanded {
-        height: 100% !important;
         animation-name: openSideBar_small-screen;
         animation-duration: 0.9s;
         animation-delay: 0s;

@@ -55,13 +55,16 @@ $table-pagination-background: #D9E6F3;
 
         .comapanyInoviceUserTableWrapper {
             margin-top: 50px;
-            border: 1px solid $table-border;
-            border-radius: 10px;
-            background: white;
-            overflow-x: auto;
+            background: none;
+            overflow-x: hidden;
 
-            .companyUserTable {
+            table {
                 min-width: 817px;
+                margin-right: 0;
+                margin-left: 0;
+                margin-bottom: 40px;
+                border: 1px solid $table-border;
+                border-radius: 10px;
 
                 thead {
                     th {
@@ -72,6 +75,7 @@ $table-pagination-background: #D9E6F3;
                         color: $primary-color;
                         background: $table-head-background;
                         border-right: 1px solid $table-border;
+                        border-bottom: 1px solid $table-border;
 
                         .companyUserTableInvoiceNumber {
                             label {
@@ -222,11 +226,11 @@ $table-pagination-background: #D9E6F3;
                                 }
                             }
 
-                            .companyUserTableContactNumber {}
-
                             .companyUserTableActionDueDateTime {
                                 font-size: 12px;
                             }
+
+
 
                             .companyCustomerCompanyName {
                                 display: flex;
@@ -244,8 +248,6 @@ $table-pagination-background: #D9E6F3;
                                 width: 30px;
                                 text-align: center;
                             }
-
-                            .companyUserTableReceivables {}
 
                             .companyUserActiveUserSwitchWrapper {
                                 display: flex;
@@ -375,13 +377,16 @@ $table-pagination-background: #D9E6F3;
 
         .comapanyInoviceUserTableWrapper {
             margin-top: 50px;
-            border: 1px solid $table-border;
-            border-radius: 10px;
-            background: white;
+            background: none;
             overflow-x: auto;
 
-            .companyUserTable {
+            table {
                 min-width: 817px;
+                margin-right: 0;
+                margin-left: 0;
+                margin-bottom: 40px;
+                border: 1px solid $table-border;
+                border-radius: 10px;
 
                 thead {
                     th {
@@ -392,6 +397,7 @@ $table-pagination-background: #D9E6F3;
                         color: $primary-color;
                         background: $table-head-background;
                         border-right: 1px solid $table-border;
+                        border-bottom: 1px solid $table-border;
 
                         .companyUserTableInvoiceNumber {
                             label {
@@ -565,7 +571,25 @@ $table-pagination-background: #D9E6F3;
                                 text-align: center;
                             }
 
-                            .companyUserTableReceivables {}
+                            .companyUserActiveUserSwitchWrapper {
+                                display: flex;
+
+                                .companyUserActiveUserSwitch {
+                                    height: 2em;
+                                    width: 3em;
+
+                                    &:checked {
+                                        background-color: $primary-color;
+                                        border-color: $primary-color;
+                                    }
+
+                                    &:focus {
+                                        border-color: #364aab5e;
+                                        outline: 0;
+                                        box-shadow: none;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
