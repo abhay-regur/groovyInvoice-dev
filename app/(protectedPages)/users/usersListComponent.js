@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { useContext, Suspense } from 'react';
 // import AllUserTable from "../../../components/allUsersTable";
-import FaCirclePlus from "../../../assets/icons/FaCirclePlus.svg";
+import FaCirclePlus from "../../../assets/icons/faCirclePlus.svg";
 import styles from '../../../styles/user.module.scss';
 import Loading from '../loading';
 import { NavExpandedState } from '../../../context/NavState.context';
