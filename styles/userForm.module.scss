@@ -257,7 +257,7 @@ $transprant: rgba(0, 0, 0, 0);
 }
 
 //Tablet Screen
-@media screen and (max-width: 992px) {
+@media screen and (min-width: 676px) {
     .main {
         margin: auto 60px;
         margin-left: 135px;
@@ -479,7 +479,7 @@ $transprant: rgba(0, 0, 0, 0);
 }
 
 //Mobie Screen
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 675px) {
     .main {
         margin: 89px 15px 92px 15px;
         transition: all 0.35s;
