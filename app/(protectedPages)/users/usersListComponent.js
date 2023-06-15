@@ -1,18 +1,18 @@
 "use client"
 import Link from 'next/link';
 import { useContext, Suspense } from 'react';
-// import AllUserTable from "../../../components/allUsersTable";
 import FaCirclePlus from "../../../assets/icons/faCirclePlus.svg";
 import styles from '../../../styles/user.module.scss';
 import Loading from '../loading';
 import { NavExpandedState } from '../../../context/NavState.context';
 import dynamic from 'next/dynamic';
 
+const AllUserTable = dynamic(
+    () => import("../../../components/allUsersTable"),
+    { ssr: false }
+);
+
 export default function UserListComponnt() {
-    const AllUserTable = dynamic(
-        () => import("../../../components/allUsersTable"),
-        { ssr: false }
-    );
     const { navExpandedState } = useContext(NavExpandedState);
     return (
         <div className={styles.container}>

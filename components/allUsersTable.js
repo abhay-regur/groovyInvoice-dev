@@ -1,17 +1,19 @@
 "use client"
 import styles from '../styles/user.module.scss';
 import { useRef } from 'react';
+import 'datatables.net-dt/js/dataTables.dataTables';
 import Image from 'next/image';
-import 'datatables.net-dt/js/dataTables.dataTables'
-import 'datatables.net-dt/css/jquery.dataTables.min.css'
-import ServerSideDataTables from './serverSideDataTable';
 import ReactDOM from "react-dom/client";
 import defaultProfile from '../public/images/profile_Default.png';
+import { userActivate, userDeactivate } from '../services/user.service';
 import FaPen from '../assets/icons/faPen.svg';
+import 'datatables.net-dt/css/jquery.dataTables.min.css';
+import ServerSideDataTables from './serverSideDataTable';
 
 const AllUserTable = () => {
 
     const dtRef = useRef();
+
     const draw_userName = (row) => {
         return (
             <>
@@ -28,6 +30,16 @@ const AllUserTable = () => {
                 </div >
             </>
         )
+    }
+
+    const draw_activeSwitch = (rowData) => {
+        return (
+            <span className={styles.companyUserTableExtraFunction}>
+                <div className={`${styles.companyUserActiveUserSwitchWrapper} form-check form-switch align-items-center d-flex`}>
+                    <input className={`${styles.companyUserActiveUserSwitch} form-check-input`} type="checkbox" role="switch" onChange={() => { handlechange(rowData.id, rowData.active) }} id="flexSwitchCheckDefault" checked={rowData.active} />
+                </div>
+            </span>
+        );
     }
 
     const dtOptions = {
@@ -52,9 +64,10 @@ const AllUserTable = () => {
                 orderable: true,
             },
             {
-                data: null, name: 'active',
-                render: () => {
-                    return ('<span class=' + styles.companyUserTableExtraFunction + '><div class="' + styles.companyUserActiveUserSwitchWrapper + ' form-check form-switch align-items-center d-flex"><input class="' + styles.companyUserActiveUserSwitch + ' form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" /></div></span>');
+                data: 'active', name: 'active',
+                createdCell: (cell, cellData, rowData, rowIndex, colIndex) => {
+                    const root = ReactDOM.createRoot(cell)
+                    root.render(draw_activeSwitch(rowData))
                 },
                 searchable: false,
                 orderable: false,
@@ -62,7 +75,22 @@ const AllUserTable = () => {
         ],
     }
 
+    const handlechange = async (id, active) => {
+        var result = '';
+        if (active) {
+            result = await userDeactivate(id);
+        } else {
+            result = await userActivate(id);
+        }
+        console.log(result.status);
+        if (result.status == 200) {
+            dtRef.current.reload()
+        } else {
+            console.log(result.data.message);
+        }
+    }
     return (
+
         <div className={`row`}>
             <div className={`${styles.comapanyInoviceUserTableWrapper} col-sm-12 p-0`}>
                 <ServerSideDataTables ref={dtRef} id="manage-user--table" {...dtOptions} className={`table responsive`}>
