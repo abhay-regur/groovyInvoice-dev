@@ -2,8 +2,6 @@
 import styles from '../styles/user.module.scss';
 import { useRef } from 'react';
 import Image from 'next/image';
-import 'datatables.net-dt/js/dataTables.dataTables'
-import 'datatables.net-dt/css/jquery.dataTables.min.css'
 import ServerSideDataTables from './serverSideDataTable';
 import ReactDOM from "react-dom/client";
 import defaultProfile from '../public/images/profile_Default.png';
