@@ -3,12 +3,12 @@ import { useState } from "react";
 import Link from 'next/link';
 import styles from '../../styles/registration.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faKey, faMobileRetro, faBriefcase } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faMobileRetro, faBriefcase } from '@fortawesome/free-solid-svg-icons';
 import { signUp } from '../../services/users/registration.service';
 import { disableSubmitButton, enableSubmitButton } from '../../utils/form.utils';
 import { useRouter } from 'next/navigation';
 import ErrorList from '../../components/errorList';
-import PasswordToggler from '../../components/passwordToggler';
+import PasswordInputField from '../../components/passwordInputField';
 
 export default function RegistrationForm() {
     const { push } = useRouter();
@@ -85,21 +85,13 @@ export default function RegistrationForm() {
                                         <div className="mb-3">
                                             <label htmlFor="loginPassword" className="form-label">Password</label>
                                             <div className={styles.innerInputIconWrapper}>
-                                                <i>
-                                                    <FontAwesomeIcon icon={faKey} />
-                                                </i>
-                                                <input type="password" className="form-control" placeholder="Password" name="password" value={data.password} onChange={handleInput} id="password" />
-                                                <PasswordToggler refId="password" />
+                                                <PasswordInputField placeholder="Password" name="password" value={data.password} onChange={handleInput} />
                                             </div>
                                         </div>
                                         <div className="mb-3">
                                             <label htmlFor="loginConfirmPassword" className="form-label">Confirm Password</label>
                                             <div className={styles.innerInputIconWrapper}>
-                                                <i>
-                                                    <FontAwesomeIcon icon={faKey} />
-                                                </i>
-                                                <input type="password" className="form-control" placeholder='Password' name="confirmPassword" value={data.confirmPassword} onChange={handleInput} id="confirm-password" />
-                                                <PasswordToggler refId="confirm-password" />
+                                                <PasswordInputField placeholder="Password" name="confirmPassword" value={data.confirmPassword} onChange={handleInput} />
                                             </div>
                                         </div>
                                         <div className="d-grid gap-2">

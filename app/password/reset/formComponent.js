@@ -5,10 +5,8 @@ import Link from 'next/link';
 import ErrorList from '../../../components/errorList';
 import { verifyPasswordResetToken, resetPassword } from '../../../services/password/password.services'
 import { disableSubmitButton, enableSubmitButton } from '../../../utils/form.utils';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faKey } from '@fortawesome/free-solid-svg-icons';
 import styles from '../../../styles/resetPassword.module.scss';
-import PasswordToggler from '../../../components/passwordToggler';
+import PasswordInputField from '../../../components/passwordInputField';
 
 
 export default function ResetPasswordForm() {
@@ -80,23 +78,13 @@ export default function ResetPasswordForm() {
                                             <div className="mb-3">
                                                 <label htmlFor="loginPassword" className="form-label">Password</label>
                                                 <div className={styles.innerInputIconWrapper}>
-                                                    <i>
-                                                        <FontAwesomeIcon icon={faKey} />
-                                                    </i>
-                                                    <input type="password" className="form-control" placeholder="Password" name="password" value={data.password} onChange={handleInput} id="password" />
-                                                    <PasswordToggler refId="password" />
-
+                                                    <PasswordInputField placeholder="Password" name="password" value={data.password} onChange={handleInput} />
                                                 </div>
                                             </div>
                                             <div className="mb-3">
                                                 <label htmlFor="loginConfirmPassword" className="form-label">Confirm Password</label>
                                                 <div className={styles.innerInputIconWrapper}>
-                                                    <i>
-                                                        <FontAwesomeIcon icon={faKey} />
-                                                    </i>
-                                                    <input type="password" className="form-control" placeholder='Password' name="confirmPassword" value={data.confirmPassword} onChange={handleInput} id="confirm-password" />
-                                                    <PasswordToggler refId="confirm-password" />
-
+                                                    <PasswordInputField placeholder="Password" name="confirmPassword" value={data.confirmPassword} onChange={handleInput} />
                                                 </div>
                                             </div>
                                             <div className="d-grid gap-2">
