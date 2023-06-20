@@ -54,6 +54,10 @@ function ServerSideDT(props, ref) {
                     }
                 },
             },
+            columnDefs: [
+                { responsivePriority: 1, targets: 0 },
+                { responsivePriority: 1, targets: -1 }
+            ],
 
             dom: '<"table-container"<"filter-wrapper"fl>rt><"bottom"ip><"clear">',
             language: {
@@ -70,7 +74,7 @@ function ServerSideDT(props, ref) {
         window.setTimeout(() => {
             $('.filter-wrapper').addClass('row');
             $('.dataTables_length').addClass('form-input-group');
-            $('.dataTables_filter:not(.input-group)').wrap('<div class="col-sm-3 col-12 mb-3"></div>');
+            $('.dataTables_filter:not(.input-group)').wrap('<div class="col-lg-4 col-6 mb-3"></div>');
             $('.dataTables_filter').addClass('input-group');
             $('.dataTables_filter label').addClass('input-group-text');
             $('.dataTables_filter input').detach().appendTo('.dataTables_filter');

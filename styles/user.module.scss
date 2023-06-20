@@ -59,7 +59,7 @@ $table-pagination-background: #D9E6F3;
             overflow-x: hidden;
 
             table {
-                min-width: 817px;
+                min-width: 500px;
                 margin-right: 0;
                 margin-left: 0;
                 margin-bottom: 40px;
@@ -591,7 +591,25 @@ $table-pagination-background: #D9E6F3;
                                     }
                                 }
                             }
+
+                            ul {
+                                display: flex;
+                                padding-left: 0.2rem;
+                                justify-content: space-between;
+
+                                li {
+                                    list-style: none;
+                                    display: grid;
+
+                                    span:first-of-type {
+                                        color: $primary-color;
+                                        font-weight: 600;
+                                    }
+                                }
+                            }
                         }
+
+
                     }
                 }
             }

@@ -102,7 +102,7 @@ const AllUserTable = () => {
         <>
             <div className={`row`}>
                 <div className={`${styles.comapanyInoviceUserTableWrapper} col-sm-12 p-0`}>
-                    <ServerSideDataTables ref={dtRef} id="manage-user--table" {...dtOptions} className={`table responsive`}>
+                    <ServerSideDataTables ref={dtRef} id="manage-user--table" {...dtOptions} className={`table responsive nowrap`}>
                         <thead>
                             <tr>
                                 <th scope="col" className="ps-3" data-priority="1" >User Name</th>
