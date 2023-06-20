@@ -1,6 +1,7 @@
 "use client"
 import AuthLayout from "./authLayout";
 import UserLoggedState from "../../context/UserState.context";
+import ToastMsg from '../../context/ToastMsg.context';
 
 function Layout({ children }) {
 
@@ -8,7 +9,9 @@ function Layout({ children }) {
         <>
             <UserLoggedState>
                 <AuthLayout>
-                    {children}
+                    <ToastMsg>
+                        {children}
+                    </ToastMsg>
                 </AuthLayout>
             </UserLoggedState>
         </>)
