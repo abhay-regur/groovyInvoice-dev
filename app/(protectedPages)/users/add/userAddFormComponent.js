@@ -8,8 +8,8 @@ import styles from "../../../../styles/userForm.module.scss";
 import FaGear from '../../../../assets/icons/faGear.svg';
 import { NavExpandedState } from '../../../../context/NavState.context';
 import ErrorList from '../../../../components/errorList';
-import Toast from '../../../../../components/toast.js';
-import { ToastMsgContext } from '../../../../../context/ToastMsg.context';
+import Toast from '../../../../components/toast.js';
+import { ToastMsgContext } from '../../../../context/ToastMsg.context';
 import { createUser } from '../../../../services/user.service';
 import { disableSubmitButton, enableSubmitButton } from '../../../../utils/form.utils'
 import { useRouter } from 'next/navigation'
