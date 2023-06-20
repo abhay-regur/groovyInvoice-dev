@@ -7,9 +7,11 @@ import FaSave from '../../../../../assets/icons/faSave.svg';
 import { generatePassword } from '../../../../../utils/genratePassword.utils';
 import FaCircleXmark from '../../../../../assets/icons/faCircleXmark.svg';
 import styles from "../../../../../styles/userForm.module.scss";
+import ErrorList from '../../../../../components/errorList';
 import FaGear from '../../../../../assets/icons/faGear.svg';
 import { NavExpandedState } from '../../../../../context/NavState.context';
 import { ToastMsgContext } from '../../../../../context/ToastMsg.context';
+import Link from 'next/link';
 import Loading from '../../../loading.js';
 import Toast from '../../../../../components/toast.js';
 
@@ -17,6 +19,7 @@ export default function UserUpdateFormComponent() {
     const currentUserId = useParams().id;
     const { navExpandedState } = useContext(NavExpandedState);
     const { setToastList } = useContext(ToastMsgContext)
+    const [errors, setErrors] = useState([])
 
     const [isLoading, setIsLoading] = useState(true)
     var result = '';
@@ -50,8 +53,8 @@ export default function UserUpdateFormComponent() {
     }, [isActive])
 
     const getUserDetails = async () => {
+        setErrors([]);
         result = await userDetails(currentUserId);
-
         setData({ ...result.data });
         setIsActive(data.active);
         setIsLoading(false);
@@ -64,7 +67,8 @@ export default function UserUpdateFormComponent() {
     }
 
     const handleSwitchChange = async () => {
-        setIsLoading(true)
+        setIsLoading(true);
+        setErrors([]);
         if (isActive) {
             result = await userDeactivate(currentUserId);
         } else {
@@ -80,39 +84,39 @@ export default function UserUpdateFormComponent() {
             }]);
             setIsLoading(false);
         } else {
-            setToastList([{
-                id: Math.floor((Math.random() * 101) + 1),
-                title: data.firstName + ' ' + data.lastName + ' status updated failed',
-                description: 'Reload page and try again',
-            }]);
+            setErrors.push('Reload page and try again');
             setIsLoading(false);
         }
     }
 
     const handleSaveClick = async () => {
-        result = await updateUserDetails({
-            "id": data.id,
-            "email": data.email,
-            "companyId": data.companyId,
-            "firstName": data.firstName,
-            "lastName": data.lastName,
-            "cellNumber": data.cellNumber,
-            "active": data.active
-        });
-
-        if (result.status == 200) {
-            console.log(result);
-            setToastList([{
-                id: Math.floor((Math.random() * 101) + 1),
-                title: data.firstName + ' ' + data.lastName + ' details updated',
-                description: result.data.message,
-            }]);
-        } else {
-
+        setErrors([]);
+        try {
+            result = await updateUserDetails({
+                "id": data.id,
+                "email": data.email,
+                "companyId": data.companyId,
+                "firstName": data.firstName,
+                "lastName": data.lastName,
+                "cellNumber": data.cellNumber,
+                "active": data.active
+            });
+            if (result.status == 200) {
+                setToastList([{
+                    id: Math.floor((Math.random() * 101) + 1),
+                    title: data.firstName + ' ' + data.lastName + ' details updated',
+                    description: result.data.message,
+                }]);
+            } else {
+                setErrors(result.data.message);
+            }
+        } catch (error) {
+            setErrors(error.response.data.message);
         }
     }
 
     const handleCancelClick = () => {
+        setErrors([]);
 
     }
 
@@ -137,6 +141,8 @@ export default function UserUpdateFormComponent() {
                                         </div>
                                     </div>
                                 </div>
+
+                                <ErrorList errors={errors} />
 
                                 <div className={`${styles.companyInvoiceUserNameWrapper} mb-0 mb-md-4 row`}>
                                     <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
@@ -201,12 +207,15 @@ export default function UserUpdateFormComponent() {
                                                 </button>
                                             </div>
                                             <div className="col-6 col-md-4 col-lg-3 col-xl-4">
-                                                <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={() => { handleCancelClick() }}>
-                                                    <span>
-                                                        <i><FaCircleXmark /></i>
-                                                        Cancel
-                                                    </span>
-                                                </button>
+                                                <Link href={'/users/'}>
+                                                    <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={() => { handleCancelClick() }}>
+                                                        <span>
+                                                            <i><FaCircleXmark /></i>
+                                                            Cancel
+                                                        </span>
+                                                    </button>
+
+                                                </Link>
                                             </div>
                                         </div>
                                     </div>
