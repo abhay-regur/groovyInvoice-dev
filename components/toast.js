@@ -1,8 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import propTypes from 'prop-types';
+import { ToastMsgContext } from '../context/ToastMsg.context';
 import styles from '../styles/toast.module.scss';
-export default function Toast(props) {
-    const { toastList, autoDeleteTime } = props;
+
+
+export default function Toast() {
+    const autoDeleteTime = 2500;
+    const { toastList } = useContext(ToastMsgContext);
     const [list, setList] = useState(toastList);
 
     useEffect(() => {
@@ -54,8 +58,4 @@ export default function Toast(props) {
             </div>
         </>
     )
-}
-Toast.propTypes = {
-    toastList: propTypes.array.isRequired,
-    autoDeleteTime: propTypes.number
 }
