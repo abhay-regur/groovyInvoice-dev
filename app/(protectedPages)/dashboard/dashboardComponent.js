@@ -2,7 +2,6 @@
 import { useContext } from "react";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, LineElement, Title, Tooltip, Legend, Filler, elements, } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import ProgressBar from "@ramonak/react-progress-bar";
 import styles from '../../../styles/home.module.scss';
 import FaQuestionCircleOutline from '../../../assets/icons/faQuestionCircleOutline.svg';
 import { NavExpandedState } from '../../../context/NavState.context';
@@ -112,7 +111,10 @@ export default function DashboardComponent() {
                                         </div>
                                         <div className="col-12">
                                             <div className={`${styles.comapnyInvoiceTotalReceivedProgressBarWrapper}`}>
-                                                <ProgressBar completed="57.77" bgColor="#43CB80" baseBgColor="#3649AB" height="11px" labelSize="0px" borderRadius="0" />
+                                                {/* <ProgressBar completed="57.77" bgColor="#43CB80" baseBgColor="#3649AB" height="11px" labelSize="0px" borderRadius="0" /> */}
+                                                <div className={`${styles.comapnyInvoiceTotalReceivedProgressBarBackground} progress`} role="progressbar" aria-label="Basic example" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">
+                                                    <div className={`${styles.comapnyInvoiceTotalReceivedProgressBar} progress-bar`} style={{ width: '55%' }}></div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
