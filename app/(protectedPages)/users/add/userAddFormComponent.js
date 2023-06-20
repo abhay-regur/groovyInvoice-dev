@@ -8,7 +8,8 @@ import styles from "../../../../styles/userForm.module.scss";
 import FaGear from '../../../../assets/icons/faGear.svg';
 import { NavExpandedState } from '../../../../context/NavState.context';
 import ErrorList from '../../../../components/errorList';
-import SuccessMsg from '../../../../components/successMsg';
+import Toast from '../../../../../components/toast.js';
+import { ToastMsgContext } from '../../../../../context/ToastMsg.context';
 import { createUser } from '../../../../services/user.service';
 import { disableSubmitButton, enableSubmitButton } from '../../../../utils/form.utils'
 import { useRouter } from 'next/navigation'
@@ -16,8 +17,8 @@ import { useRouter } from 'next/navigation'
 export default function UserUpdateFormComponent() {
     const { replace } = useRouter();
     const { navExpandedState } = useContext(NavExpandedState);
-    const [errors, setErrors] = useState([])
-    const [successMsg, setSuccessMsg] = useState('')
+    const [errors, setErrors] = useState([]);
+    const { setToastList } = useContext(ToastMsgContext);
     const [data, setData] = useState({
         firstName: '',
         lastName: '',
@@ -63,7 +64,7 @@ export default function UserUpdateFormComponent() {
                 confirmPassword: '',
                 active: false
             })
-            setSuccessMsg('User created successfully')
+            setToastList('User created successfully')
         } catch (e) {
             setErrors(e.response.data.message)
         }
@@ -82,7 +83,6 @@ export default function UserUpdateFormComponent() {
                         <hr />
 
                         <ErrorList errors={errors} />
-                        <SuccessMsg message={successMsg} />
                         <form onSubmit={handleSubmit}>
                             <div className={`${styles.companyUserActiveUserWrapper} mb-4 row`}>
                                 <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
@@ -171,6 +171,7 @@ export default function UserUpdateFormComponent() {
                     </div>
                 </div>
             </div>
+            <Toast />
         </main>
     )
 }
