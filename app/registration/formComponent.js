@@ -88,12 +88,12 @@ export default function RegistrationForm() {
                                                 <i>
                                                     <FontAwesomeIcon icon={faKey} />
                                                 </i>
-                                                <input type="password" className="form-control" placeholder="Password" name="password" value={data.password} onChange={handleInput} id="password" />
+                                                <input type="password" className="form-control" placeholder="Password" name="password" value={data.password} onChange={handleInput} id="loginPassword" />
                                                 <PasswordToggler refId="password" />
                                             </div>
                                         </div>
                                         <div className="mb-3">
-                                            <label htmlFor="loginConfirmPassword" className="form-label">Confirm Password</label>
+                                            <label htmlFor="confirm-password" className="form-label">Confirm Password</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <i>
                                                     <FontAwesomeIcon icon={faKey} />

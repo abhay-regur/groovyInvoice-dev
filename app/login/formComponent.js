@@ -88,7 +88,7 @@ export default function LoginForm() {
                                             </div>
                                         </div>
                                         <div className="mb-3">
-                                            <label htmlFor="loginPassword" className="form-label">Password</label>
+                                            <label htmlFor="password" className="form-label">Password</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <i>
                                                     <FontAwesomeIcon icon={faKey} />

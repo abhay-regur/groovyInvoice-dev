@@ -40,7 +40,7 @@ const AllUserTable = () => {
         return (
             <span className={styles.companyUserTableExtraFunction}>
                 <div className={`${styles.companyUserActiveUserSwitchWrapper} form-check form-switch align-items-center d-flex`}>
-                    <input className={`${styles.companyUserActiveUserSwitch} form-check-input`} type="checkbox" role="switch" onChange={() => { handlechange(rowData) }} id="flexSwitchCheckDefault" checked={rowData.active} />
+                    <input className={`${styles.companyUserActiveUserSwitch} form-check-input`} type="checkbox" role="switch" onChange={() => { handlechange(rowData) }} id={`flexSwitchCheckDefault${rowData.id}`} checked={rowData.active} />
                 </div>
             </span>
         );
