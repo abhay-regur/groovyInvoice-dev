@@ -11,7 +11,6 @@ import FaPen from '../assets/icons/faPen.svg';
 import 'datatables.net-dt/css/jquery.dataTables.min.css';
 import ServerSideDataTables from './serverSideDataTable';
 import Link from 'next/link';
-import Toast from './toast';
 
 const AllUserTable = () => {
     const { setToastList } = useContext(ToastMsgContext)
@@ -115,7 +114,6 @@ const AllUserTable = () => {
                     </ServerSideDataTables>
                 </div>
             </div >
-            <Toast />
         </>
 
     )

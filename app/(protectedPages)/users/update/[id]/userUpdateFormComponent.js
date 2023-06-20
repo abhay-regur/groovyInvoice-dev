@@ -13,7 +13,6 @@ import { NavExpandedState } from '../../../../../context/NavState.context';
 import { ToastMsgContext } from '../../../../../context/ToastMsg.context';
 import Link from 'next/link';
 import Loading from '../../../loading.js';
-import Toast from '../../../../../components/toast.js';
 
 export default function UserUpdateFormComponent() {
     const currentUserId = useParams().id;
@@ -225,7 +224,6 @@ export default function UserUpdateFormComponent() {
                     </div>
                 </div>
             </div>
-            <Toast />
         </main>
     )
 }
