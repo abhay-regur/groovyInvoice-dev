@@ -8,7 +8,6 @@ import styles from "../../../../styles/userForm.module.scss";
 import FaGear from '../../../../assets/icons/faGear.svg';
 import { NavExpandedState } from '../../../../context/NavState.context';
 import ErrorList from '../../../../components/errorList';
-import Toast from '../../../../components/toast.js';
 import { ToastMsgContext } from '../../../../context/ToastMsg.context';
 import { createUser } from '../../../../services/user.service';
 import { disableSubmitButton, enableSubmitButton } from '../../../../utils/form.utils'
@@ -54,7 +53,7 @@ export default function UserUpdateFormComponent() {
         setErrors([])
         disableSubmitButton(e.target)
         try {
-            await createUser(data)
+            var result = await createUser(data);
             setData({
                 firstName: '',
                 lastName: '',
@@ -64,7 +63,14 @@ export default function UserUpdateFormComponent() {
                 confirmPassword: '',
                 active: false
             })
-            setToastList('User created successfully')
+            if (result.status == 200 || result.status == 201) {
+                setToastList([{
+                    id: Math.floor((Math.random() * 101) + 1),
+                    title: data.firstName + ' ' + data.lastName + ' added successfully',
+                    description: result.data.message,
+                }]);
+                // window.location.pathname = '/users/';
+            }
         } catch (e) {
             setErrors(e.response.data.message)
         }
@@ -171,7 +177,6 @@ export default function UserUpdateFormComponent() {
                     </div>
                 </div>
             </div>
-            <Toast />
         </main>
     )
 }

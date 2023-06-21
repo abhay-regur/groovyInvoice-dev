@@ -11,7 +11,6 @@ import FaPen from '../assets/icons/faPen.svg';
 import 'datatables.net-dt/css/jquery.dataTables.min.css';
 import ServerSideDataTables from './serverSideDataTable';
 import Link from 'next/link';
-import Toast from './toast';
 
 const AllUserTable = () => {
     const { setToastList } = useContext(ToastMsgContext)
@@ -40,7 +39,7 @@ const AllUserTable = () => {
         return (
             <span className={styles.companyUserTableExtraFunction}>
                 <div className={`${styles.companyUserActiveUserSwitchWrapper} form-check form-switch align-items-center d-flex`}>
-                    <input className={`${styles.companyUserActiveUserSwitch} form-check-input`} type="checkbox" role="switch" onChange={() => { handlechange(rowData) }} id="flexSwitchCheckDefault" checked={rowData.active} />
+                    <input className={`${styles.companyUserActiveUserSwitch} form-check-input`} type="checkbox" role="switch" onChange={() => { handlechange(rowData) }} id={`flexSwitchCheckDefault${rowData.id}`} checked={rowData.active} />
                 </div>
             </span>
         );
@@ -102,7 +101,7 @@ const AllUserTable = () => {
         <>
             <div className={`row`}>
                 <div className={`${styles.comapanyInoviceUserTableWrapper} col-sm-12 p-0`}>
-                    <ServerSideDataTables ref={dtRef} id="manage-user--table" {...dtOptions} className={`table responsive`}>
+                    <ServerSideDataTables ref={dtRef} id="manage-user--table" {...dtOptions} className={`table responsive nowrap`}>
                         <thead>
                             <tr>
                                 <th scope="col" className="ps-3" data-priority="1" >User Name</th>
@@ -115,7 +114,6 @@ const AllUserTable = () => {
                     </ServerSideDataTables>
                 </div>
             </div >
-            <Toast />
         </>
 
     )
