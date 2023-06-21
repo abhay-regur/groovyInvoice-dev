@@ -407,8 +407,12 @@ $navItem-hightlight: #F5FAFE;
                 .navItemWrapper {
                     justify-content: left !important;
 
-                    svg {
-                        margin-right: 15px !important;
+                    a {
+                        width: 100%;
+
+                        svg {
+                            margin-right: 15px !important;
+                        }
                     }
                 }
 
@@ -710,17 +714,22 @@ $navItem-hightlight: #F5FAFE;
                         transition: background-color 0.31s, opacity 0.5s linear;
                         justify-content: start;
 
-                        svg {
-                            width: 22px;
-                            height: 22px;
+                        a {
+                            width: 100%;
+
+                            svg {
+                                width: 22px;
+                                height: 22px;
+                            }
+
+                            .nav_menuName {
+                                margin-left: 15px;
+                                font-weight: 600;
+                                font-size: 15px;
+                                line-height: 50px;
+                            }
                         }
 
-                        .nav_menuName {
-                            margin-left: 15px;
-                            font-weight: 600;
-                            font-size: 15px;
-                            line-height: 50px;
-                        }
                     }
 
                 }
