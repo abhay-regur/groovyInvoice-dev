@@ -1,11 +1,10 @@
 import { useState, useEffect, useContext } from 'react';
-import propTypes from 'prop-types';
 import { ToastMsgContext } from '../context/ToastMsg.context';
 import styles from '../styles/toast.module.scss';
 
 
 export default function Toast() {
-    const autoDeleteTime = 2500;
+    const autoDeleteTime = 5000;
     const { toastList } = useContext(ToastMsgContext);
     const [list, setList] = useState(toastList);
 

@@ -74,7 +74,7 @@ function ServerSideDT(props, ref) {
         window.setTimeout(() => {
             $('.filter-wrapper').addClass('row');
             $('.dataTables_length').addClass('form-input-group');
-            $('.dataTables_filter:not(.input-group)').wrap('<div class="col-lg-4 col-6 mb-3"></div>');
+            $('.dataTables_filter:not(.input-group)').wrap('<div class="col-md-4 col-9 mb-3"></div>');
             $('.dataTables_filter').addClass('input-group');
             $('.dataTables_filter label').addClass('input-group-text');
             $('.dataTables_filter input').detach().appendTo('.dataTables_filter');

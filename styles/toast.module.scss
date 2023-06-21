@@ -11,13 +11,19 @@ $tertiary-color-hover: #4EDD8E;
     position: fixed;
     top: 12px;
     right: 12px;
+    -webkit-transition: transform .6s ease-in;
     transition: transform .6s ease-in;
     animation-name: toast_in_left;
     animation-duration: 1s;
 
+    @media screen and (max-width: 675px) {
+        top: 60px;
+    }
+
     .toastMain {
         background: $primary-color;
-        transition: .3s ease;
+        -webkit-transition: transform .6s ease;
+        transition: transform .6s ease;
         position: relative;
         pointer-events: auto;
         overflow: hidden;
@@ -86,7 +92,6 @@ $tertiary-color-hover: #4EDD8E;
     @keyframes toast_in_left {
         from {
             transform: translateX(-100%);
-
         }
 
         to {
