@@ -131,8 +131,11 @@ $navItem-hightlight: #F5FAFE;
             animation-delay: 0s;
 
             a {
+                width: 100%;
                 text-decoration: none;
                 color: inherit;
+                display: flex;
+                justify-content: center;
             }
 
             .navHeadingWrapper {
@@ -144,7 +147,6 @@ $navItem-hightlight: #F5FAFE;
                     font-size: $font-size-heading;
                     line-height: 40px;
                     margin-top: 25px;
-                    margin-left: 29px;
                     margin-bottom: 32px;
                     -webkit-transition: all 1s;
                     transition: all 1s;
@@ -340,7 +342,6 @@ $navItem-hightlight: #F5FAFE;
                     font-size: $font-size-heading;
                     line-height: 40px;
                     margin-top: 25px;
-                    margin-left: 29px;
                     margin-bottom: 32px;
                     -webkit-transition: all 1s;
                     transition: all 1s;
@@ -405,13 +406,19 @@ $navItem-hightlight: #F5FAFE;
                 padding-left: 11px !important;
 
                 .navItemWrapper {
-                    justify-content: left !important;
 
                     a {
+                        justify-content: left !important;
                         width: 100%;
 
-                        svg {
-                            margin-right: 15px !important;
+                        .nav_item_innerwrapper {
+                            display: flex;
+                            justify-content: start;
+                            width: 50%;
+
+                            svg {
+                                margin-right: 15px !important;
+                            }
                         }
                     }
                 }
