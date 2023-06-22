@@ -83,7 +83,7 @@ export default function UserUpdateFormComponent() {
             }]);
             setIsLoading(false);
         } else {
-            setErrors.push('Reload page and try again');
+            setErrors(['Reload page and try again']);
             setIsLoading(false);
         }
     }
@@ -116,7 +116,6 @@ export default function UserUpdateFormComponent() {
 
     const handleCancelClick = () => {
         setErrors([]);
-
     }
 
     return (
@@ -179,7 +178,7 @@ export default function UserUpdateFormComponent() {
                                         <label className={`${styles.companyInvoiceUserPasswordLabel}`}>Password</label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-6 d-flex">
-                                        <input type="text" className="form-control" value={userpassword} onInput={(e) => setPassword(e.value)} id="companyInvoiceUserPassword" placeholder='Password' disabled />
+                                        <input type="text" className="form-control" value={userpassword} onInput={(e) => userpassword(e.value)} id="companyInvoiceUserPassword" placeholder='Password' disabled />
                                         <button className="btn blueOutline"><FaGear /></button>
                                         {/* <button className="btn blueOutline" onClick={() => { genrateNewPassword() }}><FaGear /></button> */}
                                     </div>
@@ -190,7 +189,7 @@ export default function UserUpdateFormComponent() {
                                         <label className={`${styles.companyInvoiceUserPasswordLabel}`}>Confirm Password</label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-6">
-                                        <input type="text" className="form-control" id="companyInvoiceDesignation" value={userConfirmPassword} onInput={(e) => setConfirmPassword(e.value)} placeholder='Confirm Password' disabled />
+                                        <input type="text" className="form-control" id="companyInvoiceDesignation" value={userConfirmPassword} onInput={(e) => userConfirmPassword(e.value)} placeholder='Confirm Password' disabled />
                                     </div>
                                 </div>
 
