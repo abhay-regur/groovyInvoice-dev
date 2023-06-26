@@ -29,7 +29,8 @@
     "react-datepicker": "^4.10.0",
     "react-dom": "^18.2.0",
     "react-table": "^7.8.0",
-    "sass": "^1.55.0"
+    "sass": "^1.55.0",
+    "sharp": "^0.32.1"
   },
   "devDependencies": {
     "@svgr/webpack": "^6.5.1",
