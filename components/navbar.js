@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import style from '../styles/navbar.module.scss';
 import NavItem from "./navitem";
+import NavList from "./navlist";
 import FaChartLine from '../assets/icons/faChartLine.svg';
 import FaEnvelope from '../assets/icons/faEnvelope.svg';
 import FaClockRotateLeft from '../assets/icons/faClockRotateLeft.svg';
@@ -16,11 +17,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { NavExpandedState } from '../context/NavState.context';
 
-const MENU_LIST = [{ key: 100, text: "Invoices", href: "/invoices", icon: <FaFileLines /> }, { key: 101, text: "Customers", href: "/customers", icon: <FaUserGroup /> }, { key: 102, text: "Users", href: "/users", icon: <FaUsers /> }, { key: 102, text: "Reports", href: "/reports", icon: <FaChartLine /> }, { key: 103, text: "Settings", href: "/settings", icon: <FaGear /> }, { key: 103, text: "Logout", href: "/logout", icon: <FaLogout /> }];
+const MENU_LIST = [{ key: 100, text: "Invoices", href: "/invoices", icon: <FaFileLines /> }, { key: 101, text: "Customers", href: "/customers", icon: <FaUserGroup /> }, { key: 102, text: "Reports", href: "/reports", icon: <FaChartLine /> }, { key: 103, text: "Settings", href: "/settings", icon: <FaGear />, subMenu: [{ key: 102, text: "Users", href: "/users", icon: <FaUsers /> }] }, { key: 103, text: "Logout", href: "/logout", icon: <FaLogout /> }];
 export default function Navbar() {
-    const [activeIdx, setActiveIdx] = useState(-1);
+    const [activeIdx, setActiveIdx] = useState('-1');
     const [profileImage, setProfileImage] = useState("/images/profile_img.png");
     const { navExpandedState, setNavExpandedState } = useContext(NavExpandedState);
+    const [navItemExpanded, setNavItemExpanded] = useState(false)
 
     return (
         <div className={style.header}>
@@ -81,8 +83,8 @@ export default function Navbar() {
                                 return (
                                     <Fragment key={idx}>
                                         <hr />
-                                        <div className={`${style.navItemWrapper} ${(activeIdx === idx) ? style.active : " "} d-flex align-item-center`} onClick={() => { setActiveIdx(idx); }}>
-                                            <NavItem active={activeIdx === idx} text={menu.text} href={menu.href} icon={menu.icon}></NavItem>
+                                        <div className={`${style.navItemWrapper} d-flex align-item-center`} onClick={() => { setNavItemExpanded(!navItemExpanded); }}>
+                                            <NavList activeIdx={activeIdx} expanded={navItemExpanded} text={menu.text} icon={menu.icon} subMenu={menu.subMenu} setActiveIdx={setActiveIdx} setNavItemExpanded={setNavItemExpanded}></NavList>
                                         </div>
                                     </Fragment>
                                 );
