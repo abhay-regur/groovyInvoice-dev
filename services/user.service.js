@@ -20,9 +20,9 @@ export const userDetails = async (id) => {
     } catch (error) { throw (error) }
 }
 
-export const updateUserDetails = async (data) => {
+export const updateUserDetails = async (id, data) => {
     try {
-        return await httpService.put('users/update/' + data.id, data);
+        return await httpService.put('users/update/' + id, data);
     } catch (error) { throw (error) }
 }
 
