@@ -15,7 +15,7 @@ import Link from 'next/link';
 import Loading from '../../../loading.js';
 
 export default function UserUpdateFormComponent() {
-    const id = 5;
+    const { id } = useParams();
     const { navExpandedState } = useContext(NavExpandedState);
     const { setToastList } = useContext(ToastMsgContext)
     const [errors, setErrors] = useState([])

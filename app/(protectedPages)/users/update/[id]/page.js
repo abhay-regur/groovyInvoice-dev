@@ -8,7 +8,10 @@ export const metadata = {
 const UpdateUser = () => {
 
     return (
-        <UserUpdateFormComponent />
+        <>
+            <h1>Hello World</h1>
+        </>
+        // <UserUpdateFormComponent />
     )
 }
 
