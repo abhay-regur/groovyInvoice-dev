@@ -26,7 +26,7 @@ const AllUserTable = () => {
                         <div className={`${styles.companyUserTableCustomerName}`}>
                             {row.firstName + ' ' + row.lastName}
                         </div>
-                        <Link className={`${styles.companyUserTableCustomerEdit} ps-2`} href={`/users/update/${row.id}`}>
+                        <Link className={`${styles.companyUserTableCustomerEdit} ps-2`} href={`/user/update/${row.id}`}>
                             <FaPen />
                         </Link>
                     </span >

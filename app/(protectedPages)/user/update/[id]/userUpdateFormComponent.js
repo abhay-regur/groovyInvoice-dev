@@ -167,7 +167,7 @@ export default function UserUpdateFormComponent() {
                                                 </button>
                                             </div>
                                             <div className="col-6 col-md-4 col-lg-3 col-xl-4">
-                                                <Link href={'/users/'}>
+                                                <Link href={'/user/'}>
                                                     <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={() => { handleCancelClick() }}>
                                                         <span>
                                                             <i><FaCircleXmark /></i>
