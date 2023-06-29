@@ -1,5 +1,5 @@
 "use client"
-import { useState, useContext, Fragment } from "react";
+import { useState, useContext, Fragment, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import style from '../styles/navbar.module.scss';
@@ -22,7 +22,14 @@ export default function Navbar() {
     const [activeIdx, setActiveIdx] = useState('-1');
     const [profileImage, setProfileImage] = useState("/images/profile_img.png");
     const { navExpandedState, setNavExpandedState } = useContext(NavExpandedState);
-    const [navItemExpanded, setNavItemExpanded] = useState(false)
+    const [navItemExpanded, setNavItemExpanded] = useState(false);
+
+    useEffect(() => {
+        var temp_ = activeIdx;
+        if (typeof activeIdx == 'string' && temp_.search("sub") > -1) {
+            setNavItemExpanded(true);
+        }
+    }, [activeIdx]);
 
     return (
         <div className={style.header}>
