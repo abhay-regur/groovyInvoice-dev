@@ -413,7 +413,7 @@ $navItem-hightlight: #F5FAFE;
 
                         .nav_item_innerwrapper {
                             display: flex;
-                            justify-content: start;
+                            justify-content: left;
                             width: 50%;
 
                             svg {
@@ -719,7 +719,7 @@ $navItem-hightlight: #F5FAFE;
                         margin: 0px 42px;
                         -webkit-transition: background-color 0.31s, opacity 0.5s linear;
                         transition: background-color 0.31s, opacity 0.5s linear;
-                        justify-content: start;
+                        justify-content: left;
 
                         a {
                             width: 100%;

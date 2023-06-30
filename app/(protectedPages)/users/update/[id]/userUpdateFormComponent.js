@@ -29,7 +29,6 @@ export default function UserUpdateFormComponent() {
         cellNumber: '',
         active: false
     })
-
     const handleInput = ({ target }) => {
         data[target.name] = target.value
         let temp = Object.assign({}, data)
