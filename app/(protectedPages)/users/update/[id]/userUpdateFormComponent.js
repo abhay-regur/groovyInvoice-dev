@@ -15,31 +15,32 @@ import Link from 'next/link';
 import Loading from '../../../loading.js';
 
 export default function UserUpdateFormComponent() {
-    const currentUserId = useParams().id;
+    const { id } = useParams();
     const { navExpandedState } = useContext(NavExpandedState);
     const { setToastList } = useContext(ToastMsgContext)
     const [errors, setErrors] = useState([])
 
     const [isLoading, setIsLoading] = useState(true)
-    var result = '';
 
     const [data, setData] = useState({
         firstName: '',
         lastName: '',
         email: '',
         cellNumber: '',
-        password: '',
-        confirmPassword: '',
         active: false
     })
-
     const handleInput = ({ target }) => {
         data[target.name] = target.value
         let temp = Object.assign({}, data)
         setData(temp)
     }
 
-    const [isActive, setIsActive] = useState(false);
+    const handleSwitchChange = async ({ target }) => {
+        data[target.name] = !data[target.name]
+        let temp = Object.assign({}, data)
+        setData(temp)
+    }
+
     const [userpassword, setUserPassword] = useState('');
     const [userConfirmPassword, setUserConfirmPassword] = useState('');
 
@@ -47,15 +48,10 @@ export default function UserUpdateFormComponent() {
         getUserDetails();
     }, []);
 
-    useEffect(() => {
-        setData({ ...data, active: isActive });
-    }, [isActive])
-
     const getUserDetails = async () => {
         setErrors([]);
-        result = await userDetails(currentUserId);
-        setData({ ...result.data });
-        setIsActive(data.active);
+        const result = await userDetails(id);
+        setData(result.data);
         setIsLoading(false);
     }
 
@@ -65,50 +61,15 @@ export default function UserUpdateFormComponent() {
         setUserConfirmPassword(temp);
     }
 
-    const handleSwitchChange = async () => {
-        setIsLoading(true);
-        setErrors([]);
-        if (isActive) {
-            result = await userDeactivate(currentUserId);
-        } else {
-            result = await userActivate(currentUserId);
-        }
-
-        if (result.status == 200) {
-            setIsActive(!isActive);
-            setToastList([{
-                id: Math.floor((Math.random() * 101) + 1),
-                title: data.firstName + ' ' + data.lastName + ' status updated',
-                description: result.data.message,
-            }]);
-            setIsLoading(false);
-        } else {
-            setErrors(['Reload page and try again']);
-            setIsLoading(false);
-        }
-    }
-
     const handleSaveClick = async () => {
         setErrors([]);
         try {
-            result = await updateUserDetails({
-                "id": data.id,
-                "email": data.email,
-                "companyId": data.companyId,
-                "firstName": data.firstName,
-                "lastName": data.lastName,
-                "cellNumber": data.cellNumber,
-                "active": data.active
-            });
-            if (result.status == 200) {
-                setToastList([{
-                    id: Math.floor((Math.random() * 101) + 1),
-                    title: data.firstName + ' ' + data.lastName + ' details updated',
-                    description: result.data.message,
-                }]);
-            } else {
-                setErrors(result.data.message);
-            }
+            const result = await updateUserDetails(id, data);
+            setToastList([{
+                id: Math.floor((Math.random() * 101) + 1),
+                title: data.firstName + ' ' + data.lastName + ' details updated',
+                description: result.data.message,
+            }]);
         } catch (error) {
             setErrors(error.response.data.message);
         }
@@ -135,7 +96,7 @@ export default function UserUpdateFormComponent() {
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-6">
                                         <div className={`${styles.companyUserActiveUserSwitchWrapper} form-check form-switch align-items-center d-flex`}>
-                                            <input className={`${styles.companyUserActiveUserSwitch} form-check-input`} type="checkbox" onChange={handleSwitchChange} role="switch" id="flexSwitchCheckDefault" checked={data.active} />
+                                            <input className={`${styles.companyUserActiveUserSwitch} form-check-input`} type="checkbox" role="switch" id="flexSwitchCheckDefault" name='active' checked={data.active} onChange={handleSwitchChange} />
                                         </div>
                                     </div>
                                 </div>
@@ -205,7 +166,7 @@ export default function UserUpdateFormComponent() {
                                                 </button>
                                             </div>
                                             <div className="col-6 col-md-4 col-lg-3 col-xl-4">
-                                                <Link href={'/users/'}>
+                                                <Link href={'/user/'}>
                                                     <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={() => { handleCancelClick() }}>
                                                         <span>
                                                             <i><FaCircleXmark /></i>
