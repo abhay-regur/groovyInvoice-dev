@@ -25,7 +25,7 @@ export default function UserListComponnt() {
                             </h2>
                         </div>
                         <div className="col-6 d-flex justify-content-end">
-                            <Link href={'/user/add'}>
+                            <Link href={'/users/add'}>
                                 <button className="green align-content-center">
                                     <FaCirclePlus />
                                     Add User
