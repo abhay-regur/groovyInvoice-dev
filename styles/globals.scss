@@ -245,6 +245,10 @@ button {
   list-style: none;
 }
 
+.hide {
+  display: none;
+}
+
 .toggle-visibility-wrapper {
   pointer-events: all !important;
   color: $secondary-color !important;

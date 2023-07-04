@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { useContext, Suspense } from 'react';
 import FaCirclePlus from "../../../assets/icons/faCirclePlus.svg";
 import styles from '../../../styles/user.module.scss';
-import Loading from '../loading';
 import { NavExpandedState } from '../../../context/NavState.context';
 import dynamic from 'next/dynamic';
 
@@ -34,9 +33,7 @@ export default function UserListComponnt() {
                         </div>
                     </div>
                     <div className='p-2'>
-                        <Suspense fallback={<Loading />}>
-                            <AllUserTable />
-                        </Suspense>
+                        <AllUserTable />
                     </div>
                 </div>
             </main>
