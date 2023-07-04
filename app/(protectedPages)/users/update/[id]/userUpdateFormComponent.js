@@ -12,7 +12,7 @@ import FaGear from '../../../../../assets/icons/faGear.svg';
 import { NavExpandedState } from '../../../../../context/NavState.context';
 import { ToastMsgContext } from '../../../../../context/ToastMsg.context';
 import Link from 'next/link';
-import Loading from '../../../loading.js';
+import Loading from './loading.js';
 
 export default function UserUpdateFormComponent() {
     const { id } = useParams();

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import { useEffect, forwardRef, useImperativeHandle, Suspense } from 'react'
+import { useEffect, forwardRef, useImperativeHandle, useState } from 'react'
 import styles from '../styles/user.module.scss';
-import Loading from '../app/(protectedPages)/loading';
+import Loading from '../app/(protectedPages)/users/loading';
 import $ from 'jquery'
 import 'datatables.net-dt/js/dataTables.dataTables'
 import 'datatables.net-responsive-dt';
@@ -13,6 +13,7 @@ import { getToken } from '../services/token.service'
 function ServerSideDT(props, ref) {
     let alreadyInitializing = false
     const searchPlaceholder = "Name";
+    const [isLoading, setIsLoading] = useState(true);
     useImperativeHandle(ref, () => ({
         reload(cb = null, resetPaging = true) {
             const table = $('#' + props.id).DataTable()
@@ -45,9 +46,10 @@ function ServerSideDT(props, ref) {
                         request.setRequestHeader(
                             'Authorization',
                             `Bearer ` + getToken(getTokenKey(props.authUserType)),
-                        )
+                        );
                     }
                 },
+
                 error: function (error) {
                     if (error.status === 401) {
                         _handle401(props.authUserType)
@@ -58,7 +60,22 @@ function ServerSideDT(props, ref) {
                 { responsivePriority: 1, targets: 0 },
                 { responsivePriority: 1, targets: -1 }
             ],
-
+            "initComplete": function () {
+                if (isLoading != false) {
+                    setIsLoading(false);
+                }
+            },
+            "drawCallback": function () {
+                $('.filter-wrapper').addClass('row');
+                $('.dataTables_length').addClass('form-input-group');
+                $('.dataTables_filter:not(.input-group)').wrap('<div class="col-md-4 col-9 mb-3"></div>');
+                $('.dataTables_filter').addClass('input-group');
+                $('.dataTables_filter label').addClass('input-group-text');
+                $('.dataTables_filter input').detach().appendTo('.dataTables_filter');
+                $('.dataTables_filter input').addClass('form-control');
+                $('.dataTables_filter input').attr('placeholder', searchPlaceholder);
+                $('.dataTables_length select').addClass('form-select');
+            },
             dom: '<"table-container"<"filter-wrapper"fl>rt><"bottom"ip><"clear">',
             language: {
                 paginate: {
@@ -72,15 +89,6 @@ function ServerSideDT(props, ref) {
 
 
         window.setTimeout(() => {
-            $('.filter-wrapper').addClass('row');
-            $('.dataTables_length').addClass('form-input-group');
-            $('.dataTables_filter:not(.input-group)').wrap('<div class="col-md-4 col-9 mb-3"></div>');
-            $('.dataTables_filter').addClass('input-group');
-            $('.dataTables_filter label').addClass('input-group-text');
-            $('.dataTables_filter input').detach().appendTo('.dataTables_filter');
-            $('.dataTables_filter input').addClass('form-control');
-            $('.dataTables_filter input').attr('placeholder', searchPlaceholder);
-            $('.dataTables_length select').addClass('form-select');
         }, 100)
     }
 
@@ -89,13 +97,12 @@ function ServerSideDT(props, ref) {
         initDT()
     }, [])
 
-    return (
-        <Suspense fallback={<Loading />}>
-            <table id={props.id} className={styles.companyCustomerTable + " " + props.className} width="100%">
-                {props.children}
-            </table>
-        </Suspense>
-    )
+    return (<>
+        <table id={props.id} className={styles.companyCustomerTable + " " + props.className} width="100%">
+            {props.children}
+            <Loading isLoading={isLoading} />
+        </table>
+    </>)
 }
 const ServerSideDataTables = forwardRef(ServerSideDT)
 
