@@ -484,6 +484,12 @@ $navItem-hightlight: #F5FAFE;
 
                         .dropdownNavitemWrapper {
                             width: auto;
+
+                            .navItemListWrapper {
+                                svg {
+                                    margin-left: 15px;
+                                }
+                            }
                         }
 
                         svg {
