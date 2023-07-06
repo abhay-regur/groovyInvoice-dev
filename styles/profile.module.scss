@@ -17,7 +17,7 @@ $header-top-background: #EFF2FF;
         margin: auto 49px;
         margin-left: 135px;
         transition: all 0.35s;
-        margin-bottom: 120px;
+        margin-bottom: 60px;
 
         &.expanded {
             margin-left: 329px !important;
@@ -37,6 +37,7 @@ $header-top-background: #EFF2FF;
         .profileCard {
             border: 1px solid $primary-border-color;
             border-radius: 10px;
+            margin-bottom: 30px;
 
             hr {
                 color: $primary-border-color;
@@ -45,8 +46,41 @@ $header-top-background: #EFF2FF;
             .personalDetailsWrapper {
                 padding-bottom: 20px;
 
-                .profileImage {
-                    border-radius: 50%;
+                .profileImageWrapper {
+                    position: absolute;
+
+                    .profileImageDisplay {
+                        border-radius: 50%;
+                    }
+
+                    .profileImageUploadWrapper {
+                        position: absolute;
+                        right: 10px;
+                        top: 100px;
+
+                        input {
+                            display: none;
+                        }
+
+                        &:hover {
+                            transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+                        }
+
+                        svg {
+                            font-size: 1.2em;
+
+                            &:hover {
+                                transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+                                color: $secondary-color;
+                            }
+                        }
+
+                        .fileUpload {
+                            display: none;
+                        }
+
+                    }
+
                 }
 
                 .companyInvoiceUserNameWrapper,
@@ -176,6 +210,7 @@ $header-top-background: #EFF2FF;
         .profileCard {
             border: 1px solid $primary-border-color;
             border-radius: 10px;
+            margin-bottom: 30px;
 
             hr {
                 color: $primary-border-color;
@@ -184,8 +219,41 @@ $header-top-background: #EFF2FF;
             .personalDetailsWrapper {
                 padding-bottom: 20px;
 
-                .profileImage {
-                    border-radius: 50%;
+                .profileImageWrapper {
+                    position: relative;
+
+                    .profileImageDisplay {
+                        border-radius: 50%;
+                    }
+
+                    .profileImageUploadWrapper {
+                        position: absolute;
+                        right: 10px;
+                        top: 100px;
+
+                        input {
+                            display: none;
+                        }
+
+                        &:hover {
+                            transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+                        }
+
+                        svg {
+                            font-size: 1.2em;
+
+                            &:hover {
+                                transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+                                color: $secondary-color;
+                            }
+                        }
+
+                        .fileUpload {
+                            display: none;
+                        }
+
+                    }
+
                 }
 
                 .companyInvoiceUserNameWrapper,
