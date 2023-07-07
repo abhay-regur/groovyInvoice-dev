@@ -50,12 +50,16 @@ export default function Navbar() {
                 <hr />
                 <div className={`${style.wrapperForMobileScreen}`}>
                     <div className={`${style.profileDetailWrapper}`}>
-                        <div className={`profileImageWrapper d-flex justify-content-center`}>
-                            <Image className={`${style.profileImage}`} src={profileImage} width={45} height={45} alt="profile_Image" />
-                        </div>
-                        <div className={`${style.profileNameWrapper} justify-content-center`}>
-                            <div className={`username`}>John Doe <span className={``}></span></div>
-                        </div>
+                        <Link href={"/profile"}>
+                            <span className="d-flex flex-column" onClick={() => { setActiveIdx('-1') }}>
+                                <div className={`profileImageWrapper d-flex justify-content-center`}>
+                                    <Image className={`${style.profileImage}`} src={profileImage} width={45} height={45} alt="profile_Image" />
+                                </div>
+                                <div className={`${style.profileNameWrapper} justify-content-center`}>
+                                    <div className={`username`}>John Doe <span className={``}></span></div>
+                                </div>
+                            </span>
+                        </Link>
                         <div className={`${style.profileActionWrapper} justify-content-center`}>
                             <FaClockRotateLeft />
                             <FaEnvelope />
@@ -64,7 +68,6 @@ export default function Navbar() {
                             <FontAwesomeIcon icon={navExpandedState ? faArrowLeft : faArrowRight}></FontAwesomeIcon>
                         </div>
                     </div>
-
                     <hr />
 
                     {navExpandedState ?

@@ -40,7 +40,7 @@ export default function PaymentFormComponent() {
                                 <label className={`${styles.companyInvoiceCustomerNameLabel}`}>Customer Name<span className={`${styles.green}`}>*</span></label>
                             </div>
                             <div className="col-12 col-lg-5 mt-2">
-                                <input type="email" className="form-control" id="companyInvoiceCustomerName" placeholder='Company Email' />
+                                <input type="email" className="form-control" id="companyInvoiceCustomerName" placeholder='Customer Name' />
                             </div>
                             <div className="col-12 mt-1">
                                 <div className={`${styles.companyInvoiceCustomerDetail}`}>

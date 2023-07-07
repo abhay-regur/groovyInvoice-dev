@@ -2,7 +2,7 @@
 import { useEffect, forwardRef, useImperativeHandle, useState } from 'react'
 import styles from '../styles/user.module.scss';
 import Loading from '../app/(protectedPages)/users/loading';
-import $ from 'jquery'
+import $ from 'jquery';
 import 'datatables.net-dt/js/dataTables.dataTables'
 import 'datatables.net-responsive-dt';
 import 'datatables.net-dt/css/jquery.dataTables.css'
