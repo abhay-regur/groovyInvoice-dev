@@ -51,7 +51,7 @@ export default function Navbar() {
                 <div className={`${style.wrapperForMobileScreen}`}>
                     <div className={`${style.profileDetailWrapper}`}>
                         <Link href={"/profile"}>
-                            <span className="d-flex flex-column">
+                            <span className="d-flex flex-column" onClick={() => { setActiveIdx('-1') }}>
                                 <div className={`profileImageWrapper d-flex justify-content-center`}>
                                     <Image className={`${style.profileImage}`} src={profileImage} width={45} height={45} alt="profile_Image" />
                                 </div>

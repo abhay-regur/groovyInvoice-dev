@@ -111,7 +111,9 @@ $header-top-background: #EFF2FF;
                 .companyInvoiceCompanyAddress1Wrapper,
                 .companyInvoiceCompanyAddress2Wrapper,
                 .companyInvoiceCompanyCityWrapper,
-                .companyInvoiceCompanyPostCodeWrapper {
+                .companyInvoiceCompanyPostCodeWrapper,
+                .companyInvoiceCompanyStateWrapper,
+                .companyInvoiceCompanyCountryyWrapper {
                     label {
                         align-items: center;
                         font-weight: 600;
@@ -126,6 +128,19 @@ $header-top-background: #EFF2FF;
                         background: $input-background-color;
                         border: 1px solid $primary-border-color;
                         border-radius: 8px;
+                    }
+
+                    select {
+                        border: 1px solid $primary-border-color;
+                        background: $input-background-color;
+                        border-radius: 8px;
+                        color: $secondary-color;
+
+                        &::placeholder {
+                            color: $secondary-color;
+                            font-weight: 400;
+                            font-size: 14px;
+                        }
                     }
                 }
             }
@@ -284,7 +299,9 @@ $header-top-background: #EFF2FF;
                 .companyInvoiceCompanyAddress1Wrapper,
                 .companyInvoiceCompanyAddress2Wrapper,
                 .companyInvoiceCompanyCityWrapper,
-                .companyInvoiceCompanyPostCodeWrapper {
+                .companyInvoiceCompanyPostCodeWrapper,
+                .companyInvoiceCompanyStateWrapper,
+                .companyInvoiceCompanyCountryyWrapper {
                     label {
                         align-items: center;
                         font-weight: 600;
@@ -299,6 +316,19 @@ $header-top-background: #EFF2FF;
                         background: $input-background-color;
                         border: 1px solid $primary-border-color;
                         border-radius: 8px;
+                    }
+
+                    select {
+                        border: 1px solid $primary-border-color;
+                        background: $input-background-color;
+                        border-radius: 8px;
+                        color: $secondary-color;
+
+                        &::placeholder {
+                            color: $secondary-color;
+                            font-weight: 400;
+                            font-size: 14px;
+                        }
                     }
                 }
             }
