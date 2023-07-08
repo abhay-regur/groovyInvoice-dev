@@ -51,6 +51,11 @@ body {
     &:hover {
       box-shadow: none;
     }
+
+    &:disabled {
+      color: $secondary-color !important;
+      background-color: #e9ecef !important;
+    }
   }
 
   select.form-select {

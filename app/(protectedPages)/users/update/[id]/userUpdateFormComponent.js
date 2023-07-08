@@ -2,13 +2,12 @@
 import { useEffect, useState } from 'react';
 import { useContext } from 'react';
 import { useParams } from 'next/navigation';
-import { userActivate, userDeactivate, userDetails, updateUserDetails } from '../../../../../services/user.service';
+import { userDetails, updateUserDetails } from '../../../../../services/user.service';
+import { disableSubmitButton, enableSubmitButton } from '../../../../../utils/form.utils'
 import FaSave from '../../../../../assets/icons/faSave.svg';
-import { generatePassword } from '../../../../../utils/genratePassword.utils';
 import FaCircleXmark from '../../../../../assets/icons/faCircleXmark.svg';
 import styles from "../../../../../styles/userForm.module.scss";
 import ErrorList from '../../../../../components/errorList';
-import FaGear from '../../../../../assets/icons/faGear.svg';
 import { NavExpandedState } from '../../../../../context/NavState.context';
 import { ToastMsgContext } from '../../../../../context/ToastMsg.context';
 import Link from 'next/link';
@@ -41,9 +40,6 @@ export default function UserUpdateFormComponent() {
         setData(temp)
     }
 
-    const [userpassword, setUserPassword] = useState('');
-    const [userConfirmPassword, setUserConfirmPassword] = useState('');
-
     useEffect(() => {
         getUserDetails();
     }, []);
@@ -55,13 +51,7 @@ export default function UserUpdateFormComponent() {
         setIsLoading(false);
     }
 
-    const genrateNewPassword = () => {
-        var temp = generatePassword()
-        setUserPassword(temp);
-        setUserConfirmPassword(temp);
-    }
-
-    const handleSaveClick = async () => {
+    const handleSaveClick = async (e) => {
         setErrors([]);
         try {
             const result = await updateUserDetails(id, data);
@@ -120,7 +110,7 @@ export default function UserUpdateFormComponent() {
                                         <label className={`${styles.companyInvoiceUserEmailLabel}`}>Email</label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-6 d-flex align-items-center">
-                                        <input type="email" className="form-control" id="companyInvoiceUserEmail" value={data.email} name='email' placeholder='Email' onChange={handleInput} />
+                                        <input type="email" className="form-control" id="companyInvoiceUserEmail" value={data.email} name='email' placeholder='Email' disabled />
                                     </div>
                                 </div>
 
@@ -134,31 +124,11 @@ export default function UserUpdateFormComponent() {
                                     </div>
                                 </div>
 
-                                <div className={`${styles.companyInvoiceUserPasswordWrapper} mb-4 row`}>
-                                    <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
-                                        <label className={`${styles.companyInvoiceUserPasswordLabel}`}>Password</label>
-                                    </div>
-                                    <div className="col-12 col-lg-6 col-xl-6 d-flex">
-                                        <input type="text" className="form-control" value={userpassword} onInput={(e) => userpassword(e.value)} id="companyInvoiceUserPassword" placeholder='Password' disabled />
-                                        <button className="btn blueOutline"><FaGear /></button>
-                                        {/* <button className="btn blueOutline" onClick={() => { genrateNewPassword() }}><FaGear /></button> */}
-                                    </div>
-                                </div>
-
-                                <div className={`${styles.companyInvoiceUserPasswordWrapper} mb-4 row`}>
-                                    <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
-                                        <label className={`${styles.companyInvoiceUserPasswordLabel}`}>Confirm Password</label>
-                                    </div>
-                                    <div className="col-12 col-lg-6 col-xl-6">
-                                        <input type="text" className="form-control" id="companyInvoiceDesignation" value={userConfirmPassword} onInput={(e) => userConfirmPassword(e.value)} placeholder='Confirm Password' disabled />
-                                    </div>
-                                </div>
-
                                 <div className={`${styles.companyInvoiceFormButtonsWrapper} row`}>
                                     <div className="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-3">
                                         <div className="row">
                                             <div className="col-6 col-md-4 col-lg-3 col-xl-4">
-                                                <button className={`${styles.companyInvoiceSavenSendButton} btn blue`} onClick={() => { handleSaveClick() }}>
+                                                <button className={`${styles.companyInvoiceSavenSendButton} btn blue`} name='btn-submit' onClick={(e) => { handleSaveClick(e) }}>
                                                     <span>
                                                         <i><FaSave /></i>
                                                         Save
