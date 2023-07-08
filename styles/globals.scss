@@ -1,6 +1,6 @@
 @import 'node_modules/react-datepicker/src/stylesheets/datepicker.scss';
 
-$text-font: Mulish, san-serif;
+$text-font: var(--font-mulish);
 $primary-background: #f5fafe;
 $primary-color: #3649AB;
 $primary-color-hover: #455AC6;
@@ -26,6 +26,7 @@ body {
   font-family: $text-font;
   background: $primary-background;
   color: $grey;
+  background: $primary-background !important;
 
   @media screen and (min-width: 992px) {
     min-height: 100vh;
@@ -53,6 +54,7 @@ body {
   }
 
   select.form-select {
+    -webkit-appearance: auto;
     appearance: auto;
     color: $primary-color;
   }
@@ -60,6 +62,7 @@ body {
   #__next,
   .pageContent {
     height: inherit;
+    background: $primary-background !important;
   }
 
   .green {
@@ -205,6 +208,7 @@ button {
 .loading {
   position: relative;
 }
+
 .loading::after {
   content: "";
   background: url(../assets/icons/circle-notch-solid.svg) no-repeat top left;
@@ -218,18 +222,36 @@ button {
   animation: spin infinite 1s linear;
 }
 
-.icon-loading svg{
+.icon-loading svg {
   display: none;
 }
+
 .icon-loading::after {
   top: unset;
   right: unset;
 }
+
 @keyframes spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+#errors-list {
+  list-style: none;
+}
+
+.hide {
+  display: none;
+}
+
+.toggle-visibility-wrapper {
+  pointer-events: all !important;
+  color: $secondary-color !important;
+  top: 0;
+  right: 0;
 }

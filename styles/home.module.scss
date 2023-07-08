@@ -7,7 +7,7 @@ $red-color: #E83F35;
 $border-card-color: #E3EBF2;
 $primary-border-color: #BCD5E2;
 
-@media screen and (min-width: 426px) {
+@media screen and (min-width: 676px) {
   .main {
     margin: auto 45px;
     margin-left: 135px;
@@ -66,6 +66,18 @@ $primary-border-color: #BCD5E2;
           .comapnyInvoiceTotalReceivedProgressBarWrapper {
             margin-top: 16px;
             margin-bottom: 31px;
+
+            .comapnyInvoiceTotalReceivedProgressBarBackground {
+              height: 11px;
+              border-radius: 0%;
+              background-color: $primary-color;
+
+              .comapnyInvoiceTotalReceivedProgressBar {
+                height: 11px;
+                border-radius: 0%;
+                background-color: $tertiary-color;
+              }
+            }
           }
         }
 
@@ -164,7 +176,7 @@ $primary-border-color: #BCD5E2;
 
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 675px) {
   .main {
     margin: 89px 15px 92px 15px;
     transition: all 0.35s;
@@ -219,6 +231,18 @@ $primary-border-color: #BCD5E2;
           .comapnyInvoiceTotalReceivedProgressBarWrapper {
             margin-top: 16px;
             margin-bottom: 31px;
+
+            .comapnyInvoiceTotalReceivedProgressBarBackground {
+              height: 11px;
+              border-radius: 0%;
+              background-color: $primary-color;
+
+              .comapnyInvoiceTotalReceivedProgressBar {
+                height: 11px;
+                border-radius: 0%;
+                background-color: $tertiary-color;
+              }
+            }
           }
         }
 

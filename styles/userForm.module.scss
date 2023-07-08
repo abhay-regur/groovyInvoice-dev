@@ -1,0 +1,705 @@
+$font-size-heading: 32px;
+$font-size-text: 15px;
+$primary-color: #3649AB;
+$secondary-color: #8790B0;
+$tertiary-color: #43CB80;
+$input-background-color: #F5FAFE;
+$primary-border-color: #E3EBF2;
+$secondary-border-color: #BCD5E2;
+$transprant: rgba(0, 0, 0, 0);
+
+
+.green {
+    color: $tertiary-color;
+
+    path {
+        color: $tertiary-color;
+    }
+}
+
+.cardBody {
+
+    input,
+    select {
+        height: 41px;
+    }
+}
+
+//Big Screen
+.main {
+    margin: auto 97px;
+    margin-left: 135px;
+    transition: all 0.35s;
+    margin-bottom: 120px;
+
+    &.expanded {
+        margin-left: 329px !important;
+        transition: all 0.35s;
+    }
+
+    .title {
+        font-weight: 700;
+        font-size: 36px;
+        line-height: 45px;
+        color: $primary-color;
+        margin-top: 56px;
+        margin-bottom: 49px;
+        padding-left: 12px;
+    }
+
+    .card {
+        border: 1px solid $primary-border-color;
+        border-radius: 10px;
+        padding: 31px 33px;
+        margin-top: 50px;
+
+        .cardBody {
+
+            .cardTitle {
+                color: $primary-color;
+                font-weight: 700;
+                font-size: 22px;
+                line-height: 28px;
+            }
+
+            hr {
+                margin-top: 14px;
+            }
+
+            .companyUserActiveUserWrapper {
+                display: flex;
+
+                label {
+                    display: flex;
+                    align-items: center;
+                    font-weight: 600;
+                    font-size: 14px;
+                    color: $primary-color;
+                }
+
+                .companyUserActiveUserSwitchWrapper {
+                    display: flex;
+
+                    .companyUserActiveUserSwitch {
+                        height: 2em;
+                        width: 3em;
+
+                        &:checked {
+                            background-color: $primary-color;
+                            border-color: $primary-color;
+                        }
+
+                        &:focus {
+                            border-color: #364aab5e;
+                            outline: 0;
+                            box-shadow: none;
+                        }
+                    }
+                }
+            }
+
+            .companyInvoiceUserNameWrapper {
+
+                label {
+                    align-items: center;
+                    font-weight: 600;
+                    font-size: 14px;
+                    color: $primary-color;
+                }
+
+                .companyInvoiceUserFirstName {
+                    font-weight: 400;
+                    font-size: 14px;
+                    color: $secondary-color;
+                    background: $input-background-color;
+                    border: 1px solid $primary-border-color;
+                    border-radius: 8px;
+                }
+
+                .companyInvoiceUserLastName {
+                    font-weight: 400;
+                    font-size: 14px;
+                    color: $secondary-color;
+                    background: $input-background-color;
+                    border: 1px solid $primary-border-color;
+                    border-radius: 8px;
+                }
+
+
+            }
+
+            .companyInvoiceUserEmailWrapper {
+
+                .companyInvoiceUserEmailLabel {
+                    display: flex;
+                    align-items: center;
+                    font-weight: 600;
+                    font-size: 14px;
+                    color: $primary-color;
+                }
+
+                input {
+                    font-weight: 400;
+                    font-size: 14px;
+                    color: $secondary-color;
+                    background: $input-background-color;
+                    border: 1px solid $primary-border-color;
+                    border-radius: 8px;
+                }
+
+            }
+
+            .companyInvoiceUserPhone {
+
+                .companyInvoiceUserPhoneLabel {
+                    display: flex;
+                    align-items: center;
+                    font-weight: 600;
+                    font-size: 14px;
+                    color: $primary-color;
+                }
+
+                input {
+                    font-weight: 400;
+                    font-size: 14px;
+                    color: $secondary-color;
+                    background: $input-background-color;
+                    border: 1px solid $primary-border-color;
+                    border-radius: 8px;
+                }
+
+            }
+
+            .companyInvoiceUserPasswordWrapper {
+
+                .companyInvoiceUserPasswordLabel {
+                    display: flex;
+                    align-items: center;
+                    font-weight: 600;
+                    font-size: 14px;
+                    color: $primary-color;
+                }
+
+                input {
+                    font-weight: 400;
+                    font-size: 14px;
+                    color: $secondary-color;
+                    background: $input-background-color;
+                    border: 1px solid $primary-border-color;
+                    border-radius: 8px;
+                }
+
+                button {
+                    display: flex;
+                    margin-left: 5px;
+                    align-self: center;
+                    border: none;
+
+                    svg {
+                        height: 20px;
+                        width: 20px;
+
+                        path {
+                            fill: $primary-color;
+                        }
+                    }
+                }
+
+            }
+
+            .companyInvoiceFormButtonsWrapper {
+                button {
+                    border-radius: 6px;
+                    font-weight: 600;
+                    font-size: 14px;
+                    color: white;
+
+                    &.companyInvoiceSavenSendButton {
+                        span {
+                            display: flex;
+                            text-align: center;
+                            justify-content: center;
+
+                            i {
+                                display: flex;
+                                margin-right: 5px;
+                                align-self: center;
+
+                                svg {
+                                    height: 20px;
+                                    width: 20px;
+                                }
+                            }
+                        }
+                    }
+
+                    &.companyInvoiceCancelButton {
+                        span {
+                            display: flex;
+                            text-align: center;
+                            justify-content: center;
+
+                            i {
+                                display: flex;
+                                margin-right: 5px;
+                                align-self: center;
+
+                                svg {
+                                    height: 20px;
+                                    width: 20px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+//Tablet Screen
+@media screen and (min-width: 676px) {
+    .main {
+        margin: auto 60px;
+        margin-left: 135px;
+        transition: all 0.35s;
+        margin-bottom: 120px;
+
+        &.expanded {
+            margin-left: 329px !important;
+            transition: all 0.35s;
+        }
+
+        .title {
+            color: $primary-color;
+            font-weight: 700;
+            font-size: 26px;
+            line-height: 45px;
+            margin-bottom: 27px;
+            padding-left: 12px;
+        }
+
+        .card {
+            border: 1px solid $primary-border-color;
+            border-radius: 10px;
+            padding: 0;
+
+            .cardBody {
+
+                .cardTitle {
+                    color: $primary-color;
+                    font-weight: 700;
+                    font-size: 22px;
+                    line-height: 28px;
+                }
+
+                .companyUserActiveUserWrapper {
+                    display: flex;
+
+                    label {
+                        display: flex;
+                        align-items: center;
+                        font-weight: 600;
+                        font-size: 14px;
+                        color: $primary-color;
+                        margin-bottom: 10px;
+                    }
+
+                    .companyUserActiveUserSwitchWrapper {
+                        display: flex;
+
+                        .companyUserActiveUserSwitch {
+                            height: 2em;
+                            width: 3em;
+
+                            &:checked {
+                                background-color: $primary-color;
+                                border-color: $primary-color;
+                            }
+
+                            &:focus {
+                                border-color: #364aab5e;
+                                outline: 0;
+                                box-shadow: none;
+                            }
+                        }
+                    }
+                }
+
+                .companyInvoiceUserNameWrapper {
+
+                    label {
+                        align-items: center;
+                        font-weight: 600;
+                        font-size: 14px;
+                        color: $primary-color;
+                        margin-bottom: 10px;
+                    }
+
+                    .companyInvoiceUserFirstName {
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: $secondary-color;
+                        background: $input-background-color;
+                        border: 1px solid $primary-border-color;
+                        border-radius: 8px;
+                        margin-bottom: 21px;
+                    }
+
+                    .companyInvoiceUserLastName {
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: $secondary-color;
+                        background: $input-background-color;
+                        border: 1px solid $primary-border-color;
+                        border-radius: 8px;
+                    }
+
+
+                }
+
+                .companyInvoiceUserEmailWrapper {
+
+                    .companyInvoiceUserEmailLabel {
+                        display: flex;
+                        align-items: center;
+                        font-weight: 600;
+                        font-size: 14px;
+                        color: $primary-color;
+                        margin-bottom: 10px;
+                    }
+
+                    input {
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: $secondary-color;
+                        background: $input-background-color;
+                        border: 1px solid $primary-border-color;
+                        border-radius: 8px;
+                    }
+
+                }
+
+                .companyInvoiceUserPhone {
+
+                    .companyInvoiceUserPhoneLabel {
+                        display: flex;
+                        align-items: center;
+                        font-weight: 600;
+                        font-size: 14px;
+                        color: $primary-color;
+                        margin-bottom: 10px;
+                    }
+
+                    .companyInvoiceUserMobile {
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: $secondary-color;
+                        background: $input-background-color;
+                        border: 1px solid $primary-border-color;
+                        border-radius: 8px;
+                    }
+
+                }
+
+                .companyInvoiceUserPasswordWrapper {
+
+                    .companyInvoiceUserPasswordLabel {
+                        display: flex;
+                        align-items: center;
+                        font-weight: 600;
+                        font-size: 14px;
+                        color: $primary-color;
+                        margin-bottom: 10px;
+                    }
+
+                    input {
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: $secondary-color;
+                        background: $input-background-color;
+                        border: 1px solid $primary-border-color;
+                        border-radius: 8px;
+                    }
+
+                }
+
+                .companyInvoiceFormButtonsWrapper {
+                    margin-top: 33px;
+                    margin-bottom: 25px;
+
+                    button {
+                        border-radius: 6px;
+                        font-weight: 600;
+                        font-size: 14px;
+                        color: white;
+                        width: 100%;
+
+                        &.companyInvoiceSavenSendButton {
+                            span {
+                                display: flex;
+                                text-align: center;
+                                justify-content: center;
+
+                                i {
+                                    display: flex;
+                                    margin-right: 5px;
+                                    align-self: center;
+
+                                    svg {
+                                        height: 20px;
+                                        width: 20px;
+                                    }
+                                }
+                            }
+                        }
+
+                        &.companyInvoiceCancelButton {
+                            span {
+                                display: flex;
+                                text-align: center;
+                                justify-content: center;
+
+                                i {
+                                    display: flex;
+                                    margin-right: 5px;
+                                    align-self: center;
+
+                                    svg {
+                                        height: 20px;
+                                        width: 20px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+//Mobie Screen
+@media screen and (max-width: 675px) {
+    .main {
+        margin: 89px 15px 92px 15px;
+        transition: all 0.35s;
+
+        &.expanded {
+            margin: 89px 15px 92px 15px;
+            transition: all 0.35s;
+        }
+
+        .title {
+            color: $primary-color;
+            font-weight: 700;
+            font-size: 26px;
+            line-height: 45px;
+            margin-bottom: 27px;
+            padding-left: 12px;
+        }
+
+        .card {
+            border: 1px solid $primary-border-color;
+            border-radius: 10px;
+            padding: 0;
+
+            .cardBody {
+
+                .cardTitle {
+                    color: $primary-color;
+                    font-weight: 700;
+                    font-size: 22px;
+                    line-height: 28px;
+                }
+
+                .companyUserActiveUserWrapper {
+                    display: flex;
+
+                    label {
+                        display: flex;
+                        align-items: center;
+                        font-weight: 600;
+                        font-size: 14px;
+                        color: $primary-color;
+                        margin-bottom: 10px;
+                    }
+
+                    .companyUserActiveUserSwitchWrapper {
+                        display: flex;
+
+                        .companyUserActiveUserSwitch {
+                            height: 2em;
+                            width: 3em;
+
+                            &:checked {
+                                background-color: $primary-color;
+                                border-color: $primary-color;
+                            }
+
+                            &:focus {
+                                border-color: #364aab5e;
+                                outline: 0;
+                                box-shadow: none;
+                            }
+                        }
+
+                    }
+                }
+
+                .companyInvoiceUserNameWrapper {
+
+                    label {
+                        align-items: center;
+                        font-weight: 600;
+                        font-size: 14px;
+                        color: $primary-color;
+                        margin-bottom: 10px;
+                    }
+
+                    .companyInvoiceUserFirstName {
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: $secondary-color;
+                        background: $input-background-color;
+                        border: 1px solid $primary-border-color;
+                        border-radius: 8px;
+                        margin-bottom: 21px;
+                    }
+
+                    .companyInvoiceUserLastName {
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: $secondary-color;
+                        background: $input-background-color;
+                        border: 1px solid $primary-border-color;
+                        border-radius: 8px;
+                        margin-bottom: 1.5rem;
+                    }
+                }
+
+                .companyInvoiceUserEmailWrapper {
+
+                    .companyInvoiceUserEmailLabel {
+                        display: flex;
+                        align-items: center;
+                        font-weight: 600;
+                        font-size: 14px;
+                        color: $primary-color;
+                        margin-bottom: 10px;
+                    }
+
+                    input {
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: $secondary-color;
+                        background: $input-background-color;
+                        border: 1px solid $primary-border-color;
+                        border-radius: 8px;
+                    }
+
+                }
+
+                .companyInvoiceUserPhone {
+
+                    .companyInvoiceUserPhoneLabel {
+                        display: flex;
+                        align-items: center;
+                        font-weight: 600;
+                        font-size: 14px;
+                        color: $primary-color;
+                        margin-bottom: 10px;
+                    }
+
+                    input {
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: $secondary-color;
+                        background: $input-background-color;
+                        border: 1px solid $primary-border-color;
+                        border-radius: 8px;
+                        margin-bottom: 21px;
+                    }
+
+                    .companyInvoiceUserMobile {
+                        margin-bottom: 0px;
+                    }
+
+                }
+
+                .companyInvoiceUserPasswordWrapper {
+
+                    .companyInvoiceUserPasswordLabel {
+                        display: flex;
+                        align-items: center;
+                        font-weight: 600;
+                        font-size: 14px;
+                        color: $primary-color;
+                        margin-bottom: 10px;
+                    }
+
+                    input {
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: $secondary-color;
+                        background: $input-background-color;
+                        border: 1px solid $primary-border-color;
+                        border-radius: 8px;
+                    }
+
+                }
+
+                .companyInvoiceFormButtonsWrapper {
+                    margin-bottom: 20px;
+                    margin-top: 20px;
+
+                    button {
+                        border-radius: 6px;
+                        font-weight: 600;
+                        font-size: 14px;
+                        color: white;
+                        width: 100%;
+
+                        &.companyInvoiceSavenSendButton {
+                            span {
+                                display: flex;
+                                text-align: center;
+                                justify-content: center;
+
+                                i {
+                                    display: flex;
+                                    margin-right: 5px;
+                                    align-self: center;
+
+                                    svg {
+                                        height: 20px;
+                                        width: 20px;
+                                    }
+                                }
+                            }
+                        }
+
+                        &.companyInvoiceCancelButton {
+                            span {
+                                display: flex;
+                                text-align: center;
+                                justify-content: center;
+
+                                i {
+                                    display: flex;
+                                    margin-right: 5px;
+                                    align-self: center;
+
+                                    svg {
+                                        height: 20px;
+                                        width: 20px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
