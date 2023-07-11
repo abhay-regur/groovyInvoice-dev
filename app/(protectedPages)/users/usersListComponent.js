@@ -1,6 +1,6 @@
 "use client"
 import Link from 'next/link';
-import { useContext, Suspense } from 'react';
+import { useContext } from 'react';
 import FaCirclePlus from "../../../assets/icons/faCirclePlus.svg";
 import styles from '../../../styles/user.module.scss';
 import { NavExpandedState } from '../../../context/NavState.context';
