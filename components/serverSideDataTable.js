@@ -36,6 +36,7 @@ function ServerSideDT(props, ref) {
             serverSide: true,
             bLengthChange: false,
             paging: true,
+            searching: true,
             destroy: true,
             responsive: true,
             ajax: {
@@ -66,15 +67,7 @@ function ServerSideDT(props, ref) {
                 }
             },
             "drawCallback": function () {
-                $('.filter-wrapper').addClass('row');
-                $('.dataTables_length').addClass('form-input-group');
-                $('.dataTables_filter:not(.input-group)').wrap('<div class="col-md-4 col-9 mb-3"></div>');
-                $('.dataTables_filter').addClass('input-group');
-                $('.dataTables_filter label').addClass('input-group-text');
-                $('.dataTables_filter input').detach().appendTo('.dataTables_filter');
-                $('.dataTables_filter input').addClass('form-control');
-                $('.dataTables_filter input').attr('placeholder', searchPlaceholder);
-                $('.dataTables_length select').addClass('form-select');
+                $('.dataTables_filter').remove();
             },
             dom: '<"table-container"<"filter-wrapper"fl>rt><"bottom"ip><"clear">',
             language: {
@@ -85,11 +78,12 @@ function ServerSideDT(props, ref) {
             },
             columns: props.columns,
             ...props.options,
-        })
+        });
 
-
-        window.setTimeout(() => {
-        }, 100)
+        var table = $('#' + props.id).DataTable();
+        $('#table_filter input').on('keyup', function () {
+            table.search($(this).val()).draw();
+        });
     }
 
     useEffect(() => {
@@ -100,7 +94,7 @@ function ServerSideDT(props, ref) {
     return (<>
         <table id={props.id} className={styles.companyCustomerTable + " " + props.className} width="100%">
             {props.children}
-            <Loading isLoading={isLoading} />
+            <Loading isLoading={isLoading} columnLength={props.columns.length} rowsLength={4} isProfile={true} />
         </table>
     </>)
 }

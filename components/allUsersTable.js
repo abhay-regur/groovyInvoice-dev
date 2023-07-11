@@ -99,8 +99,14 @@ const AllUserTable = () => {
         }
     }
     return (
-        <div className={`row`}>
-            <div className={`${styles.comapanyInoviceUserTableWrapper} col-sm-12 p-0`}>
+        <div className={`${styles.comapanyInoviceUserTableWrapper} row`}>
+            <div className="col-md-4 col-9 mb-3 p-0">
+                <div id="table_filter" className={`${styles.filter_wrapper} input-group`}>
+                    <label className="input-group-text">Search:</label>
+                    <input type="search" className="form-control" placeholder="Name" aria-controls="table-input" />
+                </div>
+            </div>
+            <div className={`col-sm-12 p-0`}>
                 <ServerSideDataTables ref={dtRef} id="manage-user--table" {...dtOptions} className={`table responsive nowrap`}>
                     <thead>
                         <tr>

@@ -215,6 +215,10 @@ $transprant: rgba(0, 0, 0, 0);
                     color: white;
 
                     &.companyInvoiceSavenSendButton {
+                        &:active {
+                            background: $primary-color;
+                        }
+
                         span {
                             display: flex;
                             text-align: center;

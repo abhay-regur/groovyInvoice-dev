@@ -58,6 +58,27 @@ $table-pagination-background: #D9E6F3;
             background: none;
             overflow-x: hidden;
 
+            .filter_wrapper {
+                label {
+                    color: $primary-color;
+                    background: $table-pagination-background;
+                    border-radius: 8px 0 0 8px;
+                    margin-bottom: 10px;
+                    margin-top: 10px;
+                }
+
+                input {
+                    font-weight: 500;
+                    font-size: 14px;
+                    color: $primary-color;
+                    background: #ffffff;
+                    border: 1px solid #e3ebf2;
+                    border-radius: 0 8px 8px 0;
+                    margin-bottom: 10px;
+                    margin-top: 10px;
+                }
+            }
+
             table {
                 min-width: 500px;
                 margin-right: 0;
