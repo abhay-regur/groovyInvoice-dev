@@ -51,6 +51,7 @@ export default class BaseHttpService {
       options: this._getCommonOptions(),
     });
     Object.assign(request.headers, this.getHeaders());
+    return instance(request);
   }
 
   _handleHttpErrorForRefreshToken(error) {
