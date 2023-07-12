@@ -14,35 +14,43 @@ export default class BaseHttpService {
     Object.assign(options, this._getCommonOptions())
     return axios
       .get(`${this.BASE_URL}/${endpoint}`, options)
-      .catch((error) => this._handleHttpError(error))
+      .catch((error) =>{ return this._handleHttpError(error)})
   }
 
   async post(endpoint, data = {}, options = {}) {
     Object.assign(options, this._getCommonOptions())
     return axios
       .post(`${this.BASE_URL}/${endpoint}`, data, options)
-      .catch((error) => this._handleHttpError(error))
+      .catch((error) =>{ return this._handleHttpError(error)})
   }
 
   async delete(endpoint, options = {}) {
     Object.assign(options, this._getCommonOptions())
     return axios
       .delete(`${this.BASE_URL}/${endpoint}`, options)
-      .catch((error) => this._handleHttpError(error))
+      .catch((error) =>{ return this._handleHttpError(error)})
   }
 
   async patch(endpoint, data = {}, options = {}) {
     Object.assign(options, this._getCommonOptions())
     return axios
       .patch(`${this.BASE_URL}/${endpoint}`, data, options)
-      .catch((error) => this._handleHttpError(error))
+      .catch((error) =>{ return this._handleHttpError(error)})
   }
 
   async put(endpoint, data = {}, options = {}) {
     Object.assign(options, this._getCommonOptions())
     return axios
       .put(`${this.BASE_URL}/${endpoint}`, data, options)
-      .catch((error) => this._handleHttpError(error))
+      .catch((error) =>{ return this._handleHttpError(error)})
+  }
+
+  async previousRequestRecall(request) {
+    const instance = axios.create({
+      baseURL: this.BASE_URL,
+      options: this._getCommonOptions(),
+    });
+    Object.assign(request.headers, this.getHeaders());
   }
 
   _handleHttpErrorForRefreshToken(error) {
@@ -76,23 +84,21 @@ export default class BaseHttpService {
   }
 
   async refreshAccessToken(options = {}) {
-    const accessRefreshToken = this.loadRefreshToken()
-    this.saveToken(accessRefreshToken)
 
-    Object.assign(options, this._getCommonOptions())
+    Object.assign(options, this._getCommonRefreshTokenOptions())
     const result = await axios
-      .get(`${this.BASE_URL}/users/refresh-auth-token`, options)
+      .get(`${this.BASE_URL}/users/auth/token-refresh`, options)
       .catch((error) => this._handleHttpErrorForRefreshToken(error))
     this.saveToken(result.data.access_token)
     this.saveRefreshToken(result.data.refresh_token)
-    window.location.reload()
+    return result.data.access_token;
   }
 
-  _handle401(error) {
+  async _handle401(error) {
     const rememberMe = localStorage.getItem('rememberMe') === 'true'
-    console.log(rememberMe);
     if (rememberMe) {
-      this.refreshAccessToken()
+      await this.refreshAccessToken()
+      return this.previousRequestRecall(error.config)
     } else {
       if (
         window.location.pathname.search('/login') > -1
@@ -110,6 +116,17 @@ export default class BaseHttpService {
 
   _getCommonOptions() {
     const token = this.loadToken()
+    if (token) {
+      this.addHeader('Authorization', `Bearer ${token}`)
+    }
+
+    return {
+      headers: this.getHeaders(),
+    }
+  }
+
+  _getCommonRefreshTokenOptions() {
+    const token = this.loadRefreshToken()
     if (token) {
       this.addHeader('Authorization', `Bearer ${token}`)
     }
