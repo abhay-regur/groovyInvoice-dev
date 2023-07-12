@@ -8,7 +8,7 @@ export default function CompanyComponent() {
     const [states, setStates] = useState()
     const [seletedCountryId, setSeletedCountryId] = useState("");
     const [seletedStateId, setSeletedStateId] = useState("");
-
+    const [isLoading, setIsLoading] = useState(true)
 
     const [companyData, setCompanyData] = useState({
         companyName: "",
