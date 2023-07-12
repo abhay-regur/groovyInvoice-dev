@@ -1,18 +1,21 @@
 /* eslint-disable react/prop-types */
-import { useEffect, forwardRef, useImperativeHandle, Suspense } from 'react'
+import { useEffect, forwardRef, useImperativeHandle, useState } from 'react'
 import styles from '../styles/user.module.scss';
-import Loading from '../app/(protectedPages)/loading';
-import $ from 'jquery'
+import Loading from '../app/(protectedPages)/users/loading';
+import $ from 'jquery';
 import 'datatables.net-dt/js/dataTables.dataTables'
 import 'datatables.net-responsive-dt';
 import 'datatables.net-dt/css/jquery.dataTables.css'
 import '../styles/table.style.scss';
 import { getTokenKey } from '../services/auth.service'
 import { getToken } from '../services/token.service'
+import UserHTTPService from '../services/user-http.service';
 
 function ServerSideDT(props, ref) {
+    const userHttpService = new UserHTTPService('user');
     let alreadyInitializing = false
     const searchPlaceholder = "Name";
+    const [isLoading, setIsLoading] = useState(true);
     useImperativeHandle(ref, () => ({
         reload(cb = null, resetPaging = true) {
             const table = $('#' + props.id).DataTable()
@@ -23,9 +26,15 @@ function ServerSideDT(props, ref) {
         },
     }))
 
-    function _handle401(userType) {
-        if (userType === 'user') window.location = '/login'
-        throw new Error('No user type specified in _handle401() method')
+    async function _handle401(userType) {
+        const rememberMe = localStorage.getItem('rememberMe') === 'true'
+        if (rememberMe) {
+            await userHttpService.refreshAccessToken();
+            window.location.reload();
+        } else {
+            if (userType === 'user') window.location = '/login'
+            throw new Error('No user type specified in _handle401() method')
+        }
     }
 
     function initDT() {
@@ -35,6 +44,7 @@ function ServerSideDT(props, ref) {
             serverSide: true,
             bLengthChange: false,
             paging: true,
+            searching: true,
             destroy: true,
             responsive: true,
             ajax: {
@@ -45,16 +55,28 @@ function ServerSideDT(props, ref) {
                         request.setRequestHeader(
                             'Authorization',
                             `Bearer ` + getToken(getTokenKey(props.authUserType)),
-                        )
+                        );
                     }
                 },
+
                 error: function (error) {
                     if (error.status === 401) {
                         _handle401(props.authUserType)
                     }
                 },
             },
-
+            columnDefs: [
+                { responsivePriority: 1, targets: 0 },
+                { responsivePriority: 1, targets: -1 }
+            ],
+            "initComplete": function () {
+                if (isLoading != false) {
+                    setIsLoading(false);
+                }
+            },
+            "drawCallback": function () {
+                $('.dataTables_filter').remove();
+            },
             dom: '<"table-container"<"filter-wrapper"fl>rt><"bottom"ip><"clear">',
             language: {
                 paginate: {
@@ -64,20 +86,12 @@ function ServerSideDT(props, ref) {
             },
             columns: props.columns,
             ...props.options,
-        })
+        });
 
-
-        window.setTimeout(() => {
-            $('.filter-wrapper').addClass('row');
-            $('.dataTables_length').addClass('form-input-group');
-            $('.dataTables_filter:not(.input-group)').wrap('<div class="col-sm-3 col-12 mb-3"></div>');
-            $('.dataTables_filter').addClass('input-group');
-            $('.dataTables_filter label').addClass('input-group-text');
-            $('.dataTables_filter input').detach().appendTo('.dataTables_filter');
-            $('.dataTables_filter input').addClass('form-control');
-            $('.dataTables_filter input').attr('placeholder', searchPlaceholder);
-            $('.dataTables_length select').addClass('form-select');
-        }, 100)
+        var table = $('#' + props.id).DataTable();
+        $('#table_filter input').on('keyup', function () {
+            table.search($(this).val()).draw();
+        });
     }
 
     useEffect(() => {
@@ -85,13 +99,12 @@ function ServerSideDT(props, ref) {
         initDT()
     }, [])
 
-    return (
-        <Suspense fallback={<Loading />}>
-            <table id={props.id} className={styles.companyCustomerTable + " " + props.className} width="100%">
-                {props.children}
-            </table>
-        </Suspense>
-    )
+    return (<>
+        <table id={props.id} className={styles.companyCustomerTable + " " + props.className} width="100%">
+            {props.children}
+            <Loading isLoading={isLoading} columnLength={props.columns.length} rowsLength={4} isProfile={true} />
+        </table>
+    </>)
 }
 const ServerSideDataTables = forwardRef(ServerSideDT)
 

@@ -1,17 +1,23 @@
 "use client"
 import styles from '../styles/user.module.scss';
-import { useRef } from 'react';
+import { useContext, useRef } from 'react';
+import 'datatables.net-dt/js/dataTables.dataTables';
 import Image from 'next/image';
-import 'datatables.net-dt/js/dataTables.dataTables'
-import 'datatables.net-dt/css/jquery.dataTables.min.css'
-import ServerSideDataTables from './serverSideDataTable';
 import ReactDOM from "react-dom/client";
 import defaultProfile from '../public/images/profile_Default.png';
+import { userActivate, userDeactivate } from '../services/user.service';
+import { ToastMsgContext } from '../context/ToastMsg.context';
 import FaPen from '../assets/icons/faPen.svg';
+import 'datatables.net-dt/css/jquery.dataTables.min.css';
+import ServerSideDataTables from './serverSideDataTable';
+import Link from 'next/link';
 
 const AllUserTable = () => {
+    const { setToastList } = useContext(ToastMsgContext);
+
 
     const dtRef = useRef();
+
     const draw_userName = (row) => {
         return (
             <>
@@ -21,13 +27,23 @@ const AllUserTable = () => {
                         <div className={`${styles.companyUserTableCustomerName}`}>
                             {row.firstName + ' ' + row.lastName}
                         </div>
-                        <div className={`${styles.companyUserTableCustomerEdit} ps-2`}>
+                        <Link className={`${styles.companyUserTableCustomerEdit} ps-2`} href={`/users/update/${row.id}`}>
                             <FaPen />
-                        </div>
+                        </Link>
                     </span >
                 </div >
             </>
         )
+    }
+
+    const draw_activeSwitch = (rowData) => {
+        return (
+            <span className={styles.companyUserTableExtraFunction}>
+                <div className={`${styles.companyUserActiveUserSwitchWrapper} form-check form-switch align-items-center d-flex`}>
+                    <input className={`${styles.companyUserActiveUserSwitch} form-check-input`} type="checkbox" role="switch" onChange={() => { handlechange(rowData) }} id={`flexSwitchCheckDefault${rowData.id}`} checked={rowData.active} />
+                </div>
+            </span>
+        );
     }
 
     const dtOptions = {
@@ -52,9 +68,10 @@ const AllUserTable = () => {
                 orderable: true,
             },
             {
-                data: null, name: 'active',
-                render: () => {
-                    return ('<span class=' + styles.companyUserTableExtraFunction + '><div class="' + styles.companyUserActiveUserSwitchWrapper + ' form-check form-switch align-items-center d-flex"><input class="' + styles.companyUserActiveUserSwitch + ' form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" /></div></span>');
+                data: 'active', name: 'active',
+                createdCell: (cell, cellData, rowData, rowIndex, colIndex) => {
+                    const root = ReactDOM.createRoot(cell)
+                    root.render(draw_activeSwitch(rowData))
                 },
                 searchable: false,
                 orderable: false,
@@ -62,10 +79,35 @@ const AllUserTable = () => {
         ],
     }
 
+    const handlechange = async (rowData) => {
+        var result = '';
+        if (rowData.active) {
+            result = await userDeactivate(rowData.id);
+        } else {
+            result = await userActivate(rowData.id);
+        }
+
+        if (result.status == 200) {
+            dtRef.current.reload();
+            setToastList([{
+                id: Math.floor((Math.random() * 101) + 1),
+                title: rowData.firstName + ' ' + rowData.lastName + ' status updated',
+                description: result.data.message,
+            }])
+        } else {
+            console.log(result.data.message);
+        }
+    }
     return (
-        <div className={`row`}>
-            <div className={`${styles.comapanyInoviceUserTableWrapper} col-sm-12 p-0`}>
-                <ServerSideDataTables ref={dtRef} id="manage-user--table" {...dtOptions} className={`table responsive`}>
+        <div className={`${styles.comapanyInoviceUserTableWrapper} row`}>
+            <div className="col-md-4 col-9 mb-3 p-0">
+                <div id="table_filter" className={`${styles.filter_wrapper} input-group`}>
+                    <label className="input-group-text">Search:</label>
+                    <input type="search" className="form-control" placeholder="Name" aria-controls="table-input" />
+                </div>
+            </div>
+            <div className={`col-sm-12 p-0`}>
+                <ServerSideDataTables ref={dtRef} id="manage-user--table" {...dtOptions} className={`table responsive nowrap`}>
                     <thead>
                         <tr>
                             <th scope="col" className="ps-3" data-priority="1" >User Name</th>
@@ -78,7 +120,6 @@ const AllUserTable = () => {
                 </ServerSideDataTables>
             </div>
         </div >
-
     )
 
 }

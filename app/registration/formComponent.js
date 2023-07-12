@@ -89,7 +89,7 @@ export default function RegistrationForm() {
                                             </div>
                                         </div>
                                         <div className="mb-3">
-                                            <label htmlFor="loginConfirmPassword" className="form-label">Confirm Password</label>
+                                            <label htmlFor="confirm-password" className="form-label">Confirm Password</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <PasswordInputField placeholder="Password" name="confirmPassword" value={data.confirmPassword} onChange={handleInput} />
                                             </div>
