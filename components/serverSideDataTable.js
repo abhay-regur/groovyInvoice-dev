@@ -9,8 +9,10 @@ import 'datatables.net-dt/css/jquery.dataTables.css'
 import '../styles/table.style.scss';
 import { getTokenKey } from '../services/auth.service'
 import { getToken } from '../services/token.service'
+import UserHTTPService from '../services/user-http.service';
 
 function ServerSideDT(props, ref) {
+    const userHttpService = new UserHTTPService('user');
     let alreadyInitializing = false
     const searchPlaceholder = "Name";
     const [isLoading, setIsLoading] = useState(true);
@@ -24,9 +26,15 @@ function ServerSideDT(props, ref) {
         },
     }))
 
-    function _handle401(userType) {
-        if (userType === 'user') window.location = '/login'
-        throw new Error('No user type specified in _handle401() method')
+    async function _handle401(userType) {
+        const rememberMe = localStorage.getItem('rememberMe') === 'true'
+        if (rememberMe) {
+            await userHttpService.refreshAccessToken();
+            window.location.reload();
+        } else {
+            if (userType === 'user') window.location = '/login'
+            throw new Error('No user type specified in _handle401() method')
+        }
     }
 
     function initDT() {
