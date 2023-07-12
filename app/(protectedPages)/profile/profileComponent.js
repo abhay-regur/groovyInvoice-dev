@@ -5,73 +5,68 @@ import FaSave from '../../../assets/icons/faSave.svg';
 import { faCamera, faCancel } from '@fortawesome/free-solid-svg-icons';
 import $ from 'jquery';
 import Loading from "./loading";
-import { getCurrentUserDetails, getCountries, getStates } from '../../../services/profile.service';
+import { getCurrentUserDetails, updateCurrentPassword } from '../../../services/profile.service';
+import { generatePassword } from '../../../utils/genratePassword.utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ToastMsgContext } from '../../../context/ToastMsg.context';
+import PasswordToggler from '../../../components/passwordToggler';
+import ErrorList from '../../../components/errorList';
 import FaCircleXmark from '../../../assets/icons/faCircleXmark.svg';
+import FaGear from '../../../assets/icons/faGear.svg';
 import styles from '../../../styles/profile.module.scss';
-import SelectComponent from '../../../components/selectComponent';
 import { NavExpandedState } from '../../../context/NavState.context';
+
 export default function ProfileComponent() {
     const { navExpandedState } = useContext(NavExpandedState);
+    const { setToastList } = useContext(ToastMsgContext);
     const [profileImage, setProfileImage] = useState("");
-    const [isLoading, setIsLoading] = useState(true)
-    const [errors, setErrors] = useState([])
-    const [countries, setCountries] = useState()
-    const [states, setStates] = useState()
-    const [seletedCountryId, setSeletedCountryId] = useState("");
-    const [seletedStateId, setSeletedStateId] = useState("");
-    const [companyData, setCompanyData] = useState({
-        companyName: "",
-        addressLine1: "",
-        addressLine2: "",
-        city: "",
-        stateId: 0,
-        countryId: 0,
-        postCode: ""
+    const [isLoading, setIsLoading] = useState(true);
+    const [errors, setErrors] = useState([]);
+    const [passwordErrors, setPasswordErrors] = useState([]);
+    const [userCurrentPassword, setUserCurrentPassword] = useState('');
+    const [userNewPassword, setUserNewPassword] = useState('');
+    const [userConfirmPassword, setUserConfirmPassword] = useState('');
+    const [userData, setUserData] = useState({
+        id: "",
+        email: "",
+        firstName: "",
+        lastName: "",
+        cellNumber: "",
     });
-
-    useEffect(() => {
-        getCountryData();
-    }, []);
-
-    useEffect(() => {
-        if (seletedCountryId != "") {
-            setSeletedStateId("");
-            getStateData(seletedCountryId);
-        } else {
-            setSeletedStateId("");
-            setStates([]);
-        }
-    }, [seletedCountryId]);
-
-    const getStateData = async (id) => {
-        setErrors([]);
-        if (id != "") {
-            const result = await getStates(id);
-            var data = result.data;
-            var temp = [];
-            for (var i = 0; data.length > i; i++) {
-                temp.push({ name: data[i].name, Id: data[i].id });
-            }
-            setStates(temp);
-        }
-    }
-
-    const getCountryData = async () => {
-        setErrors([]);
-        const result = await getCountries();
-        var data = result.data;
-        var temp = [];
-        for (var i = 0; data.length > i; i++) {
-            temp.push({ name: data[i].name, Id: data[i].id });
-        }
-        setCountries(temp);
-        setIsLoading(false);
-    }
 
     const clickImageInput = function (e) {
         e.preventDefault();
         $('#fileUploadInput').trigger('click');
+    }
+
+    useEffect(() => {
+        getUserDetails();
+    }, []);
+
+    const handleInput = ({ target }) => {
+        data[target.name] = target.value
+        let temp = Object.assign({}, data)
+        setData(temp)
+    }
+
+    const getUserDetails = async () => {
+        setErrors([]);
+        const result = await getCurrentUserDetails();
+        var data = result.data;
+        setUserData({
+            id: data.id,
+            email: data.email,
+            firstName: data.firstName,
+            lastName: data.lastName,
+            cellNumber: data.cellNumber,
+        });
+        setIsLoading(false);
+    }
+
+    const genrateNewPassword = () => {
+        var temp = generatePassword()
+        setUserNewPassword(temp);
+        setUserConfirmPassword(temp);
     }
 
     const previewandSetImage = function (e) {
@@ -82,6 +77,35 @@ export default function ProfileComponent() {
 
     const removeSelectedImage = function (e) {
         setProfileImage("")
+    }
+
+    const handlePasswordSaveClick = async () => {
+        setErrors([]);
+        setPasswordErrors([]);
+        const data = {
+            currentPassword: userCurrentPassword,
+            newPassword: userNewPassword,
+            confirmPassword: userConfirmPassword
+        }
+        try {
+            const result = await updateCurrentPassword(data);
+            setToastList([{
+                id: Math.floor((Math.random() * 101) + 1),
+                title: 'Your password is updated!',
+                description: result.data.message,
+            }]);
+        } catch (error) {
+            console.log(error)
+            setPasswordErrors(error.response.data.message);
+        }
+    }
+
+    const handleCancelClick = () => {
+        setErrors([]);
+        setPasswordErrors([]);
+        setUserCurrentPassword('');
+        setUserNewPassword('');
+        setUserConfirmPassword('');
     }
 
     return (
@@ -106,6 +130,13 @@ export default function ProfileComponent() {
                                                 <h3>Personal Details</h3>
                                                 <hr />
                                                 <div className="row">
+                                                    <div className="col-sm-3">
+                                                    </div>
+                                                    <div className="col-sm-8">
+                                                        <ErrorList errors={errors} />
+                                                    </div>
+                                                </div>
+                                                <div className="row">
                                                     <div className="col-sm-3 d-flex justify-content-center">
                                                         <div className={`${styles.profileImageWrapper}`}>
                                                             <Image className={`${styles.profileImageDisplay}`} src={profileImage != "" ? URL.createObjectURL(profileImage) : "/images/default_profile_icon.png"} width={125} height={125} alt="profile_Image" />
@@ -129,7 +160,7 @@ export default function ProfileComponent() {
                                                                 <label className={`${styles.companyInvoiceProfileFirstName}`}>First Name</label>
                                                             </div>
                                                             <div className="col-12">
-                                                                <input type="text" className="form-control" id="companyInvoiceProfileFirstName" placeholder='First Name' />
+                                                                <input type="text" className="form-control" name="firstName" value={userData.firstName} id="companyInvoiceProfileFirstName" placeholder='First Name' onChange={(e => { handleInput(e) })} />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -139,7 +170,7 @@ export default function ProfileComponent() {
                                                                 <label className={`${styles.companyInvoiceProfileLastName}`}>Last Name</label>
                                                             </div>
                                                             <div className="col-12">
-                                                                <input type="text" className="form-control" id="companyInvoiceProfileLastName" placeholder='Last Name' />
+                                                                <input type="text" className="form-control" name="lastName" value={userData.lastName} id="companyInvoiceProfileLastName" placeholder='Last Name' onChange={(e => { handleInput(e) })} />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -153,7 +184,7 @@ export default function ProfileComponent() {
                                                                 <label className={`${styles.companyInvoiceContactNumber}`}>Contact Number</label>
                                                             </div>
                                                             <div className="col-12">
-                                                                <input type="text" className="form-control" id="companyInvoiceContactNumber" placeholder='Contact Number' />
+                                                                <input type="text" className="form-control" name="cellNumber" value={userData.cellNumber} id="companyInvoiceContactNumber" placeholder='Contact Number' onChange={(e => { handleInput(e) })} />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -167,7 +198,7 @@ export default function ProfileComponent() {
                                                                 <label className={`${styles.companyInvoiceEmailID}`}>Email ID</label>
                                                             </div>
                                                             <div className="col-12">
-                                                                <input type="text" className="form-control" id="companyInvoiceEmailID" placeholder='Email ID' />
+                                                                <input type="text" className="form-control" name="email" value={userData.email} id="companyInvoiceEmailID" placeholder='Email ID' onChange={(e => { handleInput(e) })} />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -175,7 +206,7 @@ export default function ProfileComponent() {
                                                 <div className="row justify-content-end">
                                                     <div className="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-3">
                                                         <div className="row">
-                                                            <div className="col-6 col-md-4 col-lg-3 col-xl-4 mt-3 mt-sm-0 d-flex justify-content-center">
+                                                            <div className="col-12 col-md-4 col-lg-3 col-xl-4 mt-3 mt-sm-0 d-flex justify-content-center">
                                                                 <button className={`${styles.companyInvoiceSavenSendButton} btn blue`} onClick={() => { console.log('save'); }}>
                                                                     <span>
                                                                         <i><FaSave /></i>
@@ -183,7 +214,7 @@ export default function ProfileComponent() {
                                                                     </span>
                                                                 </button>
                                                             </div>
-                                                            <div className="col-6 col-md-4 col-lg-3 col-xl-4 mt-3 mt-sm-0 d-flex justify-content-center">
+                                                            <div className="col-12 col-md-4 col-lg-3 col-xl-4 mt-3 mt-sm-0 d-flex justify-content-center">
                                                                 <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={() => { console.log('Cancel'); }}>
                                                                     <span>
                                                                         <i><FaCircleXmark /></i>
@@ -201,95 +232,56 @@ export default function ProfileComponent() {
                                 <div className="col-12">
                                     <div className={`${styles.profileCard} card`}>
                                         <div className="card-body">
-                                            <div className={`${styles.companyDetailsWrapper}`}>
-                                                <h3>Company Details</h3>
+                                            <div className={`${styles.passwordDetailsWrapper}`}>
+                                                <h3>Update Password</h3>
                                                 <hr />
                                                 <div className="row">
-                                                    <div className="col-sm-2">
-                                                    </div>
-                                                    <div className="col-sm-8">
-                                                        <div className={`${styles.companyInvoiceCompanyNameWrapper} mb-1 mb-md-4 row`}>
-                                                            <div className="col-12 mb-2">
-                                                                <label className={`${styles.companyInvoiceCompanyName}`}>Company Name</label>
-                                                            </div>
-                                                            <div className="col-12">
-                                                                <input type="text" className="form-control" id="companyInvoiceCompanyName" placeholder='Company Name' />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="row">
-                                                    <div className="col-sm-2">
-                                                    </div>
-                                                    <div className="col-sm-8">
-                                                        <div className={`${styles.companyInvoiceCompanyAddress1Wrapper} mb-1 mb-md-4 row`}>
-                                                            <div className="col-12 mb-2">
-                                                                <label className={`${styles.companyInvoiceCompanyAddress1}`}>Address 1</label>
-                                                            </div>
-                                                            <div className="col-12">
-                                                                <input type="text" className="form-control" id="companyInvoiceCompanyAddress1" placeholder='Address' />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="row">
-                                                    <div className="col-sm-2">
-                                                    </div>
-                                                    <div className="col-sm-8">
-                                                        <div className={`${styles.companyInvoiceCompanyAddress2Wrapper} mb-1 mb-md-4 row`}>
-                                                            <div className="col-12 mb-2">
-                                                                <label className={`${styles.companyInvoiceCompanyAddress2}`}>Address 2</label>
-                                                            </div>
-                                                            <div className="col-12">
-                                                                <input type="text" className="form-control" id="companyInvoiceCompanyAddress2" placeholder='Address' />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="row">
-                                                    <div className="col-sm-2">
-                                                    </div>
                                                     <div className="col-sm-3">
-                                                        <div className={`${styles.companyInvoiceCompanyCountryyWrapper} mb-1 mb-md-4 row`}>
-                                                            <div className="col-12 mb-2">
-                                                                <label className={`${styles.companyInvoiceCompanyCountry}`}>Country</label>
-                                                            </div>
-                                                            <div className="col-12">
-                                                                <SelectComponent data={countries} setSeletedId={setSeletedCountryId} seletedId={seletedCountryId} />
-                                                            </div>
-                                                        </div>
                                                     </div>
-                                                    <div className="col-sm-3">
-                                                        <div className={`${styles.companyInvoiceCompanyStateWrapper} mb-1 mb-md-4 row`}>
-                                                            <div className="col-12 mb-2">
-                                                                <label className={`${styles.companyInvoiceCompanyState}`}>State</label>
-                                                            </div>
-                                                            <div className="col-12">
-                                                                <SelectComponent data={states} setSeletedId={setSeletedStateId} seletedId={seletedStateId} />
-                                                            </div>
-                                                        </div>
+                                                    <div className="col-sm-8">
+                                                        <ErrorList errors={passwordErrors} />
                                                     </div>
+                                                </div>
+                                                <div className="row">
                                                     <div className="col-sm-3">
-                                                        <div className={`${styles.companyInvoiceCompanyCityWrapper} mb-1 mb-md-4 row`}>
+                                                    </div>
+                                                    <div className="col-sm-8">
+                                                        <div className={`${styles.companyInvoiceCurrentPasswordWrapper} mb-1 mb-md-4 row`}>
                                                             <div className="col-12 mb-2">
-                                                                <label className={`${styles.companyInvoiceCompanyCity}`}>City</label>
+                                                                <label className={`${styles.companyInvoiceCurrentPasswordID}`}>Current Password</label>
                                                             </div>
-                                                            <div className="col-12">
-                                                                <input type="text" className="form-control" id="companyInvoiceCompanyCity" placeholder='City' />
+                                                            <div className="col-12 position-relative d-flex">
+                                                                <input type="password" id="password" className="form-control" value={userCurrentPassword} onInput={(e) => { setUserCurrentPassword(e.target.value) }} placeholder='Current Password' />
+                                                                <PasswordToggler refId="password" />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div className="row">
-                                                    <div className="col-sm-2">
+                                                    <div className="col-sm-3">
                                                     </div>
                                                     <div className="col-sm-8">
-                                                        <div className={`${styles.companyInvoiceCompanyPostCodeWrapper} mb-1 mb-md-4 row`}>
+                                                        <div className={`${styles.companyInvoicePasswordWrapper} mb-1 mb-md-4 row`}>
                                                             <div className="col-12 mb-2">
-                                                                <label className={`${styles.companyInvoiceCompanyPostCode}`}>Postal Code</label>
+                                                                <label className={`${styles.companyInvoicePasswordID}`}>New Password</label>
+                                                            </div>
+                                                            <div className="col-12 d-flex">
+                                                                <input type="text" className="form-control" value={userNewPassword} onInput={(e) => { setUserNewPassword(e.target.value) }} id="companyInvoiceUserPassword" placeholder=' New Password' />
+                                                                <button className="btn blueOutline" onClick={() => { genrateNewPassword() }}><FaGear /></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="row">
+                                                    <div className="col-sm-3">
+                                                    </div>
+                                                    <div className="col-sm-8">
+                                                        <div className={`${styles.companyInvoiceConfirmPasswordIDWrapper} mb-1 mb-md-4 row`}>
+                                                            <div className="col-12 mb-2">
+                                                                <label className={`${styles.companyInvoiceConfirmPasswordID}`}>Confirm Password</label>
                                                             </div>
                                                             <div className="col-12">
-                                                                <input type="text" className="form-control" id="companyInvoiceCompanyPostCode" placeholder='Postal Code' />
+                                                                <input type="text" className="form-control" id="companyInvoiceUserConfirmPassword" value={userConfirmPassword} onInput={(e) => { setUserConfirmPassword(e.target.value); }} placeholder='Confirm Password' />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -297,19 +289,19 @@ export default function ProfileComponent() {
                                                 <div className="row justify-content-end">
                                                     <div className="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-3">
                                                         <div className="row">
-                                                            <div className="col-6 col-md-4 col-lg-3 col-xl-4 mt-3 mt-sm-0 d-flex justify-content-center">
-                                                                <button className={`${styles.companyInvoiceSavenSendButton} btn blue`} onClick={() => { console.log('Save'); }}>
+                                                            <div className="col-12 col-md-4 col-lg-3 col-xl-4 mt-3 mt-sm-0 d-flex justify-content-center">
+                                                                <button className={`${styles.companyInvoiceSavenSendButton} btn blue`} onClick={() => { handlePasswordSaveClick() }}>
                                                                     <span>
                                                                         <i><FaSave /></i>
-                                                                        Save
+                                                                        Update
                                                                     </span>
                                                                 </button>
                                                             </div>
-                                                            <div className="col-6 col-md-4 col-lg-3 col-xl-4 mt-3 mt-sm-0 d-flex justify-content-center">
-                                                                <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={() => { console.log('Cancel'); }}>
+                                                            <div className="col-12 col-md-4 col-lg-3 col-xl-4 mt-3 mt-sm-0 d-flex justify-content-center">
+                                                                <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={() => { handleCancelClick() }}>
                                                                     <span>
                                                                         <i><FaCircleXmark /></i>
-                                                                        Cancel
+                                                                        Reset
                                                                     </span>
                                                                 </button>
                                                             </div>
