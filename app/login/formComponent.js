@@ -15,6 +15,7 @@ import { useRouter } from 'next/navigation';
 
 export default function LoginForm() {
     const { push } = useRouter();
+    const [rememberMe, setRememberMe] = useState(false);
     const [errors, setErrors] = useState([])
     const formErrors = []
     const [data, setData] = useState({
@@ -26,6 +27,10 @@ export default function LoginForm() {
         data[target.name] = target.value
         let temp = Object.assign({}, data)
         setData(temp)
+    }
+
+    const toggleRememberMe = () => {
+        setRememberMe(current => !current)
     }
 
     const handleSubmit = async (e) => {
@@ -46,8 +51,9 @@ export default function LoginForm() {
             return
         } else {
             try {
+                console.log(rememberMe);
                 disableSubmitButton(e.target)
-                await login(data)
+                await login(data, rememberMe)
                 push('/')
             } catch (error) {
                 var status = error.response.status;
@@ -100,7 +106,7 @@ export default function LoginForm() {
                                         <div className="row">
                                             <div className="col-6 justify-content-md-start pe-0">
                                                 <div className="mb-3 form-check">
-                                                    <input type="checkbox" className="form-check-input" id="keepLogged" />
+                                                    <input type="checkbox" className="form-check-input" id="keepLogged" value={rememberMe} onChange={toggleRememberMe} />
                                                     <label className="form-check-label" htmlFor="keepLogged">Keep me logged in</label>
                                                 </div>
                                             </div>
