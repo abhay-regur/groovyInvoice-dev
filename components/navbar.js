@@ -17,7 +17,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { NavExpandedState } from '../context/NavState.context';
 
-const MENU_LIST = [{ key: 100, text: "Invoices", href: "/invoices", icon: <FaFileLines /> }, { key: 101, text: "Customers", href: "/customers", icon: <FaUserGroup /> }, { key: 102, text: "Reports", href: "/reports", icon: <FaChartLine /> }, { key: 103, text: "Settings", href: "/settings", icon: <FaGear />, subMenu: [{ key: 102, text: "Users", href: "/users", icon: <FaUsers /> }] }, { key: 103, text: "Logout", href: "/logout", icon: <FaLogout /> }];
+const MENU_LIST = [{ key: 100, text: "Invoices", href: "/invoices", icon: <FaFileLines /> }, { key: 101, text: "Customers", href: "/customers", icon: <FaUserGroup /> }, { key: 102, text: "Reports", href: "/reports", icon: <FaChartLine /> }, { key: 103, text: "Settings", href: "/settings", icon: <FaGear />, subMenu: [{ key: 102, text: "Users", href: "/users", icon: <FaUsers /> }] }];
 export default function Navbar() {
     const [activeIdx, setActiveIdx] = useState('-1');
     const [profileImage, setProfileImage] = useState("/images/profile_img.png");
@@ -60,9 +60,16 @@ export default function Navbar() {
                                 </div>
                             </span>
                         </Link>
-                        <div className={`${style.profileActionWrapper} justify-content-center`}>
-                            <FaClockRotateLeft />
-                            <FaEnvelope />
+                        <div className={`${style.profileActionWrapper}`}>
+                            <Link href={"/"}>
+                                <FaClockRotateLeft />
+                            </Link>
+                            <Link href={"/"}>
+                                <FaEnvelope />
+                            </Link>
+                            <Link href={"/logout"}>
+                                <FaLogout />
+                            </Link>
                         </div>
                         <div className={`${style.nav_menu_arrow} d-flex justify-content-center align-items-center`} onClick={() => { setNavExpandedState(prevCheck => !prevCheck) }}>
                             <FontAwesomeIcon icon={navExpandedState ? faArrowLeft : faArrowRight}></FontAwesomeIcon>

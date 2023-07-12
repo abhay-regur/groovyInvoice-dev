@@ -2,14 +2,14 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faKey, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faKey } from '@fortawesome/free-solid-svg-icons';
 import FaGoogle from '../../assets/icons/faGoogle.svg';
 import FaFacebook from '../../assets/icons/faFacebook.svg';
 import styles from '../../styles/login.module.scss';
 import { disableSubmitButton, enableSubmitButton } from '../../utils/form.utils'
 import ErrorList from '../../components/errorList';
 import { login } from '../../services/users/auth.service';
-import PasswordToggler from '../../components/passwordToggler';
+import PasswordInputField from '../../components/passwordInputField';
 import { useRouter } from 'next/navigation';
 
 
@@ -96,11 +96,7 @@ export default function LoginForm() {
                                         <div className="mb-3">
                                             <label htmlFor="password" className="form-label">Password</label>
                                             <div className={styles.innerInputIconWrapper}>
-                                                <i>
-                                                    <FontAwesomeIcon icon={faKey} />
-                                                </i>
-                                                <input type="password" placeholder="Password" className="form-control" name="password" value={data.password} onChange={handleInput} id="password" />
-                                                <PasswordToggler refId="password" />
+                                                <PasswordInputField placeholder="Password" name="password" value={data.password} onChange={handleInput} />
                                             </div>
                                         </div>
                                         <div className="row">

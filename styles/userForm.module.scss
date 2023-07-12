@@ -209,6 +209,7 @@ $transprant: rgba(0, 0, 0, 0);
 
             .companyInvoiceFormButtonsWrapper {
                 button {
+                    border: 1px solid $primary-color;
                     border-radius: 6px;
                     font-weight: 600;
                     font-size: 14px;
@@ -216,7 +217,17 @@ $transprant: rgba(0, 0, 0, 0);
 
                     &.companyInvoiceSavenSendButton {
                         &:active {
-                            background: $primary-color;
+                            background: white;
+
+                            span {
+                                color: $primary-color;
+                            }
+
+                            svg {
+                                path {
+                                    fill: $primary-color;
+                                }
+                            }
                         }
 
                         span {
@@ -238,6 +249,20 @@ $transprant: rgba(0, 0, 0, 0);
                     }
 
                     &.companyInvoiceCancelButton {
+                        &:active {
+                            background: $primary-color;
+
+                            span {
+                                color: white;
+                            }
+
+                            svg {
+                                path {
+                                    fill: white;
+                                }
+                            }
+                        }
+
                         span {
                             display: flex;
                             text-align: center;
@@ -433,6 +458,7 @@ $transprant: rgba(0, 0, 0, 0);
                     margin-bottom: 25px;
 
                     button {
+                        border: 1px solid $primary-color;
                         border-radius: 6px;
                         font-weight: 600;
                         font-size: 14px;
@@ -440,6 +466,20 @@ $transprant: rgba(0, 0, 0, 0);
                         width: 100%;
 
                         &.companyInvoiceSavenSendButton {
+                            &:active {
+                                background: white;
+
+                                span {
+                                    color: $primary-color;
+                                }
+
+                                svg {
+                                    path {
+                                        fill: $primary-color;
+                                    }
+                                }
+                            }
+
                             span {
                                 display: flex;
                                 text-align: center;
@@ -459,6 +499,20 @@ $transprant: rgba(0, 0, 0, 0);
                         }
 
                         &.companyInvoiceCancelButton {
+                            &:active {
+                                background: $primary-color;
+
+                                span {
+                                    color: white;
+                                }
+
+                                svg {
+                                    path {
+                                        fill: white;
+                                    }
+                                }
+                            }
+
                             span {
                                 display: flex;
                                 text-align: center;
@@ -658,6 +712,7 @@ $transprant: rgba(0, 0, 0, 0);
                     margin-top: 20px;
 
                     button {
+                        border: 1px solid $primary-color;
                         border-radius: 6px;
                         font-weight: 600;
                         font-size: 14px;
@@ -665,6 +720,20 @@ $transprant: rgba(0, 0, 0, 0);
                         width: 100%;
 
                         &.companyInvoiceSavenSendButton {
+                            &:active {
+                                background: white;
+
+                                span {
+                                    color: $primary-color;
+                                }
+
+                                svg {
+                                    path {
+                                        fill: $primary-color;
+                                    }
+                                }
+                            }
+
                             span {
                                 display: flex;
                                 text-align: center;
@@ -684,6 +753,20 @@ $transprant: rgba(0, 0, 0, 0);
                         }
 
                         &.companyInvoiceCancelButton {
+                            &:active {
+                                background: $primary-color;
+
+                                span {
+                                    color: white;
+                                }
+
+                                svg {
+                                    path {
+                                        fill: white;
+                                    }
+                                }
+                            }
+
                             span {
                                 display: flex;
                                 text-align: center;
