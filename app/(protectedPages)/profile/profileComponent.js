@@ -9,9 +9,9 @@ import { getCurrentUserDetails, updateCurrentPassword } from '../../../services/
 import { generatePassword } from '../../../utils/genratePassword.utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ToastMsgContext } from '../../../context/ToastMsg.context';
-import PasswordToggler from '../../../components/passwordToggler';
 import ErrorList from '../../../components/errorList';
 import FaCircleXmark from '../../../assets/icons/faCircleXmark.svg';
+import PasswordInputField from '../../../components/passwordInputField';
 import FaGear from '../../../assets/icons/faGear.svg';
 import styles from '../../../styles/profile.module.scss';
 import { NavExpandedState } from '../../../context/NavState.context';
@@ -251,8 +251,7 @@ export default function ProfileComponent() {
                                                                 <label className={`${styles.companyInvoiceCurrentPasswordID}`}>Current Password</label>
                                                             </div>
                                                             <div className="col-12 position-relative d-flex">
-                                                                <input type="password" id="password" className="form-control" value={userCurrentPassword} onInput={(e) => { setUserCurrentPassword(e.target.value) }} placeholder='Current Password' />
-                                                                <PasswordToggler refId="password" />
+                                                                <PasswordInputField placeholder="Current Password" name="password" value={userCurrentPassword} onChange={(e) => { setUserCurrentPassword(e.target.value) }} />
                                                             </div>
                                                         </div>
                                                     </div>
