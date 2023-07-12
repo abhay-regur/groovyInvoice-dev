@@ -5,6 +5,7 @@ $nonexpanded-width: 97px;
 $primary-color: #3649AB;
 $secondary-color: #8790B0;
 $tertiary-color: #43CB80;
+$red-color: #e45656;
 $line-color: #BCD5E2;
 $navItem-hightlight: #F5FAFE;
 
@@ -251,18 +252,27 @@ $navItem-hightlight: #F5FAFE;
                 display: none;
                 -webkit-transition: all 0.2s;
                 transition: all 0.2s;
+                justify-content: center;
 
-                svg {
-                    width: 24px;
-                    height: 22px;
+                a {
+                    width: auto;
+                    margin: 0 5px;
 
-                    &:first-of-type {
-                        margin-right: 10.5px;
+                    svg {
+                        width: 24px;
+                        height: 22px;
+
+                        path {
+                            fill: $primary-color;
+                        }
                     }
 
                     &:last-of-type {
-                        margin-left: 10.5px;
+                        path {
+                            fill: $red-color;
+                        }
                     }
+
                 }
             }
 
@@ -346,6 +356,7 @@ $navItem-hightlight: #F5FAFE;
                     -webkit-transition: background-color 0.31s, padding 0.31s;
                     transition: background-color 0.31s, padding 0.31s;
                     justify-content: center;
+                    cursor: pointer;
 
                     .dropdownWrapper {
                         width: 100%;
@@ -734,18 +745,27 @@ $navItem-hightlight: #F5FAFE;
                         -webkit-transition: all 0.2s, opacity 0.5s linear;
                         transition: all 0.2s, opacity 0.5s linear;
                         margin-top: 16px;
+                        justify-content: center;
 
-                        svg {
-                            width: 24px;
-                            height: 22px;
+                        a {
+                            width: auto;
+                            margin: 0 5px;
 
-                            &:first-of-type {
-                                margin-right: 10.5px;
+                            svg {
+                                width: 24px;
+                                height: 22px;
+
+                                path {
+                                    fill: $primary-color;
+                                }
                             }
 
                             &:last-of-type {
-                                margin-left: 10.5px;
+                                path {
+                                    fill: $red-color;
+                                }
                             }
+
                         }
                     }
                 }

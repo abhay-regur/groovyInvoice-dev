@@ -43,7 +43,8 @@ $header-top-background: #EFF2FF;
                 color: $primary-border-color;
             }
 
-            .personalDetailsWrapper {
+            .personalDetailsWrapper,
+            .passwordDetailsWrapper {
                 padding-bottom: 20px;
 
                 .profileImageWrapper {
@@ -85,7 +86,10 @@ $header-top-background: #EFF2FF;
 
                 .companyInvoiceUserNameWrapper,
                 .companyInvoiceContactNumberWrapper,
-                .companyInvoiceEmailIDWrapper {
+                .companyInvoiceEmailIDWrapper,
+                .companyInvoicePasswordWrapper,
+                .companyInvoiceConfirmPasswordIDWrapper,
+                .companyInvoiceCurrentPasswordWrapper {
                     label {
                         align-items: center;
                         font-weight: 600;
@@ -100,6 +104,33 @@ $header-top-background: #EFF2FF;
                         background: $input-background-color;
                         border: 1px solid $primary-border-color;
                         border-radius: 8px;
+                    }
+
+                    button {
+                        display: flex;
+                        margin-left: 5px;
+                        align-self: center;
+                        border: none;
+
+                        svg {
+                            height: 20px;
+                            width: 20px;
+
+                            path {
+                                fill: $primary-color;
+                            }
+                        }
+                    }
+                }
+
+                .companyInvoiceCurrentPasswordWrapper {
+                    svg {
+                        position: absolute;
+                        right: 0;
+                        padding: 10px 16px;
+                        cursor: pointer;
+                        color: $secondary-color;
+                        z-index: 99;
                     }
                 }
             }
@@ -158,6 +189,20 @@ $header-top-background: #EFF2FF;
                 color: white;
 
                 &.companyInvoiceSavenSendButton {
+                    &:active {
+                        background: white;
+
+                        span {
+                            color: $primary-color;
+                        }
+
+                        svg {
+                            path {
+                                fill: $primary-color;
+                            }
+                        }
+                    }
+
                     span {
                         display: flex;
                         text-align: center;
@@ -177,6 +222,20 @@ $header-top-background: #EFF2FF;
                 }
 
                 &.companyInvoiceCancelButton {
+                    &:active {
+                        background: $primary-color;
+
+                        span {
+                            color: white;
+                        }
+
+                        svg {
+                            path {
+                                fill: white;
+                            }
+                        }
+                    }
+
                     span {
                         display: flex;
                         text-align: center;
@@ -231,7 +290,8 @@ $header-top-background: #EFF2FF;
                 color: $primary-border-color;
             }
 
-            .personalDetailsWrapper {
+            .personalDetailsWrapper,
+            .passwordDetailsWrapper {
                 padding-bottom: 20px;
 
                 .profileImageWrapper {
@@ -273,7 +333,10 @@ $header-top-background: #EFF2FF;
 
                 .companyInvoiceUserNameWrapper,
                 .companyInvoiceContactNumberWrapper,
-                .companyInvoiceEmailIDWrapper {
+                .companyInvoiceEmailIDWrapper,
+                .companyInvoicePasswordWrapper,
+                .companyInvoiceConfirmPasswordIDWrapper,
+                .companyInvoiceCurrentPasswordWrapper {
                     label {
                         align-items: center;
                         font-weight: 600;
@@ -288,6 +351,38 @@ $header-top-background: #EFF2FF;
                         background: $input-background-color;
                         border: 1px solid $primary-border-color;
                         border-radius: 8px;
+                    }
+
+                    button {
+                        display: flex;
+                        margin-left: 5px;
+                        align-self: center;
+                        border: none;
+
+                        &:active {
+                            background: $primary-color;
+                            color: white;
+                        }
+
+                        svg {
+                            height: 20px;
+                            width: 20px;
+
+                            path {
+                                fill: $primary-color;
+                            }
+                        }
+                    }
+                }
+
+                .companyInvoiceCurrentPasswordWrapper {
+                    svg {
+                        position: absolute;
+                        right: 0;
+                        padding: 10px 16px;
+                        cursor: pointer;
+                        color: $secondary-color;
+                        z-index: 99;
                     }
                 }
             }
@@ -340,12 +435,20 @@ $header-top-background: #EFF2FF;
             }
 
             button {
+                margin-top: 10px;
                 border-radius: 6px;
                 font-weight: 600;
                 font-size: 14px;
                 color: white;
 
                 &.companyInvoiceSavenSendButton {
+                    width: 100%;
+
+                    &:active {
+                        background: $primary-color;
+                        color: white;
+                    }
+
                     span {
                         display: flex;
                         text-align: center;
@@ -365,6 +468,8 @@ $header-top-background: #EFF2FF;
                 }
 
                 &.companyInvoiceCancelButton {
+                    width: 100%;
+
                     span {
                         display: flex;
                         text-align: center;
