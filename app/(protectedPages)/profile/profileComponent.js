@@ -218,7 +218,7 @@ export default function ProfileComponent() {
                                                                 <label className={`${styles.companyInvoiceEmailID}`}>Email ID</label>
                                                             </div>
                                                             <div className="col-12">
-                                                                <input type="text" className="form-control" name="email" value={userData.email} id="companyInvoiceEmailID" placeholder='Email ID' onChange={(e => { handleInput(e) })} />
+                                                                <input type="text" className="form-control" name="email" value={userData.email} id="companyInvoiceEmailID" placeholder='Email ID' onChange={(e => { handleInput(e) })} disabled />
                                                             </div>
                                                         </div>
                                                     </div>
