@@ -5,7 +5,7 @@ import FaSave from '../../../assets/icons/faSave.svg';
 import { faCamera, faCancel } from '@fortawesome/free-solid-svg-icons';
 import $ from 'jquery';
 import Loading from "./loading";
-import { getCurrentUserDetails, updateCurrentPassword } from '../../../services/profile.service';
+import { getCurrentUserDetails, updateCurrentUserDetails, updateCurrentPassword } from '../../../services/profile.service';
 import { generatePassword } from '../../../utils/genratePassword.utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ToastMsgContext } from '../../../context/ToastMsg.context';
@@ -44,9 +44,9 @@ export default function ProfileComponent() {
     }, []);
 
     const handleInput = ({ target }) => {
-        data[target.name] = target.value
-        let temp = Object.assign({}, data)
-        setData(temp)
+        userData[target.name] = target.value;
+        let temp = Object.assign({}, userData)
+        setUserData(temp);
     }
 
     const getUserDetails = async () => {
@@ -61,6 +61,27 @@ export default function ProfileComponent() {
             cellNumber: data.cellNumber,
         });
         setIsLoading(false);
+    }
+
+    const handleUserSaveClick = async () => {
+        setErrors([]);
+        const data = {
+            firstName: userData.firstName,
+            lastName: userData.lastName,
+            cellNumber: userData.cellNumber,
+            active: true
+        }
+        try {
+            const result = await updateCurrentUserDetails(data);
+            setToastList([{
+                id: Math.floor((Math.random() * 101) + 1),
+                title: 'Your details are updated',
+                description: result.data.message,
+            }]);
+        } catch (error) {
+            setErrors(error.response.data.message);
+        }
+
     }
 
     const genrateNewPassword = () => {
@@ -95,7 +116,6 @@ export default function ProfileComponent() {
                 description: result.data.message,
             }]);
         } catch (error) {
-            console.log(error)
             setPasswordErrors(error.response.data.message);
         }
     }
@@ -207,7 +227,7 @@ export default function ProfileComponent() {
                                                     <div className="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-3">
                                                         <div className="row">
                                                             <div className="col-12 col-md-4 col-lg-3 col-xl-4 mt-3 mt-sm-0 d-flex justify-content-center">
-                                                                <button className={`${styles.companyInvoiceSavenSendButton} btn blue`} onClick={() => { console.log('save'); }}>
+                                                                <button className={`${styles.companyInvoiceSavenSendButton} btn blue`} onClick={() => { handleUserSaveClick() }}>
                                                                     <span>
                                                                         <i><FaSave /></i>
                                                                         Save
@@ -215,7 +235,7 @@ export default function ProfileComponent() {
                                                                 </button>
                                                             </div>
                                                             <div className="col-12 col-md-4 col-lg-3 col-xl-4 mt-3 mt-sm-0 d-flex justify-content-center">
-                                                                <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={() => { console.log('Cancel'); }}>
+                                                                <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={() => { handleCancelClick() }}>
                                                                     <span>
                                                                         <i><FaCircleXmark /></i>
                                                                         Cancel
