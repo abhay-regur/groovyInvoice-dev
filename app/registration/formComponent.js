@@ -85,13 +85,13 @@ export default function RegistrationForm() {
                                         <div className="mb-3">
                                             <label htmlFor="loginPassword" className="form-label">Password</label>
                                             <div className={styles.innerInputIconWrapper}>
-                                                <PasswordInputField placeholder="Password" name="password" value={data.password} onChange={handleInput} />
+                                                <PasswordInputField placeholder="Password" showKeyIcon={true} name="password" value={data.password} onChange={handleInput} />
                                             </div>
                                         </div>
                                         <div className="mb-3">
                                             <label htmlFor="confirm-password" className="form-label">Confirm Password</label>
                                             <div className={styles.innerInputIconWrapper}>
-                                                <PasswordInputField placeholder="Password" name="confirmPassword" value={data.confirmPassword} onChange={handleInput} />
+                                                <PasswordInputField placeholder="Confirm Password" showKeyIcon={true} name="confirmPassword" value={data.confirmPassword} onChange={handleInput} />
                                             </div>
                                         </div>
                                         <div className="d-grid gap-2">

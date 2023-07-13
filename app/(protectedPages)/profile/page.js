@@ -1,7 +1,7 @@
 import ProfileComponent from "./profileComponent"
 
 export const metadata = {
-    title: 'Users',
+    title: 'Profile',
     description: '',
 };
 

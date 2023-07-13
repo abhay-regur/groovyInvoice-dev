@@ -9,6 +9,14 @@ export const getCurrentUserDetails = async () => {
     }
 }
 
+export const updateCurrentUserDetails = async (data) => {
+    try {
+        return await httpService.put('myprofile', data);
+    } catch (error) {
+        throw error;
+    }
+}
+
 export const updateCurrentPassword = async (data) => {
     try {
         return await httpService.put('users/password-reset', data);
