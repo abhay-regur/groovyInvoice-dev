@@ -51,7 +51,6 @@ export default function LoginForm() {
             return
         } else {
             try {
-                console.log(rememberMe);
                 disableSubmitButton(e.target)
                 await login(data, rememberMe)
                 push('/')
