@@ -85,7 +85,7 @@ export default function ProfileComponent() {
         } catch (error) {
             setErrors(error.response.data.message);
         }
-        // enableSubmitButton(e.target);
+        enableSubmitButton(e.target);
     }
 
     const genrateNewPassword = () => {
@@ -124,7 +124,7 @@ export default function ProfileComponent() {
         } catch (error) {
             setPasswordErrors(error.response.data.message);
         }
-        // enableSubmitButton(e.target);
+        enableSubmitButton(e.target);
     }
 
     const handleCancelClick = () => {
