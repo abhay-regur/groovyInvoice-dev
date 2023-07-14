@@ -75,7 +75,9 @@ export default function ForgotPasswordForm() {
                                             </div>
                                         </div>
                                         <div className="d-grid gap-2">
-                                            <button name='btn-submit' type="submit" className="btn btn-primary">Forgot Password</button>
+                                            <button name='btn-submit' type="submit" className="btn btn-primary">
+                                                <span>Forgot Password</span>
+                                            </button>
                                         </div>
                                     </form>
                                 </div>

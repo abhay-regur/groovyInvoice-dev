@@ -95,7 +95,9 @@ export default function RegistrationForm() {
                                             </div>
                                         </div>
                                         <div className="d-grid gap-2">
-                                            <button type="submit" name="btn-submit" className="btn btn-primary">Create an Account</button>
+                                            <button type="submit" name="btn-submit" className="btn btn-primary">
+                                                <span>Create an Account</span>
+                                            </button>
                                         </div>
                                     </form>
                                 </div>

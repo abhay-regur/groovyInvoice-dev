@@ -110,7 +110,9 @@ export default function LoginForm() {
                                             </div>
                                         </div>
                                         <div className="d-grid gap-2">
-                                            <button type="submit" name="btn-submit" className="btn btn-primary">Sign In</button>
+                                            <button type="submit" name="btn-submit" className="btn btn-primary">
+                                                <span>Sign In</span>
+                                            </button>
                                         </div>
                                     </form>
                                     <hr />
