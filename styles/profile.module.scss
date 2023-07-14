@@ -1,6 +1,7 @@
 $font-size-heading: 32px;
 $font-size-text: 15px;
 $primary-color: #3649AB;
+$primary-color-light: #5567c0;
 $secondary-color: #8790B0;
 $tertiary-color: #43CB80;
 $input-background-color: #F5FAFE;
@@ -187,20 +188,14 @@ $header-top-background: #EFF2FF;
                 font-weight: 600;
                 font-size: 14px;
                 color: white;
+                min-width: 100px;
 
-                &.companyInvoiceSavenSendButton {
-                    &:active {
-                        background: white;
+                &.companyInvoiceSaveSendButton {
+                    display: flex;
+                    justify-content: center;
 
-                        span {
-                            color: $primary-color;
-                        }
-
-                        svg {
-                            path {
-                                fill: $primary-color;
-                            }
-                        }
+                    &:disabled {
+                        padding-top: 15px;
                     }
 
                     span {
@@ -359,11 +354,6 @@ $header-top-background: #EFF2FF;
                         align-self: center;
                         border: none;
 
-                        &:active {
-                            background: $primary-color;
-                            color: white;
-                        }
-
                         svg {
                             height: 20px;
                             width: 20px;
@@ -439,20 +429,21 @@ $header-top-background: #EFF2FF;
                 border-radius: 6px;
                 font-weight: 600;
                 font-size: 14px;
-                color: white;
 
-                &.companyInvoiceSavenSendButton {
+                &.companyInvoiceSaveSendButton {
                     width: 100%;
+                    display: flex;
+                    justify-content: center;
 
-                    &:active {
-                        background: $primary-color;
-                        color: white;
+                    &:disabled {
+                        padding-top: 15px;
                     }
 
                     span {
                         display: flex;
                         text-align: center;
                         justify-content: center;
+                        color: white;
 
                         i {
                             display: flex;
@@ -462,6 +453,7 @@ $header-top-background: #EFF2FF;
                             svg {
                                 height: 20px;
                                 width: 20px;
+                                fill: white;
                             }
                         }
                     }
@@ -479,10 +471,12 @@ $header-top-background: #EFF2FF;
                             display: flex;
                             margin-right: 5px;
                             align-self: center;
+                            color: $primary-color;
 
                             svg {
                                 height: 20px;
                                 width: 20px;
+                                color: $primary-color;
                             }
                         }
                     }

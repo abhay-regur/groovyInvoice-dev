@@ -104,10 +104,28 @@ button {
 
   &.blue {
     color: white;
-    background: $primary-color;
+    background: $primary-color !important;
     border: 1px solid $primary-color;
 
+    svg {
+      path {
+        fill: white;
+      }
+    }
+
     &:hover {
+      background: $primary-color-hover;
+      border: 1px solid $primary-color-hover;
+      color: white;
+
+      svg {
+        path {
+          fill: white;
+        }
+      }
+    }
+
+    &:active {
       background: $primary-color-hover;
       border: 1px solid $primary-color-hover;
       color: white;
@@ -211,7 +229,14 @@ button {
 }
 
 .loading {
-  position: relative;
+  // position: relative;
+  display: flex;
+  justify-content: center;
+  min-height: 47px;
+
+  span {
+    display: none !important;
+  }
 }
 
 .loading::after {
@@ -219,11 +244,11 @@ button {
   background: url(../assets/icons/circle-notch-solid.svg) no-repeat top left;
   background-size: contain;
   cursor: pointer;
-  height: 13.5px;
-  width: 13.5px;
+  height: 15px;
+  width: 15px;
   position: absolute;
-  top: 11.5px;
-  right: 7px;
+  // top: 11.5px;
+  // right: 7px;
   animation: spin infinite 1s linear;
 }
 

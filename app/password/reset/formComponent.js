@@ -88,7 +88,9 @@ export default function ResetPasswordForm() {
                                                 </div>
                                             </div>
                                             <div className="d-grid gap-2">
-                                                <button type="submit" name='btn-submit' className="btn btn-primary">Reset Password</button>
+                                                <button type="submit" name='btn-submit' className="btn btn-primary">
+                                                    <span>Reset Password</span>
+                                                </button>
                                             </div>
                                         </form>
                                     )}
