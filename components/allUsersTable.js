@@ -1,6 +1,6 @@
 "use client"
 import styles from '../styles/user.module.scss';
-import { useContext, useRef } from 'react';
+import { useContext, useRef, useState } from 'react';
 import 'datatables.net-dt/js/dataTables.dataTables';
 import Image from 'next/image';
 import ReactDOM from "react-dom/client";
@@ -8,13 +8,14 @@ import defaultProfile from '../public/images/profile_Default.png';
 import { userActivate, userDeactivate } from '../services/user.service';
 import { ToastMsgContext } from '../context/ToastMsg.context';
 import FaPen from '../assets/icons/faPen.svg';
+import PageLoder from '../app/(protectedPages)/users/pageLoader.js';
 import 'datatables.net-dt/css/jquery.dataTables.min.css';
 import ServerSideDataTables from './serverSideDataTable';
 import Link from 'next/link';
 
 const AllUserTable = () => {
     const { setToastList } = useContext(ToastMsgContext);
-
+    const [isPageLoading, setIsPageLoading] = useState(true);
 
     const dtRef = useRef();
 
@@ -98,6 +99,7 @@ const AllUserTable = () => {
             console.log(result.data.message);
         }
     }
+
     return (
         <div className={`${styles.comapanyInoviceUserTableWrapper} row`}>
             <div className="col-md-4 col-9 mb-3 p-0">
@@ -105,9 +107,10 @@ const AllUserTable = () => {
                     <label className="input-group-text">Search:</label>
                     <input type="search" className="form-control" placeholder="Name" aria-controls="table-input" />
                 </div>
+                <PageLoder isPageLoading={isPageLoading} />
             </div>
             <div className={`col-sm-12 p-0`}>
-                <ServerSideDataTables ref={dtRef} id="manage-user--table" {...dtOptions} className={`table responsive nowrap`}>
+                <ServerSideDataTables ref={dtRef} id="manage-user--table" {...dtOptions} className={`table responsive nowrap`} setIsPageLoading={setIsPageLoading}>
                     <thead>
                         <tr>
                             <th scope="col" className="ps-3" data-priority="1" >User Name</th>
