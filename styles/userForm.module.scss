@@ -218,6 +218,7 @@ $transprant: rgba(0, 0, 0, 0);
                     &.companyInvoiceSavenSendButton {
                         &:active {
                             background: white;
+                            color: white !important;
 
                             span {
                                 color: $primary-color;
@@ -468,6 +469,7 @@ $transprant: rgba(0, 0, 0, 0);
                         &.companyInvoiceSavenSendButton {
                             &:active {
                                 background: white;
+                                color: white !important;
 
                                 span {
                                     color: $primary-color;
@@ -722,6 +724,7 @@ $transprant: rgba(0, 0, 0, 0);
                         &.companyInvoiceSavenSendButton {
                             &:active {
                                 background: white;
+                                color: white !important;
 
                                 span {
                                     color: $primary-color;

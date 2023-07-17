@@ -1,6 +1,6 @@
 "use client"
 import Link from 'next/link';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import FaCirclePlus from "../../../assets/icons/faCirclePlus.svg";
 import styles from '../../../styles/user.module.scss';
 import { NavExpandedState } from '../../../context/NavState.context';
@@ -16,7 +16,7 @@ export default function UserListComponnt() {
     return (
         <div className={styles.container}>
             <main className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
-                <div className="container-fluid">
+                <div className="container-fluid position-relative">
                     <div className={`${styles.comapnyInvoiceHeadingWrapper} row`}>
                         <div className="col-6">
                             <h2 className={`${styles.title}`}>

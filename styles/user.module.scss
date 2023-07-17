@@ -5,6 +5,8 @@ $secondary-color: #8790B0;
 $tertiary-color: #43CB80;
 $red-color: #DA5252;
 
+$primary-background-clear: #ffffff00;
+$primary-background: #f5fafe;
 $header-top-border-color: #D3D8EB;
 $header-top-background: #EFF2FF;
 $table-head-background: #EEF5FC;
@@ -13,6 +15,27 @@ $table-pagination-background: #D9E6F3;
 
 .main {
     height: inherit;
+
+    .companyMainLoadingWrapper {
+        width: 100%;
+
+        .containerLoading {
+            background: $primary-background;
+            display: flex;
+            // height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            div {
+                height: 10rem;
+                width: 10rem;
+                color: $tertiary-color;
+                border-width: 1.25em;
+            }
+        }
+    }
 }
 
 @media screen and (min-width: 676px) {
@@ -400,7 +423,27 @@ $table-pagination-background: #D9E6F3;
         .comapanyInoviceUserTableWrapper {
             margin-top: 50px;
             background: none;
-            // overflow-x: auto;
+
+            .filter_wrapper {
+                label {
+                    color: $primary-color;
+                    background: $table-pagination-background;
+                    border-radius: 8px 0 0 8px;
+                    margin-bottom: 10px;
+                    margin-top: 10px;
+                }
+
+                input {
+                    font-weight: 500;
+                    font-size: 14px;
+                    color: $primary-color;
+                    background: #ffffff;
+                    border: 1px solid #e3ebf2;
+                    border-radius: 0 8px 8px 0;
+                    margin-bottom: 10px;
+                    margin-top: 10px;
+                }
+            }
 
             table {
                 // min-width: 817px;

@@ -121,6 +121,9 @@ export default function ProfileComponent() {
                 title: 'Your password is updated!',
                 description: result.data.message,
             }]);
+            setUserCurrentPassword('');
+            setUserNewPassword('');
+            setUserConfirmPassword('');
         } catch (error) {
             setPasswordErrors(error.response.data.message);
         }
@@ -143,7 +146,7 @@ export default function ProfileComponent() {
                     <main className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
                         <div className="container-fluid">
                             <div className={`${styles.comapnyInvoiceHeadingWrapper} row`}>
-                                <div className="col-6">
+                                <div className="col-12 col-md-6">
                                     <h2 className={`${styles.title}`}>
                                         My Profile
                                     </h2>
