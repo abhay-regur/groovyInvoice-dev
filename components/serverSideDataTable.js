@@ -18,7 +18,6 @@ function ServerSideDT(props, ref) {
     const userHttpService = new UserHTTPService('user');
     let alreadyInitializing = false
     const searchPlaceholder = "Name";
-    const [isLoading, setIsLoading] = useState(true);
     useImperativeHandle(ref, () => ({
         reload(cb = null, resetPaging = true) {
             const table = $('#' + props.id).DataTable()
@@ -77,8 +76,8 @@ function ServerSideDT(props, ref) {
                 props.setIsPageLoading(false);
             },
             "drawCallback": function () {
-                if (isLoading != false) {
-                    setIsLoading(false);
+                if (props.isLoading != false) {
+                    props.setIsLoading(false);
                 }
             },
             dom: '<"table-container"<"filter-wrapper"fl>rt><"bottom"ip><"clear">',
@@ -102,13 +101,12 @@ function ServerSideDT(props, ref) {
     useEffect(() => {
         alreadyInitializing = true;
         initDT();
-        // $('.dataTables_filter').style.display = "none";
     }, [])
 
     return (<>
         <table id={props.id} className={styles.companyCustomerTable + " " + props.className} width="100%">
             {props.children}
-            <TableLoading isLoading={isLoading} columnLength={props.columns.length} rowsLength={4} isProfile={true} />
+            <TableLoading isLoading={props.isLoading} columnLength={props.columns.length} rowsLength={4} isProfile={true} />
         </table>
     </>)
 }
