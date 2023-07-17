@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useEffect, forwardRef, useImperativeHandle, useState } from 'react'
 import styles from '../styles/user.module.scss';
-import Loading from '../app/(protectedPages)/users/loading';
+import TableLoading from '../app/(protectedPages)/users/loading';
 import $ from 'jquery';
 import 'datatables.net-dt/js/dataTables.dataTables'
 import 'datatables.net-responsive-dt';
@@ -10,6 +10,9 @@ import '../styles/table.style.scss';
 import { getTokenKey } from '../services/auth.service'
 import { getToken } from '../services/token.service'
 import UserHTTPService from '../services/user-http.service';
+
+
+var delayInMilliseconds = 500;
 
 function ServerSideDT(props, ref) {
     const userHttpService = new UserHTTPService('user');
@@ -70,12 +73,13 @@ function ServerSideDT(props, ref) {
                 { responsivePriority: 1, targets: -1 }
             ],
             "initComplete": function () {
+                $('.dataTables_filter').remove();
+                props.setIsPageLoading(false);
+            },
+            "drawCallback": function () {
                 if (isLoading != false) {
                     setIsLoading(false);
                 }
-            },
-            "drawCallback": function () {
-                $('.dataTables_filter').remove();
             },
             dom: '<"table-container"<"filter-wrapper"fl>rt><"bottom"ip><"clear">',
             language: {
@@ -90,19 +94,21 @@ function ServerSideDT(props, ref) {
 
         var table = $('#' + props.id).DataTable();
         $('#table_filter input').on('keyup', function () {
+            table.search($(this).val()).clear();
             table.search($(this).val()).draw();
         });
     }
 
     useEffect(() => {
-        alreadyInitializing = true
-        initDT()
+        alreadyInitializing = true;
+        initDT();
+        // $('.dataTables_filter').style.display = "none";
     }, [])
 
     return (<>
         <table id={props.id} className={styles.companyCustomerTable + " " + props.className} width="100%">
             {props.children}
-            <Loading isLoading={isLoading} columnLength={props.columns.length} rowsLength={4} isProfile={true} />
+            <TableLoading isLoading={isLoading} columnLength={props.columns.length} rowsLength={4} isProfile={true} />
         </table>
     </>)
 }
