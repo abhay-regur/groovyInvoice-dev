@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from 'react';
-import { getCountries, getStates } from '../../../services/profile.service';
+import { getCountries, getStates } from '../../../services/countriesState.service';
 import FaSave from '../../../assets/icons/faSave.svg';
 import FaCircleXmark from '../../../assets/icons/faCircleXmark.svg';
 import SelectComponent from '../../../components/selectComponent';
