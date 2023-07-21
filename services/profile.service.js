@@ -24,19 +24,3 @@ export const updateCurrentPassword = async (data) => {
         throw error;
     }
 }
-
-export const getCountries = async () => {
-    try {
-        return await httpService.get('countries');
-    } catch (error) {
-        throw error;
-    }
-}
-
-export const getStates = async (id) => {
-    try {
-        return await httpService.get('countries/' + id + '/states');
-    } catch (error) {
-        throw error;
-    }
-}
