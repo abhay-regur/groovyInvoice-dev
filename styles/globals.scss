@@ -56,12 +56,30 @@ body {
       color: $secondary-color !important;
       background-color: #e9ecef !important;
     }
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:focus {
+      transition: background-color 600000s 0s, color 600000s 0s;
+    }
   }
 
   select.form-select {
     -webkit-appearance: auto;
     appearance: auto;
     color: $primary-color;
+
+    &:disabled {
+      color: $secondary-color !important;
+      background-color: #e9ecef !important;
+    }
+
+  }
+
+  textarea {
+    &:disabled {
+      color: $secondary-color !important;
+      background-color: #e9ecef !important;
+    }
   }
 
   #__next,

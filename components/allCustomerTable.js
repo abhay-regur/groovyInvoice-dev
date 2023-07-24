@@ -1,214 +1,98 @@
+"use client"
 import styles from '../styles/customers.module.scss';
+import { useContext, useRef, useState } from 'react';
+import $ from 'jquery';
+import 'datatables.net-dt/js/dataTables.dataTables';
 import React from 'react';
+import ReactDOM from "react-dom/client";
 import Image from 'next/image';
 import Link from 'next/link';
-import { useTable, usePagination } from 'react-table';
+import 'datatables.net-dt/css/jquery.dataTables.min.css';
 import defaultProfile from '../public/images/profile_Default.png';
-import TablePagination from "../components/tablePagination.js";
+import PageLoader from '../app/(protectedPages)/customers/loading.js';
+import ServerSideDataTables from './serverSideDataTable';
 import FaPen from '../assets/icons/faPen.svg';
 
-const AllCustomerTable = ({ ItemsData }) => {
+const AllCustomerTable = () => {
+    const [isPageLoading, setIsPageLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
-    const columns = React.useMemo(
-        () => [
+    const dtRef = useRef();
+
+    const draw_userName = (row) => {
+        return (
+            <>
+                <div className={`${styles.companyCustomerTableCustomerImage}`}>
+                    <Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} />
+                    <span className={`${styles.companyCustomerTableCustomerNameWrapper}`}>
+                        <div className={`${styles.companyCustomerTableCustomerName}`} >
+                            {row.firstName + ' ' + row.lastName}
+                        </div>
+                        <Link className={`${styles.companyCustomerTableCustomerEdit} ps-2`} href={`/customers/${row.id}/edit`}>
+                            <FaPen />
+                        </Link>
+                    </span>
+                </div>
+            </>
+        )
+    }
+
+    const dtOptions = {
+        ajaxUrl: '/customers/dt/list',
+        authUserType: 'user',
+        columns: [
             {
-                Header: 'Customer Name',
-                accessor: 'customerName',
+                data: 'firstName', name: 'firstName', searchable: true,
+                createdCell: function (cell, cellData, rowData, rowIndex, colIndex) {
+                    const root = ReactDOM.createRoot(cell)
+                    root.render(draw_userName(rowData))
+                },
+                searchable: true,
+                orderable: true,
             },
             {
-                Header: 'Contact Number',
-                accessor: 'contactNumber',
+                data: 'lastName', name: 'lastName', searchable: true, visible: false,
+                orderable: false,
             },
             {
-                Header: 'Company Name',
-                accessor: 'companyName',
+                data: 'cellNumber', name: 'cellNumber', searchable: true,
+                orderable: true,
             },
             {
-                Header: 'Email Address',
-                accessor: 'emailAddress',
+                data: 'email', name: 'email', searchable: true,
+                orderable: true,
             },
             {
-                Header: 'Receivables',
-                accessor: 'receivables',
-            },
+                data: 'cellNumber', name: 'cellNumber', searchable: false,
+                orderable: false,
+            }
         ],
-        []
-    )
-
-    const data = React.useMemo(
-        () => [
-            {
-                customerName: <div className={`${styles.companyCustomerTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyCustomerTableCustomerNameWrapper}`}><div className={`${styles.companyCustomerTableCustomerName}`} >Maximus Tempor</div><Link href={'/customers/1001/edit'}><div className={`${styles.companyCustomerTableCustomerEdit} ps-2`}><FaPen /></div></Link></span></div>,
-                contactNumber: <><div className={`${styles.companyCustomerTableContactNumber}`}>408-545-4861</div></>,
-                companyName: <span className={`${styles.companyCustomerCompanyName}`}>Regur Technology Solutions</span>,
-                emailAddress: <span className={`${styles.companyCustomerTableEmailAddress}`}>test@gmail.com</span>,
-                receivables: <span className={`${styles.companyCustomerTableReceivables}`}>Rs. 42,000.00</span>,
-            },
-            {
-                customerName: <div className={`${styles.companyCustomerTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyCustomerTableCustomerNameWrapper}`}><div className={`${styles.companyCustomerTableCustomerName}`} >Maximus Tempor</div><Link href={'/customers/1001/edit'}><div className={`${styles.companyCustomerTableCustomerEdit} ps-2`}><FaPen /></div></Link></span></div>,
-                contactNumber: <><div className={`${styles.companyCustomerTableContactNumber}`}>408-545-4861</div></>,
-                companyName: <span className={`${styles.companyCustomerCompanyName}`}>Regur Technology Solutions</span>,
-                emailAddress: <span className={`${styles.companyCustomerTableEmailAddress}`}>test@gmail.com</span>,
-                receivables: <span className={`${styles.companyCustomerTableReceivables}`}>Rs. 42,000.00</span>,
-            },
-            {
-                customerName: <div className={`${styles.companyCustomerTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyCustomerTableCustomerNameWrapper}`}><div className={`${styles.companyCustomerTableCustomerName}`} >Maximus Tempor</div><Link href={'/customers/1001/edit'}><div className={`${styles.companyCustomerTableCustomerEdit} ps-2`}><FaPen /></div></Link></span></div>,
-                contactNumber: <><div className={`${styles.companyCustomerTableContactNumber}`}>408-545-4861</div></>,
-                companyName: <span className={`${styles.companyCustomerCompanyName}`}>Regur Technology Solutions</span>,
-                emailAddress: <span className={`${styles.companyCustomerTableEmailAddress}`}>test@gmail.com</span>,
-                receivables: <span className={`${styles.companyCustomerTableReceivables}`}>Rs. 42,000.00</span>,
-            },
-            {
-                customerName: <div className={`${styles.companyCustomerTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyCustomerTableCustomerNameWrapper}`}><div className={`${styles.companyCustomerTableCustomerName}`} >Maximus Tempor</div><Link href={'/customers/1001/edit'}><div className={`${styles.companyCustomerTableCustomerEdit} ps-2`}><FaPen /></div></Link></span></div>,
-                contactNumber: <><div className={`${styles.companyCustomerTableContactNumber}`}>408-545-4861</div></>,
-                companyName: <span className={`${styles.companyCustomerCompanyName}`}>Regur Technology Solutions</span>,
-                emailAddress: <span className={`${styles.companyCustomerTableEmailAddress}`}>test@gmail.com</span>,
-                receivables: <span className={`${styles.companyCustomerTableReceivables}`}>Rs. 42,000.00</span>,
-            },
-            {
-                customerName: <div className={`${styles.companyCustomerTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyCustomerTableCustomerNameWrapper}`}><div className={`${styles.companyCustomerTableCustomerName}`} >Maximus Tempor</div><Link href={'/customers/1001/edit'}><div className={`${styles.companyCustomerTableCustomerEdit} ps-2`}><FaPen /></div></Link></span></div>,
-                contactNumber: <><div className={`${styles.companyCustomerTableContactNumber}`}>408-545-4861</div></>,
-                companyName: <span className={`${styles.companyCustomerCompanyName}`}>Regur Technology Solutions</span>,
-                emailAddress: <span className={`${styles.companyCustomerTableEmailAddress}`}>test@gmail.com</span>,
-                receivables: <span className={`${styles.companyCustomerTableReceivables}`}>Rs. 42,000.00</span>,
-            },
-            {
-                customerName: <div className={`${styles.companyCustomerTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyCustomerTableCustomerNameWrapper}`}><div className={`${styles.companyCustomerTableCustomerName}`} >Maximus Tempor</div><Link href={'/customers/1001/edit'}><div className={`${styles.companyCustomerTableCustomerEdit} ps-2`}><FaPen /></div></Link></span></div>,
-                contactNumber: <><div className={`${styles.companyCustomerTableContactNumber}`}>408-545-4861</div></>,
-                companyName: <span className={`${styles.companyCustomerCompanyName}`}>Regur Technology Solutions</span>,
-                emailAddress: <span className={`${styles.companyCustomerTableEmailAddress}`}>test@gmail.com</span>,
-                receivables: <span className={`${styles.companyCustomerTableReceivables}`}>Rs. 42,000.00</span>,
-            },
-            {
-                customerName: <div className={`${styles.companyCustomerTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyCustomerTableCustomerNameWrapper}`}><div className={`${styles.companyCustomerTableCustomerName}`} >Maximus Tempor</div><Link href={'/customers/1001/edit'}><div className={`${styles.companyCustomerTableCustomerEdit} ps-2`}><FaPen /></div></Link></span></div>,
-                contactNumber: <><div className={`${styles.companyCustomerTableContactNumber}`}>408-545-4861</div></>,
-                companyName: <span className={`${styles.companyCustomerCompanyName}`}>Regur Technology Solutions</span>,
-                emailAddress: <span className={`${styles.companyCustomerTableEmailAddress}`}>test@gmail.com</span>,
-                receivables: <span className={`${styles.companyCustomerTableReceivables}`}>Rs. 42,000.00</span>,
-            },
-            {
-                customerName: <div className={`${styles.companyCustomerTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyCustomerTableCustomerNameWrapper}`}><div className={`${styles.companyCustomerTableCustomerName}`} >Maximus Tempor</div><Link href={'/customers/1001/edit'}><div className={`${styles.companyCustomerTableCustomerEdit} ps-2`}><FaPen /></div></Link></span></div>,
-                contactNumber: <><div className={`${styles.companyCustomerTableContactNumber}`}>408-545-4861</div></>,
-                companyName: <span className={`${styles.companyCustomerCompanyName}`}>Regur Technology Solutions</span>,
-                emailAddress: <span className={`${styles.companyCustomerTableEmailAddress}`}>test@gmail.com</span>,
-                receivables: <span className={`${styles.companyCustomerTableReceivables}`}>Rs. 42,000.00</span>,
-            },
-            {
-                customerName: <div className={`${styles.companyCustomerTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyCustomerTableCustomerNameWrapper}`}><div className={`${styles.companyCustomerTableCustomerName}`} >Maximus Tempor</div><Link href={'/customers/1001/edit'}><div className={`${styles.companyCustomerTableCustomerEdit} ps-2`}><FaPen /></div></Link></span></div>,
-                contactNumber: <><div className={`${styles.companyCustomerTableContactNumber}`}>408-545-4861</div></>,
-                companyName: <span className={`${styles.companyCustomerCompanyName}`}>Regur Technology Solutions</span>,
-                emailAddress: <span className={`${styles.companyCustomerTableEmailAddress}`}>test@gmail.com</span>,
-                receivables: <span className={`${styles.companyCustomerTableReceivables}`}>Rs. 42,000.00</span>,
-            },
-            {
-                customerName: <div className={`${styles.companyCustomerTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyCustomerTableCustomerNameWrapper}`}><div className={`${styles.companyCustomerTableCustomerName}`} >Maximus Tempor</div><Link href={'/customers/1001/edit'}><div className={`${styles.companyCustomerTableCustomerEdit} ps-2`}><FaPen /></div></Link></span></div>,
-                contactNumber: <><div className={`${styles.companyCustomerTableContactNumber}`}>408-545-4861</div></>,
-                companyName: <span className={`${styles.companyCustomerCompanyName}`}>Regur Technology Solutions</span>,
-                emailAddress: <span className={`${styles.companyCustomerTableEmailAddress}`}>test@gmail.com</span>,
-                receivables: <span className={`${styles.companyCustomerTableReceivables}`}>Rs. 42,000.00</span>,
-            },
-            {
-                customerName: <div className={`${styles.companyCustomerTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyCustomerTableCustomerNameWrapper}`}><div className={`${styles.companyCustomerTableCustomerName}`} >Maximus Tempor</div><Link href={'/customers/1001/edit'}><div className={`${styles.companyCustomerTableCustomerEdit} ps-2`}><FaPen /></div></Link></span></div>,
-                contactNumber: <><div className={`${styles.companyCustomerTableContactNumber}`}>408-545-4861</div></>,
-                companyName: <span className={`${styles.companyCustomerCompanyName}`}>Regur Technology Solutions</span>,
-                emailAddress: <span className={`${styles.companyCustomerTableEmailAddress}`}>test@gmail.com</span>,
-                receivables: <span className={`${styles.companyCustomerTableReceivables}`}>Rs. 42,000.00</span>,
-            },
-            {
-                customerName: <div className={`${styles.companyCustomerTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyCustomerTableCustomerNameWrapper}`}><div className={`${styles.companyCustomerTableCustomerName}`} >Maximus Tempor</div><Link href={'/customers/1001/edit'}><div className={`${styles.companyCustomerTableCustomerEdit} ps-2`}><FaPen /></div></Link></span></div>,
-                contactNumber: <><div className={`${styles.companyCustomerTableContactNumber}`}>408-545-4861</div></>,
-                companyName: <span className={`${styles.companyCustomerCompanyName}`}>Regur Technology Solutions</span>,
-                emailAddress: <span className={`${styles.companyCustomerTableEmailAddress}`}>test@gmail.com</span>,
-                receivables: <span className={`${styles.companyCustomerTableReceivables}`}>Rs. 42,000.00</span>,
-            },
-            {
-                customerName: <div className={`${styles.companyCustomerTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyCustomerTableCustomerNameWrapper}`}><div className={`${styles.companyCustomerTableCustomerName}`} >Maximus Tempor</div><Link href={'/customers/1001/edit'}><div className={`${styles.companyCustomerTableCustomerEdit} ps-2`}><FaPen /></div></Link></span></div>,
-                contactNumber: <><div className={`${styles.companyCustomerTableContactNumber}`}>408-545-4861</div></>,
-                companyName: <span className={`${styles.companyCustomerCompanyName}`}>Regur Technology Solutions</span>,
-                emailAddress: <span className={`${styles.companyCustomerTableEmailAddress}`}>test@gmail.com</span>,
-                receivables: <span className={`${styles.companyCustomerTableReceivables}`}>Rs. 42,000.00</span>,
-            },
-            {
-                customerName: <div className={`${styles.companyCustomerTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyCustomerTableCustomerNameWrapper}`}><div className={`${styles.companyCustomerTableCustomerName}`} >Maximus Tempor</div><Link href={'/customers/1001/edit'}><div className={`${styles.companyCustomerTableCustomerEdit} ps-2`}><FaPen /></div></Link></span></div>,
-                contactNumber: <><div className={`${styles.companyCustomerTableContactNumber}`}>408-545-4861</div></>,
-                companyName: <span className={`${styles.companyCustomerCompanyName}`}>Regur Technology Solutions</span>,
-                emailAddress: <span className={`${styles.companyCustomerTableEmailAddress}`}>test@gmail.com</span>,
-                receivables: <span className={`${styles.companyCustomerTableReceivables}`}>Rs. 42,000.00</span>,
-            },
-            {
-                customerName: <div className={`${styles.companyCustomerTableCustomerImage}`}><Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} /><span className={`${styles.companyCustomerTableCustomerNameWrapper}`}><div className={`${styles.companyCustomerTableCustomerName}`} >Maximus Tempor</div><Link href={'/customers/1001/edit'}><div className={`${styles.companyCustomerTableCustomerEdit} ps-2`}><FaPen /></div></Link></span></div>,
-                contactNumber: <><div className={`${styles.companyCustomerTableContactNumber}`}>408-545-4861</div></>,
-                companyName: <span className={`${styles.companyCustomerCompanyName}`}>Regur Technology Solutions</span>,
-                emailAddress: <span className={`${styles.companyCustomerTableEmailAddress}`}>test@gmail.com</span>,
-                receivables: <span className={`${styles.companyCustomerTableReceivables}`}>Rs. 42,000.00</span>,
-            },
-        ],
-        []
-    )
-
-    const {
-        getTableProps,
-        getTableBodyProps,
-        headerGroups,
-        page,
-        prepareRow,
-        canPreviousPage,
-        canNextPage,
-        pageOptions,
-        nextPage,
-        previousPage,
-        gotoPage,
-        state: { pageIndex, pageSize },
-    } = useTable({
-        columns,
-        data,
-        initialState: { pageIndex: 0 },
-    },
-        usePagination);
+    }
 
 
     return (
-        <div className={`row`}>
-            <div className={`${styles.comapanyInoviceCustomerTableWrapper} col-sm-12 p-0`}>
-                <table className={`${styles.companyCustomerTable} table`} {...getTableProps()}>
-                    <thead>
-                        {headerGroups.map((headerGroup, i) => (
-                            <tr key={i} {...headerGroup.getHeaderGroupProps()}>
-                                {headerGroup.headers.map(column => (
-                                    <th key={i} scope="col" className="ps-3" {...column.getHeaderProps()}>{column.render("Header")}</th>
-                                ))}
-                            </tr>
-                        ))}
-                    </thead>
-                    <tbody {...getTableBodyProps()}>
-                        {page.map((row, i) => {
-                            prepareRow(row);
-                            return (
-                                <tr key={i} {...row.getRowProps()}>
-                                    {row.cells.map(cell => {
-                                        return <td key={i} {...cell.getCellProps()}>{cell.render("Cell")}</td>;
-                                    })}
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
-            </div>
-            <div className="col-sm-12 p-0 mb-2">
-                <div className={`${styles.companyCustomerTablePaginationWrapper} row`}>
-                    <div className="col-12">
-                        <TablePagination
-                            pageIndex={pageIndex}
-                            pageOptions={pageOptions}
-                            previousPage={previousPage}
-                            canPreviousPage={canPreviousPage}
-                            nextPage={nextPage}
-                            canNextPage={canNextPage}
-                            gotoPage={gotoPage}
-                            styles={styles}
-                        />
-                    </div>
+        <div className={`${styles.comapanyInoviceCustomerTableWrapper} row`}>
+            <div className="col-md-4 col-9 mb-3 p-0">
+                <div id="table_filter" className={`${styles.filter_wrapper} input-group`}>
+                    <label className="input-group-text">Search:</label>
+                    <input type="search" className="form-control" placeholder="Name" aria-controls="table-input" />
                 </div>
+                {/* <PageLoader isPageLoading={isPageLoading} /> */}
+            </div>
+            <div className={`col-sm-12 p-0`}>
+                <ServerSideDataTables ref={dtRef} id="manage-customer--table" {...dtOptions} className={`${styles.companyCustomerTable}table table-responsive responsive nowrap`} setIsPageLoading={setIsPageLoading} isLoading={isLoading} setIsLoading={setIsLoading}>
+                    <thead>
+                        <tr>
+                            <th scope="col" className="ps-3" data-priority="1" >User Name</th>
+                            <th scope="col" className="ps-3" data-priority="99" >Last Name</th>
+                            <th scope="col" className="ps-3" data-priority="99">Contact Number</th>
+                            <th scope="col" className="ps-3" data-priority="99">Company Name</th>
+                            <th scope="col" className="ps-3" data-priority="99">Email Address</th>
+                            <th scope="col" className="ps-3" data-priority="99" >Receivables</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </ServerSideDataTables>
             </div>
         </div>
 

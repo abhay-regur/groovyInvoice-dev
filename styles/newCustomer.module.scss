@@ -26,466 +26,50 @@ $transprant: rgba(0, 0, 0, 0);
 }
 
 //Big Screen
-.main {
-    margin: auto 97px;
-    margin-left: 135px;
-    transition: all 0.35s;
-    margin-bottom: 120px;
-
-    &.expanded {
-        margin-left: 329px !important;
+@media screen and (min-width: 993px) {
+    .main {
+        margin: auto 97px;
+        margin-left: 135px;
         transition: all 0.35s;
-    }
+        margin-bottom: 120px;
 
-    .title {
-        font-weight: 700;
-        font-size: 36px;
-        line-height: 45px;
-        color: $primary-color;
-        margin-top: 56px;
-        margin-bottom: 49px;
-        padding-left: 12px;
-    }
+        &.expanded {
+            margin-left: 329px !important;
+            transition: all 0.35s;
+        }
 
-    .card {
-        border: 1px solid $primary-border-color;
-        border-radius: 10px;
-        padding: 31px 33px;
+        .title {
+            font-weight: 700;
+            font-size: 36px;
+            line-height: 45px;
+            color: $primary-color;
+            margin-top: 56px;
+            margin-bottom: 49px;
+            padding-left: 12px;
+        }
 
-        .cardBody {
+        .card {
+            border: 1px solid $primary-border-color;
+            border-radius: 10px;
+            padding: 31px 33px;
 
-            .cardTitle {
-                color: $primary-color;
-                font-weight: 700;
-                font-size: 22px;
-                line-height: 28px;
-            }
+            .cardBody {
 
-            hr {
-                margin-top: 14px;
-            }
-
-            .companyCustomerTypeOptionWrapper {
-                display: flex;
-
-                label {
-                    display: flex;
-                    align-items: center;
-                    font-weight: 600;
-                    font-size: 14px;
+                .cardTitle {
                     color: $primary-color;
+                    font-weight: 700;
+                    font-size: 22px;
+                    line-height: 28px;
                 }
 
-                .companyCustomerTypeSelectorMainWrapper {
+                hr {
+                    margin-top: 14px;
+                }
+
+                .companyCustomerTypeOptionWrapper {
                     display: flex;
 
-                    .customerTypeBusinessRadioButtonWrapper,
-                    .customerTypeIndividualRadioButtonWrapper {
-                        input {
-                            height: 22px;
-                            width: 22px;
-                            visibility: hidden;
-                        }
-
-                        span {
-                            color: $secondary-color;
-                            margin-right: 15px;
-                        }
-
-                        [type="radio"]:checked,
-                        [type="radio"]:not(:checked) {
-                            position: absolute;
-                            left: -9999px;
-
-                            &:checked+span,
-                            &:not(:checked)+span {
-                                position: relative;
-                                padding-left: 28px;
-                                cursor: pointer;
-                                font-weight: 600;
-                                font-size: 14px;
-                                line-height: 20px;
-                                display: inline-block;
-                                color: $secondary-color;
-                            }
-
-                            &:checked+span:before,
-                            &:not(:checked)+span:before {
-                                content: '';
-                                position: absolute;
-                                left: 0;
-                                top: 0;
-                                width: 22px;
-                                height: 22px;
-                                border: 1.5px solid $primary-color;
-                                border-radius: 100%;
-                                background: white;
-                            }
-
-                            &:checked+span:after,
-                            &:not(:checked)+span:after {
-                                content: '';
-                                width: 14px;
-                                height: 14px;
-                                background: $primary-color;
-                                position: absolute;
-                                top: 4px;
-                                left: 4px;
-                                border-radius: 100%;
-                                -webkit-transition: all 0.2s ease;
-                                transition: all 0.2s ease;
-                            }
-
-                            &:not(:checked)+span:after {
-                                opacity: 0;
-                                -webkit-transform: scale(0);
-                                transform: scale(0);
-                            }
-
-                            &:checked+span:after {
-                                opacity: 1;
-                                -webkit-transform: scale(1);
-                                transform: scale(1);
-                            }
-                        }
-                    }
-                }
-            }
-
-            .companyInvoiceNameWrapper {
-
-                label {
-                    align-items: center;
-                    font-weight: 600;
-                    font-size: 14px;
-                    color: $primary-color;
-                }
-
-                .companySalutationSelect {
-                    font-weight: 400;
-                    font-size: 14px;
-                    color: $primary-color;
-                    background: $input-background-color;
-                    border: 1px solid $primary-border-color;
-                    border-radius: 8px;
-                }
-
-                input {
-                    font-weight: 400;
-                    font-size: 14px;
-                    color: $secondary-color;
-                    background: $input-background-color;
-                    border: 1px solid $primary-border-color;
-                    border-radius: 8px;
-                }
-
-
-            }
-
-            .companyInvoiceCompanyNameWrapper {
-
-                .companyInvoiceCompanyNameLabel {
-                    display: flex;
-                    align-items: center;
-                    font-weight: 600;
-                    font-size: 14px;
-                    color: $primary-color;
-                }
-
-                input {
-                    font-weight: 400;
-                    font-size: 14px;
-                    color: $secondary-color;
-                    background: $input-background-color;
-                    border: 1px solid $primary-border-color;
-                    border-radius: 8px;
-                }
-            }
-
-            .companyInvoiceCompanyDisplayNameWrapper {
-
-                .companyInvoiceCompanyDisplayNamelabel {
-                    display: flex;
-                    align-items: center;
-                    font-weight: 600;
-                    font-size: 14px;
-                    color: $primary-color;
-                }
-
-                .companyInvoiceCompanyDisplaySelect {
-                    font-weight: 400;
-                    font-size: 14px;
-                    color: $primary-color;
-                    background: $input-background-color;
-                    border: 1px solid $primary-border-color;
-                    border-radius: 8px;
-                }
-
-            }
-
-            .companyInvoiceCompanyEmailWrapper {
-                svg {
-                    margin-left: 7px;
-                    width: 19px;
-                    height: 19px;
-                }
-
-                .companyInvoiceCompanyEmailLabel {
-                    display: flex;
-                    align-items: center;
-                    font-weight: 600;
-                    font-size: 14px;
-                    color: $primary-color;
-                }
-
-                input {
-                    font-weight: 400;
-                    font-size: 14px;
-                    color: $secondary-color;
-                    background: $input-background-color;
-                    border: 1px solid $primary-border-color;
-                    border-radius: 8px;
-                }
-
-            }
-
-            .companyInvoiceCompanyPhone {
-                svg {
-                    margin-left: 7px;
-                    width: 19px;
-                    height: 19px;
-                }
-
-                .companyInvoiceCompanyPhoneLabel {
-                    display: flex;
-                    align-items: center;
-                    font-weight: 600;
-                    font-size: 14px;
-                    color: $primary-color;
-                }
-
-                input {
-                    font-weight: 400;
-                    font-size: 14px;
-                    color: $secondary-color;
-                    background: $input-background-color;
-                    border: 1px solid $primary-border-color;
-                    border-radius: 8px;
-                }
-
-            }
-
-            .companyInvoiceCompanySkypeIDWrapper {
-
-                .companyInvoiceCompanySkypeIDLabel {
-                    display: flex;
-                    align-items: center;
-                    font-weight: 600;
-                    font-size: 14px;
-                    color: $primary-color;
-                }
-
-                span {
-                    border: 1px solid $primary-border-color;
-                }
-
-                input {
-                    font-weight: 400;
-                    font-size: 14px;
-                    color: $secondary-color;
-                    background: $input-background-color;
-                    border: 1px solid $primary-border-color;
-                    border-radius: 0 8px 8px 0 !important;
-                }
-
-            }
-
-            .companyInvoiceDesignationWrapper {
-
-                .companyInvoiceDesignationlabel {
-                    display: flex;
-                    align-items: center;
-                    font-weight: 600;
-                    font-size: 14px;
-                    color: $primary-color;
-                }
-
-                input {
-                    font-weight: 400;
-                    font-size: 14px;
-                    color: $secondary-color;
-                    background: $input-background-color;
-                    border: 1px solid $primary-border-color;
-                    border-radius: 8px;
-                }
-
-            }
-
-            .companyInvoiceDepartmentWrapper {
-
-                .companyInvoiceDepartmentLabel {
-                    display: flex;
-                    align-items: center;
-                    font-weight: 600;
-                    font-size: 14px;
-                    color: $primary-color;
-                }
-
-                input {
-                    font-weight: 400;
-                    font-size: 14px;
-                    color: $secondary-color;
-                    background: $input-background-color;
-                    border: 1px solid $primary-border-color;
-                    border-radius: 8px;
-                }
-
-            }
-
-            .companyInvoiceCompanyWebsiteWrapper {
-
-                .companyInvoiceCompanyWebsiteLabel {
-                    display: flex;
-                    align-items: center;
-                    font-weight: 600;
-                    font-size: 14px;
-                    color: $primary-color;
-                }
-
-                input {
-                    font-weight: 400;
-                    font-size: 14px;
-                    color: $secondary-color;
-                    background: $input-background-color;
-                    border: 1px solid $primary-border-color;
-                    border-radius: 8px;
-                }
-
-            }
-
-            .companyInvoiceTabViewWrapper {
-                margin-top: 56px;
-
-                .nav_tabs {
-                    border-bottom: 1px solid $secondary-border-color;
-                    cursor: pointer;
-
-                    .nav_item {
-                        color: $secondary-color;
-                        padding-bottom: 15px;
-                        margin-right: 24px;
-                        font-weight: 600;
-                        font-size: 14px;
-                        -webkit-transition: all 0.2s, opacity 0.5s linear;
-                        transition: all 0.2s, opacity 0.5s linear;
-
-                        &.active {
-                            padding-bottom: 10px !important;
-                            color: $primary-color;
-                            border-bottom: 5px solid $primary-color;
-                            -webkit-transition: all 0.2s, opacity 0.5s linear;
-                            transition: all 0.2s, opacity 0.5s linear;
-                        }
-                    }
-                }
-
-                .tab_content_wrapper {
-                    .tab_content {
-                        padding-top: 45px;
-
-                        h3.tabtitle {
-                            color: $primary-color;
-                            font-weight: 600;
-                            font-size: 18px;
-                            margin-bottom: 26px;
-                        }
-
-                        .companyInvoiceShippingCopyBillingWrapper {
-                            cursor: pointer;
-
-                            span {
-                                font-weight: 600;
-                                font-size: 14px;
-                                color: $secondary-color;
-                                margin-left: 7px;
-                            }
-                        }
-
-                        label {
-                            display: flex;
-                            align-items: center;
-                            font-weight: 600;
-                            font-size: 14px;
-                            color: $primary-color;
-                        }
-
-                        input {
-                            font-weight: 400;
-                            font-size: 14px;
-                            color: $secondary-color;
-                            background: $input-background-color;
-                            border: 1px solid $primary-border-color;
-                            border-radius: 8px;
-                        }
-
-                        textarea {
-                            font-weight: 400;
-                            font-size: 14px;
-                            color: $secondary-color;
-                            background: $input-background-color;
-                            border: 1px solid $primary-border-color;
-                            border-radius: 8px;
-                            padding: 9px 17px;
-                            width: 100%;
-                        }
-
-                        select {
-                            font-weight: 400;
-                            font-size: 14px;
-                            color: $primary-color;
-                            background: $input-background-color;
-                            border: 1px solid $primary-border-color;
-                            border-radius: 8px;
-                        }
-
-                    }
-
-                    svg {
-                        width: 19px;
-                        height: 19px;
-                    }
-                }
-
-                .companyInvoiceOpeningBalanceWrapper {
-                    span {
-                        font-weight: 400;
-                        font-size: 14px;
-                        color: $secondary-color;
-                    }
-
-                    input {
-                        border-radius: 0 6px 6px 0 !important;
-                    }
-                }
-
-                .companyInvoicePANWrapper,
-                .companyInvoiceExemptionReasonWrapper {
-                    svg {
-                        margin-left: 7px;
-                    }
-                }
-
-                .companyInvoiceExemptionReasonWrapper {
-                    svg {
-                        width: 25px;
-                        height: 25px;
-                    }
-                }
-
-                .companyCustomerTaxPreferenceMainWrapper {
-                    display: flex;
-
-                    .companyCompanyTaxPreferencelabel {
+                    label {
                         display: flex;
                         align-items: center;
                         font-weight: 600;
@@ -493,157 +77,584 @@ $transprant: rgba(0, 0, 0, 0);
                         color: $primary-color;
                     }
 
-                    .customerTaxPreferenceRadioButtonWrapper,
-                    .customerTaxPreferenceRadioButtonWrapper {
-                        input {
-                            height: 22px;
-                            width: 22px;
-                            visibility: hidden;
-                        }
+                    .companyCustomerTypeSelectorMainWrapper {
+                        display: flex;
 
-                        span {
-                            color: $secondary-color;
-                            margin-right: 15px;
-                        }
-
-                        [type="radio"]:checked,
-                        [type="radio"]:not(:checked) {
-                            position: absolute;
-                            left: -9999px;
-
-                            &:checked+span,
-                            &:not(:checked)+span {
-                                position: relative;
-                                padding-left: 28px;
-                                cursor: pointer;
-                                font-weight: 600;
-                                font-size: 14px;
-                                line-height: 20px;
-                                display: inline-block;
-                                color: $secondary-color;
-                            }
-
-                            &:checked+span:before,
-                            &:not(:checked)+span:before {
-                                content: '';
-                                position: absolute;
-                                left: 0;
-                                top: 0;
-                                width: 22px;
+                        .customerTypeBusinessRadioButtonWrapper,
+                        .customerTypeIndividualRadioButtonWrapper {
+                            input {
                                 height: 22px;
-                                border: 1.5px solid $primary-color;
-                                border-radius: 100%;
-                                background: white;
+                                width: 22px;
+                                visibility: hidden;
                             }
 
-                            &:checked+span:after,
-                            &:not(:checked)+span:after {
-                                content: '';
-                                width: 14px;
-                                height: 14px;
-                                background: $primary-color;
+                            span {
+                                color: $secondary-color;
+                                margin-right: 15px;
+                            }
+
+                            [type="radio"]:checked,
+                            [type="radio"]:not(:checked) {
                                 position: absolute;
-                                top: 4px;
-                                left: 4px;
-                                border-radius: 100%;
-                                -webkit-transition: all 0.2s ease;
-                                transition: all 0.2s ease;
-                            }
+                                left: -9999px;
 
-                            &:not(:checked)+span:after {
-                                opacity: 0;
-                                -webkit-transform: scale(0);
-                                transform: scale(0);
-                            }
+                                &:checked+span,
+                                &:not(:checked)+span {
+                                    position: relative;
+                                    padding-left: 28px;
+                                    cursor: pointer;
+                                    font-weight: 600;
+                                    font-size: 14px;
+                                    line-height: 20px;
+                                    display: inline-block;
+                                    color: $secondary-color;
+                                }
 
-                            &:checked+span:after {
-                                opacity: 1;
-                                -webkit-transform: scale(1);
-                                transform: scale(1);
+                                &:checked+span:before,
+                                &:not(:checked)+span:before {
+                                    content: '';
+                                    position: absolute;
+                                    left: 0;
+                                    top: 0;
+                                    width: 22px;
+                                    height: 22px;
+                                    border: 1.5px solid $primary-color;
+                                    border-radius: 100%;
+                                    background: white;
+                                }
+
+                                &:checked+span:after,
+                                &:not(:checked)+span:after {
+                                    content: '';
+                                    width: 14px;
+                                    height: 14px;
+                                    background: $primary-color;
+                                    position: absolute;
+                                    top: 4px;
+                                    left: 4px;
+                                    border-radius: 100%;
+                                    -webkit-transition: all 0.2s ease;
+                                    transition: all 0.2s ease;
+                                }
+
+                                &:not(:checked)+span:after {
+                                    opacity: 0;
+                                    -webkit-transform: scale(0);
+                                    transform: scale(0);
+                                }
+
+                                &:checked+span:after {
+                                    opacity: 1;
+                                    -webkit-transform: scale(1);
+                                    transform: scale(1);
+                                }
                             }
                         }
                     }
                 }
 
-                .companyInvoiceContactPersonListTableWrapper {
-                    overflow-x: auto;
+                .companyInvoiceNameWrapper {
 
-                    .companyInvoiceContactPersonTable {
-                        margin-top: 40px;
-                        min-width: 663px;
+                    label {
+                        align-items: center;
+                        font-weight: 600;
+                        font-size: 14px;
+                        color: $primary-color;
+                    }
 
-                        tr {
-                            th {
-                                background: $primary-color;
-                                color: white;
-                                min-width: 144px;
-                                font-weight: 600;
-                                font-size: 14px;
-                                padding: 10px;
-                                border: 1px solid $secondary-border-color;
+                    .companySalutationSelect {
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: $primary-color;
+                        background: $input-background-color;
+                        border: 1px solid $primary-border-color;
+                        border-radius: 8px;
+                    }
 
-                                &:last-of-type {
-                                    background: $transprant;
-                                    border: none;
-                                }
+                    input {
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: $secondary-color;
+                        background: $input-background-color;
+                        border: 1px solid $primary-border-color;
+                        border-radius: 8px;
+                    }
+
+
+                }
+
+                .companyInvoiceCompanyNameWrapper {
+
+                    .companyInvoiceCompanyNameLabel {
+                        display: flex;
+                        align-items: center;
+                        font-weight: 600;
+                        font-size: 14px;
+                        color: $primary-color;
+                    }
+
+                    input {
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: $secondary-color;
+                        background: $input-background-color;
+                        border: 1px solid $primary-border-color;
+                        border-radius: 8px;
+                    }
+                }
+
+                .companyInvoiceCompanyDisplayNameWrapper {
+
+                    .companyInvoiceCompanyDisplayNamelabel {
+                        display: flex;
+                        align-items: center;
+                        font-weight: 600;
+                        font-size: 14px;
+                        color: $primary-color;
+                    }
+
+                    input {
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: $secondary-color;
+                        background: $input-background-color;
+                        border: 1px solid $primary-border-color;
+                        border-radius: 8px;
+                    }
+
+                    .companyInvoiceCompanyDisplaySelect {
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: $primary-color;
+                        background: $input-background-color;
+                        border: 1px solid $primary-border-color;
+                        border-radius: 8px;
+                    }
+
+                }
+
+                .companyInvoiceCompanyEmailWrapper {
+                    svg {
+                        margin-left: 7px;
+                        width: 19px;
+                        height: 19px;
+                    }
+
+                    .companyInvoiceCompanyEmailLabel {
+                        display: flex;
+                        align-items: center;
+                        font-weight: 600;
+                        font-size: 14px;
+                        color: $primary-color;
+                    }
+
+                    input {
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: $secondary-color;
+                        background: $input-background-color;
+                        border: 1px solid $primary-border-color;
+                        border-radius: 8px;
+                    }
+
+                }
+
+                .companyInvoiceCompanyPhone {
+                    svg {
+                        margin-left: 7px;
+                        width: 19px;
+                        height: 19px;
+                    }
+
+                    .companyInvoiceCompanyPhoneLabel {
+                        display: flex;
+                        align-items: center;
+                        font-weight: 600;
+                        font-size: 14px;
+                        color: $primary-color;
+                    }
+
+                    input {
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: $secondary-color;
+                        background: $input-background-color;
+                        border: 1px solid $primary-border-color;
+                        border-radius: 8px;
+                    }
+
+                }
+
+                .companyInvoiceCompanySkypeIDWrapper {
+
+                    .companyInvoiceCompanySkypeIDLabel {
+                        display: flex;
+                        align-items: center;
+                        font-weight: 600;
+                        font-size: 14px;
+                        color: $primary-color;
+                    }
+
+                    span {
+                        border: 1px solid $primary-border-color;
+                    }
+
+                    input {
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: $secondary-color;
+                        background: $input-background-color;
+                        border: 1px solid $primary-border-color;
+                        border-radius: 0 8px 8px 0 !important;
+                    }
+
+                }
+
+                .companyInvoiceDesignationWrapper {
+
+                    .companyInvoiceDesignationlabel {
+                        display: flex;
+                        align-items: center;
+                        font-weight: 600;
+                        font-size: 14px;
+                        color: $primary-color;
+                    }
+
+                    input {
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: $secondary-color;
+                        background: $input-background-color;
+                        border: 1px solid $primary-border-color;
+                        border-radius: 8px;
+                    }
+
+                }
+
+                .companyInvoiceDepartmentWrapper {
+
+                    .companyInvoiceDepartmentLabel {
+                        display: flex;
+                        align-items: center;
+                        font-weight: 600;
+                        font-size: 14px;
+                        color: $primary-color;
+                    }
+
+                    input {
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: $secondary-color;
+                        background: $input-background-color;
+                        border: 1px solid $primary-border-color;
+                        border-radius: 8px;
+                    }
+
+                }
+
+                .companyInvoiceCompanyWebsiteWrapper {
+
+                    .companyInvoiceCompanyWebsiteLabel {
+                        display: flex;
+                        align-items: center;
+                        font-weight: 600;
+                        font-size: 14px;
+                        color: $primary-color;
+                    }
+
+                    input {
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: $secondary-color;
+                        background: $input-background-color;
+                        border: 1px solid $primary-border-color;
+                        border-radius: 8px;
+                    }
+
+                }
+
+                .companyInvoiceTabViewWrapper {
+                    margin-top: 56px;
+
+                    .nav_tabs {
+                        border-bottom: 1px solid $secondary-border-color;
+                        cursor: pointer;
+
+                        .nav_item {
+                            color: $secondary-color;
+                            padding-bottom: 15px;
+                            margin-right: 24px;
+                            font-weight: 600;
+                            font-size: 14px;
+                            -webkit-transition: all 0.2s, opacity 0.5s linear;
+                            transition: all 0.2s, opacity 0.5s linear;
+
+                            &.active {
+                                padding-bottom: 10px !important;
+                                color: $primary-color;
+                                border-bottom: 5px solid $primary-color;
+                                -webkit-transition: all 0.2s, opacity 0.5s linear;
+                                transition: all 0.2s, opacity 0.5s linear;
                             }
                         }
                     }
 
-                    .companyInvoiceAddContectperson {
-                        cursor: pointer;
+                    .tab_content_wrapper {
+                        .tab_content {
+                            padding-top: 45px;
 
+                            h3.tabtitle {
+                                color: $primary-color;
+                                font-weight: 600;
+                                font-size: 18px;
+                                margin-bottom: 26px;
+                            }
+
+                            .companyInvoiceShippingCopyBillingWrapper {
+                                cursor: pointer;
+
+                                span {
+                                    font-weight: 600;
+                                    font-size: 14px;
+                                    color: $secondary-color;
+                                    margin-left: 7px;
+                                }
+                            }
+
+                            label {
+                                display: flex;
+                                align-items: center;
+                                font-weight: 600;
+                                font-size: 14px;
+                                color: $primary-color;
+                            }
+
+                            input {
+                                font-weight: 400;
+                                font-size: 14px;
+                                color: $secondary-color;
+                                background: $input-background-color;
+                                border: 1px solid $primary-border-color;
+                                border-radius: 8px;
+                            }
+
+                            textarea {
+                                font-weight: 400;
+                                font-size: 14px;
+                                color: $secondary-color;
+                                background: $input-background-color;
+                                border: 1px solid $primary-border-color;
+                                border-radius: 8px;
+                                padding: 9px 17px;
+                                width: 100%;
+                            }
+
+                            select {
+                                font-weight: 400;
+                                font-size: 14px;
+                                color: $primary-color;
+                                background: $input-background-color;
+                                border: 1px solid $primary-border-color;
+                                border-radius: 8px;
+                            }
+
+                        }
+
+                        svg {
+                            width: 19px;
+                            height: 19px;
+                        }
+                    }
+
+                    .companyInvoiceOpeningBalanceWrapper {
                         span {
-                            margin-left: 7px;
-                            font-weight: 600;
+                            font-weight: 400;
                             font-size: 14px;
                             color: $secondary-color;
                         }
+
+                        input {
+                            border-radius: 0 6px 6px 0 !important;
+                        }
                     }
-                }
 
-            }
+                    .companyInvoicePANWrapper,
+                    .companyInvoiceExemptionReasonWrapper {
+                        svg {
+                            margin-left: 7px;
+                        }
+                    }
 
-            .companyInvoiceFormButtonsWrapper {
-                button {
-                    border-radius: 6px;
-                    font-weight: 600;
-                    font-size: 14px;
-                    color: white;
+                    .companyInvoiceExemptionReasonWrapper {
+                        svg {
+                            width: 25px;
+                            height: 25px;
+                        }
+                    }
 
-                    &.companyInvoiceSavenSendButton {
-                        span {
+                    .companyCustomerTaxPreferenceMainWrapper {
+                        display: flex;
+
+                        .companyCompanyTaxPreferencelabel {
                             display: flex;
-                            text-align: center;
-                            justify-content: center;
+                            align-items: center;
+                            font-weight: 600;
+                            font-size: 14px;
+                            color: $primary-color;
+                        }
 
-                            i {
-                                display: flex;
-                                margin-right: 5px;
-                                align-self: center;
+                        .customerTaxPreferenceRadioButtonWrapper,
+                        .customerTaxPreferenceRadioButtonWrapper {
+                            input {
+                                height: 22px;
+                                width: 22px;
+                                visibility: hidden;
+                            }
 
-                                svg {
-                                    height: 20px;
-                                    width: 20px;
+                            span {
+                                color: $secondary-color;
+                                margin-right: 15px;
+                            }
+
+                            [type="radio"]:checked,
+                            [type="radio"]:not(:checked) {
+                                position: absolute;
+                                left: -9999px;
+
+                                &:checked+span,
+                                &:not(:checked)+span {
+                                    position: relative;
+                                    padding-left: 28px;
+                                    cursor: pointer;
+                                    font-weight: 600;
+                                    font-size: 14px;
+                                    line-height: 20px;
+                                    display: inline-block;
+                                    color: $secondary-color;
+                                }
+
+                                &:checked+span:before,
+                                &:not(:checked)+span:before {
+                                    content: '';
+                                    position: absolute;
+                                    left: 0;
+                                    top: 0;
+                                    width: 22px;
+                                    height: 22px;
+                                    border: 1.5px solid $primary-color;
+                                    border-radius: 100%;
+                                    background: white;
+                                }
+
+                                &:checked+span:after,
+                                &:not(:checked)+span:after {
+                                    content: '';
+                                    width: 14px;
+                                    height: 14px;
+                                    background: $primary-color;
+                                    position: absolute;
+                                    top: 4px;
+                                    left: 4px;
+                                    border-radius: 100%;
+                                    -webkit-transition: all 0.2s ease;
+                                    transition: all 0.2s ease;
+                                }
+
+                                &:not(:checked)+span:after {
+                                    opacity: 0;
+                                    -webkit-transform: scale(0);
+                                    transform: scale(0);
+                                }
+
+                                &:checked+span:after {
+                                    opacity: 1;
+                                    -webkit-transform: scale(1);
+                                    transform: scale(1);
                                 }
                             }
                         }
                     }
 
-                    &.companyInvoiceCancelButton {
-                        span {
-                            display: flex;
-                            text-align: center;
-                            justify-content: center;
+                    .companyInvoiceContactPersonListTableWrapper {
+                        overflow-x: auto;
 
-                            i {
+                        .companyInvoiceContactPersonTable {
+                            margin-top: 40px;
+                            min-width: 663px;
+
+                            tr {
+                                th {
+                                    background: $primary-color;
+                                    color: white;
+                                    min-width: 144px;
+                                    font-weight: 600;
+                                    font-size: 14px;
+                                    padding: 10px;
+                                    border: 1px solid $secondary-border-color;
+
+                                    &:last-of-type {
+                                        background: $transprant;
+                                        border: none;
+                                    }
+                                }
+                            }
+                        }
+
+                        .companyInvoiceAddContectperson {
+                            cursor: pointer;
+
+                            span {
+                                margin-left: 7px;
+                                font-weight: 600;
+                                font-size: 14px;
+                                color: $secondary-color;
+                            }
+                        }
+                    }
+
+                }
+
+                .companyInvoiceFormButtonsWrapper {
+                    button {
+                        border-radius: 6px;
+                        font-weight: 600;
+                        font-size: 14px;
+                        color: white;
+
+                        &.companyInvoiceSavenSendButton {
+                            span {
                                 display: flex;
-                                margin-right: 5px;
-                                align-self: center;
+                                text-align: center;
+                                justify-content: center;
 
-                                svg {
-                                    height: 20px;
-                                    width: 20px;
+                                i {
+                                    display: flex;
+                                    margin-right: 5px;
+                                    align-self: center;
+
+                                    svg {
+                                        height: 20px;
+                                        width: 20px;
+                                    }
+                                }
+                            }
+                        }
+
+                        &.companyInvoiceCancelButton {
+                            span {
+                                display: flex;
+                                text-align: center;
+                                justify-content: center;
+
+                                i {
+                                    display: flex;
+                                    margin-right: 5px;
+                                    align-self: center;
+
+                                    svg {
+                                        height: 20px;
+                                        width: 20px;
+                                    }
                                 }
                             }
                         }
@@ -655,7 +666,7 @@ $transprant: rgba(0, 0, 0, 0);
 }
 
 //Tablet Screen
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 992px) and (min-width: 426px) {
     .main {
         margin: auto 60px;
         margin-left: 135px;
@@ -1313,7 +1324,7 @@ $transprant: rgba(0, 0, 0, 0);
 }
 
 //Mobie Screen
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 426px) {
     .main {
         margin: 89px 15px 92px 15px;
         transition: all 0.35s;

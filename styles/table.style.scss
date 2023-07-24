@@ -13,7 +13,8 @@ $table-pagination-background: #D9E6F3;
 // DataTable 
 .dataTables_wrapper {
 
-    &#manage-user--table_wrapper {
+    &#manage-user--table_wrapper,
+    &#manage-customer--table_wrapper {
 
         .filter-wrapper {
             label {
