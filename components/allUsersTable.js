@@ -63,6 +63,10 @@ const AllUserTable = () => {
                 orderable: true,
             },
             {
+                data: 'lastName', name: 'lastName', searchable: true, visiable: false,
+                orderable: false,
+            },
+            {
                 data: 'cellNumber', name: 'cellNumber', searchable: true,
                 orderable: true,
             },
