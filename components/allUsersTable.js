@@ -63,7 +63,6 @@ const AllUserTable = () => {
             },
             {
                 data: 'lastName', name: 'lastName', visible: false,
-                orderable: false,
             },
             {
                 data: 'cellNumber', name: 'cellNumber', searchable: true,
@@ -74,7 +73,7 @@ const AllUserTable = () => {
                 orderable: true,
             },
             {
-                data: 'active', name: 'active',
+                data: null,
                 createdCell: (cell, cellData, rowData, rowIndex, colIndex) => {
                     const root = ReactDOM.createRoot(cell)
                     root.render(draw_activeSwitch(rowData))
@@ -127,6 +126,7 @@ const AllUserTable = () => {
                             <th scope="col" className="ps-3" data-priority="99">Contact Number</th>
                             <th scope="col" className="ps-3" data-priority="99">Email Address</th>
                             <th scope="col" className="ps-3" data-priority="2" >Active</th>
+                            <th scope="col" className="hide" ></th>
                         </tr>
                     </thead>
                     <tbody></tbody>
