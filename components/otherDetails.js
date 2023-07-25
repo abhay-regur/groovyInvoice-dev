@@ -5,15 +5,7 @@ import RadioButton from '../components/radioButton';
 import FaExclamationCircle from '../assets/icons/faExclamationCircle.svg';
 import FaQuestionCircleOutline from '../assets/icons/faQuestionCircleOutline.svg'
 import styles from "../styles/newCustomer.module.scss";
-export default function OtherDetails() {
-    const [customerTaxPreference, setcustomerTaxPreference] = useState();
-    const handleTaxPreferenceTaxable = () => {
-        setcustomerTaxPreference('taxable');
-    };
-
-    const handleIndividualChangeTaxExempt = () => {
-        setcustomerTaxPreference('taxExempt');
-    };
+export default function OtherDetails({ data, handleInput, handleRadioButtonChange }) {
 
     return (<div className={`${styles.tab_content}`}>
 
@@ -22,12 +14,12 @@ export default function OtherDetails() {
                 <label className={`${styles.companyInvoiceComapnyGSTTreatmentlabel}`}>GST Treatment <span className={`${styles.green}`}>*</span></label>
             </div>
             <div className="col-12 col-lg-6 col-xl-6">
-                <select className={`${styles.companyInvoiceComapnyGSTTreatmentSelect} form-select`}>
+                <select name='gstTreatment' className={`${styles.companyInvoiceComapnyGSTTreatmentSelect} form-select`} onChange={handleInput}>
                     <option defaultValue>Select a GST Treatment</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
-                    <option value="4">Option 4</option>
+                    <option value="5">5%</option>
+                    <option value="12">12%</option>
+                    <option value="18">18%</option>
+                    <option value="28">28%</option>
                 </select>
             </div>
         </div>
@@ -37,7 +29,7 @@ export default function OtherDetails() {
                 <label className={`${styles.companyInvoicePANlabel}`}>PAN</label>
             </div>
             <div className="col-12 col-lg-6 col-xl-6 d-flex align-items-center justify-content-center">
-                <input type="text" className="form-control" id="companyInvoicePAN" placeholder='PAN Number' />
+                <input name='panNumber' type="text" className="form-control" id="companyInvoicePAN" placeholder='PAN Number' onChange={handleInput} />
                 <FaExclamationCircle className={`${styles.green}`} />
             </div>
         </div>
@@ -47,7 +39,7 @@ export default function OtherDetails() {
                 <label className={`${styles.companyInvoiceComapnyPlaceOfSupplylabel}`}>Place Of Supply <span className={`${styles.green}`}>*</span></label>
             </div>
             <div className="col-12 col-lg-6 col-xl-6">
-                <select className={`${styles.companyInvoiceComapnyPlaceOfSupplySelect} form-select`}>
+                <select name='placeOfSupply' className={`${styles.companyInvoiceComapnyPlaceOfSupplySelect} form-select`} onChange={handleInput}>
                     <option defaultValue>Place of Supply</option>
                     <option value="1">Option 1</option>
                     <option value="2">Option 2</option>
@@ -65,16 +57,18 @@ export default function OtherDetails() {
                 <span className={`d-flex `}>
                     <span className={`${styles.customerTaxPreferenceRadioButtonWrapper} d-flex align-items-center`}>
                         <RadioButton
+                            group="taxPreference"
                             label="Taxable"
-                            value={customerTaxPreference === 'taxable'}
-                            onChange={handleTaxPreferenceTaxable}
+                            value={(data.taxPreference).toLowerCase() === 'taxable'}
+                            onChange={handleRadioButtonChange}
                         />
                     </span>
                     <span className={`${styles.customerTaxPreferenceRadioButtonWrapper} d-flex align-items-center`}>
                         <RadioButton
+                            group="taxPreference"
                             label="Tax Exempt"
-                            value={customerTaxPreference === 'taxExempt'}
-                            onChange={handleIndividualChangeTaxExempt}
+                            value={(data.taxPreference).toLowerCase() === 'tax exempt'}
+                            onChange={handleRadioButtonChange}
                         />
                     </span>
                 </span>
@@ -86,7 +80,7 @@ export default function OtherDetails() {
                 <label className={`${styles.companyInvoiceExemptionReasonlabel}`}>Exemption Reason<span className={`${styles.green}`}>*</span></label>
             </div>
             <div className="col-12 col-lg-6 col-xl-6 d-flex align-items-center justify-content-center">
-                <select className={`${styles.companyInvoiceExemptionReasonSelect} form-select`}>
+                <select name='exemptionReason' className={`${styles.companyInvoiceExemptionReasonSelect} form-select`} onChange={handleInput}>
                     <option defaultValue>Select or Type to add</option>
                     <option value="1">Option 1</option>
                     <option value="2">Option 2</option>
@@ -102,12 +96,20 @@ export default function OtherDetails() {
                 <label className={`${styles.companyInvoiceCurrencylabel}`}>Currency</label>
             </div>
             <div className="col-12 col-lg-6 col-xl-6">
-                <select className={`${styles.companyInvoiceCurrencySelect} form-select`}>
-                    <option defaultValue>INR - Indian Rupee</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
-                    <option value="4">Option 4</option>
+                <select name="currency" className={`${styles.companyInvoiceCurrencySelect} form-select`} onChange={handleInput}>
+                    <option value="" disabled defaultValue>Select a Currency</option>
+                    <option value="INR">₹ - Indian Rupee</option>
+                    <option value="USD">$ - US Dollar</option>
+                    <option value="EUR">€ - Euro</option>
+                    <option value="GBP">£ - British Pound</option>
+                    <option value="JPY">¥ - Japanese Yen</option>
+                    <option value="AUD">$ - Australian Dollar</option>
+                    <option value="CAD">$ - Canadian Dollar</option>
+                    <option value="CHF">Fr - Swiss Franc</option>
+                    <option value="CNY">¥ - Chinese Yuan</option>
+                    <option value="HKD">$ - Hong Kong Dollar</option>
+                    <option value="NZD">$ - New Zealand Dollar</option>
+                    <option value="SGD">$ - Singapore Dollar</option>
                 </select>
             </div>
         </div>
@@ -118,8 +120,8 @@ export default function OtherDetails() {
             </div>
             <div className="col-12 col-lg-6 col-xl-6">
                 <div className="input-group">
-                    <span className="input-group-text">INR</span>
-                    <input type="text" className="form-control" id="companyInvoiceOpeningBalance" placeholder='Opening Balance' />
+                    <span className="input-group-text">{data.currency.toUpperCase()}</span>
+                    <input name='openingBalance' type="number" className="form-control" id="companyInvoiceOpeningBalance" placeholder='Opening Balance' onChange={handleInput} />
                 </div>
             </div>
         </div>
@@ -129,12 +131,15 @@ export default function OtherDetails() {
                 <label className={`${styles.companyInvoicePaymentTermslabel}`}>Payment Terms</label>
             </div>
             <div className="col-12 col-lg-6 col-xl-6">
-                <select className={`${styles.companyInvoicePaymentTermsSelect} form-select`}>
+                <select name='paymentTerm' className={`${styles.companyInvoicePaymentTermsSelect} form-select`} onChange={handleInput}>
                     <option defaultValue>Due on Receipt</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
-                    <option value="4">Option 4</option>
+                    <option value="pia">PIA</option>
+                    <option value="net10">Net 10</option>
+                    <option value="net30">Net 30</option>
+                    <option value="net60">Net 60</option>
+                    <option value="net90">Net 90</option>
+                    <option value="eom">EOM</option>
+                    <option value="21mfi">21 MFI</option>
                 </select>
             </div>
         </div>

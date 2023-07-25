@@ -9,7 +9,7 @@ import defaultProfile from '../public/images/profile_Default.png';
 import { userActivate, userDeactivate } from '../services/user.service';
 import { ToastMsgContext } from '../context/ToastMsg.context';
 import FaPen from '../assets/icons/faPen.svg';
-import PageLoder from '../app/(protectedPages)/users/pageLoader.js';
+import PageLoader from '../app/(protectedPages)/users/pageLoader.js';
 import 'datatables.net-dt/css/jquery.dataTables.min.css';
 import ServerSideDataTables from './serverSideDataTable';
 import Link from 'next/link';
@@ -59,8 +59,10 @@ const AllUserTable = () => {
                     const root = ReactDOM.createRoot(cell)
                     root.render(draw_userName(rowData))
                 },
-                searchable: true,
                 orderable: true,
+            },
+            {
+                data: 'lastName', name: 'lastName', visible: false,
             },
             {
                 data: 'cellNumber', name: 'cellNumber', searchable: true,
@@ -71,7 +73,7 @@ const AllUserTable = () => {
                 orderable: true,
             },
             {
-                data: 'active', name: 'active',
+                data: null,
                 createdCell: (cell, cellData, rowData, rowIndex, colIndex) => {
                     const root = ReactDOM.createRoot(cell)
                     root.render(draw_activeSwitch(rowData))
@@ -113,16 +115,18 @@ const AllUserTable = () => {
                     <label className="input-group-text">Search:</label>
                     <input type="search" className="form-control" placeholder="Name" aria-controls="table-input" />
                 </div>
-                <PageLoder isPageLoading={isPageLoading} />
+                <PageLoader isPageLoading={isPageLoading} />
             </div>
             <div className={`col-sm-12 p-0`}>
                 <ServerSideDataTables ref={dtRef} id="manage-user--table" {...dtOptions} className={`table table-responsive responsive nowrap`} setIsPageLoading={setIsPageLoading} isLoading={isLoading} setIsLoading={setIsLoading}>
                     <thead>
                         <tr>
                             <th scope="col" className="ps-3" data-priority="1" >User Name</th>
+                            <th scope="col" className="ps-3 hide" data-priority="99" >Last name</th>
                             <th scope="col" className="ps-3" data-priority="99">Contact Number</th>
                             <th scope="col" className="ps-3" data-priority="99">Email Address</th>
                             <th scope="col" className="ps-3" data-priority="2" >Active</th>
+                            <th scope="col" className="hide" ></th>
                         </tr>
                     </thead>
                     <tbody></tbody>
