@@ -53,6 +53,19 @@ $table-pagination-background: #D9E6F3;
                     svg {
                         fill: $primary-color
                     }
+
+                    &:active {
+                        background: linear-gradient(to bottom, $primary-border-color 0%, $primary-border-color 100%);
+                        box-shadow: none;
+                        border-radius: 50%;
+                    }
+
+                    &:hover {
+                        background: linear-gradient(to bottom, $primary-border-color 0%, $primary-border-color 100%);
+                        box-shadow: none;
+                        border: none;
+                        border-radius: 50%;
+                    }
                 }
 
                 span {
