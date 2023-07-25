@@ -1,9 +1,10 @@
 import styles from "../styles/newCustomer.module.scss";
 import FaCopy from "../assets/icons/faCopy.svg";
 import SelectComponent from './selectComponent';
+import ErrorList from './errorList';
 import { useState } from 'react';
 
-export default function Address({ countries, billingstates, shippingstates, addressBillingData, setAddressBillingData, addressShippingData, setAddressShippingData }) {
+export default function Address({ countries, billingstates, shippingstates, addressBillingData, setAddressBillingData, addressShippingData, setAddressShippingData, errors, setErrors }) {
     const [addressCopied, setAddressCopied] = useState(false);
 
     const handleBillingInput = ({ target }) => {
@@ -34,8 +35,6 @@ export default function Address({ countries, billingstates, shippingstates, addr
     }
 
     const handleCopyClick = () => {
-        console.log('clicked');
-        console.log(typeof jQuery);
         let temp = Object.assign({}, addressBillingData);
         setAddressCopied(true);
         setAddressShippingData(temp);
@@ -43,6 +42,7 @@ export default function Address({ countries, billingstates, shippingstates, addr
 
 
     return (<div className={`${styles.tab_content}`}>
+        <ErrorList errors={errors} />
         <div className="row">
             <div className="col-12 col-lg-6">
                 <h3 className={`${styles.tabtitle}`}>Billing Address</h3>

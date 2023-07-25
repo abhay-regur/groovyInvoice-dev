@@ -6,3 +6,15 @@ export const createCustomer = async (data) => {
         return await httpService.post('customers/create', data);
     } catch (error) { throw error; }
 }
+
+export const addBillingAddress = async (data, id) => {
+    try {
+        return await httpService.post('customers/' + id + '/address/billing-address', data);
+    } catch (error) { throw error; }
+}
+
+export const addShippingAddress = async (data, id) => {
+    try {
+        return await httpService.post('customers/' + id + '/address/shipping-address', data);
+    } catch (error) { throw error; }
+}

@@ -11,7 +11,7 @@ import FaExclamationCircle from '../../../../assets/icons/faExclamationCircle.sv
 import styles from "../../../../styles/newCustomer.module.scss";
 import ErrorList from '../../../../components/errorList';
 import Loading from "../loading.js"
-import { createCustomer } from "../../../../services/customer.service";
+import { createCustomer, addBillingAddress, addShippingAddress } from "../../../../services/customer.service";
 import { ToastMsgContext } from '../../../../context/ToastMsg.context';
 import { getCountries, getStates } from '../../../../services/countriesState.service';
 import { disableSubmitButton, enableSubmitButton } from '../../../../utils/form.utils';
@@ -27,6 +27,8 @@ export default function CustomerAddForm() {
     const [billingstates, setBillingStates] = useState();
     const [shippingstates, setShippingStates] = useState();
     const [errors, setErrors] = useState([]);
+    const [customerID, setCustomerID] = useState('')
+    const [addressErrors, setAddressErrors] = useState([]);
     const [data, setData] = useState({
         type: "",
         salutation: "",
@@ -75,16 +77,6 @@ export default function CustomerAddForm() {
         fax: ""
     })
 
-    var addressProps = {
-        countries: countries,
-        billingstates: billingstates,
-        shippingstates: shippingstates,
-        addressBillingData: addressBillingData,
-        addressShippingData: addressShippingData,
-        setAddressBillingData: setAddressBillingData,
-        setAddressShippingData: setAddressShippingData
-    };
-
     useEffect(() => {
         getCountryData();
         setTimeout(function () {
@@ -125,22 +117,52 @@ export default function CustomerAddForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors([]);
-        disableSubmitButton(e.target);
+        setIsLoading(true);
+        if (customerID == '') {
+            setAddressErrors([]);
+            disableSubmitButton(e.target);
+            try {
+                var result = await createCustomer(data);
+                if (result.status == 200 || result.status == 201) {
+                    setCustomerID(result.data.id)
+                    setToastList([({
+                        id: Math.floor((Math.random() * 101) + 1),
+                        title: data.firstName + ' ' + data.lastName + ' added successfully',
+                        description: result.data.message,
+                    })]);
+                    handleAddressSubmit();
+                }
+            } catch (e) {
+                console.log(e);
+                setErrors(e.response.data.message);
+                enableSubmitButton();
+                setIsLoading(false);
+            }
+        } else {
+            setAddressErrors([]);
+            handleAddressSubmit();
+        }
+        enableSubmitButton();
+    }
+
+    const handleAddressSubmit = async () => {
         try {
-            var result = await createCustomer(data);
-            if (result.status == 200 || result.status == 201) {
-                setToastList([{
-                    id: Math.floor((Math.random() * 101) + 1),
-                    title: data.firstName + ' ' + data.lastName + ' added successfully',
-                    description: result.data.message,
-                }]);
-                // window.location.pathname = '/users/';
+            var billingAddressResult = await addBillingAddress(addressBillingData, customerID);
+            if (billingAddressResult.status == 200 || billingAddressResult.status == 201) {
+                var shippingAddressResult = await addShippingAddress(addressShippingData, customerID);
+                if (shippingAddressResult.status == 200 || shippingAddressResult.status == 201) {
+                    setToastList([({
+                        id: Math.floor((Math.random() * 101) + 1),
+                        title: 'Successfully Updated ',
+                        description: shippingAddressResult.data.message,
+                    })]);
+                }
             }
         } catch (e) {
             console.log(e);
-            setErrors(e.response.data.message)
+            setAddressErrors(e.response.data.message)
         }
-        enableSubmitButton(e.target)
+        setIsLoading(false);
     }
 
     const getStateData = async (id, setStates) => {
@@ -173,6 +195,24 @@ export default function CustomerAddForm() {
             setErrors(error.response.data.message)
         }
     }
+
+    var addressProps = {
+        countries: countries,
+        errors: addressErrors,
+        billingstates: billingstates,
+        shippingstates: shippingstates,
+        addressBillingData: addressBillingData,
+        addressShippingData: addressShippingData,
+        setAddressBillingData: setAddressBillingData,
+        setAddressShippingData: setAddressShippingData,
+        setErrors: setAddressErrors
+    };
+
+    var otherDetailsProps = {
+        data: data,
+        handleInput: handleInput,
+        handleRadioButtonChange: handleRadioButtonChange
+    };
 
     return (
         <main className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
@@ -341,9 +381,9 @@ export default function CustomerAddForm() {
                                         </li>
                                     </ul>
                                     <div className={`${styles.tab_content_wrapper} `} id="myTabContent">
-                                        {ActiveTabID == 1 ? <OtherDetails data={data} handleInput={handleInput} handleRadioButtonChange={handleRadioButtonChange} /> : " "}
+                                        {ActiveTabID == 1 ? <OtherDetails {...otherDetailsProps} /> : " "}
                                         {ActiveTabID == 2 ? <Address {...addressProps} /> : " "}
-                                        {ActiveTabID == 3 ? <ContactPerson /> : " "}
+                                        {/* {ActiveTabID == 3 ? <ContactPerson /> : " "} */}
                                     </div>
                                 </div>
 
