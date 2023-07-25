@@ -18,3 +18,9 @@ export const addShippingAddress = async (data, id) => {
         return await httpService.post('customers/' + id + '/address/shipping-address', data);
     } catch (error) { throw error; }
 }
+
+export const addContactPerson = async (data, id) => {
+    try {
+        return await httpService.post('customers/' + id + '/contact-person', data);
+    } catch (error) { throw error; }
+}
