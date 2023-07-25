@@ -51,11 +51,14 @@ const AllCustomerTable = () => {
                 orderable: true,
             },
             {
-                data: 'lastName', name: 'lastName', searchable: true, visible: false,
-                orderable: false,
+                data: 'lastName', name: 'lastName', visible: false,
             },
             {
                 data: 'cellNumber', name: 'cellNumber', searchable: true,
+                orderable: true,
+            },
+            {
+                data: 'customerCompanyName', name: 'customerCompanyName', searchable: true,
                 orderable: true,
             },
             {
@@ -63,7 +66,7 @@ const AllCustomerTable = () => {
                 orderable: true,
             },
             {
-                data: 'cellNumber', name: 'cellNumber', searchable: false,
+                data: 'cellNumber', name: 'receivables', searchable: false,
                 orderable: false,
             }
         ],
@@ -84,11 +87,12 @@ const AllCustomerTable = () => {
                     <thead>
                         <tr>
                             <th scope="col" className="ps-3" data-priority="1" >User Name</th>
-                            <th scope="col" className="ps-3" data-priority="99" >Last Name</th>
+                            <th scope="col" className="ps-3" data-priority="99" >Last name</th>
                             <th scope="col" className="ps-3" data-priority="99">Contact Number</th>
                             <th scope="col" className="ps-3" data-priority="99">Company Name</th>
                             <th scope="col" className="ps-3" data-priority="99">Email Address</th>
                             <th scope="col" className="ps-3" data-priority="99" >Receivables</th>
+                            <th scope="col" className="hide" ></th>
                         </tr>
                     </thead>
                     <tbody></tbody>
