@@ -371,11 +371,11 @@ export default function CustomerAddForm() {
                                                 <span className={`${styles.nav_menuName}`}>Address</span>
                                             </span>
                                         </li>
-                                        <li className={`nav-item me-0 ${styles.nav_item} ${ActiveTabID == 3 ? styles.active : " "}`} onClick={() => { setActiveTabID(3) }}>
+                                        {/* <li className={`nav-item me-0 ${styles.nav_item} ${ActiveTabID == 3 ? styles.active : " "}`} onClick={() => { setActiveTabID(3) }}>
                                             <span>
                                                 <span className={`${styles.nav_menuName}`}>Contact Persons</span>
                                             </span>
-                                        </li>
+                                        </li> */}
                                     </ul>
                                     <div className={`${styles.tab_content_wrapper} `} id="myTabContent">
                                         {ActiveTabID == 1 ? <OtherDetails {...otherDetailsProps} /> : " "}
