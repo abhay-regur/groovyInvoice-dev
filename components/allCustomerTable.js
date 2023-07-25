@@ -1,7 +1,6 @@
 "use client"
 import styles from '../styles/customers.module.scss';
-import { useContext, useRef, useState } from 'react';
-import $ from 'jquery';
+import { useRef, useState } from 'react';
 import 'datatables.net-dt/js/dataTables.dataTables';
 import React from 'react';
 import ReactDOM from "react-dom/client";
@@ -9,7 +8,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import 'datatables.net-dt/css/jquery.dataTables.min.css';
 import defaultProfile from '../public/images/profile_Default.png';
-import PageLoader from '../app/(protectedPages)/customers/loading.js';
+import PageLoader from '../app/(protectedPages)/users/pageLoader.js';
 import ServerSideDataTables from './serverSideDataTable';
 import FaPen from '../assets/icons/faPen.svg';
 
@@ -80,14 +79,14 @@ const AllCustomerTable = () => {
                     <label className="input-group-text">Search:</label>
                     <input type="search" className="form-control" placeholder="Name" aria-controls="table-input" />
                 </div>
-                {/* <PageLoader isPageLoading={isPageLoading} /> */}
+                <PageLoader isPageLoading={isPageLoading} />
             </div>
             <div className={`col-sm-12 p-0`}>
                 <ServerSideDataTables ref={dtRef} id="manage-customer--table" {...dtOptions} className={`${styles.companyCustomerTable}table table-responsive responsive nowrap`} setIsPageLoading={setIsPageLoading} isLoading={isLoading} setIsLoading={setIsLoading}>
                     <thead>
                         <tr>
                             <th scope="col" className="ps-3" data-priority="1" >User Name</th>
-                            <th scope="col" className="ps-3" data-priority="99" >Last name</th>
+                            <th scope="col" className="ps-3 hide" data-priority="99" >Last name</th>
                             <th scope="col" className="ps-3" data-priority="99">Contact Number</th>
                             <th scope="col" className="ps-3" data-priority="99">Company Name</th>
                             <th scope="col" className="ps-3" data-priority="99">Email Address</th>

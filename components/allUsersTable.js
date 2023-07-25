@@ -122,7 +122,7 @@ const AllUserTable = () => {
                     <thead>
                         <tr>
                             <th scope="col" className="ps-3" data-priority="1" >User Name</th>
-                            <th scope="col" className="ps-3" data-priority="99" >Last name</th>
+                            <th scope="col" className="ps-3 hide" data-priority="99" >Last name</th>
                             <th scope="col" className="ps-3" data-priority="99">Contact Number</th>
                             <th scope="col" className="ps-3" data-priority="99">Email Address</th>
                             <th scope="col" className="ps-3" data-priority="2" >Active</th>

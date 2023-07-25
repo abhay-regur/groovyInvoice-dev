@@ -11,7 +11,6 @@ const AllCustomerTable = dynamic(
     { ssr: false }
 );
 
-
 export default function CustomerListComponent() {
     const { navExpandedState } = useContext(NavExpandedState);
     return (
