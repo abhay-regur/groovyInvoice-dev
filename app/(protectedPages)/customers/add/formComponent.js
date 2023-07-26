@@ -10,15 +10,16 @@ import FaCircleXmark from '../../../../assets/icons/faCircleXmark.svg';
 import FaExclamationCircle from '../../../../assets/icons/faExclamationCircle.svg';
 import styles from "../../../../styles/newCustomer.module.scss";
 import ErrorList from '../../../../components/errorList';
-import Loading from "../loading.js"
+import Loading from "../loading.js";
 import { createCustomer, addBillingAddress, addShippingAddress } from "../../../../services/customer.service";
 import { ToastMsgContext } from '../../../../context/ToastMsg.context';
 import { getCountries, getStates } from '../../../../services/countriesState.service';
-import { disableSubmitButton, enableSubmitButton } from '../../../../utils/form.utils';
 import { NavExpandedState } from '../../../../context/NavState.context';
+import { useRouter } from 'next/navigation';
 
 
 export default function CustomerAddForm() {
+    const { replace } = useRouter();
     const { navExpandedState } = useContext(NavExpandedState);
     const [ActiveTabID, setActiveTabID] = useState(1);
     const [isLoading, setIsLoading] = useState(true);
@@ -27,7 +28,7 @@ export default function CustomerAddForm() {
     const [billingstates, setBillingStates] = useState();
     const [shippingstates, setShippingStates] = useState();
     const [errors, setErrors] = useState([]);
-    const [customerID, setCustomerID] = useState('')
+    const [customerID, setCustomerID] = useState('');
     const [addressErrors, setAddressErrors] = useState([]);
     const [data, setData] = useState({
         type: "",
@@ -63,7 +64,7 @@ export default function CustomerAddForm() {
         zipCode: "",
         phone: "",
         fax: ""
-    })
+    });
 
     const [addressShippingData, setAddressShippingData] = useState({
         attention: "",
@@ -75,7 +76,7 @@ export default function CustomerAddForm() {
         zipCode: "",
         phone: "",
         fax: ""
-    })
+    });
 
     useEffect(() => {
         getCountryData();
@@ -117,7 +118,6 @@ export default function CustomerAddForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors([]);
-        disableSubmitButton(e.target);
         setIsLoading(true);
         if (customerID == '') {
             setAddressErrors([]);
@@ -130,14 +130,12 @@ export default function CustomerAddForm() {
             } catch (e) {
                 console.log(e);
                 setErrors(e.response.data.message);
-                enableSubmitButton();
                 setIsLoading(false);
             }
         } else {
             setAddressErrors([]);
             handleAddressSubmit(customerID);
         }
-        enableSubmitButton(e.target);
     }
 
     const handleAddressSubmit = async (id) => {
@@ -152,11 +150,13 @@ export default function CustomerAddForm() {
                         title: data.firstName + ' ' + data.lastName + ' added successfully',
                         description: result.data.message,
                     })]);
+                    replace('/customers');
                 }
             }
         } catch (e) {
             console.log(e);
             setAddressErrors(e.response.data.message);
+            setActiveTabID(2)
             setIsLoading(false);
         }
         setIsLoading(false);
@@ -193,6 +193,57 @@ export default function CustomerAddForm() {
         }
     }
 
+    const resetPage = () => {
+        setAddressErrors([]);
+        setErrors([]);
+        setActiveTabID(1);
+        setData({
+            type: "",
+            salutation: "",
+            firstName: "",
+            lastName: "",
+            displayName: "",
+            customerCompanyName: "",
+            email: "",
+            phone: "",
+            cellNumber: "",
+            skype: "",
+            designation: "",
+            department: "",
+            website: "",
+            gstTreatment: "",
+            panNumber: "",
+            placeOfSupply: "",
+            taxPreference: "",
+            exemptionReason: "",
+            currency: "INR",
+            openingBalance: 0,
+            paymentTerm: "",
+        });
+        setAddressBillingData({
+            attention: "",
+            countryId: -1,
+            addressLine1: "",
+            addressLine2: "",
+            city: "",
+            stateId: -1,
+            zipCode: "",
+            phone: "",
+            fax: ""
+        });
+        setAddressShippingData({
+            attention: "",
+            countryId: -1,
+            addressLine1: "",
+            addressLine2: "",
+            city: "",
+            stateId: -1,
+            zipCode: "",
+            phone: "",
+            fax: ""
+        });
+    }
+
     var addressProps = {
         countries: countries,
         errors: addressErrors,
@@ -201,8 +252,7 @@ export default function CustomerAddForm() {
         addressBillingData: addressBillingData,
         addressShippingData: addressShippingData,
         setAddressBillingData: setAddressBillingData,
-        setAddressShippingData: setAddressShippingData,
-        setErrors: setAddressErrors
+        setAddressShippingData: setAddressShippingData
     };
 
     var otherDetailsProps = {
@@ -265,10 +315,10 @@ export default function CustomerAddForm() {
                                         </select>
                                     </div>
                                     <div className="col-12 col-lg-3 col-xl-2">
-                                        <input type="text" name='firstName' className={`${styles.companyInvoiceNewCustomerFirstName} form-control`} onChange={handleInput} placeholder='First Name' />
+                                        <input type="text" name='firstName' className={`${styles.companyInvoiceNewCustomerFirstName} form-control`} value={data.firstName} onChange={handleInput} placeholder='First Name' />
                                     </div>
                                     <div className="col-12 col-lg-3 col-xl-2">
-                                        <input type="text" name='lastName' className={`${styles.companyInvoiceNewCustomerLastName} form-control`} onChange={handleInput} placeholder='Last Name' />
+                                        <input type="text" name='lastName' className={`${styles.companyInvoiceNewCustomerLastName} form-control`} value={data.lastName} onChange={handleInput} placeholder='Last Name' />
                                     </div>
                                 </div>
 
@@ -277,7 +327,7 @@ export default function CustomerAddForm() {
                                         <label className={`${styles.companyInvoiceCompanyNameLabel}`}>Company Name</label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-6">
-                                        <input name='customerCompanyName' type="text" className="form-control" id="companyInvoiceNewCustomerCompanyName" onChange={handleInput} placeholder='Company Name' />
+                                        <input name='customerCompanyName' type="text" className="form-control" id="companyInvoiceNewCustomerCompanyName" value={data.customerCompanyName} onChange={handleInput} placeholder='Company Name' />
                                     </div>
                                 </div>
 
@@ -293,7 +343,7 @@ export default function CustomerAddForm() {
                                         <option value="3">Option 3</option>
                                         <option value="4">Option 4</option>
                                     </select> */}
-                                        <input name='displayName' type="text" className="form-control" id="companyInvoiceNewCustomerUserName" onChange={handleInput} placeholder='Display Name' />
+                                        <input name='displayName' type="text" className="form-control" id="companyInvoiceNewCustomerUserName" value={data.displayName} onChange={handleInput} placeholder='Display Name' />
                                     </div>
                                 </div>
 
@@ -302,7 +352,7 @@ export default function CustomerAddForm() {
                                         <label className={`${styles.companyInvoiceCompanyEmailLabel}`}>Customer Email</label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-6 d-flex align-items-center">
-                                        <input name='email' type="email" className="form-control" id="companyInvoiceCompanyEmail" placeholder='Company Email' onChange={handleInput} />
+                                        <input name='email' type="email" className="form-control" id="companyInvoiceCompanyEmail" placeholder='Company Email' value={data.email} onChange={handleInput} />
                                         <FaExclamationCircle />
                                     </div>
                                 </div>
@@ -312,10 +362,10 @@ export default function CustomerAddForm() {
                                         <label className={`${styles.companyInvoiceCompanyPhoneLabel}`}>Customer Phone</label>
                                     </div>
                                     <div className="col-12 col-lg-4 col-xl-2 d-flex align-items-center">
-                                        <input name='phone' type="tel" className={`${styles.companyInvoiceCompanyWorkPhone} form-control`} placeholder='Work Phone' onChange={handleInput} />
+                                        <input name='phone' type="tel" className={`${styles.companyInvoiceCompanyWorkPhone} form-control`} value={data.phone} placeholder='Work Phone' onChange={handleInput} />
                                     </div>
                                     <div className="col-12 col-lg-4 col-xl-2 d-flex align-items-center">
-                                        <input name='cellNumber' type="tel" className={`${styles.companyInvoiceCompanyMobile} form-control`} placeholder='Mobile' onChange={handleInput} />
+                                        <input name='cellNumber' type="tel" className={`${styles.companyInvoiceCompanyMobile} form-control`} value={data.cellNumber} placeholder='Mobile' onChange={handleInput} />
                                         <FaExclamationCircle />
                                     </div>
                                 </div>
@@ -327,7 +377,7 @@ export default function CustomerAddForm() {
                                     <div className="col-12 col-lg-6 col-xl-6">
                                         <div className="input-group">
                                             <span className="input-group-text"><FaSkype /></span>
-                                            <input name='skype' type="tel" className="form-control" id="companyInvoiceCompanySkypeID" placeholder='Skype name/number' onChange={handleInput} />
+                                            <input name='skype' type="tel" className="form-control" id="companyInvoiceCompanySkypeID" placeholder='Skype name/number' value={data.skype} onChange={handleInput} />
                                         </div>
                                     </div>
                                 </div>
@@ -337,7 +387,7 @@ export default function CustomerAddForm() {
                                         <label className={`${styles.companyInvoiceDesignationlabel}`}>Designation</label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-6">
-                                        <input name='designation' type="text" className="form-control" id="companyInvoiceDesignation" placeholder='Designation' onChange={handleInput} />
+                                        <input name='designation' type="text" className="form-control" id="companyInvoiceDesignation" placeholder='Designation' value={data.designation} onChange={handleInput} />
                                     </div>
                                 </div>
 
@@ -346,7 +396,7 @@ export default function CustomerAddForm() {
                                         <label className={`${styles.companyInvoiceDepartmentLabel}`}>Department</label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-6">
-                                        <input name='department' type="text" className="form-control" id="companyInvoiceDepartment" placeholder='Department' onChange={handleInput} />
+                                        <input name='department' type="text" className="form-control" id="companyInvoiceDepartment" placeholder='Department' value={data.department} onChange={handleInput} />
                                     </div>
                                 </div>
 
@@ -355,7 +405,7 @@ export default function CustomerAddForm() {
                                         <label className={`${styles.companyInvoiceCompanyWebsiteLabel}`}>Website</label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-6">
-                                        <input name='website' type="text" className="form-control" id="companyInvoiceCompanyWebsiteW" placeholder='Website' onChange={handleInput} />
+                                        <input name='website' type="text" className="form-control" id="companyInvoiceCompanyWebsiteW" placeholder='Website' value={data.website} onChange={handleInput} />
                                     </div>
                                 </div>
 
@@ -396,7 +446,7 @@ export default function CustomerAddForm() {
                                                 </button>
                                             </div>
                                             <div className="col-6 col-md-4 col-lg-3 col-xl-4">
-                                                <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} type='reset'>
+                                                <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} type='reset' onClick={resetPage}>
                                                     <span>
                                                         <i><FaCircleXmark /></i>
                                                         Cancel
