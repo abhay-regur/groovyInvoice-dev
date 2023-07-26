@@ -4,7 +4,7 @@ import SelectComponent from './selectComponent';
 import ErrorList from './errorList';
 import { useState } from 'react';
 
-export default function Address({ countries, billingstates, shippingstates, addressBillingData, setAddressBillingData, addressShippingData, setAddressShippingData, errors, setErrors }) {
+export default function Address({ countries, billingstates, shippingstates, addressBillingData, setAddressBillingData, addressShippingData, setAddressShippingData, errors }) {
     const [addressCopied, setAddressCopied] = useState(false);
 
     const handleBillingInput = ({ target }) => {
@@ -40,13 +40,11 @@ export default function Address({ countries, billingstates, shippingstates, addr
         setAddressShippingData(temp);
     }
 
-
     return (<div className={`${styles.tab_content}`}>
-        <ErrorList errors={errors} />
         <div className="row">
             <div className="col-12 col-lg-6">
                 <h3 className={`${styles.tabtitle}`}>Billing Address</h3>
-
+                <ErrorList errors={errors} />
                 <div className={`${styles.companyInvoiceBillingAttentionWrapper} mb-4 row`}>
                     <div className="col-12 col-md-4 d-flex align-items-center">
                         <label className={`${styles.companyInvoiceBillingAttentionlabel}`}>Attention</label>
