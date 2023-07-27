@@ -139,7 +139,6 @@ export default function CustomerAddForm() {
     }
 
     const handleAddressSubmit = async (id) => {
-        console.log(id);
         try {
             var billingAddressResult = await addBillingAddress(addressBillingData, id);
             if (billingAddressResult.status == 200 || billingAddressResult.status == 201) {
@@ -148,13 +147,12 @@ export default function CustomerAddForm() {
                     setToastList([({
                         id: Math.floor((Math.random() * 101) + 1),
                         title: data.firstName + ' ' + data.lastName + ' added successfully',
-                        description: result.data.message,
+                        description: shippingAddressResult.data.message,
                     })]);
                     replace('/customers');
                 }
             }
         } catch (e) {
-            console.log(e);
             setAddressErrors(e.response.data.message);
             setActiveTabID(2)
             setIsLoading(false);
