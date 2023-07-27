@@ -1,6 +1,3 @@
-import Head from 'next/head';
-import Image from 'next/image';
-import { useState } from 'react';
 import RadioButton from '../components/radioButton';
 import FaExclamationCircle from '../assets/icons/faExclamationCircle.svg';
 import FaQuestionCircleOutline from '../assets/icons/faQuestionCircleOutline.svg'
@@ -29,7 +26,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
                 <label className={`${styles.companyInvoicePANlabel}`}>PAN</label>
             </div>
             <div className="col-12 col-lg-6 col-xl-6 d-flex align-items-center justify-content-center">
-                <input name='panNumber' type="text" className="form-control" id="companyInvoicePAN" placeholder='PAN Number' onChange={handleInput} />
+                <input name='panNumber' type="text" className="form-control" id="companyInvoicePAN" value={data.panNumber} placeholder='PAN Number' onChange={handleInput} />
                 <FaExclamationCircle className={`${styles.green}`} />
             </div>
         </div>
@@ -121,7 +118,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
             <div className="col-12 col-lg-6 col-xl-6">
                 <div className="input-group">
                     <span className="input-group-text">{data.currency.toUpperCase()}</span>
-                    <input name='openingBalance' type="number" className="form-control" id="companyInvoiceOpeningBalance" placeholder='Opening Balance' onChange={handleInput} />
+                    <input name='openingBalance' type="number" className="form-control" id="companyInvoiceOpeningBalance" value={data.openingBalance} placeholder='Opening Balance' onChange={handleInput} />
                 </div>
             </div>
         </div>
