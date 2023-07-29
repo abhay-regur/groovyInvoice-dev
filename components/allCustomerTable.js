@@ -73,12 +73,12 @@ const AllCustomerTable = () => {
 
     return (
         <div className={`${styles.comapanyInoviceCustomerTableWrapper} row`}>
+            <PageLoader isPageLoading={isPageLoading} />
             <div className="col-md-4 col-9 mb-3 p-0">
                 <div id="table_filter" className={`${styles.filter_wrapper} input-group`}>
                     <label className="input-group-text">Search:</label>
                     <input type="search" className="form-control" placeholder="Name" aria-controls="table-input" />
                 </div>
-                <PageLoader isPageLoading={isPageLoading} />
             </div>
             <div className={`col-sm-12 p-0`}>
                 <ServerSideDataTables ref={dtRef} id="manage-customer--table" {...dtOptions} className={`${styles.companyCustomerTable}table table-responsive responsive nowrap`} setIsPageLoading={setIsPageLoading} isLoading={isLoading} setIsLoading={setIsLoading}>
