@@ -8,13 +8,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import 'datatables.net-dt/css/jquery.dataTables.min.css';
 import defaultProfile from '../public/images/profile_Default.png';
-import PageLoader from '../app/(protectedPages)/users/pageLoader.js';
+import PageLoader from '../app/(protectedPages)/customers/pageLoader.js';
 import ServerSideDataTables from './serverSideDataTable';
 import FaPen from '../assets/icons/faPen.svg';
 
 const AllCustomerTable = () => {
     const [isPageLoading, setIsPageLoading] = useState(true);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const dtRef = useRef();
 
@@ -70,7 +70,6 @@ const AllCustomerTable = () => {
             }
         ],
     }
-
 
     return (
         <div className={`${styles.comapanyInoviceCustomerTableWrapper} row`}>
