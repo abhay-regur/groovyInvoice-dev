@@ -125,7 +125,7 @@ const AllUserTable = () => {
                             <th scope="col" className="ps-3 hide" data-priority="99" >Last name</th>
                             <th scope="col" className="ps-3" data-priority="99">Contact Number</th>
                             <th scope="col" className="ps-3" data-priority="99">Email Address</th>
-                            <th scope="col" className="ps-3" data-priority="2" >Active</th>
+                            <th scope="col" className="ps-3" data-priority="1" >Active</th>
                             <th scope="col" className="hide" ></th>
                         </tr>
                     </thead>

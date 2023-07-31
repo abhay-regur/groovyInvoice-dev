@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useEffect, forwardRef, useImperativeHandle, useState } from 'react'
-import styles from '../styles/user.module.scss';
+import { useEffect, forwardRef, useImperativeHandle, useState } from 'react';
 import TableLoading from '../app/(protectedPages)/users/loading';
 import $ from 'jquery';
 import 'datatables.net-dt/js/dataTables.dataTables'
@@ -48,7 +47,6 @@ function ServerSideDT(props, ref) {
             paging: true,
             searching: true,
             destroy: true,
-            responsive: true,
             ajax: {
                 url: `${BASE_URL.replace(/\/$/, '')}/${props.ajaxUrl.replace(/^\//, '')}`,
                 type: 'GET',
@@ -69,7 +67,9 @@ function ServerSideDT(props, ref) {
             },
             columnDefs: [
                 { responsivePriority: 1, targets: 0 },
-                { responsivePriority: 1, targets: -1 }
+                { responsivePriority: 1, targets: -1 },
+                { className: "td-text-center", targets: "_all" },
+                { width: "250px", targets: [1, 2] },
             ],
             "initComplete": function () {
                 $('.dataTables_filter').remove();
@@ -104,7 +104,7 @@ function ServerSideDT(props, ref) {
     }, [])
 
     return (<>
-        <table id={props.id} className={styles.companyCustomerTable + " " + props.className} width="100%">
+        <table id={props.id} className={props.className} width="100%">
             {props.children}
             <TableLoading isLoading={props.isLoading} columnLength={props.columns.length} rowsLength={4} isProfile={true} />
         </table>
