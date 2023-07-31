@@ -2,7 +2,9 @@ import RadioButton from '../components/radioButton';
 import FaExclamationCircle from '../assets/icons/faExclamationCircle.svg';
 import FaQuestionCircleOutline from '../assets/icons/faQuestionCircleOutline.svg'
 import styles from "../styles/newCustomer.module.scss";
+import currencyJson from "../assets/json/currency.json";
 export default function OtherDetails({ data, handleInput, handleRadioButtonChange }) {
+
 
     return (<div className={`${styles.tab_content}`}>
 
@@ -11,7 +13,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
                 <label className={`${styles.companyInvoiceComapnyGSTTreatmentlabel}`}>GST Treatment <span className={`${styles.green}`}>*</span></label>
             </div>
             <div className="col-12 col-lg-6 col-xl-6">
-                <select name='gstTreatment' className={`${styles.companyInvoiceComapnyGSTTreatmentSelect} form-select`} onChange={handleInput}>
+                <select name='gstTreatment' className={`${styles.companyInvoiceComapnyGSTTreatmentSelect} form-select`} value={data.gstTreatment} onChange={handleInput}>
                     <option defaultValue>Select a GST Treatment</option>
                     <option value="5">5%</option>
                     <option value="12">12%</option>
@@ -36,7 +38,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
                 <label className={`${styles.companyInvoiceComapnyPlaceOfSupplylabel}`}>Place Of Supply <span className={`${styles.green}`}>*</span></label>
             </div>
             <div className="col-12 col-lg-6 col-xl-6">
-                <select name='placeOfSupply' className={`${styles.companyInvoiceComapnyPlaceOfSupplySelect} form-select`} onChange={handleInput}>
+                <select name='placeOfSupply' className={`${styles.companyInvoiceComapnyPlaceOfSupplySelect} form-select`} value={data.placeOfSupply} onChange={handleInput}>
                     <option defaultValue>Place of Supply</option>
                     <option value="1">Option 1</option>
                     <option value="2">Option 2</option>
@@ -77,7 +79,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
                 <label className={`${styles.companyInvoiceExemptionReasonlabel}`}>Exemption Reason<span className={`${styles.green}`}>*</span></label>
             </div>
             <div className="col-12 col-lg-6 col-xl-6 d-flex align-items-center justify-content-center">
-                <select name='exemptionReason' className={`${styles.companyInvoiceExemptionReasonSelect} form-select`} onChange={handleInput}>
+                <select name='exemptionReason' className={`${styles.companyInvoiceExemptionReasonSelect} form-select`} value={data.exemptionReason} onChange={handleInput}>
                     <option defaultValue>Select or Type to add</option>
                     <option value="1">Option 1</option>
                     <option value="2">Option 2</option>
@@ -93,9 +95,12 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
                 <label className={`${styles.companyInvoiceCurrencylabel}`}>Currency</label>
             </div>
             <div className="col-12 col-lg-6 col-xl-6">
-                <select name="currency" className={`${styles.companyInvoiceCurrencySelect} form-select`} onChange={handleInput}>
+                <select name="currency" className={`${styles.companyInvoiceCurrencySelect} form-select`} value={data.currency} onChange={handleInput}>
                     <option value="" disabled defaultValue>Select a Currency</option>
-                    <option value="INR">₹ - Indian Rupee</option>
+                    {currencyJson.map((obj, key) => {
+                        return (<option key={key} value={obj.Code}>{obj.CountryName} - {obj.Symbol}</option>)
+                    })}
+                    {/* <option value="INR">₹ - Indian Rupee</option>
                     <option value="USD">$ - US Dollar</option>
                     <option value="EUR">€ - Euro</option>
                     <option value="GBP">£ - British Pound</option>
@@ -106,7 +111,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
                     <option value="CNY">¥ - Chinese Yuan</option>
                     <option value="HKD">$ - Hong Kong Dollar</option>
                     <option value="NZD">$ - New Zealand Dollar</option>
-                    <option value="SGD">$ - Singapore Dollar</option>
+                    <option value="SGD">$ - Singapore Dollar</option> */}
                 </select>
             </div>
         </div>
@@ -128,7 +133,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
                 <label className={`${styles.companyInvoicePaymentTermslabel}`}>Payment Terms</label>
             </div>
             <div className="col-12 col-lg-6 col-xl-6">
-                <select name='paymentTerm' className={`${styles.companyInvoicePaymentTermsSelect} form-select`} onChange={handleInput}>
+                <select name='paymentTerm' className={`${styles.companyInvoicePaymentTermsSelect} form-select`} value={data.paymentTerm} onChange={handleInput}>
                     <option defaultValue>Due on Receipt</option>
                     <option value="pia">PIA</option>
                     <option value="net10">Net 10</option>

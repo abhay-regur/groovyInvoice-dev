@@ -1,5 +1,6 @@
 "use client"
 import { useState, useContext, useEffect } from 'react';
+import { useParams } from 'next/navigation';
 import ContactPerson from '../../../../../components/contactPerson';
 import Address from '../../../../../components/address';
 import OtherDetails from '../../../../../components/otherDetails';
@@ -12,24 +13,28 @@ import styles from "../../../../../styles/newCustomer.module.scss";
 import ErrorList from '../../../../../components/errorList';
 import Loading from "../../loading.js";
 import { getCountries, getStates } from '../../../../../services/countriesState.service';
+import { getUserDetails } from "../../../../../services/customer.service";
 import { disableSubmitButton, enableSubmitButton } from '../../../../../utils/form.utils';
 import { NavExpandedState } from '../../../../../context/NavState.context';
 
 export default function CustomerEditForm() {
+    const { id } = useParams();
     const { navExpandedState } = useContext(NavExpandedState);
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [countries, setCountries] = useState();
     const [billingstates, setBillingStates] = useState();
     const [shippingstates, setShippingStates] = useState();
-    const [ActiveTabID, setActiveTabID] = useState(1)
+    const [ActiveTabID, setActiveTabID] = useState(1);
     const [data, setData] = useState({
+        id: "",
         type: "",
         salutation: "",
         firstName: "",
         lastName: "",
-        displayName: "",
         customerCompanyName: "",
+        companyId: 0,
+        displayName: "",
         email: "",
         phone: "",
         cellNumber: "",
@@ -71,18 +76,9 @@ export default function CustomerEditForm() {
         fax: ""
     });
 
-    var addressProps = {
-        countries: countries,
-        billingstates: billingstates,
-        shippingstates: shippingstates,
-        addressBillingData: addressBillingData,
-        addressShippingData: addressShippingData,
-        setAddressBillingData: setAddressBillingData,
-        setAddressShippingData: setAddressShippingData
-    };
-
     useEffect(() => {
         getCountryData();
+        getUserData();
         setTimeout(function () {
             setIsLoading();
         }, 2500);
@@ -151,7 +147,40 @@ export default function CustomerEditForm() {
         }
     }
 
+    const getUserData = async () => {
+        setErrors([]);
+        try {
+            var result = await getUserDetails(id);
+            if (result.status == 200 || result.status == 201) {
+                setData(result.data);
+            }
+        } catch (error) {
+            if (error.response.data.message != undefined) {
+                setErrors(error.response.data.message);
+            } else {
+                console.log(error);
+            }
+        }
+    }
+    const handleReset = (e) => {
+        e.preventDefault();
+    }
 
+    var addressProps = {
+        countries: countries,
+        billingstates: billingstates,
+        shippingstates: shippingstates,
+        addressBillingData: addressBillingData,
+        addressShippingData: addressShippingData,
+        setAddressBillingData: setAddressBillingData,
+        setAddressShippingData: setAddressShippingData
+    };
+
+    var otherDetailsProps = {
+        data: data,
+        handleInput: handleInput,
+        handleRadioButtonChange: handleRadioButtonChange
+    };
 
     return (
         <main className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
@@ -199,7 +228,7 @@ export default function CustomerEditForm() {
                                         <label className="">Primary Contact</label>
                                     </div>
                                     <div className="col-12 col-lg-2 col-xl-2">
-                                        <select name='salutation' className={`${styles.companySalutationSelect} form-select`} onChange={handleInput}>
+                                        <select name='salutation' className={`${styles.companySalutationSelect} form-select`} value={data.salutation} onChange={handleInput}>
                                             <option defaultValue>Salutation</option>
                                             <option value="ms">Ms.</option>
                                             <option value="mr">Mr.</option>
@@ -208,10 +237,10 @@ export default function CustomerEditForm() {
                                         </select>
                                     </div>
                                     <div className="col-12 col-lg-3 col-xl-2">
-                                        <input type="text" name='firstName' className={`${styles.companyInvoiceNewCustomerFirstName} form-control`} onChange={handleInput} placeholder='First Name' />
+                                        <input type="text" name='firstName' className={`${styles.companyInvoiceNewCustomerFirstName} form-control`} value={data.firstName} onChange={handleInput} placeholder='First Name' />
                                     </div>
                                     <div className="col-12 col-lg-3 col-xl-2">
-                                        <input type="text" name='lastName' className={`${styles.companyInvoiceNewCustomerLastName} form-control`} onChange={handleInput} placeholder='Last Name' />
+                                        <input type="text" name='lastName' className={`${styles.companyInvoiceNewCustomerLastName} form-control`} value={data.lastName} onChange={handleInput} placeholder='Last Name' />
                                     </div>
                                 </div>
 
@@ -220,7 +249,7 @@ export default function CustomerEditForm() {
                                         <label className={`${styles.companyInvoiceCompanyNameLabel}`}>Company Name</label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-6">
-                                        <input name='customerCompanyName' type="text" className="form-control" id="companyInvoiceNewCustomerCompanyName" onChange={handleInput} placeholder='Company Name' />
+                                        <input name='customerCompanyName' type="text" className="form-control" id="companyInvoiceNewCustomerCompanyName" value={data.customerCompanyName} onChange={handleInput} placeholder='Company Name' />
                                     </div>
                                 </div>
 
@@ -236,7 +265,7 @@ export default function CustomerEditForm() {
                                         <option value="3">Option 3</option>
                                         <option value="4">Option 4</option>
                                     </select> */}
-                                        <input name='displayName' type="text" className="form-control" id="companyInvoiceNewCustomerUserName" onChange={handleInput} placeholder='Display Name' />
+                                        <input name='displayName' type="text" className="form-control" id="companyInvoiceNewCustomerUserName" value={data.displayName} onChange={handleInput} placeholder='Display Name' />
                                     </div>
                                 </div>
 
@@ -245,7 +274,7 @@ export default function CustomerEditForm() {
                                         <label className={`${styles.companyInvoiceCompanyEmailLabel}`}>Customer Email</label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-6 d-flex align-items-center">
-                                        <input name='email' type="email" className="form-control" id="companyInvoiceCompanyEmail" placeholder='Company Email' onChange={handleInput} />
+                                        <input name='email' type="email" className="form-control" id="companyInvoiceCompanyEmail" value={data.email} placeholder='Company Email' onChange={handleInput} />
                                         <FaExclamationCircle />
                                     </div>
                                 </div>
@@ -255,10 +284,10 @@ export default function CustomerEditForm() {
                                         <label className={`${styles.companyInvoiceCompanyPhoneLabel}`}>Customer Phone</label>
                                     </div>
                                     <div className="col-12 col-lg-4 col-xl-2 d-flex align-items-center">
-                                        <input name='phone' type="tel" className={`${styles.companyInvoiceCompanyWorkPhone} form-control`} placeholder='Work Phone' onChange={handleInput} />
+                                        <input name='phone' type="tel" className={`${styles.companyInvoiceCompanyWorkPhone} form-control`} value={data.phone} placeholder='Work Phone' onChange={handleInput} />
                                     </div>
                                     <div className="col-12 col-lg-4 col-xl-2 d-flex align-items-center">
-                                        <input name='cellNumber' type="tel" className={`${styles.companyInvoiceCompanyMobile} form-control`} placeholder='Mobile' onChange={handleInput} />
+                                        <input name='cellNumber' type="tel" className={`${styles.companyInvoiceCompanyMobile} form-control`} value={data.cellNumber} placeholder='Mobile' onChange={handleInput} />
                                         <FaExclamationCircle />
                                     </div>
                                 </div>
@@ -270,7 +299,7 @@ export default function CustomerEditForm() {
                                     <div className="col-12 col-lg-6 col-xl-6">
                                         <div className="input-group">
                                             <span className="input-group-text"><FaSkype /></span>
-                                            <input name='skype' type="tel" className="form-control" id="companyInvoiceCompanySkypeID" placeholder='Skype name/number' onChange={handleInput} />
+                                            <input name='skype' type="tel" className="form-control" id="companyInvoiceCompanySkypeID" value={data.skype} placeholder='Skype name/number' onChange={handleInput} />
                                         </div>
                                     </div>
                                 </div>
@@ -280,7 +309,7 @@ export default function CustomerEditForm() {
                                         <label className={`${styles.companyInvoiceDesignationlabel}`}>Designation</label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-6">
-                                        <input name='designation' type="text" className="form-control" id="companyInvoiceDesignation" placeholder='Designation' onChange={handleInput} />
+                                        <input name='designation' type="text" className="form-control" id="companyInvoiceDesignation" value={data.designation} placeholder='Designation' onChange={handleInput} />
                                     </div>
                                 </div>
 
@@ -289,7 +318,7 @@ export default function CustomerEditForm() {
                                         <label className={`${styles.companyInvoiceDepartmentLabel}`}>Department</label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-6">
-                                        <input name='department' type="text" className="form-control" id="companyInvoiceDepartment" placeholder='Department' onChange={handleInput} />
+                                        <input name='department' type="text" className="form-control" id="companyInvoiceDepartment" value={data.department} placeholder='Department' onChange={handleInput} />
                                     </div>
                                 </div>
 
@@ -298,7 +327,7 @@ export default function CustomerEditForm() {
                                         <label className={`${styles.companyInvoiceCompanyWebsiteLabel}`}>Website</label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-6">
-                                        <input name='website' type="text" className="form-control" id="companyInvoiceCompanyWebsiteW" placeholder='Website' onChange={handleInput} />
+                                        <input name='website' type="text" className="form-control" id="companyInvoiceCompanyWebsiteW" value={data.website} placeholder='Website' onChange={handleInput} />
                                     </div>
                                 </div>
 
@@ -321,7 +350,7 @@ export default function CustomerEditForm() {
                                         </li>
                                     </ul>
                                     <div className={`${styles.tab_content_wrapper} `} id="myTabContent">
-                                        {ActiveTabID == 1 ? <OtherDetails data={data} handleInput={handleInput} handleRadioButtonChange={handleRadioButtonChange} /> : " "}
+                                        {ActiveTabID == 1 ? <OtherDetails {...otherDetailsProps} /> : " "}
                                         {ActiveTabID == 2 ? <Address {...addressProps} /> : " "}
                                         {ActiveTabID == 3 ? <ContactPerson /> : " "}
                                     </div>
@@ -339,7 +368,7 @@ export default function CustomerEditForm() {
                                                 </button>
                                             </div>
                                             <div className="col-6 col-md-4 col-lg-3 col-xl-4">
-                                                <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} type='reset'>
+                                                <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={handleReset}>
                                                     <span>
                                                         <i><FaCircleXmark /></i>
                                                         Cancel
@@ -349,6 +378,7 @@ export default function CustomerEditForm() {
                                         </div>
                                     </div>
                                 </div>
+
                             </form>
 
                         </div>
