@@ -218,6 +218,7 @@ export default function CustomerAddForm() {
             openingBalance: 0,
             paymentTerm: "",
         });
+
         setAddressBillingData({
             attention: "",
             countryId: -1,
@@ -229,6 +230,7 @@ export default function CustomerAddForm() {
             phone: "",
             fax: ""
         });
+
         setAddressShippingData({
             attention: "",
             countryId: -1,
@@ -240,6 +242,8 @@ export default function CustomerAddForm() {
             phone: "",
             fax: ""
         });
+
+        replace('/customers')
     }
 
     var addressProps = {
