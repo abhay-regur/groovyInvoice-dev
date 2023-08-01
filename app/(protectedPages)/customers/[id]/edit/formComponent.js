@@ -16,8 +16,10 @@ import { getCountries, getStates } from '../../../../../services/countriesState.
 import { getUserDetails } from "../../../../../services/customer.service";
 import { disableSubmitButton, enableSubmitButton } from '../../../../../utils/form.utils';
 import { NavExpandedState } from '../../../../../context/NavState.context';
+import { useRouter } from 'next/navigation';
 
 export default function CustomerEditForm() {
+    const { replace } = useRouter();
     const { id } = useParams();
     const { navExpandedState } = useContext(NavExpandedState);
     const [errors, setErrors] = useState([]);
@@ -164,6 +166,7 @@ export default function CustomerEditForm() {
     }
     const handleReset = (e) => {
         e.preventDefault();
+        replace('/customers')
     }
 
     var addressProps = {
