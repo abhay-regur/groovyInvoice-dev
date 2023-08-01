@@ -3,7 +3,22 @@ import FaExclamationCircle from '../assets/icons/faExclamationCircle.svg';
 import FaQuestionCircleOutline from '../assets/icons/faQuestionCircleOutline.svg'
 import styles from "../styles/newCustomer.module.scss";
 import currencyJson from "../assets/json/currency.json";
+import { useEffect, useState } from 'react';
 export default function OtherDetails({ data, handleInput, handleRadioButtonChange }) {
+    const [unregistred, setUnregistred] = useState(false);
+    const [overseas, setOverseas] = useState(false);
+
+    useEffect(() => {
+        if ((data.gstTreatment == '02' || data.gstTreatment == '03' || data.gstTreatment == '04')) {
+            setUnregistred(true);
+            if (data.gstTreatment == '04') {
+                setOverseas(true);
+            }
+        } else {
+            setUnregistred(false);
+            setOverseas(false);
+        }
+    }, [data.gstTreatment])
 
 
     return (<div className={`${styles.tab_content}`}>
@@ -15,13 +30,30 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
             <div className="col-12 col-lg-6 col-xl-6">
                 <select name='gstTreatment' className={`${styles.companyInvoiceComapnyGSTTreatmentSelect} form-select`} value={data.gstTreatment} onChange={handleInput}>
                     <option defaultValue>Select a GST Treatment</option>
-                    <option value="5">5%</option>
-                    <option value="12">12%</option>
-                    <option value="18">18%</option>
-                    <option value="28">28%</option>
+                    <option value="00">Registered Business Regular</option>
+                    <option value="01">Registered Business Composition</option>
+                    <option value="02">Unregistered Business</option>
+                    <option value="03">Consumer</option>
+                    <option value="04">Overseas</option>
+                    <option value="05">Special Enoconmic Zone</option>
+                    <option value="06">Deemed Export</option>
+                    <option value="07">Tax Deductor</option>
+                    <option value="08">Sez Developer</option>
                 </select>
             </div>
         </div>
+        {
+            unregistred ?
+                '' :
+                <div className={`${styles.companyInvoiceGSTINWrapper} mb-4 row`}>
+                    <div className="col-12 col-lg-4 col-xl-2 d-flex align-items-center">
+                        <label className={`${styles.companyInvoiceGSTINlabel}`}>GSTIN/UIN<span className={`${styles.green}`}>*</span></label>
+                    </div>
+                    <div className="col-12 col-lg-6 col-xl-6 d-flex align-items-center justify-content-center">
+                        <input name='gstin' type="text" className="form-control" id="companyInvoicePAN" value={data.gstin} placeholder='GSTIN/UIN' onChange={handleInput} />
+                    </div>
+                </div>
+        }
 
         <div className={`${styles.companyInvoicePANWrapper} mb-4 row`}>
             <div className="col-12 col-lg-4 col-xl-2 d-flex align-items-center">
@@ -33,62 +65,74 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
             </div>
         </div>
 
-        <div className={`${styles.companyInvoiceComapnyPlaceOfSupplyWrapper} mb-4 row`}>
-            <div className="col-12 col-lg-4 col-xl-2 d-flex align-items-center">
-                <label className={`${styles.companyInvoiceComapnyPlaceOfSupplylabel}`}>Place Of Supply <span className={`${styles.green}`}>*</span></label>
+        {overseas ?
+            '' :
+            <div className={`${styles.companyInvoiceComapnyPlaceOfSupplyWrapper} mb-4 row`}>
+                <div className="col-12 col-lg-4 col-xl-2 d-flex align-items-center">
+                    <label className={`${styles.companyInvoiceComapnyPlaceOfSupplylabel}`}>Place Of Supply <span className={`${styles.green}`}>*</span></label>
+                </div>
+                <div className="col-12 col-lg-6 col-xl-6">
+                    <select name='placeOfSupply' className={`${styles.companyInvoiceComapnyPlaceOfSupplySelect} form-select`} value={data.placeOfSupply} onChange={handleInput}>
+                        <option defaultValue>Place of Supply</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                        <option value="4">Option 4</option>
+                    </select>
+                </div>
             </div>
-            <div className="col-12 col-lg-6 col-xl-6">
-                <select name='placeOfSupply' className={`${styles.companyInvoiceComapnyPlaceOfSupplySelect} form-select`} value={data.placeOfSupply} onChange={handleInput}>
-                    <option defaultValue>Place of Supply</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
-                    <option value="4">Option 4</option>
-                </select>
-            </div>
-        </div>
+        }
 
-        <div className={`${styles.companyCustomerTaxPreferenceMainWrapper} mb-4 row`}>
-            <div className="col-12 col-lg-4 col-xl-2 d-flex align-items-center">
-                <label className={`${styles.companyComapnyTaxPreferencelabel}`}>Tax Preference<span className={`${styles.green}`}>*</span></label>
-            </div>
-            <div className="col-12 col-lg-6 col-xl-6">
-                <span className={`d-flex `}>
-                    <span className={`${styles.customerTaxPreferenceRadioButtonWrapper} d-flex align-items-center`}>
-                        <RadioButton
-                            group="taxPreference"
-                            label="Taxable"
-                            value={(data.taxPreference).toLowerCase() === 'taxable'}
-                            onChange={handleRadioButtonChange}
-                        />
+        {overseas ?
+            '' :
+            <div className={`${styles.companyCustomerTaxPreferenceMainWrapper} mb-4 row`}>
+                <div className="col-12 col-lg-4 col-xl-2 d-flex align-items-center">
+                    <label className={`${styles.companyComapnyTaxPreferencelabel}`}>Tax Preference<span className={`${styles.green}`}>*</span></label>
+                </div>
+                <div className="col-12 col-lg-6 col-xl-6">
+                    <span className={`d-flex `}>
+                        <span className={`${styles.customerTaxPreferenceRadioButtonWrapper} d-flex align-items-center`}>
+                            <RadioButton
+                                group="taxPreference"
+                                label="Taxable"
+                                value={(data.taxPreference).toLowerCase() === 'taxable'}
+                                onChange={handleRadioButtonChange}
+                            />
+                        </span>
+                        <span className={`${styles.customerTaxPreferenceRadioButtonWrapper} d-flex align-items-center`}>
+                            <RadioButton
+                                group="taxPreference"
+                                label="Tax Exempt"
+                                value={(data.taxPreference).toLowerCase() === 'tax exempt'}
+                                onChange={handleRadioButtonChange}
+                            />
+                        </span>
                     </span>
-                    <span className={`${styles.customerTaxPreferenceRadioButtonWrapper} d-flex align-items-center`}>
-                        <RadioButton
-                            group="taxPreference"
-                            label="Tax Exempt"
-                            value={(data.taxPreference).toLowerCase() === 'tax exempt'}
-                            onChange={handleRadioButtonChange}
-                        />
-                    </span>
-                </span>
+                </div>
             </div>
-        </div>
+        }
 
-        <div className={`${styles.companyInvoiceExemptionReasonWrapper} mb-4 row`}>
-            <div className="col-12 col-lg-4 col-xl-2 d-flex align-items-center">
-                <label className={`${styles.companyInvoiceExemptionReasonlabel}`}>Exemption Reason<span className={`${styles.green}`}>*</span></label>
-            </div>
-            <div className="col-12 col-lg-6 col-xl-6 d-flex align-items-center justify-content-center">
-                <select name='exemptionReason' className={`${styles.companyInvoiceExemptionReasonSelect} form-select`} value={data.exemptionReason} onChange={handleInput}>
-                    <option defaultValue>Select or Type to add</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
-                    <option value="4">Option 4</option>
-                </select>
-                <FaQuestionCircleOutline className={`${styles.green}`} />
-            </div>
-        </div>
+        {
+            ((data.taxPreference).toLowerCase() === 'tax exempt') ?
+                <div className={`${styles.companyInvoiceExemptionReasonWrapper} mb-4 row`}>
+                    <div className="col-12 col-lg-4 col-xl-2 d-flex align-items-center">
+                        <label className={`${styles.companyInvoiceExemptionReasonlabel}`}>Exemption Reason<span className={`${styles.green}`}>*</span></label>
+                    </div>
+                    <div className="col-12 col-lg-6 col-xl-6 d-flex align-items-center justify-content-center">
+                        <select name='exemptionReason' className={`${styles.companyInvoiceExemptionReasonSelect} form-select`} value={data.exemptionReason} onChange={handleInput}>
+                            <option defaultValue>Select or Type to add</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                            <option value="4">Option 4</option>
+                            <option value={false}>Type new Reason</option>
+                        </select>
+                        <FaQuestionCircleOutline className={`${styles.green}`} />
+                    </div>
+                </div> :
+                ""
+        }
+
 
         <div className={`${styles.companyInvoiceCurrencyWrapper} mb-4 row`}>
             <div className="col-12 col-lg-4 col-xl-2 d-flex align-items-center">
