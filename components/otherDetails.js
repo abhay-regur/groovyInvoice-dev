@@ -1,6 +1,7 @@
 import RadioButton from '../components/radioButton';
 import FaExclamationCircle from '../assets/icons/faExclamationCircle.svg';
-import FaQuestionCircleOutline from '../assets/icons/faQuestionCircleOutline.svg'
+import FaQuestionCircleOutline from '../assets/icons/faQuestionCircleOutline.svg';
+import SelectOptionComponent from './selectComponent';
 import styles from "../styles/newCustomer.module.scss";
 import currencyJson from "../assets/json/currency.json";
 import { useEffect, useState } from 'react';
@@ -8,10 +9,99 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
     const [unregistred, setUnregistred] = useState(false);
     const [overseas, setOverseas] = useState(false);
 
+    const gstTreatmentData = [
+        {
+            Id: '01',
+            name: 'Registered Business Regular'
+        },
+        {
+            Id: '02',
+            name: 'Registered Business Composition'
+        },
+        {
+            Id: '03',
+            name: 'Unregistered Business'
+        },
+        {
+            Id: '04',
+            name: 'Consumer'
+        },
+        {
+            Id: '05',
+            name: 'Overseas'
+        },
+        {
+            Id: '06',
+            name: 'Special Enoconmic Zone'
+        },
+        {
+            Id: '07',
+            name: 'Deemed Export'
+        },
+        {
+            Id: '08',
+            name: 'Tax Deductor'
+        },
+        {
+            Id: '09',
+            name: 'Sez Developer'
+        }
+    ];
+
+    const placeOfSupplyData = [
+        {
+            id: '01',
+            name: 'Option 01'
+        },
+        {
+            id: '02',
+            name: 'Option 02'
+        },
+        {
+            id: '03',
+            name: 'Option 03'
+        },
+        {
+            id: '04',
+            name: 'Option 04'
+        }
+    ];
+
+    const paymentTermData = [
+        {
+            id: 'pia',
+            name: 'PIA'
+        },
+        {
+            id: 'net10',
+            name: 'Net 10'
+        },
+        {
+            id: 'net30',
+            name: 'Net 30'
+        },
+        {
+            id: 'net60',
+            name: 'Net 60'
+        },
+        {
+            id: 'net90',
+            name: 'Net 90'
+        },
+        {
+            id: 'eom',
+            name: 'EOM'
+        },
+        {
+            id: '21mfi',
+            name: '21 MFI'
+        }
+    ];
+
     useEffect(() => {
-        if ((data.gstTreatment == '02' || data.gstTreatment == '03' || data.gstTreatment == '04')) {
+        if ((data.gstTreatment == '03' || data.gstTreatment == '04' || data.gstTreatment == '05')) {
             setUnregistred(true);
-            if (data.gstTreatment == '04') {
+            if (data.gstTreatment == '05') {
                 setOverseas(true);
             }
         } else {
@@ -28,18 +118,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
                 <label className={`${styles.companyInvoiceComapnyGSTTreatmentlabel}`}>GST Treatment <span className={`${styles.green}`}>*</span></label>
             </div>
             <div className="col-12 col-lg-6 col-xl-6">
-                <select name='gstTreatment' className={`${styles.companyInvoiceComapnyGSTTreatmentSelect} form-select`} value={data.gstTreatment} onChange={handleInput}>
-                    <option defaultValue>Select a GST Treatment</option>
-                    <option value="00">Registered Business Regular</option>
-                    <option value="01">Registered Business Composition</option>
-                    <option value="02">Unregistered Business</option>
-                    <option value="03">Consumer</option>
-                    <option value="04">Overseas</option>
-                    <option value="05">Special Enoconmic Zone</option>
-                    <option value="06">Deemed Export</option>
-                    <option value="07">Tax Deductor</option>
-                    <option value="08">Sez Developer</option>
-                </select>
+                <SelectOptionComponent className={`${styles.companyInvoiceComapnyGSTTreatmentSelect}`} data={gstTreatmentData} setSeletedId={handleInput} seletedId={data.gstTreatment} name={'gstTreatment'} isDisabled={false} defaultText={'Select a GST Treatment'} />
             </div>
         </div>
         {
@@ -72,13 +151,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
                     <label className={`${styles.companyInvoiceComapnyPlaceOfSupplylabel}`}>Place Of Supply <span className={`${styles.green}`}>*</span></label>
                 </div>
                 <div className="col-12 col-lg-6 col-xl-6">
-                    <select name='placeOfSupply' className={`${styles.companyInvoiceComapnyPlaceOfSupplySelect} form-select`} value={data.placeOfSupply} onChange={handleInput}>
-                        <option defaultValue>Place of Supply</option>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
-                        <option value="4">Option 4</option>
-                    </select>
+                    <SelectOptionComponent className={`${styles.companyInvoiceComapnyPlaceOfSupplySelect}`} data={placeOfSupplyData} setSeletedId={handleInput} seletedId={''} name={'placeOfSupply'} isDisabled={false} defaultText={'Place of Supply'} />
                 </div>
             </div>
         }
@@ -120,12 +193,11 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
                     </div>
                     <div className="col-12 col-lg-6 col-xl-6 d-flex align-items-center justify-content-center">
                         <select name='exemptionReason' className={`${styles.companyInvoiceExemptionReasonSelect} form-select`} value={data.exemptionReason} onChange={handleInput}>
-                            <option defaultValue>Select or Type to add</option>
+                            <option defaultValue disabled>Select or Type to add</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
                             <option value="3">Option 3</option>
                             <option value="4">Option 4</option>
-                            <option value={false}>Type new Reason</option>
                         </select>
                         <FaQuestionCircleOutline className={`${styles.green}`} />
                     </div>
@@ -144,18 +216,6 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
                     {currencyJson.map((obj, key) => {
                         return (<option key={key} value={obj.Code}>{obj.CountryName} - {obj.Symbol}</option>)
                     })}
-                    {/* <option value="INR">₹ - Indian Rupee</option>
-                    <option value="USD">$ - US Dollar</option>
-                    <option value="EUR">€ - Euro</option>
-                    <option value="GBP">£ - British Pound</option>
-                    <option value="JPY">¥ - Japanese Yen</option>
-                    <option value="AUD">$ - Australian Dollar</option>
-                    <option value="CAD">$ - Canadian Dollar</option>
-                    <option value="CHF">Fr - Swiss Franc</option>
-                    <option value="CNY">¥ - Chinese Yuan</option>
-                    <option value="HKD">$ - Hong Kong Dollar</option>
-                    <option value="NZD">$ - New Zealand Dollar</option>
-                    <option value="SGD">$ - Singapore Dollar</option> */}
                 </select>
             </div>
         </div>
@@ -177,16 +237,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
                 <label className={`${styles.companyInvoicePaymentTermslabel}`}>Payment Terms</label>
             </div>
             <div className="col-12 col-lg-6 col-xl-6">
-                <select name='paymentTerm' className={`${styles.companyInvoicePaymentTermsSelect} form-select`} value={data.paymentTerm} onChange={handleInput}>
-                    <option defaultValue>Due on Receipt</option>
-                    <option value="pia">PIA</option>
-                    <option value="net10">Net 10</option>
-                    <option value="net30">Net 30</option>
-                    <option value="net60">Net 60</option>
-                    <option value="net90">Net 90</option>
-                    <option value="eom">EOM</option>
-                    <option value="21mfi">21 MFI</option>
-                </select>
+                <SelectOptionComponent className={`${styles.companyInvoicePaymentTermsSelect}`} data={paymentTermData} setSeletedId={handleInput} seletedId={data.paymentTerm} name={'paymentTerm'} isDisabled={false} defaultText={'Due on Receipt'} />
             </div>
         </div>
     </div>)
