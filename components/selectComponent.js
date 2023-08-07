@@ -1,7 +1,7 @@
-const SelectOptionComponent = ({ data, setSeletedId, seletedId, name, isDisabled, defaultText }) => {
+const SelectOptionComponent = ({ id, data, setSeletedId, seletedId, name, isDisabled, defaultText }) => {
     if (data != undefined) {
         return (
-            <select className="form-select" name={name} value={seletedId} onChange={setSeletedId} disabled={isDisabled}>
+            <select id={id} className="form-select" name={name} value={seletedId} onChange={setSeletedId} disabled={isDisabled}>
                 <option key="-1" defaultValue>{defaultText}</option>
                 {
                     data.map(function (data, id) {

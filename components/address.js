@@ -4,40 +4,66 @@ import SelectComponent from './selectComponent';
 import ErrorList from './errorList';
 import { useState } from 'react';
 
-export default function Address({ countries, billingstates, shippingstates, addressBillingData, setAddressBillingData, addressShippingData, setAddressShippingData, errors }) {
+export default function Address({ countries, billingstates, shippingstates, shippingstatesCountryId, setShippingStatesCountryId, billingstatesCountryId, setBillingStatesCountryId, data, setData, errors }) {
     const [addressCopied, setAddressCopied] = useState(false);
 
     const handleBillingInput = ({ target }) => {
+        var temp_data = data;
         if (target.name != '') {
-            if (target.name == 'countryId' || target.name == 'stateId') {
-                addressBillingData[target.name] = parseInt(target.value)
+            if (target.name.search('billingStateId') > -1) {
+                temp_data.address.billingAddress[target.id] = parseInt(target.value);
+                if (addressCopied) {
+                    temp_data.address.shippingAddress[target.id] = parseInt(target.value);
+                }
             } else {
-                addressBillingData[target.name] = target.value
+                temp_data.address.billingAddress[target.name] = target.value;
+                if (addressCopied) {
+                    temp_data.address.shippingAddress[target.name] = target.value;
+                }
             }
-            let temp = Object.assign({}, addressBillingData);
-            setAddressBillingData(temp);
-            if (addressCopied) {
-                setAddressShippingData(temp);
-            }
+            let temp = Object.assign({}, temp_data);
+            setData(temp);
         }
     }
 
     const handleShippingInput = ({ target }) => {
-        if (target.name != '') {
-            if (target.name == 'countryId' || target.name == 'stateId') {
-                addressShippingData[target.name] = parseInt(target.value)
+        var temp_data = data;
+        if (target.name != '' && !addressCopied) {
+            if (target.name.search('shippingStateId') > -1) {
+                temp_data.address.shippingAddress[target.id] = parseInt(target.value);
             } else {
-                addressShippingData[target.name] = target.value
+                temp_data.address.shippingAddress[target.name] = target.value;
             }
-            let temp = Object.assign({}, addressShippingData)
-            setAddressShippingData(temp)
+            let temp = Object.assign({}, temp_data)
+            setData(temp)
         }
     }
 
     const handleCopyClick = () => {
-        let temp = Object.assign({}, addressBillingData);
+        var temp_data = data;
+        setShippingStatesCountryId(parseInt(billingstatesCountryId));
+        temp_data.address.shippingAddress = temp_data.address.billingAddress;
+        let temp = Object.assign({}, temp_data);
         setAddressCopied(true);
-        setAddressShippingData(temp);
+        setData(temp);
+
+    }
+
+    const handelSelectInput = ({ target }) => {
+        var temp_data = data;
+        if (target.name.search('billingCountryId') > -1) {
+            setBillingStatesCountryId(parseInt(target.value));
+            temp_data.address.billingAddress[target.id] = parseInt(target.value);
+            if (addressCopied) {
+                setShippingStatesCountryId(parseInt(target.value));
+                temp_data.address.shippingAddress[target.id] = parseInt(target.value);
+            }
+        } else if (target.name.search('shippingCountryId') > -1) {
+            setShippingStatesCountryId(parseInt(target.value));
+            temp_data.address.shippingAddress[target.id] = parseInt(target.value);
+        }
+        let temp = Object.assign({}, temp_data)
+        setData(temp);
     }
 
     return (<div className={`${styles.tab_content}`}>
@@ -50,7 +76,7 @@ export default function Address({ countries, billingstates, shippingstates, addr
                         <label className={`${styles.companyInvoiceBillingAttentionlabel}`}>Attention</label>
                     </div>
                     <div className="col-12 col-md-8 d-flex">
-                        <input type="text" name="attention" className="form-control" id="companyInvoiceBillingAttention" value={addressBillingData.attention} onChange={handleBillingInput} placeholder='Attention' />
+                        <input type="text" name="attention" className="form-control" id="companyInvoiceBillingAttention" value={data.address.billingAddress.attention} onChange={handleBillingInput} placeholder='Attention' />
                     </div>
                 </div>
 
@@ -59,7 +85,7 @@ export default function Address({ countries, billingstates, shippingstates, addr
                         <label className={`${styles.companyInvoiceBillingComapnyCountrylabel}`}>Country / Region</label>
                     </div>
                     <div className="col-12 col-md-8">
-                        <SelectComponent data={countries} setSeletedId={handleBillingInput} seletedId={addressBillingData.countryId} name={'countryId'} />
+                        <SelectComponent id={'countryId'} data={countries} setSeletedId={handelSelectInput} seletedId={billingstatesCountryId} name={'billingCountryId'} defaultText={'Select A Country'} />
                     </div>
                 </div>
 
@@ -68,11 +94,11 @@ export default function Address({ countries, billingstates, shippingstates, addr
                         <label className={`${styles.companyInvoiceBillingAddresslabel}`}>Address</label>
                     </div>
                     <div className="col-12 col-md-8">
-                        <textarea name="addressLine1" id="companyInvoiceBillingAddress1" rows="3" value={addressBillingData.addressLine1} onChange={handleBillingInput} placeholder='Address Line 1'></textarea>
+                        <textarea name="addressLine1" id="companyInvoiceBillingAddress1" rows="3" value={data.address.billingAddress.addressLine1} onChange={handleBillingInput} placeholder='Address Line 1'></textarea>
                     </div>
                     <div className="col-12 col-md-4"></div>
                     <div className="col-12 col-md-8">
-                        <textarea className='mb-0' name="addressLine2" id="companyInvoiceBillingAddress2" rows="3" value={addressBillingData.addressLine2} onChange={handleBillingInput} placeholder='Address Line 2'></textarea>
+                        <textarea className='mb-0' name="addressLine2" id="companyInvoiceBillingAddress2" rows="3" value={data.address.billingAddress.addressLine2} onChange={handleBillingInput} placeholder='Address Line 2'></textarea>
                     </div>
                 </div>
 
@@ -81,7 +107,7 @@ export default function Address({ countries, billingstates, shippingstates, addr
                         <label className={`${styles.companyInvoiceBillingCitylabel}`}>City</label>
                     </div>
                     <div className="col-12 col-md-8 d-flex">
-                        <input name="city" type="text" className="form-control" id="companyInvoiceBillingCity" value={addressBillingData.city} onChange={handleBillingInput} placeholder='City' />
+                        <input name="city" type="text" className="form-control" id="companyInvoiceBillingCity" value={data.address.billingAddress.city} onChange={handleBillingInput} placeholder='City' />
                     </div>
                 </div>
 
@@ -90,7 +116,7 @@ export default function Address({ countries, billingstates, shippingstates, addr
                         <label className={`${styles.companyInvoiceBillingComapnyStatelabel}`}>State</label>
                     </div>
                     <div className="col-12 col-md-8">
-                        <SelectComponent data={billingstates} setSeletedId={handleBillingInput} seletedId={addressBillingData.stateId} name={'stateId'} />
+                        <SelectComponent id={"stateId"} data={billingstates} setSeletedId={handleBillingInput} seletedId={data.address.billingAddress.stateId} name={'billingStateId'} defaultText={'Select A State'} />
                     </div>
                 </div>
 
@@ -99,7 +125,7 @@ export default function Address({ countries, billingstates, shippingstates, addr
                         <label className={`${styles.companyInvoiceBillingZIPCodelabel}`}>ZIP Code</label>
                     </div>
                     <div className="col-12 col-md-8 d-flex">
-                        <input name="zipCode" type="text" className="form-control" id="companyInvoiceBillingZIPCode" value={addressBillingData.zipCode} onChange={handleBillingInput} placeholder='ZIP Code' />
+                        <input name="zipCode" type="text" className="form-control" id="companyInvoiceBillingZIPCode" value={data.address.billingAddress.zipCode} onChange={handleBillingInput} placeholder='ZIP Code' />
                     </div>
                 </div>
 
@@ -108,7 +134,7 @@ export default function Address({ countries, billingstates, shippingstates, addr
                         <label className={`${styles.companyInvoiceBillingPhonelabel}`}>Phone</label>
                     </div>
                     <div className="col-12 col-md-8 d-flex">
-                        <input name="phone" type="text" className="form-control" id="companyInvoiceBillingPhone" value={addressBillingData.phone} onChange={handleBillingInput} placeholder='Phone Number' />
+                        <input name="phone" type="text" className="form-control" id="companyInvoiceBillingPhone" value={data.address.billingAddress.phone} onChange={handleBillingInput} placeholder='Phone Number' />
                     </div>
                 </div>
 
@@ -117,7 +143,7 @@ export default function Address({ countries, billingstates, shippingstates, addr
                         <label className={`${styles.companyInvoiceBillingFaxlabel}`}>Fax</label>
                     </div>
                     <div className="col-12 col-md-8 d-flex">
-                        <input name="fax" type="text" className="form-control" id="companyInvoiceBillingFax" value={addressBillingData.fax} onChange={handleBillingInput} placeholder='Fax Number' />
+                        <input name="fax" type="text" className="form-control" id="companyInvoiceBillingFax" value={data.address.billingAddress.fax} onChange={handleBillingInput} placeholder='Fax Number' />
                     </div>
                 </div>
             </div>
@@ -139,7 +165,7 @@ export default function Address({ countries, billingstates, shippingstates, addr
                         <label className={`${styles.companyInvoiceShippingAttentionlabel}`}>Attention</label>
                     </div>
                     <div className="col-12 col-md-8 d-flex">
-                        <input name="attention" type="text" className="form-control" id="companyInvoiceShippingAttention" value={addressShippingData.attention} onChange={handleShippingInput} placeholder='Attention' disabled={addressCopied} />
+                        <input name="attention" type="text" className="form-control" id="companyInvoiceShippingAttention" value={data.address.shippingAddress.attention} onChange={handleShippingInput} placeholder='Attention' disabled={addressCopied} />
                     </div>
                 </div>
 
@@ -148,7 +174,7 @@ export default function Address({ countries, billingstates, shippingstates, addr
                         <label className={`${styles.companyInvoiceShippingComapnyCountrylabel}`}>Country / Region</label>
                     </div>
                     <div className="col-12 col-md-8 d-flex">
-                        <SelectComponent data={countries} setSeletedId={handleShippingInput} seletedId={addressShippingData.countryId} name={'countryId'} isDisabled={addressCopied} />
+                        <SelectComponent id={'countryId'} data={countries} setSeletedId={handelSelectInput} seletedId={shippingstatesCountryId} name={'shippingCountryId'} isDisabled={addressCopied} defaultText={'Select A Country'} />
                     </div>
                 </div>
 
@@ -157,11 +183,11 @@ export default function Address({ countries, billingstates, shippingstates, addr
                         <label className={`${styles.companyInvoiceShippingAddresslabel}`}>Address</label>
                     </div>
                     <div className="col-12 col-md-8">
-                        <textarea name="addressLine1" id="companyInvoiceShippingAddress1" rows="3" onChange={handleShippingInput} value={addressShippingData.addressLine1} placeholder='Address Line 1' disabled={addressCopied}></textarea>
+                        <textarea name="addressLine1" id="companyInvoiceShippingAddress1" rows="3" onChange={handleShippingInput} value={data.address.shippingAddress.addressLine1} placeholder='Address Line 1' disabled={addressCopied}></textarea>
                     </div>
                     <div className="col-12 col-md-4"></div>
                     <div className="col-12 col-md-8">
-                        <textarea className='mb-0' name="addressLine2" id="companyInvoiceShippingAddress2" rows="3" onChange={handleShippingInput} value={addressShippingData.addressLine2} placeholder='Address Line 2' disabled={addressCopied}></textarea>
+                        <textarea className='mb-0' name="addressLine2" id="companyInvoiceShippingAddress2" rows="3" onChange={handleShippingInput} value={data.address.shippingAddress.addressLine2} placeholder='Address Line 2' disabled={addressCopied}></textarea>
                     </div>
                 </div>
 
@@ -170,7 +196,7 @@ export default function Address({ countries, billingstates, shippingstates, addr
                         <label className={`${styles.companyInvoiceShippingCitylabel}`}>City</label>
                     </div>
                     <div className="col-12 col-md-8 d-flex">
-                        <input name="city" type="text" className="form-control" id="companyInvoiceShippingCity" onChange={handleShippingInput} value={addressShippingData.city} placeholder='City' disabled={addressCopied} />
+                        <input name="city" type="text" className="form-control" id="companyInvoiceShippingCity" onChange={handleShippingInput} value={data.address.shippingAddress.city} placeholder='City' disabled={addressCopied} />
                     </div>
                 </div>
 
@@ -179,7 +205,7 @@ export default function Address({ countries, billingstates, shippingstates, addr
                         <label className={`${styles.companyInvoiceShippingComapnyStatelabel}`}>State</label>
                     </div>
                     <div className="col-12 col-md-8 d-flex">
-                        <SelectComponent data={shippingstates} setSeletedId={handleShippingInput} seletedId={addressShippingData.stateId} name={'stateId'} isDisabled={addressCopied} />
+                        <SelectComponent id={"stateId"} data={shippingstates} setSeletedId={handleShippingInput} seletedId={data.address.shippingAddress.stateId} name={'shippingStateId'} isDisabled={addressCopied} defaultText={'Select A State'} />
                     </div>
                 </div>
 
@@ -188,7 +214,7 @@ export default function Address({ countries, billingstates, shippingstates, addr
                         <label className={`${styles.companyInvoiceShippingZIPCodelabel}`}>ZIP Code</label>
                     </div>
                     <div className="col-12 col-md-8 d-flex">
-                        <input name="zipCode" type="text" className="form-control" id="companyInvoiceShippingZIPCode" onChange={handleShippingInput} value={addressShippingData.zipCode} placeholder='ZIP Code' disabled={addressCopied} />
+                        <input name="zipCode" type="text" className="form-control" id="companyInvoiceShippingZIPCode" onChange={handleShippingInput} value={data.address.shippingAddress.zipCode} placeholder='ZIP Code' disabled={addressCopied} />
                     </div>
                 </div>
 
@@ -197,7 +223,7 @@ export default function Address({ countries, billingstates, shippingstates, addr
                         <label className={`${styles.companyInvoiceShippingPhonelabel}`}>Phone</label>
                     </div>
                     <div className="col-12 col-md-8 d-flex">
-                        <input name="phone" type="text" className="form-control" id="companyInvoiceShippingPhone" onChange={handleShippingInput} value={addressShippingData.phone} placeholder='Phone Number' disabled={addressCopied} />
+                        <input name="phone" type="text" className="form-control" id="companyInvoiceShippingPhone" onChange={handleShippingInput} value={data.address.shippingAddress.phone} placeholder='Phone Number' disabled={addressCopied} />
                     </div>
                 </div>
 
@@ -206,7 +232,7 @@ export default function Address({ countries, billingstates, shippingstates, addr
                         <label className={`${styles.companyInvoiceShippingFaxlabel}`}>Fax</label>
                     </div>
                     <div className="col-12 col-md-8 d-flex">
-                        <input name="fax" type="text" className="form-control" id="companyInvoiceShippingFax" onChange={handleShippingInput} value={addressShippingData.fax} placeholder='Fax Number' disabled={addressCopied} />
+                        <input name="fax" type="text" className="form-control" id="companyInvoiceShippingFax" onChange={handleShippingInput} value={data.address.shippingAddress.fax} placeholder='Fax Number' disabled={addressCopied} />
                     </div>
                 </div>
 

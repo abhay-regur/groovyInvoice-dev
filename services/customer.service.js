@@ -1,4 +1,4 @@
-import UserHTTPService from './user-http.service'
+import UserHTTPService from './user-http.service';
 const httpService = new UserHTTPService('user');
 
 export const createCustomer = async (data) => {
@@ -29,4 +29,28 @@ export const addContactPerson = async (data, id) => {
     try {
         return await httpService.post('customers/' + id + '/contact-person', data);
     } catch (error) { throw error; }
+}
+
+export const getGSTTreatment = async () => {
+    try {
+        return await httpService.get('gst-treatments/');
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const getPlaceOfSupply = async () => {
+    try {
+        return await httpService.get('place-of-supply/');
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const getCurrencies = async () => {
+    try {
+        return await httpService.get('currencies/');
+    } catch (error) {
+        throw error;
+    }
 }

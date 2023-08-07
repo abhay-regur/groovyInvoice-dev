@@ -3,69 +3,10 @@ import FaExclamationCircle from '../assets/icons/faExclamationCircle.svg';
 import FaQuestionCircleOutline from '../assets/icons/faQuestionCircleOutline.svg';
 import SelectOptionComponent from './selectComponent';
 import styles from "../styles/newCustomer.module.scss";
-import currencyJson from "../assets/json/currency.json";
 import { useEffect, useState } from 'react';
-export default function OtherDetails({ data, handleInput, handleRadioButtonChange }) {
+export default function OtherDetails({ data, handleInput, handleRadioButtonChange, gstTreatment, currencies, placeOfSupply }) {
     const [unregistred, setUnregistred] = useState(false);
     const [overseas, setOverseas] = useState(false);
-
-    const gstTreatmentData = [
-        {
-            Id: '01',
-            name: 'Registered Business Regular'
-        },
-        {
-            Id: '02',
-            name: 'Registered Business Composition'
-        },
-        {
-            Id: '03',
-            name: 'Unregistered Business'
-        },
-        {
-            Id: '04',
-            name: 'Consumer'
-        },
-        {
-            Id: '05',
-            name: 'Overseas'
-        },
-        {
-            Id: '06',
-            name: 'Special Enoconmic Zone'
-        },
-        {
-            Id: '07',
-            name: 'Deemed Export'
-        },
-        {
-            Id: '08',
-            name: 'Tax Deductor'
-        },
-        {
-            Id: '09',
-            name: 'Sez Developer'
-        }
-    ];
-
-    const placeOfSupplyData = [
-        {
-            id: '01',
-            name: 'Option 01'
-        },
-        {
-            id: '02',
-            name: 'Option 02'
-        },
-        {
-            id: '03',
-            name: 'Option 03'
-        },
-        {
-            id: '04',
-            name: 'Option 04'
-        }
-    ];
 
     const paymentTermData = [
         {
@@ -99,9 +40,9 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
     ];
 
     useEffect(() => {
-        if ((data.gstTreatment == '03' || data.gstTreatment == '04' || data.gstTreatment == '05')) {
+        if ((data.gstTreatment == '3' || data.gstTreatment == '4' || data.gstTreatment == '5')) {
             setUnregistred(true);
-            if (data.gstTreatment == '05') {
+            if (data.gstTreatment == '5') {
                 setOverseas(true);
             }
         } else {
@@ -112,13 +53,12 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
 
 
     return (<div className={`${styles.tab_content}`}>
-
         <div className={`${styles.companyInvoiceComapnyGSTTreatmentWrapper} mb-4 row`}>
             <div className="col-12 col-lg-4 col-xl-2 d-flex align-items-center">
                 <label className={`${styles.companyInvoiceComapnyGSTTreatmentlabel}`}>GST Treatment <span className={`${styles.green}`}>*</span></label>
             </div>
             <div className="col-12 col-lg-6 col-xl-6">
-                <SelectOptionComponent className={`${styles.companyInvoiceComapnyGSTTreatmentSelect}`} data={gstTreatmentData} setSeletedId={handleInput} seletedId={data.gstTreatment} name={'gstTreatment'} isDisabled={false} defaultText={'Select a GST Treatment'} />
+                <SelectOptionComponent className={`${styles.companyInvoiceComapnyGSTTreatmentSelect}`} data={gstTreatment} setSeletedId={handleInput} seletedId={data.gstTreatment} name={'gstTreatment'} isDisabled={false} defaultText={'Select a GST Treatment'} />
             </div>
         </div>
         {
@@ -129,7 +69,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
                         <label className={`${styles.companyInvoiceGSTINlabel}`}>GSTIN/UIN<span className={`${styles.green}`}>*</span></label>
                     </div>
                     <div className="col-12 col-lg-6 col-xl-6 d-flex align-items-center justify-content-center">
-                        <input name='gstin' type="text" className="form-control" id="companyInvoicePAN" value={data.gstin} placeholder='GSTIN/UIN' onChange={handleInput} />
+                        <input name='GSTIN' type="text" className="form-control" id="companyInvoicePAN" value={data.GSTIN} placeholder='GSTIN/UIN' onChange={handleInput} />
                     </div>
                 </div>
         }
@@ -151,7 +91,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
                     <label className={`${styles.companyInvoiceComapnyPlaceOfSupplylabel}`}>Place Of Supply <span className={`${styles.green}`}>*</span></label>
                 </div>
                 <div className="col-12 col-lg-6 col-xl-6">
-                    <SelectOptionComponent className={`${styles.companyInvoiceComapnyPlaceOfSupplySelect}`} data={placeOfSupplyData} setSeletedId={handleInput} seletedId={''} name={'placeOfSupply'} isDisabled={false} defaultText={'Place of Supply'} />
+                    <SelectOptionComponent className={`${styles.companyInvoiceComapnyPlaceOfSupplySelect}`} data={placeOfSupply} setSeletedId={handleInput} seletedId={data.placeOfSupply} name={'placeOfSupply'} isDisabled={false} defaultText={'Place of Supply'} />
                 </div>
             </div>
         }
@@ -167,6 +107,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
                         <span className={`${styles.customerTaxPreferenceRadioButtonWrapper} d-flex align-items-center`}>
                             <RadioButton
                                 group="taxPreference"
+                                name="taxable"
                                 label="Taxable"
                                 value={(data.taxPreference).toLowerCase() === 'taxable'}
                                 onChange={handleRadioButtonChange}
@@ -175,8 +116,9 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
                         <span className={`${styles.customerTaxPreferenceRadioButtonWrapper} d-flex align-items-center`}>
                             <RadioButton
                                 group="taxPreference"
+                                name="tax-exempt"
                                 label="Tax Exempt"
-                                value={(data.taxPreference).toLowerCase() === 'tax exempt'}
+                                value={(data.taxPreference).toLowerCase() === 'tax-exempt'}
                                 onChange={handleRadioButtonChange}
                             />
                         </span>
@@ -186,7 +128,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
         }
 
         {
-            ((data.taxPreference).toLowerCase() === 'tax exempt') ?
+            ((data.taxPreference).toLowerCase() === 'tax-exempt') ?
                 <div className={`${styles.companyInvoiceExemptionReasonWrapper} mb-4 row`}>
                     <div className="col-12 col-lg-4 col-xl-2 d-flex align-items-center">
                         <label className={`${styles.companyInvoiceExemptionReasonlabel}`}>Exemption Reason<span className={`${styles.green}`}>*</span></label>
@@ -213,8 +155,8 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
             <div className="col-12 col-lg-6 col-xl-6">
                 <select name="currency" className={`${styles.companyInvoiceCurrencySelect} form-select`} value={data.currency} onChange={handleInput}>
                     <option value="" disabled defaultValue>Select a Currency</option>
-                    {currencyJson.map((obj, key) => {
-                        return (<option key={key} value={obj.Code}>{obj.CountryName} - {obj.Symbol}</option>)
+                    {currencies.map((obj, key) => {
+                        return (<option key={key} value={obj.symbol}> {obj.symbol} - {obj.name}</option>)
                     })}
                 </select>
             </div>
