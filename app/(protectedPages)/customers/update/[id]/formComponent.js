@@ -11,10 +11,10 @@ import FaCircleXmark from '../../../../../assets/icons/faCircleXmark.svg';
 import FaExclamationCircle from '../../../../../assets/icons/faExclamationCircle.svg';
 import styles from "../../../../../styles/newCustomer.module.scss";
 import ErrorList from '../../../../../components/errorList';
+import { ToastMsgContext } from '../../../../../context/ToastMsg.context';
 import Loading from "../../loading.js";
 import { getCountries, getStates } from '../../../../../services/countriesState.service';
-import { getUserDetails } from "../../../../../services/customer.service";
-import { disableSubmitButton, enableSubmitButton } from '../../../../../utils/form.utils';
+import { getUserDetails, updateUserDetails, getGSTTreatment, getPlaceOfSupply, getCurrencies } from "../../../../../services/customer.service";
 import { NavExpandedState } from '../../../../../context/NavState.context';
 import { useRouter } from 'next/navigation';
 
@@ -23,13 +23,19 @@ export default function CustomerEditForm() {
     const { id } = useParams();
     const { navExpandedState } = useContext(NavExpandedState);
     const [errors, setErrors] = useState([]);
+    const { setToastList } = useContext(ToastMsgContext);
     const [isLoading, setIsLoading] = useState(true);
     const [countries, setCountries] = useState();
     const [billingstates, setBillingStates] = useState();
+    const [billingstatesCountryId, setBillingStatesCountryId] = useState(-1);
     const [shippingstates, setShippingStates] = useState();
+    const [shippingstatesCountryId, setShippingStatesCountryId] = useState(-1);
     const [ActiveTabID, setActiveTabID] = useState(1);
+    const [gstTreatment, setGSTTreatment] = useState([]);
+    const [currencies, setCurrencies] = useState([]);
+    const [placeOfSupply, setPlaceOfSupply] = useState([]);
+
     const [data, setData] = useState({
-        id: "",
         type: "",
         salutation: "",
         firstName: "",
@@ -44,90 +50,119 @@ export default function CustomerEditForm() {
         designation: "",
         department: "",
         website: "",
-        gstTreatment: "",
+        gstTreatment: 0,
+        GSTIN: "",
         panNumber: "",
         placeOfSupply: "",
         taxPreference: "",
         exemptionReason: "",
-        currency: "INR",
+        currency: "₹",
         openingBalance: 0,
         paymentTerm: "",
-    });
-
-    const [addressBillingData, setAddressBillingData] = useState({
-        attention: "",
-        countryId: -1,
-        addressLine1: "",
-        addressLine2: "",
-        city: "",
-        stateId: -1,
-        zipCode: "",
-        phone: "",
-        fax: ""
-    });
-
-    const [addressShippingData, setAddressShippingData] = useState({
-        attention: "",
-        countryId: -1,
-        addressLine1: "",
-        addressLine2: "",
-        city: "",
-        stateId: -1,
-        zipCode: "",
-        phone: "",
-        fax: ""
+        address: {
+            billingAddress: {
+                attention: "",
+                countryId: 0,
+                addressLine1: "",
+                addressLine2: "",
+                city: "",
+                stateId: 0,
+                zipCode: "",
+                phone: "",
+                fax: ""
+            },
+            shippingAddress: {
+                attention: "",
+                countryId: 0,
+                addressLine1: "",
+                addressLine2: "",
+                city: "",
+                stateId: 0,
+                zipCode: "",
+                phone: "",
+                fax: ""
+            }
+        }
     });
 
     useEffect(() => {
-        getCountryData();
-        getUserData();
-        setTimeout(function () {
-            setIsLoading();
-        }, 2500);
+        if (isLoading) {
+            getCountryData();
+            getGSTTreatmentDetails();
+            getCurrencyDetails();
+            getPlaceOfSupplyDetails();
+            getUserData();
+            setIsLoading(false);
+        }
     }, [])
 
     useEffect(() => {
-        if (addressBillingData.countryId > -1) {
-            getStateData(addressBillingData.countryId, setBillingStates)
+        if (billingstatesCountryId > -1) {
+            getStateData(billingstatesCountryId, setBillingStates);
         }
-    }, [addressBillingData.countryId])
+    }, [billingstatesCountryId])
 
     useEffect(() => {
-        if (addressShippingData.countryId > -1) {
-            getStateData(addressShippingData.countryId, setShippingStates)
+        if (shippingstatesCountryId > -1) {
+            getStateData(shippingstatesCountryId, setShippingStates);
         }
-    }, [addressShippingData.countryId])
+    }, [shippingstatesCountryId])
 
     const handleInput = ({ target }) => {
+        var temp_data = data;
         if (target.name != '') {
-            if (target.name == 'openingBalance') {
-                data[target.name] = parseInt(target.value)
+            if (target.name == 'openingBalance' || target.name == 'gstTreatment') {
+                if (target.value != NaN || target.value != '') {
+                    temp_data[target.name] = parseInt(target.value)
+                } else {
+                    temp_data[target.name] = 0;
+                }
             } else {
-                data[target.name] = target.value
+                temp_data[target.name] = target.value;
             }
-            let temp = Object.assign({}, data)
+            let temp = Object.assign({}, temp_data)
             setData(temp)
         }
     }
 
     const handleRadioButtonChange = ({ target }) => {
-        data[target.getAttribute('data-group')] = target.name
+        data[target.getAttribute('data-group')] = target.name;
         let temp = Object.assign({}, data)
         setData(temp)
     }
 
-    const handleSubmit = async (e) => { }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setErrors([]);
+        setIsLoading(true);
+        try {
+            var result = await updateUserDetails(id, data);
+            if (result.status == 200 || result.status == 201) {
+                setToastList([{
+                    id: Math.floor((Math.random() * 101) + 1),
+                    title: 'Updated ' + data.firstName + '`s Details',
+                    description: '',
+                }]);
+            }
+        } catch (e) {
+            setErrors(e.response.data.message);
+            setIsLoading(false);
+        }
+        setIsLoading(false);
+    }
 
     const getStateData = async (id, setStates) => {
         setErrors([]);
         try {
-            const result = await getStates(id);
-            var data = result.data;
-            var temp = [];
-            for (var i = 0; data.length > i; i++) {
-                temp.push({ name: data[i].name, Id: data[i].id });
+            if (id != -1) {
+                const result = await getStates(id);
+                var data = result.data;
+                var temp = [];
+                data.forEach((elem) => {
+                    temp.push({ Id: elem.id, name: elem.name })
+                })
+                setStates(temp);
             }
-            setStates(temp);
         } catch (error) {
             setErrors(error.response.data.message)
         }
@@ -139,11 +174,57 @@ export default function CustomerEditForm() {
             const result = await getCountries();
             var data = result.data;
             var temp = [];
-            for (var i = 0; data.length > i; i++) {
-                temp.push({ name: data[i].name, Id: data[i].id });
-            }
+            data.forEach((elem) => {
+                temp.push({ Id: elem.id, name: elem.name })
+            })
             setCountries(temp);
             setIsLoading(false);
+        } catch (error) {
+            setErrors(error.response.data.message)
+        }
+    }
+
+    const getGSTTreatmentDetails = async () => {
+        setErrors([]);
+        try {
+            const result = await getGSTTreatment();
+            var data = result.data;
+            var temp = [];
+            data.forEach((elem) => {
+                temp.push({ Id: elem.id, name: elem.title })
+            })
+            setGSTTreatment(temp);
+        } catch (error) {
+            console.log(error);
+            setErrors(error.response.data.message)
+        }
+    }
+
+    const getCurrencyDetails = async () => {
+        setErrors([]);
+        try {
+            const result = await getCurrencies();
+            var data = result.data;
+            var temp = [];
+            data.forEach((elem) => {
+                temp.push({ Id: elem.id, name: elem.name, symbol: elem.symbol })
+            })
+            setCurrencies(temp);
+        } catch (error) {
+            setErrors(error.response.data.message)
+        }
+    }
+
+    const getPlaceOfSupplyDetails = async () => {
+        setErrors([]);
+        try {
+            const result = await getPlaceOfSupply();
+            var data = result.data;
+            var temp = [];
+            data.forEach((elem) => {
+                temp.push({ Id: elem.id, name: elem.name })
+            })
+            setPlaceOfSupply(temp);
         } catch (error) {
             setErrors(error.response.data.message)
         }
@@ -155,6 +236,8 @@ export default function CustomerEditForm() {
             var result = await getUserDetails(id);
             if (result.status == 200 || result.status == 201) {
                 setData(result.data);
+                setBillingStatesCountryId(result.data.address.billingAddress.countryId);
+                setShippingStatesCountryId(result.data.address.shippingAddress.countryId);
             }
         } catch (error) {
             if (error.response.data.message != undefined) {
@@ -164,8 +247,8 @@ export default function CustomerEditForm() {
             }
         }
     }
-    const handleReset = (e) => {
-        e.preventDefault();
+
+    const handleReset = async (e) => {
         replace('/customers')
     }
 
@@ -173,16 +256,21 @@ export default function CustomerEditForm() {
         countries: countries,
         billingstates: billingstates,
         shippingstates: shippingstates,
-        addressBillingData: addressBillingData,
-        addressShippingData: addressShippingData,
-        setAddressBillingData: setAddressBillingData,
-        setAddressShippingData: setAddressShippingData
+        shippingstatesCountryId: shippingstatesCountryId,
+        setShippingStatesCountryId: setShippingStatesCountryId,
+        billingstatesCountryId: billingstatesCountryId,
+        setBillingStatesCountryId: setBillingStatesCountryId,
+        data: data,
+        setData: setData
     };
 
     var otherDetailsProps = {
         data: data,
         handleInput: handleInput,
-        handleRadioButtonChange: handleRadioButtonChange
+        handleRadioButtonChange: handleRadioButtonChange,
+        gstTreatment: gstTreatment,
+        currencies: currencies,
+        placeOfSupply: placeOfSupply
     };
 
     return (
@@ -209,6 +297,7 @@ export default function CustomerEditForm() {
                                             <span className={`${styles.customerTypeBusinessRadioButtonWrapper} d-flex align-items-center`}>
                                                 <RadioButton
                                                     group="type"
+                                                    name='business'
                                                     label="Business"
                                                     value={(data.type).toLowerCase() === 'business'}
                                                     onChange={handleRadioButtonChange}
@@ -217,6 +306,7 @@ export default function CustomerEditForm() {
                                             <span className={`${styles.customerTypeIndividualRadioButtonWrapper} d-flex align-items-center`}>
                                                 <RadioButton
                                                     group="type"
+                                                    name='individual'
                                                     label="Individual"
                                                     value={(data.type).toLowerCase() === 'individual'}
                                                     onChange={handleRadioButtonChange}
