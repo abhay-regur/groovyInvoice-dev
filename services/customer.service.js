@@ -13,6 +13,12 @@ export const getUserDetails = async (id) => {
     } catch (error) { throw error; }
 }
 
+export const updateUserDetails = async (id, data) => {
+    try {
+        return await httpService.put('customers/' + id, data);
+    } catch (error) { throw error; }
+}
+
 export const addBillingAddress = async (data, id) => {
     try {
         return await httpService.post('customers/' + id + '/address/billing-address', data);
