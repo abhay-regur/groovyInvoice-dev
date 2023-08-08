@@ -475,6 +475,12 @@ $transprant: rgba(0, 0, 0, 0);
 
                         input {
                             border-radius: 0 6px 6px 0 !important;
+
+                            &::-webkit-outer-spin-button,
+                            &::-webkit-inner-spin-button {
+                                -webkit-appearance: none;
+                                -moz-appearance: textfield;
+                            }
                         }
                     }
 
@@ -490,6 +496,7 @@ $transprant: rgba(0, 0, 0, 0);
                             width: 25px;
                             height: 25px;
                         }
+
                     }
 
                     .companyCustomerTaxPreferenceMainWrapper {
@@ -1133,6 +1140,12 @@ $transprant: rgba(0, 0, 0, 0);
 
                         input {
                             border-radius: 0 6px 6px 0 !important;
+
+                            &::-webkit-outer-spin-button,
+                            &::-webkit-inner-spin-button {
+                                -webkit-appearance: none;
+                                -moz-appearance: textfield;
+                            }
                         }
                     }
 
@@ -1782,6 +1795,12 @@ $transprant: rgba(0, 0, 0, 0);
 
                         input {
                             border-radius: 0 6px 6px 0 !important;
+
+                            &::-webkit-outer-spin-button,
+                            &::-webkit-inner-spin-button {
+                                -webkit-appearance: none;
+                                -moz-appearance: textfield;
+                            }
                         }
                     }
 

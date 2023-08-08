@@ -11,7 +11,7 @@ import FaExclamationCircle from '../../../../assets/icons/faExclamationCircle.sv
 import styles from "../../../../styles/newCustomer.module.scss";
 import ErrorList from '../../../../components/errorList';
 import Loading from "../loading.js";
-import { createCustomer, addBillingAddress, addShippingAddress } from "../../../../services/customer.service";
+import { createCustomer, getGSTTreatment, getPlaceOfSupply, getCurrencies } from "../../../../services/customer.service";
 import { ToastMsgContext } from '../../../../context/ToastMsg.context';
 import { getCountries, getStates } from '../../../../services/countriesState.service';
 import { NavExpandedState } from '../../../../context/NavState.context';
@@ -26,17 +26,22 @@ export default function CustomerAddForm() {
     const { setToastList } = useContext(ToastMsgContext);
     const [countries, setCountries] = useState();
     const [billingstates, setBillingStates] = useState();
+    const [billingstatesCountryId, setBillingStatesCountryId] = useState(-1);
     const [shippingstates, setShippingStates] = useState();
+    const [shippingstatesCountryId, setShippingStatesCountryId] = useState(-1);
     const [errors, setErrors] = useState([]);
-    const [customerID, setCustomerID] = useState('');
-    const [addressErrors, setAddressErrors] = useState([]);
+    const [gstTreatment, setGSTTreatment] = useState([]);
+    const [currencies, setCurrencies] = useState([]);
+    const [placeOfSupply, setPlaceOfSupply] = useState([]);
+
     const [data, setData] = useState({
         type: "",
         salutation: "",
         firstName: "",
         lastName: "",
-        displayName: "",
         customerCompanyName: "",
+        companyId: 0,
+        displayName: "",
         email: "",
         phone: "",
         cellNumber: "",
@@ -44,73 +49,82 @@ export default function CustomerAddForm() {
         designation: "",
         department: "",
         website: "",
-        gstTreatment: "",
+        gstTreatment: 0,
+        GSTIN: "",
         panNumber: "",
         placeOfSupply: "",
         taxPreference: "",
         exemptionReason: "",
-        currency: "INR",
+        currency: "₹",
         openingBalance: 0,
         paymentTerm: "",
-    });
-
-    const [addressBillingData, setAddressBillingData] = useState({
-        attention: "",
-        countryId: -1,
-        addressLine1: "",
-        addressLine2: "",
-        city: "",
-        stateId: -1,
-        zipCode: "",
-        phone: "",
-        fax: ""
-    });
-
-    const [addressShippingData, setAddressShippingData] = useState({
-        attention: "",
-        countryId: -1,
-        addressLine1: "",
-        addressLine2: "",
-        city: "",
-        stateId: -1,
-        zipCode: "",
-        phone: "",
-        fax: ""
+        address: {
+            billingAddress: {
+                attention: "",
+                countryId: 0,
+                addressLine1: "",
+                addressLine2: "",
+                city: "",
+                stateId: 0,
+                zipCode: "",
+                phone: "",
+                fax: ""
+            },
+            shippingAddress: {
+                attention: "",
+                countryId: 0,
+                addressLine1: "",
+                addressLine2: "",
+                city: "",
+                stateId: 0,
+                zipCode: "",
+                phone: "",
+                fax: ""
+            }
+        }
     });
 
     useEffect(() => {
         getCountryData();
+        getGSTTreatmentDetails();
+        getCurrencyDetails();
+        getPlaceOfSupplyDetails();
         setTimeout(function () {
-            setIsLoading();
+            setIsLoading(false);
         }, 2500);
     }, [])
 
     useEffect(() => {
-        if (addressBillingData.countryId > -1) {
-            getStateData(addressBillingData.countryId, setBillingStates)
+        if (billingstatesCountryId > -1) {
+            getStateData(billingstatesCountryId, setBillingStates);
         }
-    }, [addressBillingData.countryId])
+    }, [billingstatesCountryId])
 
     useEffect(() => {
-        if (addressShippingData.countryId > -1) {
-            getStateData(addressShippingData.countryId, setShippingStates)
+        if (shippingstatesCountryId > -1) {
+            getStateData(shippingstatesCountryId, setShippingStates);
         }
-    }, [addressShippingData.countryId])
+    }, [shippingstatesCountryId])
 
     const handleInput = ({ target }) => {
+        var temp_data = data;
         if (target.name != '') {
-            if (target.name == 'openingBalance') {
-                data[target.name] = parseInt(target.value)
+            if (target.name == 'openingBalance' || target.name == 'gstTreatment') {
+                if (target.value != NaN || target.value != '') {
+                    temp_data[target.name] = parseInt(target.value)
+                } else {
+                    temp_data[target.name] = 0;
+                }
             } else {
-                data[target.name] = target.value
+                temp_data[target.name] = target.value;
             }
-            let temp = Object.assign({}, data)
+            let temp = Object.assign({}, temp_data)
             setData(temp)
         }
     }
 
     const handleRadioButtonChange = ({ target }) => {
-        data[target.getAttribute('data-group')] = target.name
+        data[target.getAttribute('data-group')] = target.name.toLowerCase();
         let temp = Object.assign({}, data)
         setData(temp)
     }
@@ -119,42 +133,20 @@ export default function CustomerAddForm() {
         e.preventDefault();
         setErrors([]);
         setIsLoading(true);
-        if (customerID == '') {
-            setAddressErrors([]);
-            try {
-                var result = await createCustomer(data);
-                if (result.status == 200 || result.status == 201) {
-                    setCustomerID(result.data.id)
-                    handleAddressSubmit(result.data.id);
-                }
-            } catch (e) {
-                console.log(e);
-                setErrors(e.response.data.message);
-                setIsLoading(false);
-            }
-        } else {
-            setAddressErrors([]);
-            handleAddressSubmit(customerID);
-        }
-    }
-
-    const handleAddressSubmit = async (id) => {
         try {
-            var billingAddressResult = await addBillingAddress(addressBillingData, id);
-            if (billingAddressResult.status == 200 || billingAddressResult.status == 201) {
-                var shippingAddressResult = await addShippingAddress(addressShippingData, id);
-                if (shippingAddressResult.status == 200 || shippingAddressResult.status == 201) {
-                    setToastList([({
-                        id: Math.floor((Math.random() * 101) + 1),
-                        title: data.firstName + ' ' + data.lastName + ' added successfully',
-                        description: shippingAddressResult.data.message,
-                    })]);
+            var result = await createCustomer(data);
+            if (result.status == 200 || result.status == 201) {
+                setToastList([{
+                    id: Math.floor((Math.random() * 101) + 1),
+                    title: 'Customer Added',
+                    description: '',
+                }]);
+                setTimeout(function () {
                     replace('/customers');
-                }
+                }, 2500);
             }
         } catch (e) {
-            setAddressErrors(e.response.data.message);
-            setActiveTabID(2)
+            setErrors(e.response.data.message);
             setIsLoading(false);
         }
         setIsLoading(false);
@@ -163,13 +155,15 @@ export default function CustomerAddForm() {
     const getStateData = async (id, setStates) => {
         setErrors([]);
         try {
-            const result = await getStates(id);
-            var data = result.data;
-            var temp = [];
-            for (var i = 0; data.length > i; i++) {
-                temp.push({ name: data[i].name, Id: data[i].id });
+            if (id != -1) {
+                const result = await getStates(id);
+                var data = result.data;
+                var temp = [];
+                data.forEach((elem) => {
+                    temp.push({ Id: elem.id, name: elem.name })
+                })
+                setStates(temp);
             }
-            setStates(temp);
         } catch (error) {
             setErrors(error.response.data.message)
         }
@@ -181,9 +175,9 @@ export default function CustomerAddForm() {
             const result = await getCountries();
             var data = result.data;
             var temp = [];
-            for (var i = 0; data.length > i; i++) {
-                temp.push({ name: data[i].name, Id: data[i].id });
-            }
+            data.forEach((elem) => {
+                temp.push({ Id: elem.id, name: elem.name })
+            })
             setCountries(temp);
             setIsLoading(false);
         } catch (error) {
@@ -191,8 +185,53 @@ export default function CustomerAddForm() {
         }
     }
 
+    const getGSTTreatmentDetails = async () => {
+        setErrors([]);
+        try {
+            const result = await getGSTTreatment();
+            var data = result.data;
+            var temp = [];
+            data.forEach((elem) => {
+                temp.push({ Id: elem.id, name: elem.title })
+            })
+            setGSTTreatment(temp);
+        } catch (error) {
+            console.log(error);
+            setErrors(error.response.data.message)
+        }
+    }
+
+    const getCurrencyDetails = async () => {
+        setErrors([]);
+        try {
+            const result = await getCurrencies();
+            var data = result.data;
+            var temp = [];
+            data.forEach((elem) => {
+                temp.push({ Id: elem.id, name: elem.name, symbol: elem.symbol })
+            })
+            setCurrencies(temp);
+        } catch (error) {
+            setErrors(error.response.data.message)
+        }
+    }
+
+    const getPlaceOfSupplyDetails = async () => {
+        setErrors([]);
+        try {
+            const result = await getPlaceOfSupply();
+            var data = result.data;
+            var temp = [];
+            data.forEach((elem) => {
+                temp.push({ Id: elem.id, name: elem.name })
+            })
+            setPlaceOfSupply(temp);
+        } catch (error) {
+            setErrors(error.response.data.message)
+        }
+    }
+
     const resetPage = () => {
-        setAddressErrors([]);
         setErrors([]);
         setActiveTabID(1);
         setData({
@@ -200,8 +239,9 @@ export default function CustomerAddForm() {
             salutation: "",
             firstName: "",
             lastName: "",
-            displayName: "",
             customerCompanyName: "",
+            companyId: 0,
+            displayName: "",
             email: "",
             phone: "",
             cellNumber: "",
@@ -209,54 +249,64 @@ export default function CustomerAddForm() {
             designation: "",
             department: "",
             website: "",
-            gstTreatment: "",
+            gstTreatment: 0,
+            GSTIN: "",
             panNumber: "",
             placeOfSupply: "",
             taxPreference: "",
             exemptionReason: "",
-            currency: "INR",
+            currency: "₹",
             openingBalance: 0,
             paymentTerm: "",
+            address: {
+                billingAddress: {
+                    attention: "",
+                    countryId: 0,
+                    addressLine1: "",
+                    addressLine2: "",
+                    city: "",
+                    stateId: 0,
+                    zipCode: "",
+                    phone: "",
+                    fax: ""
+                },
+                shippingAddress: {
+                    attention: "",
+                    countryId: 0,
+                    addressLine1: "",
+                    addressLine2: "",
+                    city: "",
+                    stateId: 0,
+                    zipCode: "",
+                    phone: "",
+                    fax: ""
+                }
+            }
         });
-        setAddressBillingData({
-            attention: "",
-            countryId: -1,
-            addressLine1: "",
-            addressLine2: "",
-            city: "",
-            stateId: -1,
-            zipCode: "",
-            phone: "",
-            fax: ""
-        });
-        setAddressShippingData({
-            attention: "",
-            countryId: -1,
-            addressLine1: "",
-            addressLine2: "",
-            city: "",
-            stateId: -1,
-            zipCode: "",
-            phone: "",
-            fax: ""
-        });
+
+        replace('/customers')
     }
 
     var addressProps = {
         countries: countries,
-        errors: addressErrors,
         billingstates: billingstates,
         shippingstates: shippingstates,
-        addressBillingData: addressBillingData,
-        addressShippingData: addressShippingData,
-        setAddressBillingData: setAddressBillingData,
-        setAddressShippingData: setAddressShippingData
+        shippingstatesCountryId: shippingstatesCountryId,
+        setShippingStatesCountryId: setShippingStatesCountryId,
+        billingstatesCountryId: billingstatesCountryId,
+        setBillingStatesCountryId: setBillingStatesCountryId,
+        data: data,
+        setData: setData
+
     };
 
     var otherDetailsProps = {
         data: data,
         handleInput: handleInput,
-        handleRadioButtonChange: handleRadioButtonChange
+        handleRadioButtonChange: handleRadioButtonChange,
+        gstTreatment: gstTreatment,
+        currencies: currencies,
+        placeOfSupply: placeOfSupply
     };
 
     return (
@@ -282,6 +332,7 @@ export default function CustomerAddForm() {
                                             <span className={`${styles.customerTypeBusinessRadioButtonWrapper} d-flex align-items-center`}>
                                                 <RadioButton
                                                     group="type"
+                                                    name='business'
                                                     label="Business"
                                                     value={(data.type).toLowerCase() === 'business'}
                                                     onChange={handleRadioButtonChange}
@@ -290,6 +341,7 @@ export default function CustomerAddForm() {
                                             <span className={`${styles.customerTypeIndividualRadioButtonWrapper} d-flex align-items-center`}>
                                                 <RadioButton
                                                     group="type"
+                                                    name='individual'
                                                     label="Individual"
                                                     value={(data.type).toLowerCase() === 'individual'}
                                                     onChange={handleRadioButtonChange}

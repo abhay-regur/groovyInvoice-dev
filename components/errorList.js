@@ -17,7 +17,7 @@ const ErrorList = (props) => {
   }
 
   useEffect(() => {
-    if (autoScroll === true && props.errors.length > 0) {
+    if (autoScroll === true && props.errors != undefined && props.errors.length > 0) {
       scrollErrorsToView()
     }
   }, [props.errors, autoScroll])
