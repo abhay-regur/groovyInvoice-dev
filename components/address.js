@@ -65,7 +65,6 @@ export default function Address({ countries, billingstates, shippingstates, ship
         let temp = Object.assign({}, temp_data)
         setData(temp);
     }
-
     return (<div className={`${styles.tab_content}`}>
         <div className="row">
             <div className="col-12 col-lg-6">

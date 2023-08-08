@@ -30,7 +30,6 @@ export default function CustomerAddForm() {
     const [shippingstates, setShippingStates] = useState();
     const [shippingstatesCountryId, setShippingStatesCountryId] = useState(-1);
     const [errors, setErrors] = useState([]);
-    const [addressErrors, setAddressErrors] = useState([]);
     const [gstTreatment, setGSTTreatment] = useState([]);
     const [currencies, setCurrencies] = useState([]);
     const [placeOfSupply, setPlaceOfSupply] = useState([]);
@@ -134,7 +133,6 @@ export default function CustomerAddForm() {
         e.preventDefault();
         setErrors([]);
         setIsLoading(true);
-        setAddressErrors([]);
         try {
             var result = await createCustomer(data);
             if (result.status == 200 || result.status == 201) {
@@ -234,7 +232,6 @@ export default function CustomerAddForm() {
     }
 
     const resetPage = () => {
-        setAddressErrors([]);
         setErrors([]);
         setActiveTabID(1);
         setData({
@@ -292,7 +289,6 @@ export default function CustomerAddForm() {
 
     var addressProps = {
         countries: countries,
-        errors: addressErrors,
         billingstates: billingstates,
         shippingstates: shippingstates,
         shippingstatesCountryId: shippingstatesCountryId,
