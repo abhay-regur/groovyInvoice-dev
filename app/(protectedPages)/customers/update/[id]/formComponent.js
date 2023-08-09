@@ -232,6 +232,16 @@ export default function CustomerEditForm() {
 
     const getUserData = async () => {
         setErrors([]);
+
+        var temp = data;
+        if (temp.taxPreference == "taxable") temp.exemptionReason = "";
+        if (temp.gstTreatment == 2 || temp.gstTreatment == 3 || temp.gstTreatment == 4 || temp.gstTreatment == 5) temp.GSTIN = "";
+        if (temp.gstTreatment == 5) {
+            temp.taxPreference = "";
+            temp.exemptionReason = "";
+        }
+        setData(Object.assign({}, temp));
+
         try {
             var result = await getUserDetails(id);
             if (result.status == 200 || result.status == 201) {
