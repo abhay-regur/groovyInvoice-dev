@@ -42,6 +42,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
     useEffect(() => {
         if ((data.gstTreatment == '3' || data.gstTreatment == '4' || data.gstTreatment == '5')) {
             setUnregistred(true);
+            setOverseas(false);
             if (data.gstTreatment == '5') {
                 setOverseas(true);
             }
