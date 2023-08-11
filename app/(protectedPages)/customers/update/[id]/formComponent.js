@@ -471,7 +471,7 @@ export default function CustomerEditForm() {
                                                 </button>
                                             </div>
                                             <div className="col-6 col-md-4 col-lg-3 col-xl-4">
-                                                <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={handleReset}>
+                                                <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} type='reset' onClick={handleReset}>
                                                     <span>
                                                         <i><FaCircleXmark /></i>
                                                         Cancel
