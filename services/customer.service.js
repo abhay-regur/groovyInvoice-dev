@@ -31,10 +31,22 @@ export const addShippingAddress = async (data, id) => {
     } catch (error) { throw error; }
 }
 
-export const addContactPerson = async (data, id) => {
+export const addContactPerson = async (id, data) => {
     try {
         return await httpService.post('customers/' + id + '/contact-person', data);
     } catch (error) { throw error; }
+}
+
+export const getContactPersonDetails = async (id, custId) => {
+    try {
+        return true;
+    } catch (error) { throw error }
+}
+
+export const deleteContactPersonDetails = async (id, custId) => {
+    try {
+        return true;
+    } catch (error) { throw error }
 }
 
 export const getGSTTreatment = async () => {
@@ -60,3 +72,5 @@ export const getCurrencies = async () => {
         throw error;
     }
 }
+
+

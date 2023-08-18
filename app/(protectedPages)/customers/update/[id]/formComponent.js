@@ -13,6 +13,7 @@ import styles from "../../../../../styles/newCustomer.module.scss";
 import ErrorList from '../../../../../components/errorList';
 import { ToastMsgContext } from '../../../../../context/ToastMsg.context';
 import Loading from "../../loading.js";
+import { getPaymentTerms } from "../../../../../services/paymentTerms.service";
 import { getCountries, getStates } from '../../../../../services/countriesState.service';
 import { getUserDetails, updateUserDetails, getGSTTreatment, getPlaceOfSupply, getCurrencies } from "../../../../../services/customer.service";
 import { NavExpandedState } from '../../../../../context/NavState.context';
@@ -34,6 +35,7 @@ export default function CustomerEditForm() {
     const [gstTreatment, setGSTTreatment] = useState([]);
     const [currencies, setCurrencies] = useState([]);
     const [placeOfSupply, setPlaceOfSupply] = useState([]);
+    const [paymentTerms, setPaymentTerms] = useState([]);
 
     const [data, setData] = useState({
         type: "",
@@ -92,7 +94,10 @@ export default function CustomerEditForm() {
             getCurrencyDetails();
             getPlaceOfSupplyDetails();
             getUserData();
-            setIsLoading(false);
+            getPaymentTermsDetails();
+            setTimeout(function () {
+                setIsLoading(false);
+            }, 2500);
         }
     }, [])
 
@@ -230,6 +235,21 @@ export default function CustomerEditForm() {
         }
     }
 
+    const getPaymentTermsDetails = async () => {
+        setErrors([]);
+        try {
+            const result = await getPaymentTerms();
+            var data = result.data;
+            var temp = [];
+            data.forEach((elem) => {
+                temp.push({ Id: elem.id, name: elem.label })
+            });
+            setPaymentTerms(temp);
+        } catch (error) {
+            setErrors(error.response.data.message)
+        }
+    }
+
     const getUserData = async () => {
         setErrors([]);
 
@@ -279,6 +299,7 @@ export default function CustomerEditForm() {
         handleInput: handleInput,
         handleRadioButtonChange: handleRadioButtonChange,
         gstTreatment: gstTreatment,
+        paymentTerms: paymentTerms,
         currencies: currencies,
         placeOfSupply: placeOfSupply
     };
@@ -455,7 +476,7 @@ export default function CustomerEditForm() {
                                     <div className={`${styles.tab_content_wrapper} `} id="myTabContent">
                                         {ActiveTabID == 1 ? <OtherDetails {...otherDetailsProps} /> : " "}
                                         {ActiveTabID == 2 ? <Address {...addressProps} /> : " "}
-                                        {ActiveTabID == 3 ? <ContactPerson /> : " "}
+                                        {ActiveTabID == 3 ? <ContactPerson id={id} /> : " "}
                                     </div>
                                 </div>
 

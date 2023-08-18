@@ -4,7 +4,7 @@ import FaQuestionCircleOutline from '../assets/icons/faQuestionCircleOutline.svg
 import SelectOptionComponent from './selectComponent';
 import styles from "../styles/newCustomer.module.scss";
 import { useEffect, useState } from 'react';
-export default function OtherDetails({ data, handleInput, handleRadioButtonChange, gstTreatment, currencies, placeOfSupply }) {
+export default function OtherDetails({ data, handleInput, handleRadioButtonChange, gstTreatment, paymentTerms, currencies, placeOfSupply }) {
     const [unregistred, setUnregistred] = useState(false);
     const [overseas, setOverseas] = useState(false);
 
@@ -180,7 +180,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
                 <label className={`${styles.companyInvoicePaymentTermslabel}`}>Payment Terms</label>
             </div>
             <div className="col-12 col-lg-6 col-xl-6">
-                <SelectOptionComponent className={`${styles.companyInvoicePaymentTermsSelect}`} data={paymentTermData} setSeletedId={handleInput} seletedId={data.paymentTerm} name={'paymentTerm'} isDisabled={false} defaultText={'Due on Receipt'} />
+                <SelectOptionComponent className={`${styles.companyInvoicePaymentTermsSelect}`} data={paymentTerms} setSeletedId={handleInput} seletedId={data.paymentTerm} name={'paymentTerm'} isDisabled={false} defaultText={'Due on Receipt'} />
             </div>
         </div>
     </div>)

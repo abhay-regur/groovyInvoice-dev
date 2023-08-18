@@ -1,8 +1,9 @@
 import styles from "../styles/newCustomer.module.scss";
 import ContactPersonTable from "../components/contactPersonTable.js";
 import FaCirclePlus from "../assets/icons/faCirclePlus.svg";
+import Link from "next/link";
 
-export default function ContactPerson() {
+export default function ContactPerson({ id }) {
     const ItemsData = [
         {
             salutation: "Ms",
