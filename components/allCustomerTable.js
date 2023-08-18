@@ -81,7 +81,7 @@ const AllCustomerTable = () => {
                 </div>
             </div>
             <div className={`col-sm-12 p-0`}>
-                <ServerSideDataTables ref={dtRef} id="manage-customer--table" {...dtOptions} className={`${styles.companyCustomerTable}table table-responsive responsive nowrap`} setIsPageLoading={setIsPageLoading} isLoading={isLoading} setIsLoading={setIsLoading}>
+                <ServerSideDataTables ref={dtRef} id="manage-customer--table" {...dtOptions} className={`${styles.companyCustomerTable}table table-responsive responsive nowrap`} setIsPageLoading={setIsPageLoading} isLoading={isLoading} setIsLoading={setIsLoading} isSearchable={true}>
                     <thead>
                         <tr>
                             <th scope="col" className="ps-3" data-priority="1" >User Name</th>
@@ -97,7 +97,6 @@ const AllCustomerTable = () => {
                 </ServerSideDataTables>
             </div>
         </div>
-
     )
 
 }

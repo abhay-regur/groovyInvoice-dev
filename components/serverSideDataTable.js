@@ -45,7 +45,7 @@ function ServerSideDT(props, ref) {
             serverSide: true,
             bLengthChange: false,
             paging: true,
-            searching: true,
+            searching: props.isSearchable,
             destroy: true,
             ajax: {
                 url: `${BASE_URL.replace(/\/$/, '')}/${props.ajaxUrl.replace(/^\//, '')}`,
