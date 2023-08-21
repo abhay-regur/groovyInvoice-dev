@@ -15,7 +15,7 @@ import { ToastMsgContext } from '../../../../../context/ToastMsg.context';
 import Loading from "../../loading.js";
 import { getPaymentTerms } from "../../../../../services/paymentTerms.service";
 import { getCountries, getStates } from '../../../../../services/countriesState.service';
-import { getUserDetails, updateUserDetails, getGSTTreatment, getPlaceOfSupply, getCurrencies } from "../../../../../services/customer.service";
+import { getUserDetails, updateUserDetails, getGSTTreatment, getPlaceOfSupply, getCurrencies, addContactPerson, listContactPersonDetails, updateContactPersonDetails, deleteContactPersonDetails } from "../../../../../services/customer.service";
 import { NavExpandedState } from '../../../../../context/NavState.context';
 import { useRouter } from 'next/navigation';
 
@@ -294,6 +294,16 @@ export default function CustomerEditForm() {
         setData: setData
     };
 
+    var contactPersonProps = {
+        custId: id,
+        setToastList: setToastList,
+        ErrorList: ErrorList,
+        addContactPerson: addContactPerson,
+        listContactPersonDetails: listContactPersonDetails,
+        updateContactPersonDetails: updateContactPersonDetails,
+        deleteContactPersonDetails: deleteContactPersonDetails
+    };
+
     var otherDetailsProps = {
         data: data,
         handleInput: handleInput,
@@ -476,32 +486,35 @@ export default function CustomerEditForm() {
                                     <div className={`${styles.tab_content_wrapper} `} id="myTabContent">
                                         {ActiveTabID == 1 ? <OtherDetails {...otherDetailsProps} /> : " "}
                                         {ActiveTabID == 2 ? <Address {...addressProps} /> : " "}
-                                        {ActiveTabID == 3 ? <ContactPerson id={id} /> : " "}
+                                        {ActiveTabID == 3 ? <ContactPerson {...contactPersonProps} /> : " "}
                                     </div>
                                 </div>
-
-                                <div className={`${styles.companyInvoiceFormButtonsWrapper} row`}>
-                                    <div className="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-3">
-                                        <div className="row">
-                                            <div className="col-6 col-md-4 col-lg-3 col-xl-4">
-                                                <button name="btn-submit" className={`${styles.companyInvoiceSavenSendButton} btn blue`} type='submit'>
-                                                    <span>
-                                                        <i><FaSave /></i>
-                                                        Save
-                                                    </span>
-                                                </button>
-                                            </div>
-                                            <div className="col-6 col-md-4 col-lg-3 col-xl-4">
-                                                <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} type='reset' onClick={handleReset}>
-                                                    <span>
-                                                        <i><FaCircleXmark /></i>
-                                                        Cancel
-                                                    </span>
-                                                </button>
+                                {
+                                    ActiveTabID == 3 ? ''
+                                        :
+                                        <div className={`${styles.companyInvoiceFormButtonsWrapper} row`}>
+                                            <div className="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-3">
+                                                <div className="row">
+                                                    <div className="col-6 col-md-4 col-lg-3 col-xl-4">
+                                                        <button name="btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`} type='submit'>
+                                                            <span>
+                                                                <i><FaSave /></i>
+                                                                Save
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                    <div className="col-6 col-md-4 col-lg-3 col-xl-4">
+                                                        <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} type='reset' onClick={handleReset}>
+                                                            <span>
+                                                                <i><FaCircleXmark /></i>
+                                                                Cancel
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
+                                }
 
                             </form>
 

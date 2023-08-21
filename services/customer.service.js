@@ -31,21 +31,27 @@ export const addShippingAddress = async (data, id) => {
     } catch (error) { throw error; }
 }
 
-export const addContactPerson = async (id, data) => {
+export const addContactPerson = async (custId, data) => {
     try {
-        return await httpService.post('customers/' + id + '/contact-person', data);
+        return await httpService.post(`customers/${custId}/contact-person`, data);
     } catch (error) { throw error; }
 }
 
-export const getContactPersonDetails = async (id, custId) => {
+export const listContactPersonDetails = async (custId) => {
     try {
-        return true;
+        return await httpService.get(`customers/${custId}/contact-person`);
+    } catch (error) { throw error }
+}
+
+export const updateContactPersonDetails = async (id, custId, data) => {
+    try {
+        return await httpService.put('customers/' + custId + '/contact-person/' + id, data);
     } catch (error) { throw error }
 }
 
 export const deleteContactPersonDetails = async (id, custId) => {
     try {
-        return true;
+        return await httpService.delete('customers/' + custId + '/contact-person/' + id);
     } catch (error) { throw error }
 }
 
