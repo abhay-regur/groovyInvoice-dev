@@ -14,7 +14,7 @@ import FaGear from '../assets/icons/faGear.svg';
 import FaLogout from '../assets/icons/faLogout.svg';
 import FaUsers from '../assets/icons/faUsers.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import FaScrewAndWrench from '../assets/icons/FaScrewAndWrench.svg';
+import FaScrewAndWrench from '../assets/icons/faScrewAndWrench.svg';
 import { faSearch, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { NavExpandedState } from '../context/NavState.context';
 
