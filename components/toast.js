@@ -1,10 +1,11 @@
 import { useState, useEffect, useContext } from 'react';
 import { ToastMsgContext } from '../context/ToastMsg.context';
+import FaXmark from '../assets/icons/faXmark.svg'
 import styles from '../styles/toast.module.scss';
 
 
 export default function Toast() {
-    const autoDeleteTime = 5000;
+    const autoDeleteTime = 15000;
     const { toastList } = useContext(ToastMsgContext);
     const [list, setList] = useState(toastList);
 
@@ -40,16 +41,18 @@ export default function Toast() {
                     list.map((toast, i) =>
                         <div
                             key={i}
-                            className={`${styles.toastMain}`}
+                            className={`${styles.toastMain} row`}
                         >
-                            <button onClick={() => deleteToast(toast.id)}>
-                                X
-                            </button>
-                            <div>
+                            <div className='col-10'>
                                 <p className={`${styles.toastTitle}`}>{toast.title}</p>
                                 <p className={`${styles.toastMessage}`}>
                                     {toast.description}
                                 </p>
+                            </div>
+                            <div className="col-2 d-flex">
+                                <button onClick={() => deleteToast(toast.id)}>
+                                    <FaXmark />
+                                </button>
                             </div>
                         </div>
                     )

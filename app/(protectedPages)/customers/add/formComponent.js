@@ -12,6 +12,7 @@ import styles from "../../../../styles/newCustomer.module.scss";
 import ErrorList from '../../../../components/errorList';
 import Loading from "../loading.js";
 import { createCustomer, getGSTTreatment, getPlaceOfSupply, getCurrencies } from "../../../../services/customer.service";
+import { getPaymentTerms } from "../../../../services/paymentTerms.service";
 import { ToastMsgContext } from '../../../../context/ToastMsg.context';
 import { getCountries, getStates } from '../../../../services/countriesState.service';
 import { NavExpandedState } from '../../../../context/NavState.context';
@@ -33,6 +34,7 @@ export default function CustomerAddForm() {
     const [gstTreatment, setGSTTreatment] = useState([]);
     const [currencies, setCurrencies] = useState([]);
     const [placeOfSupply, setPlaceOfSupply] = useState([]);
+    const [paymentTerms, setPaymentTerms] = useState([]);
 
     const [data, setData] = useState({
         type: "",
@@ -89,6 +91,7 @@ export default function CustomerAddForm() {
         getGSTTreatmentDetails();
         getCurrencyDetails();
         getPlaceOfSupplyDetails();
+        getPaymentTermsDetails();
         setTimeout(function () {
             setIsLoading(false);
         }, 2500);
@@ -133,6 +136,15 @@ export default function CustomerAddForm() {
         e.preventDefault();
         setErrors([]);
         setIsLoading(true);
+        var temp = data;
+        if (temp.taxPreference == "taxable") temp.exemptionReason = "";
+        if (temp.gstTreatment == 2 || temp.gstTreatment == 3 || temp.gstTreatment == 4 || temp.gstTreatment == 5) temp.GSTIN = "";
+        if (temp.gstTreatment == 5) {
+            temp.taxPreference = "";
+            temp.exemptionReason = "";
+        }
+        setData(Object.assign({}, temp));
+
         try {
             var result = await createCustomer(data);
             if (result.status == 200 || result.status == 201) {
@@ -231,6 +243,21 @@ export default function CustomerAddForm() {
         }
     }
 
+    const getPaymentTermsDetails = async () => {
+        setErrors([]);
+        try {
+            const result = await getPaymentTerms();
+            var data = result.data;
+            var temp = [];
+            data.forEach((elem) => {
+                temp.push({ Id: elem.id, name: elem.label })
+            });
+            setPaymentTerms(temp);
+        } catch (error) {
+            setErrors(error.response.data.message)
+        }
+    }
+
     const resetPage = () => {
         setErrors([]);
         setActiveTabID(1);
@@ -305,6 +332,7 @@ export default function CustomerAddForm() {
         handleInput: handleInput,
         handleRadioButtonChange: handleRadioButtonChange,
         gstTreatment: gstTreatment,
+        paymentTerms: paymentTerms,
         currencies: currencies,
         placeOfSupply: placeOfSupply
     };

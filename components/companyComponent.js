@@ -1,11 +1,13 @@
 import { useContext, useState, useEffect } from 'react';
-import { getCountries, getStates } from '../../../services/countriesState.service';
-import FaSave from '../../../assets/icons/faSave.svg';
-import FaCircleXmark from '../../../assets/icons/faCircleXmark.svg';
-import SelectComponent from '../../../components/selectComponent';
+import { getCountries, getStates } from '../services/countriesState.service';
+import FaSave from '../assets/icons/faSave.svg';
+import FaCircleXmark from '../assets/icons/faCircleXmark.svg';
+import SelectComponent from './selectComponent';
+import styles from '../styles/configuration.module.scss';
 export default function CompanyComponent() {
     const [countries, setCountries] = useState()
-    const [states, setStates] = useState()
+    const [states, setStates] = useState();
+    const [errors, setErrors] = useState([]);
     const [seletedCountryId, setSeletedCountryId] = useState("");
     const [seletedStateId, setSeletedStateId] = useState("");
     const [isLoading, setIsLoading] = useState(true)
@@ -65,17 +67,17 @@ export default function CompanyComponent() {
             <div className={`${styles.profileCard} card`}>
                 <div className="card-body">
                     <div className={`${styles.companyDetailsWrapper}`}>
-                        <h3>Company Details</h3>
+                        <h4>Company Details</h4>
                         <hr />
                         <div className="row">
                             <div className="col-sm-2">
                             </div>
                             <div className="col-sm-8">
                                 <div className={`${styles.companyInvoiceCompanyNameWrapper} mb-1 mb-md-4 row`}>
-                                    <div className="col-12 mb-2">
+                                    <div className="col-12 col-lg-4 col-xl-2">
                                         <label className={`${styles.companyInvoiceCompanyName}`}>Company Name</label>
                                     </div>
-                                    <div className="col-12">
+                                    <div className="col-12 col-lg-6 col-xl-6">
                                         <input type="text" className="form-control" id="companyInvoiceCompanyName" placeholder='Company Name' />
                                     </div>
                                 </div>
@@ -86,10 +88,10 @@ export default function CompanyComponent() {
                             </div>
                             <div className="col-sm-8">
                                 <div className={`${styles.companyInvoiceCompanyAddress1Wrapper} mb-1 mb-md-4 row`}>
-                                    <div className="col-12 mb-2">
+                                    <div className="col-12 col-lg-4 col-xl-2">
                                         <label className={`${styles.companyInvoiceCompanyAddress1}`}>Address 1</label>
                                     </div>
-                                    <div className="col-12">
+                                    <div className="col-12 col-lg-6 col-xl-6">
                                         <input type="text" className="form-control" id="companyInvoiceCompanyAddress1" placeholder='Address' />
                                     </div>
                                 </div>
@@ -100,10 +102,10 @@ export default function CompanyComponent() {
                             </div>
                             <div className="col-sm-8">
                                 <div className={`${styles.companyInvoiceCompanyAddress2Wrapper} mb-1 mb-md-4 row`}>
-                                    <div className="col-12 mb-2">
+                                    <div className="col-12 col-lg-4 col-xl-2">
                                         <label className={`${styles.companyInvoiceCompanyAddress2}`}>Address 2</label>
                                     </div>
-                                    <div className="col-12">
+                                    <div className="col-12 col-lg-6 col-xl-6">
                                         <input type="text" className="form-control" id="companyInvoiceCompanyAddress2" placeholder='Address' />
                                     </div>
                                 </div>
@@ -112,32 +114,40 @@ export default function CompanyComponent() {
                         <div className="row">
                             <div className="col-sm-2">
                             </div>
-                            <div className="col-sm-3">
+                            <div className="col-sm-8">
                                 <div className={`${styles.companyInvoiceCompanyCountryyWrapper} mb-1 mb-md-4 row`}>
-                                    <div className="col-12 mb-2">
+                                    <div className="col-12 col-lg-4 col-xl-2">
                                         <label className={`${styles.companyInvoiceCompanyCountry}`}>Country</label>
                                     </div>
-                                    <div className="col-12">
+                                    <div className="col-12 col-lg-6 col-xl-6">
                                         <SelectComponent data={countries} setSeletedId={setSeletedCountryId} seletedId={seletedCountryId} />
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-sm-3">
+                        </div>
+                        <div className="row">
+                            <div className="col-sm-2">
+                            </div>
+                            <div className="col-sm-8">
                                 <div className={`${styles.companyInvoiceCompanyStateWrapper} mb-1 mb-md-4 row`}>
-                                    <div className="col-12 mb-2">
+                                    <div className="col-12 col-lg-4 col-xl-2">
                                         <label className={`${styles.companyInvoiceCompanyState}`}>State</label>
                                     </div>
-                                    <div className="col-12">
+                                    <div className="col-12 col-lg-6 col-xl-6">
                                         <SelectComponent data={states} setSeletedId={setSeletedStateId} seletedId={seletedStateId} />
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-sm-3">
+                        </div>
+                        <div className="row">
+                            <div className="col-sm-2">
+                            </div>
+                            <div className="col-sm-8">
                                 <div className={`${styles.companyInvoiceCompanyCityWrapper} mb-1 mb-md-4 row`}>
-                                    <div className="col-12 mb-2">
+                                    <div className="col-12 col-lg-4 col-xl-2">
                                         <label className={`${styles.companyInvoiceCompanyCity}`}>City</label>
                                     </div>
-                                    <div className="col-12">
+                                    <div className="col-12 col-lg-6 col-xl-6">
                                         <input type="text" className="form-control" id="companyInvoiceCompanyCity" placeholder='City' />
                                     </div>
                                 </div>
@@ -148,27 +158,28 @@ export default function CompanyComponent() {
                             </div>
                             <div className="col-sm-8">
                                 <div className={`${styles.companyInvoiceCompanyPostCodeWrapper} mb-1 mb-md-4 row`}>
-                                    <div className="col-12 mb-2">
+                                    <div className="col-12 col-lg-4 col-xl-2">
                                         <label className={`${styles.companyInvoiceCompanyPostCode}`}>Postal Code</label>
                                     </div>
-                                    <div className="col-12">
+                                    <div className="col-12 col-lg-6 col-xl-6">
                                         <input type="text" className="form-control" id="companyInvoiceCompanyPostCode" placeholder='Postal Code' />
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="row justify-content-end">
-                            <div className="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-3">
+                        <div className="row">
+                            <div className="col-sm-2"></div>
+                            <div className="col-10 col-sm-10 col-md-8 col-lg-7 col-xl-3">
                                 <div className="row">
-                                    <div className="col-6 col-md-4 col-lg-3 col-xl-4 mt-3 mt-sm-0 d-flex justify-content-center">
-                                        <button className={`${styles.companyInvoiceSavenSendButton} btn blue`} onClick={() => { console.log('Save'); }}>
+                                    <div className="col-6 col-md-4 col-lg-3 col-xl-4 mt-3 mt-sm-0">
+                                        <button className={`${styles.companyInvoiceSaveSendButton} btn blue`} onClick={() => { console.log('Save'); }}>
                                             <span>
                                                 <i><FaSave /></i>
                                                 Save
                                             </span>
                                         </button>
                                     </div>
-                                    <div className="col-6 col-md-4 col-lg-3 col-xl-4 mt-3 mt-sm-0 d-flex justify-content-center">
+                                    <div className="col-6 col-md-4 col-lg-3 col-xl-4 mt-3 mt-sm-0">
                                         <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={() => { console.log('Cancel'); }}>
                                             <span>
                                                 <i><FaCircleXmark /></i>

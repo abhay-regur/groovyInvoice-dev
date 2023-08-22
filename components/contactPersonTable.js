@@ -1,39 +1,45 @@
 import styles from "../styles/contactPersonTable.module.scss";
 import FaCilcleEllipses from "../assets/icons/faCircleEllipses.svg";
 import FaCircleXmark from '../assets/icons/faCircleXmark.svg';
+import FaCircleCheck from '../assets/icons/faCircleCheck.svg';
 
 const ContactPersonTable = ({ ItemsData }) => {
     return (
         <tbody>
-            {ItemsData.map(function (Item, idx) {
+            {ItemsData.map(function (item, idx) {
                 return (
                     <tr key={idx} className={`${styles.companyInvoiceContactPersonRow}`}>
                         <td>
-                            <select className={`${styles.companyInvoiceContactPersonSelect} form-select`}>
-                                <option defaultValue>Salutation</option>
-                                <option value={Item.salutation.toLowerCase()}>{Item.salutation}</option>
-                            </select>
+                            <span>{item.salutation}</span>
                         </td>
                         <td>
-                            <span>{Item.firstName}</span>
+                            <span>{item.firstName}</span>
                         </td>
                         <td>
-                            <span>{Item.lastName}</span>
+                            <span>{item.lastName}</span>
                         </td>
                         <td>
-                            <span>{Item.emailAddress}</span>
+                            <span>{item.emailAddress}</span>
                         </td>
                         <td>
-                            <span>{Item.workPhone}</span>
+                            <span>{item.workPhone}</span>
                         </td>
                         <td>
-                            <span>{Item.mobile}</span>
+                            <span>{item.mobile}</span>
                         </td>
                         <td className={`${styles.companyInvoiceContantPersonEditRow}`}>
-                            <div className="d-flex">
-                                <span><FaCilcleEllipses /></span>
-                                <span className={`${styles.redColor}`}><FaCircleXmark /></span>
-                            </div>
+                            {item.id == -1
+                                ?
+                                <div className="d-flex">
+                                    <span><FaCircleCheck /></span>
+                                    <span className={`${styles.redColor}`}><FaCircleXmark /></span>
+                                </div>
+                                :
+                                <div className="d-flex">
+                                    <span><FaCilcleEllipses /></span>
+                                    <span className={`${styles.redColor}`}><FaCircleXmark /></span>
+                                </div>
+                            }
                         </td>
                     </tr>
                 )

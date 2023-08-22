@@ -1,0 +1,230 @@
+$font-size-heading: 32px;
+$font-size-text: 15px;
+$primary-color: #3649AB;
+$secondary-color: #8790B0;
+$tertiary-color: #43CB80;
+$table-head-color: #EEF5FC;
+$table-head-border-color: #C8D6E2;
+$input-background-color: #F5FAFE;
+$primary-border-color: #E3EBF2;
+$button-red-color: #DA5252;
+
+
+@media screen and (min-width: 676px) {
+    .main {
+        margin: auto 97px;
+        margin-left: 135px;
+        margin-bottom: 30px;
+        transition: all 0.35s;
+
+        &.expanded {
+            margin-left: 329px !important;
+            transition: all 0.35s;
+        }
+
+        .title {
+            color: $primary-color;
+            font-weight: 700;
+            font-size: 26px;
+            line-height: 33px;
+        }
+
+        h4 {
+            color: $primary-color;
+            font-weight: 700;
+            font-size: 23px;
+            line-height: 23px;
+        }
+
+        h5 {
+            color: $primary-color;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 23px;
+            margin-bottom: 20px;
+        }
+
+        .paymentTermsDetailsWrapper {
+            thead {
+                tr {
+                    th {
+                        background: $primary-color;
+                        color: white;
+                        min-width: 144px;
+                        font-weight: 600;
+                        font-size: 14px;
+                        padding: 10px;
+                        border: 1px solid #BCD5E2;
+                    }
+                }
+            }
+
+            tbody {
+                tr.companyInvoiceContactPersonRow {
+                    td {
+                        padding: 12px 10px;
+                        border: 1px solid $primary-border-color;
+
+                        &:last-of-type {
+                            border: none;
+                        }
+
+                        select {
+                            border: none;
+                            color: $secondary-color;
+                            font-weight: 400;
+                            font-size: 14px;
+                            appearance: none;
+
+                            &:focus {
+                                box-shadow: none;
+                            }
+                        }
+
+                        span {
+                            color: $secondary-color;
+                            font-weight: 400;
+                            font-size: 14px;
+                        }
+
+                        &.companyInvoiceContantPersonEditRow {
+                            div {
+                                span {
+
+                                    &.companyInvoicePaymentTermEdit,
+                                    &.companyInvoicePaymentTermRemove {
+                                        border: none;
+                                        background: none;
+                                    }
+
+                                    padding-right: 6px;
+                                    cursor: pointer;
+
+                                    svg {
+                                        width: 22px !important;
+                                        height: 22px !important;
+
+                                        path {
+                                            fill: $tertiary-color;
+                                        }
+
+                                        &.redColor {
+                                            path {
+                                                fill: $button-red-color;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            label {
+                display: flex;
+                align-items: center;
+                font-weight: 600;
+                font-size: 14px;
+                color: $primary-color;
+            }
+
+            input {
+                font-weight: 400;
+                font-size: 14px;
+                color: $secondary-color;
+                background: $input-background-color;
+                border: 1px solid $primary-border-color;
+                border-radius: 8px;
+            }
+        }
+
+        button {
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            color: white;
+
+            &.companyInvoiceSaveSendButton,
+            &.companyInvoiceCancelButton {
+                span {
+                    display: flex;
+                    text-align: center;
+                    justify-content: center;
+
+                    i {
+                        display: flex;
+                        margin-right: 5px;
+                        align-self: center;
+
+                        svg {
+                            height: 20px;
+                            width: 20px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .companyDetailsWrapper {
+            padding-bottom: 20px;
+
+            .companyInvoiceCompanyNameWrapper,
+            .companyInvoiceCompanyAddress1Wrapper,
+            .companyInvoiceCompanyAddress2Wrapper,
+            .companyInvoiceCompanyCityWrapper,
+            .companyInvoiceCompanyPostCodeWrapper,
+            .companyInvoiceCompanyStateWrapper,
+            .companyInvoiceCompanyCountryyWrapper {
+                label {
+                    align-items: center;
+                    font-weight: 600;
+                    font-size: 14px;
+                    color: $primary-color;
+                }
+
+                input {
+                    font-weight: 400;
+                    font-size: 14px;
+                    color: $secondary-color;
+                    background: $input-background-color;
+                    border: 1px solid $primary-border-color;
+                    border-radius: 8px;
+                }
+
+                select {
+                    border: 1px solid $primary-border-color;
+                    background: $input-background-color;
+                    border-radius: 8px;
+                    color: $secondary-color;
+
+                    &::placeholder {
+                        color: $secondary-color;
+                        font-weight: 400;
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+@media screen and (max-width: 675px) {
+    .main {
+        margin: 89px 15px 92px 15px;
+        transition: all 0.35s;
+
+        &.expanded {
+            margin: 89px 15px 92px 15px;
+            transition: all 0.35s;
+        }
+
+        .title {
+            color: $primary-color;
+            font-weight: 700;
+            font-size: 26px;
+            line-height: 33px;
+        }
+    }
+}

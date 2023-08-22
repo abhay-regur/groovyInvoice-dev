@@ -13,8 +13,9 @@ import styles from "../../../../../styles/newCustomer.module.scss";
 import ErrorList from '../../../../../components/errorList';
 import { ToastMsgContext } from '../../../../../context/ToastMsg.context';
 import Loading from "../../loading.js";
+import { getPaymentTerms } from "../../../../../services/paymentTerms.service";
 import { getCountries, getStates } from '../../../../../services/countriesState.service';
-import { getUserDetails, updateUserDetails, getGSTTreatment, getPlaceOfSupply, getCurrencies } from "../../../../../services/customer.service";
+import { getUserDetails, updateUserDetails, getGSTTreatment, getPlaceOfSupply, getCurrencies, addContactPerson, listContactPersonDetails, updateContactPersonDetails, deleteContactPersonDetails } from "../../../../../services/customer.service";
 import { NavExpandedState } from '../../../../../context/NavState.context';
 import { useRouter } from 'next/navigation';
 
@@ -34,6 +35,7 @@ export default function CustomerEditForm() {
     const [gstTreatment, setGSTTreatment] = useState([]);
     const [currencies, setCurrencies] = useState([]);
     const [placeOfSupply, setPlaceOfSupply] = useState([]);
+    const [paymentTerms, setPaymentTerms] = useState([]);
 
     const [data, setData] = useState({
         type: "",
@@ -92,7 +94,10 @@ export default function CustomerEditForm() {
             getCurrencyDetails();
             getPlaceOfSupplyDetails();
             getUserData();
-            setIsLoading(false);
+            getPaymentTermsDetails();
+            setTimeout(function () {
+                setIsLoading(false);
+            }, 2500);
         }
     }, [])
 
@@ -230,8 +235,33 @@ export default function CustomerEditForm() {
         }
     }
 
+    const getPaymentTermsDetails = async () => {
+        setErrors([]);
+        try {
+            const result = await getPaymentTerms();
+            var data = result.data;
+            var temp = [];
+            data.forEach((elem) => {
+                temp.push({ Id: elem.id, name: elem.label })
+            });
+            setPaymentTerms(temp);
+        } catch (error) {
+            setErrors(error.response.data.message)
+        }
+    }
+
     const getUserData = async () => {
         setErrors([]);
+
+        var temp = data;
+        if (temp.taxPreference == "taxable") temp.exemptionReason = "";
+        if (temp.gstTreatment == 2 || temp.gstTreatment == 3 || temp.gstTreatment == 4 || temp.gstTreatment == 5) temp.GSTIN = "";
+        if (temp.gstTreatment == 5) {
+            temp.taxPreference = "";
+            temp.exemptionReason = "";
+        }
+        setData(Object.assign({}, temp));
+
         try {
             var result = await getUserDetails(id);
             if (result.status == 200 || result.status == 201) {
@@ -264,11 +294,22 @@ export default function CustomerEditForm() {
         setData: setData
     };
 
+    var contactPersonProps = {
+        custId: id,
+        setToastList: setToastList,
+        ErrorList: ErrorList,
+        addContactPerson: addContactPerson,
+        listContactPersonDetails: listContactPersonDetails,
+        updateContactPersonDetails: updateContactPersonDetails,
+        deleteContactPersonDetails: deleteContactPersonDetails
+    };
+
     var otherDetailsProps = {
         data: data,
         handleInput: handleInput,
         handleRadioButtonChange: handleRadioButtonChange,
         gstTreatment: gstTreatment,
+        paymentTerms: paymentTerms,
         currencies: currencies,
         placeOfSupply: placeOfSupply
     };
@@ -445,32 +486,35 @@ export default function CustomerEditForm() {
                                     <div className={`${styles.tab_content_wrapper} `} id="myTabContent">
                                         {ActiveTabID == 1 ? <OtherDetails {...otherDetailsProps} /> : " "}
                                         {ActiveTabID == 2 ? <Address {...addressProps} /> : " "}
-                                        {ActiveTabID == 3 ? <ContactPerson /> : " "}
+                                        {ActiveTabID == 3 ? <ContactPerson {...contactPersonProps} /> : " "}
                                     </div>
                                 </div>
-
-                                <div className={`${styles.companyInvoiceFormButtonsWrapper} row`}>
-                                    <div className="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-3">
-                                        <div className="row">
-                                            <div className="col-6 col-md-4 col-lg-3 col-xl-4">
-                                                <button name="btn-submit" className={`${styles.companyInvoiceSavenSendButton} btn blue`} type='submit'>
-                                                    <span>
-                                                        <i><FaSave /></i>
-                                                        Save
-                                                    </span>
-                                                </button>
-                                            </div>
-                                            <div className="col-6 col-md-4 col-lg-3 col-xl-4">
-                                                <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={handleReset}>
-                                                    <span>
-                                                        <i><FaCircleXmark /></i>
-                                                        Cancel
-                                                    </span>
-                                                </button>
+                                {
+                                    ActiveTabID == 3 ? ''
+                                        :
+                                        <div className={`${styles.companyInvoiceFormButtonsWrapper} row`}>
+                                            <div className="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-3">
+                                                <div className="row">
+                                                    <div className="col-6 col-md-4 col-lg-3 col-xl-4">
+                                                        <button name="btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`} type='submit'>
+                                                            <span>
+                                                                <i><FaSave /></i>
+                                                                Save
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                    <div className="col-6 col-md-4 col-lg-3 col-xl-4">
+                                                        <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} type='reset' onClick={handleReset}>
+                                                            <span>
+                                                                <i><FaCircleXmark /></i>
+                                                                Cancel
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
+                                }
 
                             </form>
 
