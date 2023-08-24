@@ -2,42 +2,27 @@ import RadioButton from '../components/radioButton';
 import FaExclamationCircle from '../assets/icons/faExclamationCircle.svg';
 import FaQuestionCircleOutline from '../assets/icons/faQuestionCircleOutline.svg';
 import SelectOptionComponent from './selectComponent';
+import FaPlus from '../assets/icons/faCirclePlus.svg'
+import CustomSelectComponent from './customSelectComponent';
 import styles from "../styles/newCustomer.module.scss";
 import { useEffect, useState } from 'react';
-export default function OtherDetails({ data, handleInput, handleRadioButtonChange, gstTreatment, paymentTerms, currencies, placeOfSupply }) {
+export default function OtherDetails({ data, handleInput, handleRadioButtonChange, ErrorList, gstTreatment, paymentTerms, currencies, placeOfSupply }) {
     const [unregistred, setUnregistred] = useState(false);
     const [overseas, setOverseas] = useState(false);
+    const { Modal } = require("bootstrap");
+    const [paymentTerm, setPaymentTerm] = useState({
+        label: "",
+        numberOfDays: 0
+    });
+    const [modalErrors, setmodalErrors] = useState([]);
 
-    const paymentTermData = [
-        {
-            id: 'pia',
-            name: 'PIA'
-        },
-        {
-            id: 'net10',
-            name: 'Net 10'
-        },
-        {
-            id: 'net30',
-            name: 'Net 30'
-        },
-        {
-            id: 'net60',
-            name: 'Net 60'
-        },
-        {
-            id: 'net90',
-            name: 'Net 90'
-        },
-        {
-            id: 'eom',
-            name: 'EOM'
-        },
-        {
-            id: '21mfi',
-            name: '21 MFI'
-        }
-    ];
+    const handleModalInput = ({ target }) => {
+        var temp_data = paymentTerm;
+        var name = target.name || target.getAttribute('name');
+        temp_data[name] = target.value;
+        let temp = Object.assign({}, temp_data)
+        setPaymentTerm(temp);
+    }
 
     useEffect(() => {
         if ((data.gstTreatment == '3' || data.gstTreatment == '4' || data.gstTreatment == '5')) {
@@ -52,6 +37,15 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
         }
     }, [data.gstTreatment])
 
+    const showModal = () => {
+        setmodalErrors([]);
+        const myModal = new Modal("#updateCustomerModal");
+        myModal.show();
+    }
+
+    const hideModal = () => {
+        setmodalErrors([]);
+    }
 
     return (<div className={`${styles.tab_content}`}>
         <div className={`${styles.companyInvoiceComapnyGSTTreatmentWrapper} mb-4 row`}>
@@ -148,7 +142,6 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
                 ""
         }
 
-
         <div className={`${styles.companyInvoiceCurrencyWrapper} mb-4 row`}>
             <div className="col-12 col-lg-4 col-xl-2 d-flex align-items-center">
                 <label className={`${styles.companyInvoiceCurrencylabel}`}>Currency</label>
@@ -180,8 +173,65 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
                 <label className={`${styles.companyInvoicePaymentTermslabel}`}>Payment Terms</label>
             </div>
             <div className="col-12 col-lg-6 col-xl-6">
-                <SelectOptionComponent className={`${styles.companyInvoicePaymentTermsSelect}`} data={paymentTerms} setSeletedId={handleInput} seletedId={data.paymentTerm} name={'paymentTerm'} isDisabled={false} defaultText={'Due on Receipt'} />
+                {/* <SelectOptionComponent className={`${styles.companyInvoicePaymentTermsSelect}`} data={paymentTerms} setSeletedId={handleInput} seletedId={data.paymentTerm} name={'paymentTerm'} isDisabled={false} defaultText={'Due on Receipt'} /> */}
+                <CustomSelectComponent className={`${styles.companyInvoicePaymentTermsSelect}`} data={paymentTerms} setSeletedId={handleInput} seletedId={data.paymentTerm} name={'paymentTerm'} isDisabled={false} defaultText={'Select An Option'} clickFunction={showModal} />
             </div>
         </div>
+
+        <div
+            className={`${styles.companyInvoiceModal} modal`}
+            id="updateCustomerModal"
+            tabIndex="-1"
+            aria-labelledby="updateCustomerModalLabel"
+            data-bs-backdrop="static"
+            aria-hidden="true">
+            <div className="modal-dialog">
+                <div className="modal-content">
+                    <div className={`${styles.companyInvoiceModalHeader} modal-header`}>
+                        <h5 className="modal-title">Add Payment Term</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={hideModal}></button>
+                    </div>
+                    <div className="modal-body">
+                        <ErrorList errors={modalErrors} />
+                        <div className='row'>
+                            <div className="col-12 ">
+                                <div className={`${styles.companyInvoicePaymentTermLabelWrapper} mb-4 row`}>
+                                    <div className="d-flex align-items-center col-12 col-lg-4 col-xl-3">
+                                        <label className={`${styles.companyInvoicePaymentTermLabel}`}>Label</label>
+                                    </div>
+                                    <div className="col-12 col-lg-6 col-xl-8">
+                                        <input name='label' type="text" className="form-control" id="companyInvoicePaymentTermLabel" value={paymentTerm.label} onChange={handleModalInput} placeholder='Label' />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-12">
+                                <div className={`${styles.companyInvoicePaymentTermDaysWrapper} mb-4 row`}>
+                                    <div className="d-flex align-items-center col-12 col-lg-4 col-xl-3">
+                                        <label className={`${styles.companyInvoicePaymentTermDays}`}>Number of Days</label>
+                                    </div>
+                                    <div className="col-12 col-lg-6 col-xl-8">
+                                        <input name='numberOfDays' type="number" className="form-control" id="companyInvoiceNewCustomerCompanyName" min="0" value={paymentTerm.numberOfDays} onChange={handleModalInput} />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="modal-footer">
+                        <div className="row">
+                            <div className="col-4">
+                                <button name="btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`} type='submit'>
+                                    <span>
+                                        <i><FaPlus /></i>
+                                        Add
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>)
 }

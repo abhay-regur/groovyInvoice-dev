@@ -13,7 +13,7 @@ export default function ContactPerson({ custId, setToastList, ErrorList, addCont
     const [showTableUserInput, setShowTableUserInput] = useState(false);
     const [isLoading, setIsloading] = useState(true);
     const [errors, setErrors] = useState([]);
-    const [modalErrors, setmodalErrors] = useState([])
+    const [modalErrors, setmodalErrors] = useState([]);
     const bootstrap = dynamic(
         () => {
             return import("bootstrap");

@@ -115,15 +115,16 @@ export default function CustomerEditForm() {
 
     const handleInput = ({ target }) => {
         var temp_data = data;
-        if (target.name != '') {
-            if (target.name == 'openingBalance' || target.name == 'gstTreatment') {
+        var name = target.name || target.getAttribute('name');
+        if (name != '') {
+            if (name == 'openingBalance' || name == 'gstTreatment') {
                 if (target.value != NaN || target.value != '') {
-                    temp_data[target.name] = parseInt(target.value)
+                    temp_data[name] = parseInt(target.value)
                 } else {
-                    temp_data[target.name] = 0;
+                    temp_data[name] = 0;
                 }
             } else {
-                temp_data[target.name] = target.value;
+                temp_data[name] = target.value;
             }
             let temp = Object.assign({}, temp_data)
             setData(temp)
@@ -308,6 +309,7 @@ export default function CustomerEditForm() {
         data: data,
         handleInput: handleInput,
         handleRadioButtonChange: handleRadioButtonChange,
+        ErrorList: ErrorList,
         gstTreatment: gstTreatment,
         paymentTerms: paymentTerms,
         currencies: currencies,
@@ -515,7 +517,6 @@ export default function CustomerEditForm() {
                                             </div>
                                         </div>
                                 }
-
                             </form>
 
                         </div>

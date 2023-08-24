@@ -1,0 +1,52 @@
+$primary-color: #3649AB;
+$secondary-color: #8790B0;
+$tertiary-color: #43CB80;
+$red-color: #E83F35;
+$input-background-color: #F5FAFE;
+$border-card-color: #E3EBF2;
+$primary-border-color: #BCD5E2;
+
+.companyInvoiceCustomSelectWrapper {
+    input {
+        position: relative;
+        background: $input-background-color;
+        font-weight: 400;
+        font-size: 14px;
+        color: $primary-color !important;
+        background: $input-background-color;
+        border: 1px solid $primary-border-color;
+        border-radius: 8px;
+        height: 41px;
+        text-align: start;
+        padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+
+        &::after {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            background: url(../assets/icons/faAngleDown.svg);
+            width: 200px;
+            height: 200px;
+        }
+    }
+
+
+    ul {
+        border: 1px solid $primary-border-color;
+        border-radius: 8px;
+
+        .menuItem {
+            font-weight: 400;
+            font-size: 14px;
+            color: $primary-color;
+
+
+            &:hover {
+                color: $primary-color;
+
+            }
+        }
+    }
+}
