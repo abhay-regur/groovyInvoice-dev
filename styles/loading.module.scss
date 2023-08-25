@@ -1,15 +1,9 @@
-$primary-color: #3649AB;
-$primary-background-clear: #ffffff00;
-$secondary-color: #8790B0;
-$tertiary-color: #43CB80;
-$table-border: #E3EBF2;
-$loading-background: #d0d2da;
-
+@use './utility/variables' as var;
 
 .companyMainLoadingWrapper {
 
     .containerLoading {
-        background: $primary-background-clear;
+        background: var.$primary-background-clear;
         height: 100vh;
         width: 100%;
         display: flex;
@@ -19,7 +13,7 @@ $loading-background: #d0d2da;
         div {
             height: 10rem;
             width: 10rem;
-            color: $tertiary-color;
+            color: var.$tertiary-color;
             border-width: 1.25em;
         }
     }

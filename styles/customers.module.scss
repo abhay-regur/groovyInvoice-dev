@@ -1,16 +1,4 @@
-$font-size-heading: 32px;
-$font-size-text: 15px;
-$primary-color: #3649AB;
-$secondary-color: #8790B0;
-$tertiary-color: #43CB80;
-$red-color: #DA5252;
-
-$header-top-border-color: #D3D8EB;
-$primary-background: #f5fafe;
-$header-top-background: #EFF2FF;
-$table-head-background: #EEF5FC;
-$table-border: #E3EBF2;
-$table-pagination-background: #D9E6F3;
+@use './utility/variables' as var;
 
 .main {
     height: inherit;
@@ -22,7 +10,7 @@ $table-pagination-background: #D9E6F3;
         z-index: 9;
 
         .containerLoading {
-            background: $primary-background;
+            background: var.$primary-background;
             display: flex;
             height: inherit;
             width: 100%;
@@ -33,7 +21,7 @@ $table-pagination-background: #D9E6F3;
             div {
                 height: 10rem;
                 width: 10rem;
-                color: $tertiary-color;
+                color: var.$tertiary-color;
                 border-width: 1.25em;
             }
         }
@@ -54,7 +42,7 @@ $table-pagination-background: #D9E6F3;
 
         .comapnyInvoiceHeadingWrapper {
             .title {
-                color: $primary-color;
+                color: var.$primary-color;
                 font-weight: 700;
                 font-size: 36px;
                 line-height: 33px;
@@ -85,8 +73,8 @@ $table-pagination-background: #D9E6F3;
 
             .filter_wrapper {
                 label {
-                    color: $primary-color;
-                    background: $table-pagination-background;
+                    color: var.$primary-color;
+                    background: var.$table-pagination-background;
                     border-radius: 8px 0 0 8px;
                     margin-bottom: 10px;
                     margin-top: 10px;
@@ -95,7 +83,7 @@ $table-pagination-background: #D9E6F3;
                 input {
                     font-weight: 500;
                     font-size: 14px;
-                    color: $primary-color;
+                    color: var.$primary-color;
                     background: #ffffff;
                     border: 1px solid #e3ebf2;
                     border-radius: 0 8px 8px 0;
@@ -109,7 +97,7 @@ $table-pagination-background: #D9E6F3;
                 margin-right: 0;
                 margin-left: 0;
                 margin-bottom: 40px;
-                border: 1px solid $table-border;
+                border: 1px solid var.$table-border;
                 border-radius: 10px;
 
                 thead {
@@ -118,10 +106,10 @@ $table-pagination-background: #D9E6F3;
                         padding-bottom: 17px;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
-                        background: $table-head-background;
-                        border-right: 1px solid $table-border;
-                        border-bottom: 1px solid $table-border;
+                        color: var.$primary-color;
+                        background: var.$table-head-background;
+                        border-right: 1px solid var.$table-border;
+                        border-bottom: 1px solid var.$table-border;
 
                         .companyCustomerTableInvoiceNumber {
                             label {
@@ -137,7 +125,7 @@ $table-pagination-background: #D9E6F3;
 
                                 &:hover {
                                     input~span {
-                                        background-color: $primary-color;
+                                        background-color: var.$primary-color;
                                     }
                                 }
 
@@ -170,7 +158,7 @@ $table-pagination-background: #D9E6F3;
 
                         &:last-of-type {
                             border: none;
-                            border-bottom: 1px solid $table-border;
+                            border-bottom: 1px solid var.$table-border;
                         }
                     }
                 }
@@ -192,8 +180,8 @@ $table-pagination-background: #D9E6F3;
                             padding-left: 16px;
                             font-weight: 400;
                             font-size: 14px;
-                            color: $secondary-color;
-                            border-bottom: 1px solid $table-border;
+                            color: var.$secondary-color;
+                            border-bottom: 1px solid var.$table-border;
 
                             &:nth-of-type(1) {
                                 padding-top: 23px;
@@ -214,7 +202,7 @@ $table-pagination-background: #D9E6F3;
 
                                     &:hover {
                                         input~span {
-                                            background-color: $primary-color;
+                                            background-color: var.$primary-color;
                                         }
                                     }
 
@@ -260,7 +248,7 @@ $table-pagination-background: #D9E6F3;
                                     margin-left: 10px;
                                     font-weight: 700;
                                     font-size: 16px;
-                                    color: $primary-color;
+                                    color: var.$primary-color;
                                 }
 
                                 .companyCustomerTableCustomerEdit {
@@ -308,7 +296,7 @@ $table-pagination-background: #D9E6F3;
                                     display: grid;
 
                                     span:first-of-type {
-                                        color: $primary-color;
+                                        color: var.$primary-color;
                                         font-weight: 600;
                                     }
                                 }
@@ -326,7 +314,7 @@ $table-pagination-background: #D9E6F3;
                 margin-bottom: 70px;
 
                 .companyInvoiceTablePaginationPageInfo {
-                    color: $primary-color;
+                    color: var.$primary-color;
                     font-weight: 400;
                     font-size: 13px;
                     align-items: center;
@@ -348,12 +336,12 @@ $table-pagination-background: #D9E6F3;
                         margin: 0;
 
                         .companyInvoicePaginationNumber {
-                            background: $table-pagination-background;
+                            background: var.$table-pagination-background;
                             width: 36px;
                             height: 36px;
                             font-weight: 600;
                             font-size: 16px;
-                            color: $primary-color;
+                            color: var.$primary-color;
                             border-radius: 50%;
                             text-align: center;
                             padding-top: 5px;
@@ -366,7 +354,7 @@ $table-pagination-background: #D9E6F3;
                             height: 36px;
                             font-weight: 600;
                             font-size: 16px;
-                            background: $tertiary-color !important;
+                            background: var.$tertiary-color !important;
                             color: white !important;
                             border-radius: 50%;
                             text-align: center;
@@ -401,7 +389,7 @@ $table-pagination-background: #D9E6F3;
         .comapnyInvoiceHeadingWrapper {
 
             .title {
-                color: $primary-color;
+                color: var.$primary-color;
                 font-weight: 700;
                 font-size: 22px;
                 line-height: 33px;
@@ -431,8 +419,8 @@ $table-pagination-background: #D9E6F3;
 
             .filter_wrapper {
                 label {
-                    color: $primary-color;
-                    background: $table-pagination-background;
+                    color: var.$primary-color;
+                    background: var.$table-pagination-background;
                     border-radius: 8px 0 0 8px;
                     margin-bottom: 10px;
                     margin-top: 10px;
@@ -441,7 +429,7 @@ $table-pagination-background: #D9E6F3;
                 input {
                     font-weight: 500;
                     font-size: 14px;
-                    color: $primary-color;
+                    color: var.$primary-color;
                     background: #ffffff;
                     border: 1px solid #e3ebf2;
                     border-radius: 0 8px 8px 0;
@@ -455,7 +443,7 @@ $table-pagination-background: #D9E6F3;
                 margin-right: 0;
                 margin-left: 0;
                 margin-bottom: 40px;
-                border: 1px solid $table-border;
+                border: 1px solid var.$table-border;
                 border-radius: 10px;
 
                 thead {
@@ -464,10 +452,10 @@ $table-pagination-background: #D9E6F3;
                         padding-bottom: 17px;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
-                        background: $table-head-background;
-                        border-right: 1px solid $table-border;
-                        border-bottom: 1px solid $table-border;
+                        color: var.$primary-color;
+                        background: var.$table-head-background;
+                        border-right: 1px solid var.$table-border;
+                        border-bottom: 1px solid var.$table-border;
 
                         .companyCustomerTableInvoiceNumber {
                             label {
@@ -483,7 +471,7 @@ $table-pagination-background: #D9E6F3;
 
                                 &:hover {
                                     input~span {
-                                        background-color: $primary-color;
+                                        background-color: var.$primary-color;
                                     }
                                 }
 
@@ -516,7 +504,7 @@ $table-pagination-background: #D9E6F3;
 
                         &:last-of-type {
                             border: none;
-                            border-bottom: 1px solid $table-border;
+                            border-bottom: 1px solid var.$table-border;
                         }
                     }
                 }
@@ -538,8 +526,8 @@ $table-pagination-background: #D9E6F3;
                             padding-left: 16px;
                             font-weight: 400;
                             font-size: 14px;
-                            color: $secondary-color;
-                            border-bottom: 1px solid $table-border;
+                            color: var.$secondary-color;
+                            border-bottom: 1px solid var.$table-border;
 
                             &:nth-of-type(1) {
                                 padding-top: 23px;
@@ -560,7 +548,7 @@ $table-pagination-background: #D9E6F3;
 
                                     &:hover {
                                         input~span {
-                                            background-color: $primary-color;
+                                            background-color: var.$primary-color;
                                         }
                                     }
 
@@ -606,7 +594,7 @@ $table-pagination-background: #D9E6F3;
                                     margin-left: 10px;
                                     font-weight: 700;
                                     font-size: 16px;
-                                    color: $primary-color;
+                                    color: var.$primary-color;
                                 }
 
                                 .companyCustomerTableCustomerEdit {
@@ -653,7 +641,7 @@ $table-pagination-background: #D9E6F3;
                                     display: grid;
 
                                     span:first-of-type {
-                                        color: $primary-color;
+                                        color: var.$primary-color;
                                         font-weight: 600;
                                     }
                                 }

@@ -1,11 +1,4 @@
-$font-size-heading: 32px;
-$font-size-text: 15px;
-$primary-color: #3649AB;
-$secondary-color: #8790B0;
-$tertiary-color: #43CB80;
-
-
-
+@use './utility/variables' as var;
 
 @media screen and (min-width: 676px) {
     .footerWrapper {
@@ -21,11 +14,11 @@ $tertiary-color: #43CB80;
             font-weight: 400;
             font-size: 14px;
             line-height: 18px;
-            color: $secondary-color;
+            color: var.$secondary-color;
 
             &:after {
                 content: "Groovy Invoice";
-                color: $primary-color;
+                color: var.$primary-color;
             }
         }
     }
@@ -45,11 +38,11 @@ $tertiary-color: #43CB80;
             font-weight: 400;
             margin-bottom: 37px;
             font-size: 14px;
-            color: $secondary-color;
+            color: var.$secondary-color;
 
             &:after {
                 content: "Groovy Invoice";
-                color: $primary-color;
+                color: var.$primary-color;
             }
         }
     }

@@ -1,9 +1,4 @@
-$primary-background: #f5fafe;
-$primary-color: #3649AB;
-$primary-color-hover: #455AC6;
-$secondary-color: #8790B0;
-$tertiary-color: #43CB80;
-$tertiary-color-hover: #4EDD8E;
+@use './utility/variables' as var;
 
 .toastContainerMain {
     font-size: 14px;
@@ -21,7 +16,7 @@ $tertiary-color-hover: #4EDD8E;
     }
 
     .toastMain {
-        background: $primary-color;
+        background: var.$primary-color;
         -webkit-transition: transform .6s ease;
         transition: transform .6s ease;
         position: relative;

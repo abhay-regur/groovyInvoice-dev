@@ -1,15 +1,6 @@
-@import 'node_modules/react-datepicker/src/stylesheets/datepicker.scss';
+@use 'node_modules/react-datepicker/src/stylesheets/datepicker.scss';
+@use './utility/variables' as var;
 
-$text-font: var(--font-mulish);
-$primary-background: #f5fafe;
-$primary-color: #3649AB;
-$primary-color-hover: #455AC6;
-$secondary-color: #8790B0;
-$tertiary-color: #43CB80;
-$tertiary-color-hover: #4EDD8E;
-$grey: #8790B0;
-$red-color: #F46E6E;
-$primary-border-color: #E3EBF2;
 
 * {
   box-sizing: border-box;
@@ -23,10 +14,10 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: $text-font;
-  background: $primary-background;
-  color: $grey;
-  background: $primary-background !important;
+  font-family: var.$text-font;
+  background: var.$primary-background;
+  color: var.$grey;
+  background: var.$primary-background !important;
 
   @media screen and (min-width: 992px) {
     min-height: 100vh;
@@ -37,7 +28,7 @@ body {
   }
 
   * {
-    font-family: $text-font;
+    font-family: var.$text-font;
   }
 
   a {
@@ -53,7 +44,7 @@ body {
     }
 
     &:disabled {
-      color: $secondary-color !important;
+      color: var.$secondary-color !important;
       background-color: #e9ecef !important;
     }
 
@@ -66,10 +57,10 @@ body {
   select.form-select {
     -webkit-appearance: auto;
     appearance: auto;
-    color: $primary-color;
+    color: var.$primary-color;
 
     &:disabled {
-      color: $secondary-color !important;
+      color: var.$secondary-color !important;
       background-color: #e9ecef !important;
     }
 
@@ -77,7 +68,7 @@ body {
 
   textarea {
     &:disabled {
-      color: $secondary-color !important;
+      color: var.$secondary-color !important;
       background-color: #e9ecef !important;
     }
   }
@@ -85,27 +76,27 @@ body {
   #__next,
   .pageContent {
     height: inherit;
-    background: $primary-background !important;
+    background: var.$primary-background !important;
   }
 
   .green {
-    color: $tertiary-color;
+    color: var.$tertiary-color;
 
     path {
-      color: $tertiary-color;
+      color: var.$tertiary-color;
     }
   }
 
   .red {
-    color: $red-color !important;
+    color: var.$red-color !important;
   }
 }
 
 button {
   &.green {
     color: white;
-    background: $tertiary-color;
-    border: 1px solid $tertiary-color;
+    background: var.$tertiary-color;
+    border: 1px solid var.$tertiary-color;
 
     svg {
       path {
@@ -114,16 +105,16 @@ button {
     }
 
     &:hover {
-      background: $tertiary-color-hover;
-      border: 1px solid $tertiary-color-hover;
+      background: var.$tertiary-color-hover;
+      border: 1px solid var.$tertiary-color-hover;
       color: white;
     }
   }
 
   &.blue {
     color: white;
-    background: $primary-color !important;
-    border: 1px solid $primary-color;
+    background: var.$primary-color !important;
+    border: 1px solid var.$primary-color;
 
     svg {
       path {
@@ -132,8 +123,8 @@ button {
     }
 
     &:hover {
-      background: $primary-color-hover;
-      border: 1px solid $primary-color-hover;
+      background: var.$primary-color-hover;
+      border: 1px solid var.$primary-color-hover;
       color: white;
 
       svg {
@@ -144,27 +135,27 @@ button {
     }
 
     &:active {
-      background: $primary-color-hover;
-      border: 1px solid $primary-color-hover;
+      background: var.$primary-color-hover;
+      border: 1px solid var.$primary-color-hover;
       color: white;
     }
   }
 
   &.blueOutline {
-    color: $primary-color !important;
+    color: var.$primary-color !important;
     background: white;
-    border: 1px solid $primary-color;
+    border: 1px solid var.$primary-color;
 
     &:hover {
       background: white;
-      color: $primary-color-hover;
-      border: 1px solid $primary-color-hover;
+      color: var.$primary-color-hover;
+      border: 1px solid var.$primary-color-hover;
     }
   }
 }
 
 .react-datepicker {
-  border: 1px solid $primary-border-color !important;
+  border: 1px solid var.$primary-border-color !important;
 
   .react-datepicker__navigation {
     margin-top: 8px;
@@ -181,8 +172,8 @@ button {
     font-family: inherit;
 
     .react-datepicker__header {
-      background-color: $tertiary-color;
-      border: 1px solid $primary-border-color;
+      background-color: var.$tertiary-color;
+      border: 1px solid var.$primary-border-color;
 
       .react-datepicker__current-month {
         color: white;
@@ -202,13 +193,13 @@ button {
     }
 
     .react-datepicker__day {
-      color: $primary-color;
+      color: var.$primary-color;
       font-weight: 600;
     }
 
     .react-datepicker__day--selected {
       color: white;
-      background-color: $primary-color;
+      background-color: var.$primary-color;
     }
 
     .react-datepicker__month-text {
@@ -219,7 +210,7 @@ button {
       padding: 0.2rem;
 
       &:hover {
-        background-color: $primary-background;
+        background-color: var.$primary-background;
       }
     }
 
@@ -228,15 +219,15 @@ button {
 }
 
 .react-datepicker-popper[data-placement^='bottom'] .react-datepicker__triangle::after {
-  border-bottom-color: $primary-border-color !important;
+  border-bottom-color: var.$primary-border-color !important;
 }
 
 .react-datepicker-popper[data-placement^='bottom'] .react-datepicker__triangle::before {
-  border-bottom-color: $primary-border-color !important;
+  border-bottom-color: var.$primary-border-color !important;
 }
 
 .react-datepicker-popper[data-placement^='top'] .react-datepicker__triangle::before {
-  border-top-color: $primary-border-color !important;
+  border-top-color: var.$primary-border-color !important;
 }
 
 
@@ -299,7 +290,7 @@ button {
 
 .toggle-visibility-wrapper {
   pointer-events: all !important;
-  color: $secondary-color !important;
+  color: var.$secondary-color !important;
   top: 0;
   right: 0;
 }

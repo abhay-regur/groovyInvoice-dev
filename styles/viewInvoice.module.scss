@@ -1,14 +1,4 @@
-$font-size-heading: 32px;
-$font-size-text: 15px;
-$primary-color: #3649AB;
-$secondary-color: #8790B0;
-$tertiary-color: #43CB80;
-$red-color: #DA5252;
-$border-color: #BCD5E2;
-
-$header-top-border-color: #D3D8EB;
-$action-bar-border-color: #E3EBF2;
-$card-background: #F5FAFE;
+@use './utility/variables' as var;
 
 .main {
     min-height: 100vh;
@@ -33,14 +23,14 @@ $card-background: #F5FAFE;
                 font-weight: 700;
                 font-size: 36px;
                 line-height: 53px;
-                color: $primary-color;
+                color: var.$primary-color;
             }
 
             .comapnyInvoiceViewInvoiceSubHeading {
                 font-weight: 700;
                 font-size: 20px;
                 line-height: 53px;
-                color: $secondary-color;
+                color: var.$secondary-color;
             }
 
             .companyInvoiceViewInvoiceActionBar {
@@ -57,12 +47,12 @@ $card-background: #F5FAFE;
                     ul {
                         width: 85%;
                         background: white;
-                        border: 1px solid $action-bar-border-color;
+                        border: 1px solid var.$action-bar-border-color;
                         border-radius: 10px;
 
                         .companyInvoiceViewInvoiceActionBarActionItem {
                             width: 225px;
-                            border-right: 1px solid $action-bar-border-color;
+                            border-right: 1px solid var.$action-bar-border-color;
                             min-width: 109px;
 
                             &:last-of-type {
@@ -87,7 +77,7 @@ $card-background: #F5FAFE;
                                 line-height: 24px;
                                 justify-content: center;
                                 padding: 5px;
-                                color: $primary-color;
+                                color: var.$primary-color;
                             }
                         }
 
@@ -101,14 +91,14 @@ $card-background: #F5FAFE;
                 margin: 76px 0 0 0;
                 padding: 76px 0 0 0;
                 background: white;
-                border: 1px solid $primary-color;
+                border: 1px solid var.$primary-color;
                 border-radius: 10px;
 
                 .companyInvoiceViewInvoiceComapnyName {
                     font-weight: 700;
                     font-size: 22px;
                     line-height: 32px;
-                    color: $primary-color;
+                    color: var.$primary-color;
                     margin-bottom: 10px;
                     padding-left: 37px;
                 }
@@ -117,7 +107,7 @@ $card-background: #F5FAFE;
                     font-weight: 400;
                     font-size: 14px;
                     line-height: 21px;
-                    color: $secondary-color;
+                    color: var.$secondary-color;
                     padding-left: 37px;
                 }
 
@@ -125,7 +115,7 @@ $card-background: #F5FAFE;
                     font-weight: 700;
                     font-size: 36px;
                     line-height: 32px;
-                    color: $primary-color;
+                    color: var.$primary-color;
                     padding-right: 44px;
                 }
 
@@ -134,12 +124,12 @@ $card-background: #F5FAFE;
                     font-weight: 400;
                     font-size: 16px;
                     line-height: 24px;
-                    color: $secondary-color;
+                    color: var.$secondary-color;
                     padding-right: 44px;
                 }
 
                 hr {
-                    color: $border-color;
+                    color: var.$border-color;
                 }
 
                 .companyInvoiceViewTableWrapper {
@@ -148,15 +138,15 @@ $card-background: #F5FAFE;
 
                     .companyInvoiceViewTable {
                         min-width: 990px;
-                        border-color: $border-color;
+                        border-color: var.$border-color;
 
                         thead {
-                            background: $primary-color;
+                            background: var.$primary-color;
                             color: white;
 
                             tr {
                                 th {
-                                    border: 1px solid $border-color;
+                                    border: 1px solid var.$border-color;
 
                                     &:nth-of-type(1),
                                     &:nth-of-type(3) {
@@ -177,8 +167,8 @@ $card-background: #F5FAFE;
                                     font-weight: 400;
                                     font-size: 14px;
                                     line-height: 21px;
-                                    color: $secondary-color;
-                                    border: 1px solid $border-color;
+                                    color: var.$secondary-color;
+                                    border: 1px solid var.$border-color;
                                 }
 
                                 .companyInvoiceViewTableIndex,
@@ -192,7 +182,7 @@ $card-background: #F5FAFE;
                                     font-weight: 600;
                                     font-size: 14px;
                                     line-height: 21px;
-                                    color: $primary-color;
+                                    color: var.$primary-color;
                                 }
                             }
                         }
@@ -206,7 +196,7 @@ $card-background: #F5FAFE;
                     font-weight: 700;
                     font-size: 16px;
                     line-height: 24px;
-                    color: $primary-color;
+                    color: var.$primary-color;
                     margin-left: 37px;
                 }
 
@@ -217,14 +207,14 @@ $card-background: #F5FAFE;
                         font-weight: 600;
                         font-size: 14px;
                         line-height: 36px;
-                        color: $tertiary-color;
+                        color: var.$tertiary-color;
                     }
 
                     .companyInvoiceViewInvoiceBillToAddress {
                         font-weight: 400;
                         font-size: 14px;
                         line-height: 21px;
-                        color: $secondary-color;
+                        color: var.$secondary-color;
                     }
                 }
 
@@ -235,14 +225,14 @@ $card-background: #F5FAFE;
                         font-weight: 600;
                         font-size: 14px;
                         line-height: 36px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                     }
 
                     .comapnyInvoiceViewInvoiceDetailsEntry {
                         font-weight: 600;
                         font-size: 14px;
                         line-height: 36px;
-                        color: $secondary-color;
+                        color: var.$secondary-color;
                     }
                 }
 
@@ -251,15 +241,15 @@ $card-background: #F5FAFE;
                     margin-left: 45px;
                     margin-right: 45px;
                     padding: 16px 0 11px 0;
-                    background: $card-background;
-                    border: 1px solid $action-bar-border-color;
+                    background: var.$card-background;
+                    border: 1px solid var.$action-bar-border-color;
 
                     span {
                         font-weight: 400;
                         font-size: 16px;
                         line-height: 38px;
                         padding: 0 26px 0 22px;
-                        color: $secondary-color;
+                        color: var.$secondary-color;
                     }
                 }
 
@@ -271,14 +261,14 @@ $card-background: #F5FAFE;
                         font-weight: 600;
                         font-size: 14px;
                         line-height: 21px;
-                        color: $secondary-color;
+                        color: var.$secondary-color;
                     }
 
                     .companyInvoiceViewInvoiceTotalInWords {
                         font-weight: 600;
                         font-size: 14px;
                         line-height: 21px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-top: 8px;
                     }
                 }
@@ -290,7 +280,7 @@ $card-background: #F5FAFE;
                         font-weight: 400;
                         font-size: 14px;
                         line-height: 21px;
-                        color: $secondary-color;
+                        color: var.$secondary-color;
                         margin-top: 61px;
                     }
                 }
@@ -304,11 +294,11 @@ $card-background: #F5FAFE;
                     padding-bottom: 76px;
 
                     .companyInvoiceViewInvoicePaymentMethodLabel {
-                        color: $secondary-color;
+                        color: var.$secondary-color;
                     }
 
                     .companyInvoiceViewInvoicePaymentMethod {
-                        color: $primary-color;
+                        color: var.$primary-color;
                     }
                 }
 
@@ -337,14 +327,14 @@ $card-background: #F5FAFE;
                 font-weight: 700;
                 font-size: 36px;
                 line-height: 53px;
-                color: $primary-color;
+                color: var.$primary-color;
             }
 
             .comapnyInvoiceViewInvoiceSubHeading {
                 font-weight: 700;
                 font-size: 20px;
                 line-height: 53px;
-                color: $secondary-color;
+                color: var.$secondary-color;
             }
 
             .companyInvoiceViewInvoiceActionBar {
@@ -360,11 +350,11 @@ $card-background: #F5FAFE;
 
                     ul {
                         background: white;
-                        border: 1px solid $action-bar-border-color;
+                        border: 1px solid var.$action-bar-border-color;
                         border-radius: 10px;
 
                         .companyInvoiceViewInvoiceActionBarActionItem {
-                            border-right: 1px solid $action-bar-border-color;
+                            border-right: 1px solid var.$action-bar-border-color;
                             min-width: 109px;
 
                             &:last-of-type {
@@ -389,7 +379,7 @@ $card-background: #F5FAFE;
                                 line-height: 24px;
                                 justify-content: center;
                                 padding: 5px;
-                                color: $primary-color;
+                                color: var.$primary-color;
                             }
                         }
 
@@ -403,14 +393,14 @@ $card-background: #F5FAFE;
                 margin: 76px 0 0 0;
                 padding: 76px 0 0 0;
                 background: white;
-                border: 1px solid $primary-color;
+                border: 1px solid var.$primary-color;
                 border-radius: 10px;
 
                 .companyInvoiceViewInvoiceComapnyName {
                     font-weight: 700;
                     font-size: 22px;
                     line-height: 32px;
-                    color: $primary-color;
+                    color: var.$primary-color;
                     margin-bottom: 10px;
                     padding-left: 37px;
                 }
@@ -419,7 +409,7 @@ $card-background: #F5FAFE;
                     font-weight: 400;
                     font-size: 14px;
                     line-height: 21px;
-                    color: $secondary-color;
+                    color: var.$secondary-color;
                     padding-left: 37px;
                 }
 
@@ -427,7 +417,7 @@ $card-background: #F5FAFE;
                     font-weight: 700;
                     font-size: 36px;
                     line-height: 32px;
-                    color: $primary-color;
+                    color: var.$primary-color;
                     padding-right: 44px;
                 }
 
@@ -436,12 +426,12 @@ $card-background: #F5FAFE;
                     font-weight: 400;
                     font-size: 16px;
                     line-height: 24px;
-                    color: $secondary-color;
+                    color: var.$secondary-color;
                     padding-right: 44px;
                 }
 
                 hr {
-                    color: $border-color;
+                    color: var.$border-color;
                 }
 
                 .companyInvoiceViewTableWrapper {
@@ -450,15 +440,15 @@ $card-background: #F5FAFE;
 
                     .companyInvoiceViewTable {
                         min-width: 990px;
-                        border-color: $border-color;
+                        border-color: var.$border-color;
 
                         thead {
-                            background: $primary-color;
+                            background: var.$primary-color;
                             color: white;
 
                             tr {
                                 th {
-                                    border: 1px solid $border-color;
+                                    border: 1px solid var.$border-color;
 
                                     &:nth-of-type(1),
                                     &:nth-of-type(3) {
@@ -479,8 +469,8 @@ $card-background: #F5FAFE;
                                     font-weight: 400;
                                     font-size: 14px;
                                     line-height: 21px;
-                                    color: $secondary-color;
-                                    border: 1px solid $border-color;
+                                    color: var.$secondary-color;
+                                    border: 1px solid var.$border-color;
                                 }
 
                                 .companyInvoiceViewTableIndex,
@@ -494,7 +484,7 @@ $card-background: #F5FAFE;
                                     font-weight: 600;
                                     font-size: 14px;
                                     line-height: 21px;
-                                    color: $primary-color;
+                                    color: var.$primary-color;
                                 }
                             }
                         }
@@ -508,7 +498,7 @@ $card-background: #F5FAFE;
                     font-weight: 700;
                     font-size: 16px;
                     line-height: 24px;
-                    color: $primary-color;
+                    color: var.$primary-color;
                     margin-left: 37px;
                 }
 
@@ -519,14 +509,14 @@ $card-background: #F5FAFE;
                         font-weight: 600;
                         font-size: 14px;
                         line-height: 36px;
-                        color: $tertiary-color;
+                        color: var.$tertiary-color;
                     }
 
                     .companyInvoiceViewInvoiceBillToAddress {
                         font-weight: 400;
                         font-size: 14px;
                         line-height: 21px;
-                        color: $secondary-color;
+                        color: var.$secondary-color;
                     }
                 }
 
@@ -537,14 +527,14 @@ $card-background: #F5FAFE;
                         font-weight: 600;
                         font-size: 14px;
                         line-height: 36px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                     }
 
                     .comapnyInvoiceViewInvoiceDetailsEntry {
                         font-weight: 600;
                         font-size: 14px;
                         line-height: 36px;
-                        color: $secondary-color;
+                        color: var.$secondary-color;
                     }
                 }
 
@@ -553,15 +543,15 @@ $card-background: #F5FAFE;
                     margin-left: 45px;
                     margin-right: 45px;
                     padding: 16px 0 11px 0;
-                    background: $card-background;
-                    border: 1px solid $action-bar-border-color;
+                    background: var.$card-background;
+                    border: 1px solid var.$action-bar-border-color;
 
                     span {
                         font-weight: 400;
                         font-size: 16px;
                         line-height: 38px;
                         padding: 0 26px 0 22px;
-                        color: $secondary-color;
+                        color: var.$secondary-color;
                     }
                 }
 
@@ -573,14 +563,14 @@ $card-background: #F5FAFE;
                         font-weight: 600;
                         font-size: 14px;
                         line-height: 21px;
-                        color: $secondary-color;
+                        color: var.$secondary-color;
                     }
 
                     .companyInvoiceViewInvoiceTotalInWords {
                         font-weight: 600;
                         font-size: 14px;
                         line-height: 21px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-top: 8px;
                     }
                 }
@@ -592,7 +582,7 @@ $card-background: #F5FAFE;
                         font-weight: 400;
                         font-size: 14px;
                         line-height: 21px;
-                        color: $secondary-color;
+                        color: var.$secondary-color;
                         margin-top: 61px;
                     }
                 }
@@ -606,11 +596,11 @@ $card-background: #F5FAFE;
                     padding-bottom: 76px;
 
                     .companyInvoiceViewInvoicePaymentMethodLabel {
-                        color: $secondary-color;
+                        color: var.$secondary-color;
                     }
 
                     .companyInvoiceViewInvoicePaymentMethod {
-                        color: $primary-color;
+                        color: var.$primary-color;
                     }
                 }
 
@@ -641,20 +631,20 @@ $card-background: #F5FAFE;
                 font-weight: 700;
                 font-size: 36px;
                 line-height: 53px;
-                color: $primary-color;
+                color: var.$primary-color;
             }
 
             .comapnyInvoiceViewInvoiceSubHeading {
                 font-weight: 700;
                 font-size: 20px;
                 line-height: 53px;
-                color: $secondary-color;
+                color: var.$secondary-color;
             }
 
             .companyInvoiceViewInvoiceActionBar {
                 margin-top: 29px;
                 background: white;
-                border: 1px solid $action-bar-border-color;
+                border: 1px solid var.$action-bar-border-color;
                 border-radius: 10px;
                 transition: all 0.35s;
 
@@ -678,14 +668,14 @@ $card-background: #F5FAFE;
                     font-weight: 600;
                     font-size: 16px;
                     line-height: 24px;
-                    color: $primary-color;
+                    color: var.$primary-color;
                 }
 
                 .companyInvoiceViewInvoiceActionBarnavbarNav {
                     margin: 0 -10px;
 
                     .companyInvoiceViewInvoiceActionBarActionItem {
-                        border-bottom: 1px solid $action-bar-border-color;
+                        border-bottom: 1px solid var.$action-bar-border-color;
                         padding-left: 10px;
                         padding-right: 10px;
                         min-width: 109px;
@@ -712,7 +702,7 @@ $card-background: #F5FAFE;
                             font-size: 16px;
                             line-height: 24px;
                             justify-content: center;
-                            color: $primary-color;
+                            color: var.$primary-color;
                         }
                     }
                 }
@@ -722,14 +712,14 @@ $card-background: #F5FAFE;
                 margin: 76px 0 0 0;
                 padding: 36px 0 0 0;
                 background: white;
-                border: 1px solid $primary-color;
+                border: 1px solid var.$primary-color;
                 border-radius: 10px;
 
                 .companyInvoiceViewInvoiceComapnyName {
                     font-weight: 700;
                     font-size: 22px;
                     line-height: 32px;
-                    color: $primary-color;
+                    color: var.$primary-color;
                     margin-bottom: 10px;
                     padding-left: 17px;
                 }
@@ -738,7 +728,7 @@ $card-background: #F5FAFE;
                     font-weight: 400;
                     font-size: 14px;
                     line-height: 21px;
-                    color: $secondary-color;
+                    color: var.$secondary-color;
                     padding-left: 17px;
                 }
 
@@ -746,7 +736,7 @@ $card-background: #F5FAFE;
                     font-weight: 700;
                     font-size: 36px;
                     line-height: 32px;
-                    color: $primary-color;
+                    color: var.$primary-color;
                     padding-right: 14px;
                 }
 
@@ -755,12 +745,12 @@ $card-background: #F5FAFE;
                     font-weight: 400;
                     font-size: 16px;
                     line-height: 24px;
-                    color: $secondary-color;
+                    color: var.$secondary-color;
                     padding-right: 14px;
                 }
 
                 hr {
-                    color: $border-color;
+                    color: var.$border-color;
                 }
 
                 .companyInvoiceViewTableWrapper {
@@ -769,15 +759,15 @@ $card-background: #F5FAFE;
 
                     .companyInvoiceViewTable {
                         min-width: 990px;
-                        border-color: $border-color;
+                        border-color: var.$border-color;
 
                         thead {
-                            background: $primary-color;
+                            background: var.$primary-color;
                             color: white;
 
                             tr {
                                 th {
-                                    border: 1px solid $border-color;
+                                    border: 1px solid var.$border-color;
 
                                     &:nth-of-type(1),
                                     &:nth-of-type(3) {
@@ -798,8 +788,8 @@ $card-background: #F5FAFE;
                                     font-weight: 400;
                                     font-size: 14px;
                                     line-height: 21px;
-                                    color: $secondary-color;
-                                    border: 1px solid $border-color;
+                                    color: var.$secondary-color;
+                                    border: 1px solid var.$border-color;
                                 }
 
                                 .companyInvoiceViewTableIndex,
@@ -813,7 +803,7 @@ $card-background: #F5FAFE;
                                     font-weight: 600;
                                     font-size: 14px;
                                     line-height: 21px;
-                                    color: $primary-color;
+                                    color: var.$primary-color;
                                 }
                             }
                         }
@@ -827,7 +817,7 @@ $card-background: #F5FAFE;
                     font-weight: 700;
                     font-size: 16px;
                     line-height: 24px;
-                    color: $primary-color;
+                    color: var.$primary-color;
                     padding-left: 17px;
                 }
 
@@ -839,14 +829,14 @@ $card-background: #F5FAFE;
                         font-weight: 600;
                         font-size: 14px;
                         line-height: 36px;
-                        color: $tertiary-color;
+                        color: var.$tertiary-color;
                     }
 
                     .companyInvoiceViewInvoiceBillToAddress {
                         font-weight: 400;
                         font-size: 14px;
                         line-height: 21px;
-                        color: $secondary-color;
+                        color: var.$secondary-color;
                     }
                 }
 
@@ -858,14 +848,14 @@ $card-background: #F5FAFE;
                         font-weight: 600;
                         font-size: 14px;
                         line-height: 36px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                     }
 
                     .comapnyInvoiceViewInvoiceDetailsEntry {
                         font-weight: 600;
                         font-size: 14px;
                         line-height: 36px;
-                        color: $secondary-color;
+                        color: var.$secondary-color;
                     }
                 }
 
@@ -874,15 +864,15 @@ $card-background: #F5FAFE;
                     margin-right: 15px;
                     margin-left: 15px;
                     padding: 16px 0 11px 0;
-                    background: $card-background;
-                    border: 1px solid $action-bar-border-color;
+                    background: var.$card-background;
+                    border: 1px solid var.$action-bar-border-color;
 
                     span {
                         font-weight: 400;
                         font-size: 16px;
                         line-height: 38px;
                         padding: 0 26px 0 22px;
-                        color: $secondary-color;
+                        color: var.$secondary-color;
                     }
                 }
 
@@ -894,14 +884,14 @@ $card-background: #F5FAFE;
                         font-weight: 600;
                         font-size: 14px;
                         line-height: 21px;
-                        color: $secondary-color;
+                        color: var.$secondary-color;
                     }
 
                     .companyInvoiceViewInvoiceTotalInWords {
                         font-weight: 600;
                         font-size: 14px;
                         line-height: 21px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-top: 8px;
                     }
                 }
@@ -913,7 +903,7 @@ $card-background: #F5FAFE;
                         font-weight: 400;
                         font-size: 14px;
                         line-height: 21px;
-                        color: $secondary-color;
+                        color: var.$secondary-color;
                         margin-top: 61px;
                     }
                 }
@@ -927,11 +917,11 @@ $card-background: #F5FAFE;
                     padding-bottom: 76px;
 
                     .companyInvoiceViewInvoicePaymentMethodLabel {
-                        color: $secondary-color;
+                        color: var.$secondary-color;
                     }
 
                     .companyInvoiceViewInvoicePaymentMethod {
-                        color: $primary-color;
+                        color: var.$primary-color;
                     }
                 }
 
@@ -960,20 +950,20 @@ $card-background: #F5FAFE;
                 font-weight: 700;
                 font-size: 26px;
                 line-height: 38px;
-                color: $primary-color;
+                color: var.$primary-color;
             }
 
             .comapnyInvoiceViewInvoiceSubHeading {
                 font-weight: 700;
                 font-size: 16px;
                 line-height: 24px;
-                color: $secondary-color;
+                color: var.$secondary-color;
             }
 
             .companyInvoiceViewInvoiceActionBar {
                 margin-top: 29px;
                 background: white;
-                border: 1px solid $action-bar-border-color;
+                border: 1px solid var.$action-bar-border-color;
                 border-radius: 10px;
                 transition: all 0.35s;
 
@@ -996,14 +986,14 @@ $card-background: #F5FAFE;
                     font-weight: 600;
                     font-size: 16px;
                     line-height: 24px;
-                    color: $primary-color;
+                    color: var.$primary-color;
                 }
 
                 .companyInvoiceViewInvoiceActionBarnavbarNav {
                     margin: 0 -10px;
 
                     .companyInvoiceViewInvoiceActionBarActionItem {
-                        border-bottom: 1px solid $action-bar-border-color;
+                        border-bottom: 1px solid var.$action-bar-border-color;
                         padding-left: 10px;
                         padding-right: 10px;
                         min-width: 109px;
@@ -1030,7 +1020,7 @@ $card-background: #F5FAFE;
                             font-size: 16px;
                             line-height: 24px;
                             justify-content: center;
-                            color: $primary-color;
+                            color: var.$primary-color;
                         }
                     }
                 }
@@ -1041,14 +1031,14 @@ $card-background: #F5FAFE;
                 margin: 76px 0px 0 0px;
                 padding: 76px 0 0 0;
                 background: white;
-                border: 1px solid $primary-color;
+                border: 1px solid var.$primary-color;
                 border-radius: 10px;
 
                 .companyInvoiceViewInvoiceComapnyName {
                     font-weight: 700;
                     font-size: 22px;
                     line-height: 32px;
-                    color: $primary-color;
+                    color: var.$primary-color;
                     margin-bottom: 10px;
                     padding-left: 17px;
                 }
@@ -1057,7 +1047,7 @@ $card-background: #F5FAFE;
                     font-weight: 400;
                     font-size: 14px;
                     line-height: 21px;
-                    color: $secondary-color;
+                    color: var.$secondary-color;
                     padding-left: 17px;
                 }
 
@@ -1065,7 +1055,7 @@ $card-background: #F5FAFE;
                     font-weight: 700;
                     font-size: 36px;
                     line-height: 32px;
-                    color: $primary-color;
+                    color: var.$primary-color;
                     padding-right: 14px;
                 }
 
@@ -1074,12 +1064,12 @@ $card-background: #F5FAFE;
                     font-weight: 400;
                     font-size: 16px;
                     line-height: 24px;
-                    color: $secondary-color;
+                    color: var.$secondary-color;
                     padding-right: 14px;
                 }
 
                 hr {
-                    color: $border-color;
+                    color: var.$border-color;
                 }
 
                 .companyInvoiceViewTableWrapper {
@@ -1088,15 +1078,15 @@ $card-background: #F5FAFE;
 
                     .companyInvoiceViewTable {
                         min-width: 990px;
-                        border-color: $border-color;
+                        border-color: var.$border-color;
 
                         thead {
-                            background: $primary-color;
+                            background: var.$primary-color;
                             color: white;
 
                             tr {
                                 th {
-                                    border: 1px solid $border-color;
+                                    border: 1px solid var.$border-color;
 
                                     &:nth-of-type(1),
                                     &:nth-of-type(3) {
@@ -1117,8 +1107,8 @@ $card-background: #F5FAFE;
                                     font-weight: 400;
                                     font-size: 14px;
                                     line-height: 21px;
-                                    color: $secondary-color;
-                                    border: 1px solid $border-color;
+                                    color: var.$secondary-color;
+                                    border: 1px solid var.$border-color;
                                 }
 
                                 .companyInvoiceViewTableIndex,
@@ -1132,7 +1122,7 @@ $card-background: #F5FAFE;
                                     font-weight: 600;
                                     font-size: 14px;
                                     line-height: 21px;
-                                    color: $primary-color;
+                                    color: var.$primary-color;
                                 }
                             }
                         }
@@ -1146,7 +1136,7 @@ $card-background: #F5FAFE;
                     font-weight: 700;
                     font-size: 16px;
                     line-height: 24px;
-                    color: $primary-color;
+                    color: var.$primary-color;
                     padding-left: 17px;
                 }
 
@@ -1158,14 +1148,14 @@ $card-background: #F5FAFE;
                         font-weight: 600;
                         font-size: 14px;
                         line-height: 36px;
-                        color: $tertiary-color;
+                        color: var.$tertiary-color;
                     }
 
                     .companyInvoiceViewInvoiceBillToAddress {
                         font-weight: 400;
                         font-size: 14px;
                         line-height: 21px;
-                        color: $secondary-color;
+                        color: var.$secondary-color;
                     }
                 }
 
@@ -1177,14 +1167,14 @@ $card-background: #F5FAFE;
                         font-weight: 600;
                         font-size: 14px;
                         line-height: 36px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                     }
 
                     .comapnyInvoiceViewInvoiceDetailsEntry {
                         font-weight: 600;
                         font-size: 14px;
                         line-height: 36px;
-                        color: $secondary-color;
+                        color: var.$secondary-color;
                     }
                 }
 
@@ -1193,15 +1183,15 @@ $card-background: #F5FAFE;
                     margin-right: 15px;
                     margin-left: 15px;
                     padding: 16px 0 11px 0;
-                    background: $card-background;
-                    border: 1px solid $action-bar-border-color;
+                    background: var.$card-background;
+                    border: 1px solid var.$action-bar-border-color;
 
                     span {
                         font-weight: 400;
                         font-size: 16px;
                         line-height: 38px;
                         padding: 0 26px 0 22px;
-                        color: $secondary-color;
+                        color: var.$secondary-color;
                     }
                 }
 
@@ -1213,14 +1203,14 @@ $card-background: #F5FAFE;
                         font-weight: 600;
                         font-size: 14px;
                         line-height: 21px;
-                        color: $secondary-color;
+                        color: var.$secondary-color;
                     }
 
                     .companyInvoiceViewInvoiceTotalInWords {
                         font-weight: 600;
                         font-size: 14px;
                         line-height: 21px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-top: 8px;
                     }
                 }
@@ -1232,7 +1222,7 @@ $card-background: #F5FAFE;
                         font-weight: 400;
                         font-size: 14px;
                         line-height: 21px;
-                        color: $secondary-color;
+                        color: var.$secondary-color;
                         margin-top: 61px;
                     }
                 }
@@ -1246,11 +1236,11 @@ $card-background: #F5FAFE;
                     padding-bottom: 76px;
 
                     .companyInvoiceViewInvoicePaymentMethodLabel {
-                        color: $secondary-color;
+                        color: var.$secondary-color;
                     }
 
                     .companyInvoiceViewInvoicePaymentMethod {
-                        color: $primary-color;
+                        color: var.$primary-color;
                     }
                 }
 

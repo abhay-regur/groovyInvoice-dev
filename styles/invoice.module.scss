@@ -1,16 +1,4 @@
-$font-size-heading: 32px;
-$font-size-text: 15px;
-$primary-color: #3649AB;
-$secondary-color: #8790B0;
-$tertiary-color: #43CB80;
-$background-color: #F5FAFE;
-$red-color: #DA5252;
-$header-top-border-color: #D3D8EB;
-$header-top-background: #EFF2FF;
-$table-head-background: #EEF5FC;
-$table-border: #E3EBF2;
-$table-pagination-background: #D9E6F3;
-$checkbox-backgound: #949FB1;
+@use './utility/variables' as var;
 
 //Big Screen
 @media screen and (min-width: 992px) {
@@ -19,7 +7,7 @@ $checkbox-backgound: #949FB1;
         margin: auto 47px;
         margin-left: 135px;
         transition: all 0.35s;
-        background: $background-color;
+        background: var.$background-color;
 
 
         &.expanded {
@@ -29,7 +17,7 @@ $checkbox-backgound: #949FB1;
 
         .comapnyInvoiceHeadingWrapper {
             .title {
-                color: $primary-color;
+                color: var.$primary-color;
                 font-weight: 700;
                 font-size: 36px;
                 line-height: 33px;
@@ -55,7 +43,7 @@ $checkbox-backgound: #949FB1;
 
         .companyInvoiceTopInvoiceHeader {
             margin-top: 49px;
-            border: 1px solid $header-top-border-color;
+            border: 1px solid var.$header-top-border-color;
             border-radius: 10px;
 
             .card_body {
@@ -75,19 +63,19 @@ $checkbox-backgound: #949FB1;
                 .companyInvoiceTopInvoiceHeaderText {
                     font-weight: 600;
                     font-size: 16px;
-                    color: $secondary-color;
+                    color: var.$secondary-color;
                 }
 
                 .companyInvoiceTopInvoiceHeaderNumber {
                     font-weight: 700;
                     font-size: 22px;
-                    color: $primary-color;
+                    color: var.$primary-color;
                 }
 
                 .companyInvoiceTopHeaderTotalOutstandingWrapper,
                 .companyInvoiceTopHeaderDueTodayWrapper,
                 .companyInvoiceTopHeaderDueWithinWrapper {
-                    border-right: 1px solid $header-top-border-color;
+                    border-right: 1px solid var.$header-top-border-color;
                     margin-top: 23px;
                     margin-bottom: 27px;
                 }
@@ -98,7 +86,7 @@ $checkbox-backgound: #949FB1;
                 }
 
                 .companyInvoiceTopHeaderDaysGettingPaidWrapper {
-                    background: $header-top-background;
+                    background: var.$header-top-background;
                     padding-top: 16px;
                     padding-bottom: 16px;
                     padding-right: 0;
@@ -111,7 +99,7 @@ $checkbox-backgound: #949FB1;
 
         .comapanyInoviceInvoiceTableWrapper {
             margin-top: 50px;
-            border: 1px solid $table-border;
+            border: 1px solid var.$table-border;
             border-radius: 10px;
             background: white;
 
@@ -121,9 +109,9 @@ $checkbox-backgound: #949FB1;
                     margin-bottom: 17px;
                     font-weight: 600;
                     font-size: 14px;
-                    color: $primary-color;
-                    background: $table-head-background;
-                    border-right: 1px solid $table-border;
+                    color: var.$primary-color;
+                    background: var.$table-head-background;
+                    border-right: 1px solid var.$table-border;
 
                     .companyInvoiceTableInvoiceNumber {
                         label {
@@ -139,7 +127,7 @@ $checkbox-backgound: #949FB1;
 
                             &:hover {
                                 input~span {
-                                    background-color: $primary-color;
+                                    background-color: var.$primary-color;
                                 }
                             }
 
@@ -152,12 +140,12 @@ $checkbox-backgound: #949FB1;
 
                                 &~span {
                                     background-color: white;
-                                    border: 1px solid $checkbox-backgound;
+                                    border: 1px solid var.$checkbox-backgound;
                                     border-radius: 3px;
                                 }
 
                                 &:checked~span {
-                                    background-color: $primary-color;
+                                    background-color: var.$primary-color;
 
                                     &::after {
                                         display: block;
@@ -194,7 +182,7 @@ $checkbox-backgound: #949FB1;
 
                     &:last-of-type {
                         border: none;
-                        border-bottom: 1px solid $table-border;
+                        border-bottom: 1px solid var.$table-border;
                     }
                 }
             }
@@ -216,8 +204,8 @@ $checkbox-backgound: #949FB1;
                         padding-left: 16px;
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        border-bottom: 1px solid $table-border;
+                        color: var.$secondary-color;
+                        border-bottom: 1px solid var.$table-border;
 
                         &:nth-of-type(2) {
                             padding-top: 19px;
@@ -237,7 +225,7 @@ $checkbox-backgound: #949FB1;
 
                                 &:hover {
                                     input~span {
-                                        background-color: $primary-color;
+                                        background-color: var.$primary-color;
                                     }
                                 }
 
@@ -250,12 +238,12 @@ $checkbox-backgound: #949FB1;
 
                                     &~span {
                                         background-color: white;
-                                        border: 1px solid $checkbox-backgound;
+                                        border: 1px solid var.$checkbox-backgound;
                                         border-radius: 3px;
                                     }
 
                                     &:checked~span {
-                                        background-color: $primary-color;
+                                        background-color: var.$primary-color;
 
                                         &::after {
                                             display: block;
@@ -304,7 +292,7 @@ $checkbox-backgound: #949FB1;
                                 margin-left: 10px;
                                 font-weight: 700;
                                 font-size: 16px;
-                                color: $primary-color;
+                                color: var.$primary-color;
                             }
                         }
 
@@ -324,7 +312,7 @@ $checkbox-backgound: #949FB1;
                         .companyInvoiceTableStatus {
                             width: 53px;
                             border-radius: 50px;
-                            background-color: $red-color;
+                            background-color: var.$red-color;
                             color: white;
                             font-weight: 600;
                             font-size: 12px;
@@ -334,7 +322,7 @@ $checkbox-backgound: #949FB1;
                         }
 
                         .paid {
-                            background-color: $primary-color !important;
+                            background-color: var.$primary-color !important;
                         }
 
                         .companyInvoiceTableActionWrapper {
@@ -344,7 +332,7 @@ $checkbox-backgound: #949FB1;
                                 svg {
                                     height: 19px;
                                     width: 19px;
-                                    fill: $tertiary-color;
+                                    fill: var.$tertiary-color;
                                     margin-right: 11px;
                                 }
                             }
@@ -358,7 +346,7 @@ $checkbox-backgound: #949FB1;
                                     margin-right: 9px;
 
                                     path {
-                                        fill: $primary-color;
+                                        fill: var.$primary-color;
                                     }
                                 }
                             }
@@ -369,7 +357,7 @@ $checkbox-backgound: #949FB1;
                                 svg {
                                     height: 19px;
                                     width: 19px;
-                                    fill: $secondary-color;
+                                    fill: var.$secondary-color;
                                 }
                             }
                         }
@@ -383,7 +371,7 @@ $checkbox-backgound: #949FB1;
             margin-bottom: 70px;
 
             .companyInvoiceTablePaginationPageInfo {
-                color: $primary-color;
+                color: var.$primary-color;
                 font-weight: 400;
                 font-size: 13px;
                 align-items: center;
@@ -405,12 +393,12 @@ $checkbox-backgound: #949FB1;
                     margin: 0;
 
                     .companyInvoicePaginationNumber {
-                        background: $table-pagination-background;
+                        background: var.$table-pagination-background;
                         width: 36px;
                         height: 36px;
                         font-weight: 600;
                         font-size: 16px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         border-radius: 50%;
                         text-align: center;
                         padding-top: 5px;
@@ -423,7 +411,7 @@ $checkbox-backgound: #949FB1;
                         height: 36px;
                         font-weight: 600;
                         font-size: 16px;
-                        background: $tertiary-color !important;
+                        background: var.$tertiary-color !important;
                         color: white !important;
                         border-radius: 50%;
                         text-align: center;
@@ -445,7 +433,7 @@ $checkbox-backgound: #949FB1;
         margin: auto 30px;
         margin-left: 135px;
         transition: all 0.35s;
-        background: $background-color;
+        background: var.$background-color;
         height: 100%;
 
 
@@ -456,7 +444,7 @@ $checkbox-backgound: #949FB1;
 
         .comapnyInvoiceHeadingWrapper {
             .title {
-                color: $primary-color;
+                color: var.$primary-color;
                 font-weight: 700;
                 font-size: 26px;
                 line-height: 33px;
@@ -482,7 +470,7 @@ $checkbox-backgound: #949FB1;
 
         .companyInvoiceTopInvoiceHeader {
             margin-top: 49px;
-            border: 1px solid $header-top-border-color;
+            border: 1px solid var.$header-top-border-color;
             border-radius: 10px;
 
             .card_body {
@@ -498,20 +486,20 @@ $checkbox-backgound: #949FB1;
                 .companyInvoiceTopInvoiceHeaderText {
                     font-weight: 600;
                     font-size: 14px;
-                    color: $secondary-color;
+                    color: var.$secondary-color;
                 }
 
                 .companyInvoiceTopInvoiceHeaderNumber {
                     font-weight: 700;
                     font-size: 18px;
-                    color: $primary-color;
+                    color: var.$primary-color;
                 }
 
                 .companyInvoiceTopHeaderTotalOutstandingWrapper,
                 .companyInvoiceTopHeaderDueTodayWrapper {
                     margin-top: 10px;
                     padding-bottom: 36px;
-                    border-bottom: 1px solid $header-top-border-color;
+                    border-bottom: 1px solid var.$header-top-border-color;
                 }
 
                 .companyInvoiceTopHeaderDueWithinWrapper,
@@ -521,7 +509,7 @@ $checkbox-backgound: #949FB1;
                 }
 
                 .companyInvoiceTopHeaderDaysGettingPaidWrapper {
-                    background: $header-top-background;
+                    background: var.$header-top-background;
                     padding-top: 16px;
                     padding-bottom: 16px;
                     padding-left: 19px;
@@ -533,7 +521,7 @@ $checkbox-backgound: #949FB1;
 
         .comapanyInoviceInvoiceTableWrapper {
             margin-top: 50px;
-            border: 1px solid $table-border;
+            border: 1px solid var.$table-border;
             border-radius: 10px;
             background: white;
             overflow-x: auto;
@@ -546,9 +534,9 @@ $checkbox-backgound: #949FB1;
                     margin-bottom: 17px;
                     font-weight: 600;
                     font-size: 14px;
-                    color: $primary-color;
-                    background: $table-head-background;
-                    border-right: 1px solid $table-border;
+                    color: var.$primary-color;
+                    background: var.$table-head-background;
+                    border-right: 1px solid var.$table-border;
 
                     .companyInvoiceTableInvoiceNumber {
                         label {
@@ -564,7 +552,7 @@ $checkbox-backgound: #949FB1;
 
                             &:hover {
                                 input~span {
-                                    background-color: $primary-color;
+                                    background-color: var.$primary-color;
                                 }
                             }
 
@@ -577,12 +565,12 @@ $checkbox-backgound: #949FB1;
 
                                 &~span {
                                     background-color: white;
-                                    border: 1px solid $checkbox-backgound;
+                                    border: 1px solid var.$checkbox-backgound;
                                     border-radius: 3px;
                                 }
 
                                 &:checked~span {
-                                    background-color: $primary-color;
+                                    background-color: var.$primary-color;
 
                                     &::after {
                                         display: block;
@@ -620,7 +608,7 @@ $checkbox-backgound: #949FB1;
 
                     &:last-of-type {
                         border: none;
-                        border-bottom: 1px solid $table-border;
+                        border-bottom: 1px solid var.$table-border;
                     }
                 }
             }
@@ -643,8 +631,8 @@ $checkbox-backgound: #949FB1;
                         padding-left: 16px;
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        border-bottom: 1px solid $table-border;
+                        color: var.$secondary-color;
+                        border-bottom: 1px solid var.$table-border;
 
                         &:nth-of-type(2) {
                             padding-top: 19px;
@@ -664,7 +652,7 @@ $checkbox-backgound: #949FB1;
 
                                 &:hover {
                                     input~span {
-                                        background-color: $primary-color;
+                                        background-color: var.$primary-color;
                                     }
                                 }
 
@@ -677,12 +665,12 @@ $checkbox-backgound: #949FB1;
 
                                     &~span {
                                         background-color: white;
-                                        border: 1px solid $checkbox-backgound;
+                                        border: 1px solid var.$checkbox-backgound;
                                         border-radius: 3px;
                                     }
 
                                     &:checked~span {
-                                        background-color: $primary-color;
+                                        background-color: var.$primary-color;
 
                                         &::after {
                                             display: block;
@@ -731,7 +719,7 @@ $checkbox-backgound: #949FB1;
                                 margin-left: 10px;
                                 font-weight: 700;
                                 font-size: 16px;
-                                color: $primary-color;
+                                color: var.$primary-color;
                             }
                         }
 
@@ -751,7 +739,7 @@ $checkbox-backgound: #949FB1;
                         .companyInvoiceTableStatus {
                             width: 53px;
                             border-radius: 50px;
-                            background-color: $red-color;
+                            background-color: var.$red-color;
                             color: white;
                             font-weight: 600;
                             font-size: 12px;
@@ -761,7 +749,7 @@ $checkbox-backgound: #949FB1;
                         }
 
                         .paid {
-                            background-color: $primary-color !important;
+                            background-color: var.$primary-color !important;
                         }
 
                         .companyInvoiceTableActionWrapper {
@@ -772,7 +760,7 @@ $checkbox-backgound: #949FB1;
                                     margin-top: 5px;
                                     height: 19px;
                                     width: 19px;
-                                    fill: $tertiary-color;
+                                    fill: var.$tertiary-color;
                                     margin-right: 11px;
                                 }
                             }
@@ -787,7 +775,7 @@ $checkbox-backgound: #949FB1;
                                     margin-right: 9px;
 
                                     path {
-                                        fill: $primary-color;
+                                        fill: var.$primary-color;
                                     }
                                 }
                             }
@@ -799,7 +787,7 @@ $checkbox-backgound: #949FB1;
                                     margin-top: 5px;
                                     height: 19px;
                                     width: 19px;
-                                    fill: $secondary-color;
+                                    fill: var.$secondary-color;
                                 }
                             }
                         }
@@ -814,7 +802,7 @@ $checkbox-backgound: #949FB1;
             margin-bottom: 70px;
 
             .companyInvoiceTablePaginationPageInfo {
-                color: $primary-color;
+                color: var.$primary-color;
                 font-weight: 400;
                 font-size: 13px;
                 align-items: center;
@@ -834,12 +822,12 @@ $checkbox-backgound: #949FB1;
                     margin: 0 auto;
 
                     .companyInvoicePaginationNumber {
-                        background: $table-pagination-background;
+                        background: var.$table-pagination-background;
                         width: 36px;
                         height: 36px;
                         font-weight: 600;
                         font-size: 16px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         border-radius: 50%;
                         text-align: center;
                         padding-top: 5px;
@@ -852,7 +840,7 @@ $checkbox-backgound: #949FB1;
                         height: 36px;
                         font-weight: 600;
                         font-size: 16px;
-                        background: $primary-color !important;
+                        background: var.$primary-color !important;
                         color: white !important;
                         border-radius: 50%;
                         text-align: center;
@@ -879,7 +867,7 @@ $checkbox-backgound: #949FB1;
 
         .comapnyInvoiceHeadingWrapper {
             .title {
-                color: $primary-color;
+                color: var.$primary-color;
                 font-weight: 700;
                 font-size: 26px;
                 line-height: 33px;
@@ -904,7 +892,7 @@ $checkbox-backgound: #949FB1;
 
         .companyInvoiceTopInvoiceHeader {
             margin-top: 27px;
-            border: 1px solid $header-top-border-color;
+            border: 1px solid var.$header-top-border-color;
             border-radius: 10px;
 
             .card_body {
@@ -920,20 +908,20 @@ $checkbox-backgound: #949FB1;
                 .companyInvoiceTopInvoiceHeaderText {
                     font-weight: 600;
                     font-size: 14px;
-                    color: $secondary-color;
+                    color: var.$secondary-color;
                 }
 
                 .companyInvoiceTopInvoiceHeaderNumber {
                     font-weight: 700;
                     font-size: 18px;
-                    color: $primary-color;
+                    color: var.$primary-color;
                 }
 
                 .companyInvoiceTopHeaderTotalOutstandingWrapper,
                 .companyInvoiceTopHeaderDueTodayWrapper {
                     margin-top: 10px;
                     padding-bottom: 36px;
-                    border-bottom: 1px solid $header-top-border-color;
+                    border-bottom: 1px solid var.$header-top-border-color;
                 }
 
                 .companyInvoiceTopHeaderDueWithinWrapper,
@@ -943,7 +931,7 @@ $checkbox-backgound: #949FB1;
                 }
 
                 .companyInvoiceTopHeaderDaysGettingPaidWrapper {
-                    background: $header-top-background;
+                    background: var.$header-top-background;
                     padding-top: 16px;
                     padding-bottom: 16px;
                     padding-left: 19px;
@@ -956,7 +944,7 @@ $checkbox-backgound: #949FB1;
 
         .comapanyInoviceInvoiceTableWrapper {
             margin-top: 50px;
-            border: 1px solid $table-border;
+            border: 1px solid var.$table-border;
             border-bottom: none;
             border-radius: 10px;
             background: white;
@@ -972,9 +960,9 @@ $checkbox-backgound: #949FB1;
                         margin-bottom: 17px;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
-                        background: $table-head-background;
-                        border-right: 1px solid $table-border;
+                        color: var.$primary-color;
+                        background: var.$table-head-background;
+                        border-right: 1px solid var.$table-border;
 
                         .companyInvoiceTableInvoiceNumber {
                             label {
@@ -990,7 +978,7 @@ $checkbox-backgound: #949FB1;
 
                                 &:hover {
                                     input~span {
-                                        background-color: $primary-color;
+                                        background-color: var.$primary-color;
                                     }
                                 }
 
@@ -1003,12 +991,12 @@ $checkbox-backgound: #949FB1;
 
                                     &~span {
                                         background-color: white;
-                                        border: 1px solid $checkbox-backgound;
+                                        border: 1px solid var.$checkbox-backgound;
                                         border-radius: 3px;
                                     }
 
                                     &:checked~span {
-                                        background-color: $primary-color;
+                                        background-color: var.$primary-color;
 
                                         &::after {
                                             display: block;
@@ -1045,7 +1033,7 @@ $checkbox-backgound: #949FB1;
 
                         &:last-of-type {
                             border: none;
-                            border-bottom: 1px solid $table-border;
+                            border-bottom: 1px solid var.$table-border;
                         }
                     }
                 }
@@ -1068,8 +1056,8 @@ $checkbox-backgound: #949FB1;
                             padding-left: 16px;
                             font-weight: 400;
                             font-size: 14px;
-                            color: $secondary-color;
-                            border-bottom: 1px solid $table-border;
+                            color: var.$secondary-color;
+                            border-bottom: 1px solid var.$table-border;
 
                             &:nth-of-type(2) {
                                 padding-top: 19px;
@@ -1089,7 +1077,7 @@ $checkbox-backgound: #949FB1;
 
                                     &:hover {
                                         input~span {
-                                            background-color: $primary-color;
+                                            background-color: var.$primary-color;
                                         }
                                     }
 
@@ -1102,12 +1090,12 @@ $checkbox-backgound: #949FB1;
 
                                         &~span {
                                             background-color: white;
-                                            border: 1px solid $checkbox-backgound;
+                                            border: 1px solid var.$checkbox-backgound;
                                             border-radius: 3px;
                                         }
 
                                         &:checked~span {
-                                            background-color: $primary-color;
+                                            background-color: var.$primary-color;
 
                                             &::after {
                                                 display: block;
@@ -1156,7 +1144,7 @@ $checkbox-backgound: #949FB1;
                                     margin-left: 10px;
                                     font-weight: 700;
                                     font-size: 16px;
-                                    color: $primary-color;
+                                    color: var.$primary-color;
                                 }
                             }
 
@@ -1176,7 +1164,7 @@ $checkbox-backgound: #949FB1;
                             .companyInvoiceTableStatus {
                                 width: 53px;
                                 border-radius: 50px;
-                                background-color: $red-color;
+                                background-color: var.$red-color;
                                 color: white;
                                 font-weight: 600;
                                 font-size: 12px;
@@ -1186,7 +1174,7 @@ $checkbox-backgound: #949FB1;
                             }
 
                             .paid {
-                                background-color: $primary-color !important;
+                                background-color: var.$primary-color !important;
                             }
 
                             .companyInvoiceTableActionWrapper {
@@ -1196,7 +1184,7 @@ $checkbox-backgound: #949FB1;
                                     svg {
                                         height: 19px;
                                         width: 19px;
-                                        fill: $tertiary-color;
+                                        fill: var.$tertiary-color;
                                         margin-right: 11px;
                                     }
                                 }
@@ -1210,7 +1198,7 @@ $checkbox-backgound: #949FB1;
                                         margin-right: 9px;
 
                                         path {
-                                            fill: $primary-color;
+                                            fill: var.$primary-color;
                                         }
                                     }
                                 }
@@ -1221,7 +1209,7 @@ $checkbox-backgound: #949FB1;
                                     svg {
                                         height: 19px;
                                         width: 19px;
-                                        fill: $secondary-color;
+                                        fill: var.$secondary-color;
                                     }
                                 }
                             }
@@ -1243,7 +1231,7 @@ $checkbox-backgound: #949FB1;
                 margin-bottom: 30px;
 
                 .companyInvoiceTablePaginationPageInfo {
-                    color: $primary-color;
+                    color: var.$primary-color;
                     font-weight: 400;
                     font-size: 13px;
                     align-items: center;
@@ -1264,12 +1252,12 @@ $checkbox-backgound: #949FB1;
                         margin: 0 auto;
 
                         .companyInvoicePaginationNumber {
-                            background: $table-pagination-background;
+                            background: var.$table-pagination-background;
                             width: 36px;
                             height: 36px;
                             font-weight: 600;
                             font-size: 16px;
-                            color: $primary-color;
+                            color: var.$primary-color;
                             border-radius: 50%;
                             text-align: center;
                             padding-top: 5px;
@@ -1282,7 +1270,7 @@ $checkbox-backgound: #949FB1;
                             height: 36px;
                             font-weight: 600;
                             font-size: 16px;
-                            background: $primary-color !important;
+                            background: var.$primary-color !important;
                             color: white !important;
                             border-radius: 50%;
                             text-align: center;

@@ -1,20 +1,14 @@
-$primary-color: #3649AB;
-$secondary-color: #8790B0;
-$tertiary-color: #43CB80;
-$red-color: #E83F35;
-$input-background-color: #F5FAFE;
-$border-card-color: #E3EBF2;
-$primary-border-color: #BCD5E2;
+@use './utility/variables' as var;
 
 .companyInvoiceCustomSelectWrapper {
     input {
         position: relative;
-        background: $input-background-color;
+        background: var.$input-background-color;
         font-weight: 400;
         font-size: 14px;
-        color: $primary-color !important;
-        background: $input-background-color;
-        border: 1px solid $primary-border-color;
+        color: var.$primary-color !important;
+        background: var.$input-background-color;
+        border: 1px solid var.$primary-border-color;
         border-radius: 8px;
         height: 41px;
         text-align: start;
@@ -33,18 +27,20 @@ $primary-border-color: #BCD5E2;
     }
 
 
-    ul {
-        border: 1px solid $primary-border-color;
+    .companyInvoiceCustomSelectMenu {
+        border: 1px solid var.$primary-border-color;
         border-radius: 8px;
+        max-height: 250px;
+        overflow-y: auto;
 
         .menuItem {
             font-weight: 400;
             font-size: 14px;
-            color: $primary-color;
+            color: var.$primary-color;
 
 
             &:hover {
-                color: $primary-color;
+                color: var.$primary-color;
 
             }
         }
