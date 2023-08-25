@@ -37,7 +37,7 @@ export default function ContactPerson({ custId, setToastList, ErrorList, addCont
         email: "",
         workPhone: "",
         mobile: ""
-    })
+    });
     const [itemData, setItemData] = useState([
         {
             salutation: "",
@@ -47,12 +47,12 @@ export default function ContactPerson({ custId, setToastList, ErrorList, addCont
             workPhone: "",
             mobile: ""
         }
-    ])
+    ]);
 
     useEffect(() => {
         setIsloading(true);
         getContactPersonList();
-    }, [])
+    }, []);
 
     const handleInput = ({ target }) => {
         var temp_data = newPerson;
@@ -177,7 +177,6 @@ export default function ContactPerson({ custId, setToastList, ErrorList, addCont
                     description: 'Updated ' + newPerson.firstName + ' ' + newPerson.lastName,
                 }]);
                 getContactPersonList();
-                setIsloading(false);
             }
         } catch (error) {
             if (error.response.data != undefined) {
@@ -197,7 +196,7 @@ export default function ContactPerson({ custId, setToastList, ErrorList, addCont
                 setToastList([{
                     id: Math.floor((Math.random() * 101) + 1),
                     title: 'Contact Person',
-                    description: '',
+                    description: 'Removed the Contact Person',
                 }]);
             }
         } catch (error) {
