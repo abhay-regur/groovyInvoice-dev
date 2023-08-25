@@ -331,6 +331,7 @@ export default function CustomerAddForm() {
         data: data,
         handleInput: handleInput,
         handleRadioButtonChange: handleRadioButtonChange,
+        ErrorList: ErrorList,
         gstTreatment: gstTreatment,
         paymentTerms: paymentTerms,
         currencies: currencies,
@@ -516,7 +517,7 @@ export default function CustomerAddForm() {
                                     <div className="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-3">
                                         <div className="row">
                                             <div className="col-6 col-md-4 col-lg-3 col-xl-4">
-                                                <button name="btn-submit" className={`${styles.companyInvoiceSavenSendButton} btn blue`} type='submit'>
+                                                <button name="btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`} type='submit'>
                                                     <span>
                                                         <i><FaSave /></i>
                                                         Save
