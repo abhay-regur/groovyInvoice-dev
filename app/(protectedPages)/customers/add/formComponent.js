@@ -113,7 +113,7 @@ export default function CustomerAddForm() {
         var temp_data = data;
         if (target.name != '') {
             if (target.name == 'openingBalance' || target.name == 'gstTreatment') {
-                if (target.value != NaN || target.value != '') {
+                if (!Number.isNaN((target.value)) && target.value != '') {
                     temp_data[target.name] = parseInt(target.value)
                 } else {
                     temp_data[target.name] = 0;
