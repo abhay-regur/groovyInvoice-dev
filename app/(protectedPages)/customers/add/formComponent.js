@@ -1,6 +1,5 @@
 "use client"
 import { useState, useContext, useEffect } from 'react';
-import ContactPerson from '../../../../components/contactPerson';
 import Address from '../../../../components/address';
 import OtherDetails from '../../../../components/otherDetails';
 import RadioButton from '../../../../components/radioButton';
@@ -11,10 +10,11 @@ import FaExclamationCircle from '../../../../assets/icons/faExclamationCircle.sv
 import styles from "../../../../styles/newCustomer.module.scss";
 import ErrorList from '../../../../components/errorList';
 import Loading from "../loading.js";
-import { createCustomer, getGSTTreatment, getPlaceOfSupply, getCurrencies } from "../../../../services/customer.service";
-import { getPaymentTerms } from "../../../../services/paymentTerms.service";
 import { ToastMsgContext } from '../../../../context/ToastMsg.context';
+import { getPaymentTerms, createPaymentTerms } from "../../../../services/paymentTerms.service";
 import { getCountries, getStates } from '../../../../services/countriesState.service';
+import { createCustomer, getUserDetails, updateUserDetails, getGSTTreatment, getPlaceOfSupply, getCurrencies, addContactPerson, listContactPersonDetails, updateContactPersonDetails, deleteContactPersonDetails } from "../../../../services/customer.service";
+import { getTaxExemptionReason, createTaxExemptionReason } from '../../../../services/taxExempted.service.js';
 import { NavExpandedState } from '../../../../context/NavState.context';
 import { useRouter } from 'next/navigation';
 
@@ -35,6 +35,7 @@ export default function CustomerAddForm() {
     const [currencies, setCurrencies] = useState([]);
     const [placeOfSupply, setPlaceOfSupply] = useState([]);
     const [paymentTerms, setPaymentTerms] = useState([]);
+    const [taxExemptionReason, setTaxExemptionReason] = useState([])
 
     const [data, setData] = useState({
         type: "",
@@ -59,7 +60,7 @@ export default function CustomerAddForm() {
         exemptionReason: "",
         currency: "₹",
         openingBalance: 0,
-        paymentTerm: "",
+        paymentTermId: "",
         address: {
             billingAddress: {
                 attention: "",
@@ -92,6 +93,7 @@ export default function CustomerAddForm() {
         getCurrencyDetails();
         getPlaceOfSupplyDetails();
         getPaymentTermsDetails();
+        getTaxExemptedDetails();
         setTimeout(function () {
             setIsLoading(false);
         }, 2500);
@@ -111,15 +113,16 @@ export default function CustomerAddForm() {
 
     const handleInput = ({ target }) => {
         var temp_data = data;
-        if (target.name != '') {
-            if (target.name == 'openingBalance' || target.name == 'gstTreatment') {
+        var name = target.name || target.getAttribute('name');
+        if (name != '') {
+            if (name == 'openingBalance' || name == 'gstTreatment') {
                 if (!Number.isNaN((target.value)) && target.value != '') {
-                    temp_data[target.name] = parseInt(target.value)
+                    temp_data[name] = parseInt(target.value)
                 } else {
-                    temp_data[target.name] = 0;
+                    temp_data[name] = 0;
                 }
             } else {
-                temp_data[target.name] = target.value;
+                temp_data[name] = target.value;
             }
             let temp = Object.assign({}, temp_data)
             setData(temp)
@@ -220,7 +223,7 @@ export default function CustomerAddForm() {
             var data = result.data;
             var temp = [];
             data.forEach((elem) => {
-                temp.push({ Id: elem.id, name: elem.name, symbol: elem.symbol })
+                temp.push({ Id: elem.symbol, name: elem.symbol + ' - ' + elem.name })
             })
             setCurrencies(temp);
         } catch (error) {
@@ -258,6 +261,21 @@ export default function CustomerAddForm() {
         }
     }
 
+    const getTaxExemptedDetails = async () => {
+        setErrors([]);
+        try {
+            const result = await getTaxExemptionReason();
+            var data = result.data;
+            var temp = [];
+            data.forEach((elem) => {
+                temp.push({ Id: elem.id, name: elem.label })
+            });
+            setTaxExemptionReason(temp);
+        } catch (error) {
+            setErrors(error.response.data.message)
+        }
+    }
+
     const resetPage = () => {
         setErrors([]);
         setActiveTabID(1);
@@ -284,7 +302,7 @@ export default function CustomerAddForm() {
             exemptionReason: "",
             currency: "₹",
             openingBalance: 0,
-            paymentTerm: "",
+            paymentTermId: "",
             address: {
                 billingAddress: {
                     attention: "",
@@ -332,10 +350,16 @@ export default function CustomerAddForm() {
         handleInput: handleInput,
         handleRadioButtonChange: handleRadioButtonChange,
         ErrorList: ErrorList,
+        getPaymentTermsDetails: getPaymentTermsDetails,
+        createPaymentTerms: createPaymentTerms,
+        createTaxExemptionReason: createTaxExemptionReason,
+        getTaxExemptedDetails: getTaxExemptedDetails,
         gstTreatment: gstTreatment,
         paymentTerms: paymentTerms,
         currencies: currencies,
-        placeOfSupply: placeOfSupply
+        placeOfSupply: placeOfSupply,
+        taxExemptionReason: taxExemptionReason,
+        setToastList: setToastList
     };
 
     return (
