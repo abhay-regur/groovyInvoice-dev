@@ -6,11 +6,12 @@ import CustomSelectComponent from './customSelectComponent';
 import styles from "../styles/newCustomer.module.scss";
 import { useEffect, useState } from 'react';
 import { GST_TREATMENT } from '../constants';
+import $ from 'jquery';
 export default function OtherDetails({ data, handleInput, handleRadioButtonChange, ErrorList, gstTreatment, paymentTerms, currencies, placeOfSupply, taxExemptionReason, getPaymentTermsDetails, createPaymentTerms, createTaxExemptionReason, getTaxExemptedDetails, setToastList }) {
     const [unregistred, setUnregistred] = useState(false);
     const [overseas, setOverseas] = useState(false);
     const { Modal } = require("bootstrap");
-    const [modelFor, setModalFor] = useState('')
+    const [modelFor, setModalFor] = useState('');
     const [paymentTerm, setPaymentTerm] = useState({
         label: "",
         numberOfDays: 0
@@ -66,8 +67,6 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
 
     const hideModal = () => {
         setmodalErrors([]);
-        const myModal = new Modal("#updateCustomerModal");
-        myModal.show();
         setPaymentTerm({
             label: "",
             numberOfDays: 0
@@ -75,7 +74,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
     }
 
     const handleModalSubmit = async (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         setmodalErrors([]);
         try {
             if (modelFor == 'paymentTerm') {
@@ -91,10 +90,12 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
                     title: 'User Details',
                     description: 'New ' + modelFor + ' Added',
                 }]);
-                hideModal();
+                $('#updateCustomerModal button.btn-close').trigger('click');
+                // hideModal();
                 getPaymentTermsDetails();
             }
         } catch (e) {
+            console.log(e);
             setmodalErrors(e.response.data.message);
         }
     }
@@ -220,7 +221,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
                 <label className={`${styles.companyInvoicePaymentTermslabel}`}>Payment Terms</label>
             </div>
             <div className="col-12 col-lg-6 col-xl-6">
-                <CustomSelectComponent className={`${styles.companInvoicePaymentTermsSelect}`} data={paymentTerms} onOptionValueChange={handleInput} optionValue={data.paymentTerm} name={'paymentTerm'} isDisabled={false} defaultText={'Select An Option'} onOptionInnerButtonClick={showModal} isInnerButtonRequired={true} />
+                <CustomSelectComponent className={`${styles.companInvoicePaymentTermsSelect}`} data={paymentTerms} onOptionValueChange={handleInput} optionValue={data.paymentTermId} name={'paymentTermId'} isDisabled={false} defaultText={'Select An Option'} onOptionInnerButtonClick={showModal} isInnerButtonRequired={true} />
             </div>
         </div>
 
@@ -229,17 +230,16 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
             id="updateCustomerModal"
             tabIndex="-1"
             aria-labelledby="updateCustomerModalLabel"
-            data-bs-backdrop="static"
             aria-hidden="true">
             <div className="modal-dialog">
-                {
-                    modelFor == 'paymentTerm'
-                        ?
-                        <div className="modal-content">
-                            <div className={`${styles.companyInvoiceModalHeader} modal-header`}>
-                                <h5 className="modal-title">Add Payment Term</h5>
-                                <button type="button" className="btn-close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="Close" onClick={hideModal}></button>
-                            </div>
+                <div className="modal-content">
+                    <div className={`${styles.companyInvoiceModalHeader} modal-header`}>
+                        <h5 className="modal-title"> Add {modelFor == 'exemptionReason' ? 'Exemption Reason' : ''}{modelFor == 'paymentTermId' ? 'Payment Term' : ''}</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={hideModal}></button>
+                    </div>
+                    {
+                        modelFor == 'paymentTermId'
+                            ?
                             <div className="modal-body">
                                 <ErrorList errors={modalErrors} />
                                 <div className='row'>
@@ -265,29 +265,11 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
                                     </div>
                                 </div>
                             </div>
-                            <div className="modal-footer">
-                                <div className="row">
-                                    <div className="col-4">
-                                        <button name="btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`} onClick={handleModalSubmit}>
-                                            <span>
-                                                <i><FaPlus /></i>
-                                                Add
-                                            </span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        : ''
-                }
-                {
-                    modelFor == 'exemptionReason'
-                        ?
-                        <div className="modal-content">
-                            <div className={`${styles.companyInvoiceModalHeader} modal-header`}>
-                                <h5 className="modal-title">Add Exemption Reason</h5>
-                                <button type="button" className="btn-close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="Close" onClick={hideModal}></button>
-                            </div>
+                            : ''
+                    }
+                    {
+                        modelFor == 'exemptionReason'
+                            ?
                             <div className="modal-body">
                                 <ErrorList errors={modalErrors} />
                                 <div className='row'>
@@ -303,24 +285,23 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
                                     </div>
                                 </div>
                             </div>
-                            <div className="modal-footer">
-                                <div className="row">
-                                    <div className="col-4">
-                                        <button name="btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`} onClick={handleModalSubmit}>
-                                            <span>
-                                                <i><FaPlus /></i>
-                                                Add
-                                            </span>
-                                        </button>
-                                    </div>
-                                </div>
+                            : ''
+                    }
+                    <div className="modal-footer">
+                        <div className="row">
+                            <div className="col-4">
+                                <button type='button' name="btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`} onClick={handleModalSubmit}>
+                                    <span>
+                                        <i><FaPlus /></i>
+                                        Add
+                                    </span>
+                                </button>
                             </div>
                         </div>
-                        : ''
-                }
+                    </div>
+                </div>
             </div>
         </div>
-
 
     </div>)
 }

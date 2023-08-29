@@ -14,12 +14,6 @@ export default function ContactPerson({ custId, setToastList, ErrorList, addCont
     const [isLoading, setIsloading] = useState(true);
     const [errors, setErrors] = useState([]);
     const [modalErrors, setmodalErrors] = useState([]);
-    const bootstrap = dynamic(
-        () => {
-            return import("bootstrap");
-        },
-        { ssr: false }
-    );
     const { Modal } = require("bootstrap");
     const [newPerson, setNewPerson] = useState({
         salutation: "",
@@ -118,8 +112,8 @@ export default function ContactPerson({ custId, setToastList, ErrorList, addCont
             if (result.status == 200 || result.status == 201) {
                 setToastList([{
                     id: Math.floor((Math.random() * 101) + 1),
-                    title: 'Contact Person',
-                    description: 'Added ' + newPerson.firstName + ' ' + newPerson.lastName,
+                    title: 'Customer Details',
+                    description: 'Added ' + newPerson.firstName + ' as a contact person',
                 }]);
                 getContactPersonList();
                 removeInputRow();
@@ -173,8 +167,8 @@ export default function ContactPerson({ custId, setToastList, ErrorList, addCont
             if (result.status == 200 || result.status == 201) {
                 setToastList([{
                     id: Math.floor((Math.random() * 101) + 1),
-                    title: 'Contact Person',
-                    description: 'Updated ' + newPerson.firstName + ' ' + newPerson.lastName,
+                    title: 'Customer Details',
+                    description: 'Updated ' + newPerson.firstName + '`s details',
                 }]);
                 getContactPersonList();
             }
@@ -195,9 +189,10 @@ export default function ContactPerson({ custId, setToastList, ErrorList, addCont
             if (results.status == 200 || results.status == 201) {
                 setToastList([{
                     id: Math.floor((Math.random() * 101) + 1),
-                    title: 'Contact Person',
-                    description: 'Removed the Contact Person',
+                    title: 'Customer Details',
+                    description: 'Removed as Contact Person',
                 }]);
+                getContactPersonList();
             }
         } catch (error) {
             if (typeof error == object && error.response.data != undefined) {
