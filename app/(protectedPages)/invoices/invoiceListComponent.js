@@ -3,9 +3,14 @@ import Link from 'next/link';
 import { useContext } from 'react';
 import { NavExpandedState } from '../../../context/NavState.context';
 import styles from '../../../styles/invoice.module.scss';
-import AllInvoiceTable from '../../../components/allInvoiceTable.js'
 import FaCirclePlus from "../../../assets/icons/faCirclePlus.svg";
 import FaRupeeCircle from "../../../assets/icons/faRupeeCircle.svg";
+import dynamic from 'next/dynamic';
+
+const AllInvoiceTable = dynamic(
+    () => import("../../../components/allInvoiceTable"),
+    { ssr: false }
+);
 
 export default function InvoiceListComponent() {
     const { navExpandedState } = useContext(NavExpandedState);
