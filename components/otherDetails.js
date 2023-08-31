@@ -84,18 +84,20 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
             }
 
             if (result.status == 200 || result.status == 201) {
-                var newToast = {}
                 setToastList([{
                     id: Math.floor((Math.random() * 101) + 1),
                     title: 'User Details',
                     description: 'New ' + modelFor + ' Added',
                 }]);
                 $('#updateCustomerModal button.btn-close').trigger('click');
-                // hideModal();
-                getPaymentTermsDetails();
+                if (modelFor == 'paymentTerm') {
+                    getPaymentTermsDetails();
+                } else if (modelFor == 'exemptionReason') {
+                    getTaxExemptedDetails();
+                }
+                ;
             }
         } catch (e) {
-            console.log(e);
             setmodalErrors(e.response.data.message);
         }
     }
