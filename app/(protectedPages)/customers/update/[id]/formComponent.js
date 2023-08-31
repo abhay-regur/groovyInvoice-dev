@@ -13,9 +13,10 @@ import styles from "../../../../../styles/newCustomer.module.scss";
 import ErrorList from '../../../../../components/errorList';
 import { ToastMsgContext } from '../../../../../context/ToastMsg.context';
 import Loading from "../../loading.js";
-import { getPaymentTerms } from "../../../../../services/paymentTerms.service";
+import { getPaymentTerms, createPaymentTerms } from "../../../../../services/paymentTerms.service";
 import { getCountries, getStates } from '../../../../../services/countriesState.service';
 import { getUserDetails, updateUserDetails, getGSTTreatment, getPlaceOfSupply, getCurrencies, addContactPerson, listContactPersonDetails, updateContactPersonDetails, deleteContactPersonDetails } from "../../../../../services/customer.service";
+import { getTaxExemptionReason, createTaxExemptionReason } from '../../../../../services/taxExempted.service.js';
 import { NavExpandedState } from '../../../../../context/NavState.context';
 import { useRouter } from 'next/navigation';
 
@@ -36,6 +37,7 @@ export default function CustomerEditForm() {
     const [currencies, setCurrencies] = useState([]);
     const [placeOfSupply, setPlaceOfSupply] = useState([]);
     const [paymentTerms, setPaymentTerms] = useState([]);
+    const [taxExemptionReason, setTaxExemptionReason] = useState([])
 
     const [data, setData] = useState({
         type: "",
@@ -60,7 +62,7 @@ export default function CustomerEditForm() {
         exemptionReason: "",
         currency: "₹",
         openingBalance: 0,
-        paymentTerm: "",
+        paymentTermId: 0,
         address: {
             billingAddress: {
                 attention: "",
@@ -95,6 +97,7 @@ export default function CustomerEditForm() {
             getPlaceOfSupplyDetails();
             getUserData();
             getPaymentTermsDetails();
+            getTaxExemptedDetails();
             setTimeout(function () {
                 setIsLoading(false);
             }, 2500);
@@ -115,15 +118,16 @@ export default function CustomerEditForm() {
 
     const handleInput = ({ target }) => {
         var temp_data = data;
-        if (target.name != '') {
-            if (target.name == 'openingBalance' || target.name == 'gstTreatment') {
-                if (target.value != NaN || target.value != '') {
-                    temp_data[target.name] = parseInt(target.value)
+        var name = target.name || target.getAttribute('name');
+        if (name != '') {
+            if (name == 'openingBalance' || name == 'gstTreatment' || name == 'paymentTermId') {
+                if (!Number.isNaN((target.value)) && target.value != '') {
+                    temp_data[name] = parseInt(target.value)
                 } else {
-                    temp_data[target.name] = 0;
+                    temp_data[name] = 0;
                 }
             } else {
-                temp_data[target.name] = target.value;
+                temp_data[name] = target.value;
             }
             let temp = Object.assign({}, temp_data)
             setData(temp)
@@ -200,7 +204,6 @@ export default function CustomerEditForm() {
             })
             setGSTTreatment(temp);
         } catch (error) {
-            console.log(error);
             setErrors(error.response.data.message)
         }
     }
@@ -212,7 +215,7 @@ export default function CustomerEditForm() {
             var data = result.data;
             var temp = [];
             data.forEach((elem) => {
-                temp.push({ Id: elem.id, name: elem.name, symbol: elem.symbol })
+                temp.push({ Id: elem.symbol, name: elem.symbol + ' - ' + elem.name })
             })
             setCurrencies(temp);
         } catch (error) {
@@ -245,6 +248,21 @@ export default function CustomerEditForm() {
                 temp.push({ Id: elem.id, name: elem.label })
             });
             setPaymentTerms(temp);
+        } catch (error) {
+            setErrors(error.response.data.message)
+        }
+    }
+
+    const getTaxExemptedDetails = async () => {
+        setErrors([]);
+        try {
+            const result = await getTaxExemptionReason();
+            var data = result.data;
+            var temp = [];
+            data.forEach((elem) => {
+                temp.push({ Id: elem.id, name: elem.label })
+            });
+            setTaxExemptionReason(temp);
         } catch (error) {
             setErrors(error.response.data.message)
         }
@@ -308,10 +326,17 @@ export default function CustomerEditForm() {
         data: data,
         handleInput: handleInput,
         handleRadioButtonChange: handleRadioButtonChange,
+        ErrorList: ErrorList,
+        getPaymentTermsDetails: getPaymentTermsDetails,
+        createPaymentTerms: createPaymentTerms,
+        createTaxExemptionReason: createTaxExemptionReason,
+        getTaxExemptedDetails: getTaxExemptedDetails,
         gstTreatment: gstTreatment,
         paymentTerms: paymentTerms,
         currencies: currencies,
-        placeOfSupply: placeOfSupply
+        placeOfSupply: placeOfSupply,
+        taxExemptionReason: taxExemptionReason,
+        setToastList: setToastList
     };
 
     return (
@@ -493,9 +518,9 @@ export default function CustomerEditForm() {
                                     ActiveTabID == 3 ? ''
                                         :
                                         <div className={`${styles.companyInvoiceFormButtonsWrapper} row`}>
-                                            <div className="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-3">
+                                            <div className="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-5">
                                                 <div className="row">
-                                                    <div className="col-6 col-md-4 col-lg-3 col-xl-4">
+                                                    <div className="col-6 col-md-4 col-lg-3 col-xl-3">
                                                         <button name="btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`} type='submit'>
                                                             <span>
                                                                 <i><FaSave /></i>
@@ -503,7 +528,7 @@ export default function CustomerEditForm() {
                                                             </span>
                                                         </button>
                                                     </div>
-                                                    <div className="col-6 col-md-4 col-lg-3 col-xl-4">
+                                                    <div className="col-6 col-md-4 col-lg-3 col-xl-3">
                                                         <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} type='reset' onClick={handleReset}>
                                                             <span>
                                                                 <i><FaCircleXmark /></i>
@@ -515,7 +540,6 @@ export default function CustomerEditForm() {
                                             </div>
                                         </div>
                                 }
-
                             </form>
 
                         </div>

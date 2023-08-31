@@ -1,17 +1,14 @@
-$primary-color: #3649AB;
-$primary-background: #f5fafe;
-$secondary-color: #8790B0;
-$tertiary-color: #43CB80;
+@use './utility/variables' as var;
 
 
 .companyMainErrorWrapper {
 
-    background: $primary-background;
+    background: var.$primary-background;
     height: 100vh;
     width: 100%;
 
     h2 {
-        color: $primary-color;
+        color: var.$primary-color;
         font-weight: 600;
         font-size: 32px;
         line-height: 47px;

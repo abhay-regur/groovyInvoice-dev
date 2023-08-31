@@ -1,19 +1,11 @@
-$font-size-heading: 32px;
-$font-size-text: 15px;
-$primary-color: #3649AB;
-$secondary-color: #8790B0;
-$tertiary-color: #43CB80;
-$input-background-color: #F5FAFE;
-$primary-border-color: #E3EBF2;
-$secondary-border-color: #BCD5E2;
-$transprant: rgba(0, 0, 0, 0);
+@use './utility/variables' as var;
 
 
 .green {
-    color: $tertiary-color;
+    color: var.$tertiary-color;
 
     path {
-        color: $tertiary-color;
+        color: var.$tertiary-color;
     }
 }
 
@@ -41,14 +33,14 @@ $transprant: rgba(0, 0, 0, 0);
         font-weight: 700;
         font-size: 36px;
         line-height: 45px;
-        color: $primary-color;
+        color: var.$primary-color;
         margin-top: 56px;
         margin-bottom: 49px;
         padding-left: 12px;
     }
 
     .card {
-        border: 1px solid $primary-border-color;
+        border: 1px solid var.$primary-border-color;
         border-radius: 10px;
         padding: 31px 33px;
         margin-top: 50px;
@@ -56,7 +48,7 @@ $transprant: rgba(0, 0, 0, 0);
         .cardBody {
 
             .cardTitle {
-                color: $primary-color;
+                color: var.$primary-color;
                 font-weight: 700;
                 font-size: 22px;
                 line-height: 28px;
@@ -74,7 +66,7 @@ $transprant: rgba(0, 0, 0, 0);
                     align-items: center;
                     font-weight: 600;
                     font-size: 14px;
-                    color: $primary-color;
+                    color: var.$primary-color;
                 }
 
                 .companyUserActiveUserSwitchWrapper {
@@ -85,8 +77,8 @@ $transprant: rgba(0, 0, 0, 0);
                         width: 3em;
 
                         &:checked {
-                            background-color: $primary-color;
-                            border-color: $primary-color;
+                            background-color: var.$primary-color;
+                            border-color: var.$primary-color;
                         }
 
                         &:focus {
@@ -104,24 +96,24 @@ $transprant: rgba(0, 0, 0, 0);
                     align-items: center;
                     font-weight: 600;
                     font-size: 14px;
-                    color: $primary-color;
+                    color: var.$primary-color;
                 }
 
                 .companyInvoiceUserFirstName {
                     font-weight: 400;
                     font-size: 14px;
-                    color: $secondary-color;
-                    background: $input-background-color;
-                    border: 1px solid $primary-border-color;
+                    color: var.$secondary-color;
+                    background: var.$input-background-color;
+                    border: 1px solid var.$primary-border-color;
                     border-radius: 8px;
                 }
 
                 .companyInvoiceUserLastName {
                     font-weight: 400;
                     font-size: 14px;
-                    color: $secondary-color;
-                    background: $input-background-color;
-                    border: 1px solid $primary-border-color;
+                    color: var.$secondary-color;
+                    background: var.$input-background-color;
+                    border: 1px solid var.$primary-border-color;
                     border-radius: 8px;
                 }
 
@@ -135,15 +127,15 @@ $transprant: rgba(0, 0, 0, 0);
                     align-items: center;
                     font-weight: 600;
                     font-size: 14px;
-                    color: $primary-color;
+                    color: var.$primary-color;
                 }
 
                 input {
                     font-weight: 400;
                     font-size: 14px;
-                    color: $secondary-color;
-                    background: $input-background-color;
-                    border: 1px solid $primary-border-color;
+                    color: var.$secondary-color;
+                    background: var.$input-background-color;
+                    border: 1px solid var.$primary-border-color;
                     border-radius: 8px;
                 }
 
@@ -156,15 +148,15 @@ $transprant: rgba(0, 0, 0, 0);
                     align-items: center;
                     font-weight: 600;
                     font-size: 14px;
-                    color: $primary-color;
+                    color: var.$primary-color;
                 }
 
                 input {
                     font-weight: 400;
                     font-size: 14px;
-                    color: $secondary-color;
-                    background: $input-background-color;
-                    border: 1px solid $primary-border-color;
+                    color: var.$secondary-color;
+                    background: var.$input-background-color;
+                    border: 1px solid var.$primary-border-color;
                     border-radius: 8px;
                 }
 
@@ -177,15 +169,15 @@ $transprant: rgba(0, 0, 0, 0);
                     align-items: center;
                     font-weight: 600;
                     font-size: 14px;
-                    color: $primary-color;
+                    color: var.$primary-color;
                 }
 
                 input {
                     font-weight: 400;
                     font-size: 14px;
-                    color: $secondary-color;
-                    background: $input-background-color;
-                    border: 1px solid $primary-border-color;
+                    color: var.$secondary-color;
+                    background: var.$input-background-color;
+                    border: 1px solid var.$primary-border-color;
                     border-radius: 8px;
                 }
 
@@ -200,7 +192,7 @@ $transprant: rgba(0, 0, 0, 0);
                         width: 20px;
 
                         path {
-                            fill: $primary-color;
+                            fill: var.$primary-color;
                         }
                     }
                 }
@@ -209,7 +201,7 @@ $transprant: rgba(0, 0, 0, 0);
 
             .companyInvoiceFormButtonsWrapper {
                 button {
-                    border: 1px solid $primary-color;
+                    border: 1px solid var.$primary-color;
                     border-radius: 6px;
                     font-weight: 600;
                     font-size: 14px;
@@ -221,12 +213,12 @@ $transprant: rgba(0, 0, 0, 0);
                             color: white !important;
 
                             span {
-                                color: $primary-color;
+                                color: var.$primary-color;
                             }
 
                             svg {
                                 path {
-                                    fill: $primary-color;
+                                    fill: var.$primary-color;
                                 }
                             }
                         }
@@ -251,7 +243,7 @@ $transprant: rgba(0, 0, 0, 0);
 
                     &.companyInvoiceCancelButton {
                         &:active {
-                            background: $primary-color;
+                            background: var.$primary-color;
 
                             span {
                                 color: white;
@@ -301,7 +293,7 @@ $transprant: rgba(0, 0, 0, 0);
         }
 
         .title {
-            color: $primary-color;
+            color: var.$primary-color;
             font-weight: 700;
             font-size: 26px;
             line-height: 45px;
@@ -310,14 +302,14 @@ $transprant: rgba(0, 0, 0, 0);
         }
 
         .card {
-            border: 1px solid $primary-border-color;
+            border: 1px solid var.$primary-border-color;
             border-radius: 10px;
             padding: 0;
 
             .cardBody {
 
                 .cardTitle {
-                    color: $primary-color;
+                    color: var.$primary-color;
                     font-weight: 700;
                     font-size: 22px;
                     line-height: 28px;
@@ -331,7 +323,7 @@ $transprant: rgba(0, 0, 0, 0);
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-bottom: 10px;
                     }
 
@@ -343,8 +335,8 @@ $transprant: rgba(0, 0, 0, 0);
                             width: 3em;
 
                             &:checked {
-                                background-color: $primary-color;
-                                border-color: $primary-color;
+                                background-color: var.$primary-color;
+                                border-color: var.$primary-color;
                             }
 
                             &:focus {
@@ -362,16 +354,16 @@ $transprant: rgba(0, 0, 0, 0);
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-bottom: 10px;
                     }
 
                     .companyInvoiceUserFirstName {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                         margin-bottom: 21px;
                     }
@@ -379,9 +371,9 @@ $transprant: rgba(0, 0, 0, 0);
                     .companyInvoiceUserLastName {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
 
@@ -395,16 +387,16 @@ $transprant: rgba(0, 0, 0, 0);
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-bottom: 10px;
                     }
 
                     input {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
 
@@ -417,16 +409,16 @@ $transprant: rgba(0, 0, 0, 0);
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-bottom: 10px;
                     }
 
                     .companyInvoiceUserMobile {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
 
@@ -439,16 +431,16 @@ $transprant: rgba(0, 0, 0, 0);
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-bottom: 10px;
                     }
 
                     input {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
 
@@ -459,7 +451,7 @@ $transprant: rgba(0, 0, 0, 0);
                     margin-bottom: 25px;
 
                     button {
-                        border: 1px solid $primary-color;
+                        border: 1px solid var.$primary-color;
                         border-radius: 6px;
                         font-weight: 600;
                         font-size: 14px;
@@ -472,12 +464,12 @@ $transprant: rgba(0, 0, 0, 0);
                                 color: white !important;
 
                                 span {
-                                    color: $primary-color;
+                                    color: var.$primary-color;
                                 }
 
                                 svg {
                                     path {
-                                        fill: $primary-color;
+                                        fill: var.$primary-color;
                                     }
                                 }
                             }
@@ -502,7 +494,7 @@ $transprant: rgba(0, 0, 0, 0);
 
                         &.companyInvoiceCancelButton {
                             &:active {
-                                background: $primary-color;
+                                background: var.$primary-color;
 
                                 span {
                                     color: white;
@@ -551,7 +543,7 @@ $transprant: rgba(0, 0, 0, 0);
         }
 
         .title {
-            color: $primary-color;
+            color: var.$primary-color;
             font-weight: 700;
             font-size: 26px;
             line-height: 45px;
@@ -560,14 +552,14 @@ $transprant: rgba(0, 0, 0, 0);
         }
 
         .card {
-            border: 1px solid $primary-border-color;
+            border: 1px solid var.$primary-border-color;
             border-radius: 10px;
             padding: 0;
 
             .cardBody {
 
                 .cardTitle {
-                    color: $primary-color;
+                    color: var.$primary-color;
                     font-weight: 700;
                     font-size: 22px;
                     line-height: 28px;
@@ -581,7 +573,7 @@ $transprant: rgba(0, 0, 0, 0);
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-bottom: 10px;
                     }
 
@@ -593,8 +585,8 @@ $transprant: rgba(0, 0, 0, 0);
                             width: 3em;
 
                             &:checked {
-                                background-color: $primary-color;
-                                border-color: $primary-color;
+                                background-color: var.$primary-color;
+                                border-color: var.$primary-color;
                             }
 
                             &:focus {
@@ -613,16 +605,16 @@ $transprant: rgba(0, 0, 0, 0);
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-bottom: 10px;
                     }
 
                     .companyInvoiceUserFirstName {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                         margin-bottom: 21px;
                     }
@@ -630,9 +622,9 @@ $transprant: rgba(0, 0, 0, 0);
                     .companyInvoiceUserLastName {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                         margin-bottom: 1.5rem;
                     }
@@ -645,16 +637,16 @@ $transprant: rgba(0, 0, 0, 0);
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-bottom: 10px;
                     }
 
                     input {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
 
@@ -667,16 +659,16 @@ $transprant: rgba(0, 0, 0, 0);
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-bottom: 10px;
                     }
 
                     input {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                         margin-bottom: 21px;
                     }
@@ -694,16 +686,16 @@ $transprant: rgba(0, 0, 0, 0);
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-bottom: 10px;
                     }
 
                     input {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
 
@@ -714,7 +706,7 @@ $transprant: rgba(0, 0, 0, 0);
                     margin-top: 20px;
 
                     button {
-                        border: 1px solid $primary-color;
+                        border: 1px solid var.$primary-color;
                         border-radius: 6px;
                         font-weight: 600;
                         font-size: 14px;
@@ -727,12 +719,12 @@ $transprant: rgba(0, 0, 0, 0);
                                 color: white !important;
 
                                 span {
-                                    color: $primary-color;
+                                    color: var.$primary-color;
                                 }
 
                                 svg {
                                     path {
-                                        fill: $primary-color;
+                                        fill: var.$primary-color;
                                     }
                                 }
                             }
@@ -757,7 +749,7 @@ $transprant: rgba(0, 0, 0, 0);
 
                         &.companyInvoiceCancelButton {
                             &:active {
-                                background: $primary-color;
+                                background: var.$primary-color;
 
                                 span {
                                     color: white;

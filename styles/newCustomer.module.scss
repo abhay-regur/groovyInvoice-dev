@@ -1,23 +1,10 @@
-$font-size-heading: 32px;
-$font-size-text: 15px;
-$primary-color: #3649AB;
-$secondary-color: #8790B0;
-$tertiary-color: #43CB80;
-$input-background-color: #F5FAFE;
-$primary-border-color: #E3EBF2;
-$secondary-border-color: #BCD5E2;
-$transprant: rgba(0, 0, 0, 0);
-$table-head-border-color: #C8D6E2;
-$input-background-color: #F5FAFE;
-$primary-border-color: #E3EBF2;
-$button-red-color: #DA5252;
-
+@use './utility/variables' as var;
 
 .green {
-    color: $tertiary-color;
+    color: var.$tertiary-color;
 
     path {
-        color: $tertiary-color;
+        color: var.$tertiary-color;
     }
 }
 
@@ -32,7 +19,7 @@ $button-red-color: #DA5252;
 .companyInvoiceModal {
     .companyInvoiceModalHeader {
         h5 {
-            color: $primary-color;
+            color: var.$primary-color;
             font-weight: 700;
         }
     }
@@ -74,21 +61,21 @@ $button-red-color: #DA5252;
             font-weight: 700;
             font-size: 36px;
             line-height: 45px;
-            color: $primary-color;
+            color: var.$primary-color;
             margin-top: 56px;
             margin-bottom: 49px;
             padding-left: 12px;
         }
 
         .card {
-            border: 1px solid $primary-border-color;
+            border: 1px solid var.$primary-border-color;
             border-radius: 10px;
             padding: 31px 33px;
 
             .cardBody {
 
                 .cardTitle {
-                    color: $primary-color;
+                    color: var.$primary-color;
                     font-weight: 700;
                     font-size: 22px;
                     line-height: 28px;
@@ -106,7 +93,7 @@ $button-red-color: #DA5252;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                     }
 
                     .companyCustomerTypeSelectorMainWrapper {
@@ -121,7 +108,7 @@ $button-red-color: #DA5252;
                             }
 
                             span {
-                                color: $secondary-color;
+                                color: var.$secondary-color;
                                 margin-right: 15px;
                             }
 
@@ -139,7 +126,7 @@ $button-red-color: #DA5252;
                                     font-size: 14px;
                                     line-height: 20px;
                                     display: inline-block;
-                                    color: $secondary-color;
+                                    color: var.$secondary-color;
                                 }
 
                                 &:checked+span:before,
@@ -150,7 +137,7 @@ $button-red-color: #DA5252;
                                     top: 0;
                                     width: 22px;
                                     height: 22px;
-                                    border: 1.5px solid $primary-color;
+                                    border: 1.5px solid var.$primary-color;
                                     border-radius: 100%;
                                     background: white;
                                 }
@@ -160,7 +147,7 @@ $button-red-color: #DA5252;
                                     content: '';
                                     width: 14px;
                                     height: 14px;
-                                    background: $primary-color;
+                                    background: var.$primary-color;
                                     position: absolute;
                                     top: 4px;
                                     left: 4px;
@@ -191,24 +178,24 @@ $button-red-color: #DA5252;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                     }
 
                     .companySalutationSelect {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $primary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$primary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
 
                     input {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
 
@@ -222,15 +209,15 @@ $button-red-color: #DA5252;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                     }
 
                     input {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
                 }
@@ -242,24 +229,24 @@ $button-red-color: #DA5252;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                     }
 
                     input {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
 
                     .companyInvoiceCompanyDisplaySelect {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $primary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$primary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
 
@@ -277,15 +264,15 @@ $button-red-color: #DA5252;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                     }
 
                     input {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
 
@@ -303,15 +290,15 @@ $button-red-color: #DA5252;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                     }
 
                     input {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
 
@@ -324,19 +311,19 @@ $button-red-color: #DA5252;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                     }
 
                     span {
-                        border: 1px solid $primary-border-color;
+                        border: 1px solid var.$primary-border-color;
                     }
 
                     input {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 0 8px 8px 0 !important;
                     }
 
@@ -349,15 +336,15 @@ $button-red-color: #DA5252;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                     }
 
                     input {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
 
@@ -370,15 +357,15 @@ $button-red-color: #DA5252;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                     }
 
                     input {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
 
@@ -391,15 +378,15 @@ $button-red-color: #DA5252;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                     }
 
                     input {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
 
@@ -409,11 +396,11 @@ $button-red-color: #DA5252;
                     margin-top: 56px;
 
                     .nav_tabs {
-                        border-bottom: 1px solid $secondary-border-color;
+                        border-bottom: 1px solid var.$secondary-border-color;
                         cursor: pointer;
 
                         .nav_item {
-                            color: $secondary-color;
+                            color: var.$secondary-color;
                             padding-bottom: 15px;
                             margin-right: 24px;
                             font-weight: 600;
@@ -423,8 +410,8 @@ $button-red-color: #DA5252;
 
                             &.active {
                                 padding-bottom: 10px !important;
-                                color: $primary-color;
-                                border-bottom: 5px solid $primary-color;
+                                color: var.$primary-color;
+                                border-bottom: 5px solid var.$primary-color;
                                 -webkit-transition: all 0.2s, opacity 0.5s linear;
                                 transition: all 0.2s, opacity 0.5s linear;
                             }
@@ -436,7 +423,7 @@ $button-red-color: #DA5252;
                             padding-top: 45px;
 
                             h3.tabtitle {
-                                color: $primary-color;
+                                color: var.$primary-color;
                                 font-weight: 600;
                                 font-size: 18px;
                                 margin-bottom: 26px;
@@ -448,7 +435,7 @@ $button-red-color: #DA5252;
                                 span {
                                     font-weight: 600;
                                     font-size: 14px;
-                                    color: $secondary-color;
+                                    color: var.$secondary-color;
                                     margin-left: 7px;
                                 }
                             }
@@ -458,24 +445,24 @@ $button-red-color: #DA5252;
                                 align-items: center;
                                 font-weight: 600;
                                 font-size: 14px;
-                                color: $primary-color;
+                                color: var.$primary-color;
                             }
 
                             input {
                                 font-weight: 400;
                                 font-size: 14px;
-                                color: $secondary-color;
-                                background: $input-background-color;
-                                border: 1px solid $primary-border-color;
+                                color: var.$secondary-color;
+                                background: var.$input-background-color;
+                                border: 1px solid var.$primary-border-color;
                                 border-radius: 8px;
                             }
 
                             textarea {
                                 font-weight: 400;
                                 font-size: 14px;
-                                color: $secondary-color;
-                                background: $input-background-color;
-                                border: 1px solid $primary-border-color;
+                                color: var.$secondary-color;
+                                background: var.$input-background-color;
+                                border: 1px solid var.$primary-border-color;
                                 border-radius: 8px;
                                 padding: 9px 17px;
                                 width: 100%;
@@ -484,9 +471,9 @@ $button-red-color: #DA5252;
                             select {
                                 font-weight: 400;
                                 font-size: 14px;
-                                color: $primary-color;
-                                background: $input-background-color;
-                                border: 1px solid $primary-border-color;
+                                color: var.$primary-color;
+                                background: var.$input-background-color;
+                                border: 1px solid var.$primary-border-color;
                                 border-radius: 8px;
                             }
 
@@ -502,7 +489,7 @@ $button-red-color: #DA5252;
                         span {
                             font-weight: 400;
                             font-size: 14px;
-                            color: $secondary-color;
+                            color: var.$secondary-color;
                         }
 
                         input {
@@ -539,7 +526,7 @@ $button-red-color: #DA5252;
                             align-items: center;
                             font-weight: 600;
                             font-size: 14px;
-                            color: $primary-color;
+                            color: var.$primary-color;
                         }
 
                         .customerTaxPreferenceRadioButtonWrapper,
@@ -551,7 +538,7 @@ $button-red-color: #DA5252;
                             }
 
                             span {
-                                color: $secondary-color;
+                                color: var.$secondary-color;
                                 margin-right: 15px;
                             }
 
@@ -569,7 +556,7 @@ $button-red-color: #DA5252;
                                     font-size: 14px;
                                     line-height: 20px;
                                     display: inline-block;
-                                    color: $secondary-color;
+                                    color: var.$secondary-color;
                                 }
 
                                 &:checked+span:before,
@@ -580,7 +567,7 @@ $button-red-color: #DA5252;
                                     top: 0;
                                     width: 22px;
                                     height: 22px;
-                                    border: 1.5px solid $primary-color;
+                                    border: 1.5px solid var.$primary-color;
                                     border-radius: 100%;
                                     background: white;
                                 }
@@ -590,7 +577,7 @@ $button-red-color: #DA5252;
                                     content: '';
                                     width: 14px;
                                     height: 14px;
-                                    background: $primary-color;
+                                    background: var.$primary-color;
                                     position: absolute;
                                     top: 4px;
                                     left: 4px;
@@ -623,16 +610,16 @@ $button-red-color: #DA5252;
 
                             tr {
                                 th {
-                                    background: $primary-color;
+                                    background: var.$primary-color;
                                     color: white;
                                     min-width: 144px;
                                     font-weight: 600;
                                     font-size: 14px;
                                     padding: 10px;
-                                    border: 1px solid $secondary-border-color;
+                                    border: 1px solid var.$secondary-border-color;
 
                                     &:last-of-type {
-                                        background: $transprant;
+                                        background: var.$transprant;
                                         border: none;
                                     }
                                 }
@@ -642,7 +629,7 @@ $button-red-color: #DA5252;
                                 tr.companyInvoiceContactPersonRow {
                                     td {
                                         padding: 12px 10px;
-                                        border: 1px solid $primary-border-color;
+                                        border: 1px solid var.$primary-border-color;
 
                                         &:last-of-type {
                                             border: none;
@@ -650,7 +637,7 @@ $button-red-color: #DA5252;
 
                                         select {
                                             border: none;
-                                            color: $secondary-color;
+                                            color: var.$secondary-color;
                                             font-weight: 400;
                                             font-size: 14px;
                                             appearance: none;
@@ -661,7 +648,7 @@ $button-red-color: #DA5252;
                                         }
 
                                         span {
-                                            color: $secondary-color;
+                                            color: var.$secondary-color;
                                             font-weight: 400;
                                             font-size: 14px;
                                         }
@@ -676,13 +663,13 @@ $button-red-color: #DA5252;
                                                         height: 22px !important;
 
                                                         path {
-                                                            fill: $tertiary-color;
+                                                            fill: var.$tertiary-color;
                                                         }
                                                     }
 
                                                     &.redColor {
                                                         path {
-                                                            fill: $button-red-color;
+                                                            fill: var.$button-red-color;
                                                         }
                                                     }
                                                 }
@@ -697,9 +684,9 @@ $button-red-color: #DA5252;
                             .companyInvoiceTableInput {
                                 font-size: 14px;
                                 font-weight: 400;
-                                color: $secondary-color;
-                                background: $input-background-color;
-                                border: 1px solid $primary-border-color;
+                                color: var.$secondary-color;
+                                background: var.$input-background-color;
+                                border: 1px solid var.$primary-border-color;
                                 border-radius: 8px;
 
                                 &[type='number'] {
@@ -721,7 +708,7 @@ $button-red-color: #DA5252;
                                 margin-left: 7px;
                                 font-weight: 600;
                                 font-size: 14px;
-                                color: $secondary-color;
+                                color: var.$secondary-color;
                             }
                         }
                     }
@@ -793,7 +780,7 @@ $button-red-color: #DA5252;
         }
 
         .title {
-            color: $primary-color;
+            color: var.$primary-color;
             font-weight: 700;
             font-size: 26px;
             line-height: 45px;
@@ -802,14 +789,14 @@ $button-red-color: #DA5252;
         }
 
         .card {
-            border: 1px solid $primary-border-color;
+            border: 1px solid var.$primary-border-color;
             border-radius: 10px;
             padding: 0;
 
             .cardBody {
 
                 .cardTitle {
-                    color: $primary-color;
+                    color: var.$primary-color;
                     font-weight: 700;
                     font-size: 22px;
                     line-height: 28px;
@@ -823,7 +810,7 @@ $button-red-color: #DA5252;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-bottom: 10px;
                     }
 
@@ -839,7 +826,7 @@ $button-red-color: #DA5252;
                             }
 
                             span {
-                                color: $secondary-color;
+                                color: var.$secondary-color;
                                 margin-right: 15px;
                             }
 
@@ -857,7 +844,7 @@ $button-red-color: #DA5252;
                                     font-size: 14px;
                                     line-height: 20px;
                                     display: inline-block;
-                                    color: $secondary-color;
+                                    color: var.$secondary-color;
                                 }
 
                                 &:checked+span:before,
@@ -868,7 +855,7 @@ $button-red-color: #DA5252;
                                     top: 0;
                                     width: 22px;
                                     height: 22px;
-                                    border: 1.5px solid $primary-color;
+                                    border: 1.5px solid var.$primary-color;
                                     border-radius: 100%;
                                     background: white;
                                 }
@@ -878,7 +865,7 @@ $button-red-color: #DA5252;
                                     content: '';
                                     width: 14px;
                                     height: 14px;
-                                    background: $primary-color;
+                                    background: var.$primary-color;
                                     position: absolute;
                                     top: 4px;
                                     left: 4px;
@@ -909,16 +896,16 @@ $button-red-color: #DA5252;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-bottom: 10px;
                     }
 
                     .companySalutationSelect {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $primary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$primary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                         margin-bottom: 21px;
                     }
@@ -926,9 +913,9 @@ $button-red-color: #DA5252;
                     .companyInvoiceNewCustomerFirstName {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                         margin-bottom: 21px;
                     }
@@ -936,9 +923,9 @@ $button-red-color: #DA5252;
                     .companyInvoiceNewCustomerLastName {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
 
@@ -952,16 +939,16 @@ $button-red-color: #DA5252;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-bottom: 10px;
                     }
 
                     input {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
                 }
@@ -973,16 +960,16 @@ $button-red-color: #DA5252;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-bottom: 10px;
                     }
 
                     .companyInvoiceCompanyDisplaySelect {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $primary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$primary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
 
@@ -1001,16 +988,16 @@ $button-red-color: #DA5252;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-bottom: 10px;
                     }
 
                     input {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
 
@@ -1028,25 +1015,25 @@ $button-red-color: #DA5252;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-bottom: 10px;
                     }
 
                     .companyInvoiceCompanyWorkPhone {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
 
                     .companyInvoiceCompanyMobile {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
 
@@ -1059,20 +1046,20 @@ $button-red-color: #DA5252;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-bottom: 10px;
                     }
 
                     span {
-                        border: 1px solid $primary-border-color;
+                        border: 1px solid var.$primary-border-color;
                     }
 
                     input {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 0 8px 8px 0 !important;
                     }
 
@@ -1085,16 +1072,16 @@ $button-red-color: #DA5252;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-bottom: 10px;
                     }
 
                     input {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
 
@@ -1107,16 +1094,16 @@ $button-red-color: #DA5252;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-bottom: 10px;
                     }
 
                     input {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
 
@@ -1129,16 +1116,16 @@ $button-red-color: #DA5252;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-bottom: 10px;
                     }
 
                     input {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
 
@@ -1146,11 +1133,11 @@ $button-red-color: #DA5252;
 
                 .companyInvoiceTabViewWrapper {
                     .nav_tabs {
-                        border-bottom: 1px solid $secondary-border-color;
+                        border-bottom: 1px solid var.$secondary-border-color;
                         cursor: pointer;
 
                         .nav_item {
-                            color: $secondary-color;
+                            color: var.$secondary-color;
                             padding-bottom: 15px;
                             margin-right: 14px;
                             font-weight: 600;
@@ -1160,8 +1147,8 @@ $button-red-color: #DA5252;
 
                             &.active {
                                 padding-bottom: 10px !important;
-                                color: $primary-color;
-                                border-bottom: 5px solid $primary-color;
+                                color: var.$primary-color;
+                                border-bottom: 5px solid var.$primary-color;
                                 -webkit-transition: all 0.2s, opacity 0.5s linear;
                                 transition: all 0.2s, opacity 0.5s linear;
                             }
@@ -1173,7 +1160,7 @@ $button-red-color: #DA5252;
                             padding-top: 36px;
 
                             h3.tabtitle {
-                                color: $primary-color;
+                                color: var.$primary-color;
                                 font-weight: 600;
                                 font-size: 18px;
                                 margin-bottom: 10px;
@@ -1186,7 +1173,7 @@ $button-red-color: #DA5252;
                                 span {
                                     font-weight: 600;
                                     font-size: 14px;
-                                    color: $secondary-color;
+                                    color: var.$secondary-color;
                                     margin-left: 7px;
                                 }
                             }
@@ -1196,25 +1183,25 @@ $button-red-color: #DA5252;
                                 align-items: center;
                                 font-weight: 600;
                                 font-size: 14px;
-                                color: $primary-color;
+                                color: var.$primary-color;
                                 margin-bottom: 10px;
                             }
 
                             input {
                                 font-weight: 400;
                                 font-size: 14px;
-                                color: $secondary-color;
-                                background: $input-background-color;
-                                border: 1px solid $primary-border-color;
+                                color: var.$secondary-color;
+                                background: var.$input-background-color;
+                                border: 1px solid var.$primary-border-color;
                                 border-radius: 8px;
                             }
 
                             textarea {
                                 font-weight: 400;
                                 font-size: 14px;
-                                color: $secondary-color;
-                                background: $input-background-color;
-                                border: 1px solid $primary-border-color;
+                                color: var.$secondary-color;
+                                background: var.$input-background-color;
+                                border: 1px solid var.$primary-border-color;
                                 border-radius: 8px;
                                 padding: 9px 17px;
                                 width: 100%;
@@ -1224,9 +1211,9 @@ $button-red-color: #DA5252;
                             select {
                                 font-weight: 400;
                                 font-size: 14px;
-                                color: $primary-color;
-                                background: $input-background-color;
-                                border: 1px solid $primary-border-color;
+                                color: var.$primary-color;
+                                background: var.$input-background-color;
+                                border: 1px solid var.$primary-border-color;
                                 border-radius: 8px;
                             }
 
@@ -1242,7 +1229,7 @@ $button-red-color: #DA5252;
                         span {
                             font-weight: 400;
                             font-size: 14px;
-                            color: $secondary-color;
+                            color: var.$secondary-color;
                         }
 
                         input {
@@ -1275,7 +1262,7 @@ $button-red-color: #DA5252;
                             align-items: center;
                             font-weight: 600;
                             font-size: 14px;
-                            color: $primary-color;
+                            color: var.$primary-color;
                         }
 
                         .customerTaxPreferenceRadioButtonWrapper,
@@ -1287,7 +1274,7 @@ $button-red-color: #DA5252;
                             }
 
                             span {
-                                color: $secondary-color;
+                                color: var.$secondary-color;
                                 margin-right: 15px;
                             }
 
@@ -1305,7 +1292,7 @@ $button-red-color: #DA5252;
                                     font-size: 14px;
                                     line-height: 20px;
                                     display: inline-block;
-                                    color: $secondary-color;
+                                    color: var.$secondary-color;
                                 }
 
                                 &:checked+span:before,
@@ -1316,7 +1303,7 @@ $button-red-color: #DA5252;
                                     top: 0;
                                     width: 22px;
                                     height: 22px;
-                                    border: 1.5px solid $primary-color;
+                                    border: 1.5px solid var.$primary-color;
                                     border-radius: 100%;
                                     background: white;
                                 }
@@ -1326,7 +1313,7 @@ $button-red-color: #DA5252;
                                     content: '';
                                     width: 14px;
                                     height: 14px;
-                                    background: $primary-color;
+                                    background: var.$primary-color;
                                     position: absolute;
                                     top: 4px;
                                     left: 4px;
@@ -1360,16 +1347,16 @@ $button-red-color: #DA5252;
 
                         tr {
                             th {
-                                background: $primary-color;
+                                background: var.$primary-color;
                                 color: white;
                                 min-width: 144px;
                                 font-weight: 600;
                                 font-size: 14px;
                                 padding: 10px;
-                                border: 1px solid $secondary-border-color;
+                                border: 1px solid var.$secondary-border-color;
 
                                 &:last-of-type {
-                                    background: $transprant;
+                                    background: var.$transprant;
                                     border: none;
                                 }
                             }
@@ -1379,7 +1366,7 @@ $button-red-color: #DA5252;
                             tr.companyInvoiceContactPersonRow {
                                 td {
                                     padding: 12px 10px;
-                                    border: 1px solid $primary-border-color;
+                                    border: 1px solid var.$primary-border-color;
 
                                     &:last-of-type {
                                         border: none;
@@ -1387,7 +1374,7 @@ $button-red-color: #DA5252;
 
                                     select {
                                         border: none;
-                                        color: $secondary-color;
+                                        color: var.$secondary-color;
                                         font-weight: 400;
                                         font-size: 14px;
                                         appearance: none;
@@ -1398,7 +1385,7 @@ $button-red-color: #DA5252;
                                     }
 
                                     span {
-                                        color: $secondary-color;
+                                        color: var.$secondary-color;
                                         font-weight: 400;
                                         font-size: 14px;
                                     }
@@ -1413,13 +1400,13 @@ $button-red-color: #DA5252;
                                                     height: 22px !important;
 
                                                     path {
-                                                        fill: $tertiary-color;
+                                                        fill: var.$tertiary-color;
                                                     }
                                                 }
 
                                                 &.redColor {
                                                     path {
-                                                        fill: $button-red-color;
+                                                        fill: var.$button-red-color;
                                                     }
                                                 }
                                             }
@@ -1434,9 +1421,9 @@ $button-red-color: #DA5252;
                         .companyInvoiceTableInput {
                             font-size: 14px;
                             font-weight: 400;
-                            color: $secondary-color;
-                            background: $input-background-color;
-                            border: 1px solid $primary-border-color;
+                            color: var.$secondary-color;
+                            background: var.$input-background-color;
+                            border: 1px solid var.$primary-border-color;
                             border-radius: 8px;
 
                             &[type='number'] {
@@ -1458,7 +1445,7 @@ $button-red-color: #DA5252;
                             margin-left: 7px;
                             font-weight: 600;
                             font-size: 14px;
-                            color: $secondary-color;
+                            color: var.$secondary-color;
                         }
                     }
                 }
@@ -1530,7 +1517,7 @@ $button-red-color: #DA5252;
         }
 
         .title {
-            color: $primary-color;
+            color: var.$primary-color;
             font-weight: 700;
             font-size: 26px;
             line-height: 45px;
@@ -1539,14 +1526,14 @@ $button-red-color: #DA5252;
         }
 
         .card {
-            border: 1px solid $primary-border-color;
+            border: 1px solid var.$primary-border-color;
             border-radius: 10px;
             padding: 0;
 
             .cardBody {
 
                 .cardTitle {
-                    color: $primary-color;
+                    color: var.$primary-color;
                     font-weight: 700;
                     font-size: 22px;
                     line-height: 28px;
@@ -1560,7 +1547,7 @@ $button-red-color: #DA5252;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-bottom: 10px;
                     }
 
@@ -1576,7 +1563,7 @@ $button-red-color: #DA5252;
                             }
 
                             span {
-                                color: $secondary-color;
+                                color: var.$secondary-color;
                                 margin-right: 15px;
                             }
 
@@ -1594,7 +1581,7 @@ $button-red-color: #DA5252;
                                     font-size: 14px;
                                     line-height: 20px;
                                     display: inline-block;
-                                    color: $secondary-color;
+                                    color: var.$secondary-color;
                                 }
 
                                 &:checked+span:before,
@@ -1605,7 +1592,7 @@ $button-red-color: #DA5252;
                                     top: 0;
                                     width: 22px;
                                     height: 22px;
-                                    border: 1.5px solid $primary-color;
+                                    border: 1.5px solid var.$primary-color;
                                     border-radius: 100%;
                                     background: white;
                                 }
@@ -1615,7 +1602,7 @@ $button-red-color: #DA5252;
                                     content: '';
                                     width: 14px;
                                     height: 14px;
-                                    background: $primary-color;
+                                    background: var.$primary-color;
                                     position: absolute;
                                     top: 4px;
                                     left: 4px;
@@ -1646,16 +1633,16 @@ $button-red-color: #DA5252;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-bottom: 10px;
                     }
 
                     .companySalutationSelect {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $primary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$primary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                         margin-bottom: 21px;
                     }
@@ -1663,9 +1650,9 @@ $button-red-color: #DA5252;
                     input {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                         margin-bottom: 21px;
                     }
@@ -1680,16 +1667,16 @@ $button-red-color: #DA5252;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-bottom: 10px;
                     }
 
                     input {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
                 }
@@ -1701,16 +1688,16 @@ $button-red-color: #DA5252;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-bottom: 10px;
                     }
 
                     .companyInvoiceCompanyDisplaySelect {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $primary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$primary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
 
@@ -1729,16 +1716,16 @@ $button-red-color: #DA5252;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-bottom: 10px;
                     }
 
                     input {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
 
@@ -1756,16 +1743,16 @@ $button-red-color: #DA5252;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-bottom: 10px;
                     }
 
                     input {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                         margin-bottom: 21px;
                     }
@@ -1787,20 +1774,20 @@ $button-red-color: #DA5252;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-bottom: 10px;
                     }
 
                     span {
-                        border: 1px solid $primary-border-color;
+                        border: 1px solid var.$primary-border-color;
                     }
 
                     input {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 0 8px 8px 0 !important;
                     }
 
@@ -1813,16 +1800,16 @@ $button-red-color: #DA5252;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-bottom: 10px;
                     }
 
                     input {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
 
@@ -1835,16 +1822,16 @@ $button-red-color: #DA5252;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-bottom: 10px;
                     }
 
                     input {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
 
@@ -1857,16 +1844,16 @@ $button-red-color: #DA5252;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         margin-bottom: 10px;
                     }
 
                     input {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
 
@@ -1876,11 +1863,11 @@ $button-red-color: #DA5252;
                     margin-top: 56px;
 
                     .nav_tabs {
-                        border-bottom: 1px solid $secondary-border-color;
+                        border-bottom: 1px solid var.$secondary-border-color;
                         cursor: pointer;
 
                         .nav_item {
-                            color: $secondary-color;
+                            color: var.$secondary-color;
                             padding-bottom: 15px;
                             margin-right: 14px;
                             font-weight: 600;
@@ -1890,8 +1877,8 @@ $button-red-color: #DA5252;
 
                             &.active {
                                 padding-bottom: 10px !important;
-                                color: $primary-color;
-                                border-bottom: 5px solid $primary-color;
+                                color: var.$primary-color;
+                                border-bottom: 5px solid var.$primary-color;
                                 -webkit-transition: all 0.2s, opacity 0.5s linear;
                                 transition: all 0.2s, opacity 0.5s linear;
                             }
@@ -1903,7 +1890,7 @@ $button-red-color: #DA5252;
                             padding-top: 25px;
 
                             h3.tabtitle {
-                                color: $primary-color;
+                                color: var.$primary-color;
                                 font-weight: 600;
                                 font-size: 18px;
                                 margin-bottom: 10px;
@@ -1916,7 +1903,7 @@ $button-red-color: #DA5252;
                                 span {
                                     font-weight: 600;
                                     font-size: 14px;
-                                    color: $secondary-color;
+                                    color: var.$secondary-color;
                                     margin-left: 7px;
                                 }
                             }
@@ -1926,25 +1913,25 @@ $button-red-color: #DA5252;
                                 align-items: center;
                                 font-weight: 600;
                                 font-size: 14px;
-                                color: $primary-color;
+                                color: var.$primary-color;
                                 margin-bottom: 10px;
                             }
 
                             input {
                                 font-weight: 400;
                                 font-size: 14px;
-                                color: $secondary-color;
-                                background: $input-background-color;
-                                border: 1px solid $primary-border-color;
+                                color: var.$secondary-color;
+                                background: var.$input-background-color;
+                                border: 1px solid var.$primary-border-color;
                                 border-radius: 8px;
                             }
 
                             textarea {
                                 font-weight: 400;
                                 font-size: 14px;
-                                color: $secondary-color;
-                                background: $input-background-color;
-                                border: 1px solid $primary-border-color;
+                                color: var.$secondary-color;
+                                background: var.$input-background-color;
+                                border: 1px solid var.$primary-border-color;
                                 border-radius: 8px;
                                 padding: 9px 17px;
                                 width: 100%;
@@ -1954,9 +1941,9 @@ $button-red-color: #DA5252;
                             select {
                                 font-weight: 400;
                                 font-size: 14px;
-                                color: $primary-color;
-                                background: $input-background-color;
-                                border: 1px solid $primary-border-color;
+                                color: var.$primary-color;
+                                background: var.$input-background-color;
+                                border: 1px solid var.$primary-border-color;
                                 border-radius: 8px;
                             }
 
@@ -1972,7 +1959,7 @@ $button-red-color: #DA5252;
                         span {
                             font-weight: 400;
                             font-size: 14px;
-                            color: $secondary-color;
+                            color: var.$secondary-color;
                         }
 
                         input {
@@ -2001,7 +1988,7 @@ $button-red-color: #DA5252;
                             align-items: center;
                             font-weight: 600;
                             font-size: 14px;
-                            color: $primary-color;
+                            color: var.$primary-color;
                             margin-bottom: 10px;
                         }
 
@@ -2014,7 +2001,7 @@ $button-red-color: #DA5252;
                             }
 
                             span {
-                                color: $secondary-color;
+                                color: var.$secondary-color;
                                 margin-right: 15px;
                             }
 
@@ -2032,7 +2019,7 @@ $button-red-color: #DA5252;
                                     font-size: 14px;
                                     line-height: 20px;
                                     display: inline-block;
-                                    color: $secondary-color;
+                                    color: var.$secondary-color;
                                 }
 
                                 &:checked+span:before,
@@ -2043,7 +2030,7 @@ $button-red-color: #DA5252;
                                     top: 0;
                                     width: 22px;
                                     height: 22px;
-                                    border: 1.5px solid $primary-color;
+                                    border: 1.5px solid var.$primary-color;
                                     border-radius: 100%;
                                     background: white;
                                 }
@@ -2053,7 +2040,7 @@ $button-red-color: #DA5252;
                                     content: '';
                                     width: 14px;
                                     height: 14px;
-                                    background: $primary-color;
+                                    background: var.$primary-color;
                                     position: absolute;
                                     top: 4px;
                                     left: 4px;
@@ -2087,16 +2074,16 @@ $button-red-color: #DA5252;
 
                         tr {
                             th {
-                                background: $primary-color;
+                                background: var.$primary-color;
                                 color: white;
                                 min-width: 144px;
                                 font-weight: 600;
                                 font-size: 14px;
                                 padding: 10px;
-                                border: 1px solid $secondary-border-color;
+                                border: 1px solid var.$secondary-border-color;
 
                                 &:last-of-type {
-                                    background: $transprant;
+                                    background: var.$transprant;
                                     border: none;
                                 }
                             }
@@ -2106,7 +2093,7 @@ $button-red-color: #DA5252;
                             tr.companyInvoiceContactPersonRow {
                                 td {
                                     padding: 12px 10px;
-                                    border: 1px solid $primary-border-color;
+                                    border: 1px solid var.$primary-border-color;
 
                                     &:last-of-type {
                                         border: none;
@@ -2114,7 +2101,7 @@ $button-red-color: #DA5252;
 
                                     select {
                                         border: none;
-                                        color: $secondary-color;
+                                        color: var.$secondary-color;
                                         font-weight: 400;
                                         font-size: 14px;
                                         appearance: none;
@@ -2125,7 +2112,7 @@ $button-red-color: #DA5252;
                                     }
 
                                     span {
-                                        color: $secondary-color;
+                                        color: var.$secondary-color;
                                         font-weight: 400;
                                         font-size: 14px;
                                     }
@@ -2140,13 +2127,13 @@ $button-red-color: #DA5252;
                                                     height: 22px !important;
 
                                                     path {
-                                                        fill: $tertiary-color;
+                                                        fill: var.$tertiary-color;
                                                     }
                                                 }
 
                                                 &.redColor {
                                                     path {
-                                                        fill: $button-red-color;
+                                                        fill: var.$button-red-color;
                                                     }
                                                 }
                                             }
@@ -2161,9 +2148,9 @@ $button-red-color: #DA5252;
                         .companyInvoiceTableInput {
                             font-size: 14px;
                             font-weight: 400;
-                            color: $secondary-color;
-                            background: $input-background-color;
-                            border: 1px solid $primary-border-color;
+                            color: var.$secondary-color;
+                            background: var.$input-background-color;
+                            border: 1px solid var.$primary-border-color;
                             border-radius: 8px;
 
                             &[type='number'] {
@@ -2185,7 +2172,7 @@ $button-red-color: #DA5252;
                             margin-left: 7px;
                             font-weight: 600;
                             font-size: 14px;
-                            color: $secondary-color;
+                            color: var.$secondary-color;
                         }
                     }
                 }

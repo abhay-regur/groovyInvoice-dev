@@ -1,16 +1,5 @@
-$font-size-heading: 32px;
-$font-size-text: 15px;
-$primary-color: #3649AB;
-$primary-color-light: #5567c0;
-$secondary-color: #8790B0;
-$tertiary-color: #43CB80;
-$input-background-color: #F5FAFE;
-$primary-border-color: #E3EBF2;
-$secondary-border-color: #BCD5E2;
-$red-color: #DA5252;
+@use './utility/variables' as var;
 
-$header-top-border-color: #D3D8EB;
-$header-top-background: #EFF2FF;
 
 @media screen and (min-width: 676px) {
     .main {
@@ -27,7 +16,7 @@ $header-top-background: #EFF2FF;
 
         .comapnyInvoiceHeadingWrapper {
             .title {
-                color: $primary-color;
+                color: var.$primary-color;
                 font-weight: 700;
                 font-size: 36px;
                 line-height: 33px;
@@ -36,12 +25,12 @@ $header-top-background: #EFF2FF;
         }
 
         .profileCard {
-            border: 1px solid $primary-border-color;
+            border: 1px solid var.$primary-border-color;
             border-radius: 10px;
             margin-bottom: 30px;
 
             hr {
-                color: $primary-border-color;
+                color: var.$primary-border-color;
             }
 
             .personalDetailsWrapper,
@@ -73,7 +62,7 @@ $header-top-background: #EFF2FF;
 
                             &:hover {
                                 transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
-                                color: $secondary-color;
+                                color: var.$secondary-color;
                             }
                         }
 
@@ -95,15 +84,15 @@ $header-top-background: #EFF2FF;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                     }
 
                     input {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
 
@@ -117,7 +106,7 @@ $header-top-background: #EFF2FF;
                             width: 20px;
 
                             path {
-                                fill: $primary-color;
+                                fill: var.$primary-color;
                             }
                         }
                     }
@@ -129,7 +118,7 @@ $header-top-background: #EFF2FF;
                         right: 0;
                         padding: 10px 16px;
                         cursor: pointer;
-                        color: $secondary-color;
+                        color: var.$secondary-color;
                         z-index: 99;
                     }
                 }
@@ -149,26 +138,26 @@ $header-top-background: #EFF2FF;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                     }
 
                     input {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
 
                     select {
-                        border: 1px solid $primary-border-color;
-                        background: $input-background-color;
+                        border: 1px solid var.$primary-border-color;
+                        background: var.$input-background-color;
                         border-radius: 8px;
-                        color: $secondary-color;
+                        color: var.$secondary-color;
 
                         &::placeholder {
-                            color: $secondary-color;
+                            color: var.$secondary-color;
                             font-weight: 400;
                             font-size: 14px;
                         }
@@ -177,7 +166,7 @@ $header-top-background: #EFF2FF;
             }
 
             h3 {
-                color: $primary-color;
+                color: var.$primary-color;
                 font-weight: 700;
                 line-height: 33px;
             }
@@ -217,7 +206,7 @@ $header-top-background: #EFF2FF;
 
                 &.companyInvoiceCancelButton {
                     &:active {
-                        background: $primary-color;
+                        background: var.$primary-color;
 
                         span {
                             color: white;
@@ -267,7 +256,7 @@ $header-top-background: #EFF2FF;
 
         .comapnyInvoiceHeadingWrapper {
             .title {
-                color: $primary-color;
+                color: var.$primary-color;
                 font-weight: 700;
                 font-size: 36px;
                 line-height: 33px;
@@ -276,12 +265,12 @@ $header-top-background: #EFF2FF;
         }
 
         .profileCard {
-            border: 1px solid $primary-border-color;
+            border: 1px solid var.$primary-border-color;
             border-radius: 10px;
             margin-bottom: 30px;
 
             hr {
-                color: $primary-border-color;
+                color: var.$primary-border-color;
             }
 
             .personalDetailsWrapper,
@@ -313,7 +302,7 @@ $header-top-background: #EFF2FF;
 
                             &:hover {
                                 transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
-                                color: $secondary-color;
+                                color: var.$secondary-color;
                             }
                         }
 
@@ -335,15 +324,15 @@ $header-top-background: #EFF2FF;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                     }
 
                     input {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
 
@@ -358,7 +347,7 @@ $header-top-background: #EFF2FF;
                             width: 20px;
 
                             path {
-                                fill: $primary-color;
+                                fill: var.$primary-color;
                             }
                         }
                     }
@@ -370,7 +359,7 @@ $header-top-background: #EFF2FF;
                         right: 0;
                         padding: 10px 16px;
                         cursor: pointer;
-                        color: $secondary-color;
+                        color: var.$secondary-color;
                         z-index: 99;
                     }
                 }
@@ -390,26 +379,26 @@ $header-top-background: #EFF2FF;
                         align-items: center;
                         font-weight: 600;
                         font-size: 14px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                     }
 
                     input {
                         font-weight: 400;
                         font-size: 14px;
-                        color: $secondary-color;
-                        background: $input-background-color;
-                        border: 1px solid $primary-border-color;
+                        color: var.$secondary-color;
+                        background: var.$input-background-color;
+                        border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
 
                     select {
-                        border: 1px solid $primary-border-color;
-                        background: $input-background-color;
+                        border: 1px solid var.$primary-border-color;
+                        background: var.$input-background-color;
                         border-radius: 8px;
-                        color: $secondary-color;
+                        color: var.$secondary-color;
 
                         &::placeholder {
-                            color: $secondary-color;
+                            color: var.$secondary-color;
                             font-weight: 400;
                             font-size: 14px;
                         }
@@ -418,7 +407,7 @@ $header-top-background: #EFF2FF;
             }
 
             h3 {
-                color: $primary-color;
+                color: var.$primary-color;
                 font-weight: 700;
                 line-height: 33px;
             }
@@ -469,12 +458,12 @@ $header-top-background: #EFF2FF;
                             display: flex;
                             margin-right: 5px;
                             align-self: center;
-                            color: $primary-color;
+                            color: var.$primary-color;
 
                             svg {
                                 height: 20px;
                                 width: 20px;
-                                color: $primary-color;
+                                color: var.$primary-color;
                             }
                         }
                     }

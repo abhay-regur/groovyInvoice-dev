@@ -1,14 +1,4 @@
-$font-size-heading: 32px;
-$font-size-text: 15px;
-$primary-color: #3649AB;
-$secondary-color: #8790B0;
-$tertiary-color: #43CB80;
-$table-head-color: #EEF5FC;
-$table-head-border-color: #C8D6E2;
-$input-background-color: #F5FAFE;
-$primary-border-color: #E3EBF2;
-$button-red-color: #DA5252;
-
+@use './utility/variables' as var;
 
 @media screen and (min-width: 676px) {
     .main {
@@ -23,21 +13,21 @@ $button-red-color: #DA5252;
         }
 
         .title {
-            color: $primary-color;
+            color: var.$primary-color;
             font-weight: 700;
             font-size: 26px;
             line-height: 33px;
         }
 
         h4 {
-            color: $primary-color;
+            color: var.$primary-color;
             font-weight: 700;
             font-size: 23px;
             line-height: 23px;
         }
 
         h5 {
-            color: $primary-color;
+            color: var.$primary-color;
             font-weight: 700;
             font-size: 16px;
             line-height: 23px;
@@ -48,13 +38,13 @@ $button-red-color: #DA5252;
             thead {
                 tr {
                     th {
-                        background: $primary-color;
+                        background: var.$primary-color;
                         color: white;
                         min-width: 144px;
                         font-weight: 600;
                         font-size: 14px;
                         padding: 10px;
-                        border: 1px solid #BCD5E2;
+                        border: 1px solid var.$border-color;
                     }
                 }
             }
@@ -63,7 +53,7 @@ $button-red-color: #DA5252;
                 tr.companyInvoiceContactPersonRow {
                     td {
                         padding: 12px 10px;
-                        border: 1px solid $primary-border-color;
+                        border: 1px solid var.$primary-border-color;
 
                         &:last-of-type {
                             border: none;
@@ -71,7 +61,7 @@ $button-red-color: #DA5252;
 
                         select {
                             border: none;
-                            color: $secondary-color;
+                            color: var.$secondary-color;
                             font-weight: 400;
                             font-size: 14px;
                             appearance: none;
@@ -82,7 +72,7 @@ $button-red-color: #DA5252;
                         }
 
                         span {
-                            color: $secondary-color;
+                            color: var.$secondary-color;
                             font-weight: 400;
                             font-size: 14px;
                         }
@@ -105,12 +95,12 @@ $button-red-color: #DA5252;
                                         height: 22px !important;
 
                                         path {
-                                            fill: $tertiary-color;
+                                            fill: var.$tertiary-color;
                                         }
 
                                         &.redColor {
                                             path {
-                                                fill: $button-red-color;
+                                                fill: var.$red-color;
                                             }
                                         }
                                     }
@@ -126,15 +116,15 @@ $button-red-color: #DA5252;
                 align-items: center;
                 font-weight: 600;
                 font-size: 14px;
-                color: $primary-color;
+                color: var.$primary-color;
             }
 
             input {
                 font-weight: 400;
                 font-size: 14px;
-                color: $secondary-color;
-                background: $input-background-color;
-                border: 1px solid $primary-border-color;
+                color: var.$secondary-color;
+                background: var.$input-background-color;
+                border: 1px solid var.$primary-border-color;
                 border-radius: 8px;
             }
         }
@@ -180,26 +170,26 @@ $button-red-color: #DA5252;
                     align-items: center;
                     font-weight: 600;
                     font-size: 14px;
-                    color: $primary-color;
+                    color: var.$primary-color;
                 }
 
                 input {
                     font-weight: 400;
                     font-size: 14px;
-                    color: $secondary-color;
-                    background: $input-background-color;
-                    border: 1px solid $primary-border-color;
+                    color: var.$secondary-color;
+                    background: var.$input-background-color;
+                    border: 1px solid var.$primary-border-color;
                     border-radius: 8px;
                 }
 
                 select {
-                    border: 1px solid $primary-border-color;
-                    background: $input-background-color;
+                    border: 1px solid var.$primary-border-color;
+                    background: var.$input-background-color;
                     border-radius: 8px;
-                    color: $secondary-color;
+                    color: var.$secondary-color;
 
                     &::placeholder {
-                        color: $secondary-color;
+                        color: var.$secondary-color;
                         font-weight: 400;
                         font-size: 14px;
                     }
@@ -221,7 +211,7 @@ $button-red-color: #DA5252;
         }
 
         .title {
-            color: $primary-color;
+            color: var.$primary-color;
             font-weight: 700;
             font-size: 26px;
             line-height: 33px;

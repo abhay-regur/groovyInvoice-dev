@@ -1,20 +1,7 @@
-$primary-color: #3649AB;
-$secondary-color: #8790B0;
-$tertiary-color: #43CB80;
-$border-color: #E3EBF2;
-$white: #ffffff;
-$background-primary-color: rgba($primary-color, .2);
-
-$font-size-heading: 32px;
-$font-size-text: 14px;
-
-$screen-size-xm: 368px;
-$screen-size-sm: 576px;
-$screen-size-mm: 767px;
-$screen-size-md: 950px;
+@use './utility/variables' as var;
 
 .loginContainer {
-    color: $primary-color;
+    color: var.$primary-color;
     margin: 0;
     padding: 0;
 
@@ -27,19 +14,19 @@ $screen-size-md: 950px;
     .mainHeading {
         height: 47px;
         font-weight: 700;
-        font-size: $font-size-heading;
+        font-size: var.$font-size-heading;
         line-height: 40px;
         margin-top: 37px;
         margin-bottom: 79px;
         margin-left: 60px;
 
-        @media (max-width: $screen-size-mm) {
-            font-size: $font-size-heading - 2;
+        @media (max-width: var.$screen-size-mm) {
+            font-size: var.$font-size-heading - 2;
             margin-left: 0;
         }
 
-        @media (max-width: $screen-size-sm) {
-            font-size: $font-size-heading - 4;
+        @media (max-width: var.$screen-size-sm) {
+            font-size: var.$font-size-heading - 4;
             margin-bottom: 43px;
         }
     }
@@ -49,19 +36,19 @@ $screen-size-md: 950px;
         height: 47px;
         font-style: normal;
         font-weight: 600;
-        font-size: $font-size-heading;
+        font-size: var.$font-size-heading;
         line-height: 40px;
 
-        @media (max-width: $screen-size-md) {
-            font-size: $font-size-heading - 4;
+        @media (max-width: var.$screen-size-md) {
+            font-size: var.$font-size-heading - 4;
         }
 
-        @media (max-width: $screen-size-sm) {
-            font-size: $font-size-heading - 6;
+        @media (max-width: var.$screen-size-sm) {
+            font-size: var.$font-size-heading - 6;
         }
 
-        @media (max-width: $screen-size-xm) {
-            font-size: $font-size-heading - 9;
+        @media (max-width: var.$screen-size-xm) {
+            font-size: var.$font-size-heading - 9;
         }
     }
 
@@ -84,7 +71,7 @@ $screen-size-md: 950px;
     }
 
     .green {
-        color: $tertiary-color;
+        color: var.$tertiary-color;
     }
 
     p {
@@ -92,13 +79,13 @@ $screen-size-md: 950px;
         height: 24px;
         font-style: normal;
         font-weight: 600;
-        font-size: $font-size-text + 2;
+        font-size: var.$font-size-text + 2;
         line-height: 20px;
         text-align: center;
-        color: $secondary-color;
+        color: var.$secondary-color;
 
-        @media (max-width: $screen-size-sm) {
-            font-size: $font-size-text;
+        @media (max-width: var.$screen-size-sm) {
+            font-size: var.$font-size-text;
         }
     }
 
@@ -110,26 +97,26 @@ $screen-size-md: 950px;
         margin: 0 auto;
 
         background: #FFFFFF;
-        border: 1px solid $border-color;
+        border: 1px solid var.$border-color;
         border-radius: 10px;
-        color: $secondary-color;
+        color: var.$secondary-color;
 
-        @media (max-width: $screen-size-md) {
+        @media (max-width: var.$screen-size-md) {
             width: 375px;
             padding: 32px 24px;
         }
 
-        @media (max-width: $screen-size-sm) {
+        @media (max-width: var.$screen-size-sm) {
             width: 375px;
         }
 
-        @media (max-width: $screen-size-xm) {
+        @media (max-width: var.$screen-size-xm) {
             width: 300px;
         }
 
         label {
             font-weight: 400;
-            font-size: $font-size-text;
+            font-size: var.$font-size-text;
             line-height: 18px;
         }
 
@@ -142,10 +129,10 @@ $screen-size-md: 950px;
                 pointer-events: none;
                 font-style: normal;
                 font-weight: 900;
-                font-size: $font-size-text + 2;
+                font-size: var.$font-size-text + 2;
                 line-height: 18px;
                 letter-spacing: 0.02em;
-                color: $tertiary-color;
+                color: var.$tertiary-color;
 
                 svg {
                     width: 16px;
@@ -155,18 +142,18 @@ $screen-size-md: 950px;
 
             input {
                 height: 44px;
-                color: $primary-color;
+                color: var.$primary-color;
                 font-weight: 600;
-                font-size: $font-size-text;
+                font-size: var.$font-size-text;
                 line-height: 18px;
                 padding-left: 46px;
                 border-radius: 10px;
-                border: 1px solid $border-color;
+                border: 1px solid var.$border-color;
             }
 
             .toggleVisibilityWrapper {
                 pointer-events: all;
-                color: $secondary-color;
+                color: var.$secondary-color;
                 top: 0;
                 right: 0;
             }
@@ -180,20 +167,20 @@ $screen-size-md: 950px;
     }
 
     a {
-        color: $secondary-color;
+        color: var.$secondary-color;
         font-style: normal;
         font-weight: 400;
-        font-size: $font-size-text;
+        font-size: var.$font-size-text;
         line-height: 18px;
         text-decoration-line: underline;
     }
 
     .loginBackground {
-        background: linear-gradient(0deg, $background-primary-color, $background-primary-color), url('/images/registration_page.png') no-repeat;
+        background: linear-gradient(0deg, var.$background-primary-color, var.$background-primary-color), url('/images/registration_page.png') no-repeat;
         background-size: cover;
         height: 100vh;
 
-        @media (max-width: $screen-size-mm) {
+        @media (max-width: var.$screen-size-mm) {
             display: none;
         }
     }
@@ -201,31 +188,31 @@ $screen-size-md: 950px;
     form {
 
         button {
-            background: $primary-color;
+            background: var.$primary-color;
             padding: 14px 0;
             border-radius: 6px;
             font-weight: 700;
-            font-size: $font-size-text + 2;
+            font-size: var.$font-size-text + 2;
             line-height: 20px;
-            color: $white;
+            color: var.$white;
             border: 0;
             margin-top: 25px;
 
             &:hover {
-                background: $primary-color;
-                color: $white;
+                background: var.$primary-color;
+                color: var.$white;
             }
         }
     }
 
     p {
-        font-size: $font-size-text;
+        font-size: var.$font-size-text;
         font-weight: 400;
 
         a {
-            color: $primary-color;
+            color: var.$primary-color;
             font-weight: 600;
-            font-size: $font-size-text;
+            font-size: var.$font-size-text;
             line-height: 18px;
             text-decoration: none;
         }

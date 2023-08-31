@@ -9,7 +9,7 @@ export const getPaymentTerms = async () => {
 
 export const createPaymentTerms = async (data) => {
     try {
-        return await httpService.post('payments-term/create', data);
+        return await httpService.post('payments-term', data);
     } catch (error) {
         throw error;
     }

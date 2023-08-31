@@ -1,16 +1,10 @@
-$font-size-heading: 32px;
-$font-size-text: 15px;
-$primary-color: #3649AB;
-$secondary-color: #8790B0;
-$tertiary-color: #43CB80;
-$input-background-color: #F5FAFE;
-$primary-border-color: #E3EBF2;
+@use './utility/variables' as var;
 
 .green {
-    color: $tertiary-color;
+    color: var.$tertiary-color;
 
     path {
-        color: $tertiary-color;
+        color: var.$tertiary-color;
     }
 }
 
@@ -48,19 +42,19 @@ $primary-border-color: #E3EBF2;
             font-weight: 700;
             font-size: 36px;
             line-height: 45px;
-            color: $primary-color;
+            color: var.$primary-color;
             margin-top: 56px;
             margin-bottom: 49px;
             padding-left: 12px;
         }
 
         .card {
-            border: 1px solid $primary-border-color;
+            border: 1px solid var.$primary-border-color;
             border-radius: 10px;
             padding: 31px 33px;
 
             .cardTitle {
-                color: $primary-color;
+                color: var.$primary-color;
                 font-weight: 700;
                 font-size: 22px;
                 line-height: 28px;
@@ -71,21 +65,21 @@ $primary-border-color: #E3EBF2;
 
                 .companyNameWrapper {
                     label {
-                        color: $primary-color;
+                        color: var.$primary-color;
                         font-weight: 600;
                         font-size: 14px;
                         line-height: 18px;
                     }
 
                     .companyNameSelect {
-                        border: 1px solid $primary-border-color;
-                        background: $input-background-color;
+                        border: 1px solid var.$primary-border-color;
+                        background: var.$input-background-color;
                         border-radius: 8px 0 0 8px;
-                        color: $primary-color;
+                        color: var.$primary-color;
                         appearance: auto;
 
                         &::placeholder {
-                            color: $secondary-color;
+                            color: var.$secondary-color;
                             font-weight: 400;
                             font-size: 14px;
                         }
@@ -93,7 +87,7 @@ $primary-border-color: #E3EBF2;
 
                     .companySearchbutton {
                         border-radius: 0 8px 8px 0;
-                        background-color: $tertiary-color;
+                        background-color: var.$tertiary-color;
                         color: white;
 
                         svg {
@@ -109,16 +103,16 @@ $primary-border-color: #E3EBF2;
                 .companyInvoicetermsWrapper,
                 .companyInvoiceDueDateWrapper {
                     label {
-                        color: $primary-color;
+                        color: var.$primary-color;
                         font-weight: 600;
                         font-size: 14px;
                         line-height: 18px;
                     }
 
                     input {
-                        border: 1px solid $primary-border-color;
-                        background: $input-background-color;
-                        color: $primary-color;
+                        border: 1px solid var.$primary-border-color;
+                        background: var.$input-background-color;
+                        color: var.$primary-color;
                         font-weight: 600;
                         font-size: 14px;
                     }
@@ -130,7 +124,7 @@ $primary-border-color: #E3EBF2;
                         svg {
                             width: 24px;
                             height: 24px;
-                            color: $tertiary-color;
+                            color: var.$tertiary-color;
                         }
                     }
                 }
@@ -142,13 +136,13 @@ $primary-border-color: #E3EBF2;
             }
 
             .companyInvoiceAddlineBtn {
-                color: $primary-color;
-                border: 1px solid $primary-color;
+                color: var.$primary-color;
+                border: 1px solid var.$primary-color;
                 display: flex;
                 align-items: center;
 
                 &:hover {
-                    background: $primary-color;
+                    background: var.$primary-color;
                     color: white;
 
                     i {
@@ -183,12 +177,12 @@ $primary-border-color: #E3EBF2;
                 label {
                     font-weight: 600;
                     font-size: 14px;
-                    color: $primary-color;
+                    color: var.$primary-color;
                 }
 
                 textarea {
-                    background: $input-background-color;
-                    border: 1px solid $primary-border-color;
+                    background: var.$input-background-color;
+                    border: 1px solid var.$primary-border-color;
                     border-radius: 8px;
                     height: 200px;
                     padding: 21px 27px;
@@ -196,9 +190,9 @@ $primary-border-color: #E3EBF2;
 
                 .card {
                     margin-top: 32px;
-                    background: $primary-color;
+                    background: var.$primary-color;
                     border-radius: 8px;
-                    border: 1px solid $primary-color;
+                    border: 1px solid var.$primary-color;
                     color: white;
                     padding: 5px 12px 21px 5px;
 
@@ -256,7 +250,7 @@ $primary-border-color: #E3EBF2;
                                             height: 22px;
                                             border: 1.5px solid #ddd;
                                             border-radius: 100%;
-                                            background: $primary-color;
+                                            background: var.$primary-color;
                                         }
 
                                         &:checked+span:after,
@@ -297,11 +291,11 @@ $primary-border-color: #E3EBF2;
 
                                 select.taxTypeSelect {
                                     background: white;
-                                    border: 1px solid $primary-color;
+                                    border: 1px solid var.$primary-color;
                                     border-radius: 8px;
                                     font-weight: 600;
                                     font-size: 12px;
-                                    color: $primary-color;
+                                    color: var.$primary-color;
 
                                     padding: 0.5em 1em 0.5em 0;
                                     margin: 0;
@@ -333,7 +327,7 @@ $primary-border-color: #E3EBF2;
 
                             input {
                                 border: 1px solid white;
-                                background: $primary-color;
+                                background: var.$primary-color;
                                 color: white;
 
                                 &::placeholder {
@@ -479,7 +473,7 @@ $primary-border-color: #E3EBF2;
         }
 
         .title {
-            color: $primary-color;
+            color: var.$primary-color;
             font-weight: 700;
             font-size: 26px;
             line-height: 45px;
@@ -488,12 +482,12 @@ $primary-border-color: #E3EBF2;
         }
 
         .card {
-            border: 1px solid $primary-border-color;
+            border: 1px solid var.$primary-border-color;
             border-radius: 10px;
             padding: 0;
 
             .cardTitle {
-                color: $primary-color;
+                color: var.$primary-color;
                 font-weight: 700;
                 font-size: 18px;
                 line-height: 28px;
@@ -510,20 +504,20 @@ $primary-border-color: #E3EBF2;
                     margin-top: 27px;
 
                     label {
-                        color: $primary-color;
+                        color: var.$primary-color;
                         font-weight: 600;
                         font-size: 14px;
                         line-height: 18px;
                     }
 
                     .companyNameSelect {
-                        border: 1px solid $primary-border-color;
-                        background: $input-background-color;
+                        border: 1px solid var.$primary-border-color;
+                        background: var.$input-background-color;
                         border-radius: 8px 0 0 8px;
-                        color: $secondary-color;
+                        color: var.$secondary-color;
 
                         &::placeholder {
-                            color: $secondary-color;
+                            color: var.$secondary-color;
                             font-weight: 400;
                             font-size: 14px;
                         }
@@ -531,7 +525,7 @@ $primary-border-color: #E3EBF2;
 
                     .companySearchbutton {
                         border-radius: 0 8px 8px 0;
-                        background-color: $tertiary-color;
+                        background-color: var.$tertiary-color;
                         color: white;
 
                         svg {
@@ -549,16 +543,16 @@ $primary-border-color: #E3EBF2;
                     margin-top: 19px;
 
                     label {
-                        color: $primary-color;
+                        color: var.$primary-color;
                         font-weight: 600;
                         font-size: 14px;
                         line-height: 18px;
                     }
 
                     input {
-                        border: 1px solid $primary-border-color;
-                        background: $input-background-color;
-                        color: $primary-color;
+                        border: 1px solid var.$primary-border-color;
+                        background: var.$input-background-color;
+                        color: var.$primary-color;
                         font-weight: 600;
                         font-size: 14px;
                     }
@@ -570,7 +564,7 @@ $primary-border-color: #E3EBF2;
                         svg {
                             width: 24px;
                             height: 24px;
-                            color: $tertiary-color;
+                            color: var.$tertiary-color;
                         }
                     }
                 }
@@ -582,13 +576,13 @@ $primary-border-color: #E3EBF2;
             }
 
             .companyInvoiceAddlineBtn {
-                color: $primary-color;
-                border: 1px solid $primary-color;
+                color: var.$primary-color;
+                border: 1px solid var.$primary-color;
                 display: flex;
                 align-items: center;
 
                 &:hover {
-                    background: $primary-color;
+                    background: var.$primary-color;
                     color: white;
 
                     i {
@@ -623,12 +617,12 @@ $primary-border-color: #E3EBF2;
                 label {
                     font-weight: 600;
                     font-size: 14px;
-                    color: $primary-color;
+                    color: var.$primary-color;
                 }
 
                 textarea {
-                    background: $input-background-color;
-                    border: 1px solid $primary-border-color;
+                    background: var.$input-background-color;
+                    border: 1px solid var.$primary-border-color;
                     border-radius: 8px;
                     height: 114px;
                     padding: 13px 15px;
@@ -637,9 +631,9 @@ $primary-border-color: #E3EBF2;
                 .card {
                     margin-top: 27px;
                     padding: 8px 1px 7px 3px;
-                    background: $primary-color;
+                    background: var.$primary-color;
                     border-radius: 8px;
-                    border: 1px solid $primary-color;
+                    border: 1px solid var.$primary-color;
                     color: white;
 
                     .subtotalLabel,
@@ -695,7 +689,7 @@ $primary-border-color: #E3EBF2;
                                             height: 22px;
                                             border: 1.5px solid #ddd;
                                             border-radius: 100%;
-                                            background: $primary-color;
+                                            background: var.$primary-color;
                                         }
 
                                         &:checked+span:after,
@@ -731,13 +725,13 @@ $primary-border-color: #E3EBF2;
                             .taxTypeSelectWrapper {
                                 select.taxTypeSelect {
                                     background: white;
-                                    border: 1px solid $primary-color;
+                                    border: 1px solid var.$primary-color;
                                     border-radius: 8px;
                                     font-size: 16px;
                                     font-weight: 600;
                                     font-size: 12px;
                                     padding: 0.5em 1em 0.5em 0;
-                                    color: $primary-color;
+                                    color: var.$primary-color;
                                 }
                             }
                         }
@@ -776,7 +770,7 @@ $primary-border-color: #E3EBF2;
 
                         input {
                             border: 1px solid white;
-                            background: $primary-color;
+                            background: var.$primary-color;
                             color: white;
 
                             &::placeholder {

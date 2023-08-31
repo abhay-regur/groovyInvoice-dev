@@ -1,13 +1,4 @@
-$font-size-heading: 32px;
-$font-size-text: 15px;
-$primary-color: #3649AB;
-$secondary-color: #8790B0;
-$tertiary-color: #43CB80;
-$table-head-color: #EEF5FC;
-$table-head-border-color: #C8D6E2;
-$input-background-color: #F5FAFE;
-$primary-border-color: #E3EBF2;
-$button-red-color: #DA5252;
+@use './utility/variables' as var;
 
 //Big Screen
 @media screen and (min-width: 676px) {
@@ -15,7 +6,7 @@ $button-red-color: #DA5252;
         tr.companyInvoiceContactPersonRow {
             td {
                 padding: 12px 10px;
-                border: 1px solid $primary-border-color;
+                border: 1px solid var.$primary-border-color;
 
                 &:last-of-type {
                     border: none;
@@ -23,7 +14,7 @@ $button-red-color: #DA5252;
 
                 select {
                     border: none;
-                    color: $secondary-color;
+                    color: var.$secondary-color;
                     font-weight: 400;
                     font-size: 14px;
                     appearance: none;
@@ -34,7 +25,7 @@ $button-red-color: #DA5252;
                 }
 
                 span {
-                    color: $secondary-color;
+                    color: var.$secondary-color;
                     font-weight: 400;
                     font-size: 14px;
                 }
@@ -49,13 +40,13 @@ $button-red-color: #DA5252;
                                 height: 22px !important;
 
                                 path {
-                                    fill: $tertiary-color;
+                                    fill: var.$tertiary-color;
                                 }
                             }
 
                             &.redColor {
                                 path {
-                                    fill: $button-red-color;
+                                    fill: var.$red-color;
                                 }
                             }
                         }
@@ -76,7 +67,7 @@ $button-red-color: #DA5252;
         tr.companyInvoiceContactPersonRow {
             td {
                 padding: 12px 10px;
-                border: 1px solid $primary-border-color;
+                border: 1px solid var.$primary-border-color;
 
                 &:last-of-type {
                     border: none;
@@ -84,7 +75,7 @@ $button-red-color: #DA5252;
 
                 select {
                     border: none;
-                    color: $secondary-color;
+                    color: var.$secondary-color;
                     font-weight: 400;
                     font-size: 14px;
                     appearance: none;
@@ -95,7 +86,7 @@ $button-red-color: #DA5252;
                 }
 
                 span {
-                    color: $secondary-color;
+                    color: var.$secondary-color;
                     font-weight: 400;
                     font-size: 14px;
                 }
@@ -110,13 +101,13 @@ $button-red-color: #DA5252;
                                 height: 22px !important;
 
                                 path {
-                                    fill: $tertiary-color;
+                                    fill: var.$tertiary-color;
                                 }
                             }
 
                             &.redColor {
                                 path {
-                                    fill: $button-red-color;
+                                    fill: var.$red-color;
                                 }
                             }
                         }
