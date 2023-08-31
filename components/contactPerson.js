@@ -6,7 +6,6 @@ import FaCilcleEllipses from "../assets/icons/faCircleEllipses.svg";
 import FaCircleXmark from '../assets/icons/faCircleXmark.svg';
 import FaSave from '../assets/icons/faSave.svg';
 import FaCircleCheck from '../assets/icons/faCircleCheck.svg';
-import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 
 export default function ContactPerson({ custId, setToastList, ErrorList, addContactPerson, listContactPersonDetails, updateContactPersonDetails, deleteContactPersonDetails }) {
