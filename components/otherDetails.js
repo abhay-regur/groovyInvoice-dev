@@ -67,7 +67,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
 
     const hideModal = () => {
         setmodalErrors([]);
-        setPaymentTermId({
+        setPaymentTermLable({
             label: "",
             numberOfDays: 0
         })
