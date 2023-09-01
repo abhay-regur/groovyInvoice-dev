@@ -1,8 +1,9 @@
 @use './utility/variables' as var;
 
 .companyInvoiceCustomSelectWrapper {
+    position: relative;
+
     input {
-        position: relative;
         background: var.$input-background-color;
         font-weight: 400;
         font-size: 14px;
@@ -13,16 +14,16 @@
         height: 41px;
         text-align: start;
         padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+    }
 
-        &::after {
-            content: '';
+    .companyInvoiceCustomSelectInputIcon {
+        svg {
             position: absolute;
-            left: 10px;
-            top: 0;
+            right: 10px;
+            top: 15px;
             bottom: 0;
-            background: url(../assets/icons/faAngleDown.svg);
-            width: 200px;
-            height: 200px;
+            height: 14px !important;
+            width: 14px !important;
         }
     }
 

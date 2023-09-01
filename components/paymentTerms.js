@@ -26,7 +26,7 @@ export default function PaymentTermsComponent() {
         if (target.name != '') {
             if (target.name == 'numberOfDays') {
                 console.log(target.value)
-                if (target.value != NaN || target.value != '') {
+                if (!Number.isNaN((target.value)) && target.value != '') {
                     temp_data[target.name] = parseInt(target.value)
                 } else {
                     temp_data[target.name] = 0;
@@ -67,8 +67,8 @@ export default function PaymentTermsComponent() {
             if (result.status == 200 || result.status == 201) {
                 setToastList([{
                     id: Math.floor((Math.random() * 101) + 1),
-                    title: 'Removed',
-                    description: '',
+                    title: 'Payment Terms',
+                    description: 'Removed an entry',
                 }]);
                 getPaymentTermsDetails();
             }
@@ -88,8 +88,8 @@ export default function PaymentTermsComponent() {
             if (result.status == 200 || result.status == 201) {
                 setToastList([{
                     id: Math.floor((Math.random() * 101) + 1),
-                    title: 'Added',
-                    description: '',
+                    title: 'Payment Terms',
+                    description: 'Added an entry',
                 }]);
                 getPaymentTermsDetails();
             }
@@ -103,7 +103,7 @@ export default function PaymentTermsComponent() {
     const testNotification = () => {
         setToastList([{
             id: Math.floor((Math.random() * 101) + 1),
-            title: 'Test Heading',
+            title: 'Payment Terms',
             description: 'This is a test heading ',
         }]);
     }
