@@ -12,7 +12,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
     const [overseas, setOverseas] = useState(false);
     const { Modal } = require("bootstrap");
     const [modelFor, setModalFor] = useState('');
-    const [paymentTerm, setPaymentTerm] = useState({
+    const [paymentTermLabel, setPaymentTermLable] = useState({
         label: "",
         numberOfDays: 0
     });
@@ -22,8 +22,8 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
     const [modalErrors, setmodalErrors] = useState([]);
 
     const handleModalInput = ({ target }) => {
-        if (modelFor == 'paymentTerm') {
-            var temp_data = paymentTerm;
+        if (modelFor == 'paymentTermId') {
+            var temp_data = paymentTermLabel;
             var name = target.name || target.getAttribute('name');
             if (name == 'numberOfDays' || name == 'gstTreatment') {
                 if (!Number.isNaN(target.value) && target.value != '') {
@@ -35,7 +35,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
                 temp_data[name] = target.value;
             }
             let temp = Object.assign({}, temp_data)
-            setPaymentTerm(temp);
+            setPaymentTermLable(temp);
         } else if (modelFor == 'exemptionReason') {
             var temp_data = taxExemptionReasonLable;
             var name = target.name || target.getAttribute('name');
@@ -77,8 +77,8 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
         // e.preventDefault();
         setmodalErrors([]);
         try {
-            if (modelFor == 'paymentTerm') {
-                var result = await createPaymentTerms(paymentTerm);
+            if (modelFor == 'paymentTermId') {
+                var result = await createPaymentTerms(paymentTermLabel);
             } else if (modelFor == 'exemptionReason') {
                 var result = await createTaxExemptionReason(taxExemptionReasonLable);
             }
@@ -90,7 +90,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
                     description: 'New ' + modelFor + ' Added',
                 }]);
                 $('#updateCustomerModal button.btn-close').trigger('click');
-                if (modelFor == 'paymentTerm') {
+                if (modelFor == 'paymentTermId') {
                     getPaymentTermsDetails();
                 } else if (modelFor == 'exemptionReason') {
                     getTaxExemptedDetails();
@@ -251,7 +251,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
                                                 <label className={`${styles.companyInvoicePaymentTermLabel}`}>Label</label>
                                             </div>
                                             <div className="col-12 col-lg-6 col-xl-8">
-                                                <input name='label' type="text" className="form-control" id="companyInvoicePaymentTermLabel" value={paymentTerm.label} onChange={handleModalInput} placeholder='Label' />
+                                                <input name='label' type="text" className="form-control" id="companyInvoicePaymentTermLabel" value={paymentTermLabel.label} onChange={handleModalInput} placeholder='Label' />
                                             </div>
                                         </div>
                                     </div>
@@ -261,7 +261,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
                                                 <label className={`${styles.companyInvoicePaymentTermDays}`}>Number of Days</label>
                                             </div>
                                             <div className="col-12 col-lg-6 col-xl-8">
-                                                <input name='numberOfDays' type="number" className="form-control" id="companyInvoiceNewCustomerCompanyName" min="0" value={paymentTerm.numberOfDays} onChange={handleModalInput} />
+                                                <input name='numberOfDays' type="number" className="form-control" id="companyInvoiceNewCustomerCompanyName" min="0" value={paymentTermLabel.numberOfDays} onChange={handleModalInput} />
                                             </div>
                                         </div>
                                     </div>
