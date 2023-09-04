@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import style from "../styles/customSelect.module.scss";
 import FaCirclePlus from '../assets/icons/faCirclePlus.svg';
 import FaAngleDown from '../assets/icons/faAngleDown.svg';
-const CustomSelectComponent = ({ data, onOptionValueChange, optionValue, name, isDisabled, onOptionInnerButtonClick, defaultText, isInnerButtonRequired }) => {
+import FaAngleUp from '../assets/icons/faAngleUp.svg';
+const CustomSelectComponent = ({ data, onOptionValueChange, optionValue, name, isDisabled, onOptionInnerButtonClick, defaultText, isInnerButtonRequired, inputClass }) => {
     const genrateSelectInputValue = (optionValue) => {
         let value = defaultText;
         data.forEach((e) => {
@@ -28,8 +29,8 @@ const CustomSelectComponent = ({ data, onOptionValueChange, optionValue, name, i
     }
     if (data != undefined && data.length > 0) {
         return (
-            <div className={`${style.companyInvoiceCustomSelectWrapper} dropdown d-flex mt-2`}>
-                <input id={`${name}_customSelect`} className="dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false" value={genrateSelectInputValue(optionValue)} placeholder="Select a Value" disabled={isDisabled} />
+            <div className={`${style.companyInvoiceCustomSelectWrapper} dropdown d-flex`}>
+                <input id={`${name}_customSelect`} className={`dropdown-toggle w-100 ${inputClass}`} type="button" data-bs-toggle="dropdown" aria-expanded="false" value={genrateSelectInputValue(optionValue)} placeholder="Select a Value" disabled={isDisabled} />
                 <i className={`${style.companyInvoiceCustomSelectInputIcon}`}><FaAngleDown /></i>
                 <ul className={`${style.companyInvoiceCustomSelectMenu} dropdown-menu w-100`}>
                     {data.map(function (data, id) {
@@ -49,8 +50,8 @@ const CustomSelectComponent = ({ data, onOptionValueChange, optionValue, name, i
         )
     } else {
         return (
-            <div className={`${style.companyInvoiceCustomSelectWrapper} dropdown d-flex mt-2`}>
-                <input id={`${name}_customSelect`} className="dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false" value={genrateSelectInputValue(optionValue)} placeholder="Select a Value" />
+            <div className={`${style.companyInvoiceCustomSelectWrapper} dropdown d-flex`}>
+                <input id={`${name}_customSelect`} className={`dropdown-toggle w-100 ${inputClass}`} type="button" data-bs-toggle="dropdown" aria-expanded="false" value={genrateSelectInputValue(optionValue)} placeholder="Select a Value" />
                 <ul className={`${style.companyInvoiceCustomSelectMenu} dropdown-menu w-100`}>
                     <li key='0' >
                         <option className={`${style.menuItem} dropdown-item`} value="" name={name} onClick={(e) => { console.log('No-Value') }}>No-Options</option>

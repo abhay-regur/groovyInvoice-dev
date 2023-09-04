@@ -79,4 +79,10 @@ export const getCurrencies = async () => {
     }
 }
 
-
+export const getCustomers = async () => {
+    try {
+        return await httpService.get('customers');
+    } catch (error) {
+        throw error;
+    }
+}

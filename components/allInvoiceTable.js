@@ -115,9 +115,9 @@ const AllInvoiceTable = ({ ItemsData }) => {
                 <div className={`col-sm-12 p-0`}>
                     <ServerSideDataTables
                         ref={dtRef}
-                        id="all-invoice--table"
+                        id="manage-invoice--table"
                         {...dtOptions}
-                        className={`${styles.companyInvoiceTable} table table-responsive responsive nowrap`}
+                        className={`${styles.companyInvoiceTable}table table-responsive responsive nowrap`}
                         setIsPageLoading={setIsPageLoading}
                         isLoading={isLoading}
                         setIsLoading={setIsLoading}

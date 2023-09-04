@@ -11,17 +11,18 @@
         background: var.$input-background-color;
         border: 1px solid var.$primary-border-color;
         border-radius: 8px;
-        height: 41px;
         text-align: start;
         padding: 0.375rem 2.25rem 0.375rem 0.75rem;
     }
 
     .companyInvoiceCustomSelectInputIcon {
+        position: absolute;
+        display: grid;
+        right: 5px;
+        height: 100%;
+        align-items: center;
+
         svg {
-            position: absolute;
-            right: 10px;
-            top: 15px;
-            bottom: 0;
             height: 14px !important;
             width: 14px !important;
         }
@@ -38,7 +39,7 @@
             font-weight: 400;
             font-size: 14px;
             color: var.$primary-color;
-
+            cursor: pointer;
 
             &:hover {
                 color: var.$primary-color;

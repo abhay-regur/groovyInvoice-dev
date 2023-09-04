@@ -1,13 +1,11 @@
 "use client"
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import DatePicker from "react-datepicker";
 import InvoiceTable from '../../../../components/invoiceTable';
 import RadioButton from '../../../../components/radioButton';
 import styles from "../../../../styles/newInvoice.module.scss";
 import FaCalendar from "../../../../assets/icons/faCalendar.svg";
 import { NavExpandedState } from '../../../../context/NavState.context';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import FaCirclePlus from '../../../../assets/icons/faCirclePlus.svg';
 import FaSave from '../../../../assets/icons/faSave.svg';
 import FaPaperPen from '../../../../assets/icons/faPaperPen.svg';
@@ -15,55 +13,69 @@ import FaCircleXmark from '../../../../assets/icons/faCircleXmark.svg';
 import FaCircleQuestion from '../../../../assets/icons/faCircleQuestion.svg';
 import FaGear from '../../../../assets/icons/faGear.svg';
 import "react-datepicker/dist/react-datepicker.css";
+import { getPaymentTerms } from '../../../../services/paymentTerms.service';
+import { getCustomers } from '../../../../services/customer.service';
+import CustomSelectComponent from '../../../../components/customSelectComponent';
 
 export default function InvoiceAddForm() {
     const [taxValueSelected, settaxValueSelected] = useState();
     const { navExpandedState } = useContext(NavExpandedState);
+    const [paymentTerms, setPaymentTerms] = useState([]);
+    const [errors, setErrors] = useState([]);
+    const [customers, setCustomer] = useState([]);
+    const [data, setData] = useState({
+        paymentTermId: '',
+        customersId: '',
+    })
+
+    const getPaymentTermsDetails = async () => {
+        setErrors([]);
+        try {
+            const result = await getPaymentTerms();
+            let temp = [];
+            result.data.forEach((elem) => {
+                temp.push({ Id: elem.id, name: elem.label })
+            });
+            setPaymentTerms(temp);
+        } catch (error) {
+            setErrors(error.response.data.message)
+        }
+    }
+
+    const handleInput = ({ target }) => {
+        let temp_data = data;
+        let name = target.name || target.getAttribute('name');
+        if (name != '') {
+            if (name == 'openingBalance' || name == 'gstTreatment' || name == 'customersId') {
+                if (!Number.isNaN((target.value)) && target.value != '') {
+                    temp_data[name] = parseInt(target.value)
+                } else {
+                    temp_data[name] = 0;
+                }
+            } else {
+                temp_data[name] = target.value;
+            }
+            let temp = Object.assign({}, temp_data)
+            setData(temp)
+        }
+    }
+
+    const getCustomersList = async () => {
+        const result = await getCustomers();
+        let temp = [];
+        result.data.forEach((elem) => {
+            temp.push({ Id: elem.id, name: elem.firstName + " " + elem.lastName })
+        });
+        setCustomer(temp);
+    }
+
+    useEffect(() => {
+        require("bootstrap");
+        getPaymentTermsDetails()
+        getCustomersList()
+    }, [])
+    
     const ItemsData = [
-        {
-            ItemDetails: {
-                ItemName: "Test 1",
-                ItemType: "Goods",
-                ItemHSN: "070310101",
-            },
-            ItemQuantity: "2",
-            ItemRate: "20",
-            ItemTaxType: "tcs",
-            ItemTotalAmount: "48"
-        },
-        {
-            ItemDetails: {
-                ItemName: "Test 1",
-                ItemType: "Goods",
-                ItemHSN: "070310101",
-            },
-            ItemQuantity: "2",
-            ItemRate: "20",
-            ItemTaxType: "tcs",
-            ItemTotalAmount: "48"
-        },
-        {
-            ItemDetails: {
-                ItemName: "Test 1",
-                ItemType: "Goods",
-                ItemHSN: "070310101",
-            },
-            ItemQuantity: "2",
-            ItemRate: "20",
-            ItemTaxType: "tcs",
-            ItemTotalAmount: "48"
-        },
-        {
-            ItemDetails: {
-                ItemName: "Test 1",
-                ItemType: "Goods",
-                ItemHSN: "070310101",
-            },
-            ItemQuantity: "2",
-            ItemRate: "20",
-            ItemTaxType: "tcs",
-            ItemTotalAmount: "48"
-        },
         {
             ItemDetails: {
                 ItemName: "Test 1",
@@ -181,15 +193,17 @@ export default function InvoiceAddForm() {
                                     <div className="col-md-12 col-lg-4">
                                         <div className={`${styles.companyNameWrapper} form-group`}>
                                             <label htmlFor="companyName" className="form-label control-label">Company Name<span className={`${styles.green}`}>*</span></label>
-                                            <div className="d-flex">
-                                                <select className={`${styles.companyNameSelect} form-select`}>
-                                                    <option defaultValue>Select Customer</option>
-                                                    <option value="1">One</option>
-                                                    <option value="2">Two</option>
-                                                    <option value="3">Three</option>
-                                                </select>
-                                                <button className={`${styles.companySearchbutton} btn`}><i><FontAwesomeIcon icon={faSearch} /></i></button>
-                                            </div>
+                                            <CustomSelectComponent
+                                                className={`${styles.companInvoicePaymentTermsSelect}`}
+                                                inputClass="form-control"
+                                                data={customers}
+                                                onOptionValueChange={handleInput}
+                                                optionValue={data.customersId}
+                                                name={'customersId'}
+                                                isDisabled={false}
+                                                defaultText={'Select An Option'}
+                                                isInnerButtonRequired={false}
+                                            />
                                         </div>
                                     </div>
                                     <div className="col-12 col-sm-6 col-md-6 col-lg-4">
@@ -224,9 +238,17 @@ export default function InvoiceAddForm() {
                                     <div className="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2">
                                         <div className={`${styles.companyInvoicetermsWrapper} mb-3`}>
                                             <label htmlFor="companyInvoiceterms" className="form-label">Terms</label>
-                                            <div className={`d-flex align-content-center`}>
-                                                <input type="text" className="form-control" id="companyInvoiceterms" aria-describedby="emailHelp" />
-                                            </div>
+                                            <CustomSelectComponent
+                                                className={`${styles.companInvoicePaymentTermsSelect}`}
+                                                inputClass="form-control"
+                                                data={paymentTerms}
+                                                onOptionValueChange={handleInput}
+                                                optionValue={data.paymentTermId}
+                                                name={'paymentTermId'}
+                                                isDisabled={false}
+                                                defaultText={'Select An Option'}
+                                                isInnerButtonRequired={false}
+                                            />
                                         </div>
                                     </div>
                                     <div className="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2">
