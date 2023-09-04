@@ -116,7 +116,7 @@ export default function CustomerAddForm() {
         var temp_data = data;
         var name = target.name || target.getAttribute('name');
         if (name != '') {
-            if (name == 'openingBalance' || name == 'gstTreatment') {
+            if (name == 'openingBalance' || name == 'gstTreatment' || name == 'paymentTermId') {
                 if (!Number.isNaN((target.value)) && target.value != '') {
                     temp_data[name] = parseInt(target.value)
                 } else {
