@@ -13,8 +13,9 @@ import Loading from "../loading.js";
 import { ToastMsgContext } from '../../../../context/ToastMsg.context';
 import { getPaymentTerms, createPaymentTerms } from "../../../../services/paymentTerms.service";
 import { getCountries, getStates } from '../../../../services/countriesState.service';
-import { createCustomer, getUserDetails, updateUserDetails, getGSTTreatment, getPlaceOfSupply, getCurrencies, addContactPerson, listContactPersonDetails, updateContactPersonDetails, deleteContactPersonDetails } from "../../../../services/customer.service";
+import { createCustomer, getGSTTreatment, getPlaceOfSupply, getCurrencies } from "../../../../services/customer.service";
 import { getTaxExemptionReason, createTaxExemptionReason } from '../../../../services/taxExempted.service.js';
+import { GST_TREATMENT } from '../../../../constants';
 import { NavExpandedState } from '../../../../context/NavState.context';
 import { useRouter } from 'next/navigation';
 
@@ -35,7 +36,7 @@ export default function CustomerAddForm() {
     const [currencies, setCurrencies] = useState([]);
     const [placeOfSupply, setPlaceOfSupply] = useState([]);
     const [paymentTerms, setPaymentTerms] = useState([]);
-    const [taxExemptionReason, setTaxExemptionReason] = useState([])
+    const [taxExemptionReason, setTaxExemptionReason] = useState([]);
 
     const [data, setData] = useState({
         type: "",
@@ -115,7 +116,7 @@ export default function CustomerAddForm() {
         var temp_data = data;
         var name = target.name || target.getAttribute('name');
         if (name != '') {
-            if (name == 'openingBalance' || name == 'gstTreatment') {
+            if (name == 'openingBalance' || name == 'gstTreatment' || name == 'paymentTermId') {
                 if (!Number.isNaN((target.value)) && target.value != '') {
                     temp_data[name] = parseInt(target.value)
                 } else {
@@ -141,8 +142,8 @@ export default function CustomerAddForm() {
         setIsLoading(true);
         var temp = data;
         if (temp.taxPreference == "taxable") temp.exemptionReason = "";
-        if (temp.gstTreatment == 2 || temp.gstTreatment == 3 || temp.gstTreatment == 4 || temp.gstTreatment == 5) temp.GSTIN = "";
-        if (temp.gstTreatment == 5) {
+        if (temp.gstTreatment == GST_TREATMENT.UNREGISTERED_BUSINESS || temp.gstTreatment == GST_TREATMENT.CONSUMER || temp.gstTreatment == GST_TREATMENT.OVERSEAS) temp.GSTIN = "";
+        if (temp.gstTreatment == GST_TREATMENT.OVERSEAS) {
             temp.taxPreference = "";
             temp.exemptionReason = "";
         }
