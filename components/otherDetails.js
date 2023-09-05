@@ -1,9 +1,9 @@
-import RadioButton from '../components/radioButton';
-import FaExclamationCircle from '../assets/icons/faExclamationCircle.svg';
-import FaQuestionCircleOutline from '../assets/icons/faQuestionCircleOutline.svg';
-import FaPlus from '../assets/icons/faCirclePlus.svg'
+import RadioButton from '@/components/radioButton';
+import FaExclamationCircle from '@/assets/icons/faExclamationCircle.svg';
+import FaQuestionCircleOutline from '@/assets/icons/faQuestionCircleOutline.svg';
+import FaPlus from '@/assets/icons/faCirclePlus.svg'
 import CustomSelectComponent from './customSelectComponent';
-import styles from "../styles/newCustomer.module.scss";
+import styles from "@/styles/newCustomer.module.scss";
 import { useEffect, useState } from 'react';
 import { GST_TREATMENT } from '../constants';
 import $ from 'jquery';

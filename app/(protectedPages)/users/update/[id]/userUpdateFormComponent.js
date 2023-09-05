@@ -2,14 +2,13 @@
 import { useEffect, useState } from 'react';
 import { useContext } from 'react';
 import { useParams } from 'next/navigation';
-import { userDetails, updateUserDetails } from '../../../../../services/user.service';
-import { disableSubmitButton, enableSubmitButton } from '../../../../../utils/form.utils'
-import FaSave from '../../../../../assets/icons/faSave.svg';
-import FaCircleXmark from '../../../../../assets/icons/faCircleXmark.svg';
-import styles from "../../../../../styles/userForm.module.scss";
-import ErrorList from '../../../../../components/errorList';
-import { NavExpandedState } from '../../../../../context/NavState.context';
-import { ToastMsgContext } from '../../../../../context/ToastMsg.context';
+import { userDetails, updateUserDetails } from '@/services/user.service';
+import FaSave from '@/assets/icons/faSave.svg';
+import FaCircleXmark from '@/assets/icons/faCircleXmark.svg';
+import styles from "@/styles/userForm.module.scss";
+import ErrorList from '@/components/errorList';
+import { NavExpandedState } from '@/context/NavState.context';
+import { ToastMsgContext } from '@/context/ToastMsg.context';
 import Link from 'next/link';
 import Loading from './loading.js';
 

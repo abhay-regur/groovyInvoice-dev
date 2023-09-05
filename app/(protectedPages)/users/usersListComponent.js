@@ -1,13 +1,13 @@
 "use client"
 import Link from 'next/link';
 import { useContext, useState } from 'react';
-import FaCirclePlus from "../../../assets/icons/faCirclePlus.svg";
-import styles from '../../../styles/user.module.scss';
-import { NavExpandedState } from '../../../context/NavState.context';
+import FaCirclePlus from "@/assets/icons/faCirclePlus.svg";
+import styles from '@/styles/user.module.scss';
+import { NavExpandedState } from '@/context/NavState.context';
 import dynamic from 'next/dynamic';
 
 const AllUserTable = dynamic(
-    () => import("../../../components/allUsersTable"),
+    () => import("@/components/allUsersTable"),
     { ssr: false }
 );
 

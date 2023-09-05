@@ -1,4 +1,4 @@
-import styles from '../../../styles/user.module.scss';
+import styles from '@/styles/user.module.scss';
 export default function Loading({ isPageLoading }) {
     return (
         <main className={`${styles.companyMainLoadingWrapper} position-absolute top-0 start-0 end-0 ${isPageLoading ? '' : 'hide'}`}>

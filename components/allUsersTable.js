@@ -1,14 +1,14 @@
 "use client"
-import styles from '../styles/user.module.scss';
+import styles from '@/styles/user.module.scss';
 import { useContext, useRef, useState } from 'react';
 import 'datatables.net-dt/js/dataTables.dataTables';
 import Image from 'next/image';
 import $ from 'jquery';
 import ReactDOM from "react-dom/client";
 import defaultProfile from '../public/images/profile_Default.png';
-import { userActivate, userDeactivate } from '../services/user.service';
-import { ToastMsgContext } from '../context/ToastMsg.context';
-import FaPen from '../assets/icons/faPen.svg';
+import { userActivate, userDeactivate } from '@/services/user.service';
+import { ToastMsgContext } from '@/context/ToastMsg.context';
+import FaPen from '@/assets/icons/faPen.svg';
 import PageLoader from '../app/(protectedPages)/users/pageLoader.js';
 import 'datatables.net-dt/css/jquery.dataTables.min.css';
 import ServerSideDataTables from './serverSideDataTable';

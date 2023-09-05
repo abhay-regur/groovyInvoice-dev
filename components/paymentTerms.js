@@ -1,11 +1,11 @@
 "use client"
 import { useContext, useEffect, useState } from 'react';
-import styles from '../styles/configuration.module.scss';
-import FaPlus from '../assets/icons/faCirclePlus.svg'
+import styles from '@/styles/configuration.module.scss';
+import FaPlus from '@/assets/icons/faCirclePlus.svg'
 import ErrorList from './errorList.js';
-import { getPaymentTerms, createPaymentTerms, updatePaymentTerms, deletePaymentTerms } from '../services/paymentTerms.service'
+import { getPaymentTerms, createPaymentTerms, updatePaymentTerms, deletePaymentTerms } from '@/services/paymentTerms.service'
 import AllPaymentTermsTable from './allPaymentTermsTable.js';
-import { ToastMsgContext } from '../context/ToastMsg.context';
+import { ToastMsgContext } from '@/context/ToastMsg.context';
 export default function PaymentTermsComponent() {
     const [itemsData, setItemData] = useState([]);
     const { setToastList } = useContext(ToastMsgContext);

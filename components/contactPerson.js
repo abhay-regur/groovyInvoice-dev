@@ -1,11 +1,11 @@
-import styles from "../styles/newCustomer.module.scss";
+import styles from "@/styles/newCustomer.module.scss";
 import TableLoading from '../app/(protectedPages)/users/loading';
-import tableStyles from "../styles/contactPersonTable.module.scss";
-import FaCirclePlus from "../assets/icons/faCirclePlus.svg";
-import FaCilcleEllipses from "../assets/icons/faCircleEllipses.svg";
-import FaCircleXmark from '../assets/icons/faCircleXmark.svg';
-import FaSave from '../assets/icons/faSave.svg';
-import FaCircleCheck from '../assets/icons/faCircleCheck.svg';
+import tableStyles from "@/styles/contactPersonTable.module.scss";
+import FaCirclePlus from "@/assets/icons/faCirclePlus.svg";
+import FaCilcleEllipses from "@/assets/icons/faCircleEllipses.svg";
+import FaCircleXmark from '@/assets/icons/faCircleXmark.svg';
+import FaSave from '@/assets/icons/faSave.svg';
+import FaCircleCheck from '@/assets/icons/faCircleCheck.svg';
 import { useEffect, useState } from "react";
 
 export default function ContactPerson({ custId, setToastList, ErrorList, addContactPerson, listContactPersonDetails, updateContactPersonDetails, deleteContactPersonDetails }) {

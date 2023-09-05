@@ -1,7 +1,7 @@
-import styles from "../styles/contactPersonTable.module.scss";
-import FaCilcleEllipses from "../assets/icons/faCircleEllipses.svg";
-import FaCircleXmark from '../assets/icons/faCircleXmark.svg';
-import FaCircleCheck from '../assets/icons/faCircleCheck.svg';
+import styles from "@/styles/contactPersonTable.module.scss";
+import FaCilcleEllipses from "@/assets/icons/faCircleEllipses.svg";
+import FaCircleXmark from '@/assets/icons/faCircleXmark.svg';
+import FaCircleCheck from '@/assets/icons/faCircleCheck.svg';
 
 const ContactPersonTable = ({ ItemsData }) => {
     return (

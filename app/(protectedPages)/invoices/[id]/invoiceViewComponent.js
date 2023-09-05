@@ -1,16 +1,16 @@
 "use client"
 import Link from 'next/link';
 import { useState, useContext } from 'react';
-import { NavExpandedState } from '../../../../context/NavState.context';
-import styles from '../../../../styles/viewInvoice.module.scss';
-import ViewInvoiceTable from '../../../../components/viewInvoiceTable.js';
-import FaPen from '../../../../assets/icons/faPen.svg';
-import FaMail from '../../../../assets/icons/faEnvelopeGreen.svg';
-import FaShare from '../../../../assets/icons/faShare.svg';
-import FaBell from '../../../../assets/icons/faBell.svg';
-import FaPDF from '../../../../assets/icons/faPDF.svg';
-import FaRupee from '../../../../assets/icons/faRupee.svg';
-import FaDropDown from '../../../../assets/icons/faDropDownGreen.svg';
+import { NavExpandedState } from '@/context/NavState.context';
+import styles from '@/styles/viewInvoice.module.scss';
+import ViewInvoiceTable from '@/components/viewInvoiceTable.js';
+import FaPen from '@/assets/icons/faPen.svg';
+import FaMail from '@/assets/icons/faEnvelopeGreen.svg';
+import FaShare from '@/assets/icons/faShare.svg';
+import FaBell from '@/assets/icons/faBell.svg';
+import FaPDF from '@/assets/icons/faPDF.svg';
+import FaRupee from '@/assets/icons/faRupee.svg';
+import FaDropDown from '@/assets/icons/faDropDownGreen.svg';
 
 export default function InvoiceViewComponent() {
     const { navExpandedState } = useContext(NavExpandedState);

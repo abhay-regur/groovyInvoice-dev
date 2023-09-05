@@ -1,4 +1,4 @@
-import styles from '../styles/login.module.scss';
+import styles from '@/styles/login.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export default function Footer(props) {
     return (

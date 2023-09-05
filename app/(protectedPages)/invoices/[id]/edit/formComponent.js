@@ -1,19 +1,19 @@
 "use client"
 import { useState, useContext } from 'react';
 import DatePicker from "react-datepicker";
-import InvoiceTable from '../../../../../components/invoiceTable';
-import RadioButton from '../../../../../components/radioButton';
-import styles from "../../../../../styles/newInvoice.module.scss";
-import FaCalendar from "../../../../../assets/icons/faCalendar.svg";
-import { NavExpandedState } from '../../../../../context/NavState.context';
+import InvoiceTable from '@/components/invoiceTable';
+import RadioButton from '@/components/radioButton';
+import styles from "@/styles/newInvoice.module.scss";
+import FaCalendar from "@/assets/icons/faCalendar.svg";
+import { NavExpandedState } from '@/context/NavState.context';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import FaCirclePlus from '../../../../../assets/icons/faCirclePlus.svg';
-import FaSave from '../../../../../assets/icons/faSave.svg';
-import FaPaperPen from '../../../../../assets/icons/faPaperPen.svg';
-import FaCircleXmark from '../../../../../assets/icons/faCircleXmark.svg';
-import FaCircleQuestion from '../../../../../assets/icons/faCircleQuestion.svg';
-import FaGear from '../../../../../assets/icons/faGear.svg';
+import FaCirclePlus from '@/assets/icons/faCirclePlus.svg';
+import FaSave from '@/assets/icons/faSave.svg';
+import FaPaperPen from '@/assets/icons/faPaperPen.svg';
+import FaCircleXmark from '@/assets/icons/faCircleXmark.svg';
+import FaCircleQuestion from '@/assets/icons/faCircleQuestion.svg';
+import FaGear from '@/assets/icons/faGear.svg';
 import "react-datepicker/dist/react-datepicker.css";
 
 export default function InvoiceEditForm() {

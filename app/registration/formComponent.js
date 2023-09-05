@@ -1,14 +1,14 @@
 "use client"
 import { useState } from "react";
 import Link from 'next/link';
-import styles from '../../styles/registration.module.scss';
+import styles from '@/styles/registration.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faMobileRetro, faBriefcase } from '@fortawesome/free-solid-svg-icons';
-import { signUp } from '../../services/users/registration.service';
-import { disableSubmitButton, enableSubmitButton } from '../../utils/form.utils';
+import { signUp } from '@/services/users/registration.service';
+import { disableSubmitButton, enableSubmitButton } from '@/utils/form.utils';
 import { useRouter } from 'next/navigation';
-import ErrorList from '../../components/errorList';
-import PasswordInputField from '../../components/passwordInputField';
+import ErrorList from '@/components/errorList';
+import PasswordInputField from '@/components/passwordInputField';
 
 export default function RegistrationForm() {
     const { push } = useRouter();

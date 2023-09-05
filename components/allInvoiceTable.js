@@ -1,13 +1,13 @@
-import styles from '../styles/invoice.module.scss';
+import styles from '@/styles/invoice.module.scss';
 import React from 'react';
 import Image from 'next/image';
 import { useTable, usePagination } from 'react-table';
 import defaultProfile from '../public/images/profile_Default.png';
-import TablePagination from "../components/tablePagination.js";
-import CheckBox from '../components/checkBox.js';
-import FaEye from '../assets/icons/faEye.svg';
-import FaExclamationCircle from '../assets/icons/faExclamationCircle.svg';
-import FaPen from '../assets/icons/faPen.svg';
+import TablePagination from "@/components/tablePagination.js";
+import CheckBox from '@/components/checkBox.js';
+import FaEye from '@/assets/icons/faEye.svg';
+import FaExclamationCircle from '@/assets/icons/faExclamationCircle.svg';
+import FaPen from '@/assets/icons/faPen.svg';
 import Link from 'next/link';
 
 const AllInvoiceTable = ({ ItemsData }) => {

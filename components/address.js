@@ -1,5 +1,5 @@
-import styles from "../styles/newCustomer.module.scss";
-import FaCopy from "../assets/icons/faCopy.svg";
+import styles from "@/styles/newCustomer.module.scss";
+import FaCopy from "@/assets/icons/faCopy.svg";
 import SelectComponent from './selectComponent';
 import ErrorList from './errorList';
 import { useState } from 'react';

@@ -1,9 +1,9 @@
 "use client"
 import { useState, useContext } from 'react';
-import styles from '../../../styles/configuration.module.scss';
-import PaymentTerms from "../../../components/paymentTerms.js";
-import CompanyComponent from '../../../components/companyComponent';
-import { NavExpandedState } from '../../../context/NavState.context';
+import styles from '@/styles/configuration.module.scss';
+import PaymentTerms from "@/components/paymentTerms.js";
+import CompanyComponent from '@/components/companyComponent';
+import { NavExpandedState } from '@/context/NavState.context';
 
 export default function ConfigComponent() {
     const { navExpandedState } = useContext(NavExpandedState);

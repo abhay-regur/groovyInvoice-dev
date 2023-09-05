@@ -1,4 +1,4 @@
-import styles from '../../styles/loading.module.scss';
+import styles from '@/styles/loading.module.scss';
 export default function Loading() {
     return (
         <main className={styles.companyMainLoadingWrapper}>

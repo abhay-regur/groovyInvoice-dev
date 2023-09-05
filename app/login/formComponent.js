@@ -3,13 +3,13 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faKey } from '@fortawesome/free-solid-svg-icons';
-import FaGoogle from '../../assets/icons/faGoogle.svg';
-import FaFacebook from '../../assets/icons/faFacebook.svg';
-import styles from '../../styles/login.module.scss';
-import { disableSubmitButton, enableSubmitButton } from '../../utils/form.utils'
-import ErrorList from '../../components/errorList';
-import { login } from '../../services/users/auth.service';
-import PasswordInputField from '../../components/passwordInputField';
+import FaGoogle from '@/assets/icons/faGoogle.svg';
+import FaFacebook from '@/assets/icons/faFacebook.svg';
+import styles from '@/styles/login.module.scss';
+import { disableSubmitButton, enableSubmitButton } from '@/utils/form.utils'
+import ErrorList from '@/components/errorList';
+import { login } from '@/services/users/auth.service';
+import PasswordInputField from '@/components/passwordInputField';
 import { useRouter } from 'next/navigation';
 
 

@@ -1,5 +1,5 @@
 "use client"
-import styles from '../styles/customers.module.scss';
+import styles from '@/styles/customers.module.scss';
 import { useRef, useState } from 'react';
 import 'datatables.net-dt/js/dataTables.dataTables';
 import React from 'react';
@@ -10,7 +10,7 @@ import 'datatables.net-dt/css/jquery.dataTables.min.css';
 import defaultProfile from '../public/images/profile_Default.png';
 import PageLoader from '../app/(protectedPages)/customers/pageLoader.js';
 import ServerSideDataTables from './serverSideDataTable';
-import FaPen from '../assets/icons/faPen.svg';
+import FaPen from '@/assets/icons/faPen.svg';
 
 const AllCustomerTable = () => {
     const [isPageLoading, setIsPageLoading] = useState(true);

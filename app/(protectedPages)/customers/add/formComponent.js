@@ -1,22 +1,22 @@
 "use client"
 import { useState, useContext, useEffect } from 'react';
-import Address from '../../../../components/address';
-import OtherDetails from '../../../../components/otherDetails';
-import RadioButton from '../../../../components/radioButton';
-import FaSkype from '../../../../assets/icons/faSkype.svg';
-import FaSave from '../../../../assets/icons/faSave.svg';
-import FaCircleXmark from '../../../../assets/icons/faCircleXmark.svg';
-import FaExclamationCircle from '../../../../assets/icons/faExclamationCircle.svg';
-import styles from "../../../../styles/newCustomer.module.scss";
-import ErrorList from '../../../../components/errorList';
+import Address from '@/components/address';
+import OtherDetails from '@/components/otherDetails';
+import RadioButton from '@/components/radioButton';
+import FaSkype from '@/assets/icons/faSkype.svg';
+import FaSave from '@/assets/icons/faSave.svg';
+import FaCircleXmark from '@/assets/icons/faCircleXmark.svg';
+import FaExclamationCircle from '@/assets/icons/faExclamationCircle.svg';
+import styles from "@/styles/newCustomer.module.scss";
+import ErrorList from '@/components/errorList';
 import Loading from "../loading.js";
-import { ToastMsgContext } from '../../../../context/ToastMsg.context';
-import { getPaymentTerms, createPaymentTerms } from "../../../../services/paymentTerms.service";
-import { getCountries, getStates } from '../../../../services/countriesState.service';
-import { createCustomer, getGSTTreatment, getPlaceOfSupply, getCurrencies } from "../../../../services/customer.service";
-import { getTaxExemptionReason, createTaxExemptionReason } from '../../../../services/taxExempted.service.js';
+import { ToastMsgContext } from '@/context/ToastMsg.context';
+import { getPaymentTerms, createPaymentTerms } from "@/services/paymentTerms.service";
+import { getCountries, getStates } from '@/services/countriesState.service';
+import { createCustomer, getGSTTreatment, getPlaceOfSupply, getCurrencies } from "@/services/customer.service";
+import { getTaxExemptionReason, createTaxExemptionReason } from '@/services/taxExempted.service.js';
 import { GST_TREATMENT } from '../../../../constants';
-import { NavExpandedState } from '../../../../context/NavState.context';
+import { NavExpandedState } from '@/context/NavState.context';
 import { useRouter } from 'next/navigation';
 
 
@@ -239,7 +239,7 @@ export default function CustomerAddForm() {
             var data = result.data;
             var temp = [];
             data.forEach((elem) => {
-                temp.push({ Id: elem.id, name: elem.name })
+                temp.push({ Id: elem.name.toLowerCase(), name: elem.name })
             })
             setPlaceOfSupply(temp);
         } catch (error) {

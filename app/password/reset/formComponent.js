@@ -2,11 +2,11 @@
 import { React, useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import ErrorList from '../../../components/errorList';
-import { verifyPasswordResetToken, resetPassword } from '../../../services/password/password.services'
-import { disableSubmitButton, enableSubmitButton } from '../../../utils/form.utils';
-import styles from '../../../styles/resetPassword.module.scss';
-import PasswordInputField from '../../../components/passwordInputField';
+import ErrorList from '@/components/errorList';
+import { verifyPasswordResetToken, resetPassword } from '@/services/password/password.services'
+import { disableSubmitButton, enableSubmitButton } from '@/utils/form.utils';
+import styles from '@/styles/resetPassword.module.scss';
+import PasswordInputField from '@/components/passwordInputField';
 
 
 export default function ResetPasswordForm() {
