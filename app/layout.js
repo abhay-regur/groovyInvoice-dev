@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import { Suspense } from "react";
 import Loading from "./loading";
-import '../styles/globals.scss';
+import '@/styles/globals.scss';
 import { Mulish } from "@next/font/google";
 
 const mulish = Mulish({

@@ -1,5 +1,5 @@
 import { createContext, useState, useMemo } from "react";
-import { isLoggedIn } from '../services/auth.service';
+import { isLoggedIn } from '@/services/auth.service';
 
 export const UserLoggedState = createContext({
     userLoggedState: false,

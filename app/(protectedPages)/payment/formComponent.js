@@ -1,16 +1,15 @@
 "use client"
 import { useState, useContext } from 'react';
-import Head from 'next/head';
 import DatePicker from "react-datepicker";
-import styles from '../../../styles/payment.module.scss';
-import FaProfile from '../../../assets/icons/faProfile.svg';
-import FaGear from '../../../assets/icons/faGear.svg';
-import FaUpload from '../../../assets/icons/faUpload.svg';
-import FaCalendar from '../../../assets/icons/faCalendar.svg';
-import RadioButton from '../../../components/radioButton.js';
-import Checkbox from '../../../components/checkBox';
+import styles from '@/styles/payment.module.scss';
+import FaProfile from '@/assets/icons/faProfile.svg';
+import FaGear from '@/assets/icons/faGear.svg';
+import FaUpload from '@/assets/icons/faUpload.svg';
+import FaCalendar from '@/assets/icons/faCalendar.svg';
+import RadioButton from '@/components/radioButton.js';
+import Checkbox from '@/components/checkBox';
 import "react-datepicker/dist/react-datepicker.css";
-import { NavExpandedState } from '../../../context/NavState.context';
+import { NavExpandedState } from '@/context/NavState.context';
 
 export default function PaymentFormComponent() {
     const { navExpandedState } = useContext(NavExpandedState);

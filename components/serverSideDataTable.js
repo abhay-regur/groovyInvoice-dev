@@ -5,10 +5,10 @@ import $ from 'jquery';
 import 'datatables.net-dt/js/dataTables.dataTables'
 import 'datatables.net-responsive-dt';
 import 'datatables.net-dt/css/jquery.dataTables.css'
-import '../styles/table.style.scss';
-import { getTokenKey } from '../services/auth.service'
-import { getToken } from '../services/token.service'
-import UserHTTPService from '../services/user-http.service';
+import '@/styles/table.style.scss';
+import { getTokenKey } from '@/services/auth.service'
+import { getToken } from '@/services/token.service'
+import UserHTTPService from '@/services/user-http.service';
 
 
 var delayInMilliseconds = 500;

@@ -1,16 +1,16 @@
 "use client"
 import { useEffect, useState } from 'react';
 import { useContext } from 'react';
-import FaSave from '../../../../assets/icons/faSave.svg';
-import { generatePassword } from '../../../../utils/genratePassword.utils';
-import FaCircleXmark from '../../../../assets/icons/faCircleXmark.svg';
-import styles from "../../../../styles/userForm.module.scss";
-import FaGear from '../../../../assets/icons/faGear.svg';
-import { NavExpandedState } from '../../../../context/NavState.context';
-import ErrorList from '../../../../components/errorList';
-import { ToastMsgContext } from '../../../../context/ToastMsg.context';
-import { createUser } from '../../../../services/user.service';
-import { disableSubmitButton, enableSubmitButton } from '../../../../utils/form.utils'
+import FaSave from '@/assets/icons/faSave.svg';
+import { generatePassword } from '@/utils/genratePassword.utils';
+import FaCircleXmark from '@/assets/icons/faCircleXmark.svg';
+import styles from "@/styles/userForm.module.scss";
+import FaGear from '@/assets/icons/faGear.svg';
+import { NavExpandedState } from '@/context/NavState.context';
+import ErrorList from '@/components/errorList';
+import { ToastMsgContext } from '@/context/ToastMsg.context';
+import { createUser } from '@/services/user.service';
+import { disableSubmitButton, enableSubmitButton } from '@/utils/form.utils'
 import { useRouter } from 'next/navigation';
 import Loading from './loading';
 

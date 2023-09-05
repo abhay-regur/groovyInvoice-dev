@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, useContext } from 'react'
-import { logout } from '../../../services/auth.service'
-import { UserLoggedState } from '../../../context/UserState.context';
+import { logout } from '@/services/auth.service'
+import { UserLoggedState } from '@/context/UserState.context';
 import { redirect } from 'next/navigation';
 import Loading from '../../loading';
 

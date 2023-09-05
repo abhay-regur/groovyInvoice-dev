@@ -2,9 +2,9 @@
 import { useContext } from "react";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, LineElement, Title, Tooltip, Legend, Filler, elements, } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import styles from '../../../styles/home.module.scss';
-import FaQuestionCircleOutline from '../../../assets/icons/faQuestionCircleOutline.svg';
-import { NavExpandedState } from '../../../context/NavState.context';
+import styles from '@/styles/home.module.scss';
+import FaQuestionCircleOutline from '@/assets/icons/faQuestionCircleOutline.svg';
+import { NavExpandedState } from '@/context/NavState.context';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, LineElement, Title, Tooltip, Legend);
 

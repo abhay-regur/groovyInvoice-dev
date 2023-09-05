@@ -2,21 +2,21 @@
 import { useState, useContext, Fragment, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import style from '../styles/navbar.module.scss';
+import style from '@/styles/navbar.module.scss';
 import NavItem from "./navitem";
 import NavList from "./navlist";
-import FaChartLine from '../assets/icons/faChartLine.svg';
-import FaEnvelope from '../assets/icons/faEnvelope.svg';
-import FaClockRotateLeft from '../assets/icons/faClockRotateLeft.svg';
-import FaFileLines from '../assets/icons/faFileLines.svg';
-import FaUserGroup from '../assets/icons/faUserGroup.svg';
-import FaGear from '../assets/icons/faGear.svg';
-import FaLogout from '../assets/icons/faLogout.svg';
-import FaUsers from '../assets/icons/faUsers.svg';
+import FaChartLine from '@/assets/icons/faChartLine.svg';
+import FaEnvelope from '@/assets/icons/faEnvelope.svg';
+import FaClockRotateLeft from '@/assets/icons/faClockRotateLeft.svg';
+import FaFileLines from '@/assets/icons/faFileLines.svg';
+import FaUserGroup from '@/assets/icons/faUserGroup.svg';
+import FaGear from '@/assets/icons/faGear.svg';
+import FaLogout from '@/assets/icons/faLogout.svg';
+import FaUsers from '@/assets/icons/faUsers.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import FaScrewAndWrench from '../assets/icons/faScrewAndWrench.svg';
+import FaScrewAndWrench from '@/assets/icons/faScrewAndWrench.svg';
 import { faSearch, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { NavExpandedState } from '../context/NavState.context';
+import { NavExpandedState } from '@/context/NavState.context';
 
 const MENU_LIST = [{ key: 100, text: "Invoices", href: "/invoices", icon: <FaFileLines /> }, { key: 101, text: "Customers", href: "/customers", icon: <FaUserGroup /> }, { key: 102, text: "Reports", href: "/reports", icon: <FaChartLine /> }, { key: 103, text: "Settings", href: "/settings", icon: <FaGear />, subMenu: [{ key: 1031, text: "Users", href: "/users", icon: <FaUsers /> }, { key: 1032, text: "Config", href: "/configuration", icon: <FaScrewAndWrench /> }] }];
 export default function Navbar() {

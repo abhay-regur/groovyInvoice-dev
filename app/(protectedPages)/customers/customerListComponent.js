@@ -1,13 +1,13 @@
 "use client"
 import { useContext } from "react";
 import Link from 'next/link';
-import FaCirclePlus from "../../../assets/icons/faCirclePlus.svg";
-import styles from '../../../styles/customers.module.scss';
-import { NavExpandedState } from '../../../context/NavState.context';
+import FaCirclePlus from "@/assets/icons/faCirclePlus.svg";
+import styles from '@/styles/customers.module.scss';
+import { NavExpandedState } from '@/context/NavState.context';
 import dynamic from 'next/dynamic';
 
 const AllCustomerTable = dynamic(
-    () => import("../../../components/allCustomerTable"),
+    () => import("@/components/allCustomerTable"),
     { ssr: false }
 );
 

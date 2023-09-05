@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../../../../styles/success.module.scss';
+import styles from '@/styles/success.module.scss';
 import Link from 'next/link';
 
 export default function Success(props) {

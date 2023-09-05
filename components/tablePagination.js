@@ -1,5 +1,5 @@
-import FaArrowLeft from '../assets/icons/faArrowLeft.svg';
-import FaArrowRight from '../assets/icons/faArrowRight.svg';
+import FaArrowLeft from '@/assets/icons/faArrowLeft.svg';
+import FaArrowRight from '@/assets/icons/faArrowRight.svg';
 
 const TablePagination = ({ pageIndex, pageOptions, previousPage, canPreviousPage, nextPage, canNextPage, gotoPage, styles }) => {
 

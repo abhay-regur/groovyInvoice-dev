@@ -1,10 +1,10 @@
 "use client"
 import React, { useEffect, useState } from 'react'
-import styles from '../../../styles/registration.module.scss';
+import styles from '@/styles/registration.module.scss';
 import Head from 'next/head';
-import ErrorList from '../../../components/errorList';
+import ErrorList from '@/components/errorList';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { verifyEmail } from '../../../services/users/registration.service';
+import { verifyEmail } from '@/services/users/registration.service';
 
 
 export default function VerifyEmail() {

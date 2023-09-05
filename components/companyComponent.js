@@ -1,9 +1,9 @@
 import { useContext, useState, useEffect } from 'react';
-import { getCountries, getStates } from '../services/countriesState.service';
-import FaSave from '../assets/icons/faSave.svg';
-import FaCircleXmark from '../assets/icons/faCircleXmark.svg';
+import { getCountries, getStates } from '@/services/countriesState.service';
+import FaSave from '@/assets/icons/faSave.svg';
+import FaCircleXmark from '@/assets/icons/faCircleXmark.svg';
 import SelectComponent from './selectComponent';
-import styles from '../styles/configuration.module.scss';
+import styles from '@/styles/configuration.module.scss';
 export default function CompanyComponent() {
     const [countries, setCountries] = useState()
     const [states, setStates] = useState();

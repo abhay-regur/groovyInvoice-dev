@@ -1,4 +1,4 @@
-import styles from '../styles/viewInvoice.module.scss';
+import styles from '@/styles/viewInvoice.module.scss';
 import React from 'react';
 import { useTable, usePagination } from 'react-table';
 

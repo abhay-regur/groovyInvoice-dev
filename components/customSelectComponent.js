@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import style from "../styles/customSelect.module.scss";
-import FaCirclePlus from '../assets/icons/faCirclePlus.svg';
-import FaAngleDown from '../assets/icons/faAngleDown.svg';
+import style from "@/styles/customSelect.module.scss";
+import FaCirclePlus from '@/assets/icons/faCirclePlus.svg';
+import FaAngleDown from '@/assets/icons/faAngleDown.svg';
 const CustomSelectComponent = ({ data, onOptionValueChange, optionValue, name, isDisabled, onOptionInnerButtonClick, defaultText, isInnerButtonRequired }) => {
     const genrateSelectInputValue = (optionValue) => {
         let value = defaultText;

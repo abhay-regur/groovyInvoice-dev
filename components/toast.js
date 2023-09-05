@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
-import { ToastMsgContext } from '../context/ToastMsg.context';
-import FaXmark from '../assets/icons/faXmark.svg'
-import styles from '../styles/toast.module.scss';
+import { ToastMsgContext } from '@/context/ToastMsg.context';
+import FaXmark from '@/assets/icons/faXmark.svg'
+import styles from '@/styles/toast.module.scss';
 
 
 export default function Toast() {

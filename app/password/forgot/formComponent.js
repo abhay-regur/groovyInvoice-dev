@@ -3,11 +3,11 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { forgotPassword } from '../../../services/password/password.services.js';
-import ErrorList from '../../../components/errorList';
-import styles from '../../../styles/forgotPassword.module.scss';
+import { forgotPassword } from '@/services/password/password.services.js';
+import ErrorList from '@/components/errorList';
+import styles from '@/styles/forgotPassword.module.scss';
 import { useRouter } from 'next/navigation';
-import { disableSubmitButton, enableSubmitButton } from '../../../utils/form.utils';
+import { disableSubmitButton, enableSubmitButton } from '@/utils/form.utils';
 
 
 

@@ -1,13 +1,13 @@
 "use client"
 import 'bootstrap/dist/css/bootstrap.css';
-import Navbar from '../../components/navbar';
-import Footer from '../../components/footer';
+import Navbar from '@/components/navbar';
+import Footer from '@/components/footer';
 import { redirect } from 'next/navigation';
-import NavExpandedState from '../../context/NavState.context';
-import { isLoggedIn } from '../../services/auth.service';
+import NavExpandedState from '@/context/NavState.context';
+import { isLoggedIn } from '@/services/auth.service';
 import { Suspense, useContext, useEffect } from 'react';
 import Loading from './loading';
-import { UserLoggedState } from '../../context/UserState.context';
+import { UserLoggedState } from '@/context/UserState.context';
 import { useRouter } from 'next/navigation';
 
 function AuthLayout({ children }) {

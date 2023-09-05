@@ -1,5 +1,5 @@
 import Link from "next/link";
-import style from '../styles/navbar.module.scss';
+import style from '@/styles/navbar.module.scss';
 import { useState } from "react";
 
 

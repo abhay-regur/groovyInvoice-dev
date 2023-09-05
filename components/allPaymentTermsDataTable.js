@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import 'datatables.net-dt/js/dataTables.dataTables';
-import styles from '../styles/configuration.module.scss';
+import styles from '@/styles/configuration.module.scss';
 import ReactDOM from "react-dom/client";
 import ServerSideDataTables from './serverSideDataTable';
 

@@ -1,4 +1,4 @@
-import styles from '../../../styles/loading.module.scss';
+import styles from '@/styles/loading.module.scss';
 import defaultProfile from '../../../public/images/default_profile_icon.png';
 import Image from 'next/image';
 export default function Loading(props) {
