@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import style from "../styles/customSelect.module.scss";
 import FaCirclePlus from '../assets/icons/faCirclePlus.svg';
 import FaAngleDown from '../assets/icons/faAngleDown.svg';
-import FaAngleUp from '../assets/icons/faAngleUp.svg';
 const CustomSelectComponent = ({ data, onOptionValueChange, optionValue, name, isDisabled, onOptionInnerButtonClick, defaultText, isInnerButtonRequired, inputClass }) => {
     const genrateSelectInputValue = (optionValue) => {
         let value = defaultText;
@@ -13,6 +12,10 @@ const CustomSelectComponent = ({ data, onOptionValueChange, optionValue, name, i
         });
         return value;
     }
+
+    useEffect(() => {
+        require("bootstrap");
+    }, [])
 
     const handleSelect = (e) => {
         const customSelectInput = document.getElementById(`${name}_customSelect`);

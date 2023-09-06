@@ -49,11 +49,11 @@ const AllInvoiceTable = ({ ItemsData }) => {
     const draw_action = (rowData) => {
         return (
             <span className={`${styles.companyInvoiceTableActionWrapper}`}>
-                <Link href={'/invoices/1010/edit'}>
+                <Link href={`/invoices/update/${rowData.id}`}>
                     <span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span>
                 </Link>
                 <span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span>
-                <Link href={'/invoices/1010/'}><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></Link>
+                <Link href={`/invoices/${rowData.id}`}><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></Link>
             </span>
         );
     }
@@ -125,7 +125,9 @@ const AllInvoiceTable = ({ ItemsData }) => {
                     >
                         <thead>
                             <tr>
-                                <th scope="col" className="ps-3" data-priority="1" >Invoice Number</th>
+                                <th scope="col" className="ps-3" data-priority="1" >
+                                    <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='Invoice Number' /></span>
+                                </th>
                                 <th scope="col" className="ps-3" data-priority="1" >Customer Name</th>
                                 <th scope="col" className="ps-3 hide" data-priority="99" >Last name</th>
                                 <th scope="col" className="ps-3" data-priority="99">Due Date</th>

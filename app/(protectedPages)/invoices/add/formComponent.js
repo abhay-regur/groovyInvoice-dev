@@ -70,7 +70,6 @@ export default function InvoiceAddForm() {
     }
 
     useEffect(() => {
-        require("bootstrap");
         getPaymentTermsDetails()
         getCustomersList()
     }, [])
@@ -109,61 +108,6 @@ export default function InvoiceAddForm() {
             ItemTaxType: "tcs",
             ItemTotalAmount: "48"
         },
-        {
-            ItemDetails: {
-                ItemName: "Test 1",
-                ItemType: "Goods",
-                ItemHSN: "070310101",
-            },
-            ItemQuantity: "2",
-            ItemRate: "20",
-            ItemTaxType: "tcs",
-            ItemTotalAmount: "48"
-        },
-        {
-            ItemDetails: {
-                ItemName: "Test 1",
-                ItemType: "Goods",
-                ItemHSN: "070310101",
-            },
-            ItemQuantity: "2",
-            ItemRate: "20",
-            ItemTaxType: "tcs",
-            ItemTotalAmount: "48"
-        },
-        {
-            ItemDetails: {
-                ItemName: "Test 1",
-                ItemType: "Goods",
-                ItemHSN: "070310101",
-            },
-            ItemQuantity: "2",
-            ItemRate: "20",
-            ItemTaxType: "tcs",
-            ItemTotalAmount: "48"
-        },
-        {
-            ItemDetails: {
-                ItemName: "Test 1",
-                ItemType: "Goods",
-                ItemHSN: "070310101",
-            },
-            ItemQuantity: "2",
-            ItemRate: "20",
-            ItemTaxType: "tcs",
-            ItemTotalAmount: "48"
-        },
-        {
-            ItemDetails: {
-                ItemName: "Test 1",
-                ItemType: "Goods",
-                ItemHSN: "070310101",
-            },
-            ItemQuantity: "2",
-            ItemRate: "20",
-            ItemTaxType: "tcs",
-            ItemTotalAmount: "48"
-        }
     ]
 
     const [startDate, setStartDate] = useState(new Date());

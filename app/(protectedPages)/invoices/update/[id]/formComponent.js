@@ -1,5 +1,6 @@
 "use client"
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
+import { useParams } from 'next/navigation';
 import DatePicker from "react-datepicker";
 import InvoiceTable from '../../../../../components/invoiceTable';
 import RadioButton from '../../../../../components/radioButton';
@@ -15,10 +16,53 @@ import FaCircleXmark from '../../../../../assets/icons/faCircleXmark.svg';
 import FaCircleQuestion from '../../../../../assets/icons/faCircleQuestion.svg';
 import FaGear from '../../../../../assets/icons/faGear.svg';
 import "react-datepicker/dist/react-datepicker.css";
+import CustomSelectComponent from '../../../../../components/customSelectComponent';
+import { getInvoice } from '../../../../../services/invoice.service';
+import { getCustomers } from '../../../../../services/customer.service';
+import { getPaymentTerms } from '../../../../../services/paymentTerms.service';
 
 export default function InvoiceEditForm() {
+    const { id } = useParams();
     const [taxValueSelected, settaxValueSelected] = useState();
     const { navExpandedState } = useContext(NavExpandedState);
+    const [paymentTerms, setPaymentTerms] = useState([]);
+    const [customers, setCustomer] = useState([]);
+    const [data, setData] = useState({
+        customerId: 0,
+        invoiceNo: '',
+        orderNumber: '',
+        invoiceDate: new Date(),
+        termsId: 0,
+        dueDate: new Date(),
+        customerNote: '',
+        subTotalAmount: 0,
+        shippingCharges: 0,
+        totalTaxAmount: 0,
+        totalAmount: 0,
+        adjustmentText: '',
+        adjustmentAmount: 0,
+        invoiceItems: []
+    })
+
+    const getData = async () => {
+        const result = await getInvoice(id);
+        setData({...result.data, invoiceDate: new Date(result.data.invoiceDate), dueDate: new Date(result.data.dueDate)})
+    }
+
+    const getPaymentTermsDetails = async () => {
+        const result = await getPaymentTerms();
+        let temp = [];
+        result.data.forEach((elem) => {
+            temp.push({ Id: elem.id, name: elem.label })
+        });
+        setPaymentTerms(temp);
+    }
+
+    useEffect(() => {
+        getData();
+        getCustomersList();
+        getPaymentTermsDetails()
+    }, [])
     const ItemsData = [
         {
             ItemDetails: {
@@ -42,117 +86,34 @@ export default function InvoiceEditForm() {
             ItemTaxType: "tcs",
             ItemTotalAmount: "48"
         },
-        {
-            ItemDetails: {
-                ItemName: "Test 1",
-                ItemType: "Goods",
-                ItemHSN: "070310101",
-            },
-            ItemQuantity: "2",
-            ItemRate: "20",
-            ItemTaxType: "tcs",
-            ItemTotalAmount: "48"
-        },
-        {
-            ItemDetails: {
-                ItemName: "Test 1",
-                ItemType: "Goods",
-                ItemHSN: "070310101",
-            },
-            ItemQuantity: "2",
-            ItemRate: "20",
-            ItemTaxType: "tcs",
-            ItemTotalAmount: "48"
-        },
-        {
-            ItemDetails: {
-                ItemName: "Test 1",
-                ItemType: "Goods",
-                ItemHSN: "070310101",
-            },
-            ItemQuantity: "2",
-            ItemRate: "20",
-            ItemTaxType: "tcs",
-            ItemTotalAmount: "48"
-        },
-        {
-            ItemDetails: {
-                ItemName: "Test 1",
-                ItemType: "Goods",
-                ItemHSN: "070310101",
-            },
-            ItemQuantity: "2",
-            ItemRate: "20",
-            ItemTaxType: "tcs",
-            ItemTotalAmount: "48"
-        },
-        {
-            ItemDetails: {
-                ItemName: "Test 1",
-                ItemType: "Goods",
-                ItemHSN: "070310101",
-            },
-            ItemQuantity: "2",
-            ItemRate: "20",
-            ItemTaxType: "tcs",
-            ItemTotalAmount: "48"
-        },
-        {
-            ItemDetails: {
-                ItemName: "Test 1",
-                ItemType: "Goods",
-                ItemHSN: "070310101",
-            },
-            ItemQuantity: "2",
-            ItemRate: "20",
-            ItemTaxType: "tcs",
-            ItemTotalAmount: "48"
-        },
-        {
-            ItemDetails: {
-                ItemName: "Test 1",
-                ItemType: "Goods",
-                ItemHSN: "070310101",
-            },
-            ItemQuantity: "2",
-            ItemRate: "20",
-            ItemTaxType: "tcs",
-            ItemTotalAmount: "48"
-        },
-        {
-            ItemDetails: {
-                ItemName: "Test 1",
-                ItemType: "Goods",
-                ItemHSN: "070310101",
-            },
-            ItemQuantity: "2",
-            ItemRate: "20",
-            ItemTaxType: "tcs",
-            ItemTotalAmount: "48"
-        },
-        {
-            ItemDetails: {
-                ItemName: "Test 1",
-                ItemType: "Goods",
-                ItemHSN: "070310101",
-            },
-            ItemQuantity: "2",
-            ItemRate: "20",
-            ItemTaxType: "tcs",
-            ItemTotalAmount: "48"
-        },
-        {
-            ItemDetails: {
-                ItemName: "Test 1",
-                ItemType: "Goods",
-                ItemHSN: "070310101",
-            },
-            ItemQuantity: "2",
-            ItemRate: "20",
-            ItemTaxType: "tcs",
-            ItemTotalAmount: "48"
-        }
     ]
+
+    const handleInput = ({ target }) => {
+        let temp_data = data;
+        let name = target.name || target.getAttribute('name');
+        if (name != '') {
+            if (name == 'openingBalance' || name == 'gstTreatment' || name == 'customersId') {
+                if (!Number.isNaN((target.value)) && target.value != '') {
+                    temp_data[name] = parseInt(target.value)
+                } else {
+                    temp_data[name] = 0;
+                }
+            } else {
+                temp_data[name] = target.value;
+            }
+            let temp = Object.assign({}, temp_data)
+            setData(temp)
+        }
+    }
+
+    const getCustomersList = async () => {
+        const result = await getCustomers();
+        let temp = [];
+        result.data.forEach((elem) => {
+            temp.push({ Id: elem.id, name: elem.firstName + " " + elem.lastName })
+        });
+        setCustomer(temp);
+    }
 
     const [startDate, setStartDate] = useState(new Date());
 
@@ -180,22 +141,24 @@ export default function InvoiceEditForm() {
                                     <div className="col-md-12 col-lg-4">
                                         <div className={`${styles.companyNameWrapper} form-group`}>
                                             <label htmlFor="companyName" className="form-label control-label">Company Name<span className={`${styles.green}`}>*</span></label>
-                                            <div className="d-flex">
-                                                <select className={`${styles.companyNameSelect} form-select`}>
-                                                    <option defaultValue>Select Customer</option>
-                                                    <option value="1">One</option>
-                                                    <option value="2">Two</option>
-                                                    <option value="3">Three</option>
-                                                </select>
-                                                <button className={`${styles.companySearchbutton} btn`}><i><FontAwesomeIcon icon={faSearch} /></i></button>
-                                            </div>
+                                            <CustomSelectComponent
+                                                className={`${styles.companInvoicePaymentTermsSelect}`}
+                                                inputClass="form-control"
+                                                data={customers}
+                                                onOptionValueChange={handleInput}
+                                                optionValue={data.customerId}
+                                                name={'customersId'}
+                                                isDisabled={false}
+                                                defaultText={'Select An Option'}
+                                                isInnerButtonRequired={false}
+                                            />
                                         </div>
                                     </div>
                                     <div className="col-12 col-sm-6 col-md-6 col-lg-4">
                                         <div className={`${styles.companyInvoiceNumberWrapper} mb-3`}>
                                             <label htmlFor="companyInvoiceNumber" className="form-label">Invoice#<span className={`${styles.green}`}>*</span></label>
                                             <div className={`d-flex align-content-center`}>
-                                                <input type="text" className="form-control" id="companyInvoiceNumber" aria-describedby="emailHelp" />
+                                                <input type="text" className="form-control" id="companyInvoiceNumber" aria-describedby="emailHelp" name="invoiceNo" value={data.invoiceNo} onChange={handleInput}/>
                                                 <i><FaGear /></i>
                                             </div>
                                         </div>
@@ -204,7 +167,7 @@ export default function InvoiceEditForm() {
                                         <div className={`${styles.companyOrderNumberWrapper} mb-3`}>
                                             <label htmlFor="companyOrderNumber" className="form-label">Order Number</label>
                                             <div className={`d-flex align-content-center`}>
-                                                <input type="text" className="form-control" id="companyOrderNumber" aria-describedby="emailHelp" />
+                                                <input type="text" className="form-control" id="companyOrderNumber" aria-describedby="emailHelp"  name="orderNumber" value={data.orderNumber} onChange={handleInput}/>
                                             </div>
                                         </div>
                                     </div>
@@ -214,7 +177,7 @@ export default function InvoiceEditForm() {
                                         <div className={`${styles.companyInvoiceDateWrapper} mb-3`}>
                                             <label htmlFor="companyInvoiceDate" className="form-label">Invoice Date<span className={`${styles.green}`}>*</span></label>
                                             <div className={`d-flex align-content-center`}>
-                                                <DatePicker className="form-control" id="companyInvoiceDate" aria-describedby="emailHelp" selected={startDate} onChange={(date) => setStartDate(date)} />
+                                                <DatePicker selected={data.invoiceDate} className="form-control" id="companyInvoiceDate" aria-describedby="emailHelp" onChange={(date) => setStartDate(date)} />
                                                 {/* <input type="text" /> */}
                                                 <i><FaCalendar /></i>
                                             </div>
@@ -223,16 +186,24 @@ export default function InvoiceEditForm() {
                                     <div className="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2">
                                         <div className={`${styles.companyInvoicetermsWrapper} mb-3`}>
                                             <label htmlFor="companyInvoiceterms" className="form-label">Terms</label>
-                                            <div className={`d-flex align-content-center`}>
-                                                <input type="text" className="form-control" id="companyInvoiceterms" aria-describedby="emailHelp" />
-                                            </div>
+                                            <CustomSelectComponent
+                                                className={`${styles.companInvoicePaymentTermsSelect}`}
+                                                inputClass="form-control"
+                                                data={paymentTerms}
+                                                onOptionValueChange={handleInput}
+                                                optionValue={data.termsId}
+                                                name={'termsId'}
+                                                isDisabled={false}
+                                                defaultText={'Select An Option'}
+                                                isInnerButtonRequired={false}
+                                            />
                                         </div>
                                     </div>
                                     <div className="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2">
                                         <div className={`${styles.companyInvoiceDueDateWrapper} mb-3`}>
                                             <label htmlFor="companyInvoiceDueDate" className="form-label">Due Date</label>
                                             <div className={`d-flex align-content-center`}>
-                                                <DatePicker type="text" className="form-control" id="companyInvoiceDueDate" aria-describedby="emailHelp" selected={startDate} onChange={(date) => setStartDate(date)} />
+                                                <DatePicker type="text" className="form-control" id="companyInvoiceDueDate" aria-describedby="emailHelp" selected={data.dueDate} onChange={(date) => setStartDate(date)} />
                                                 <i><FaCalendar /></i>
                                             </div>
                                         </div>
@@ -267,7 +238,7 @@ export default function InvoiceEditForm() {
                                     <div className="col-md-12 col-lg-5 col-xl-7">
                                         <div className="mb-3">
                                             <label htmlFor="companyInvoiceCustomerNotes" className="form-label">Customer Notes</label>
-                                            <textarea className="form-control" placeholder='Enter note' id="companyInvoiceCustomerNotes"></textarea>
+                                            <textarea className="form-control" placeholder='Enter note' id="companyInvoiceCustomerNotes">{data.customerNote}</textarea>
                                         </div>
                                     </div>
                                     <div className="col-md-12 col-lg-7 col-xl-5">
@@ -275,7 +246,7 @@ export default function InvoiceEditForm() {
                                             <div className="card-body">
                                                 <div className="d-flex justify-content-between">
                                                     <div className={`${styles.subtotalLabel}`}>Sub Total</div>
-                                                    <div className={`${styles.subtotalresult}`}>Rs. 18.00</div>
+                                                    <div className={`${styles.subtotalresult}`}>Rs. {data.subTotalAmount}</div>
                                                 </div>
                                                 <div className={`${styles.companyInvoiceTaxOptionWrapper} d-flex align-content-center`}>
                                                     <span className={`${styles.companyInvoiceTaxOptionInputWrapper}`}>
@@ -304,7 +275,7 @@ export default function InvoiceEditForm() {
                                                         </span>
                                                     </span>
                                                     <span className={`${styles.totalCalculatedTax} d-flex`}>
-                                                        <span className='text-start text-lg-right text-xl-left'>- Rs. 0.00</span>
+                                                        <span className='text-start text-lg-right text-xl-left'>- Rs. {data.totalTaxAmount}</span>
                                                     </span>
                                                 </div>
                                                 <div className={`${styles.companyInvoiceAdjustmentWrapper} d-flex row`}>
@@ -321,7 +292,7 @@ export default function InvoiceEditForm() {
                                                     </div>
                                                     <div className="col-7 col-lg-3 order-2 order-lg-3">
                                                         <span className={`${styles.totalCalculatedAdjustment} d-flex justify-content-end`}>
-                                                            <span>- Rs. 0.00</span>
+                                                            <span>- Rs. {data.adjustmentAmount}</span>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -331,7 +302,7 @@ export default function InvoiceEditForm() {
                                                         <h5>Total</h5>
                                                     </div>
                                                     <div className="col-6 text-center text-sm-end">
-                                                        <h5>Rs. 18.00</h5>
+                                                        <h5>Rs. {data.totalAmount}</h5>
                                                     </div>
 
                                                 </div>
@@ -341,7 +312,7 @@ export default function InvoiceEditForm() {
                                     <div className="col-md-12 col-lg-8">
                                         <div className={`${styles.companyInvoiceTermsnConditionsWrapper}`}>
                                             <label htmlFor="companyInvoiceTerms&Conditions" className="form-label">Terms & Conditions</label>
-                                            <textarea className="form-control" placeholder='Enter the terms and conditions of your business to be displayed in your transaction' id="companyInvoiceTerms&Conditions" rows="7"></textarea>
+                                            <textarea className="form-control" placeholder='Enter the terms and conditions of your business to be displayed in your transaction' id="companyInvoiceTerms&Conditions" rows="7">{data.customerNote}</textarea>
                                         </div>
                                     </div>
                                     <div className="col-md-12 col-lg-12 col-xl-7 px-1">
