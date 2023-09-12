@@ -50,21 +50,20 @@ export default function RegistrationForm() {
         enableSubmitButton(e.target)
     }
 
+    const addLoader = ({ target }) => {
+        if (!target.classList.contains('is-loading')) {
+            if (target.classList.contains('is-valid')) target.classList.remove('is-valid');
+            if (target.classList.contains('is-invalid')) target.classList.remove('is-invalid');
+            target.classList.add('is-loading')
+        }
+    }
+
     const handleValidation = async ({ target }) => {
-        if (target.classList.contains('is-valid')) target.classList.remove('is-valid');
-        if (target.classList.contains('is-invalid')) target.classList.remove('is-invalid');
+        if (target.classList.contains('is-loading')) target.classList.remove('is-loading')
 
-        // try {
-        //     var result = await validateInput(target.name, target.value)
-        //     if (result.status == 200) {
-        //         target.classList.add('is-valid');
-        //     }
-        // } catch (e) {
-        //     handleValidationError(target.name, e.response.data.message);
-        //     target.classList.add('is-invalid');
-        // }
-
-        if (target.value != '') {
+        if (target.name == 'email' && target.value == '') {
+            handleValidationError(target.name, 'Email is Required');
+        } else {
             try {
                 var result = await validateInput(target.name, target.value)
                 if (result.status == 200) {
@@ -74,9 +73,6 @@ export default function RegistrationForm() {
                 handleValidationError(target.name, e.response.data.message);
                 target.classList.add('is-invalid');
             }
-        } else {
-            handleValidationError(target.name, 'Cannot be empty');
-            target.classList.add('is-invalid');
         }
     }
 
@@ -110,7 +106,7 @@ export default function RegistrationForm() {
                                             <label htmlFor="registrationCompanyName" className="form-label">Company Name</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <i><FontAwesomeIcon icon={faBriefcase} /></i>
-                                                <input type="text" className="form-control" placeholder='Company Name' id="registrationCompanyName" name="companyName" value={data.companyName} onChange={handleInput} onBlur={handleValidation} aria-describedby="companyNameHelp" required />
+                                                <input type="text" className="form-control" placeholder='Company Name' id="registrationCompanyName" name="companyName" value={data.companyName} onChange={handleInput} onKeyDown={addLoader} onBlur={handleValidation} aria-describedby="companyNameHelp" required />
                                                 <div htmlFor="registrationCompanyName" className="ms-3 invalid-feedback">
                                                     {validateErrorMessage.companyName}
                                                 </div>
@@ -120,7 +116,7 @@ export default function RegistrationForm() {
                                             <label htmlFor="registrationEmail" className="form-label">Email address</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <i><FontAwesomeIcon icon={faEnvelope} /></i>
-                                                <input type="email" className="form-control" placeholder="Email address" id="registrationEmail" name="email" value={data.email} onChange={handleInput} onBlur={handleValidation} aria-describedby="emailHelp" required />
+                                                <input type="email" className="form-control" placeholder="Email address" id="registrationEmail" name="email" value={data.email} onChange={handleInput} onKeyDown={addLoader} onBlur={handleValidation} aria-describedby="emailHelp" required />
                                                 <div htmlFor="registrationEmail" className="ms-3 invalid-feedback">
                                                     {validateErrorMessage.email}
                                                 </div>
@@ -130,7 +126,7 @@ export default function RegistrationForm() {
                                             <label htmlFor="registrationContactNumber" className="form-label">Contact Number</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <i><FontAwesomeIcon icon={faMobileRetro} /></i>
-                                                <input type="text" className="form-control" placeholder="Contact Number" id="registrationContactNumber" name="cellNumber" value={data.cellNumber} onChange={handleInput} onBlur={handleValidation} aria-describedby="contactNumberHelp" required />
+                                                <input type="text" className="form-control" placeholder="Contact Number" id="registrationContactNumber" name="cellNumber" value={data.cellNumber} onChange={handleInput} onKeyDown={addLoader} onBlur={handleValidation} aria-describedby="contactNumberHelp" required />
                                                 <div htmlFor="registrationContactNumber" className="ms-3 invalid-feedback">
                                                     {validateErrorMessage.cellNumber}
                                                 </div>

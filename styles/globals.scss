@@ -1,5 +1,6 @@
 @use 'node_modules/react-datepicker/src/stylesheets/datepicker.scss';
 @use './utility/variables' as var;
+@use '../node_modules/bootstrap/scss/bootstrap.scss' as bvar;
 
 
 
@@ -38,7 +39,6 @@ body {
     &::-webkit-scrollbar-track {
       border-radius: 0 8px 8px 0;
       background-color: var.$primary-background;
-      // box-shadow: inset 0 0 6px var.$primary-color;
     }
 
     &::-webkit-scrollbar-thumb {
@@ -46,6 +46,9 @@ body {
       background-color: var.$tertiary-color;
       outline: 1px solid var.$tertiary-color;
     }
+
+
+
   }
 
   a {
@@ -56,9 +59,17 @@ body {
   input {
     border-radius: 6px;
 
+    &.is-loading {
+      background-color: #ffffff;
+      background: url(http://www.xiconeditor.com/image/icons/loading.gif) no-repeat right center;
+      background-size: 1.7rem;
+      background-position: right center;
+      background-repeat: no-repeat;
+    }
+
+
     &.is-valid {
       border: 1px solid var.$tertiary-color !important;
-      background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'><path fill='#{var.$tertiary-color}' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/></svg>");
 
       &:hover {
         box-shadow: 0 0 0 0.25rem rgba(var.$tertiary-color, 0.25) !important;
@@ -69,13 +80,13 @@ body {
       &:-webkit-autofill:focus,
       &:-webkit-autofill:active {
         box-shadow: 0 0 0 1000px white inset;
+        background-image: bvar.$form-feedback-invalid-color;
         -webkit-text-fill-color: var.$primary-color;
       }
     }
 
     &.is-invalid {
       border: 1px solid var.$red-color !important;
-      background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='#{var.$red-color}'><circle cx='6' cy='6' r='4.5'/><path stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/><circle cx='6' cy='8.2' r='.6' fill='#{var.$red-color}' stroke='none'/></svg>");
 
       &:hover {
         box-shadow: 0 0 0 0.25rem rgba(var.$red-color, 0.25) !important;
@@ -86,6 +97,7 @@ body {
       &:-webkit-autofill:focus,
       &:-webkit-autofill:active {
         box-shadow: 0 0 0 1000px white inset;
+        background-image: bvar.$form-feedback-icon-invalid !important;
         -webkit-text-fill-color: var.$primary-color;
       }
     }
