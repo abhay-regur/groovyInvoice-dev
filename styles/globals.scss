@@ -79,9 +79,8 @@ body {
       &:-webkit-autofill:hover,
       &:-webkit-autofill:focus,
       &:-webkit-autofill:active {
-        box-shadow: 0 0 0 1000px white inset;
-        background-image: bvar.$form-feedback-invalid-color;
         -webkit-text-fill-color: var.$primary-color;
+        transition: background-color 9999s ease-in-out 0s;
       }
     }
 
@@ -96,9 +95,8 @@ body {
       &:-webkit-autofill:hover,
       &:-webkit-autofill:focus,
       &:-webkit-autofill:active {
-        box-shadow: 0 0 0 1000px white inset;
-        background-image: bvar.$form-feedback-icon-invalid !important;
         -webkit-text-fill-color: var.$primary-color;
+        transition: background-color 9999s ease-in-out 0s;
       }
     }
 
@@ -115,8 +113,8 @@ body {
     &:-webkit-autofill:hover,
     &:-webkit-autofill:focus,
     &:-webkit-autofill:active {
-      box-shadow: 0 0 0 1000px white inset;
       -webkit-text-fill-color: var.$primary-color;
+      transition: background-color 9999s ease-in-out 0s;
     }
   }
 

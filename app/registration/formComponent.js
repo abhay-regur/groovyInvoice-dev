@@ -62,7 +62,8 @@ export default function RegistrationForm() {
         if (target.classList.contains('is-loading')) target.classList.remove('is-loading')
 
         if (target.name == 'email' && target.value == '') {
-            handleValidationError(target.name, 'Email is Required');
+            target.classList.add('is-invalid');
+            handleValidationError(target.name, 'Email should not be empty');
         } else {
             try {
                 var result = await validateInput(target.name, target.value)
@@ -106,7 +107,7 @@ export default function RegistrationForm() {
                                             <label htmlFor="registrationCompanyName" className="form-label">Company Name</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <i><FontAwesomeIcon icon={faBriefcase} /></i>
-                                                <input type="text" className="form-control" placeholder='Company Name' id="registrationCompanyName" name="companyName" value={data.companyName} onChange={handleInput} onKeyDown={addLoader} onBlur={handleValidation} aria-describedby="companyNameHelp" required />
+                                                <input type="text" className="form-control" placeholder='Company Name' id="registrationCompanyName" name="companyName" value={data.companyName} onChange={handleInput} onKeyDown={addLoader} onBlur={handleValidation} aria-describedby="companyNameHelp" autocomplete="off" required />
                                                 <div htmlFor="registrationCompanyName" className="ms-3 invalid-feedback">
                                                     {validateErrorMessage.companyName}
                                                 </div>
@@ -116,7 +117,7 @@ export default function RegistrationForm() {
                                             <label htmlFor="registrationEmail" className="form-label">Email address</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <i><FontAwesomeIcon icon={faEnvelope} /></i>
-                                                <input type="email" className="form-control" placeholder="Email address" id="registrationEmail" name="email" value={data.email} onChange={handleInput} onKeyDown={addLoader} onBlur={handleValidation} aria-describedby="emailHelp" required />
+                                                <input type="email" className="form-control" placeholder="Email address" id="registrationEmail" name="email" value={data.email} onChange={handleInput} onKeyDown={addLoader} onBlur={handleValidation} aria-describedby="emailHelp" autocomplete="off" required />
                                                 <div htmlFor="registrationEmail" className="ms-3 invalid-feedback">
                                                     {validateErrorMessage.email}
                                                 </div>
@@ -126,7 +127,7 @@ export default function RegistrationForm() {
                                             <label htmlFor="registrationContactNumber" className="form-label">Contact Number</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <i><FontAwesomeIcon icon={faMobileRetro} /></i>
-                                                <input type="text" className="form-control" placeholder="Contact Number" id="registrationContactNumber" name="cellNumber" value={data.cellNumber} onChange={handleInput} onKeyDown={addLoader} onBlur={handleValidation} aria-describedby="contactNumberHelp" required />
+                                                <input type="text" className="form-control" placeholder="Contact Number" id="registrationContactNumber" name="cellNumber" value={data.cellNumber} onChange={handleInput} onKeyDown={addLoader} onBlur={handleValidation} aria-describedby="contactNumberHelp" autocomplete="off" required />
                                                 <div htmlFor="registrationContactNumber" className="ms-3 invalid-feedback">
                                                     {validateErrorMessage.cellNumber}
                                                 </div>
