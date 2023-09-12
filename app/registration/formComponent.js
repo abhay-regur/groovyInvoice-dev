@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from 'next/link';
 import styles from '@/styles/registration.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -50,14 +50,6 @@ export default function RegistrationForm() {
         enableSubmitButton(e.target)
     }
 
-    const addLoader = ({ target }) => {
-        if (!target.classList.contains('is-loading')) {
-            if (target.classList.contains('is-valid')) target.classList.remove('is-valid');
-            if (target.classList.contains('is-invalid')) target.classList.remove('is-invalid');
-            target.classList.add('is-loading')
-        }
-    }
-
     const handleValidation = async ({ target }) => {
         if (target.classList.contains('is-loading')) target.classList.remove('is-loading')
 
@@ -77,12 +69,19 @@ export default function RegistrationForm() {
         }
     }
 
+    const addLoader = ({ target }) => {
+        if (!target.classList.contains('is-loading')) {
+            if (target.classList.contains('is-valid')) target.classList.remove('is-valid');
+            if (target.classList.contains('is-invalid')) target.classList.remove('is-invalid');
+            target.classList.add('is-loading')
+        }
+    }
+
     const handleValidationError = (name, msg) => {
         validateErrorMessage[name] = msg;
         let temp = Object.assign({}, validateErrorMessage)
         setvalidateErrorMessage(temp);
     }
-
 
     return (
         <div className={`${styles.loginContainer} container-fluid`}>
@@ -107,7 +106,7 @@ export default function RegistrationForm() {
                                             <label htmlFor="registrationCompanyName" className="form-label">Company Name</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <i><FontAwesomeIcon icon={faBriefcase} /></i>
-                                                <input type="text" className="form-control" placeholder='Company Name' id="registrationCompanyName" name="companyName" value={data.companyName} onChange={handleInput} onKeyDown={addLoader} onBlur={handleValidation} aria-describedby="companyNameHelp" autocomplete="off" required />
+                                                <input type="text" className="form-control" placeholder='Company Name' id="registrationCompanyName" name="companyName" value={data.companyName} onChange={handleInput} onKeyDown={addLoader} onBlur={handleValidation} aria-describedby="companyNameHelp" autoComplete="off" required />
                                                 <div htmlFor="registrationCompanyName" className="ms-3 invalid-feedback">
                                                     {validateErrorMessage.companyName}
                                                 </div>
@@ -117,7 +116,7 @@ export default function RegistrationForm() {
                                             <label htmlFor="registrationEmail" className="form-label">Email address</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <i><FontAwesomeIcon icon={faEnvelope} /></i>
-                                                <input type="email" className="form-control" placeholder="Email address" id="registrationEmail" name="email" value={data.email} onChange={handleInput} onKeyDown={addLoader} onBlur={handleValidation} aria-describedby="emailHelp" autocomplete="off" required />
+                                                <input type="email" className="form-control" placeholder="Email address" id="registrationEmail" name="email" value={data.email} onChange={handleInput} onKeyDown={addLoader} onBlur={handleValidation} aria-describedby="emailHelp" autoComplete="off" required />
                                                 <div htmlFor="registrationEmail" className="ms-3 invalid-feedback">
                                                     {validateErrorMessage.email}
                                                 </div>
@@ -127,7 +126,7 @@ export default function RegistrationForm() {
                                             <label htmlFor="registrationContactNumber" className="form-label">Contact Number</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <i><FontAwesomeIcon icon={faMobileRetro} /></i>
-                                                <input type="text" className="form-control" placeholder="Contact Number" id="registrationContactNumber" name="cellNumber" value={data.cellNumber} onChange={handleInput} onKeyDown={addLoader} onBlur={handleValidation} aria-describedby="contactNumberHelp" autocomplete="off" required />
+                                                <input type="text" className="form-control" placeholder="Contact Number" id="registrationContactNumber" name="cellNumber" value={data.cellNumber} onChange={handleInput} onKeyDown={addLoader} onBlur={handleValidation} aria-describedby="contactNumberHelp" autoComplete="off" required />
                                                 <div htmlFor="registrationContactNumber" className="ms-3 invalid-feedback">
                                                     {validateErrorMessage.cellNumber}
                                                 </div>
