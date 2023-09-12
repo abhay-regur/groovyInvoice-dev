@@ -1,6 +1,12 @@
 @use 'node_modules/react-datepicker/src/stylesheets/datepicker.scss';
 @use './utility/variables' as var;
-@use '../node_modules/bootstrap/scss/bootstrap.scss' as bvar;
+// @use '../node_modules/bootstrap/scss/bootstrap.scss' as bvar;
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/variables-dark";
+@import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/root";
 
 
 
@@ -61,7 +67,7 @@ body {
 
     &.is-loading {
       background-color: #ffffff;
-      background: url(http://www.xiconeditor.com/image/icons/loading.gif) no-repeat right center;
+      background: url(../public/images/loading.gif) no-repeat right center;
       background-size: 1.7rem;
       background-position: right center;
       background-repeat: no-repeat;
