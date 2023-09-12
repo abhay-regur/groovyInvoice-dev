@@ -171,7 +171,7 @@
                             height: 22px;
                             border: 1.5px solid var.$primary-color;
                             border-radius: 100%;
-                            background: white;
+                            background: var.$white;
                         }
 
                         &:checked+span:after,
@@ -330,7 +330,7 @@
                             width: 0;
 
                             &~span {
-                                background-color: white;
+                                background-color: var.$white;
                                 border: 1px solid var.$checkbox-backgound;
                                 border-radius: 3px;
                             }
@@ -350,7 +350,7 @@
                             left: 0;
                             height: 20px;
                             width: 20px;
-                            background-color: white;
+                            background-color: var.$white;
 
                             &::after {
                                 content: "";
@@ -360,7 +360,7 @@
                                 top: 1px;
                                 width: 7px;
                                 height: 13px;
-                                border: solid white;
+                                border: solid var.$white;
                                 border-radius: 1px;
                                 border-width: 0 3px 3px 0;
                                 -webkit-transform: rotate(45deg);
@@ -534,7 +534,7 @@
                             height: 22px;
                             border: 1.5px solid var.$primary-color;
                             border-radius: 100%;
-                            background: white;
+                            background: var.$white;
                         }
 
                         &:checked+span:after,
@@ -701,7 +701,7 @@
                             width: 0;
 
                             &~span {
-                                background-color: white;
+                                background-color: var.$white;
                                 border: 1px solid var.$checkbox-backgound;
                                 border-radius: 3px;
                             }
@@ -721,7 +721,7 @@
                             left: 0;
                             height: 20px;
                             width: 20px;
-                            background-color: white;
+                            background-color: var.$white;
 
                             &::after {
                                 content: "";
@@ -731,7 +731,7 @@
                                 top: 1px;
                                 width: 7px;
                                 height: 13px;
-                                border: solid white;
+                                border: solid var.$white;
                                 border-radius: 1px;
                                 border-width: 0 3px 3px 0;
                                 -webkit-transform: rotate(45deg);

@@ -134,7 +134,7 @@
           text-align: right;
           background: var.$tertiary-color;
           border-radius: 8px;
-          color: white;
+          color: var.$white;
 
           .companyInvoiceChartTotalSaleWrapper {
             margin-bottom: 25px;
@@ -297,7 +297,7 @@
           background: var.$tertiary-color;
           border-radius: 8px;
           margin-top: 30px;
-          color: white;
+          color: var.$white;
 
           .companyInvoiceChartTotalSaleWrapper {
             margin-bottom: 18px;

@@ -39,7 +39,7 @@
                 tr {
                     th {
                         background: var.$primary-color;
-                        color: white;
+                        color: var.$white;
                         min-width: 144px;
                         font-weight: 600;
                         font-size: 14px;
@@ -133,7 +133,7 @@
             border-radius: 6px;
             font-weight: 600;
             font-size: 14px;
-            color: white;
+            color: var.$white;
 
             &.companyInvoiceSaveSendButton,
             &.companyInvoiceCancelButton {

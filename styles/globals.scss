@@ -1,12 +1,6 @@
 @use 'node_modules/react-datepicker/src/stylesheets/datepicker.scss';
 @use './utility/variables' as var;
 // @use '../node_modules/bootstrap/scss/bootstrap.scss' as bvar;
-@import "../node_modules/bootstrap/scss/functions";
-@import "../node_modules/bootstrap/scss/variables";
-@import "../node_modules/bootstrap/scss/variables-dark";
-@import "../node_modules/bootstrap/scss/maps";
-@import "../node_modules/bootstrap/scss/mixins";
-@import "../node_modules/bootstrap/scss/root";
 
 
 
@@ -66,7 +60,7 @@ body {
     border-radius: 6px;
 
     &.is-loading {
-      background-color: #ffffff;
+      background-color: var.$white;
       background: url(../public/images/loading.gif) no-repeat right center;
       background-size: 1.7rem;
       background-position: right center;
@@ -112,7 +106,7 @@ body {
 
     &:disabled {
       color: var.$secondary-color !important;
-      background-color: #e9ecef !important;
+      background-color: var.$input-background-color-disabled !important;
     }
 
     &:-webkit-autofill,
@@ -136,7 +130,7 @@ body {
 
     &:disabled {
       color: var.$secondary-color !important;
-      background-color: #e9ecef !important;
+      background-color: var.$input-background-color-disabled !important;
     }
 
   }
@@ -144,7 +138,7 @@ body {
   textarea {
     &:disabled {
       color: var.$secondary-color !important;
-      background-color: #e9ecef !important;
+      background-color: var.$input-background-color-disabled !important;
     }
   }
 
@@ -169,42 +163,42 @@ body {
 
 button {
   &.green {
-    color: white;
+    color: var.$white;
     background: var.$tertiary-color;
     border: 1px solid var.$tertiary-color;
 
     svg {
       path {
-        fill: white;
+        fill: var.$white;
       }
     }
 
     &:hover {
       background: var.$tertiary-color-hover;
       border: 1px solid var.$tertiary-color-hover;
-      color: white;
+      color: var.$white;
     }
   }
 
   &.blue {
-    color: white;
+    color: var.$white;
     background: var.$primary-color !important;
     border: 1px solid var.$primary-color;
 
     svg {
       path {
-        fill: white;
+        fill: var.$white;
       }
     }
 
     &:hover {
       background: var.$primary-color-hover;
       border: 1px solid var.$primary-color-hover;
-      color: white;
+      color: var.$white;
 
       svg {
         path {
-          fill: white;
+          fill: var.$white;
         }
       }
     }
@@ -212,17 +206,17 @@ button {
     &:active {
       background: var.$primary-color-hover;
       border: 1px solid var.$primary-color-hover;
-      color: white;
+      color: var.$white;
     }
   }
 
   &.blueOutline {
     color: var.$primary-color !important;
-    background: white;
+    background: var.$white;
     border: 1px solid var.$primary-color;
 
     &:hover {
-      background: white;
+      background: var.$white;
       color: var.$primary-color-hover;
       border: 1px solid var.$primary-color-hover;
     }
@@ -236,13 +230,13 @@ button {
     margin-top: 8px;
 
     .react-datepicker__navigation-icon::before {
-      border-color: white;
+      border-color: var.$white;
     }
   }
 
   .react-datepicker__month-container {
-    background-color: white;
-    color: #969eac;
+    background-color: var.$white;
+    color: var.$react-datepicker-background;
     font-weight: 600;
     font-family: inherit;
 
@@ -251,12 +245,12 @@ button {
       border: 1px solid var.$primary-border-color;
 
       .react-datepicker__current-month {
-        color: white;
+        color: var.$white;
       }
 
       .react-datepicker__day-names {
         .react-datepicker__day-name {
-          color: white;
+          color: var.$white;
           font-family: inherit;
         }
       }
@@ -264,7 +258,7 @@ button {
 
     .react-datepicker__month {
       padding: 1rem 0;
-      color: white;
+      color: var.$white;
     }
 
     .react-datepicker__day {
@@ -273,7 +267,7 @@ button {
     }
 
     .react-datepicker__day--selected {
-      color: white;
+      color: var.$white;
       background-color: var.$primary-color;
     }
 
