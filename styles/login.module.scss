@@ -80,7 +80,7 @@
         padding: 39px 50px;
         margin: 0 auto;
 
-        background: #FFFFFF;
+        background: var.$white;
         border: 1px solid var.$border-color;
         border-radius: 10px;
         color: var.$secondary-color;
@@ -103,15 +103,15 @@
         }
 
         .loginErrorMessageWrapper {
-            border: 1px solid #ff8f8f;
+            border: 1px solid var.$error-message-border;
             border-radius: 10px;
-            background: #e5adadb6;
+            background: var.$error-message-background;
             padding: 10px;
 
             .loginErrorMessage {
                 font-size: 14px;
                 font-weight: 400;
-                color: #ff0000;
+                color: var.$error-message-text;
                 text-align: center;
             }
         }

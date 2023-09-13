@@ -205,12 +205,12 @@
                     border-radius: 6px;
                     font-weight: 600;
                     font-size: 14px;
-                    color: white;
+                    color: var.$white;
 
                     &.companyInvoiceSavenSendButton {
                         &:active {
-                            background: white;
-                            color: white !important;
+                            background: var.$white;
+                            color: var.$white !important;
 
                             span {
                                 color: var.$primary-color;
@@ -246,12 +246,12 @@
                             background: var.$primary-color;
 
                             span {
-                                color: white;
+                                color: var.$white;
                             }
 
                             svg {
                                 path {
-                                    fill: white;
+                                    fill: var.$white;
                                 }
                             }
                         }
@@ -455,13 +455,13 @@
                         border-radius: 6px;
                         font-weight: 600;
                         font-size: 14px;
-                        color: white;
+                        color: var.$white;
                         width: 100%;
 
                         &.companyInvoiceSavenSendButton {
                             &:active {
-                                background: white;
-                                color: white !important;
+                                background: var.$white;
+                                color: var.$white !important;
 
                                 span {
                                     color: var.$primary-color;
@@ -497,12 +497,12 @@
                                 background: var.$primary-color;
 
                                 span {
-                                    color: white;
+                                    color: var.$white;
                                 }
 
                                 svg {
                                     path {
-                                        fill: white;
+                                        fill: var.$white;
                                     }
                                 }
                             }
@@ -710,13 +710,13 @@
                         border-radius: 6px;
                         font-weight: 600;
                         font-size: 14px;
-                        color: white;
+                        color: var.$white;
                         width: 100%;
 
                         &.companyInvoiceSavenSendButton {
                             &:active {
-                                background: white;
-                                color: white !important;
+                                background: var.$white;
+                                color: var.$white !important;
 
                                 span {
                                     color: var.$primary-color;
@@ -752,12 +752,12 @@
                                 background: var.$primary-color;
 
                                 span {
-                                    color: white;
+                                    color: var.$white;
                                 }
 
                                 svg {
                                     path {
-                                        fill: white;
+                                        fill: var.$white;
                                     }
                                 }
                             }

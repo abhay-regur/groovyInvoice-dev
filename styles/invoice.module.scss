@@ -101,7 +101,7 @@
             margin-top: 50px;
             border: 1px solid var.$table-border;
             border-radius: 10px;
-            background: white;
+            background: var.$white;
 
             thead {
                 th {
@@ -139,7 +139,7 @@
                                 width: 0;
 
                                 &~span {
-                                    background-color: white;
+                                    background-color: var.$white;
                                     border: 1px solid var.$checkbox-backgound;
                                     border-radius: 3px;
                                 }
@@ -159,7 +159,7 @@
                                 left: 0;
                                 height: 20px;
                                 width: 20px;
-                                background-color: white;
+                                background-color: var.$white;
 
                                 &::after {
                                     content: "";
@@ -169,7 +169,7 @@
                                     top: 1px;
                                     width: 7px;
                                     height: 13px;
-                                    border: solid white;
+                                    border: solid var.$white;
                                     border-radius: 1px;
                                     border-width: 0 3px 3px 0;
                                     -webkit-transform: rotate(45deg);
@@ -188,7 +188,7 @@
             }
 
             tbody {
-                background: white;
+                background: var.$white;
 
                 tr {
                     &:last-child {
@@ -237,7 +237,7 @@
                                     width: 0;
 
                                     &~span {
-                                        background-color: white;
+                                        background-color: var.$white;
                                         border: 1px solid var.$checkbox-backgound;
                                         border-radius: 3px;
                                     }
@@ -257,7 +257,7 @@
                                     left: 0;
                                     height: 20px;
                                     width: 20px;
-                                    background-color: white;
+                                    background-color: var.$white;
 
                                     &::after {
                                         content: "";
@@ -267,7 +267,7 @@
                                         top: 1px;
                                         width: 7px;
                                         height: 13px;
-                                        border: solid white;
+                                        border: solid var.$white;
                                         border-radius: 1px;
                                         border-width: 0 3px 3px 0;
                                         -webkit-transform: rotate(45deg);
@@ -313,7 +313,7 @@
                             width: 53px;
                             border-radius: 50px;
                             background-color: var.$red-color;
-                            color: white;
+                            color: var.$white;
                             font-weight: 600;
                             font-size: 12px;
                             padding: 4px 14px;
@@ -412,7 +412,7 @@
                         font-weight: 600;
                         font-size: 16px;
                         background: var.$tertiary-color !important;
-                        color: white !important;
+                        color: var.$white !important;
                         border-radius: 50%;
                         text-align: center;
                         padding-top: 5px;
@@ -523,7 +523,7 @@
             margin-top: 50px;
             border: 1px solid var.$table-border;
             border-radius: 10px;
-            background: white;
+            background: var.$white;
             overflow-x: auto;
 
             thead {
@@ -564,7 +564,7 @@
                                 width: 0;
 
                                 &~span {
-                                    background-color: white;
+                                    background-color: var.$white;
                                     border: 1px solid var.$checkbox-backgound;
                                     border-radius: 3px;
                                 }
@@ -585,7 +585,7 @@
                                 left: 0;
                                 height: 20px;
                                 width: 20px;
-                                background-color: white;
+                                background-color: var.$white;
 
                                 &::after {
                                     content: "";
@@ -595,7 +595,7 @@
                                     top: 1px;
                                     width: 7px;
                                     height: 13px;
-                                    border: solid white;
+                                    border: solid var.$white;
                                     border-radius: 1px;
                                     border-width: 0 3px 3px 0;
                                     -webkit-transform: rotate(45deg);
@@ -614,7 +614,7 @@
             }
 
             tbody {
-                background: white;
+                background: var.$white;
                 min-width: 663px;
 
                 tr {
@@ -664,7 +664,7 @@
                                     width: 0;
 
                                     &~span {
-                                        background-color: white;
+                                        background-color: var.$white;
                                         border: 1px solid var.$checkbox-backgound;
                                         border-radius: 3px;
                                     }
@@ -684,7 +684,7 @@
                                     left: 0;
                                     height: 20px;
                                     width: 20px;
-                                    background-color: white;
+                                    background-color: var.$white;
 
                                     &::after {
                                         content: "";
@@ -694,7 +694,7 @@
                                         top: 1px;
                                         width: 7px;
                                         height: 13px;
-                                        border: solid white;
+                                        border: solid var.$white;
                                         border-radius: 1px;
                                         border-width: 0 3px 3px 0;
                                         -webkit-transform: rotate(45deg);
@@ -740,7 +740,7 @@
                             width: 53px;
                             border-radius: 50px;
                             background-color: var.$red-color;
-                            color: white;
+                            color: var.$white;
                             font-weight: 600;
                             font-size: 12px;
                             padding: 4px 14px;
@@ -841,7 +841,7 @@
                         font-weight: 600;
                         font-size: 16px;
                         background: var.$primary-color !important;
-                        color: white !important;
+                        color: var.$white !important;
                         border-radius: 50%;
                         text-align: center;
                         padding-top: 5px;
@@ -947,7 +947,7 @@
             border: 1px solid var.$table-border;
             border-bottom: none;
             border-radius: 10px;
-            background: white;
+            background: var.$white;
             overflow-x: auto;
 
             .companyInvoiceTable {
@@ -990,7 +990,7 @@
                                     width: 0;
 
                                     &~span {
-                                        background-color: white;
+                                        background-color: var.$white;
                                         border: 1px solid var.$checkbox-backgound;
                                         border-radius: 3px;
                                     }
@@ -1010,7 +1010,7 @@
                                     left: 0;
                                     height: 20px;
                                     width: 20px;
-                                    background-color: white;
+                                    background-color: var.$white;
 
                                     &::after {
                                         content: "";
@@ -1020,7 +1020,7 @@
                                         top: 1px;
                                         width: 7px;
                                         height: 13px;
-                                        border: solid white;
+                                        border: solid var.$white;
                                         border-radius: 1px;
                                         border-width: 0 3px 3px 0;
                                         -webkit-transform: rotate(45deg);
@@ -1039,7 +1039,7 @@
                 }
 
                 tbody {
-                    background: white;
+                    background: var.$white;
                     min-width: 663px;
 
                     tr {
@@ -1089,7 +1089,7 @@
                                         width: 0;
 
                                         &~span {
-                                            background-color: white;
+                                            background-color: var.$white;
                                             border: 1px solid var.$checkbox-backgound;
                                             border-radius: 3px;
                                         }
@@ -1109,7 +1109,7 @@
                                         left: 0;
                                         height: 20px;
                                         width: 20px;
-                                        background-color: white;
+                                        background-color: var.$white;
 
                                         &:after {
                                             content: "";
@@ -1119,7 +1119,7 @@
                                             top: 1px;
                                             width: 7px;
                                             height: 13px;
-                                            border: solid white;
+                                            border: solid var.$white;
                                             border-radius: 1px;
                                             border-width: 0 3px 3px 0;
                                             -webkit-transform: rotate(45deg);
@@ -1165,7 +1165,7 @@
                                 width: 53px;
                                 border-radius: 50px;
                                 background-color: var.$red-color;
-                                color: white;
+                                color: var.$white;
                                 font-weight: 600;
                                 font-size: 12px;
                                 padding: 4px 14px;
@@ -1271,7 +1271,7 @@
                             font-weight: 600;
                             font-size: 16px;
                             background: var.$primary-color !important;
-                            color: white !important;
+                            color: var.$white !important;
                             border-radius: 50%;
                             text-align: center;
                             padding-top: 5px;
