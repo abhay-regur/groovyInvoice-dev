@@ -67,7 +67,6 @@ body {
       background-repeat: no-repeat;
     }
 
-
     &.is-valid {
       border: 1px solid var.$tertiary-color !important;
 
@@ -107,6 +106,18 @@ body {
     &:disabled {
       color: var.$secondary-color !important;
       background-color: var.$input-background-color-disabled !important;
+    }
+
+    /* Removing arrows from type=number */
+    /* Firefox */
+    &[type=number] {
+      -moz-appearance: textfield;
+    }
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
     }
 
     &:-webkit-autofill,

@@ -55,11 +55,15 @@ export default function LoginForm() {
                 await login(data, rememberMe)
                 push('/')
             } catch (error) {
-                var status = error.response.status;
-                if (status == '404' || status == '401') {
-                    setErrors("Username or Password is incorrect please try again.")
+                if (typeof error.response !== 'undefined' && typeof error.response.status !== 'undefined' && typeof error.response.data.message !== 'undefined') {
+                    var status = error.response.status;
+                    if (status == '404' || status == '401') {
+                        setErrors("Username or Password is incorrect please try again.")
+                    } else {
+                        setErrors(error.response.data.message);
+                    }
                 } else {
-                    setErrors(error.response.data.message);
+                    setErrors('Internal Error occurred!');
                 }
             }
             enableSubmitButton(e.target)

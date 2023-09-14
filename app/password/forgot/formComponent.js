@@ -7,6 +7,7 @@ import { forgotPassword } from '@/services/password/password.services.js';
 import ErrorList from '@/components/errorList';
 import styles from '@/styles/forgotPassword.module.scss';
 import { useRouter } from 'next/navigation';
+import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils';
 import { disableSubmitButton, enableSubmitButton } from '@/utils/form.utils';
 
 
@@ -42,8 +43,7 @@ export default function ForgotPasswordForm() {
                 await forgotPassword(data)
                 push('/password/forgot/success');
             } catch (error) {
-                console.log(error);
-                setErrors(error.response.data.message)
+                setErrors(genrateErrorMessage(error, ''));
             }
             enableSubmitButton(e.target)
         }

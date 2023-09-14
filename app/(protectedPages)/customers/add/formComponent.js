@@ -17,6 +17,7 @@ import { createCustomer, getGSTTreatment, getPlaceOfSupply, getCurrencies } from
 import { getTaxExemptionReason, createTaxExemptionReason } from '@/services/taxExempted.service.js';
 import { GST_TREATMENT } from '../../../../constants';
 import { NavExpandedState } from '@/context/NavState.context';
+import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 import { useRouter } from 'next/navigation';
 
 
@@ -161,8 +162,8 @@ export default function CustomerAddForm() {
                     replace('/customers');
                 }, 2500);
             }
-        } catch (e) {
-            setErrors(e.response.data.message);
+        } catch (error) {
+            setErrors(genrateErrorMessage(error, 'Customer'))
             setIsLoading(false);
         }
         setIsLoading(false);
@@ -181,7 +182,7 @@ export default function CustomerAddForm() {
                 setStates(temp);
             }
         } catch (error) {
-            setErrors(error.response.data.message)
+            setErrors(genrateErrorMessage(error, 'Customer'));
         }
     }
 
@@ -197,7 +198,7 @@ export default function CustomerAddForm() {
             setCountries(temp);
             setIsLoading(false);
         } catch (error) {
-            setErrors(error.response.data.message)
+            setErrors(genrateErrorMessage(error, 'Customer'));
         }
     }
 
@@ -212,8 +213,8 @@ export default function CustomerAddForm() {
             })
             setGSTTreatment(temp);
         } catch (error) {
-            console.log(error);
-            setErrors(error.response.data.message)
+            setErrors(genrateErrorMessage(error, 'Customer'));
+
         }
     }
 
@@ -228,7 +229,7 @@ export default function CustomerAddForm() {
             })
             setCurrencies(temp);
         } catch (error) {
-            setErrors(error.response.data.message)
+            setErrors(genrateErrorMessage(error, 'Customer'));
         }
     }
 
@@ -243,7 +244,7 @@ export default function CustomerAddForm() {
             })
             setPlaceOfSupply(temp);
         } catch (error) {
-            setErrors(error.response.data.message)
+            setErrors(genrateErrorMessage(error, 'Customer'));
         }
     }
 
@@ -258,7 +259,7 @@ export default function CustomerAddForm() {
             });
             setPaymentTerms(temp);
         } catch (error) {
-            setErrors(error.response.data.message)
+            setErrors(genrateErrorMessage(error, 'Customer'));
         }
     }
 
@@ -273,7 +274,7 @@ export default function CustomerAddForm() {
             });
             setTaxExemptionReason(temp);
         } catch (error) {
-            setErrors(error.response.data.message)
+            setErrors(genrateErrorMessage(error, 'Customer'));
         }
     }
 

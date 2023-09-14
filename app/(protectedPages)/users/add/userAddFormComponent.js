@@ -12,6 +12,7 @@ import { ToastMsgContext } from '@/context/ToastMsg.context';
 import { createUser } from '@/services/user.service';
 import { disableSubmitButton, enableSubmitButton } from '@/utils/form.utils'
 import { useRouter } from 'next/navigation';
+import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils';
 import Loading from './loading';
 
 export default function UserUpdateFormComponent() {
@@ -79,8 +80,8 @@ export default function UserUpdateFormComponent() {
                 }]);
                 // window.location.pathname = '/users/';
             }
-        } catch (e) {
-            setErrors(e.response.data.message)
+        } catch (error) {
+            setErrors(genrateErrorMessage(error, ''));
         }
         enableSubmitButton(e.target)
     }
