@@ -102,21 +102,21 @@
 
 @keyframes display_element {
     from {
-        display: none;
+        opacity: 0;
     }
 
     to {
-        display: flex;
+        opacity: 1;
     }
 }
 
 @keyframes hide_element {
     from {
-        display: flex;
+        opacity: 1;
     }
 
     to {
-        display: none;
+        opacity: 0;
     }
 }
 
@@ -371,7 +371,10 @@
                 }
 
                 .nav_menuName {
+                    animation-name: hide_element;
                     display: none;
+                    animation-duration: 1s;
+                    animation-delay: 0s;
                 }
 
             }
@@ -402,6 +405,7 @@
             animation-delay: 1s;
 
             .navHeadingWrapper {
+
                 .mainHeading {
                     height: min-content;
                     font-weight: 700;
@@ -436,7 +440,7 @@
                     // -webkit-transition: all 0.2s;
                     // transition: all 0.2s;
                     animation-duration: 1s;
-                    animation-delay: 1s;
+                    animation-delay: 0s;
                 }
 
                 .profileActionWrapper {
@@ -446,7 +450,7 @@
                     // transition: all 0.2s;
                     margin-top: 16px;
                     animation-duration: 1s;
-                    animation-delay: 1s;
+                    animation-delay: 0s;
                 }
 
                 .nav_menu_arrow {
@@ -517,7 +521,10 @@
                 }
 
                 .nav_menuName {
+                    animation-name: display_element;
                     display: inline !important;
+                    animation-duration: 1s;
+                    animation-delay: 0s;
                 }
             }
 
