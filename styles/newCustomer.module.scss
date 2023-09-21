@@ -767,7 +767,7 @@
 }
 
 //Tablet Screen
-@media screen and (max-width: 992px) and (min-width: 426px) {
+@media screen and (max-width: 992px) and (min-width: 676px) {
     .main {
         margin: auto 60px;
         margin-left: 135px;
@@ -1506,7 +1506,7 @@
 }
 
 //Mobie Screen
-@media screen and (max-width: 426px) {
+@media screen and (max-width: 675px) {
     .main {
         margin: 89px 15px 92px 15px;
         transition: all 0.35s;

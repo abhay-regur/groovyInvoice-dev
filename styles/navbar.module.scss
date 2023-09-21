@@ -140,6 +140,26 @@
     }
 }
 
+@keyframes searchBar_open {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes searchBar_close {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0;
+    }
+}
+
 
 @media screen and (min-width: 676px) {
     .header {
@@ -184,11 +204,15 @@
                     transition: all 1s;
 
                     &::before {
+                        -webkit-transition: all 1s;
+                        transition: all 1s;
                         visibility: visible;
                         content: "G";
                     }
 
                     &::after {
+                        -webkit-transition: all 1s;
+                        transition: all 1s;
                         visibility: visible;
                         content: "I";
                         color: var.$tertiary-color;
@@ -290,6 +314,9 @@
                 margin-top: 17px;
                 padding: 31px 16px;
                 position: relative;
+                animation-name: searchBar_close;
+                animation-duration: 1s;
+                animation-delay: 0s;
 
                 input {
                     padding: 7px 17px;
@@ -417,11 +444,15 @@
                     transition: all 1s;
 
                     &::before {
+                        -webkit-transition: all 1s;
+                        transition: all 1s;
                         visibility: visible;
                         content: "Groovy ";
                     }
 
                     &::after {
+                        -webkit-transition: all 1s;
+                        transition: all 1s;
                         visibility: visible;
                         content: "Invoice";
                         color: var.$tertiary-color;
@@ -469,6 +500,12 @@
 
             .active {
                 border-radius: 10px 0px 0px 10px !important;
+            }
+
+            form {
+                animation-name: searchBar_open;
+                animation-duration: 0.3s;
+                animation-delay: 0s;
             }
 
             .nav_menu_list {
