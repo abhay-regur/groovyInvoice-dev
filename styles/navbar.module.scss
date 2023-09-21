@@ -102,21 +102,21 @@
 
 @keyframes display_element {
     from {
-        display: none;
+        opacity: 0;
     }
 
     to {
-        display: flex;
+        opacity: 1;
     }
 }
 
 @keyframes hide_element {
     from {
-        display: flex;
+        opacity: 1;
     }
 
     to {
-        display: none;
+        opacity: 0;
     }
 }
 
@@ -137,6 +137,26 @@
 
     to {
         height: 90px;
+    }
+}
+
+@keyframes searchBar_open {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes searchBar_close {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0;
     }
 }
 
@@ -184,11 +204,15 @@
                     transition: all 1s;
 
                     &::before {
+                        -webkit-transition: all 1s;
+                        transition: all 1s;
                         visibility: visible;
                         content: "G";
                     }
 
                     &::after {
+                        -webkit-transition: all 1s;
+                        transition: all 1s;
                         visibility: visible;
                         content: "I";
                         color: var.$tertiary-color;
@@ -290,6 +314,9 @@
                 margin-top: 17px;
                 padding: 31px 16px;
                 position: relative;
+                animation-name: searchBar_close;
+                animation-duration: 1s;
+                animation-delay: 0s;
 
                 input {
                     padding: 7px 17px;
@@ -371,7 +398,10 @@
                 }
 
                 .nav_menuName {
+                    animation-name: hide_element;
                     display: none;
+                    animation-duration: 1s;
+                    animation-delay: 0s;
                 }
 
             }
@@ -402,6 +432,7 @@
             animation-delay: 1s;
 
             .navHeadingWrapper {
+
                 .mainHeading {
                     height: min-content;
                     font-weight: 700;
@@ -413,11 +444,15 @@
                     transition: all 1s;
 
                     &::before {
+                        -webkit-transition: all 1s;
+                        transition: all 1s;
                         visibility: visible;
                         content: "Groovy ";
                     }
 
                     &::after {
+                        -webkit-transition: all 1s;
+                        transition: all 1s;
                         visibility: visible;
                         content: "Invoice";
                         color: var.$tertiary-color;
@@ -436,7 +471,7 @@
                     // -webkit-transition: all 0.2s;
                     // transition: all 0.2s;
                     animation-duration: 1s;
-                    animation-delay: 1s;
+                    animation-delay: 0s;
                 }
 
                 .profileActionWrapper {
@@ -446,7 +481,7 @@
                     // transition: all 0.2s;
                     margin-top: 16px;
                     animation-duration: 1s;
-                    animation-delay: 1s;
+                    animation-delay: 0s;
                 }
 
                 .nav_menu_arrow {
@@ -465,6 +500,12 @@
 
             .active {
                 border-radius: 10px 0px 0px 10px !important;
+            }
+
+            form {
+                animation-name: searchBar_open;
+                animation-duration: 0.3s;
+                animation-delay: 0s;
             }
 
             .nav_menu_list {
@@ -517,7 +558,10 @@
                 }
 
                 .nav_menuName {
+                    animation-name: display_element;
                     display: inline !important;
+                    animation-duration: 1s;
+                    animation-delay: 0s;
                 }
             }
 

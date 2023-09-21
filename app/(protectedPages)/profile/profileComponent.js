@@ -14,6 +14,7 @@ import FaCircleXmark from '@/assets/icons/faCircleXmark.svg';
 import PasswordInputField from '@/components/passwordInputField';
 import { disableSubmitButton, enableSubmitButton } from '@/utils/form.utils'
 import FaGear from '@/assets/icons/faGear.svg';
+import { genrateErrorMessage } from '@/utils/genratePassword.utils';
 import styles from '@/styles/profile.module.scss';
 import { NavExpandedState } from '@/context/NavState.context';
 
@@ -83,7 +84,7 @@ export default function ProfileComponent() {
                 description: '',
             }]);
         } catch (error) {
-            setErrors(error.response.data.message);
+            setErrors(genrateErrorMessage(error, ''));
         }
         enableSubmitButton(e.target);
     }
@@ -125,7 +126,7 @@ export default function ProfileComponent() {
             setUserNewPassword('');
             setUserConfirmPassword('');
         } catch (error) {
-            setPasswordErrors(error.response.data.message);
+            setErrors(genrateErrorMessage(error, ''));
         }
         enableSubmitButton(e.target);
     }

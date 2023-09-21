@@ -1,9 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
+import dynamic from 'next/dynamic';
 import { Suspense } from "react";
 import Loading from "./loading";
 import '@/styles/globals.scss';
 import { Mulish } from "@next/font/google";
+const Bootstrap = dynamic(
+    () => import('bootstrap/dist/js/bootstrap.bundle.min.js'),
+    { ssr: false }
+);
 
 const mulish = Mulish({
     weight: ['400', '700', '800'],

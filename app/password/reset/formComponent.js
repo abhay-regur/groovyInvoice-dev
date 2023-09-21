@@ -6,6 +6,7 @@ import ErrorList from '@/components/errorList';
 import { verifyPasswordResetToken, resetPassword } from '@/services/password/password.services'
 import { disableSubmitButton, enableSubmitButton } from '@/utils/form.utils';
 import styles from '@/styles/resetPassword.module.scss';
+import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils';
 import PasswordInputField from '@/components/passwordInputField';
 
 
@@ -49,7 +50,7 @@ export default function ResetPasswordForm() {
                 await resetPassword(token, data);
                 push('/password/reset/success');
             } catch (error) {
-                setErrors(error.response.data.message);
+                setErrors(genrateErrorMessage(error, ''));
             }
             enableSubmitButton(event.target)
         }

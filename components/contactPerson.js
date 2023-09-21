@@ -6,6 +6,7 @@ import FaCilcleEllipses from "@/assets/icons/faCircleEllipses.svg";
 import FaCircleXmark from '@/assets/icons/faCircleXmark.svg';
 import FaSave from '@/assets/icons/faSave.svg';
 import FaCircleCheck from '@/assets/icons/faCircleCheck.svg';
+import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils';
 import { useEffect, useState } from "react";
 
 export default function ContactPerson({ custId, setToastList, ErrorList, addContactPerson, listContactPersonDetails, updateContactPersonDetails, deleteContactPersonDetails }) {
@@ -73,11 +74,7 @@ export default function ContactPerson({ custId, setToastList, ErrorList, addCont
                 setItemData(data);
             }
         } catch (error) {
-            if (error.response.data != undefined) {
-                setErrors(error.response.data.message);
-            } else {
-                console.log(error);
-            }
+            setErrors(genrateErrorMessage(error, ''));
             setIsloading(false);
         }
         setIsloading(false);
@@ -119,11 +116,7 @@ export default function ContactPerson({ custId, setToastList, ErrorList, addCont
                 setIsloading(false);
             }
         } catch (error) {
-            if (error.response.data != undefined) {
-                setErrors(error.response.data.message);
-            } else {
-                console.log(error);
-            }
+            setErrors(genrateErrorMessage(error, ''));
             setIsloading(false);
         }
         setIsloading(false);
@@ -172,11 +165,7 @@ export default function ContactPerson({ custId, setToastList, ErrorList, addCont
                 getContactPersonList();
             }
         } catch (error) {
-            if (error.response.data != undefined) {
-                setErrors(error.response.data.message);
-            } else {
-                console.log(error);
-            }
+            setErrors(genrateErrorMessage(error, ''));
             setIsloading(false);
         }
         hideModal();
@@ -194,11 +183,7 @@ export default function ContactPerson({ custId, setToastList, ErrorList, addCont
                 getContactPersonList();
             }
         } catch (error) {
-            if (typeof error == object && error.response.data != undefined) {
-                setErrors(error.response.data.message);
-            } else {
-                console.log(error);
-            }
+            setErrors(genrateErrorMessage(error, ''));
         }
     }
 

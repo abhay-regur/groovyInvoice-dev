@@ -9,6 +9,7 @@ import { disableSubmitButton, enableSubmitButton } from '@/utils/form.utils';
 import { validateInput } from '@/services/common/general.service'
 import { useRouter } from 'next/navigation';
 import ErrorList from '@/components/errorList';
+import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils';
 import PasswordInputField from '@/components/passwordInputField';
 
 export default function RegistrationForm() {
@@ -43,9 +44,8 @@ export default function RegistrationForm() {
         try {
             await signUp(data)
             push('/registration/success');
-        } catch (e) {
-            console.log(e);
-            setErrors(e.response.data.message)
+        } catch (error) {
+            setErrors(genrateErrorMessage(error, ''));
         }
         enableSubmitButton(e.target)
     }
@@ -126,7 +126,7 @@ export default function RegistrationForm() {
                                             <label htmlFor="registrationContactNumber" className="form-label">Contact Number</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <i><FontAwesomeIcon icon={faMobileRetro} /></i>
-                                                <input type="text" className="form-control" placeholder="Contact Number" id="registrationContactNumber" name="cellNumber" value={data.cellNumber} onChange={handleInput} onKeyDown={addLoader} onBlur={handleValidation} aria-describedby="contactNumberHelp" autoComplete="off" required />
+                                                <input type="number" className="form-control" placeholder="Contact Number" id="registrationContactNumber" name="cellNumber" value={data.cellNumber} onChange={handleInput} onKeyDown={addLoader} onBlur={handleValidation} aria-describedby="contactNumberHelp" autoComplete="off" required />
                                                 <div htmlFor="registrationContactNumber" className="ms-3 invalid-feedback">
                                                     {validateErrorMessage.cellNumber}
                                                 </div>

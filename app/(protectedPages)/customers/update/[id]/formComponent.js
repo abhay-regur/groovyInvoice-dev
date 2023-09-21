@@ -19,6 +19,7 @@ import { getUserDetails, updateUserDetails, getGSTTreatment, getPlaceOfSupply, g
 import { getTaxExemptionReason, createTaxExemptionReason } from '@/services/taxExempted.service.js';
 import { GST_TREATMENT } from '../../../../../constants';
 import { NavExpandedState } from '@/context/NavState.context';
+import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 import { useRouter } from 'next/navigation';
 
 export default function CustomerEditForm() {
@@ -162,8 +163,8 @@ export default function CustomerEditForm() {
                     description: '',
                 }]);
             }
-        } catch (e) {
-            setErrors(e.response.data.message);
+        } catch (error) {
+            setErrors(genrateErrorMessage(error, ''));
             setIsLoading(false);
         }
         setIsLoading(false);
@@ -182,7 +183,7 @@ export default function CustomerEditForm() {
                 setStates(temp);
             }
         } catch (error) {
-            setErrors(error.response.data.message)
+            setErrors(genrateErrorMessage(error, ''));
         }
     }
 
@@ -198,7 +199,7 @@ export default function CustomerEditForm() {
             setCountries(temp);
             setIsLoading(false);
         } catch (error) {
-            setErrors(error.response.data.message)
+            setErrors(genrateErrorMessage(error, ''));
         }
     }
 
@@ -213,7 +214,7 @@ export default function CustomerEditForm() {
             })
             setGSTTreatment(temp);
         } catch (error) {
-            setErrors(error.response.data.message)
+            setErrors(genrateErrorMessage(error, ''));
         }
     }
 
@@ -228,7 +229,7 @@ export default function CustomerEditForm() {
             })
             setCurrencies(temp);
         } catch (error) {
-            setErrors(error.response.data.message)
+            setErrors(genrateErrorMessage(error, ''));
         }
     }
 
@@ -243,7 +244,7 @@ export default function CustomerEditForm() {
             })
             setPlaceOfSupply(temp);
         } catch (error) {
-            setErrors(error.response.data.message)
+            setErrors(genrateErrorMessage(error, ''));
         }
     }
 
@@ -258,7 +259,7 @@ export default function CustomerEditForm() {
             });
             setPaymentTerms(temp);
         } catch (error) {
-            setErrors(error.response.data.message)
+            setErrors(genrateErrorMessage(error, ''));
         }
     }
 
@@ -273,7 +274,7 @@ export default function CustomerEditForm() {
             });
             setTaxExemptionReason(temp);
         } catch (error) {
-            setErrors(error.response.data.message)
+            setErrors(genrateErrorMessage(error, ''));
         }
     }
 
@@ -297,11 +298,7 @@ export default function CustomerEditForm() {
                 setShippingStatesCountryId(result.data.address.shippingAddress.countryId);
             }
         } catch (error) {
-            if (error.response.data.message != undefined) {
-                setErrors(error.response.data.message);
-            } else {
-                console.log(error);
-            }
+            setErrors(genrateErrorMessage(error, ''));
         }
     }
 

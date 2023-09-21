@@ -1,0 +1,145 @@
+@use './utility/variables' as var;
+
+
+.green {
+    color: var.$tertiary-color;
+
+    path {
+        color: var.$tertiary-color;
+    }
+}
+
+.main {
+    padding-top: 40px;
+    margin: auto 49px;
+    margin-left: 135px;
+    transition: all 0.35s;
+    margin-bottom: 60px;
+
+    &.expanded {
+        margin-left: 329px !important;
+        transition: all 0.35s;
+    }
+
+
+    .title {
+        font-weight: 700;
+        font-size: 36px;
+        line-height: 45px;
+        color: var.$primary-color;
+        margin-top: 56px;
+        margin-bottom: 49px;
+        padding-left: 12px;
+    }
+
+    .organizationSetupcard {
+        background: var.$white;
+        border: 1px solid var.$border-color;
+        border-radius: 10px;
+        color: var.$secondary-color;
+        margin-bottom: 20px;
+
+        .cardTitle {
+            color: var.$primary-color;
+            font-weight: 700;
+            font-size: 22px;
+            line-height: 28px;
+        }
+
+        .cardMiniheading {
+            color: var.$tertiary-color;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 18px;
+        }
+
+        .form {
+
+            input,
+            select {
+                height: 41px;
+            }
+
+            svg {
+                width: 19px;
+                height: 19px;
+            }
+
+            .companyInvoiceOrganizationNameWrapper,
+            .companyInvoiceOrganizationIndustryWrapper,
+            .companyInvoiceOrganizationStateWrapper,
+            .companyInvoiceOrganizationLocationWrapper,
+            .companyInvoiceOrganizationStateWrapper,
+            .companyInvoiceOrganizationCurrencyWrapper,
+            .companyInvoiceOrganizationLanguageWrapper,
+            .companyInvoiceOrganizationTimeZoneWrapper,
+            .companyInvoiceOrganizationGSTINWrapper,
+            .companyInvoiceOrganizationCurrentInvoicingWrapper {
+
+                .companyInvoiceCompanyOrganizationName,
+                .companyInvoiceOrganizationIndustrylabel,
+                .companyInvoiceOrganizationStatelabel,
+                .companyInvoiceOrganizationLocationlabel,
+                .companyInvoiceOrganizationStatelabel,
+                .companyInvoiceOrganizationCurrencylabel,
+                .companyInvoiceOrganizationLanguagelabel,
+                .companyInvoiceOrganizationTimeZonelabel,
+                .companyInvoiceOrganizationGSTlabel,
+                .companyInvoiceOrganizationCurrentInvoicinglabel {
+                    display: flex;
+                    align-items: center;
+                    font-weight: 600;
+                    font-size: 14px;
+                    color: var.$primary-color;
+                }
+
+                input {
+                    font-weight: 400;
+                    font-size: 14px;
+                    color: var.$secondary-color;
+                    background: var.$input-background-color;
+                    border: 1px solid var.$primary-border-color;
+                    border-radius: 8px;
+                }
+            }
+
+            .companyInvoiceOrganizationGSTWrapper {
+                .companyInvoiceOrganizationGSTlabel {
+                    display: flex;
+                    align-items: center;
+                    font-weight: 600;
+                    font-size: 14px;
+                    color: var.$primary-color;
+                }
+
+                .companyInvoiceOrganizationGSTSwitchWrapper {
+                    .companyInvoiceOrganizationGSTSwitch {
+                        height: 1em;
+                        width: 2em;
+
+                        &:checked {
+                            background-color: var.$primary-color;
+                            border-color: var.$primary-color;
+                        }
+
+                        &:focus {
+                            border-color: #364aab5e;
+                            outline: 0;
+                            box-shadow: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // .loginBackground {
+    //     background: linear-gradient(0deg, var.$background-primary-color, var.$background-primary-color), url('/images/login_page.png') no-repeat;
+    //     background-size: cover;
+    //     min-height: 100vh;
+
+    //     @media (max-width: var.$screen-size-mm) {
+    //         display: none;
+    //     }
+    // }
+}

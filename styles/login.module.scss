@@ -130,6 +130,7 @@
                 position: absolute;
                 padding: 13px 16px;
                 pointer-events: none;
+                cursor: pointer;
                 font-style: normal;
                 font-weight: 900;
                 font-size: var.$font-size-text + 1;
@@ -310,6 +311,7 @@
         i {
             position: absolute;
             padding: 13px 16px;
+            cursor: pointer;
             pointer-events: none;
             font-style: normal;
             font-weight: 900;

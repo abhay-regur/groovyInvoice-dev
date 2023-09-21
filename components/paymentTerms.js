@@ -4,6 +4,7 @@ import styles from '@/styles/configuration.module.scss';
 import FaPlus from '@/assets/icons/faCirclePlus.svg'
 import ErrorList from './errorList.js';
 import { getPaymentTerms, createPaymentTerms, updatePaymentTerms, deletePaymentTerms } from '@/services/paymentTerms.service'
+import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils';
 import AllPaymentTermsTable from './allPaymentTermsTable.js';
 import { ToastMsgContext } from '@/context/ToastMsg.context';
 export default function PaymentTermsComponent() {
@@ -49,7 +50,7 @@ export default function PaymentTermsComponent() {
             });
             setItemData(temp);
         } catch (error) {
-            setErrors(error.response.data.message)
+            setErrors(genrateErrorMessage(error, ''));
         }
     }
 
@@ -72,8 +73,8 @@ export default function PaymentTermsComponent() {
                 }]);
                 getPaymentTermsDetails();
             }
-        } catch (e) {
-            setErrors(e.response.data.message);
+        } catch (error) {
+            setErrors(genrateErrorMessage(error, ''));
             setIsLoading(false);
         }
         setIsLoading(false);
@@ -94,7 +95,7 @@ export default function PaymentTermsComponent() {
                 getPaymentTermsDetails();
             }
         } catch (e) {
-            setErrors(e.response.data.message);
+            setErrors(genrateErrorMessage(error, ''));
             setIsLoading(false);
         }
         setIsLoading(false);

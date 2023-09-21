@@ -9,6 +9,7 @@ import styles from "@/styles/userForm.module.scss";
 import ErrorList from '@/components/errorList';
 import { NavExpandedState } from '@/context/NavState.context';
 import { ToastMsgContext } from '@/context/ToastMsg.context';
+import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 import Link from 'next/link';
 import Loading from './loading.js';
 
@@ -60,7 +61,7 @@ export default function UserUpdateFormComponent() {
                 description: result.data.message,
             }]);
         } catch (error) {
-            setErrors(error.response.data.message);
+            setErrors(genrateErrorMessage(error, ''));
         }
     }
 
