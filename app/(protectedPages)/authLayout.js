@@ -8,11 +8,15 @@ import { isLoggedIn } from '@/services/auth.service';
 import { Suspense, useContext, useEffect } from 'react';
 import Loading from './loading';
 import { UserLoggedState } from '@/context/UserState.context';
-import { useRouter } from 'next/navigation';
 
 function AuthLayout({ children }) {
-    const router = useRouter()
     const { userLoggedState, setUserLoggedState } = useContext(UserLoggedState);
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            require('bootstrap');
+        }
+    }, []);
+
     useEffect(() => {
         const isUserLoggedIn = isLoggedIn('user');
         setUserLoggedState(isUserLoggedIn);

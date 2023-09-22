@@ -2,12 +2,10 @@
 import styles from "@/styles/organizationSetup.module.scss";
 import { useContext, useState } from "react";
 import ErrorList from '@/components/errorList';
+import FaPlus from '@/assets/icons/faCirclePlus.svg'
 import CustomSelectComponent from "@/components/customSelectComponent";
 import { NavExpandedState } from '@/context/NavState.context';
-// const Bootstrap = dynamic(
-//     () => import('bootstrap'),
-//     { ssr: false }
-// );
+
 
 export default function OrganizationSetupForm() {
     const [errors, setErrors] = useState([]);
@@ -24,9 +22,13 @@ export default function OrganizationSetupForm() {
         GSTIN: '',
         currentInvoicing: ''
     });
-    if (typeof window !== "undefined") {
-        const { Modal } = require('bootstrap');
-    }
+    const [modelFor, setModalFor] = useState('');
+
+    const [show, setShow] = useState('false');
+
+    const handleClose = () => setShow('false');
+
+    const handleShow = (e) => setShow('true');
 
     const handleInput = ({ target }) => {
         var temp_data = data;
@@ -45,7 +47,7 @@ export default function OrganizationSetupForm() {
     }
 
     return (<div className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
-        <h2 className={`${styles.title} ms-5`}>
+        <h2 className={`${styles.title}`}>
             Organization Setup
         </h2>
         <div className="row mx-0 justify-content-center">
@@ -82,7 +84,7 @@ export default function OrganizationSetupForm() {
                                             <label className={`${styles.companyInvoiceOrganizationLocationlabel}`}>Business Location <span className={`${styles.green}`}>*</span> </label>
                                         </div>
                                         <div className="col-12 col-lg-6 col-xl-7">
-                                            <CustomSelectComponent className={`${styles.companyInvoiceOrganizationLocationSelect}`} data={''} onOptionValueChange={handleInput} optionValue={data.businessLocation} name={'businessLocation'} isDisabled={false} defaultText={'Select an location'} isInnerButtonRequired={true} />
+                                            <CustomSelectComponent className={`${styles.companyInvoiceOrganizationLocationSelect}`} data={''} onOptionValueChange={handleInput} optionValue={data.businessLocation} name={'businessLocation'} onOptionInnerButtonClick={handleShow} isDisabled={false} defaultText={'Select an location'} isInnerButtonRequired={true} />
                                         </div>
                                     </div>
 
@@ -121,7 +123,6 @@ export default function OrganizationSetupForm() {
                                             <CustomSelectComponent className={`${styles.companyInvoiceOrganizationTimeZoneSelect}`} data={''} onOptionValueChange={handleInput} optionValue={data.timezone} name={'timezone'} isDisabled={false} defaultText={'Select a Time Zone'} isInnerButtonRequired={false} />
                                         </div>
                                     </div>
-
 
                                     <div className={`${styles.companyInvoiceOrganizationGSTWrapper} mb-4 row`}>
                                         <div className="d-flex align-items-center col-12 col-lg-4">
@@ -165,16 +166,12 @@ export default function OrganizationSetupForm() {
                                         </div>
                                     </div>
 
-
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            {/* <div className={`${styles.loginBackground} col-md-6 .d-none .d-lg-block .d-xl-none`}>
-
-            </div> */}
         </div>
     </div>)
 }
