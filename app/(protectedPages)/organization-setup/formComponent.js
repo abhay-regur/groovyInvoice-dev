@@ -2,7 +2,6 @@
 import styles from "@/styles/organizationSetup.module.scss";
 import { useContext, useState } from "react";
 import ErrorList from '@/components/errorList';
-import FaPlus from '@/assets/icons/faCirclePlus.svg'
 import CustomSelectComponent from "@/components/customSelectComponent";
 import { NavExpandedState } from '@/context/NavState.context';
 
