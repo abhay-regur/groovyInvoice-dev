@@ -7,8 +7,6 @@ import RadioButton from '../../../../../components/radioButton';
 import styles from "../../../../../styles/newInvoice.module.scss";
 import FaCalendar from "../../../../../assets/icons/faCalendar.svg";
 import { NavExpandedState } from '../../../../../context/NavState.context';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import FaCirclePlus from '../../../../../assets/icons/faCirclePlus.svg';
 import FaSave from '../../../../../assets/icons/faSave.svg';
 import FaPaperPen from '../../../../../assets/icons/faPaperPen.svg';

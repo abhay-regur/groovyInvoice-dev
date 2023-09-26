@@ -1,6 +1,6 @@
 "use client"
-import Link from 'next/link';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
+import { useParams } from 'next/navigation';
 import { NavExpandedState } from '../../../../context/NavState.context';
 import styles from '../../../../styles/viewInvoice.module.scss';
 import ViewInvoiceTable from '../../../../components/viewInvoiceTable.js';
@@ -11,17 +11,53 @@ import FaBell from '../../../../assets/icons/faBell.svg';
 import FaPDF from '../../../../assets/icons/faPDF.svg';
 import FaRupee from '../../../../assets/icons/faRupee.svg';
 import FaDropDown from '../../../../assets/icons/faDropDownGreen.svg';
+import { getInvoice } from '../../../../services/invoice.service';
+import { formatDate } from '../../../../common/utils/date.utils';
+import Link from 'next/link';
 
 export default function InvoiceViewComponent() {
+    const { id } = useParams();
     const { navExpandedState } = useContext(NavExpandedState);
     const [actionBarExpandedState, setactionBarExpandedState] = useState(false)
+    const [data, setData] = useState({
+        customerId: 0,
+        customer: {
+            firstName: '',
+            lastName: ''
+        },
+        invoiceNo: '',
+        orderNumber: '',
+        invoiceDate: new Date(),
+        termsId: 0,
+        paymentTerm: {
+            label: '',
+        },
+        dueDate: new Date(),
+        customerNote: '',
+        subTotalAmount: 0,
+        shippingCharges: 0,
+        totalTaxAmount: 0,
+        totalAmount: 0,
+        adjustmentText: '',
+        adjustmentAmount: 0,
+        invoiceItems: []
+    })
+
+    const getData = async () => {
+        const result = await getInvoice(id);
+        setData({...result.data, invoiceDate: new Date(result.data.invoiceDate), dueDate: new Date(result.data.dueDate)})
+    }
+
+    useEffect(() => {
+        getData()
+    }, [])
 
     return (
         <div className={styles.container}>
             <main className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
                 <div className="container-fluid">
                     <div className={`${styles.comapnyInvoiceViewInvoiceHeadWrapper} row`}>
-                        <div className={`${styles.comapnyInvoiceViewInvoiceMainHeading} col-9 col-md-10 col-lg-7`}>Maximus Tempor <span className={`${styles.comapnyInvoiceViewInvoiceSubHeading}`}>#2022/09-04</span></div>
+                        <div className={`${styles.comapnyInvoiceViewInvoiceMainHeading} col-9 col-md-10 col-lg-7`}>{data.customer.firstName + ' ' + data.customer.lastName}<span className={`${styles.comapnyInvoiceViewInvoiceSubHeading}`}>#{formatDate(data.invoiceDate)}</span></div>
                         <div className={`${styles.companyInvoiceViewInvoiceActionBarWrapper} col-12`}>
                             <nav className={`${styles.companyInvoiceViewInvoiceActionBar} navbar navbar-expand-lg`}>
                                 <div className="container-fluid">
@@ -32,10 +68,10 @@ export default function InvoiceViewComponent() {
                                     <div className={`${styles.companyInvoiceViewInvoiceActionBarCollapse} ${actionBarExpandedState ? "" : styles.collapse} navbar-collapse justify-content-lg-start`} id="navbarNavDropdown">
                                         <ul className={`${styles.companyInvoiceViewInvoiceActionBarnavbarNav} navbar-nav nav-fill`}>
                                             <li className={`${styles.companyInvoiceViewInvoiceActionBarActionItem} nav-item`}>
-                                                <div className="nav-link d-flex justify-content-lg-center">
+                                                <Link href={`/invoices/update/${id}`} className="nav-link d-flex justify-content-lg-center">
                                                     <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}><FaPen /></span>
                                                     <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText}`}> Edit</span>
-                                                </div>
+                                                </Link>
                                             </li>
                                             <li className={`${styles.companyInvoiceViewInvoiceActionBarActionItem} nav-item dropdown`}>
                                                 <div className="nav-link d-flex justify-content-lg-center">
@@ -115,19 +151,19 @@ export default function InvoiceViewComponent() {
                                     <div className="col-12 col-lg-6">
                                         <div className={`${styles.comapnyInvoiceViewInvoiceDetails} row`}>
                                             <span className={`${styles.comapnyInvoiceViewInvoiceDetailsHeading} col-6 text-align-start`}>Invoice#</span>
-                                            <span className={`${styles.comapnyInvoiceViewInvoiceDetailsEntry} col-6 text-align-start`}>VS-22/02/2022/01</span>
+                                            <span className={`${styles.comapnyInvoiceViewInvoiceDetailsEntry} col-6 text-align-start`}>{data.invoiceNo}</span>
                                         </div>
                                         <div className={`${styles.comapnyInvoiceViewInvoiceDetails} row`}>
                                             <span className={`${styles.comapnyInvoiceViewInvoiceDetailsHeading} col-6 text-align-start`}>Invoice Date</span>
-                                            <span className={`${styles.comapnyInvoiceViewInvoiceDetailsEntry} col-6 text-align-start`}>22/02/2022</span>
+                                            <span className={`${styles.comapnyInvoiceViewInvoiceDetailsEntry} col-6 text-align-start`}>{formatDate(data.invoiceDate)}</span>
                                         </div>
                                         <div className={`${styles.comapnyInvoiceViewInvoiceDetails} row`}>
                                             <span className={`${styles.comapnyInvoiceViewInvoiceDetailsHeading} col-6 text-align-start`}>Terms</span>
-                                            <span className={`${styles.comapnyInvoiceViewInvoiceDetailsEntry} col-6 text-align-start`}>Due On Receipt</span>
+                                            <span className={`${styles.comapnyInvoiceViewInvoiceDetailsEntry} col-6 text-align-start`}>{data.paymentTerm.label}</span>
                                         </div>
                                         <div className={`${styles.comapnyInvoiceViewInvoiceDetails} row`}>
                                             <span className={`${styles.comapnyInvoiceViewInvoiceDetailsHeading} col-6 text-align-start`}>Due Date</span>
-                                            <span className={`${styles.comapnyInvoiceViewInvoiceDetailsEntry} col-6 text-align-start`}>22/02/2022</span>
+                                            <span className={`${styles.comapnyInvoiceViewInvoiceDetailsEntry} col-6 text-align-start`}>{formatDate(data.dueDate)}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -150,11 +186,11 @@ export default function InvoiceViewComponent() {
                                         <div className={`${styles.companyInvoiceViewInvoiceTotalCard} card`}>
                                             <div className="d-flex justify-content-between">
                                                 <span>Sub Total</span>
-                                                <span>Rs. 1320.00</span>
+                                                <span>Rs. {data.subTotalAmount}</span>
                                             </div>
                                             <div className="d-flex justify-content-between">
                                                 <span>Total</span>
-                                                <span>Rs. 1320.00</span>
+                                                <span>Rs. {data.totalAmount}</span>
                                             </div>
                                             <div className="d-flex justify-content-between">
                                                 <span>Payment Made</span>
