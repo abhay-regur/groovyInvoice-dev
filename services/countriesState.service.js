@@ -25,6 +25,14 @@ export const getStates = async (id) => {
     }
 }
 
+export const getIndianStates = async () => {
+    try {
+        return await httpService.get('states');
+    } catch (error) {
+        throw error;
+    }
+}
+
 export const addState = async (data) => {
     try {
         return await httpService.post('states', data);

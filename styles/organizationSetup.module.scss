@@ -95,7 +95,8 @@
                         color: var.$primary-color;
                     }
 
-                    input {
+                    input,
+                    Select {
                         font-weight: 400;
                         font-size: 14px;
                         color: var.$secondary-color;

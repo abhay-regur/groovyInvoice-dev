@@ -6,3 +6,9 @@ export const validateInput = async (fieldName, value) => {
         return await httpService.get('validate-company-data?field=' + fieldName + '&value=' + value);
     } catch (error) { throw error; }
 }
+
+export const getCurrencies = async () => {
+    try {
+        return await httpService.get('currencies');
+    } catch (error) { throw error; }
+}
