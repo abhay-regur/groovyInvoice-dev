@@ -6,3 +6,9 @@ export const getInvoice = async (id) => {
         return await httpService.get('invoice/' + id);
     } catch (error) { throw error; }
 }
+
+export const saveInvoice = async (data) => {
+    try {
+        return await httpService.post('invoice', data);
+    } catch (error) { throw error; }
+}
