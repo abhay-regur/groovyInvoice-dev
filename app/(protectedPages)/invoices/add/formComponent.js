@@ -17,14 +17,16 @@ import { getCustomers } from '../../../../services/customer.service';
 import CustomSelectComponent from '../../../../components/customSelectComponent';
 import { saveInvoice } from '../../../../services/invoice.service';
 import ErrorList from '../../../../components/errorList';
+import { ToastMsgContext } from '../../../../context/ToastMsg.context';
 
 export default function InvoiceAddForm() {
     const [taxValueSelected, settaxValueSelected] = useState();
     const { navExpandedState } = useContext(NavExpandedState);
     const [paymentTerms, setPaymentTerms] = useState([]);
+    const { setToastList } = useContext(ToastMsgContext);
     const [errors, setErrors] = useState([]);
     const [customers, setCustomer] = useState([]);
-    const [data, setData] = useState({
+    const initialData = {
         customerId: '',
         invoiceNo: '',
         orderNumber: '',
@@ -38,8 +40,10 @@ export default function InvoiceAddForm() {
         totalAmount: 0,
         adjustmentText: '',
         adjustmentAmount: 0,
-        invoiceItems: []
-    })
+        invoiceItems: [],
+        termsAndCondition: '',
+    }
+    const [data, setData] = useState(initialData)
 
     const calculateTotalAmount = () => {
         let subTotalAmount = 0
@@ -69,7 +73,7 @@ export default function InvoiceAddForm() {
     const handleInput = ({ target }) => {
         let name = target.name || target.getAttribute('name');;
         if (name != '') {
-            if (['openingBalance', 'gstTreatment', 'customerId', 'subtotalAmount', 'shippingCharges', 'totalTaxAmount'].includes(name)) {
+            if (['openingBalance', 'gstTreatment', 'customerId', 'termsId', 'subtotalAmount', 'shippingCharges', 'totalTaxAmount', 'adjustmentAmount'].includes(name)) {
                 data[name] = parseInt(target.value)
             } else {
                 data[name] = target.value;
@@ -99,7 +103,6 @@ export default function InvoiceAddForm() {
         let temp = Object.assign({}, data)
         setData(temp)
     }
-    // const { height, width } = useWindowDimensions();
 
     const handleTDSChange = () => {
         settaxValueSelected('tds');
@@ -110,7 +113,7 @@ export default function InvoiceAddForm() {
     };
 
     const setItemsData = (itemsData) => {
-        data.invoiceItems = itemsData
+        data['invoiceItems'] = itemsData
         let temp = Object.assign({}, data)
         setData(temp)
         calculateTotalAmount()
@@ -120,6 +123,12 @@ export default function InvoiceAddForm() {
         setErrors([])
         try {
             await saveInvoice({...data, status})
+            setData(initialData)
+            setToastList([{
+                id: Math.floor((Math.random() * 101) + 1),
+                title: 'Invoice added successfully',
+                description: '',
+            }]);
         } catch (error) {
             setErrors(error.response.data.message);
         }
@@ -192,8 +201,8 @@ export default function InvoiceAddForm() {
                                                 inputClass="form-control"
                                                 data={paymentTerms}
                                                 onOptionValueChange={handleInput}
-                                                optionValue={data.paymentTermId}
-                                                name={'paymentTermId'}
+                                                optionValue={data.termsId}
+                                                name={'termsId'}
                                                 isDisabled={false}
                                                 defaultText={'Select An Option'}
                                                 isInnerButtonRequired={false}
@@ -295,7 +304,7 @@ export default function InvoiceAddForm() {
                                     <div className="col-md-12 col-lg-8">
                                         <div className={`${styles.companyInvoiceTermsnConditionsWrapper}`}>
                                             <label htmlFor="companyInvoiceTerms&Conditions" className="form-label">Terms & Conditions</label>
-                                            <textarea className="form-control" placeholder='Enter the terms and conditions of your business to be displayed in your transaction' id="companyInvoiceTerms&Conditions" rows="7" name="termsAndCondition"></textarea>
+                                            <textarea className="form-control" placeholder='Enter the terms and conditions of your business to be displayed in your transaction' id="companyInvoiceTerms&Conditions" rows="7" name="termsAndCondition" value={data.termsAndCondition} onChange={handleInput}></textarea>
                                         </div>
                                     </div>
                                     <div className="col-md-12 col-lg-12 col-xl-7 px-1">

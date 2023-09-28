@@ -12,3 +12,9 @@ export const saveInvoice = async (data) => {
         return await httpService.post('invoice', data);
     } catch (error) { throw error; }
 }
+
+export const updateInvoice = async (id, data) => {
+    try {
+        return await httpService.put('invoice/' + id, data);
+    } catch (error) { throw error; }
+}

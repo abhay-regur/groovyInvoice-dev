@@ -3,8 +3,11 @@ import styles from "../styles/invoiceTable.module.scss";
 import FaCircleXmark from '../assets/icons/faCircleXmark.svg';
 import FaExclamationCircle from '../assets/icons/faExclamationCircle.svg';
 import FaCirclePlus from '../assets/icons/faCirclePlus.svg';
+import ItemsAutoCompleteTextArea from "./itemsAutoCompleteTextArea";
+import { searchItems } from "../services/items.service";
 
 const InvoiceTable = (props) => {
+    const [items, setItems] = useState([]);
     const itemObject = {
         itemDescription: '',
         quantity: 1,
@@ -27,18 +30,40 @@ const InvoiceTable = (props) => {
     const handleChange = (index, e) => {
         e.preventDefault();
         const rowData = props.itemsData[index];
-        rowData[e.target.name] = e.target.value
         if (e.target.name == 'quantity' || e.target.name == 'rate') {
+            rowData[e.target.name] = parseFloat(e.target.value)
             rowData['subTotal'] = rowData.quantity * rowData.rate
             rowData['total'] = rowData.subTotal + rowData.taxPercent
+        } else {
+            rowData[e.target.name] = e.target.value
         }
         props.itemsData[index] = rowData;
         let temp = Object.assign([], props.itemsData)
         props.setItemsData(temp)
     }
+    
+    const handleItemDescriptionChange = async (index, e) => {
+        handleChange(index, e)
+        const result = await searchItems(e.target.value)
+        setItems(result.data)
+    }
+
     useEffect(() => {
-        addAnotherLine()
-    }, [])
+        if(props.itemsData.length == 0) {
+            addAnotherLine()
+        }
+    }, [props.itemsData.length])
+    
+    const handleItemSelect = (index, item) => {
+        const rowData = props.itemsData[index];
+        rowData['itemId'] = item.id;
+        rowData['itemDescription'] = item.description;
+        rowData['rate'] = parseFloat(item.rate);
+        rowData['subTotal'] = rowData.quantity * rowData.rate;
+        rowData['total'] = rowData.subTotal + rowData.taxPercent;
+        let temp = Object.assign([], props.itemsData);
+        props.setItemsData(temp);
+    }
 
     return (
         <><div className="col-12">
@@ -58,7 +83,12 @@ const InvoiceTable = (props) => {
                             <tr key={idx} className={`${styles.comapnyInvoiceTableItemRow}`}>
                                 <td>
                                     <div className={`${styles.companyInvoiceTableItemWarpper}`}>
-                                        <textarea placeholder="Type or click to select an item." className='form-control' name='itemDescription' onChange={(e) => handleChange(idx, e)} value={item.itemDescription}/>
+                                        <ItemsAutoCompleteTextArea
+                                            handleChange={(e) => handleItemDescriptionChange(idx, e)}
+                                            value={item.itemDescription}
+                                            items={items}
+                                            handleSelect={(item)=>handleItemSelect(idx, item)}
+                                        />
                                     </div>
                                 </td>
                                 <td>
