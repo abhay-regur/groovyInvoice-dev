@@ -1,7 +1,9 @@
 "use client"
+import { useRouter } from 'next/navigation';
 import styles from "@/styles/organizationSetup.module.scss";
 import { useContext, useEffect, useState } from "react";
 import ErrorList from '@/components/errorList';
+import { ToastMsgContext } from '@/context/ToastMsg.context';
 import { getCompanyDetails, updateCompanyDetails } from '@/services/companies.service';
 import { getCurrencies } from '@/services/common/general.service';
 import { getIndianStates, getCountries } from '@/services/countriesState.service';
@@ -12,9 +14,13 @@ import Loading from "../loading";
 
 
 export default function OrganizationSetupForm() {
+    const { replace } = useRouter();
+
     const [errors, setErrors] = useState([]);
 
     const { navExpandedState } = useContext(NavExpandedState);
+
+    const { setToastList } = useContext(ToastMsgContext);
 
     const [isLoading, setIsLoading] = useState(true);
 
@@ -23,22 +29,6 @@ export default function OrganizationSetupForm() {
     const [currencies, setCurrencies] = useState([]);
 
     const [statesArray, getStateArray] = useState([])
-
-
-    // {
-    //     "companyName": "string",
-    //     "industryId": 0,
-    //     "businessLocation": [
-    //       stateId: 0,
-    //       countryId: 0
-    //     ],
-    //     "currency": "string",
-    //     "language": "string",
-    //     "timeZone": "string",
-    //     "isRegisteredForGST": true,
-    //     "GSTIN": "string",
-    //     "currentInvoicing": "string"
-    //   }
 
     const [data, setData] = useState({
         companyName: '',
@@ -157,7 +147,12 @@ export default function OrganizationSetupForm() {
         try {
             var result = await updateCompanyDetails(data)
             if (result.status == 200 || result.status == 201) {
-                setIsLoading(false);
+                setToastList([{
+                    id: Math.floor((Math.random() * 101) + 1),
+                    title: 'Organization Details Updated',
+                    description: '',
+                }]);
+                replace('/dashboard')
             }
         } catch (error) {
             setErrors(genrateErrorMessage(error, ''));
