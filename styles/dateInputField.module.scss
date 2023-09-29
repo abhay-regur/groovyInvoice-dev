@@ -1,0 +1,35 @@
+@use './utility/variables' as var;
+
+.green {
+    color: var.$tertiary-color;
+
+    path {
+        color: var.$tertiary-color;
+    }
+}
+.dateWrapper{
+    label {
+        color: var.$primary-color;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 18px;
+    }
+    input {
+        border: 1px solid var.$primary-border-color;
+        background: var.$input-background-color;
+        color: var.$primary-color;
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    i {
+        margin-left: 8px;
+        align-self: center;
+
+        svg {
+            width: 24px;
+            height: 24px;
+            color: var.$tertiary-color;
+        }
+    }
+}

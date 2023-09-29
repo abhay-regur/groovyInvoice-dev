@@ -257,7 +257,7 @@ button {
   // position: relative;
   display: flex;
   justify-content: center;
-  min-height: 47px;
+  min-height: 100%;
 
   span {
     display: none !important;
@@ -272,8 +272,6 @@ button {
   height: 15px;
   width: 15px;
   position: absolute;
-  // top: 11.5px;
-  // right: 7px;
   animation: spin infinite 1s linear;
 }
 

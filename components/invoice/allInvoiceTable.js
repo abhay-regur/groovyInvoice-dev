@@ -1,18 +1,18 @@
 "use client"
-import styles from '../styles/invoice.module.scss';
+import styles from '../../styles/invoice.module.scss';
 import React, { useContext, useRef, useState } from 'react';
 import Image from 'next/image';
-import defaultProfile from '../public/images/profile_Default.png';
-import { ToastMsgContext } from '../context/ToastMsg.context';
-import CheckBox from '../components/checkBox.js';
+import defaultProfile from '../../public/images/profile_Default.png';
+import { ToastMsgContext } from '../../context/ToastMsg.context';
+import CheckBox from '../../components/checkBox.js';
 import ReactDOM from "react-dom/client";
 import 'datatables.net-dt/js/dataTables.dataTables';
 import 'datatables.net-dt/css/jquery.dataTables.min.css';
-import ServerSideDataTables from './serverSideDataTable';
-import { formatDate } from '../common/utils/date.utils';
-import FaEye from '../assets/icons/faEye.svg';
-import FaExclamationCircle from '../assets/icons/faExclamationCircle.svg';
-import FaPen from '../assets/icons/faPen.svg';
+import ServerSideDataTables from './../serverSideDataTable';
+import { formatDate } from '../../common/utils/date.utils';
+import FaEye from '../../assets/icons/faEye.svg';
+import FaExclamationCircle from '../../assets/icons/faExclamationCircle.svg';
+import FaPen from '../../assets/icons/faPen.svg';
 import Link from 'next/link';
 
 const AllInvoiceTable = ({ ItemsData }) => {

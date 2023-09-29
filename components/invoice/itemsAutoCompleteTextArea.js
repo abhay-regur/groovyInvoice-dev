@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react"
-import style from "../styles/itemsAutoCompleteTextArea.module.scss";
+import React from "react"
+import style from "../../styles/itemsAutoCompleteTextArea.module.scss";
 
 const ItemsAutoCompleteTextArea = (props) => {
   

@@ -8,7 +8,7 @@ import FaRupeeCircle from "../../../assets/icons/faRupeeCircle.svg";
 import dynamic from 'next/dynamic';
 
 const AllInvoiceTable = dynamic(
-    () => import("../../../components/allInvoiceTable"),
+    () => import("../../../components/invoice/allInvoiceTable"),
     { ssr: false }
 );
 

@@ -7,3 +7,7 @@ export const formatDateTime = (date) => {
 export const formatDate = (date) => {
   return DateTime.fromISO(new Date(date).toISOString()).toFormat('MM/dd/yyyy')
 }
+
+export const addDaysInDate = (date, days = 0) => {
+  return DateTime.fromISO(new Date(date).toISOString()).plus({ day: days });
+}

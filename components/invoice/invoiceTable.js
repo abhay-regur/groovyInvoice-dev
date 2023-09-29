@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import styles from "../styles/invoiceTable.module.scss";
-import FaCircleXmark from '../assets/icons/faCircleXmark.svg';
-import FaExclamationCircle from '../assets/icons/faExclamationCircle.svg';
-import FaCirclePlus from '../assets/icons/faCirclePlus.svg';
+import { useState, useEffect, useRef } from "react";
+import styles from "../../styles/invoiceTable.module.scss";
+import FaCircleXmark from '../../assets/icons/faCircleXmark.svg';
+import FaExclamationCircle from '../../assets/icons/faExclamationCircle.svg';
+import FaCirclePlus from '../../assets/icons/faCirclePlus.svg';
 import ItemsAutoCompleteTextArea from "./itemsAutoCompleteTextArea";
-import { searchItems } from "../services/items.service";
+import { searchItems } from "../../services/items.service";
 
 const InvoiceTable = (props) => {
     const [items, setItems] = useState([]);
@@ -41,11 +41,15 @@ const InvoiceTable = (props) => {
         let temp = Object.assign([], props.itemsData)
         props.setItemsData(temp)
     }
+
+    const getItemData = async (value) => {
+        const result = await searchItems(value)
+        setItems(result.data)
+    }
     
     const handleItemDescriptionChange = async (index, e) => {
         handleChange(index, e)
-        const result = await searchItems(e.target.value)
-        setItems(result.data)
+        getItemData(e.target.value)
     }
 
     useEffect(() => {
@@ -63,6 +67,7 @@ const InvoiceTable = (props) => {
         rowData['total'] = rowData.subTotal + rowData.taxPercent;
         let temp = Object.assign([], props.itemsData);
         props.setItemsData(temp);
+        getItemData(item.description)
     }
 
     return (

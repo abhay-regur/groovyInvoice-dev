@@ -1,7 +1,7 @@
 "use client"
 import { useState, useContext, useEffect } from 'react';
 import DatePicker from "react-datepicker";
-import InvoiceTable from '../../../../components/invoiceTable';
+import InvoiceTable from '../../../../components/invoice/invoiceTable';
 import RadioButton from '../../../../components/radioButton';
 import styles from "../../../../styles/newInvoice.module.scss";
 import FaCalendar from "../../../../assets/icons/faCalendar.svg";
@@ -18,6 +18,9 @@ import CustomSelectComponent from '../../../../components/customSelectComponent'
 import { saveInvoice } from '../../../../services/invoice.service';
 import ErrorList from '../../../../components/errorList';
 import { ToastMsgContext } from '../../../../context/ToastMsg.context';
+import { addDaysInDate } from '../../../../common/utils/date.utils';
+import DateInputField from '../../../../components/common/dateInputField';
+import { enableElement, disableElement } from '../../../../utils/form.utils';
 
 export default function InvoiceAddForm() {
     const [taxValueSelected, settaxValueSelected] = useState();
@@ -47,11 +50,11 @@ export default function InvoiceAddForm() {
 
     const calculateTotalAmount = () => {
         let subTotalAmount = 0
-        for(let i = 0; i < data.invoiceItems.length; i++) {
+        for (let i = 0; i < data.invoiceItems.length; i++) {
             subTotalAmount += data.invoiceItems[i].total
-        } 
+        }
         data.subTotalAmount = subTotalAmount
-        data.totalAmount = parseFloat(data.adjustmentAmount) + parseFloat(data.shippingCharges) + parseFloat(data.totalTaxAmount) + parseFloat(data.subTotalAmount) ;
+        data.totalAmount = parseFloat(data.adjustmentAmount) + parseFloat(data.shippingCharges) + parseFloat(data.totalTaxAmount) + parseFloat(data.subTotalAmount);
         let temp = Object.assign({}, data)
         setData(temp)
     }
@@ -61,8 +64,8 @@ export default function InvoiceAddForm() {
         try {
             const result = await getPaymentTerms();
             let temp = [];
-            result.data.forEach((elem) => {
-                temp.push({ Id: parseInt(elem.id), name: elem.label })
+            result.data.forEach((data) => {
+                temp.push({ Id: parseInt(data.id), name: data.label, numberOfDays: data.numberOfDays })
             });
             setPaymentTerms(temp);
         } catch (error) {
@@ -71,7 +74,7 @@ export default function InvoiceAddForm() {
     }
 
     const handleInput = ({ target }) => {
-        let name = target.name || target.getAttribute('name');;
+        let name = target.name || target.getAttribute('name');
         if (name != '') {
             if (['openingBalance', 'gstTreatment', 'customerId', 'termsId', 'subtotalAmount', 'shippingCharges', 'totalTaxAmount', 'adjustmentAmount'].includes(name)) {
                 data[name] = parseInt(target.value)
@@ -98,6 +101,18 @@ export default function InvoiceAddForm() {
         getCustomersList()
     }, [])
 
+    const handlePaymentTermChange = ({ target }) => {
+        let name = target.name || target.getAttribute('name');
+        data[name] = parseInt(target.value)
+        const paymentTerm = paymentTerms.find((item) => item.Id == parseInt(target.value))
+        if (paymentTerm.numberOfDays) {
+            const date = addDaysInDate(new Date(), paymentTerm.numberOfDays)
+            data['dueDate'] = new Date(date)
+        }
+        let temp = Object.assign({}, data)
+        setData(temp)
+    }
+
     const setDateChange = (value, name) => {
         data[name] = value
         let temp = Object.assign({}, data)
@@ -119,10 +134,11 @@ export default function InvoiceAddForm() {
         calculateTotalAmount()
     }
 
-    const handleSubmit = async (status) => {
+    const handleSubmit = async (e, status) => {
+        disableElement(e.target)
         setErrors([])
         try {
-            await saveInvoice({...data, status})
+            await saveInvoice({ ...data, status })
             setData(initialData)
             setToastList([{
                 id: Math.floor((Math.random() * 101) + 1),
@@ -132,6 +148,7 @@ export default function InvoiceAddForm() {
         } catch (error) {
             setErrors(error.response.data.message);
         }
+        // enableElement(e.target)
     }
 
     return (
@@ -168,7 +185,7 @@ export default function InvoiceAddForm() {
                                         <div className={`${styles.companyInvoiceNumberWrapper} mb-3`}>
                                             <label htmlFor="companyInvoiceNumber" className="form-label">Invoice#<span className={`${styles.green}`}>*</span></label>
                                             <div className={`d-flex align-content-center`}>
-                                                <input type="text" className="form-control" id="companyInvoiceNumber" aria-describedby="emailHelp" name="invoiceNo" value={data.invoiceNo} onChange={handleInput}/>
+                                                <input type="text" className="form-control" id="companyInvoiceNumber" aria-describedby="emailHelp" name="invoiceNo" value={data.invoiceNo} onChange={handleInput} />
                                                 <i><FaGear /></i>
                                             </div>
                                         </div>
@@ -177,21 +194,19 @@ export default function InvoiceAddForm() {
                                         <div className={`${styles.companyOrderNumberWrapper} mb-3`}>
                                             <label htmlFor="companyOrderNumber" className="form-label">Order Number</label>
                                             <div className={`d-flex align-content-center`}>
-                                                <input type="text" className="form-control" id="companyOrderNumber" aria-describedby="emailHelp" name="orderNumber" value={data.orderNumber} onChange={handleInput}/>
+                                                <input type="text" className="form-control" id="companyOrderNumber" aria-describedby="emailHelp" name="orderNumber" value={data.orderNumber} onChange={handleInput} />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="row">
                                     <div className="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2">
-                                        <div className={`${styles.companyInvoiceDateWrapper} mb-3`}>
-                                            <label htmlFor="companyInvoiceDate" className="form-label">Invoice Date<span className={`${styles.green}`}>*</span></label>
-                                            <div className={`d-flex align-content-center`}>
-                                                <DatePicker className="form-control" id="companyInvoiceDate" aria-describedby="emailHelp" selected={data.invoiceDate} onChange={(date)=>setDateChange(date, 'invoiceDate')} />
-                                                {/* <input type="text" /> */}
-                                                <i><FaCalendar /></i>
-                                            </div>
-                                        </div>
+                                        <DateInputField
+                                            label="Invoice Date"
+                                            id="companyInvoiceDate"
+                                            selected={data.invoiceDate}
+                                            onChange={(date)=>setDateChange(date, 'invoiceDate')}
+                                        />
                                     </div>
                                     <div className="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2">
                                         <div className={`${styles.companyInvoicetermsWrapper} mb-3`}>
@@ -200,7 +215,7 @@ export default function InvoiceAddForm() {
                                                 className={`${styles.companInvoicePaymentTermsSelect}`}
                                                 inputClass="form-control"
                                                 data={paymentTerms}
-                                                onOptionValueChange={handleInput}
+                                                onOptionValueChange={handlePaymentTermChange}
                                                 optionValue={data.termsId}
                                                 name={'termsId'}
                                                 isDisabled={false}
@@ -210,13 +225,12 @@ export default function InvoiceAddForm() {
                                         </div>
                                     </div>
                                     <div className="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2">
-                                        <div className={`${styles.companyInvoiceDueDateWrapper} mb-3`}>
-                                            <label htmlFor="companyInvoiceDueDate" className="form-label">Due Date</label>
-                                            <div className={`d-flex align-content-center`}>
-                                                <DatePicker type="text" className="form-control" id="companyInvoiceDueDate" aria-describedby="emailHelp" selected={data.dueDate} onChange={(date)=>setDateChange(date, 'dueDate')} />
-                                                <i><FaCalendar /></i>
-                                            </div>
-                                        </div>
+                                        <DateInputField
+                                            label="Due Date"
+                                            id="companyInvoiceDueDate"
+                                            selected={data.dueDate}
+                                            onChange={(date)=>setDateChange(date, 'dueDate')}
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -273,7 +287,7 @@ export default function InvoiceAddForm() {
                                                 <div className={`${styles.companyInvoiceAdjustmentWrapper} d-flex row`}>
                                                     <div className={`${styles.companyInvoiceAdjustmentInputWrapper} col-5 order-1 order-lg-1`}>
                                                         <div className="">
-                                                            <input type="text" className={`${styles.companyInvoicePriceAdjustment} form-control`} placeholder="Adjustment" name="adjustmentText" value={data.adjustmentText} onChange={handleInput}/>
+                                                            <input type="text" className={`${styles.companyInvoicePriceAdjustment} form-control`} placeholder="Adjustment" name="adjustmentText" value={data.adjustmentText} onChange={handleInput} />
                                                         </div>
                                                     </div>
                                                     <div className="col-6 order-3 col-lg-4 order-lg-2">
@@ -309,13 +323,13 @@ export default function InvoiceAddForm() {
                                     </div>
                                     <div className="col-md-12 col-lg-12 col-xl-7 px-1">
                                         <span className={`${styles.companyInvoiceSaveButtonsWrapper}`}>
-                                            <button className={`${styles.companyInvoiceSaveDraftButton} btn green`} onClick={()=>handleSubmit('draft')}>
+                                            <button name="btn-submit" className={`${styles.companyInvoiceSaveDraftButton} btn green`} onClick={(e) => handleSubmit(e, 'draft')}>
                                                 <span>
                                                     <i><FaPaperPen /></i>
                                                     Save as Draft
                                                 </span>
                                             </button>
-                                            <button className={`${styles.companyInvoiceSavenSendButton} btn blue`} onClick={()=>handleSubmit('unpaid')}>
+                                            <button name="btn-submit" className={`${styles.companyInvoiceSavenSendButton} btn blue`} onClick={(e) => handleSubmit(e, 'unpaid')}>
                                                 <span>
                                                     <i><FaSave /></i>
                                                     Save & Send
