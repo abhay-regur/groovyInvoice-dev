@@ -441,13 +441,6 @@ export default function CustomerAddForm() {
                                         <label className={`${styles.companyInvoiceCompanyDisplayNamelabel}`}>Customer Display Name <span className={`${styles.green}`}>*</span></label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-6">
-                                        {/* <select className={`${styles.companyInvoiceCompanyDisplaySelect} form-select`} onChange={handleInput}>
-                                        <option defaultValue>Customer Display Name</option>
-                                        <option value="1">Option 1</option>
-                                        <option value="2">Option 2</option>
-                                        <option value="3">Option 3</option>
-                                        <option value="4">Option 4</option>
-                                    </select> */}
                                         <input name='displayName' type="text" className="form-control" id="companyInvoiceNewCustomerUserName" value={data.displayName} onChange={handleInput} placeholder='Display Name' />
                                     </div>
                                 </div>
@@ -540,9 +533,9 @@ export default function CustomerAddForm() {
                                 </div>
 
                                 <div className={`${styles.companyInvoiceFormButtonsWrapper} row`}>
-                                    <div className="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-3">
+                                    <div className="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-5">
                                         <div className="row">
-                                            <div className="col-6 col-md-4 col-lg-3 col-xl-4">
+                                            <div className="col-6 col-md-4 col-lg-3 col-xl-3">
                                                 <button name="btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`} type='submit'>
                                                     <span>
                                                         <i><FaSave /></i>
@@ -550,7 +543,7 @@ export default function CustomerAddForm() {
                                                     </span>
                                                 </button>
                                             </div>
-                                            <div className="col-6 col-md-4 col-lg-3 col-xl-4">
+                                            <div className="col-6 col-md-4 col-lg-3 col-xl-3">
                                                 <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} type='reset' onClick={resetPage}>
                                                     <span>
                                                         <i><FaCircleXmark /></i>

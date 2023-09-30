@@ -163,7 +163,7 @@ export default function UserUpdateFormComponent() {
                                 <div className={`${styles.companyInvoiceFormButtonsWrapper} row`}>
                                     <div className="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-3">
                                         <div className="row">
-                                            <div className="col-6 col-md-4 col-lg-3 col-xl-4">
+                                            <div className="col-6 col-md-4 col-lg-3 col-xl-6">
                                                 <button type="submit" name="btn-submit" className={`${styles.companyInvoiceSavenSendButton} btn blue`}>
                                                     <span>
                                                         <i><FaSave /></i>
@@ -171,7 +171,7 @@ export default function UserUpdateFormComponent() {
                                                     </span>
                                                 </button>
                                             </div>
-                                            <div className="col-6 col-md-4 col-lg-3 col-xl-4">
+                                            <div className="col-6 col-md-4 col-lg-3 col-xl-6">
                                                 <button type="button" className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={() => replace('/users')}>
                                                     <span>
                                                         <i><FaCircleXmark /></i>
