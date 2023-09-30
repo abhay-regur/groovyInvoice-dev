@@ -7,7 +7,7 @@ export const createCustomer = async (data) => {
     } catch (error) { throw error; }
 }
 
-export const getUserDetails = async (id) => {
+export const getCustomer = async (id) => {
     try {
         return await httpService.get('customers/' + id);
     } catch (error) { throw error; }

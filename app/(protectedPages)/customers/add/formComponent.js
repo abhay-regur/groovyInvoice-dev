@@ -13,7 +13,7 @@ import Loading from "../loading.js";
 import { ToastMsgContext } from '../../../../context/ToastMsg.context';
 import { getPaymentTerms, createPaymentTerms } from "../../../../services/paymentTerms.service";
 import { getCountries, getStates } from '../../../../services/countriesState.service';
-import { createCustomer, getUserDetails, updateUserDetails, getGSTTreatment, getPlaceOfSupply, getCurrencies, addContactPerson, listContactPersonDetails, updateContactPersonDetails, deleteContactPersonDetails } from "../../../../services/customer.service";
+import { createCustomer, getGSTTreatment, getPlaceOfSupply, getCurrencies, addContactPerson, listContactPersonDetails, updateContactPersonDetails, deleteContactPersonDetails } from "../../../../services/customer.service";
 import { getTaxExemptionReason, createTaxExemptionReason } from '../../../../services/taxExempted.service.js';
 import { NavExpandedState } from '../../../../context/NavState.context';
 import { useRouter } from 'next/navigation';

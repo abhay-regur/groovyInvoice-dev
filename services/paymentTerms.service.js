@@ -7,6 +7,12 @@ export const getPaymentTerms = async () => {
     } catch (error) { throw error; }
 }
 
+export const getPaymentTerm = async (id) => {
+    try {
+        return await httpService.get('payments-term/' + id);
+    } catch (error) { throw error; }
+}
+
 export const createPaymentTerms = async (data) => {
     try {
         return await httpService.post('payments-term', data);

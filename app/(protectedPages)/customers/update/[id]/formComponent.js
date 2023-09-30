@@ -15,7 +15,7 @@ import { ToastMsgContext } from '../../../../../context/ToastMsg.context';
 import Loading from "../../loading.js";
 import { getPaymentTerms, createPaymentTerms } from "../../../../../services/paymentTerms.service";
 import { getCountries, getStates } from '../../../../../services/countriesState.service';
-import { getUserDetails, updateUserDetails, getGSTTreatment, getPlaceOfSupply, getCurrencies, addContactPerson, listContactPersonDetails, updateContactPersonDetails, deleteContactPersonDetails } from "../../../../../services/customer.service";
+import { getCustomer, updateUserDetails, getGSTTreatment, getPlaceOfSupply, getCurrencies, addContactPerson, listContactPersonDetails, updateContactPersonDetails, deleteContactPersonDetails } from "../../../../../services/customer.service";
 import { getTaxExemptionReason, createTaxExemptionReason } from '../../../../../services/taxExempted.service.js';
 import { NavExpandedState } from '../../../../../context/NavState.context';
 import { useRouter } from 'next/navigation';
@@ -281,7 +281,7 @@ export default function CustomerEditForm() {
         setData(Object.assign({}, temp));
 
         try {
-            var result = await getUserDetails(id);
+            var result = await getCustomer(id);
             if (result.status == 200 || result.status == 201) {
                 setData(result.data);
                 setBillingStatesCountryId(result.data.address.billingAddress.countryId);
