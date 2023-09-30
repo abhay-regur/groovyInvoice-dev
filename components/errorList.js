@@ -22,8 +22,6 @@ const ErrorList = (props) => {
     }
   }, [props.errors, autoScroll])
 
-  //console.log(props.errors)
-
   return (
     <>
       {errors.length > 0 && (

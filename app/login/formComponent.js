@@ -14,7 +14,7 @@ import { useRouter } from 'next/navigation';
 
 
 export default function LoginForm() {
-    const { push } = useRouter();
+    const router = useRouter();
     const [rememberMe, setRememberMe] = useState(false);
     const [errors, setErrors] = useState([])
     const formErrors = []
@@ -53,7 +53,7 @@ export default function LoginForm() {
             try {
                 disableSubmitButton(e.target)
                 await login(data, rememberMe)
-                push('/')
+                router.push('/')
             } catch (error) {
                 if (typeof error.response !== 'undefined' && typeof error.response.status !== 'undefined' && typeof error.response.data.message !== 'undefined') {
                     var status = error.response.status;
@@ -122,7 +122,7 @@ export default function LoginForm() {
                                     <hr />
                                     <div className="d-flex justify-content-center">
                                         <button type="button" className={`${styles.loginButtonFacebook} btn btn-outline-secondary d-flex jutify-content-around`}><i className={styles.buttonImage} ><FaFacebook /></i> Sign In</button>
-                                        <button type="button" className={`${styles.loginButtonGoogle} btn btn-outline-secondary d-flex jutify-content-around`} onClick={() => signIn('google')}><i className={styles.buttonImage}><FaGoogle /></i> Sign In</button>
+                                        <button type="button" className={`${styles.loginButtonGoogle} btn btn-outline-secondary d-flex jutify-content-around`}><i className={styles.buttonImage}><FaGoogle /></i> Sign In</button>
                                     </div>
                                 </div>
                             </div>
