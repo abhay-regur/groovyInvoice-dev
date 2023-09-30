@@ -16,6 +16,7 @@ import { getCustomer } from '../../../../services/customer.service';
 import { getPaymentTerm } from '../../../../services/paymentTerms.service';
 import { formatDate } from '../../../../common/utils/date.utils';
 import Link from 'next/link';
+import { convertNumberToWord } from '../../../../utils/number.utils';
 
 export default function InvoiceViewComponent() {
     const { id } = useParams();
@@ -174,7 +175,7 @@ export default function InvoiceViewComponent() {
                                     <div className="col-12 col-lg-5 order-1 order-lg-0">
                                         <div className={`${styles.companyInvoiceViewInvoiceTotalInWordsWrapper}`}>
                                             <div className={`${styles.companyInvoiceViewInvoiceTotalInWordsLabel}`}>Total In Words</div>
-                                            <div className={`${styles.companyInvoiceViewInvoiceTotalInWords}`}>One Thousand Three Hundred Twenty Rupees</div>
+                                            <div className={`${styles.companyInvoiceViewInvoiceTotalInWords}`}>{convertNumberToWord(data.totalAmount)}</div>
                                         </div>
                                         <div className={`${styles.companyInvoiceViewInvoiceThankYouWrapper}`}>
                                             <div className={`${styles.companyInvoiceViewInvoiceThankYou}`}>Thanks For Your Business.</div>
