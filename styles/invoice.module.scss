@@ -99,15 +99,21 @@
 
         .comapanyInoviceInvoiceTableWrapper {
             margin-top: 50px;
-            border: 1px solid var.$table-border;
             border-radius: 10px;
             background: var.$white;
+            overflow-x: hidden;
 
-            thead {
-                th {
-                    margin-top: 13px;
-                    margin-bottom: 17px;
-                    font-weight: 600;
+            .filter_wrapper {
+                label {
+                    color: var.$primary-color;
+                    background: var.$table-pagination-background;
+                    border-radius: 8px 0 0 8px;
+                    margin-bottom: 10px;
+                    margin-top: 10px;
+                }
+
+                input {
+                    font-weight: 500;
                     font-size: 14px;
                     color: var.$primary-color;
                     background: var.$table-head-background;
@@ -189,27 +195,31 @@
 
             tbody {
                 background: var.$white;
+                    background: #ffffff;
+                    border: 1px solid #e3ebf2;
+                    border-radius: 0 8px 8px 0;
+                    margin-bottom: 10px;
+                    margin-top: 10px;
+                }
+            }
 
-                tr {
-                    &:last-child {
-                        border: none;
+            table {
+                min-width: 500px;
+                margin-right: 0;
+                margin-left: 0;
+                margin-bottom: 40px;
+                border: 1px solid var.$table-border;
+                border-radius: 10px;
 
-                        td {
-                            border: none !important;
-                        }
-                    }
-
-                    td {
-                        padding-top: 29px;
-                        padding-left: 16px;
-                        font-weight: 400;
+                thead {
+                    th {
+                        margin-top: 13px;
+                        margin-bottom: 17px;
+                        font-weight: 600;
                         font-size: 14px;
-                        color: var.$secondary-color;
-                        border-bottom: 1px solid var.$table-border;
-
-                        &:nth-of-type(2) {
-                            padding-top: 19px;
-                        }
+                        color: var.$primary-color;
+                        background: var.$table-head-background;
+                        border-right: 1px solid var.$table-border;
 
                         .companyInvoiceTableInvoiceNumber {
                             label {
@@ -278,36 +288,32 @@
                             }
                         }
 
-                        .companyInvoiceTableCustomerImage {
-                            display: flex;
-                            align-content: center;
+                        &:last-of-type {
+                            border: none;
+                            border-bottom: 1px solid var.$table-border;
+                        }
+                    }
+                }
 
-                            img {
-                                border-radius: 50%;
-                            }
+                tbody {
+                    background: white;
 
-                            .companyInvoiceTableCustomerName {
-                                display: flex;
-                                align-items: center;
-                                margin-left: 10px;
-                                font-weight: 700;
-                                font-size: 16px;
-                                color: var.$primary-color;
+                    tr {
+                        &:last-child {
+                            border: none;
+
+                            td {
+                                border: none !important;
                             }
                         }
 
-                        .companyInvoiceTableDueDate {}
-
-                        .companyInvoiceTableActionDueDateTime {
-                            font-size: 12px;
-                        }
-
-                        .companyInvoiceTableAmount {
-                            display: flex;
-                            align-items: center;
+                        td {
+                            padding-top: 29px;
+                            padding-left: 16px;
                             font-weight: 400;
                             font-size: 14px;
-                        }
+                            color: var.$secondary-color;
+                            border-bottom: 1px solid var.$table-border;
 
                         .companyInvoiceTableStatus {
                             width: 53px;
@@ -335,29 +341,158 @@
                                     fill: var.$tertiary-color;
                                     margin-right: 11px;
                                 }
+                            &:nth-of-type(2) {
+                                padding-top: 19px;
                             }
 
-                            .companyInvoiceTableActionInfo {
-                                cursor: pointer;
+                            .companyInvoiceTableInvoiceNumber {
+                                label {
+                                    display: block;
+                                    position: relative;
+                                    padding-left: 35px;
+                                    cursor: pointer;
+                                    font-size: 14px;
+                                    -webkit-user-select: none;
+                                    -moz-user-select: none;
+                                    -ms-user-select: none;
+                                    user-select: none;
 
-                                svg {
-                                    height: 19px;
-                                    width: 19px;
-                                    margin-right: 9px;
+                                    &:hover {
+                                        input~span {
+                                            background-color: var.$primary-color;
+                                        }
+                                    }
 
-                                    path {
-                                        fill: var.$primary-color;
+                                    input {
+                                        position: absolute;
+                                        opacity: 0;
+                                        cursor: pointer;
+                                        height: 0;
+                                        width: 0;
+
+                                        &~span {
+                                            background-color: white;
+                                            border: 1px solid var.$checkbox-backgound;
+                                            border-radius: 3px;
+                                        }
+
+                                        &:checked~span {
+                                            background-color: var.$primary-color;
+
+                                            &::after {
+                                                display: block;
+                                            }
+                                        }
+                                    }
+
+                                    span {
+                                        position: absolute;
+                                        top: 0;
+                                        left: 0;
+                                        height: 20px;
+                                        width: 20px;
+                                        background-color: white;
+
+                                        &::after {
+                                            content: "";
+                                            position: absolute;
+                                            display: none;
+                                            left: 6px;
+                                            top: 1px;
+                                            width: 7px;
+                                            height: 13px;
+                                            border: solid white;
+                                            border-radius: 1px;
+                                            border-width: 0 3px 3px 0;
+                                            -webkit-transform: rotate(45deg);
+                                            -ms-transform: rotate(45deg);
+                                            transform: rotate(45deg);
+                                        }
                                     }
                                 }
                             }
 
-                            .companyInvoiceTableActionView {
-                                cursor: pointer;
+                            .companyInvoiceTableCustomerImage {
+                                display: flex;
+                                align-content: center;
 
-                                svg {
-                                    height: 19px;
-                                    width: 19px;
-                                    fill: var.$secondary-color;
+                                img {
+                                    border-radius: 50%;
+                                }
+
+                                .companyInvoiceTableCustomerName {
+                                    display: flex;
+                                    align-items: center;
+                                    margin-left: 10px;
+                                    font-weight: 700;
+                                    font-size: 16px;
+                                    color: var.$primary-color;
+                                }
+                            }
+
+                            .companyInvoiceTableDueDate {}
+
+                            .companyInvoiceTableActionDueDateTime {
+                                font-size: 12px;
+                            }
+
+                            .companyInvoiceTableAmount {
+                                display: flex;
+                                align-items: center;
+                                font-weight: 400;
+                                font-size: 14px;
+                            }
+
+                            .companyInvoiceTableStatus {
+                                width: 53px;
+                                border-radius: 50px;
+                                background-color: var.$red-color;
+                                color: white;
+                                font-weight: 600;
+                                font-size: 12px;
+                                padding: 4px 14px;
+                                width: 30px;
+                                text-align: center;
+                            }
+
+                            .paid {
+                                background-color: var.$primary-color !important;
+                            }
+
+                            .companyInvoiceTableActionWrapper {
+                                .companyInvoiceTableActionEdit {
+                                    cursor: pointer;
+
+                                    svg {
+                                        height: 19px;
+                                        width: 19px;
+                                        fill: var.$tertiary-color;
+                                        margin-right: 11px;
+                                    }
+                                }
+
+                                .companyInvoiceTableActionInfo {
+                                    cursor: pointer;
+
+                                    svg {
+                                        height: 19px;
+                                        width: 19px;
+                                        margin-right: 9px;
+
+                                        path {
+                                            fill: var.$primary-color;
+                                        }
+                                    }
+                                }
+
+                                .companyInvoiceTableActionView {
+                                    cursor: pointer;
+
+                                    svg {
+                                        height: 19px;
+                                        width: 19px;
+                                        fill: var.$secondary-color;
+                                    }
                                 }
                             }
                         }
