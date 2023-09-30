@@ -1,0 +1,35 @@
+@use './utility/variables' as var;
+
+.companyInvoiceCustomSelectMenu {
+    border: 1px solid var.$primary-border-color;
+    border-radius: 8px;
+    max-height: 250px;
+    overflow-y: auto;
+
+    li{
+        border-bottom: 1px solid var.$primary-border-color;
+
+        .menuItem {
+            font-weight: 400;
+            font-size: 14px;
+            color: var.$primary-color;
+            cursor: pointer;
+
+            &:hover {
+                color: var.$primary-color;
+            }
+
+            .description {
+                font-size: 16px;
+                font-weight: 400;
+            }
+            .rate {
+                font-size: 14px !important;
+                font-weight: 400;
+            }
+        }
+    }
+    li:last-child {
+        border-bottom: none;
+    }
+}

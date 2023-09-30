@@ -8,7 +8,19 @@ const enableSubmitButton = (form, name = 'btn-submit') => {
   form.elements[name].classList.remove('loading')
 }
 
+const disableElement = (element) => {
+  element.disabled = true
+  element.classList.add('loading')
+}
+
+const enableElement = (element) => {
+  element.disabled = false
+  element.classList.remove('loading')
+}
+
 export {
   disableSubmitButton,
-  enableSubmitButton
+  enableSubmitButton,
+  disableElement,
+  enableElement
 }

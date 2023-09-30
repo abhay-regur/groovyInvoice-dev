@@ -62,7 +62,7 @@ export default function CustomerAddForm() {
         exemptionReason: "",
         currency: "₹",
         openingBalance: 0,
-        paymentTermId: "",
+        paymentTermId: 0,
         address: {
             billingAddress: {
                 attention: "",
@@ -304,7 +304,7 @@ export default function CustomerAddForm() {
             exemptionReason: "",
             currency: "₹",
             openingBalance: 0,
-            paymentTermId: "",
+            paymentTermId: 0,
             address: {
                 billingAddress: {
                     attention: "",
