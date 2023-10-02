@@ -106,7 +106,7 @@ function ServerSideDT(props, ref) {
     return (<>
         <table id={props.id} className={props.className} width="100%">
             {props.children}
-            <TableLoading isLoading={props.isLoading} columnLength={props.columns.length} rowsLength={4} isProfile={true} />
+            <TableLoading isLoading={props.isLoading} columnLength={(props.columns.length) - 1} rowsLength={4} isProfile={true} />
         </table>
     </>)
 }

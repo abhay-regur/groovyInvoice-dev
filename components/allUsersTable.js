@@ -115,7 +115,7 @@ const AllUserTable = () => {
                     <label className="input-group-text">Search:</label>
                     <input type="search" className="form-control" placeholder="Name" aria-controls="table-input" />
                 </div>
-                <PageLoader isPageLoading={isPageLoading} />
+                {/* <PageLoader isPageLoading={isPageLoading} /> */}
             </div>
             <div className={`col-sm-12 p-0`}>
                 <ServerSideDataTables ref={dtRef} id="manage-user--table" {...dtOptions} className={`table table-responsive responsive nowrap`} setIsPageLoading={setIsPageLoading} isLoading={isLoading} setIsLoading={setIsLoading} isSearchable={true}>
