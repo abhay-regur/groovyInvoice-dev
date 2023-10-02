@@ -540,7 +540,7 @@ export default function CustomerAddForm() {
                                 </div>
 
                                 <div className={`${styles.companyInvoiceFormButtonsWrapper} row`}>
-                                    <div className="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-3">
+                                    <div className="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-5">
                                         <div className="row">
                                             <div className="col-6 col-md-4 col-lg-3 col-xl-4">
                                                 <button name="btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`} type='submit'>
