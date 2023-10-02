@@ -12,8 +12,11 @@ import FaPDF from '../../../../assets/icons/faPDF.svg';
 import FaRupee from '../../../../assets/icons/faRupee.svg';
 import FaDropDown from '../../../../assets/icons/faDropDownGreen.svg';
 import { getInvoice } from '../../../../services/invoice.service';
+import { getCustomer } from '../../../../services/customer.service';
+import { getPaymentTerm } from '../../../../services/paymentTerms.service';
 import { formatDate } from '../../../../common/utils/date.utils';
 import Link from 'next/link';
+import { convertNumberToWord } from '../../../../utils/number.utils';
 
 export default function InvoiceViewComponent() {
     const { id } = useParams();
@@ -21,17 +24,10 @@ export default function InvoiceViewComponent() {
     const [actionBarExpandedState, setactionBarExpandedState] = useState(false)
     const [data, setData] = useState({
         customerId: 0,
-        customer: {
-            firstName: '',
-            lastName: ''
-        },
         invoiceNo: '',
         orderNumber: '',
         invoiceDate: new Date(),
         termsId: 0,
-        paymentTerm: {
-            label: '',
-        },
         dueDate: new Date(),
         customerNote: '',
         subTotalAmount: 0,
@@ -43,8 +39,15 @@ export default function InvoiceViewComponent() {
         invoiceItems: []
     })
 
+    const [customer, setCustomer] = useState({firstName: '', lastName: ''})
+    const [paymentTerm, setPaymentTerm] = useState({label: ''})
+
     const getData = async () => {
         const result = await getInvoice(id);
+        const customerData = await getCustomer(result.data.customerId)
+        const paymentTermData = await getPaymentTerm(result.data.termsId)
+        setCustomer(customerData.data)
+        setPaymentTerm(paymentTermData.data)
         setData({...result.data, invoiceDate: new Date(result.data.invoiceDate), dueDate: new Date(result.data.dueDate)})
     }
 
@@ -57,7 +60,7 @@ export default function InvoiceViewComponent() {
             <main className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
                 <div className="container-fluid">
                     <div className={`${styles.comapnyInvoiceViewInvoiceHeadWrapper} row`}>
-                        <div className={`${styles.comapnyInvoiceViewInvoiceMainHeading} col-9 col-md-10 col-lg-7`}>{data.customer.firstName + ' ' + data.customer.lastName}<span className={`${styles.comapnyInvoiceViewInvoiceSubHeading}`}>#{formatDate(data.invoiceDate)}</span></div>
+                        <div className={`${styles.comapnyInvoiceViewInvoiceMainHeading} col-9 col-md-10 col-lg-7`}>{customer.firstName + ' ' + customer.lastName}<span className={`${styles.comapnyInvoiceViewInvoiceSubHeading}`}>#{formatDate(data.invoiceDate)}</span></div>
                         <div className={`${styles.companyInvoiceViewInvoiceActionBarWrapper} col-12`}>
                             <nav className={`${styles.companyInvoiceViewInvoiceActionBar} navbar navbar-expand-lg`}>
                                 <div className="container-fluid">
@@ -159,7 +162,7 @@ export default function InvoiceViewComponent() {
                                         </div>
                                         <div className={`${styles.comapnyInvoiceViewInvoiceDetails} row`}>
                                             <span className={`${styles.comapnyInvoiceViewInvoiceDetailsHeading} col-6 text-align-start`}>Terms</span>
-                                            <span className={`${styles.comapnyInvoiceViewInvoiceDetailsEntry} col-6 text-align-start`}>{data.paymentTerm.label}</span>
+                                            <span className={`${styles.comapnyInvoiceViewInvoiceDetailsEntry} col-6 text-align-start`}>{paymentTerm.label}</span>
                                         </div>
                                         <div className={`${styles.comapnyInvoiceViewInvoiceDetails} row`}>
                                             <span className={`${styles.comapnyInvoiceViewInvoiceDetailsHeading} col-6 text-align-start`}>Due Date</span>
@@ -167,12 +170,12 @@ export default function InvoiceViewComponent() {
                                         </div>
                                     </div>
                                 </div>
-                                <ViewInvoiceTable />
+                                <ViewInvoiceTable items={data.invoiceItems}/>
                                 <div className="row">
                                     <div className="col-12 col-lg-5 order-1 order-lg-0">
                                         <div className={`${styles.companyInvoiceViewInvoiceTotalInWordsWrapper}`}>
                                             <div className={`${styles.companyInvoiceViewInvoiceTotalInWordsLabel}`}>Total In Words</div>
-                                            <div className={`${styles.companyInvoiceViewInvoiceTotalInWords}`}>One Thousand Three Hundred Twenty Rupees</div>
+                                            <div className={`${styles.companyInvoiceViewInvoiceTotalInWords}`}>{convertNumberToWord(data.totalAmount)}</div>
                                         </div>
                                         <div className={`${styles.companyInvoiceViewInvoiceThankYouWrapper}`}>
                                             <div className={`${styles.companyInvoiceViewInvoiceThankYou}`}>Thanks For Your Business.</div>

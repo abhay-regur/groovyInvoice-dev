@@ -31,8 +31,8 @@ const InvoiceTable = (props) => {
         e.preventDefault();
         const rowData = props.itemsData[index];
         if (e.target.name == 'quantity' || e.target.name == 'rate') {
-            rowData[e.target.name] = parseFloat(e.target.value)
-            rowData['subTotal'] = rowData.quantity * rowData.rate
+            rowData[e.target.name] = e.target.value == '' ? '' : parseFloat(e.target.value);
+            rowData['subTotal'] = (typeof rowData.quantity == 'number' ? rowData.quantity : 0) * (typeof rowData.rate == 'number' ? rowData.rate : 0)
             rowData['total'] = rowData.subTotal + rowData.taxPercent
         } else {
             rowData[e.target.name] = e.target.value
@@ -98,12 +98,12 @@ const InvoiceTable = (props) => {
                                 </td>
                                 <td>
                                     <div className={`${styles.companyInvoiceTableItemQuantity}`}>
-                                        <input className='form-control' name='quantity' value={item.quantity}  onChange={(e) => handleChange(idx, e)}/>
+                                        <input type='number' className='form-control' name='quantity' value={item.quantity}  onChange={(e) => handleChange(idx, e)}/>
                                     </div>
                                 </td>
                                 <td>
                                     <div className={`${styles.companyInvoiceTableItemRate}`}>
-                                        <input className='form-control' name='rate' value={item.rate}  onChange={(e) => handleChange(idx, e)}/>
+                                        <input type='number' className='form-control' name='rate' value={item.rate}  onChange={(e) => handleChange(idx, e)}/>
                                     </div>
                                 </td>
                                 <td>
