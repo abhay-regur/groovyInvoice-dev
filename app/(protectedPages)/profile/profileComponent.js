@@ -320,7 +320,7 @@ export default function ProfileComponent() {
                                                         </div>
                                                     </div>
                                                     <div className="row justify-content-end">
-                                                        <div className="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-4">
+                                                        <div className="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-5">
                                                             <div className="row">
                                                                 <div className="col-12 col-md-4 col-lg-3 col-xl-4 mt-3 mt-sm-0 d-flex justify-content-center">
                                                                     <button className={`${styles.companyInvoiceSaveSendButton} btn blue`} name="btn-submit" type="submit">

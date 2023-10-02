@@ -125,7 +125,7 @@ export default function UserUpdateFormComponent() {
                                 </div>
 
                                 <div className={`${styles.companyInvoiceFormButtonsWrapper} row`}>
-                                    <div className="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-3">
+                                    <div className="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-5">
                                         <div className="row">
                                             <div className="col-6 col-md-4 col-lg-3 col-xl-6">
                                                 <button className={`${styles.companyInvoiceSavenSendButton} btn blue`} name='btn-submit' onClick={(e) => { handleSaveClick(e) }}>
