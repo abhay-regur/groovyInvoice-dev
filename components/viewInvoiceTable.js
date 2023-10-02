@@ -2,7 +2,7 @@ import styles from '@/styles/viewInvoice.module.scss';
 import React from 'react';
 import { useTable, usePagination } from 'react-table';
 
-const ViewInvoiceTable = ({ ItemsData }) => {
+const ViewInvoiceTable = ({ items = [] }) => {
 
     const columns = React.useMemo(
         () => [
@@ -34,103 +34,34 @@ const ViewInvoiceTable = ({ ItemsData }) => {
         []
     )
 
-    const data = React.useMemo(
-        () => [
-            {
-                indexNumber: <div className={`${styles.companyInvoiceViewTableIndex}`}>1</div>,
-                itemDescription: <div className={`${styles.companyInvoiceViewTableItemDescription}`}>Phasellus auctor varius libero</div>,
-                taxCode: <span className={`${styles.companyInvoiceViewTableTaxCode}`}>991512</span>,
-                quantity: <span className={`${styles.companyInvoiceViewTableQuantity}`}>1.00</span>,
-                rate: <span className={`${styles.companyInvoiceViewTableRate}`}>Rs. 1320.00</span>,
-                amount: <span className={`${styles.companyInvoiceViewTableAmount}`}>Rs. 1320.00</span>,
-            },
-            {
-                indexNumber: <div className={`${styles.companyInvoiceViewTableIndex}`}>2</div>,
-                itemDescription: <div className={`${styles.companyInvoiceViewTableItemDescription}`}>Phasellus auctor varius libero</div>,
-                taxCode: <span className={`${styles.companyInvoiceViewTableTaxCode}`}>991512</span>,
-                quantity: <span className={`${styles.companyInvoiceViewTableQuantity}`}>1.00</span>,
-                rate: <span className={`${styles.companyInvoiceViewTableRate}`}>Rs. 1320.00</span>,
-                amount: <span className={`${styles.companyInvoiceViewTableAmount}`}>Rs. 1320.00</span>,
-            },
-            {
-                indexNumber: <div className={`${styles.companyInvoiceViewTableIndex}`}>3</div>,
-                itemDescription: <div className={`${styles.companyInvoiceViewTableItemDescription}`}>Phasellus auctor varius libero</div>,
-                taxCode: <span className={`${styles.companyInvoiceViewTableTaxCode}`}>991512</span>,
-                quantity: <span className={`${styles.companyInvoiceViewTableQuantity}`}>1.00</span>,
-                rate: <span className={`${styles.companyInvoiceViewTableRate}`}>Rs. 1320.00</span>,
-                amount: <span className={`${styles.companyInvoiceViewTableAmount}`}>Rs. 1320.00</span>,
-            },
-            {
-                indexNumber: <div className={`${styles.companyInvoiceViewTableIndex}`}>4</div>,
-                itemDescription: <div className={`${styles.companyInvoiceViewTableItemDescription}`}>Phasellus auctor varius libero</div>,
-                taxCode: <span className={`${styles.companyInvoiceViewTableTaxCode}`}>991512</span>,
-                quantity: <span className={`${styles.companyInvoiceViewTableQuantity}`}>1.00</span>,
-                rate: <span className={`${styles.companyInvoiceViewTableRate}`}>Rs. 1320.00</span>,
-                amount: <span className={`${styles.companyInvoiceViewTableAmount}`}>Rs. 1320.00</span>,
-            },
-            {
-                indexNumber: <div className={`${styles.companyInvoiceViewTableIndex}`}>5</div>,
-                itemDescription: <div className={`${styles.companyInvoiceViewTableItemDescription}`}>Phasellus auctor varius libero</div>,
-                taxCode: <span className={`${styles.companyInvoiceViewTableTaxCode}`}>991512</span>,
-                quantity: <span className={`${styles.companyInvoiceViewTableQuantity}`}>1.00</span>,
-                rate: <span className={`${styles.companyInvoiceViewTableRate}`}>Rs. 1320.00</span>,
-                amount: <span className={`${styles.companyInvoiceViewTableAmount}`}>Rs. 1320.00</span>,
-            },
-            {
-                indexNumber: <div className={`${styles.companyInvoiceViewTableIndex}`}>6</div>,
-                itemDescription: <div className={`${styles.companyInvoiceViewTableItemDescription}`}>Phasellus auctor varius libero</div>,
-                taxCode: <span className={`${styles.companyInvoiceViewTableTaxCode}`}>991512</span>,
-                quantity: <span className={`${styles.companyInvoiceViewTableQuantity}`}>1.00</span>,
-                rate: <span className={`${styles.companyInvoiceViewTableRate}`}>Rs. 1320.00</span>,
-                amount: <span className={`${styles.companyInvoiceViewTableAmount}`}>Rs. 1320.00</span>,
-            }
-        ],
-        []
-    )
-
-
-    const {
-        getTableProps,
-        getTableBodyProps,
-        headerGroups,
-        page,
-        prepareRow,
-        canPreviousPage,
-        canNextPage,
-        pageOptions,
-        nextPage,
-        previousPage,
-        gotoPage,
-        state: { pageIndex, pageSize },
-    } = useTable({
-        columns,
-        data,
-        initialState: { pageIndex: 0 },
-    },
-        usePagination);
+    
+    
 
     return (
         <div className="row">
             <div className={`col-sm-12`}>
                 <div className={`${styles.companyInvoiceViewTableWrapper}`}>
-                    <table className={`${styles.companyInvoiceViewTable} table`} {...getTableProps()}>
+                    <table className={`${styles.companyInvoiceViewTable} table`} >
                         <thead>
-                            {headerGroups.map((headerGroup, i) => (
-                                <tr key={i} {...headerGroup.getHeaderGroupProps()}>
-                                    {headerGroup.headers.map(column => (
-                                        <th key={i} scope="col" className="ps-3" {...column.getHeaderProps()}>{column.render("Header")}</th>
-                                    ))}
-                                </tr>
-                            ))}
+                            <tr >
+                                <th scope="col" className="ps-3">#</th>
+                                <th scope="col" className="ps-3">Item & Description</th>
+                                <th scope="col" className="ps-3">HSN/SAC</th>
+                                <th scope="col" className="ps-3">Qty</th>
+                                <th scope="col" className="ps-3">Rate</th>
+                                <th scope="col" className="ps-3">Amount</th>
+                            </tr>
                         </thead>
-                        <tbody {...getTableBodyProps()}>
-                            {page.map((row, i) => {
-                                prepareRow(row);
+                        <tbody >
+                            {items.map((item, i) => {
                                 return (
-                                    <tr key={i} {...row.getRowProps()}>
-                                        {row.cells.map(cell => {
-                                            return <td key={i} {...cell.getCellProps()}>{cell.render("Cell")}</td>;
-                                        })}
+                                    <tr key={i} >
+                                        <td >{i + 1}</td>
+                                        <td >{item.itemDescription}</td>
+                                        <td >991512</td>
+                                        <td >{item.quantity}</td>
+                                        <td >{item.rate}</td>
+                                        <td >{item.total}</td>
                                     </tr>
                                 );
                             })}
