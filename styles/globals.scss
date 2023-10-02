@@ -2,8 +2,6 @@
 @use './utility/variables' as var;
 // @use '../node_modules/bootstrap/scss/bootstrap.scss' as bvar;
 
-
-
 * {
   box-sizing: border-box;
 }
@@ -34,6 +32,7 @@ body {
 
     &::-webkit-scrollbar {
       width: 0.51em;
+      height: 0.51em;
     }
 
     &::-webkit-scrollbar-track {
@@ -157,6 +156,17 @@ body {
   .pageContent {
     min-height: inherit;
     background: var.$primary-background !important;
+  }
+
+  //Hide the default search input from Data Table
+  .table-container {
+    .filter-wrapper {
+      .dataTables_filter {
+        label {
+          display: none;
+        }
+      }
+    }
   }
 
   .green {
@@ -310,7 +320,6 @@ button {
   border-top-color: var.$primary-border-color !important;
 }
 
-
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
@@ -371,16 +380,4 @@ button {
   color: var.$secondary-color !important;
   top: 0;
   right: 0;
-}
-
-
-//Hide the default search input from Data Table
-.table-container {
-  .filter-wrapper {
-    .dataTables_filter {
-      label {
-        display: none;
-      }
-    }
-  }
 }
