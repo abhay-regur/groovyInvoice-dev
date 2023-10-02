@@ -155,7 +155,7 @@ body {
 
   #__next,
   .pageContent {
-    height: inherit;
+    min-height: inherit;
     background: var.$primary-background !important;
   }
 
@@ -373,4 +373,16 @@ button {
   color: var.$secondary-color !important;
   top: 0;
   right: 0;
+}
+
+
+//Hide the default search input from Data Table
+.table-container {
+  .filter-wrapper {
+    .dataTables_filter {
+      label {
+        display: none;
+      }
+    }
+  }
 }

@@ -73,7 +73,7 @@ const AllCustomerTable = () => {
 
     return (
         <div className={`${styles.comapanyInoviceCustomerTableWrapper} row`}>
-            <PageLoader isPageLoading={isPageLoading} />
+            {/* <PageLoader isPageLoading={isPageLoading} /> */}
             <div className="col-md-4 col-9 mb-3 p-0">
                 <div id="table_filter" className={`${styles.filter_wrapper} input-group`}>
                     <label className="input-group-text">Search:</label>
