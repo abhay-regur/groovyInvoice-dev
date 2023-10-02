@@ -148,7 +148,7 @@ export default function InvoiceAddForm() {
         } catch (error) {
             setErrors(error.response.data.message);
         }
-        // enableElement(e.target)
+        enableElement(e.target)
     }
 
     return (
