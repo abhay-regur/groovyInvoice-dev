@@ -26,7 +26,6 @@ export default function PaymentTermsComponent() {
         var temp_data = paymentTerm;
         if (target.name != '') {
             if (target.name == 'numberOfDays') {
-                console.log(target.value)
                 if (!Number.isNaN((target.value)) && target.value != '') {
                     temp_data[target.name] = parseInt(target.value)
                 } else {
@@ -102,16 +101,16 @@ export default function PaymentTermsComponent() {
     }
 
     const testNotification = () => {
-        setToastList([{
-            id: Math.floor((Math.random() * 101) + 1),
-            title: 'Payment Terms',
-            description: 'This is a test heading ',
-        }]);
+        // setToastList([{
+        //     id: Math.floor((Math.random() * 101) + 1),
+        //     title: 'Payment Terms',
+        //     description: 'This is a test heading ',
+        // }]);
     }
 
     const paymenTermsProps = {
         ItemsData: itemsData,
-        testNotification: testNotification,
+        updateData: testNotification,
         handleRemove: handleRemove
     }
 
