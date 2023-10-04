@@ -23,7 +23,7 @@ export default function IndustryComponent() {
         name: ""
     });
 
-    const [updateIndustryData, setupdateIndustryData] = useState({
+    const [updateIndustryOjb, setupdateIndustryOjb] = useState({
         id: "",
         name: ""
     });
@@ -42,7 +42,7 @@ export default function IndustryComponent() {
         setErrors([]);
         setShowTableUserInput(false);
         var temp = itemData.find(item => item.id == id);
-        setupdateIndustryData({
+        setupdateIndustryOjb({
             id: temp.id,
             name: temp.name
         });
@@ -78,10 +78,10 @@ export default function IndustryComponent() {
             let temp = Object.assign({}, temp_data)
             setNewIndustry(temp);
         } else if (target.name == 'updateName') {
-            var temp_data = updateIndustryData;
+            var temp_data = updateIndustryOjb;
             temp_data['name'] = target.value;
             let temp = Object.assign({}, temp_data)
-            setupdateIndustryData(temp);
+            setupdateIndustryOjb(temp);
         }
     }
 
@@ -115,20 +115,24 @@ export default function IndustryComponent() {
         }
     }
 
-    const updateIndustry = async () => {
+    const updateIndustryData = async () => {
         setErrors([]);
         setIsloading(true);
 
         var data = {
-            name: updateIndustryData.name
+            name: updateIndustryOjb.name
         }
-        try {
-            const result = await updateIndustry(data);
-            if (result.status == 200 || result.status == 201) {
 
+        try {
+            const result = await updateIndustry(updateIndustryOjb.id, {
+                name: updateIndustryOjb.name
+            });
+            if (result.status == 200 || result.status == 201) {
+                getIndustryData();
             }
         } catch (error) {
             setErrors(genrateErrorMessage(error, ''));
+            setIsloading(false);
         }
     }
 
@@ -225,12 +229,12 @@ export default function IndustryComponent() {
                                             <label className={`${styles.companyInvoicePaymentTermLabel}`}>Name</label>
                                         </div>
                                         <div className="col-12 col-lg-6 col-xl-6">
-                                            <input name='updateName' type="text" className="form-control" id="companyInvoicePaymentTermLabel" value={updateIndustryData.name} onChange={handleInput} placeholder='Name' />
+                                            <input name='updateName' type="text" className="form-control" id="companyInvoicePaymentTermLabel" value={updateIndustryOjb.name} onChange={handleInput} placeholder='Name' />
                                         </div>
                                     </div>
                                 </div>
                                 <div className="col-4 col-md-2">
-                                    <button name="btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`} onClick={() => { }}>
+                                    <button name="btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`} onClick={updateIndustryData}>
                                         <span>
                                             <i><FaPlus /></i>
                                             Add
@@ -248,8 +252,8 @@ export default function IndustryComponent() {
                             </div>
                             : !showTableUserInput
                                 ?
-                                <button className={`${styles.companyInvoiceAddIndustry} d-flex align-contect-center btn blue mb-4`} onClick={() => { addInputsRow() }}>
-                                    <span><i><FaCirclePlus /></i>Add Contact Person</span>
+                                <button className={`${styles.companyInvoiceAddIndustry} d-flex align-contect-center btn blue mb-4`} onClick={addInputsRow}>
+                                    <span><i><FaCirclePlus /></i>Add New Industry</span>
                                 </button>
                                 : ''
                         }
