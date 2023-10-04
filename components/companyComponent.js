@@ -67,7 +67,7 @@ export default function CompanyComponent() {
             <div className={`${styles.profileCard} card`}>
                 <div className="card-body">
                     <div className={`${styles.companyDetailsWrapper}`}>
-                        <h4>Company Details</h4>
+                        <h4>Company Details (W.I.P) </h4>
                         <hr />
                         <div className="row">
                             <div className="col-sm-2">

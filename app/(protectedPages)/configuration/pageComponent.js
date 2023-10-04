@@ -12,7 +12,7 @@ export default function ConfigComponent() {
         <div className={styles.container}>
             <main className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
                 <h2 className={`${styles.title}`}>
-                    Configurations
+                    Configurations (Dev Page)
                 </h2>
                 <hr />
                 <PaymentTerms />
