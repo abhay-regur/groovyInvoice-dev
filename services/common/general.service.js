@@ -12,3 +12,11 @@ export const getCurrencies = async () => {
         return await httpService.get('currencies');
     } catch (error) { throw error; }
 }
+
+export const getTimeZonesList = async () => {
+    try {
+        return await httpService.get('timezone');
+    } catch (error) {
+        throw error;
+    }
+}

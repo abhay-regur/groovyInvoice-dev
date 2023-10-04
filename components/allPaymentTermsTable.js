@@ -2,7 +2,7 @@ import styles from "@/styles/contactPersonTable.module.scss";
 import FaCilcleEllipses from "@/assets/icons/faCircleEllipses.svg";
 import FaCircleXmark from '@/assets/icons/faCircleXmark.svg';
 
-const AllPaymentTermsTable = ({ ItemsData, handleRemove, testNotification }) => {
+const AllPaymentTermsTable = ({ ItemsData, handleRemove, updateData }) => {
     return (
         <tbody>
             {ItemsData.map(function (item, idx) {
@@ -21,7 +21,7 @@ const AllPaymentTermsTable = ({ ItemsData, handleRemove, testNotification }) => 
                             {
                                 item.id > 3
                                     ? <div className="d-flex">
-                                        <span className={`${styles.companyInvoicePaymentTermEdit}`} onClick={() => { testNotification() }}><FaCilcleEllipses /></span>
+                                        <span className={`${styles.companyInvoicePaymentTermEdit}`} onClick={() => { updateData(item.id) }}><FaCilcleEllipses /></span>
 
                                         <span className={`${styles.redColor} ${styles.companyInvoicePaymentTermRemove}`} onClick={() => { handleRemove(item.id) }}><FaCircleXmark /></span>
 
