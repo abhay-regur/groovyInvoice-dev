@@ -47,7 +47,6 @@ export default function CustomerEditForm() {
         firstName: "",
         lastName: "",
         customerCompanyName: "",
-        companyId: 0,
         displayName: "",
         email: "",
         phone: "",
@@ -64,26 +63,26 @@ export default function CustomerEditForm() {
         exemptionReason: "",
         currency: "₹",
         openingBalance: 0,
-        paymentTermId: 0,
+        paymentTermId: null,
         address: {
             billingAddress: {
                 attention: "",
-                countryId: 0,
+                countryId: null,
                 addressLine1: "",
                 addressLine2: "",
                 city: "",
-                stateId: 0,
+                stateId: null,
                 zipCode: "",
                 phone: "",
                 fax: ""
             },
             shippingAddress: {
                 attention: "",
-                countryId: 0,
+                countryId: null,
                 addressLine1: "",
                 addressLine2: "",
                 city: "",
-                stateId: 0,
+                stateId: null,
                 zipCode: "",
                 phone: "",
                 fax: ""
@@ -173,7 +172,7 @@ export default function CustomerEditForm() {
     const getStateData = async (id, setStates) => {
         setErrors([]);
         try {
-            if (id != -1) {
+            if (typeof id == 'number' && id > 0) {
                 const result = await getStates(id);
                 var data = result.data;
                 var temp = [];

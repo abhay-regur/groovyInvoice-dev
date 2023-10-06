@@ -25,7 +25,7 @@ const AllCustomerTable = () => {
                     <Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} />
                     <span className={`${styles.companyCustomerTableCustomerNameWrapper}`}>
                         <div className={`${styles.companyCustomerTableCustomerName}`} >
-                            {row.firstName + ' ' + row.lastName}
+                            {row.displayName}
                         </div>
                         <Link className={`${styles.companyCustomerTableCustomerEdit} ps-2`} href={`/customers/update/${row.id}`}>
                             <FaPen />
@@ -41,16 +41,13 @@ const AllCustomerTable = () => {
         authUserType: 'user',
         columns: [
             {
-                data: 'firstName', name: 'firstName', searchable: true,
+                data: 'displayName', name: 'displayName', searchable: true,
                 createdCell: function (cell, cellData, rowData, rowIndex, colIndex) {
                     const root = ReactDOM.createRoot(cell)
                     root.render(draw_userName(rowData))
                 },
                 searchable: true,
                 orderable: true,
-            },
-            {
-                data: 'lastName', name: 'lastName', visible: false,
             },
             {
                 data: 'cellNumber', name: 'cellNumber', searchable: true,
@@ -85,7 +82,6 @@ const AllCustomerTable = () => {
                     <thead>
                         <tr>
                             <th scope="col" className="ps-3" data-priority="1" >User Name</th>
-                            <th scope="col" className="ps-3 hide" data-priority="99" >Last name</th>
                             <th scope="col" className="ps-3" data-priority="99">Contact Number</th>
                             <th scope="col" className="ps-3" data-priority="99">Company Name</th>
                             <th scope="col" className="ps-3" data-priority="99">Email Address</th>

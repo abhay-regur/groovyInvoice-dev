@@ -1,11 +1,9 @@
 "use client"
 import { useState, useContext, useEffect } from 'react';
 import { useParams } from 'next/navigation';
-import DatePicker from "react-datepicker";
 import InvoiceTable from '../../../../../components/invoice/invoiceTable';
 import RadioButton from '../../../../../components/radioButton';
 import styles from "../../../../../styles/newInvoice.module.scss";
-import FaCalendar from "../../../../../assets/icons/faCalendar.svg";
 import { NavExpandedState } from '../../../../../context/NavState.context';
 import { ToastMsgContext } from '../../../../../context/ToastMsg.context';
 import FaSave from '../../../../../assets/icons/faSave.svg';
@@ -88,7 +86,7 @@ export default function InvoiceEditForm() {
     }
 
     const handleInput = ({ target }) => {
-        let name = target.name || target.getAttribute('name');;
+        let name = target.name || target.getAttribute('name');
         if (name != '') {
             if (['openingBalance', 'gstTreatment', 'customerId', 'termsId', 'subtotalAmount', 'shippingCharges', 'totalTaxAmount', 'adjustmentAmount'].includes(name)) {
                 data[name] = parseInt(target.value)
@@ -121,7 +119,7 @@ export default function InvoiceEditForm() {
         const result = await getCustomers();
         let temp = [];
         result.data.forEach((elem) => {
-            temp.push({ Id: elem.id, name: elem.firstName + " " + elem.lastName })
+            temp.push({ Id: elem.id, name: elem.displayName })
         });
         setCustomer(temp);
     }
@@ -138,7 +136,6 @@ export default function InvoiceEditForm() {
         let name = target.name || target.getAttribute('name');
         data[name] = parseInt(target.value)
         const paymentTerm = paymentTerms.find((item) => item.Id == parseInt(target.value))
-        console.log(paymentTerm)
         if (paymentTerm.numberOfDays) {
             const date = addDaysInDate(new Date(), paymentTerm.numberOfDays)
             data['dueDate'] = new Date(date)
