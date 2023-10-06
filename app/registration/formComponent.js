@@ -45,7 +45,7 @@ export default function RegistrationForm() {
             await signUp(data)
             push('/registration/success');
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
         }
         enableSubmitButton(e.target)
     }

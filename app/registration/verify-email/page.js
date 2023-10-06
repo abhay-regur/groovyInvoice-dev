@@ -20,7 +20,7 @@ export default function VerifyEmail() {
                 await verifyEmail(token)
                 push('/login')
             } catch (error) {
-                setErrors(genrateErrorMessage(error, ''));
+                setErrors(genrateErrorMessage(error, '', setToastList));
             }
         }
     }

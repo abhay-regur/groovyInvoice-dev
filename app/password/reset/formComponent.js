@@ -50,7 +50,7 @@ export default function ResetPasswordForm() {
                 await resetPassword(token, data);
                 push('/password/reset/success');
             } catch (error) {
-                setErrors(genrateErrorMessage(error, ''));
+                setErrors(genrateErrorMessage(error, '', setToastList));
             }
             enableSubmitButton(event.target)
         }

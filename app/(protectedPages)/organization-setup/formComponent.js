@@ -5,12 +5,13 @@ import { useContext, useEffect, useState } from "react";
 import ErrorList from '@/components/errorList';
 import { ToastMsgContext } from '@/context/ToastMsg.context';
 import { getCompanyDetails, updateCompanyDetails } from '@/services/companies.service';
-import { getCurrencies } from '@/services/common/general.service';
+import { getCurrencies, getTimeZonesList } from '@/services/common/general.service';
 import { getIndianStates, getCountries } from '@/services/countriesState.service';
 import CustomSelectComponent from "@/components/customSelectComponent";
 import { NavExpandedState } from '@/context/NavState.context';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 import Loading from "../loading";
+import { getIndustryList } from '@/services/industry.service';
 
 
 export default function OrganizationSetupForm() {
@@ -23,6 +24,10 @@ export default function OrganizationSetupForm() {
     const { setToastList } = useContext(ToastMsgContext);
 
     const [isLoading, setIsLoading] = useState(true);
+
+    const [industryList, setIndustryList] = useState([]);
+
+    const [timeZoneList, setTimeZoneList] = useState([]);
 
     const [countryArray, setCountryArray] = useState([]);
 
@@ -48,7 +53,9 @@ export default function OrganizationSetupForm() {
     useEffect(() => {
         setIsLoading(true);
         getCurrenciesData();
+        getIndustryData();
         getStatesData();
+        getTimeZonesData();
         getCountriesData();
         getCompanyData();
         setIsLoading(false);
@@ -65,7 +72,7 @@ export default function OrganizationSetupForm() {
             })
             getStateArray(temp);
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
         }
     }
 
@@ -81,7 +88,7 @@ export default function OrganizationSetupForm() {
             setCountryArray(temp);
             setIsLoading(false);
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
         }
     }
 
@@ -96,7 +103,7 @@ export default function OrganizationSetupForm() {
             })
             setCurrencies(temp);
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
         }
     }
 
@@ -104,6 +111,38 @@ export default function OrganizationSetupForm() {
         setErrors([]);
         const result = await getCompanyDetails();
         setData(result.data);
+    }
+
+    const getIndustryData = async () => {
+        try {
+            const result = await getIndustryList();
+            if (result.status == 200 || result.status == 201) {
+                var data = result.data;
+                var temp = [];
+                data.forEach((elem) => {
+                    temp.push({ Id: elem.id, name: elem.name })
+                })
+                setIndustryList(temp);
+            }
+        } catch (error) {
+            setErrors(genrateErrorMessage(error, '', setToastList));
+        }
+    }
+
+    const getTimeZonesData = async () => {
+        try {
+            const result = await getTimeZonesList();
+            if (result.status == 200 || result.status == 201) {
+                var data = result.data;
+                var temp = [];
+                data.forEach((elem) => {
+                    temp.push({ Id: elem.id, name: elem.label })
+                })
+                setTimeZoneList(temp);
+            }
+        } catch (error) {
+            setErrors(genrateErrorMessage(error, '', setToastList));
+        }
     }
 
     const [modelFor, setModalFor] = useState('');
@@ -155,7 +194,7 @@ export default function OrganizationSetupForm() {
                 replace('/dashboard')
             }
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
             setIsLoading(false);
         }
     }
@@ -193,7 +232,7 @@ export default function OrganizationSetupForm() {
                                                     <label className={`${styles.companyInvoiceOrganizationIndustrylabel}`}>Industry </label>
                                                 </div>
                                                 <div className="col-12 col-lg-6 col-xl-7">
-                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationIndustrySelect}`} data={[{ Id: 1, name: 'IT' }]} onOptionValueChange={handleInput} optionValue={parseInt(data.industryId)} name={'industry'} isDisabled={false} defaultText={'Select an Option'} isInnerButtonRequired={false} />
+                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationIndustrySelect}`} data={industryList} onOptionValueChange={handleInput} optionValue={parseInt(data.industryId)} name={'industryId'} isDisabled={false} defaultText={'Select an Option'} isInnerButtonRequired={false} />
                                                 </div>
                                             </div>
 
@@ -238,7 +277,7 @@ export default function OrganizationSetupForm() {
                                                     <label className={`${styles.companyInvoiceOrganizationTimeZonelabel}`}>Time Zone <span className={`${styles.green}`}>*</span></label>
                                                 </div>
                                                 <div className="col-12 col-lg-6 col-xl-7">
-                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationTimeZoneSelect}`} data={[{ Id: 1, name: "Asia/Kolkata" }]} onOptionValueChange={handleInput} optionValue={data.timeZone} name={'timeZone'} isDisabled={false} defaultText={'Select a Time Zone'} isInnerButtonRequired={false} />
+                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationTimeZoneSelect}`} data={timeZoneList} onOptionValueChange={handleInput} optionValue={data.timeZone} name={'timeZone'} isDisabled={false} defaultText={'Select a Time Zone'} isInnerButtonRequired={false} />
                                                 </div>
                                             </div>
 

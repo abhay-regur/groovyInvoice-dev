@@ -1,10 +1,12 @@
+'use client'
 import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
-import dynamic from 'next/dynamic';
 import { Suspense } from "react";
 import Loading from "./loading";
 import '@/styles/globals.scss';
 import { Mulish } from "@next/font/google";
+import Toast from '@/components/toast.js';
+import ToastMsg from '@/context/ToastMsg.context';
 
 const mulish = Mulish({
     weight: ['400', '700', '800'],
@@ -26,7 +28,10 @@ function RootLayout({ children }) {
         <html lang="en" className={`${mulish.variable}`}>
             <body>
                 <React.StrictMode>
-                    <Suspense fallback={<Loading />}>{children}</Suspense>
+                    <ToastMsg>
+                        <Suspense fallback={<Loading />}>{children}</Suspense>
+                        <Toast />
+                    </ToastMsg>
                 </React.StrictMode>
             </body>
         </html>)

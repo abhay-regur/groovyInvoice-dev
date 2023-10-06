@@ -61,7 +61,7 @@ export default function UserUpdateFormComponent() {
                 description: result.data.message,
             }]);
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
         }
     }
 
