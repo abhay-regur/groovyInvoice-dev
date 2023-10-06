@@ -203,6 +203,7 @@ export default function ContactPerson({ custId, setToastList, ErrorList, addCont
     }
 
     return (
+        <>
         <div className={`${styles.companyInvoiceContactPersonListTableWrapper} row`}>
             <div className="col-12">
                 <ErrorList errors={errors} />
@@ -220,112 +221,108 @@ export default function ContactPerson({ custId, setToastList, ErrorList, addCont
                             <th scope="col" className={`${styles.companyInvoiceTableEditButtonsHeader}`}></th>
                         </tr>
                     </thead>
-                    {isLoading
-                        ? <TableLoading isLoading={true} columnLength={6} rowsLength={4} isProfile={false} />
-                        : <tbody>
-                            {itemData.length > 0
-                                ? itemData.map(function (item, idx) {
-                                    return (
-                                        <tr key={idx} className={`${tableStyles.companyInvoiceContactPersonRow}`}>
-                                            <td>
-                                                <span>{(item.salutation).toLocaleUpperCase()}.</span>
-                                            </td>
-                                            <td>
-                                                <span>{item.firstName}</span>
-                                            </td>
-                                            <td>
-                                                <span>{item.lastName}</span>
-                                            </td>
-                                            <td>
-                                                <span>{item.email}</span>
-                                            </td>
-                                            <td>
-                                                <span>{item.workPhone}</span>
-                                            </td>
-                                            <td>
-                                                <span>{item.mobile}</span>
-                                            </td>
-                                            <td className={`${tableStyles.companyInvoiceContantPersonEditRow}`}>
-                                                <div className="d-flex">
-                                                    <span onClick={() => { showModal(idx) }}><FaCilcleEllipses /></span>
-                                                    <span onClick={() => { removeContactPersonEntry(item.id) }} className={`${tableStyles.redColor}`}><FaCircleXmark /></span>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    )
-                                })
-                                :
-                                <tr className={`${tableStyles.companyInvoiceContactPersonRow}`}>
-                                    <td>
-                                        <span>-</span>
-                                    </td>
-                                    <td>
-                                        <span>-</span>
-                                    </td>
-                                    <td>
-                                        <span>-</span>
-                                    </td>
-                                    <td>
-                                        <span>-</span>
-                                    </td>
-                                    <td>
-                                        <span>-</span>
-                                    </td>
-                                    <td>
-                                        <span>-</span>
-                                    </td>
-                                    <td className={`${tableStyles.companyInvoiceContantPersonEditRow}`}>
+                {isLoading
+                    ? <TableLoading isLoading={true} columnLength={6} rowsLength={4} isProfile={false} />
+                    : <tbody>
+                        {itemData.length > 0
+                            ? itemData.map(function (item, idx) {
+                                return (
+                                    <tr key={idx} className={`${tableStyles.companyInvoiceContactPersonRow}`}>
+                                        <td>
+                                            <span>{(item.salutation).toLocaleUpperCase()}.</span>
+                                        </td>
+                                        <td>
+                                            <span>{item.firstName}</span>
+                                        </td>
+                                        <td>
+                                            <span>{item.lastName}</span>
+                                        </td>
+                                        <td>
+                                            <span>{item.email}</span>
+                                        </td>
+                                        <td>
+                                            <span>{item.workPhone}</span>
+                                        </td>
+                                        <td>
+                                            <span>{item.mobile}</span>
+                                        </td>
+                                        <td className={`${tableStyles.companyInvoiceContantPersonEditRow}`}>
+                                            <div className="d-flex">
+                                                <span onClick={() => { showModal(idx); } }><FaCilcleEllipses /></span>
+                                                <span onClick={() => { removeContactPersonEntry(item.id); } } className={`${tableStyles.redColor}`}><FaCircleXmark /></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                );
+                            })
+                            :
+                            <tr className={`${tableStyles.companyInvoiceContactPersonRow}`}>
+                                <td>
+                                    <span>-</span>
+                                </td>
+                                <td>
+                                    <span>-</span>
+                                </td>
+                                <td>
+                                    <span>-</span>
+                                </td>
+                                <td>
+                                    <span>-</span>
+                                </td>
+                                <td>
+                                    <span>-</span>
+                                </td>
+                                <td>
+                                    <span>-</span>
+                                </td>
+                                <td className={`${tableStyles.companyInvoiceContantPersonEditRow}`}>
 
-                                    </td>
-                                </tr>
-                            }
-                            {showTableUserInput
-                                ? <tr className={`${tableStyles.companyInvoiceContactPersonRow}`}>
-                                    <td>
-                                        <select name='salutation' className={`${styles.companySalutationSelect} form-select`} value={newPerson.salutation} onChange={handleInput}>
-                                            <option defaultValue>Salutation</option>
-                                            <option value="ms">Ms.</option>
-                                            <option value="mr">Mr.</option>
-                                            <option value="mrs">Mrs.</option>
-                                            <option value="dr">Dr.</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input name='firstName' type="text" className={`${styles.companyInvoiceTableInput} form-control`} id="companyInvoiceCompanyEmail" value={newPerson.firstName} placeholder='First Name' onChange={handleInput} />
-                                    </td>
-                                    <td>
-                                        <input name='lastName' type="text" className={`${styles.companyInvoiceTableInput} form-control`} id="companyInvoiceCompanyEmail" value={newPerson.lastName} placeholder='Last Name' onChange={handleInput} />
-                                    </td>
-                                    <td>
-                                        <input name='email' type="email" className={`${styles.companyInvoiceTableInput} form-control`} id="companyInvoiceCompanyEmail" value={newPerson.email} placeholder='Email' onChange={handleInput} />
-                                    </td>
-                                    <td>
-                                        <input name='workPhone' type="number" className={`${styles.companyInvoiceTableInput} form-control`} id="companyInvoiceCompanyEmail" value={newPerson.workPhone} placeholder='Work Phone' onChange={handleInput} />
-                                    </td>
-                                    <td>
-                                        <input name='mobile' type="number" className={`${styles.companyInvoiceTableInput} form-control`} id="companyInvoiceCompanyEmail" value={newPerson.mobile} placeholder='Mobile' onChange={handleInput} />
-                                    </td>
-                                    <td className={`${tableStyles.companyInvoiceContantPersonEditRow}`}>
-                                        <div className="d-flex">
-                                            <span onClick={submitNewPerson}><FaCircleCheck /></span>
-                                            <span className={`${tableStyles.redColor}`} onClick={removeInputRow}><FaCircleXmark /></span>
-                                        </div>
-                                    </td>
-                                </tr>
-                                : ''
-                            }
-                        </tbody>
-                    }
-                </table>
-            </div>
+                                </td>
+                            </tr>}
+                        {showTableUserInput
+                            ? <tr className={`${tableStyles.companyInvoiceContactPersonRow}`}>
+                                <td>
+                                    <select name='salutation' className={`${styles.companySalutationSelect} form-select`} value={newPerson.salutation} onChange={handleInput}>
+                                        <option defaultValue>Salutation</option>
+                                        <option value="ms">Ms.</option>
+                                        <option value="mr">Mr.</option>
+                                        <option value="mrs">Mrs.</option>
+                                        <option value="dr">Dr.</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input name='firstName' type="text" className={`${styles.companyInvoiceTableInput} form-control`} id="companyInvoiceCompanyEmail" value={newPerson.firstName} placeholder='First Name' onChange={handleInput} />
+                                </td>
+                                <td>
+                                    <input name='lastName' type="text" className={`${styles.companyInvoiceTableInput} form-control`} id="companyInvoiceCompanyEmail" value={newPerson.lastName} placeholder='Last Name' onChange={handleInput} />
+                                </td>
+                                <td>
+                                    <input name='email' type="email" className={`${styles.companyInvoiceTableInput} form-control`} id="companyInvoiceCompanyEmail" value={newPerson.email} placeholder='Email' onChange={handleInput} />
+                                </td>
+                                <td>
+                                    <input name='workPhone' type="number" className={`${styles.companyInvoiceTableInput} form-control`} id="companyInvoiceCompanyEmail" value={newPerson.workPhone} placeholder='Work Phone' onChange={handleInput} />
+                                </td>
+                                <td>
+                                    <input name='mobile' type="number" className={`${styles.companyInvoiceTableInput} form-control`} id="companyInvoiceCompanyEmail" value={newPerson.mobile} placeholder='Mobile' onChange={handleInput} />
+                                </td>
+                                <td className={`${tableStyles.companyInvoiceContantPersonEditRow}`}>
+                                    <div className="d-flex">
+                                        <span onClick={submitNewPerson}><FaCircleCheck /></span>
+                                        <span className={`${tableStyles.redColor}`} onClick={removeInputRow}><FaCircleXmark /></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            : ''}
+                    </tbody>}
+            </table>
+        </div>
             <div className="col-12 d-flex">
                 {!showTableUserInput
-                    ? <div className={`${styles.companyInvoiceAddContectperson} d-flex align-contect-center mb-4`} onClick={() => { addInputsRow() }}>
+                    ? <div className={`${styles.companyInvoiceAddContectperson} d-flex align-contect-center mb-4`} onClick={() => { addInputsRow(); } }>
                         <FaCirclePlus />
                         <span>Add Contact Person</span>
                     </div>
-                    : ''
-                }
+                    : ''}
             </div>
 
             {/* Modal */}
@@ -417,5 +414,6 @@ export default function ContactPerson({ custId, setToastList, ErrorList, addCont
                 </div>
             </div>
         </div>
+        </>
     )
 }

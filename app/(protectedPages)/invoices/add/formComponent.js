@@ -12,8 +12,8 @@ import FaCircleXmark from '../../../../assets/icons/faCircleXmark.svg';
 import FaCircleQuestion from '../../../../assets/icons/faCircleQuestion.svg';
 import FaGear from '../../../../assets/icons/faGear.svg';
 import "react-datepicker/dist/react-datepicker.css";
-import { getPaymentTerms } from '../../../../services/paymentTerms.service';
-import { getCustomers } from '../../../../services/customer.service';
+import { getPaymentTerms, getPaymentTerm } from '../../../../services/paymentTerms.service';
+import { getCustomers, getCustomer } from '../../../../services/customer.service';
 import CustomSelectComponent from '../../../../components/customSelectComponent';
 import { saveInvoice } from '../../../../services/invoice.service';
 import ErrorList from '../../../../components/errorList';
@@ -21,6 +21,8 @@ import { ToastMsgContext } from '../../../../context/ToastMsg.context';
 import { addDaysInDate } from '../../../../common/utils/date.utils';
 import DateInputField from '../../../../components/common/dateInputField';
 import { enableElement, disableElement } from '../../../../utils/form.utils';
+import InvoiceNumberSettingsPopup from '../../../../components/settings/invoiceNumberSettingsPopup';
+import ReactDOM from "react-dom/client";
 
 export default function InvoiceAddForm() {
     const [taxValueSelected, settaxValueSelected] = useState();
@@ -87,11 +89,17 @@ export default function InvoiceAddForm() {
         calculateTotalAmount()
     }
 
+    const handleCustomerSelect = async (e) => {
+        handleInput(e)
+        const result = await getCustomer(e.target.value)
+        handlePaymentTermChange(result.data.paymentTermId)
+    }
+
     const getCustomersList = async () => {
         const result = await getCustomers();
         let temp = [];
         result.data.forEach((elem) => {
-            temp.push({ Id: elem.id, name: elem.firstName + " " + elem.lastName })
+            temp.push({ Id: elem.id, name: elem.displayName })
         });
         setCustomer(temp);
     }
@@ -101,16 +109,22 @@ export default function InvoiceAddForm() {
         getCustomersList()
     }, [])
 
-    const handlePaymentTermChange = ({ target }) => {
-        let name = target.name || target.getAttribute('name');
-        data[name] = parseInt(target.value)
-        const paymentTerm = paymentTerms.find((item) => item.Id == parseInt(target.value))
-        if (paymentTerm.numberOfDays) {
-            const date = addDaysInDate(new Date(), paymentTerm.numberOfDays)
-            data['dueDate'] = new Date(date)
+    const handlePaymentTermChange = async (value) => {
+        data['termsId'] = parseInt(value)
+        if (value > 0) {
+            const result = await getPaymentTerm(value)
+            if (result.data.numberOfDays) {
+                const date = addDaysInDate(new Date(), result.data.numberOfDays)
+                data['dueDate'] = new Date(date)
+            }
+            let temp = Object.assign({}, data)
+            setData(temp)
         }
-        let temp = Object.assign({}, data)
-        setData(temp)
+    }
+
+    function openInvoiceNumberSettingsPopup() {
+        const t = new Date().getMilliseconds() + Math.random()
+        ReactDOM.createRoot(document.getElementById('invoiceNumberSettingsPopupRoot')).render(<InvoiceNumberSettingsPopup key={t} />)
     }
 
     const setDateChange = (value, name) => {
@@ -172,7 +186,7 @@ export default function InvoiceAddForm() {
                                                 className={`${styles.companInvoicePaymentTermsSelect}`}
                                                 inputClass="form-control"
                                                 data={customers}
-                                                onOptionValueChange={handleInput}
+                                                onOptionValueChange={handleCustomerSelect}
                                                 optionValue={data.customerId}
                                                 name={'customerId'}
                                                 isDisabled={false}
@@ -185,8 +199,8 @@ export default function InvoiceAddForm() {
                                         <div className={`${styles.companyInvoiceNumberWrapper} mb-3`}>
                                             <label htmlFor="companyInvoiceNumber" className="form-label">Invoice#<span className={`${styles.green}`}>*</span></label>
                                             <div className={`d-flex align-content-center`}>
-                                                <input type="text" className="form-control" id="companyInvoiceNumber" aria-describedby="emailHelp" name="invoiceNo" value={data.invoiceNo} onChange={handleInput} />
-                                                <i><FaGear /></i>
+                                                <input type="text" className="form-control" id="companyInvoiceNumber" aria-describedby="emailHelp" name="invoiceNo" value={data.invoiceNo} onChange={handleCustomerSelect} />
+                                                <i onClick={openInvoiceNumberSettingsPopup}><FaGear/></i>
                                             </div>
                                         </div>
                                     </div>
@@ -215,7 +229,7 @@ export default function InvoiceAddForm() {
                                                 className={`${styles.companInvoicePaymentTermsSelect}`}
                                                 inputClass="form-control"
                                                 data={paymentTerms}
-                                                onOptionValueChange={handlePaymentTermChange}
+                                                onOptionValueChange={(e)=>handlePaymentTermChange(e.target.value)}
                                                 optionValue={data.termsId}
                                                 name={'termsId'}
                                                 isDisabled={false}
@@ -234,6 +248,7 @@ export default function InvoiceAddForm() {
                                     </div>
                                 </div>
                             </div>
+                            <div id="invoiceNumberSettingsPopupRoot"></div>
                             <hr />
                             <div className={`${styles.companyInvoiceItemsTableMainWrapper} row`}>
                                 <InvoiceTable itemsData={data.invoiceItems} setItemsData={setItemsData} />
