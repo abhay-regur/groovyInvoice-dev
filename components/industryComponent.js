@@ -65,7 +65,7 @@ export default function IndustryComponent() {
                 setItemData(result.data);
             }
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
             setIsloading(false);
         }
         setIsloading(false);
@@ -97,7 +97,7 @@ export default function IndustryComponent() {
                 getIndustryData();
             }
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
         }
     }
 
@@ -111,7 +111,7 @@ export default function IndustryComponent() {
                 getIndustryData();
             }
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
         }
     }
 
@@ -131,7 +131,7 @@ export default function IndustryComponent() {
                 getIndustryData();
             }
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
             setIsloading(false);
         }
     }

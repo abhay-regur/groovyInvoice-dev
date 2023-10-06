@@ -81,7 +81,7 @@ export default function UserUpdateFormComponent() {
                 // window.location.pathname = '/users/';
             }
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
         }
         enableSubmitButton(e.target)
     }

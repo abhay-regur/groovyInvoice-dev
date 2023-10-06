@@ -72,7 +72,7 @@ export default function OrganizationSetupForm() {
             })
             getStateArray(temp);
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
         }
     }
 
@@ -88,7 +88,7 @@ export default function OrganizationSetupForm() {
             setCountryArray(temp);
             setIsLoading(false);
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
         }
     }
 
@@ -103,7 +103,7 @@ export default function OrganizationSetupForm() {
             })
             setCurrencies(temp);
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
         }
     }
 
@@ -125,7 +125,7 @@ export default function OrganizationSetupForm() {
                 setIndustryList(temp);
             }
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
         }
     }
 
@@ -141,7 +141,7 @@ export default function OrganizationSetupForm() {
                 setTimeZoneList(temp);
             }
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
         }
     }
 
@@ -194,7 +194,7 @@ export default function OrganizationSetupForm() {
                 replace('/dashboard')
             }
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
             setIsLoading(false);
         }
     }

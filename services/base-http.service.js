@@ -14,35 +14,35 @@ export default class BaseHttpService {
     Object.assign(options, this._getCommonOptions())
     return axios
       .get(`${this.BASE_URL}/${endpoint}`, options)
-      .catch((error) =>{ return this._handleHttpError(error)})
+      .catch((error) => { return this._handleHttpError(error) })
   }
 
   async post(endpoint, data = {}, options = {}) {
     Object.assign(options, this._getCommonOptions())
     return axios
       .post(`${this.BASE_URL}/${endpoint}`, data, options)
-      .catch((error) =>{ return this._handleHttpError(error)})
+      .catch((error) => { return this._handleHttpError(error) })
   }
 
   async delete(endpoint, options = {}) {
     Object.assign(options, this._getCommonOptions())
     return axios
       .delete(`${this.BASE_URL}/${endpoint}`, options)
-      .catch((error) =>{ return this._handleHttpError(error)})
+      .catch((error) => { return this._handleHttpError(error) })
   }
 
   async patch(endpoint, data = {}, options = {}) {
     Object.assign(options, this._getCommonOptions())
     return axios
       .patch(`${this.BASE_URL}/${endpoint}`, data, options)
-      .catch((error) =>{ return this._handleHttpError(error)})
+      .catch((error) => { return this._handleHttpError(error) })
   }
 
   async put(endpoint, data = {}, options = {}) {
     Object.assign(options, this._getCommonOptions())
     return axios
       .put(`${this.BASE_URL}/${endpoint}`, data, options)
-      .catch((error) =>{ return this._handleHttpError(error)})
+      .catch((error) => { return this._handleHttpError(error) })
   }
 
   async previousRequestRecall(request) {
@@ -65,11 +65,12 @@ export default class BaseHttpService {
       ) {
         throw error
       } else {
-        this.removeToken() //remove any existing token of this user..
+        this.removeToken(); //remove any existing token of this user..
         if (this.userType === 'user') {
           window.location = '/login'
         }
-        throw new Error('No user type specified in _handle401() method')
+        // throw new Error('No user type specified in _handle401() method')
+        throw error
       }
     }
   }
@@ -110,7 +111,8 @@ export default class BaseHttpService {
         if (this.userType === 'user') {
           window.location = '/login'
         }
-        throw new Error('No user type specified in _handle401() method')
+        // throw new Error('No user type specified in _handle401() method')
+        throw error
       }
     }
   }

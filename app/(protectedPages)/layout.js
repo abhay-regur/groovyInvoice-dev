@@ -1,8 +1,8 @@
 "use client"
 import AuthLayout from "./authLayout";
 import UserLoggedState from "@/context/UserState.context";
-import Toast from '@/components/toast.js';
-import ToastMsg from '@/context/ToastMsg.context';
+// import Toast from '@/components/toast.js';
+// import ToastMsg from '@/context/ToastMsg.context';
 
 function Layout({ children }) {
 
@@ -10,10 +10,11 @@ function Layout({ children }) {
         <>
             <UserLoggedState>
                 <AuthLayout>
-                    <ToastMsg>
-                        {children}
+                    {children}
+                    {/* <ToastMsg>
+                        
                         <Toast />
-                    </ToastMsg>
+                    </ToastMsg> */}
                 </AuthLayout>
             </UserLoggedState>
         </>)

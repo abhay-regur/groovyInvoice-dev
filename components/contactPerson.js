@@ -74,7 +74,7 @@ export default function ContactPerson({ custId, setToastList, ErrorList, addCont
                 setItemData(data);
             }
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
             setIsloading(false);
         }
         setIsloading(false);
@@ -116,7 +116,7 @@ export default function ContactPerson({ custId, setToastList, ErrorList, addCont
                 setIsloading(false);
             }
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
             setIsloading(false);
         }
         setIsloading(false);
@@ -165,7 +165,7 @@ export default function ContactPerson({ custId, setToastList, ErrorList, addCont
                 getContactPersonList();
             }
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
             setIsloading(false);
         }
         hideModal();
@@ -183,7 +183,7 @@ export default function ContactPerson({ custId, setToastList, ErrorList, addCont
                 getContactPersonList();
             }
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
         }
     }
 

@@ -65,7 +65,7 @@ export default function PaymentTermsComponent() {
             });
             setItemData(temp);
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
         }
     }
 
@@ -90,7 +90,7 @@ export default function PaymentTermsComponent() {
                 getPaymentTermsDetails();
             }
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
             setIsLoading(false);
         }
         setIsLoading(false);
@@ -111,7 +111,7 @@ export default function PaymentTermsComponent() {
                 removeInputRow();
             }
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
             setIsLoading(false);
         }
         setIsLoading(false);
@@ -136,7 +136,7 @@ export default function PaymentTermsComponent() {
                 hideUpdateSection();
             }
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
             setIsLoading(false);
         }
         setIsLoading(false);
@@ -164,12 +164,12 @@ export default function PaymentTermsComponent() {
     }
 
     const addInputsRow = () => {
-        setShowTableUserInput(!showTableUserInput);
+        setShowTableUserInput(true);
         setErrors([]);
     }
 
     const removeInputRow = () => {
-        setShowTableUserInput(!showTableUserInput);
+        setShowTableUserInput(false);
         setPaymentTerm({
             label: "",
             numberOfDays: 0

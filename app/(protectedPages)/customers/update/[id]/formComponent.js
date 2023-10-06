@@ -164,7 +164,7 @@ export default function CustomerEditForm() {
                 }]);
             }
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
             setIsLoading(false);
         }
         setIsLoading(false);
@@ -183,7 +183,7 @@ export default function CustomerEditForm() {
                 setStates(temp);
             }
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
         }
     }
 
@@ -199,7 +199,7 @@ export default function CustomerEditForm() {
             setCountries(temp);
             setIsLoading(false);
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
         }
     }
 
@@ -214,7 +214,7 @@ export default function CustomerEditForm() {
             })
             setGSTTreatment(temp);
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
         }
     }
 
@@ -229,7 +229,7 @@ export default function CustomerEditForm() {
             })
             setCurrencies(temp);
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
         }
     }
 
@@ -244,7 +244,7 @@ export default function CustomerEditForm() {
             })
             setPlaceOfSupply(temp);
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
         }
     }
 
@@ -259,7 +259,7 @@ export default function CustomerEditForm() {
             });
             setPaymentTerms(temp);
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
         }
     }
 
@@ -274,7 +274,7 @@ export default function CustomerEditForm() {
             });
             setTaxExemptionReason(temp);
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
         }
     }
 
@@ -298,7 +298,7 @@ export default function CustomerEditForm() {
                 setShippingStatesCountryId(result.data.address.shippingAddress.countryId);
             }
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
         }
     }
 

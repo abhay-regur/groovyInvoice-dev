@@ -43,7 +43,7 @@ export default function ForgotPasswordForm() {
                 await forgotPassword(data)
                 push('/password/forgot/success');
             } catch (error) {
-                setErrors(genrateErrorMessage(error, ''));
+                setErrors(genrateErrorMessage(error, '', setToastList));
             }
             enableSubmitButton(e.target)
         }
