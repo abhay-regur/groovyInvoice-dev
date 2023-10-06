@@ -1,0 +1,31 @@
+@use './utility/variables' as var;
+
+.modalWrapper {
+    .modalHeader {
+        h5 {
+            color: var.$primary-color;
+            font-weight: 700;
+        }
+    }
+    .smallFont{
+        font-size: 14px;
+    }
+    .saveButton {
+        span {
+            display: flex;
+            text-align: center;
+            justify-content: center;
+
+            i {
+                display: flex;
+                margin-right: 5px;
+                align-self: center;
+
+                svg {
+                    height: 20px;
+                    width: 20px;
+                }
+            }
+        }
+    }
+}
