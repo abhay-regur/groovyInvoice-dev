@@ -1,5 +1,5 @@
 "use client"
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faKey } from '@fortawesome/free-solid-svg-icons';
@@ -10,13 +10,17 @@ import { disableSubmitButton, enableSubmitButton } from '@/utils/form.utils'
 import ErrorList from '@/components/errorList';
 import { login } from '@/services/users/auth.service';
 import PasswordInputField from '@/components/passwordInputField';
+import { ToastMsgContext } from '@/context/ToastMsg.context';
 import { useRouter } from 'next/navigation';
+import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils';
+
 
 
 export default function LoginForm() {
     const router = useRouter();
     const [rememberMe, setRememberMe] = useState(false);
     const [errors, setErrors] = useState([])
+    const { setToastList } = useContext(ToastMsgContext);
     const formErrors = []
     const [data, setData] = useState({
         username: '',
@@ -60,7 +64,7 @@ export default function LoginForm() {
                     if (status == '404' || status == '401') {
                         setErrors("Username or Password is incorrect please try again.")
                     } else {
-                        setErrors(error.response.data.message);
+                        setErrors(genrateErrorMessage(error, '', setToastList))
                     }
                 } else {
                     setErrors('Internal Error occurred!');

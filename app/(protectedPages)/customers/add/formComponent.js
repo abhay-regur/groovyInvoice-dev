@@ -163,7 +163,7 @@ export default function CustomerAddForm() {
                 }, 2500);
             }
         } catch (error) {
-            setErrors(genrateErrorMessage(error, 'Customer'))
+            setErrors(genrateErrorMessage(error, 'Customer', setToastList))
             setIsLoading(false);
         }
         setIsLoading(false);
@@ -182,7 +182,7 @@ export default function CustomerAddForm() {
                 setStates(temp);
             }
         } catch (error) {
-            setErrors(genrateErrorMessage(error, 'Customer'));
+            setErrors(genrateErrorMessage(error, 'Customer', setToastList));
         }
     }
 
@@ -198,7 +198,7 @@ export default function CustomerAddForm() {
             setCountries(temp);
             setIsLoading(false);
         } catch (error) {
-            setErrors(genrateErrorMessage(error, 'Customer'));
+            setErrors(genrateErrorMessage(error, 'Customer', setToastList));
         }
     }
 
@@ -213,7 +213,7 @@ export default function CustomerAddForm() {
             })
             setGSTTreatment(temp);
         } catch (error) {
-            setErrors(genrateErrorMessage(error, 'Customer'));
+            setErrors(genrateErrorMessage(error, 'Customer', setToastList));
 
         }
     }
@@ -229,7 +229,7 @@ export default function CustomerAddForm() {
             })
             setCurrencies(temp);
         } catch (error) {
-            setErrors(genrateErrorMessage(error, 'Customer'));
+            setErrors(genrateErrorMessage(error, 'Customer', setToastList));
         }
     }
 
@@ -244,7 +244,7 @@ export default function CustomerAddForm() {
             })
             setPlaceOfSupply(temp);
         } catch (error) {
-            setErrors(genrateErrorMessage(error, 'Customer'));
+            setErrors(genrateErrorMessage(error, 'Customer', setToastList));
         }
     }
 
@@ -259,7 +259,7 @@ export default function CustomerAddForm() {
             });
             setPaymentTerms(temp);
         } catch (error) {
-            setErrors(genrateErrorMessage(error, 'Customer'));
+            setErrors(genrateErrorMessage(error, 'Customer', setToastList));
         }
     }
 
@@ -274,7 +274,7 @@ export default function CustomerAddForm() {
             });
             setTaxExemptionReason(temp);
         } catch (error) {
-            setErrors(genrateErrorMessage(error, 'Customer'));
+            setErrors(genrateErrorMessage(error, 'Customer', setToastList));
         }
     }
 

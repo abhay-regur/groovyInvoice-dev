@@ -84,7 +84,7 @@ export default function ProfileComponent() {
                 description: '',
             }]);
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
         }
         enableSubmitButton(e.target);
     }
@@ -126,7 +126,7 @@ export default function ProfileComponent() {
             setUserNewPassword('');
             setUserConfirmPassword('');
         } catch (error) {
-            setErrors(genrateErrorMessage(error, ''));
+            setErrors(genrateErrorMessage(error, '', setToastList));
         }
         enableSubmitButton(e.target);
     }

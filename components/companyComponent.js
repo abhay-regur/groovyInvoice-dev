@@ -3,14 +3,19 @@ import { getCountries, getStates } from '@/services/countriesState.service';
 import FaSave from '@/assets/icons/faSave.svg';
 import FaCircleXmark from '@/assets/icons/faCircleXmark.svg';
 import SelectComponent from './selectComponent';
+import { ToastMsgContext } from '@/context/ToastMsg.context';
 import styles from '@/styles/configuration.module.scss';
+import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils';
+
 export default function CompanyComponent() {
     const [countries, setCountries] = useState()
     const [states, setStates] = useState();
     const [errors, setErrors] = useState([]);
+    const { setToastList } = useContext(ToastMsgContext);
     const [seletedCountryId, setSeletedCountryId] = useState("");
     const [seletedStateId, setSeletedStateId] = useState("");
     const [isLoading, setIsLoading] = useState(true)
+
 
     const [companyData, setCompanyData] = useState({
         companyName: "",
@@ -38,27 +43,36 @@ export default function CompanyComponent() {
 
     const getStateData = async (id) => {
         setErrors([]);
-        if (id != "") {
-            const result = await getStates(id);
+        try {
+            if (id != "") {
+                const result = await getStates(id);
+                var data = result.data;
+                var temp = [];
+                for (var i = 0; data.length > i; i++) {
+                    temp.push({ name: data[i].name, Id: data[i].id });
+                }
+                setStates(temp);
+            }
+        } catch (error) {
+            setErrors(genrateErrorMessage(error, '', setToastList));
+        }
+
+    }
+
+    const getCountryData = async () => {
+        setErrors([]);
+        try {
+            const result = await getCountries();
             var data = result.data;
             var temp = [];
             for (var i = 0; data.length > i; i++) {
                 temp.push({ name: data[i].name, Id: data[i].id });
             }
-            setStates(temp);
+            setCountries(temp);
+            setIsLoading(false);
+        } catch (error) {
+            setErrors(genrateErrorMessage(error, '', setToastList));
         }
-    }
-
-    const getCountryData = async () => {
-        setErrors([]);
-        const result = await getCountries();
-        var data = result.data;
-        var temp = [];
-        for (var i = 0; data.length > i; i++) {
-            temp.push({ name: data[i].name, Id: data[i].id });
-        }
-        setCountries(temp);
-        setIsLoading(false);
     }
 
 
