@@ -28,7 +28,11 @@ const AllUserTable = () => {
                     <Image src={defaultProfile} alt="Picture of the author" width={42} height={42} />
                     <span className={`${styles.companyUserTableCustomerNameWrapper}`} >
                         <div className={`${styles.companyUserTableCustomerName}`}>
-                            {row.firstName + ' ' + row.lastName}
+                            {
+                                row.firstName
+                                + ' ' +
+                                row.lastName
+                            }
                         </div>
                         <Link className={`${styles.companyUserTableCustomerEdit} ps-2`} href={`/users/update/${row.id}`}>
                             <FaPen />
