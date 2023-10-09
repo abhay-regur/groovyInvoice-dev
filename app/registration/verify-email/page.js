@@ -1,16 +1,18 @@
 "use client"
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import styles from '@/styles/registration.module.scss';
 import Head from 'next/head';
 import ErrorList from '@/components/errorList';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils';
+import { ToastMsgContext } from '@/context/ToastMsg.context';
 import { verifyEmail } from '@/services/users/registration.service';
 
 
 export default function VerifyEmail() {
     const [errors, setErrors] = useState([])
     const { push } = useRouter();
+    const { setToastList } = useContext(ToastMsgContext);
     const searchParams = useSearchParams();
     const token = searchParams.get('token')
 

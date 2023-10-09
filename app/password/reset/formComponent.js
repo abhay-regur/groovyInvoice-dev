@@ -1,11 +1,12 @@
 "use client"
-import { React, useState, useEffect } from 'react';
+import { React, useState, useEffect, useContext } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import ErrorList from '@/components/errorList';
 import { verifyPasswordResetToken, resetPassword } from '@/services/password/password.services'
 import { disableSubmitButton, enableSubmitButton } from '@/utils/form.utils';
 import styles from '@/styles/resetPassword.module.scss';
+import { ToastMsgContext } from '@/context/ToastMsg.context';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils';
 import PasswordInputField from '@/components/passwordInputField';
 
@@ -14,6 +15,7 @@ export default function ResetPasswordForm() {
     const formErrors = [];
     const [errors, setErrors] = useState([])
     const [data, setData] = useState({ password: '', confirmPassword: '' })
+    const { setToastList } = useContext(ToastMsgContext);
     const [isInvalidToken, SetIsInvalidToken] = useState(false)
     const params = useSearchParams();
     const { push } = useRouter();
