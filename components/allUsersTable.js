@@ -29,9 +29,9 @@ const AllUserTable = () => {
                     <span className={`${styles.companyUserTableCustomerNameWrapper}`} >
                         <div className={`${styles.companyUserTableCustomerName}`}>
                             {
-                                ((row.firstName == null || row.firstName == '') ? '-' : row.firstName)
+                                row.firstName
                                 + ' ' +
-                                ((row.lastName == null || row.lastName == '') ? '-' : row.lastName)
+                                row.lastName
                             }
                         </div>
                         <Link className={`${styles.companyUserTableCustomerEdit} ps-2`} href={`/users/update/${row.id}`}>
