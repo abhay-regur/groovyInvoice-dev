@@ -13,11 +13,11 @@ import Loading from "../loading.js";
 import { ToastMsgContext } from '../../../../context/ToastMsg.context';
 import { getPaymentTerms, createPaymentTerms } from "../../../../services/paymentTerms.service";
 import { getCountries, getStates } from '../../../../services/countriesState.service';
-import { createCustomer, getGSTTreatment, getPlaceOfSupply, getCurrencies, addContactPerson, listContactPersonDetails, updateContactPersonDetails, deleteContactPersonDetails } from "../../../../services/customer.service";
+import { createCustomer, getGSTTreatment, getPlaceOfSupply, getCurrencies } from "../../../../services/customer.service";
 import { getTaxExemptionReason, createTaxExemptionReason } from '../../../../services/taxExempted.service.js';
 import { NavExpandedState } from '../../../../context/NavState.context';
 import { useRouter } from 'next/navigation';
-
+import DisplayNameSelect from '../../../../components/customers/displayNameSelect';
 
 export default function CustomerAddForm() {
     const { replace } = useRouter();
@@ -409,10 +409,10 @@ export default function CustomerAddForm() {
                                     <div className="col-12 col-lg-2 col-xl-2">
                                         <select name='salutation' className={`${styles.companySalutationSelect} form-select`} onChange={handleInput}>
                                             <option defaultValue>Salutation</option>
-                                            <option value="ms">Ms.</option>
-                                            <option value="mr">Mr.</option>
-                                            <option value="mrs">Mrs.</option>
-                                            <option value="dr">Dr.</option>
+                                            <option value="Ms.">Ms.</option>
+                                            <option value="Mr.">Mr.</option>
+                                            <option value="Mrs.">Mrs.</option>
+                                            <option value="Dr.">Dr.</option>
                                         </select>
                                     </div>
                                     <div className="col-12 col-lg-3 col-xl-2">
@@ -437,14 +437,14 @@ export default function CustomerAddForm() {
                                         <label className={`${styles.companyInvoiceCompanyDisplayNamelabel}`}>Customer Display Name <span className={`${styles.green}`}>*</span></label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-6">
-                                        {/* <select className={`${styles.companyInvoiceCompanyDisplaySelect} form-select`} onChange={handleInput}>
-                                        <option defaultValue>Customer Display Name</option>
-                                        <option value="1">Option 1</option>
-                                        <option value="2">Option 2</option>
-                                        <option value="3">Option 3</option>
-                                        <option value="4">Option 4</option>
-                                    </select> */}
-                                        <input name='displayName' type="text" className="form-control" id="companyInvoiceNewCustomerUserName" value={data.displayName} onChange={handleInput} placeholder='Display Name' />
+                                        <DisplayNameSelect
+                                          value={data.displayName}
+                                          onChange={handleInput}
+                                          salutation={data.salutation}
+                                          firstName={data.firstName}
+                                          lastName={data.lastName}
+                                          name='displayName'
+                                        />
                                     </div>
                                 </div>
 
