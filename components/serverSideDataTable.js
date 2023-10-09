@@ -70,6 +70,7 @@ function ServerSideDT(props, ref) {
                 { responsivePriority: 1, targets: -1 },
                 { className: "td-text-center", targets: "_all" },
                 { width: "250px", targets: [1, 2] },
+                { targets: '_all', defaultContent: "-" },
             ],
             "initComplete": function () {
                 $('.dataTables_filter').remove();
