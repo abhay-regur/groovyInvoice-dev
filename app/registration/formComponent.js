@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Link from 'next/link';
 import styles from '@/styles/registration.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,12 +9,14 @@ import { disableSubmitButton, enableSubmitButton } from '@/utils/form.utils';
 import { validateInput } from '@/services/common/general.service'
 import { useRouter } from 'next/navigation';
 import ErrorList from '@/components/errorList';
+import { ToastMsgContext } from '@/context/ToastMsg.context';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils';
 import PasswordInputField from '@/components/passwordInputField';
 
 export default function RegistrationForm() {
     const { push } = useRouter();
     const [errors, setErrors] = useState([]);
+    const { setToastList } = useContext(ToastMsgContext);
 
     const [data, setData] = useState({
         email: '',

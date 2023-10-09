@@ -1,5 +1,5 @@
 "use client"
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
@@ -7,6 +7,7 @@ import { forgotPassword } from '@/services/password/password.services.js';
 import ErrorList from '@/components/errorList';
 import styles from '@/styles/forgotPassword.module.scss';
 import { useRouter } from 'next/navigation';
+import { ToastMsgContext } from '@/context/ToastMsg.context';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils';
 import { disableSubmitButton, enableSubmitButton } from '@/utils/form.utils';
 
@@ -16,6 +17,7 @@ export default function ForgotPasswordForm() {
     const formErrors = [];
     const { push } = useRouter();
     const [errors, setErrors] = useState([]);
+    const { setToastList } = useContext(ToastMsgContext);
     const [data, setData] = useState({ email: '' });
 
     const handleInput = ({ target }) => {

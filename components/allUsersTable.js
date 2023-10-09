@@ -22,18 +22,19 @@ const AllUserTable = () => {
     const dtRef = useRef();
 
     const draw_userName = (row) => {
+        var fullName = (row.firstName == null ? '-' : row.firstName) + ' ' + (row.lastName == null ? '-' : row.lastName);
         return (
             <>
                 <div className={`${styles.companyUserTableCustomerImage}`}>
                     <Image src={defaultProfile} alt="Picture of the author" width={42} height={42} />
                     <span className={`${styles.companyUserTableCustomerNameWrapper}`} >
-                        <div className={`${styles.companyUserTableCustomerName}`}>
-                            {
-                                row.firstName
-                                + ' ' +
-                                row.lastName
-                            }
-                        </div>
+                        {
+                            <div className={`${styles.companyUserTableCustomerName}`}>
+                                {
+                                    fullName
+                                }
+                            </div>
+                        }
                         <Link className={`${styles.companyUserTableCustomerEdit} ps-2`} href={`/users/update/${row.id}`}>
                             <FaPen />
                         </Link>
@@ -64,17 +65,18 @@ const AllUserTable = () => {
                     root.render(draw_userName(rowData))
                 },
                 orderable: true,
+                defaultContent: "-",
             },
             {
-                data: 'lastName', name: 'lastName', visible: false,
+                data: 'lastName', name: 'lastName', visible: false, defaultContent: "-",
             },
             {
                 data: 'cellNumber', name: 'cellNumber', searchable: true,
-                orderable: true,
+                orderable: true, defaultContent: "-",
             },
             {
                 data: 'email', name: 'email', searchable: true,
-                orderable: true,
+                orderable: true, defaultContent: "-",
             },
             {
                 data: null,
@@ -84,6 +86,7 @@ const AllUserTable = () => {
                 },
                 searchable: false,
                 orderable: false,
+                defaultContent: "-",
             }
         ],
     }
