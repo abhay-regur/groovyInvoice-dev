@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import RadioButton from '@/components/radioButton';
 import styles from "../../styles/popup.module.scss";
 
 const InvoiceNumberSettingsPopup = () => {
@@ -16,7 +17,17 @@ const InvoiceNumberSettingsPopup = () => {
   }
 
   const handleChange = ({ target }) => {
-    data[target.name] = target.value
+    var temp_data = data;
+    var name = target.name || target.getAttribute('name');
+    if (name != '') {
+      temp_data[name] = target.value;
+      let temp = Object.assign({}, temp_data)
+      setData(temp)
+    }
+  }
+
+  const handleRadioButtonChange = ({ target }) => {
+    data[target.getAttribute('data-group')] = target.name.toLowerCase();
     let temp = Object.assign({}, data)
     setData(temp)
   }
@@ -37,38 +48,64 @@ const InvoiceNumberSettingsPopup = () => {
         <div className="modal-dialog">
           <div className="modal-content">
             <div className={`${styles.modalHeader} modal-header`}>
-              <h5 className="modal-title"> Invoice Number</h5>
+              <h5 className="modal-title"> Invoice ID</h5>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
             </div>
-            <div className="modal-body">
+            <div className={`${styles.modalBody} modal-body`}>
               <div className="row">
                 <div className="col-12 ">
                   <address className={`${styles.smallFont}`}>Your invoice numbers are set on auto-generate mode to save your time. Are you sure about changing this setting?</address>
                   <div className="form-check mb-1">
-                    <label className=" d-flex align-content-center">
-                      <input defaultChecked={data.numberGenerationType == 'auto-generate' ? true : false } name="numberGenerationType" type="radio" value="auto-generate" onClick={handleChange} />
-                      <span>Continue auto-generating invoice numbers</span>
-                    </label>
+                    <span className={`${styles.invoiceNumberAutoGenrationRadioButtonWrapper} d-flex align-items-center`}>
+                      <RadioButton
+                        group="numberGenerationType"
+                        name='auto-generate'
+                        label="Continue auto-generating invoice numbers"
+                        value={(data.numberGenerationType).toLowerCase() === 'auto-generate'}
+                        onChange={handleRadioButtonChange}
+                      />
+                    </span>
                   </div>
                   {data.numberGenerationType == 'auto-generate' ?
                     <>
                       <div className="row mx-3 mb-3">
-                        <div className="col-lg-3 pl-3">
-                          <small>Prefix</small>
-                          <input className="form-control" value={data.prefix} name="prefix" onChange={handleChange}/>
+                        <div className="col-lg-4 pl-3">
+                          <div className="mb-3">
+                            <div className={`${styles.inputGroup} input-group`}>
+                              <span className="input-group-text" id="invoiceIDPrefix">Prefix</span>
+                              <input className="form-control" value={data.prefix} name="prefix" onChange={handleChange} />
+                            </div>
+                          </div>
                         </div>
-                        <div className="col-lg-6">
-                          <small>Next Number</small>
-                          <input className="form-control" value={data.nextNumber} name="nextNumber" onChange={handleChange}/>
+                        <div className="col-lg-8">
+                          <div className="mb-3">
+                            <div className={`${styles.inputGroup} input-group`}>
+                              <span className="input-group-text" id="invoiceIDNumber">Next Number</span>
+                              <input className="form-control" value={data.nextNumber} name="nextNumber" onChange={handleChange} />
+                            </div>
+                          </div>
+                        </div>
+                        <div className="col-lg-10">
+                          <div className="mb-3">
+                            <div className={styles.invoiceIdPreview}>
+                              <span>Preview : </span>
+                              {data.prefix}-{data.nextNumber}
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </>
                     : ''}
                   <div className="form-check mb-1">
-                    <label className=" d-flex align-content-center">
-                      <input defaultChecked={data.numberGenerationType == 'manual' ? true : false } name="numberGenerationType" type="radio" value="manual" onClick={handleChange} />
-                      <span>I will add them manually each time</span>
-                    </label>
+                    <span className={`${styles.invoiceNumberManualGenrationRadioButtonWrapper} d-flex align-items-center`}>
+                      <RadioButton
+                        group="numberGenerationType"
+                        name='manual'
+                        label="I will add them manually each time"
+                        value={(data.numberGenerationType).toLowerCase() === 'manual'}
+                        onChange={handleRadioButtonChange}
+                      />
+                    </span>
                   </div>
                 </div>
               </div>
