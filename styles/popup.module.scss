@@ -1,29 +1,141 @@
 @use './utility/variables' as var;
 
 .modalWrapper {
+    border: var.$border-color 1px solid;
+
     .modalHeader {
         h5 {
             color: var.$primary-color;
             font-weight: 700;
         }
     }
-    .smallFont{
-        font-size: 14px;
-    }
-    .saveButton {
-        span {
-            display: flex;
-            text-align: center;
-            justify-content: center;
 
-            i {
+    .modalBody {
+
+        .invoiceNumberAutoGenrationRadioButtonWrapper,
+        .invoiceNumberManualGenrationRadioButtonWrapper {
+            input {
+                height: 22px;
+                width: 22px;
+                visibility: hidden;
+            }
+
+            span {
+                color: var.$secondary-color;
+                margin-right: 15px;
+            }
+
+            [type="radio"]:checked,
+            [type="radio"]:not(:checked) {
+                position: absolute;
+                left: -9999px;
+
+                &:checked+span,
+                &:not(:checked)+span {
+                    position: relative;
+                    padding-left: 28px;
+                    cursor: pointer;
+                    font-weight: 600;
+                    font-size: 14px;
+                    line-height: 20px;
+                    display: inline-block;
+                    color: var.$secondary-color;
+                }
+
+                &:checked+span:before,
+                &:not(:checked)+span:before {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 22px;
+                    height: 22px;
+                    border: 1.5px solid var.$primary-color;
+                    border-radius: 100%;
+                    background: var.$white;
+                }
+
+                &:checked+span:after,
+                &:not(:checked)+span:after {
+                    content: '';
+                    width: 14px;
+                    height: 14px;
+                    background: var.$primary-color;
+                    position: absolute;
+                    top: 4px;
+                    left: 4px;
+                    border-radius: 100%;
+                    -webkit-transition: all 0.2s ease;
+                    transition: all 0.2s ease;
+                }
+
+                &:not(:checked)+span:after {
+                    opacity: 0;
+                    -webkit-transform: scale(0);
+                    transform: scale(0);
+                }
+
+                &:checked+span:after {
+                    opacity: 1;
+                    -webkit-transform: scale(1);
+                    transform: scale(1);
+                }
+            }
+        }
+
+        .inputGroup {
+            span {
+                color: var.$primary-color;
+            }
+        }
+
+        input {
+            font-weight: 400;
+            font-size: 14px;
+            color: var.$secondary-color;
+            background: var.$input-background-color;
+            border: 1px solid var.$primary-border-color;
+            border-radius: 8px;
+        }
+
+        small {
+            color: var.$primary-color;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 18px;
+        }
+
+        .invoiceIdPreview {
+            span {
+                color: var.$tertiary-color;
+                font-size: 17px;
+            }
+
+            color: var.$primary-color;
+        }
+
+        .smallFont {
+            color: var.$primary-color;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 18px;
+        }
+
+        .saveButton {
+            span {
                 display: flex;
-                margin-right: 5px;
-                align-self: center;
+                text-align: center;
+                justify-content: center;
 
-                svg {
-                    height: 20px;
-                    width: 20px;
+                i {
+                    display: flex;
+                    margin-right: 5px;
+                    align-self: center;
+
+                    svg {
+                        height: 20px;
+                        width: 20px;
+                    }
                 }
             }
         }
