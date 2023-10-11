@@ -15,7 +15,7 @@ import { ToastMsgContext } from '@/context/ToastMsg.context';
 import Loading from "../../loading.js";
 import { getPaymentTerms, createPaymentTerms } from "@/services/paymentTerms.service";
 import { getCountries, getStates } from '@/services/countriesState.service';
-import { getUserDetails, updateUserDetails, getGSTTreatment, getPlaceOfSupply, getCurrencies, addContactPerson, listContactPersonDetails, updateContactPersonDetails, deleteContactPersonDetails } from "@/services/customer.service";
+import { getCustomer, updateUserDetails, getGSTTreatment, getPlaceOfSupply, getCurrencies, addContactPerson, listContactPersonDetails, updateContactPersonDetails, deleteContactPersonDetails } from "@/services/customer.service";
 import { getTaxExemptionReason, createTaxExemptionReason } from '@/services/taxExempted.service.js';
 import { GST_TREATMENT } from '../../../../../constants';
 import { NavExpandedState } from '@/context/NavState.context';
@@ -224,7 +224,7 @@ export default function CustomerEditForm() {
             var data = result.data;
             var temp = [];
             data.forEach((elem) => {
-                temp.push({ Id: elem.symbol, name: elem.symbol + ' - ' + elem.name })
+                temp.push({ Id: elem.symbol, name: (elem.symbol == '' ? elem.name : elem.symbol + ' - ' + elem.name) })
             })
             setCurrencies(temp);
         } catch (error) {
@@ -546,7 +546,6 @@ export default function CustomerEditForm() {
                                         </div>
                                 }
                             </form>
-
                         </div>
                     </div>
                 </div>
