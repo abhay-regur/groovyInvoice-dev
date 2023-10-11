@@ -224,7 +224,7 @@ export default function CustomerAddForm() {
             var data = result.data;
             var temp = [];
             data.forEach((elem) => {
-                temp.push({ Id: elem.symbol, name: elem.symbol + ' - ' + elem.name })
+                temp.push({ Id: elem.symbol, name: (elem.symbol == '' ? elem.name : elem.symbol + ' - ' + elem.name) })
             })
             setCurrencies(temp);
         } catch (error) {
