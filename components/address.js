@@ -84,7 +84,7 @@ export default function Address({ countries, billingstates, shippingstates, ship
                         <label className={`${styles.companyInvoiceBillingComapnyCountrylabel}`}>Country / Region</label>
                     </div>
                     <div className="col-12 col-md-8">
-                        <SelectComponent id={'countryId'} data={countries} setSeletedId={handelSelectInput} seletedId={billingstatesCountryId} name={'billingCountryId'} defaultText={'Select A Country'} />
+                        <SelectComponent id={'countryId'} data={countries} setSeletedId={handelSelectInput} seletedId={billingstatesCountryId == null ? 0 : billingstatesCountryId} name={'billingCountryId'} defaultText={'Select A Country'} />
                     </div>
                 </div>
 
@@ -115,7 +115,7 @@ export default function Address({ countries, billingstates, shippingstates, ship
                         <label className={`${styles.companyInvoiceBillingComapnyStatelabel}`}>State</label>
                     </div>
                     <div className="col-12 col-md-8">
-                        <SelectComponent id={"stateId"} data={billingstates} setSeletedId={handleBillingInput} seletedId={data.address.billingAddress.stateId} name={'billingStateId'} defaultText={'Select A State'} />
+                        <SelectComponent id={"stateId"} data={billingstates} setSeletedId={handleBillingInput} seletedId={data.address.billingAddress.stateId == null ? 0 : data.address.billingAddress.stateId} name={'billingStateId'} defaultText={'Select A State'} />
                     </div>
                 </div>
 
@@ -173,7 +173,7 @@ export default function Address({ countries, billingstates, shippingstates, ship
                         <label className={`${styles.companyInvoiceShippingComapnyCountrylabel}`}>Country / Region</label>
                     </div>
                     <div className="col-12 col-md-8 d-flex">
-                        <SelectComponent id={'countryId'} data={countries} setSeletedId={handelSelectInput} seletedId={shippingstatesCountryId} name={'shippingCountryId'} isDisabled={addressCopied} defaultText={'Select A Country'} />
+                        <SelectComponent id={'countryId'} data={countries} setSeletedId={handelSelectInput} seletedId={shippingstatesCountryId == null ? 0 : shippingstatesCountryId} name={'shippingCountryId'} isDisabled={addressCopied} defaultText={'Select A Country'} />
                     </div>
                 </div>
 
@@ -204,7 +204,7 @@ export default function Address({ countries, billingstates, shippingstates, ship
                         <label className={`${styles.companyInvoiceShippingComapnyStatelabel}`}>State</label>
                     </div>
                     <div className="col-12 col-md-8 d-flex">
-                        <SelectComponent id={"stateId"} data={shippingstates} setSeletedId={handleShippingInput} seletedId={data.address.shippingAddress.stateId} name={'shippingStateId'} isDisabled={addressCopied} defaultText={'Select A State'} />
+                        <SelectComponent id={"stateId"} data={shippingstates} setSeletedId={handleShippingInput} seletedId={data.address.shippingAddress.stateId == null ? 0 : data.address.shippingAddress.stateId} name={'shippingStateId'} isDisabled={addressCopied} defaultText={'Select A State'} />
                     </div>
                 </div>
 
