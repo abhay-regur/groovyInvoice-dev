@@ -98,10 +98,10 @@ export default function UserUpdateFormComponent() {
                                         <label className="">Name</label>
                                     </div>
                                     <div className="col-12 col-lg-3 col-xl-3">
-                                        <input type="text" className={`${styles.companyInvoiceUserFirstName} form-control`} name='firstName' value={data.firstName} placeholder='First Name' onChange={handleInput} />
+                                        <input type="text" className={`${styles.companyInvoiceUserFirstName} form-control`} name='firstName' value={data.firstName == null ? '' : data.firstName} placeholder='First Name' onChange={handleInput} />
                                     </div>
                                     <div className="col-12 col-lg-3 col-xl-3">
-                                        <input type="text" className={`${styles.companyInvoiceUserLastName} form-control`} value={data.lastName} name='lastName' placeholder='Last Name' onChange={handleInput} />
+                                        <input type="text" className={`${styles.companyInvoiceUserLastName} form-control`} value={data.lastName == null ? '' : data.lastName} name='lastName' placeholder='Last Name' onChange={handleInput} />
                                     </div>
                                 </div>
 
