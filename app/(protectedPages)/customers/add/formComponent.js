@@ -438,12 +438,12 @@ export default function CustomerAddForm() {
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-6">
                                         <DisplayNameSelect
-                                          value={data.displayName}
-                                          onChange={handleInput}
-                                          salutation={data.salutation}
-                                          firstName={data.firstName}
-                                          lastName={data.lastName}
-                                          name='displayName'
+                                            value={data.displayName}
+                                            onChange={handleInput}
+                                            salutation={data.salutation}
+                                            firstName={data.firstName}
+                                            lastName={data.lastName}
+                                            name='displayName'
                                         />
                                     </div>
                                 </div>

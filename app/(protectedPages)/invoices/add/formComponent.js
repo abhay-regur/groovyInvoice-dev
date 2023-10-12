@@ -1,10 +1,8 @@
 "use client"
 import { useState, useContext, useEffect } from 'react';
-import DatePicker from "react-datepicker";
 import InvoiceTable from '../../../../components/invoice/invoiceTable';
 import RadioButton from '../../../../components/radioButton';
 import styles from "../../../../styles/newInvoice.module.scss";
-import FaCalendar from "../../../../assets/icons/faCalendar.svg";
 import { NavExpandedState } from '../../../../context/NavState.context';
 import FaSave from '../../../../assets/icons/faSave.svg';
 import FaPaperPen from '../../../../assets/icons/faPaperPen.svg';
@@ -196,11 +194,11 @@ export default function InvoiceAddForm() {
                                             />
                                         </div>
                                     </div>
-                                    <div className="col-12 col-sm-6 col-md-6">
+                                    <div className="col-12 col-sm-6 col-md-6 col-lg-4">
                                         <div className={`${styles.companyInvoiceNumberWrapper} mb-3`}>
                                             <label htmlFor="companyInvoiceNumber" className="form-label">Invoice#<span className={`${styles.green}`}>*</span></label>
                                             <div className={`d-flex align-content-center`}>
-                                                <input type="text" className="form-control" id="companyInvoiceNumber" aria-describedby="emailHelp" name="invoiceNo" value={data.invoiceNo} onChange={handleCustomerSelect} />
+                                                <input type="text" className="form-control" id="companyInvoiceNumber" aria-describedby="emailHelp" name="invoiceNo" value={data.invoiceNo} onChange={handleInput} />
                                                 <i onClick={openInvoiceNumberSettingsPopup}><FaGear /></i>
                                             </div>
                                         </div>
@@ -223,7 +221,7 @@ export default function InvoiceAddForm() {
                                             onChange={(date) => setDateChange(date, 'invoiceDate')}
                                         />
                                     </div>
-                                    <div className="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2">
+                                    <div className="col-12 col-sm-5 col-md-4 col-lg-3">
                                         <div className={`${styles.companyInvoicetermsWrapper} mb-3`}>
                                             <label htmlFor="companyInvoiceterms" className="form-label">Terms</label>
                                             <CustomSelectComponent
