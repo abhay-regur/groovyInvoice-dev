@@ -17,7 +17,6 @@ const InvoiceTable = (props) => {
         taxPercent: 0.00,
         total: 0.00,
     };
-    // const [itemsData, setItemsData] = useState([])
     const addAnotherLine = () => {
         props.setItemsData([...props.itemsData, itemObject])
     }
@@ -30,10 +29,11 @@ const InvoiceTable = (props) => {
     const handleChange = (index, e) => {
         e.preventDefault();
         const rowData = props.itemsData[index];
-        if (e.target.name == 'quantity' || e.target.name == 'rate') {
+        if (e.target.name == 'quantity' || e.target.name == 'rate' || e.target.name == 'taxPercent') {
             rowData[e.target.name] = e.target.value == '' ? '' : parseFloat(e.target.value);
             rowData['subTotal'] = (typeof rowData.quantity == 'number' ? rowData.quantity : 0) * (typeof rowData.rate == 'number' ? rowData.rate : 0)
-            rowData['total'] = rowData.subTotal + rowData.taxPercent
+            rowData['taxAmount'] = (rowData.subTotal / 100) * rowData.taxPercent
+            rowData['total'] = rowData.subTotal + rowData.taxAmount
         } else {
             rowData[e.target.name] = e.target.value
         }
@@ -46,18 +46,18 @@ const InvoiceTable = (props) => {
         const result = await searchItems(value)
         setItems(result.data)
     }
-    
+
     const handleItemDescriptionChange = async (index, e) => {
         handleChange(index, e)
         getItemData(e.target.value)
     }
 
     useEffect(() => {
-        if(props.itemsData.length == 0) {
+        if (props.itemsData.length == 0) {
             addAnotherLine()
         }
     }, [props.itemsData.length])
-    
+
     const handleItemSelect = (index, item) => {
         const rowData = props.itemsData[index];
         rowData['itemId'] = item.id;
@@ -78,7 +78,7 @@ const InvoiceTable = (props) => {
                         <th scope="col" className="ps-3">Item Details</th>
                         <th scope="col" className={`${styles.companyInvoiceItemTableQtyHeader} pe-2 text-end`}>Quantity</th>
                         <th scope="col" className={`${styles.companyInvoiceItemTableRateHeader} pe-2 text-end`}>Rate</th>
-                        <th scope="col" className="invoiceTableTaxHead"><span className='d-flex justify-content-center'> Tax <i className='d-flex align-content-center'><FaExclamationCircle /></i></span></th>
+                        <th scope="col" className="invoiceTableTaxHead"><span className='d-flex justify-content-center'> Tax Percentage <i className='d-flex align-content-center'><FaExclamationCircle /></i></span></th>
                         <th scope="col" className="text-center">Amount</th>
                     </tr>
                 </thead>
@@ -92,28 +92,24 @@ const InvoiceTable = (props) => {
                                             handleChange={(e) => handleItemDescriptionChange(idx, e)}
                                             value={item.itemDescription}
                                             items={items}
-                                            handleSelect={(item)=>handleItemSelect(idx, item)}
+                                            handleSelect={(item) => handleItemSelect(idx, item)}
                                         />
                                     </div>
                                 </td>
                                 <td>
                                     <div className={`${styles.companyInvoiceTableItemQuantity}`}>
-                                        <input type='number' className='form-control' name='quantity' value={item.quantity}  onChange={(e) => handleChange(idx, e)}/>
+                                        <input type='number' className='form-control' name='quantity' value={item.quantity} onChange={(e) => handleChange(idx, e)} />
                                     </div>
                                 </td>
                                 <td>
                                     <div className={`${styles.companyInvoiceTableItemRate}`}>
-                                        <input type='number' className='form-control' name='rate' value={item.rate}  onChange={(e) => handleChange(idx, e)}/>
+                                        <input type='number' className='form-control' name='rate' value={item.rate} onChange={(e) => handleChange(idx, e)} />
                                     </div>
                                 </td>
                                 <td>
-                                    <span className={`${styles.companyInvoiceTableTaxSelectWrapper}`}>
-                                        <select className={`${styles.companyInvoiceTableTaxSelect}`}>
-                                            <option value="">Non-Taxable</option>
-                                            <option value="tds">TDS</option>
-                                            <option value="tcs">TCS</option>
-                                        </select>
-                                    </span>
+                                    <div className={`${styles.companyInvoiceTableItemPercentage}`}>
+                                        <input type='number' className='form-control' name='taxPercent' value={item.taxPercent} onChange={(e) => handleChange(idx, e)} />
+                                    </div>
                                 </td>
                                 <td>
                                     <p className={`${styles.companyInvoiceTableItemAmount}`}>
@@ -134,15 +130,15 @@ const InvoiceTable = (props) => {
                 </tbody>
             </table>
         </div>
-        <div className="col-12">
-            <div className="btn-group">
-                <button type="button" className={`${styles.companyInvoiceAddlineBtn} btn btn-outline-primary dropdown-toggle`} onClick={() => addAnotherLine()}>
-                    <i><FaCirclePlus /></i>
-                    Add Another Line
-                </button>
-            </div>
+            <div className="col-12">
+                <div className="btn-group">
+                    <button type="button" className={`${styles.companyInvoiceAddlineBtn} btn btn-outline-primary dropdown-toggle`} onClick={() => addAnotherLine()}>
+                        <i><FaCirclePlus /></i>
+                        Add Another Line
+                    </button>
+                </div>
 
-        </div>
+            </div>
         </>
     )
 };

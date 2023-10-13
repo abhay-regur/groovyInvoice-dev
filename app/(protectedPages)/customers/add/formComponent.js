@@ -15,11 +15,11 @@ import { getPaymentTerms, createPaymentTerms } from "@/services/paymentTerms.ser
 import { getCountries, getStates } from '@/services/countriesState.service';
 import { createCustomer, getGSTTreatment, getPlaceOfSupply, getCurrencies } from "@/services/customer.service";
 import { getTaxExemptionReason, createTaxExemptionReason } from '@/services/taxExempted.service.js';
-import { GST_TREATMENT } from '../../../../constants';
+import { GST_TREATMENT } from 'constants/index.js';
 import { NavExpandedState } from '@/context/NavState.context';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 import { useRouter } from 'next/navigation';
-
+import DisplayNameSelect from '@/components/customers/displayNameSelect';
 
 export default function CustomerAddForm() {
     const { replace } = useRouter();
@@ -411,10 +411,10 @@ export default function CustomerAddForm() {
                                     <div className="col-12 col-lg-2 col-xl-2">
                                         <select name='salutation' className={`${styles.companySalutationSelect} form-select`} onChange={handleInput}>
                                             <option defaultValue>Salutation</option>
-                                            <option value="ms">Ms.</option>
-                                            <option value="mr">Mr.</option>
-                                            <option value="mrs">Mrs.</option>
-                                            <option value="dr">Dr.</option>
+                                            <option value="Ms.">Ms.</option>
+                                            <option value="Mr.">Mr.</option>
+                                            <option value="Mrs.">Mrs.</option>
+                                            <option value="Dr.">Dr.</option>
                                         </select>
                                     </div>
                                     <div className="col-12 col-lg-3 col-xl-2">
@@ -439,7 +439,14 @@ export default function CustomerAddForm() {
                                         <label className={`${styles.companyInvoiceCompanyDisplayNamelabel}`}>Customer Display Name <span className={`${styles.green}`}>*</span></label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-6">
-                                        <input name='displayName' type="text" className="form-control" id="companyInvoiceNewCustomerUserName" value={data.displayName} onChange={handleInput} placeholder='Display Name' />
+                                        <DisplayNameSelect
+                                            value={data.displayName}
+                                            onChange={handleInput}
+                                            salutation={data.salutation}
+                                            firstName={data.firstName}
+                                            lastName={data.lastName}
+                                            name='displayName'
+                                        />
                                     </div>
                                 </div>
 

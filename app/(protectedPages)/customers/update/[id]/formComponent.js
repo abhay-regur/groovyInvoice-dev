@@ -21,6 +21,7 @@ import { GST_TREATMENT } from '../../../../../constants';
 import { NavExpandedState } from '@/context/NavState.context';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 import { useRouter } from 'next/navigation';
+import DisplayNameSelect from '../../../../../components/customers/displayNameSelect';
 
 export default function CustomerEditForm() {
     const { replace } = useRouter();
@@ -394,10 +395,10 @@ export default function CustomerEditForm() {
                                     <div className="col-12 col-lg-2 col-xl-2">
                                         <select name='salutation' className={`${styles.companySalutationSelect} form-select`} value={data.salutation} onChange={handleInput}>
                                             <option defaultValue>Salutation</option>
-                                            <option value="ms">Ms.</option>
-                                            <option value="mr">Mr.</option>
-                                            <option value="mrs">Mrs.</option>
-                                            <option value="dr">Dr.</option>
+                                            <option value="Ms.">Ms.</option>
+                                            <option value="Mr.">Mr.</option>
+                                            <option value="Mrs.">Mrs.</option>
+                                            <option value="Dr.">Dr.</option>
                                         </select>
                                     </div>
                                     <div className="col-12 col-lg-3 col-xl-2">
@@ -422,14 +423,14 @@ export default function CustomerEditForm() {
                                         <label className={`${styles.companyInvoiceCompanyDisplayNamelabel}`}>Customer Display Name <span className={`${styles.green}`}>*</span></label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-6">
-                                        {/* <select className={`${styles.companyInvoiceCompanyDisplaySelect} form-select`} onChange={handleInput}>
-                                        <option defaultValue>Customer Display Name</option>
-                                        <option value="1">Option 1</option>
-                                        <option value="2">Option 2</option>
-                                        <option value="3">Option 3</option>
-                                        <option value="4">Option 4</option>
-                                    </select> */}
-                                        <input name='displayName' type="text" className="form-control" id="companyInvoiceNewCustomerUserName" value={data.displayName} onChange={handleInput} placeholder='Display Name' />
+                                        <DisplayNameSelect
+                                          value={data.displayName}
+                                          onChange={handleInput}
+                                          salutation={data.salutation}
+                                          firstName={data.firstName}
+                                          lastName={data.lastName}
+                                          name='displayName'
+                                        />
                                     </div>
                                 </div>
 

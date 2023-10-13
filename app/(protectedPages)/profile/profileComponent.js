@@ -54,15 +54,19 @@ export default function ProfileComponent() {
 
     const getUserDetails = async () => {
         setErrors([]);
-        const result = await getCurrentUserDetails();
-        var data = result.data;
-        setUserData({
-            id: data.id,
-            email: data.email,
-            firstName: data.firstName,
-            lastName: data.lastName,
-            cellNumber: data.cellNumber,
-        });
+        try {
+            const result = await getCurrentUserDetails();
+            var data = result.data;
+            setUserData({
+                id: data.id,
+                email: data.email,
+                firstName: data.firstName,
+                lastName: data.lastName,
+                cellNumber: data.cellNumber,
+            });
+        } catch (error) {
+            setErrors(genrateErrorMessage(error, '', setToastList));
+        }
         setIsLoading(false);
     }
 
@@ -78,11 +82,13 @@ export default function ProfileComponent() {
         }
         try {
             const result = await updateCurrentUserDetails(data);
-            setToastList([{
-                id: Math.floor((Math.random() * 101) + 1),
-                title: 'The Details are Updated',
-                description: '',
-            }]);
+            if (result.status == 200) {
+                setToastList([{
+                    id: Math.floor((Math.random() * 101) + 1),
+                    title: 'My Profile',
+                    description: 'Details Updated Successfully',
+                }]);
+            }
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
         }
@@ -192,7 +198,7 @@ export default function ProfileComponent() {
                                                                     <label className={`${styles.companyInvoiceProfileFirstName}`}>First Name</label>
                                                                 </div>
                                                                 <div className="col-12">
-                                                                    <input type="text" className="form-control" name="firstName" value={userData.firstName} id="companyInvoiceProfileFirstName" placeholder='First Name' onChange={(e => { handleInput(e) })} />
+                                                                    <input type="text" className="form-control" name="firstName" value={userData.firstName == null ? '' : userData.firstName} id="companyInvoiceProfileFirstName" placeholder='First Name' onChange={(e => { handleInput(e) })} />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -202,7 +208,7 @@ export default function ProfileComponent() {
                                                                     <label className={`${styles.companyInvoiceProfileLastName}`}>Last Name</label>
                                                                 </div>
                                                                 <div className="col-12">
-                                                                    <input type="text" className="form-control" name="lastName" value={userData.lastName} id="companyInvoiceProfileLastName" placeholder='Last Name' onChange={(e => { handleInput(e) })} />
+                                                                    <input type="text" className="form-control" name="lastName" value={userData.lastName == null ? '' : userData.lastName} id="companyInvoiceProfileLastName" placeholder='Last Name' onChange={(e => { handleInput(e) })} />
                                                                 </div>
                                                             </div>
                                                         </div>

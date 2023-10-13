@@ -49,7 +49,7 @@ export default function InvoiceEditForm() {
 
     const getData = async () => {
         const result = await getInvoice(id);
-        setData({...result.data, invoiceDate: new Date(result.data.invoiceDate), dueDate: new Date(result.data.dueDate)})
+        setData({ ...result.data, invoiceDate: new Date(result.data.invoiceDate), dueDate: new Date(result.data.dueDate) })
     }
 
     const getPaymentTermsDetails = async () => {
@@ -69,11 +69,14 @@ export default function InvoiceEditForm() {
 
     const calculateTotalAmount = () => {
         let subTotalAmount = 0
-        for(let i = 0; i < data.invoiceItems.length; i++) {
+        let totalTaxAmount = 0
+        for (let i = 0; i < data.invoiceItems.length; i++) {
             subTotalAmount += data.invoiceItems[i].total
-        } 
+            totalTaxAmount += data.invoiceItems[i].taxAmount
+        }
         data.subTotalAmount = subTotalAmount
-        data.totalAmount = parseFloat(data.adjustmentAmount) + parseFloat(data.shippingCharges) + parseFloat(data.totalTaxAmount) + parseFloat(data.subTotalAmount) ;
+        data.totalTaxAmount = totalTaxAmount
+        data.totalAmount = parseFloat(data.adjustmentAmount) + parseFloat(data.shippingCharges) + parseFloat(data.totalTaxAmount) + parseFloat(data.subTotalAmount);
         let temp = Object.assign({}, data)
         setData(temp)
     }
@@ -103,7 +106,7 @@ export default function InvoiceEditForm() {
         disableElement(e.target)
         setErrors([])
         try {
-            await updateInvoice(id, {...data, status})
+            await updateInvoice(id, { ...data, status })
             setToastList([{
                 id: Math.floor((Math.random() * 101) + 1),
                 title: 'Invoice updated successfully',
@@ -136,10 +139,8 @@ export default function InvoiceEditForm() {
         let name = target.name || target.getAttribute('name');
         data[name] = parseInt(target.value)
         const paymentTerm = paymentTerms.find((item) => item.Id == parseInt(target.value))
-        if (paymentTerm.numberOfDays) {
-            const date = addDaysInDate(new Date(), paymentTerm.numberOfDays)
-            data['dueDate'] = new Date(date)
-        }
+        const date = addDaysInDate(new Date(), paymentTerm.numberOfDays)
+        data['dueDate'] = new Date(date)
         let temp = Object.assign({}, data)
         setData(temp)
     }
@@ -178,7 +179,7 @@ export default function InvoiceEditForm() {
                                         <div className={`${styles.companyInvoiceNumberWrapper} mb-3`}>
                                             <label htmlFor="companyInvoiceNumber" className="form-label">Invoice#<span className={`${styles.green}`}>*</span></label>
                                             <div className={`d-flex align-content-center`}>
-                                                <input type="text" className="form-control" id="companyInvoiceNumber" aria-describedby="emailHelp" name="invoiceNo" value={data.invoiceNo} onChange={handleInput}/>
+                                                <input type="text" className="form-control" id="companyInvoiceNumber" aria-describedby="emailHelp" name="invoiceNo" value={data.invoiceNo} onChange={handleInput} />
                                                 <i><FaGear /></i>
                                             </div>
                                         </div>
@@ -187,7 +188,7 @@ export default function InvoiceEditForm() {
                                         <div className={`${styles.companyOrderNumberWrapper} mb-3`}>
                                             <label htmlFor="companyOrderNumber" className="form-label">Order Number</label>
                                             <div className={`d-flex align-content-center`}>
-                                                <input type="text" className="form-control" id="companyOrderNumber" aria-describedby="emailHelp"  name="orderNumber" value={data.orderNumber} onChange={handleInput}/>
+                                                <input type="text" className="form-control" id="companyOrderNumber" aria-describedby="emailHelp" name="orderNumber" value={data.orderNumber} onChange={handleInput} />
                                             </div>
                                         </div>
                                     </div>
@@ -198,10 +199,10 @@ export default function InvoiceEditForm() {
                                             label="Invoice Date"
                                             id="companyInvoiceDate"
                                             selected={data.invoiceDate}
-                                            onChange={(date)=>setDateChange(date, 'invoiceDate')}
+                                            onChange={(date) => setDateChange(date, 'invoiceDate')}
                                         />
                                     </div>
-                                    <div className="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2">
+                                    <div className="col-12 col-sm-5 col-md-4 col-lg-3">
                                         <div className={`${styles.companyInvoicetermsWrapper} mb-3`}>
                                             <label htmlFor="companyInvoiceterms" className="form-label">Terms</label>
                                             <CustomSelectComponent
@@ -222,7 +223,7 @@ export default function InvoiceEditForm() {
                                             label="Due Date"
                                             id="companyInvoiceDueDate"
                                             selected={data.dueDate}
-                                            onChange={(date)=>setDateChange(date, 'dueDate')}
+                                            onChange={(date) => setDateChange(date, 'dueDate')}
                                         />
                                     </div>
                                 </div>
@@ -274,13 +275,13 @@ export default function InvoiceEditForm() {
                                                         </span>
                                                     </span>
                                                     <span className={`${styles.totalCalculatedTax} d-flex`}>
-                                                        <span className='text-start text-lg-right text-xl-left'>- Rs. {data.totalTaxAmount}</span>
+                                                        <span className='text-start text-lg-right text-xl-left'> Rs. {data.totalTaxAmount}</span>
                                                     </span>
                                                 </div>
                                                 <div className={`${styles.companyInvoiceAdjustmentWrapper} d-flex row`}>
                                                     <div className={`${styles.companyInvoiceAdjustmentInputWrapper} col-5 order-1 order-lg-1`}>
                                                         <div className="">
-                                                            <input type="text" className={`${styles.companyInvoicePriceAdjustment} form-control`} placeholder="Adjustment" name="adjustmentText" value={data.adjustmentText} onChange={handleInput}/>
+                                                            <input type="text" className={`${styles.companyInvoicePriceAdjustment} form-control`} placeholder="Adjustment" name="adjustmentText" value={data.adjustmentText} onChange={handleInput} />
                                                         </div>
                                                     </div>
                                                     <div className="col-6 order-3 col-lg-4 order-lg-2">
@@ -291,7 +292,7 @@ export default function InvoiceEditForm() {
                                                     </div>
                                                     <div className="col-7 col-lg-3 order-2 order-lg-3">
                                                         <span className={`${styles.totalCalculatedAdjustment} d-flex justify-content-end`}>
-                                                            <span>- Rs. {data.adjustmentAmount}</span>
+                                                            <span> Rs. {data.adjustmentAmount}</span>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -316,13 +317,13 @@ export default function InvoiceEditForm() {
                                     </div>
                                     <div className="col-md-12 col-lg-12 col-xl-7 px-1">
                                         <span className={`${styles.companyInvoiceSaveButtonsWrapper}`}>
-                                            <button name="btn-submit" className={`${styles.companyInvoiceSaveDraftButton} btn green`} onClick={(e)=>handleSubmit(e, 'draft')}>
+                                            <button name="btn-submit" className={`${styles.companyInvoiceSaveDraftButton} btn green`} onClick={(e) => handleSubmit(e, 'draft')}>
                                                 <span>
                                                     <i><FaPaperPen /></i>
                                                     Save as Draft
                                                 </span>
                                             </button>
-                                            <button name="btn-submit" className={`${styles.companyInvoiceSavenSendButton} btn blue`} onClick={(e)=>handleSubmit(e, 'unpaid')}>
+                                            <button name="btn-submit" className={`${styles.companyInvoiceSavenSendButton} btn blue`} onClick={(e) => handleSubmit(e, 'unpaid')}>
                                                 <span>
                                                     <i><FaSave /></i>
                                                     Save & Send

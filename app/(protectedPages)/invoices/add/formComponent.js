@@ -50,10 +50,13 @@ export default function InvoiceAddForm() {
 
     const calculateTotalAmount = () => {
         let subTotalAmount = 0
+        let totalTaxAmount = 0
         for (let i = 0; i < data.invoiceItems.length; i++) {
             subTotalAmount += data.invoiceItems[i].total
+            totalTaxAmount += data.invoiceItems[i].taxAmount
         }
         data.subTotalAmount = subTotalAmount
+        data.totalTaxAmount = totalTaxAmount
         data.totalAmount = parseFloat(data.adjustmentAmount) + parseFloat(data.shippingCharges) + parseFloat(data.totalTaxAmount) + parseFloat(data.subTotalAmount);
         let temp = Object.assign({}, data)
         setData(temp)
@@ -111,10 +114,8 @@ export default function InvoiceAddForm() {
         data['termsId'] = parseInt(value)
         if (value > 0) {
             const result = await getPaymentTerm(value)
-            if (result.data.numberOfDays) {
-                const date = addDaysInDate(new Date(), result.data.numberOfDays)
-                data['dueDate'] = new Date(date)
-            }
+            const date = addDaysInDate(new Date(), result.data.numberOfDays)
+            data['dueDate'] = new Date(date)
             let temp = Object.assign({}, data)
             setData(temp)
         }
@@ -197,8 +198,8 @@ export default function InvoiceAddForm() {
                                         <div className={`${styles.companyInvoiceNumberWrapper} mb-3`}>
                                             <label htmlFor="companyInvoiceNumber" className="form-label">Invoice#<span className={`${styles.green}`}>*</span></label>
                                             <div className={`d-flex align-content-center`}>
-                                                <input type="text" className="form-control" id="companyInvoiceNumber" aria-describedby="emailHelp" name="invoiceNo" value={data.invoiceNo} onChange={handleCustomerSelect} />
-                                                <i onClick={openInvoiceNumberSettingsPopup}><FaGear/></i>
+                                                <input type="text" className="form-control" id="companyInvoiceNumber" aria-describedby="emailHelp" name="invoiceNo" value={data.invoiceNo} onChange={handleInput} />
+                                                <i onClick={openInvoiceNumberSettingsPopup}><FaGear /></i>
                                             </div>
                                         </div>
                                     </div>
@@ -217,17 +218,17 @@ export default function InvoiceAddForm() {
                                             label="Invoice Date"
                                             id="companyInvoiceDate"
                                             selected={data.invoiceDate}
-                                            onChange={(date)=>setDateChange(date, 'invoiceDate')}
+                                            onChange={(date) => setDateChange(date, 'invoiceDate')}
                                         />
                                     </div>
-                                    <div className="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2">
+                                    <div className="col-12 col-sm-5 col-md-4 col-lg-3">
                                         <div className={`${styles.companyInvoicetermsWrapper} mb-3`}>
                                             <label htmlFor="companyInvoiceterms" className="form-label">Terms</label>
                                             <CustomSelectComponent
                                                 className={`${styles.companInvoicePaymentTermsSelect}`}
                                                 inputClass="form-control"
                                                 data={paymentTerms}
-                                                onOptionValueChange={(e)=>handlePaymentTermChange(e.target.value)}
+                                                onOptionValueChange={(e) => handlePaymentTermChange(e.target.value)}
                                                 optionValue={data.termsId}
                                                 name={'termsId'}
                                                 isDisabled={false}
@@ -241,7 +242,7 @@ export default function InvoiceAddForm() {
                                             label="Due Date"
                                             id="companyInvoiceDueDate"
                                             selected={data.dueDate}
-                                            onChange={(date)=>setDateChange(date, 'dueDate')}
+                                            onChange={(date) => setDateChange(date, 'dueDate')}
                                         />
                                     </div>
                                 </div>
@@ -294,7 +295,7 @@ export default function InvoiceAddForm() {
                                                         </span>
                                                     </span>
                                                     <span className={`${styles.totalCalculatedTax} d-flex`}>
-                                                        <span className='text-start text-lg-right text-xl-left'>- Rs. {data.totalTaxAmount}</span>
+                                                        <span className='text-start text-lg-right text-xl-left'> Rs. {data.totalTaxAmount}</span>
                                                     </span>
                                                 </div>
                                                 <div className={`${styles.companyInvoiceAdjustmentWrapper} d-flex row`}>
@@ -311,7 +312,7 @@ export default function InvoiceAddForm() {
                                                     </div>
                                                     <div className="col-7 col-lg-3 order-2 order-lg-3">
                                                         <span className={`${styles.totalCalculatedAdjustment} d-flex justify-content-end`}>
-                                                            <span>- Rs. {data.adjustmentAmount}</span>
+                                                            <span> Rs. {data.adjustmentAmount}</span>
                                                         </span>
                                                     </div>
                                                 </div>
