@@ -64,6 +64,12 @@ const AllCustomerTable = () => {
             {
                 data: 'cellNumber', name: 'receivables', searchable: false,
                 orderable: false,
+            },
+            { //Added a extra empty Column
+                data: null,
+                searchable: false,
+                orderable: false,
+                defaultContent: "",
             }
         ],
     }

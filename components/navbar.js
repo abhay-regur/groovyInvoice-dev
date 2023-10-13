@@ -13,17 +13,32 @@ import FaUserGroup from '@/assets/icons/faUserGroup.svg';
 import FaGear from '@/assets/icons/faGear.svg';
 import FaLogout from '@/assets/icons/faLogout.svg';
 import FaUsers from '@/assets/icons/faUsers.svg';
+import { ToastMsgContext } from '@/context/ToastMsg.context';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FaScrewAndWrench from '@/assets/icons/faScrewAndWrench.svg';
+import { getCurrentUserDetails } from "@/services/profile.service";
 import { faSearch, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { NavExpandedState } from '@/context/NavState.context';
 
 const MENU_LIST = [{ key: 100, text: "Invoices", href: "/invoices", icon: <FaFileLines /> }, { key: 101, text: "Customers", href: "/customers", icon: <FaUserGroup /> }, { key: 102, text: "Reports", href: "/reports", icon: <FaChartLine /> }, { key: 103, text: "Settings", href: "/settings", icon: <FaGear />, subMenu: [{ key: 1031, text: "Users", href: "/users", icon: <FaUsers /> }, { key: 1032, text: "Config", href: "/configuration", icon: <FaScrewAndWrench /> }] }];
 export default function Navbar() {
     const [activeIdx, setActiveIdx] = useState('-1');
+    const { setToastList } = useContext(ToastMsgContext);
     const [profileImage, setProfileImage] = useState("/images/profile_img.png");
+    const [data, setData] = useState({
+        id: "",
+        email: "",
+        firstName: "",
+        lastName: "",
+        cellNumber: "",
+        profileImage: "/images/profile_img.png"
+    })
     const { navExpandedState, setNavExpandedState } = useContext(NavExpandedState);
     const [navItemExpanded, setNavItemExpanded] = useState(false);
+
+    useEffect(() => {
+        getLoggedUserDetails();
+    }, [])
 
     useEffect(() => {
         var temp_ = activeIdx;
@@ -31,6 +46,25 @@ export default function Navbar() {
             setNavItemExpanded(true);
         }
     }, [activeIdx]);
+
+    const getLoggedUserDetails = async () => {
+        try {
+            const result = await getCurrentUserDetails();
+            if (result.status == 200) {
+                var data = result.data;
+                setData({
+                    id: data.id,
+                    email: data.email,
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    cellNumber: data.cellNumber,
+                    profileImage: "/images/profile_img.png"
+                });
+            }
+        } catch (error) {
+            setErrors(genrateErrorMessage(error, '', setToastList));
+        }
+    }
 
     return (
         <div className={style.header}>
@@ -54,10 +88,10 @@ export default function Navbar() {
                         <Link href={"/profile"}>
                             <span className="d-flex flex-column" onClick={() => { setActiveIdx('-1') }}>
                                 <div className={`profileImageWrapper d-flex justify-content-center`}>
-                                    <Image className={`${style.profileImage}`} src={profileImage} width={45} height={45} alt="profile_Image" />
+                                    <Image className={`${style.profileImage}`} src={data.profileImage} width={45} height={45} alt="profile_Image" />
                                 </div>
                                 <div className={`${style.profileNameWrapper} justify-content-center`}>
-                                    <div className={`username`}>John Doe <span className={``}></span></div>
+                                    <div className={`username`}>{data.firstName == null ? '-' : data.firstName} {data.lastName == null ? '-' : data.lastName} <span className={``}></span></div>
                                 </div>
                             </span>
                         </Link>
