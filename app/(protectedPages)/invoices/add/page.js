@@ -1,5 +1,9 @@
-import InvoiceAddForm from "./formComponent";
+import dynamic from 'next/dynamic';
 
+const InvoiceAddForm = dynamic(
+    () => import("./formComponent"),
+    { ssr: false }
+);
 export const metadata = {
     title: 'Add Invoice',
 };

@@ -159,7 +159,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
                                 group="taxPreference"
                                 name="taxable"
                                 label="Taxable"
-                                value={(data.taxPreference).toLowerCase() === 'taxable'}
+                                checked={(data.taxPreference).toLowerCase() === 'taxable'}
                                 onChange={handleRadioButtonChange}
                             />
                         </span>
@@ -168,7 +168,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
                                 group="taxPreference"
                                 name="tax-exempt"
                                 label="Tax Exempt"
-                                value={(data.taxPreference).toLowerCase() === 'tax-exempt'}
+                                checked={(data.taxPreference).toLowerCase() === 'tax-exempt'}
                                 onChange={handleRadioButtonChange}
                             />
                         </span>

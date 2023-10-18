@@ -371,7 +371,7 @@ export default function CustomerEditForm() {
                                                     group="type"
                                                     name='business'
                                                     label="Business"
-                                                    value={(data.type).toLowerCase() === 'business'}
+                                                    checked={(data.type).toLowerCase() === 'business'}
                                                     onChange={handleRadioButtonChange}
                                                 />
                                             </span>
@@ -380,7 +380,7 @@ export default function CustomerEditForm() {
                                                     group="type"
                                                     name='individual'
                                                     label="Individual"
-                                                    value={(data.type).toLowerCase() === 'individual'}
+                                                    checked={(data.type).toLowerCase() === 'individual'}
                                                     onChange={handleRadioButtonChange}
                                                 />
                                             </span>

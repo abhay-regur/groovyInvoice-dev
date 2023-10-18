@@ -1,26 +1,26 @@
 "use client"
 import { useState, useContext, useEffect } from 'react';
-import InvoiceTable from '../../../../components/invoice/invoiceTable';
-import RadioButton from '../../../../components/radioButton';
-import styles from "../../../../styles/newInvoice.module.scss";
-import { NavExpandedState } from '../../../../context/NavState.context';
-import FaSave from '../../../../assets/icons/faSave.svg';
-import FaPaperPen from '../../../../assets/icons/faPaperPen.svg';
-import FaCircleXmark from '../../../../assets/icons/faCircleXmark.svg';
-import FaCircleQuestion from '../../../../assets/icons/faCircleQuestion.svg';
-import FaGear from '../../../../assets/icons/faGear.svg';
+import InvoiceTable from '@/components/invoice/invoiceTable';
+import RadioButton from '@/components/radioButton';
+import styles from "@/styles/newInvoice.module.scss";
+import { NavExpandedState } from '@/context/NavState.context';
+import FaSave from '@/assets/icons/faSave.svg';
+import FaPaperPen from '@/assets/icons/faPaperPen.svg';
+import FaCircleXmark from '@/assets/icons/faCircleXmark.svg';
+import FaCircleQuestion from '@/assets/icons/faCircleQuestion.svg';
+import FaGear from '@/assets/icons/faGear.svg';
 import "react-datepicker/dist/react-datepicker.css";
-import { getPaymentTerms, getPaymentTerm } from '../../../../services/paymentTerms.service';
-import { getCustomers, getCustomer } from '../../../../services/customer.service';
-import CustomSelectComponent from '../../../../components/customSelectComponent';
-import { saveInvoice } from '../../../../services/invoice.service';
-import ErrorList from '../../../../components/errorList';
-import { ToastMsgContext } from '../../../../context/ToastMsg.context';
+import { getPaymentTerms, getPaymentTerm } from '@/services/paymentTerms.service';
+import { getCustomers, getCustomer } from '@/services/customer.service';
+import CustomSelectComponent from '@/components/customSelectComponent';
+import { saveInvoice } from '@/services/invoice.service';
+import ErrorList from '@/components/errorList';
+import { ToastMsgContext } from '@/context/ToastMsg.context';
 import { addDaysInDate } from '../../../../common/utils/date.utils';
-import DateInputField from '../../../../components/common/dateInputField';
-import { enableElement, disableElement } from '../../../../utils/form.utils';
-import InvoiceNumberSettingsPopup from '../../../../components/settings/invoiceNumberSettingsPopup';
-import ReactDOM from "react-dom/client";
+import DateInputField from '@/components/common/dateInputField';
+import { enableElement, disableElement } from '@/utils/form.utils';
+import InvoiceNumberSettingsPopup from '@/components/settings/invoiceNumberSettingsPopup';
+import { getInvoiceNumberSetting } from '@/services/invoice-number-setting.service';
 
 export default function InvoiceAddForm() {
     const [taxValueSelected, settaxValueSelected] = useState();
@@ -29,6 +29,7 @@ export default function InvoiceAddForm() {
     const { setToastList } = useContext(ToastMsgContext);
     const [errors, setErrors] = useState([]);
     const [customers, setCustomer] = useState([]);
+    const { Modal } = require("bootstrap");
     const initialData = {
         customerId: '',
         invoiceNo: '',
@@ -58,6 +59,17 @@ export default function InvoiceAddForm() {
         data.subTotalAmount = subTotalAmount
         data.totalTaxAmount = totalTaxAmount
         data.totalAmount = parseFloat(data.adjustmentAmount) + parseFloat(data.shippingCharges) + parseFloat(data.totalTaxAmount) + parseFloat(data.subTotalAmount);
+        let temp = Object.assign({}, data)
+        setData(temp)
+    }
+
+    const getInvoiceNumber = async () => {
+        const result = await getInvoiceNumberSetting()
+        if (result.data.auto_generate) {
+            data['invoiceNo'] = result.data.prefix_string + result.data.next_number
+        } else {
+            data['invoiceNo'] = ''
+        }
         let temp = Object.assign({}, data)
         setData(temp)
     }
@@ -108,6 +120,7 @@ export default function InvoiceAddForm() {
     useEffect(() => {
         getPaymentTermsDetails()
         getCustomersList()
+        getInvoiceNumber()
     }, [])
 
     const handlePaymentTermChange = async (value) => {
@@ -121,9 +134,9 @@ export default function InvoiceAddForm() {
         }
     }
 
-    function openInvoiceNumberSettingsPopup() {
-        const t = new Date().getMilliseconds() + Math.random()
-        ReactDOM.createRoot(document.getElementById('invoiceNumberSettingsPopupRoot')).render(<InvoiceNumberSettingsPopup key={t} />)
+    const openInvoiceNumberSettingsPopup = () => {
+        const invoiceNumberSettings = new Modal("#invoice-number-settings");
+        invoiceNumberSettings.show();
     }
 
     const setDateChange = (value, name) => {
@@ -158,6 +171,7 @@ export default function InvoiceAddForm() {
                 title: 'Invoice added successfully',
                 description: '',
             }]);
+            getInvoiceNumber()
         } catch (error) {
             setErrors(error.response.data.message);
         }
@@ -274,14 +288,14 @@ export default function InvoiceAddForm() {
                                                             <span className={`${styles.taxTDSRadioButtonWrapper} d-flex align-items-center`}>
                                                                 <RadioButton
                                                                     label="TDS"
-                                                                    value={taxValueSelected === 'tds'}
+                                                                    checked={taxValueSelected === 'tds'}
                                                                     onChange={handleTDSChange}
                                                                 />
                                                             </span>
                                                             <span className={`${styles.taxTCSRadioButtonWrapper} d-flex align-items-center`}>
                                                                 <RadioButton
                                                                     label="TCS"
-                                                                    value={taxValueSelected === 'tcs'}
+                                                                    checked={taxValueSelected === 'tcs'}
                                                                     onChange={handleTCSChange}
                                                                 />
                                                             </span>
@@ -362,6 +376,7 @@ export default function InvoiceAddForm() {
                         </div>
                     </div >
                 </div >
+                <InvoiceNumberSettingsPopup getInvoiceNumber={getInvoiceNumber} />
             </main>
         </div >
     )
