@@ -171,7 +171,7 @@ export default function InvoiceAddForm() {
                 title: 'Invoice added successfully',
                 description: '',
             }]);
-            getInvoiceNumber()
+            replace('/invoices');
         } catch (error) {
             setErrors(error.response.data.message);
         }

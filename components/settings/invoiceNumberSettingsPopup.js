@@ -35,8 +35,14 @@ const InvoiceNumberSettingsPopup = ({ getInvoiceNumber }) => {
   }
 
   const getData = async () => {
-    const result = await getInvoiceNumberSetting();
-    setData(result.data)
+    const result = await getInvoiceNumberSetting()
+    data['auto_generate'] = (result.data.auto_generate ? true : false)
+    if (data['auto_generate']) {
+      data['prefix_string'] = result.data.prefix_string
+      data['next_number'] = result.data.next_number
+    }
+    let temp = Object.assign({}, data)
+    setData(temp)
   }
 
   const closePopup = () => {
