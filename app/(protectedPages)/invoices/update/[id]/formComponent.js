@@ -254,14 +254,14 @@ export default function InvoiceEditForm() {
                                                             <span className={`${styles.taxTDSRadioButtonWrapper} d-flex align-items-center`}>
                                                                 <RadioButton
                                                                     label="TDS"
-                                                                    value={taxValueSelected === 'tds'}
+                                                                    checked={taxValueSelected === 'tds'}
                                                                     onChange={handleTDSChange}
                                                                 />
                                                             </span>
                                                             <span className={`${styles.taxTCSRadioButtonWrapper} d-flex align-items-center`}>
                                                                 <RadioButton
                                                                     label="TCS"
-                                                                    value={taxValueSelected === 'tcs'}
+                                                                    checked={taxValueSelected === 'tcs'}
                                                                     onChange={handleTCSChange}
                                                                 />
                                                             </span>

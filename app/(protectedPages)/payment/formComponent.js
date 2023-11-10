@@ -100,12 +100,12 @@ export default function PaymentFormComponent() {
                                             <span className={`${styles.customerInvoicePaymentRadioButtonWrapper} d-flex justify-content-start align-items-center`}>
                                                 <RadioButton
                                                     label="No Tax"
-                                                    value={tdsSelected === ''}
+                                                    checked={tdsSelected === ''}
                                                     onChange={handleTDSRemoved}
                                                 />
                                                 <RadioButton
                                                     label="Yes, TDS"
-                                                    value={tdsSelected === 'tds'}
+                                                    checked={tdsSelected === 'tds'}
                                                     onChange={handleTDSChange}
                                                 />
                                             </span>
