@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import CustomSelectComponent from "../customSelectComponent";
+import CustomSelectComponent from "../common/customSelectComponent";
 
 const DisplayNameSelect = (props) => {
   const [options, setOptions] = useState([]);
@@ -8,24 +8,24 @@ const DisplayNameSelect = (props) => {
     let temp_data = [];
     if (props.salutation && props.firstName && props.lastName) {
       temp_data = [
-        {Id: `${props.salutation} ${props.firstName} ${props.lastName}`, name: `${props.salutation} ${props.firstName} ${props.lastName}`},
-        {Id: `${props.firstName} ${props.lastName}`, name: `${props.firstName} ${props.lastName}`},
-        {Id: `${props.lastName}, ${props.firstName}`, name: `${props.lastName}, ${props.firstName}` }
+        { Id: `${props.salutation} ${props.firstName} ${props.lastName}`, name: `${props.salutation} ${props.firstName} ${props.lastName}` },
+        { Id: `${props.firstName} ${props.lastName}`, name: `${props.firstName} ${props.lastName}` },
+        { Id: `${props.lastName}, ${props.firstName}`, name: `${props.lastName}, ${props.firstName}` }
       ]
     } else if (!props.salutation && props.firstName && props.lastName) {
       temp_data = [
-        {Id: `${props.firstName} ${props.lastName}`, name: `${props.firstName} ${props.lastName}`},
-        {Id: `${props.lastName}, ${props.firstName}`, name: `${props.lastName}, ${props.firstName}` }
+        { Id: `${props.firstName} ${props.lastName}`, name: `${props.firstName} ${props.lastName}` },
+        { Id: `${props.lastName}, ${props.firstName}`, name: `${props.lastName}, ${props.firstName}` }
       ]
     } else if (props.salutation && !props.firstName && props.lastName) {
       temp_data = [
-        {Id: `${props.salutation} ${props.lastName}`, name: `${props.salutation} ${props.lastName}`},
-        {Id: `${props.lastName}`, name: ` ${props.lastName}`},
+        { Id: `${props.salutation} ${props.lastName}`, name: `${props.salutation} ${props.lastName}` },
+        { Id: `${props.lastName}`, name: ` ${props.lastName}` },
       ]
     } else if (props.salutation && props.firstName && !props.lastName) {
       temp_data = [
-        {Id: `${props.salutation} ${props.firstName}`, name: `${props.salutation} ${props.firstName}`},
-        {Id: `${props.firstName}`, name: ` ${props.firstName}`},
+        { Id: `${props.salutation} ${props.firstName}`, name: `${props.salutation} ${props.firstName}` },
+        { Id: `${props.firstName}`, name: ` ${props.firstName}` },
       ]
     }
     setOptions(temp_data)

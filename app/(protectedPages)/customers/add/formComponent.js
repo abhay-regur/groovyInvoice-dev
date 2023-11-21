@@ -222,10 +222,17 @@ export default function CustomerAddForm() {
         try {
             const result = await getCurrencies();
             var data = result.data;
+
+            //Removing Duplicate value
+            const uniqueCurriencies = data.filter((obj, index) => {
+                return index === data.findIndex(o => obj.name === o.name);
+            });
+
             var temp = [];
-            data.forEach((elem) => {
+            uniqueCurriencies.forEach((elem) => {
                 temp.push({ Id: elem.symbol, name: (elem.symbol == '' ? elem.name : elem.symbol + ' - ' + elem.name) })
             })
+
             setCurrencies(temp);
         } catch (error) {
             setErrors(genrateErrorMessage(error, 'Customer', setToastList));

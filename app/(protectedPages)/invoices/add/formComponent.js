@@ -12,7 +12,7 @@ import FaGear from '@/assets/icons/faGear.svg';
 import "react-datepicker/dist/react-datepicker.css";
 import { getPaymentTerms, getPaymentTerm } from '@/services/paymentTerms.service';
 import { getCustomers, getCustomer } from '@/services/customer.service';
-import CustomSelectComponent from '@/components/customSelectComponent';
+import CustomSelectComponent from '@/components/common/customSelectComponent';
 import { saveInvoice } from '@/services/invoice.service';
 import ErrorList from '@/components/errorList';
 import { ToastMsgContext } from '@/context/ToastMsg.context';

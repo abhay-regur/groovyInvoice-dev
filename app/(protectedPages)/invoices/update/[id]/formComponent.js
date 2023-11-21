@@ -12,7 +12,7 @@ import FaCircleXmark from '../../../../../assets/icons/faCircleXmark.svg';
 import FaCircleQuestion from '../../../../../assets/icons/faCircleQuestion.svg';
 import FaGear from '../../../../../assets/icons/faGear.svg';
 import "react-datepicker/dist/react-datepicker.css";
-import CustomSelectComponent from '../../../../../components/customSelectComponent';
+import CustomSelectComponent from '../../../../../components/common/customSelectComponent';
 import { getInvoice, updateInvoice } from '../../../../../services/invoice.service';
 import { getCustomers } from '../../../../../services/customer.service';
 import { getPaymentTerms } from '../../../../../services/paymentTerms.service';
