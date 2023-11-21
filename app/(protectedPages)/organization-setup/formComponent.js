@@ -7,7 +7,7 @@ import { ToastMsgContext } from '@/context/ToastMsg.context';
 import { getCompanyDetails, updateCompanyDetails } from '@/services/companies.service';
 import { getCurrencies, getTimeZonesList } from '@/services/common/general.service';
 import { getIndianStates, getCountries } from '@/services/countriesState.service';
-import CustomSelectComponent from "@/components/customSelectComponent";
+import CustomSelectComponent from "@/components/common/customSelectComponent";
 import { NavExpandedState } from '@/context/NavState.context';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 import Loading from "../loading";

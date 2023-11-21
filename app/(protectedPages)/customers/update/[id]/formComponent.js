@@ -223,10 +223,17 @@ export default function CustomerEditForm() {
         try {
             const result = await getCurrencies();
             var data = result.data;
+
+            //Removing Duplicate value
+            const uniqueCurriencies = data.filter((obj, index) => {
+                return index === data.findIndex(o => obj.name === o.name);
+            });
+
             var temp = [];
-            data.forEach((elem) => {
+            uniqueCurriencies.forEach((elem) => {
                 temp.push({ Id: elem.symbol, name: (elem.symbol == '' ? elem.name : elem.symbol + ' - ' + elem.name) })
             })
+
             setCurrencies(temp);
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
@@ -424,12 +431,12 @@ export default function CustomerEditForm() {
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-6">
                                         <DisplayNameSelect
-                                          value={data.displayName}
-                                          onChange={handleInput}
-                                          salutation={data.salutation}
-                                          firstName={data.firstName}
-                                          lastName={data.lastName}
-                                          name='displayName'
+                                            value={data.displayName}
+                                            onChange={handleInput}
+                                            salutation={data.salutation}
+                                            firstName={data.firstName}
+                                            lastName={data.lastName}
+                                            name='displayName'
                                         />
                                     </div>
                                 </div>

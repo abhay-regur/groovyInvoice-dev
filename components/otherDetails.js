@@ -2,7 +2,7 @@ import RadioButton from '@/components/radioButton';
 import FaExclamationCircle from '@/assets/icons/faExclamationCircle.svg';
 import FaQuestionCircleOutline from '@/assets/icons/faQuestionCircleOutline.svg';
 import FaPlus from '@/assets/icons/faCirclePlus.svg'
-import CustomSelectComponent from './customSelectComponent';
+import CustomSelectComponent from './common/customSelectComponent';
 import styles from "@/styles/newCustomer.module.scss";
 import { useEffect, useState } from 'react';
 import { GST_TREATMENT } from '../constants';
@@ -141,7 +141,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
                     <label className={`${styles.companyInvoiceComapnyPlaceOfSupplylabel}`}>Place Of Supply <span className={`${styles.green}`}>*</span></label>
                 </div>
                 <div className="col-12 col-lg-6 col-xl-6">
-                    <CustomSelectComponent className={`${styles.companyInvoiceComapnyPlaceOfSupplySelect}`} data={placeOfSupply} onOptionValueChange={handleInput} optionValue={data.placeOfSupply} name={'placeOfSupply'} isDisabled={false} defaultText={'Place of Supply'} isInnerButtonRequired={false} />
+                    <CustomSelectComponent className={`${styles.companyInvoiceComapnyPlaceOfSupplySelect}`} data={placeOfSupply} onOptionValueChange={handleInput} optionValue={data.placeOfSupply} hasSearch={true} name={'placeOfSupply'} isDisabled={false} defaultText={'Place of Supply'} isInnerButtonRequired={false} />
                 </div>
             </div>
         }
@@ -202,7 +202,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
                 <label className={`${styles.companyInvoiceCurrencylabel}`}>Currency</label>
             </div>
             <div className="col-12 col-lg-6 col-xl-6">
-                <CustomSelectComponent className={`${styles.companyInvoiceCurrencySelect}`} data={currencies} onOptionValueChange={handleInput} optionValue={data.currency} name={'currency'} isDisabled={false} defaultText={'Select a Currency'} canAddButton={false} />
+                <CustomSelectComponent className={`${styles.companyInvoiceCurrencySelect}`} data={currencies} onOptionValueChange={handleInput} optionValue={data.currency} name={'currency'} hasSearch={true} isDisabled={false} defaultText={'Select a Currency'} canAddButton={false} />
             </div>
         </div>
 
