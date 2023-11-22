@@ -1,22 +1,22 @@
 "use client"
 import { useState, useContext, useEffect } from 'react';
 import { useParams } from 'next/navigation';
-import { NavExpandedState } from '../../../../context/NavState.context';
-import styles from '../../../../styles/viewInvoice.module.scss';
-import ViewInvoiceTable from '../../../../components/viewInvoiceTable.js';
-import FaPen from '../../../../assets/icons/faPen.svg';
-import FaMail from '../../../../assets/icons/faEnvelopeGreen.svg';
-import FaShare from '../../../../assets/icons/faShare.svg';
-import FaBell from '../../../../assets/icons/faBell.svg';
-import FaPDF from '../../../../assets/icons/faPDF.svg';
-import FaRupee from '../../../../assets/icons/faRupee.svg';
-import FaDropDown from '../../../../assets/icons/faDropDownGreen.svg';
-import { getInvoice } from '../../../../services/invoice.service';
-import { getCustomer } from '../../../../services/customer.service';
-import { getPaymentTerm } from '../../../../services/paymentTerms.service';
+import { NavExpandedState } from '@/context/NavState.context';
+import styles from '@/styles/viewInvoice.module.scss';
+import ViewInvoiceTable from '@/components/viewInvoiceTable.js';
+import FaPen from '@/assets/icons/faPen.svg';
+import FaMail from '@/assets/icons/faEnvelopeGreen.svg';
+import FaShare from '@/assets/icons/faShare.svg';
+import FaBell from '@/assets/icons/faBell.svg';
+import FaPDF from '@/assets/icons/faPDF.svg';
+import FaRupee from '@/assets/icons/faRupee.svg';
+import FaDropDown from '@/assets/icons/faDropDownGreen.svg';
+import { getInvoice } from '@/services/invoice.service';
+import { getCustomer } from '@/services/customer.service';
+import { getPaymentTerm } from '@/services/paymentTerms.service';
 import { formatDate } from '../../../../common/utils/date.utils';
 import Link from 'next/link';
-import { convertNumberToWord } from '../../../../utils/number.utils';
+import { convertNumberToWord } from '@/utils/number.utils';
 
 export default function InvoiceViewComponent() {
     const { id } = useParams();
@@ -39,8 +39,8 @@ export default function InvoiceViewComponent() {
         invoiceItems: []
     })
 
-    const [customer, setCustomer] = useState({firstName: '', lastName: ''})
-    const [paymentTerm, setPaymentTerm] = useState({label: ''})
+    const [customer, setCustomer] = useState({ firstName: '', lastName: '' })
+    const [paymentTerm, setPaymentTerm] = useState({ label: '' })
 
     const getData = async () => {
         const result = await getInvoice(id);
@@ -48,7 +48,7 @@ export default function InvoiceViewComponent() {
         const paymentTermData = await getPaymentTerm(result.data.termsId)
         setCustomer(customerData.data)
         setPaymentTerm(paymentTermData.data)
-        setData({...result.data, invoiceDate: new Date(result.data.invoiceDate), dueDate: new Date(result.data.dueDate)})
+        setData({ ...result.data, invoiceDate: new Date(result.data.invoiceDate), dueDate: new Date(result.data.dueDate) })
     }
 
     useEffect(() => {
@@ -170,7 +170,7 @@ export default function InvoiceViewComponent() {
                                         </div>
                                     </div>
                                 </div>
-                                <ViewInvoiceTable items={data.invoiceItems}/>
+                                <ViewInvoiceTable items={data.invoiceItems} />
                                 <div className="row">
                                     <div className="col-12 col-lg-5 order-1 order-lg-0">
                                         <div className={`${styles.companyInvoiceViewInvoiceTotalInWordsWrapper}`}>

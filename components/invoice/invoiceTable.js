@@ -1,13 +1,14 @@
 import { useState, useEffect, useRef } from "react";
-import styles from "../../styles/invoiceTable.module.scss";
-import FaCircleXmark from '../../assets/icons/faCircleXmark.svg';
-import FaExclamationCircle from '../../assets/icons/faExclamationCircle.svg';
-import FaCirclePlus from '../../assets/icons/faCirclePlus.svg';
+import styles from "@/styles/invoiceTable.module.scss";
+import FaCircleXmark from '@/assets/icons/faCircleXmark.svg';
+import FaExclamationCircle from '@/assets/icons/faExclamationCircle.svg';
+import FaCirclePlus from '@/assets/icons/faCirclePlus.svg';
 import ItemsAutoCompleteTextArea from "./itemsAutoCompleteTextArea";
-import { searchItems } from "../../services/items.service";
+import { searchItems } from "@/services/items.service";
 
 const InvoiceTable = (props) => {
     const [items, setItems] = useState([]);
+
     const itemObject = {
         itemDescription: '',
         quantity: 1,
@@ -17,9 +18,11 @@ const InvoiceTable = (props) => {
         taxPercent: 0.00,
         total: 0.00,
     };
+
     const addAnotherLine = () => {
         props.setItemsData([...props.itemsData, itemObject])
     }
+
     const removeLine = (index) => {
         props.itemsData.splice(index, 1)
         let temp = Object.assign([], props.itemsData)

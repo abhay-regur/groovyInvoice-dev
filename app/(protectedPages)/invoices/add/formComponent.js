@@ -19,6 +19,7 @@ import { ToastMsgContext } from '@/context/ToastMsg.context';
 import { addDaysInDate } from '../../../../common/utils/date.utils';
 import DateInputField from '@/components/common/dateInputField';
 import { enableElement, disableElement } from '@/utils/form.utils';
+import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 import InvoiceNumberSettingsPopup from '@/components/settings/invoiceNumberSettingsPopup';
 import { getInvoiceNumberSetting } from '@/services/invoice-number-setting.service';
 
@@ -84,7 +85,7 @@ export default function InvoiceAddForm() {
             });
             setPaymentTerms(temp);
         } catch (error) {
-            setErrors(error.response.data.message)
+            setErrors(genrateErrorMessage(error, 'Invoice', setToastList))
         }
     }
 
@@ -173,7 +174,7 @@ export default function InvoiceAddForm() {
             }]);
             replace('/invoices');
         } catch (error) {
-            setErrors(error.response.data.message);
+            setErrors(genrateErrorMessage(error, 'Invoice', setToastList));
         }
         enableElement(e.target)
     }
