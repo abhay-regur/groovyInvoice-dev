@@ -18,12 +18,14 @@ import { getCustomers } from '@/services/customer.service';
 import { getPaymentTerms } from '@/services/paymentTerms.service';
 import ErrorList from '@/components/errorList';
 import DateInputField from '@/components/common/dateInputField';
-import { addDaysInDate } from '../../../../../common/utils/date.utils';
+import { addDaysInDate } from '@/utils/date.utils';
+import { useRouter } from 'next/navigation';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 import { enableElement, disableElement } from '@/utils/form.utils';
 
 export default function InvoiceEditForm() {
     const { id } = useParams();
+    const { replace } = useRouter();
     const [taxValueSelected, settaxValueSelected] = useState();
     const { navExpandedState } = useContext(NavExpandedState);
     const [paymentTerms, setPaymentTerms] = useState([]);
@@ -331,7 +333,7 @@ export default function InvoiceEditForm() {
                                                 </span>
                                             </button>
                                         </span>
-                                        <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`}>
+                                        <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={() => { replace('/invoices') }}>
                                             <span>
                                                 <i><FaCircleXmark /></i>
                                                 Cancel

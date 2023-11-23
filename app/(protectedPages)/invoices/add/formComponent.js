@@ -16,15 +16,17 @@ import CustomSelectComponent from '@/components/common/customSelectComponent';
 import { saveInvoice } from '@/services/invoice.service';
 import ErrorList from '@/components/errorList';
 import { ToastMsgContext } from '@/context/ToastMsg.context';
-import { addDaysInDate } from '../../../../common/utils/date.utils';
+import { addDaysInDate } from '@/utils/date.utils';
 import DateInputField from '@/components/common/dateInputField';
 import { enableElement, disableElement } from '@/utils/form.utils';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 import InvoiceNumberSettingsPopup from '@/components/settings/invoiceNumberSettingsPopup';
+import { useRouter } from 'next/navigation';
 import { getInvoiceNumberSetting } from '@/services/invoice-number-setting.service';
 
 export default function InvoiceAddForm() {
     const [taxValueSelected, settaxValueSelected] = useState();
+    const { replace } = useRouter();
     const { navExpandedState } = useContext(NavExpandedState);
     const [paymentTerms, setPaymentTerms] = useState([]);
     const { setToastList } = useContext(ToastMsgContext);
@@ -365,7 +367,7 @@ export default function InvoiceAddForm() {
                                                 </span>
                                             </button>
                                         </span>
-                                        <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`}>
+                                        <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={() => { replace('/invoices') }}>
                                             <span>
                                                 <i><FaCircleXmark /></i>
                                                 Cancel

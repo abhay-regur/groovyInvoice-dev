@@ -14,14 +14,14 @@ import FaDropDown from '@/assets/icons/faDropDownGreen.svg';
 import { getInvoice } from '@/services/invoice.service';
 import { getCustomer } from '@/services/customer.service';
 import { getPaymentTerm } from '@/services/paymentTerms.service';
-import { formatDate } from '../../../../common/utils/date.utils';
+import { formatDate } from '@/utils/date.utils';
 import Link from 'next/link';
 import { convertNumberToWord } from '@/utils/number.utils';
 
 export default function InvoiceViewComponent() {
     const { id } = useParams();
     const { navExpandedState } = useContext(NavExpandedState);
-    const [actionBarExpandedState, setactionBarExpandedState] = useState(false)
+    const [actionBarExpandedState, setactionBarExpandedState] = useState(false);
     const [data, setData] = useState({
         customerId: 0,
         invoiceNo: '',
@@ -39,8 +39,8 @@ export default function InvoiceViewComponent() {
         invoiceItems: []
     })
 
-    const [customer, setCustomer] = useState({ firstName: '', lastName: '' })
-    const [paymentTerm, setPaymentTerm] = useState({ label: '' })
+    const [customer, setCustomer] = useState({ firstName: '', lastName: '' });
+    const [paymentTerm, setPaymentTerm] = useState({ label: '' });
 
     const getData = async () => {
         const result = await getInvoice(id);
