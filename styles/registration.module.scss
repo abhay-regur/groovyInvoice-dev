@@ -179,7 +179,7 @@
     .loginBackground {
         background: linear-gradient(0deg, var.$background-primary-color, var.$background-primary-color), url('/images/registration_page.png') no-repeat;
         background-size: cover;
-        height: 100vh;
+        height: inherit;
 
         @media (max-width: var.$screen-size-mm) {
             display: none;
