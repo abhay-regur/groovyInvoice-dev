@@ -22,6 +22,7 @@ import { useRouter } from 'next/navigation';
 import DisplayNameSelect from '@/components/customers/displayNameSelect';
 
 export default function CustomerAddForm() {
+
     const { replace } = useRouter();
     const { navExpandedState } = useContext(NavExpandedState);
     const [ActiveTabID, setActiveTabID] = useState(1);
@@ -383,6 +384,7 @@ export default function CustomerAddForm() {
                             <hr />
                             <ErrorList errors={errors} />
                             <form onSubmit={handleSubmit}>
+
                                 <div className={`${styles.companyCustomerTypeOptionWrapper} mb-4 row`}>
                                     <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
                                         <label className="">Customer Type</label>
@@ -566,6 +568,7 @@ export default function CustomerAddForm() {
                                         </div>
                                     </div>
                                 </div>
+
                             </form>
                         </div>
                     </div>

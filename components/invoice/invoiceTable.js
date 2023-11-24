@@ -1,13 +1,14 @@
 import { useState, useEffect, useRef } from "react";
-import styles from "../../styles/invoiceTable.module.scss";
-import FaCircleXmark from '../../assets/icons/faCircleXmark.svg';
-import FaExclamationCircle from '../../assets/icons/faExclamationCircle.svg';
-import FaCirclePlus from '../../assets/icons/faCirclePlus.svg';
+import styles from "@/styles/invoiceTable.module.scss";
+import FaCircleXmark from '@/assets/icons/faCircleXmark.svg';
+import FaExclamationCircle from '@/assets/icons/faExclamationCircle.svg';
+import FaCirclePlus from '@/assets/icons/faCirclePlus.svg';
 import ItemsAutoCompleteTextArea from "./itemsAutoCompleteTextArea";
-import { searchItems } from "../../services/items.service";
+import { searchItems } from "@/services/items.service";
 
 const InvoiceTable = (props) => {
     const [items, setItems] = useState([]);
+
     const itemObject = {
         itemDescription: '',
         quantity: 1,
@@ -17,9 +18,11 @@ const InvoiceTable = (props) => {
         taxPercent: 0.00,
         total: 0.00,
     };
+
     const addAnotherLine = () => {
         props.setItemsData([...props.itemsData, itemObject])
     }
+
     const removeLine = (index) => {
         props.itemsData.splice(index, 1)
         let temp = Object.assign([], props.itemsData)
@@ -71,65 +74,65 @@ const InvoiceTable = (props) => {
     }
 
     return (
-        <><div className="col-12">
-            <table className={`${styles.companyInvoiceTable} table`}>
-                <thead>
-                    <tr>
-                        <th scope="col" className="ps-3">Item Details</th>
-                        <th scope="col" className={`${styles.companyInvoiceItemTableQtyHeader} pe-2 text-end`}>Quantity</th>
-                        <th scope="col" className={`${styles.companyInvoiceItemTableRateHeader} pe-2 text-end`}>Rate</th>
-                        <th scope="col" className="invoiceTableTaxHead"><span className='d-flex justify-content-center'> Tax Percentage <i className='d-flex align-content-center'><FaExclamationCircle /></i></span></th>
-                        <th scope="col" className="text-center">Amount</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {props.itemsData.map((item, idx) => {
-                        return (
-                            <tr key={idx} className={`${styles.comapnyInvoiceTableItemRow}`}>
-                                <td>
-                                    <div className={`${styles.companyInvoiceTableItemWarpper}`}>
-                                        <ItemsAutoCompleteTextArea
-                                            handleChange={(e) => handleItemDescriptionChange(idx, e)}
-                                            value={item.itemDescription}
-                                            items={items}
-                                            handleSelect={(item) => handleItemSelect(idx, item)}
-                                        />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div className={`${styles.companyInvoiceTableItemQuantity}`}>
-                                        <input type='number' className='form-control' name='quantity' value={item.quantity} onChange={(e) => handleChange(idx, e)} />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div className={`${styles.companyInvoiceTableItemRate}`}>
-                                        <input type='number' className='form-control' name='rate' value={item.rate} onChange={(e) => handleChange(idx, e)} />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div className={`${styles.companyInvoiceTableItemPercentage}`}>
-                                        <input type='number' className='form-control' name='taxPercent' value={item.taxPercent} onChange={(e) => handleChange(idx, e)} />
-                                    </div>
-                                </td>
-                                <td>
-                                    <p className={`${styles.companyInvoiceTableItemAmount}`}>
-                                        Rs. {item.total}
-                                    </p>
-                                </td>
-                                <td className={`${styles.companyInvoiceItemEditCols}`}>
-                                    {idx > 0
-                                        ? <div className="d-flex" >
-                                            <span className={`${styles.redColor} ${styles.companyInvoicePaymentTermRemove}`} onClick={() => removeLine(idx)}><FaCircleXmark /></span>
-
+        <>
+            <div className="col-12">
+                <table className={`${styles.companyInvoiceTable} table`}>
+                    <thead>
+                        <tr>
+                            <th scope="col" className="ps-3">Item Details</th>
+                            <th scope="col" className={`${styles.companyInvoiceItemTableQtyHeader} pe-2 text-end`}>Quantity</th>
+                            <th scope="col" className={`${styles.companyInvoiceItemTableRateHeader} pe-2 text-end`}>Rate</th>
+                            <th scope="col" className="invoiceTableTaxHead"><span className='d-flex justify-content-center'> Tax Percentage <i className='d-flex align-content-center'><FaExclamationCircle /></i></span></th>
+                            <th scope="col" className="text-center">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {props.itemsData.map((item, idx) => {
+                            return (
+                                <tr key={idx} className={`${styles.comapnyInvoiceTableItemRow}`}>
+                                    <td>
+                                        <div className={`${styles.companyInvoiceTableItemWarpper}`}>
+                                            <ItemsAutoCompleteTextArea
+                                                handleChange={(e) => handleItemDescriptionChange(idx, e)}
+                                                value={item.itemDescription}
+                                                items={items}
+                                                handleSelect={(item) => handleItemSelect(idx, item)}
+                                            />
                                         </div>
-                                        : ''}
-                                </td>
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
-        </div>
+                                    </td>
+                                    <td>
+                                        <div className={`${styles.companyInvoiceTableItemQuantity}`}>
+                                            <input type='number' className='form-control' name='quantity' value={item.quantity} onChange={(e) => handleChange(idx, e)} />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div className={`${styles.companyInvoiceTableItemRate}`}>
+                                            <input type='number' className='form-control' name='rate' value={item.rate} onChange={(e) => handleChange(idx, e)} />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div className={`${styles.companyInvoiceTableItemPercentage}`}>
+                                            <input type='number' className='form-control' name='taxPercent' value={item.taxPercent} onChange={(e) => handleChange(idx, e)} />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p className={`${styles.companyInvoiceTableItemAmount}`}>
+                                            Rs. {item.total}
+                                        </p>
+                                    </td>
+                                    <td className={`${styles.companyInvoiceItemEditCols}`}>
+                                        {idx > 0
+                                            ? <div className="d-flex" >
+                                                <span className={`${styles.redColor} ${styles.companyInvoicePaymentTermRemove}`} onClick={() => removeLine(idx)}><FaCircleXmark /></span>
+                                            </div>
+                                            : ''}
+                                    </td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
             <div className="col-12">
                 <div className="btn-group">
                     <button type="button" className={`${styles.companyInvoiceAddlineBtn} btn btn-outline-primary dropdown-toggle`} onClick={() => addAnotherLine()}>

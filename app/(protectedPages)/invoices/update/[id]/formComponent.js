@@ -1,28 +1,31 @@
 "use client"
 import { useState, useContext, useEffect } from 'react';
 import { useParams } from 'next/navigation';
-import InvoiceTable from '../../../../../components/invoice/invoiceTable';
-import RadioButton from '../../../../../components/radioButton';
-import styles from "../../../../../styles/newInvoice.module.scss";
-import { NavExpandedState } from '../../../../../context/NavState.context';
-import { ToastMsgContext } from '../../../../../context/ToastMsg.context';
-import FaSave from '../../../../../assets/icons/faSave.svg';
-import FaPaperPen from '../../../../../assets/icons/faPaperPen.svg';
-import FaCircleXmark from '../../../../../assets/icons/faCircleXmark.svg';
-import FaCircleQuestion from '../../../../../assets/icons/faCircleQuestion.svg';
-import FaGear from '../../../../../assets/icons/faGear.svg';
+import InvoiceTable from '@/components/invoice/invoiceTable';
+import RadioButton from '@/components/radioButton';
+import styles from "@/styles/newInvoice.module.scss";
+import { NavExpandedState } from '@/context/NavState.context';
+import { ToastMsgContext } from '@/context/ToastMsg.context';
+import FaSave from '@/assets/icons/faSave.svg';
+import FaPaperPen from '@/assets/icons/faPaperPen.svg';
+import FaCircleXmark from '@/assets/icons/faCircleXmark.svg';
+import FaCircleQuestion from '@/assets/icons/faCircleQuestion.svg';
+import FaGear from '@/assets/icons/faGear.svg';
 import "react-datepicker/dist/react-datepicker.css";
-import CustomSelectComponent from '../../../../../components/common/customSelectComponent';
-import { getInvoice, updateInvoice } from '../../../../../services/invoice.service';
-import { getCustomers } from '../../../../../services/customer.service';
-import { getPaymentTerms } from '../../../../../services/paymentTerms.service';
-import ErrorList from '../../../../../components/errorList';
-import DateInputField from '../../../../../components/common/dateInputField';
-import { addDaysInDate } from '../../../../../common/utils/date.utils';
-import { enableElement, disableElement } from '../../../../../utils/form.utils';
+import CustomSelectComponent from '@/components/common/customSelectComponent';
+import { getInvoice, updateInvoice } from '@/services/invoice.service';
+import { getCustomers } from '@/services/customer.service';
+import { getPaymentTerms } from '@/services/paymentTerms.service';
+import ErrorList from '@/components/errorList';
+import DateInputField from '@/components/common/dateInputField';
+import { addDaysInDate } from '@/utils/date.utils';
+import { useRouter } from 'next/navigation';
+import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
+import { enableElement, disableElement } from '@/utils/form.utils';
 
 export default function InvoiceEditForm() {
     const { id } = useParams();
+    const { replace } = useRouter();
     const [taxValueSelected, settaxValueSelected] = useState();
     const { navExpandedState } = useContext(NavExpandedState);
     const [paymentTerms, setPaymentTerms] = useState([]);
@@ -113,7 +116,7 @@ export default function InvoiceEditForm() {
                 description: '',
             }]);
         } catch (error) {
-            setErrors(error.response.data.message);
+            setErrors(genrateErrorMessage(error, 'Invoices', setToastList));
         }
         enableElement(e.target)
     }
@@ -330,7 +333,7 @@ export default function InvoiceEditForm() {
                                                 </span>
                                             </button>
                                         </span>
-                                        <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`}>
+                                        <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={() => { replace('/invoices') }}>
                                             <span>
                                                 <i><FaCircleXmark /></i>
                                                 Cancel

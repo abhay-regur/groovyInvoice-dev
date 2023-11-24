@@ -1,8 +1,8 @@
 import styles from "@/styles/newCustomer.module.scss";
 import FaCopy from "@/assets/icons/faCopy.svg";
-import SelectComponent from './selectComponent';
 import ErrorList from './errorList';
 import { useState } from 'react';
+import CustomSelectComponent from "./common/customSelectComponent";
 
 export default function Address({ countries, billingstates, shippingstates, shippingstatesCountryId, setShippingStatesCountryId, billingstatesCountryId, setBillingStatesCountryId, data, setData, errors }) {
     const [addressCopied, setAddressCopied] = useState(false);
@@ -49,21 +49,26 @@ export default function Address({ countries, billingstates, shippingstates, ship
 
     }
 
-    const handelSelectInput = ({ target }) => {
+    const handleInput = ({ target }) => {
         var temp_data = data;
-        if (target.name.search('billingCountryId') > -1) {
-            setBillingStatesCountryId(parseInt(target.value));
-            temp_data.address.billingAddress[target.id] = parseInt(target.value);
-            if (addressCopied) {
+        var name = target.name || target.getAttribute('name');
+        if (name != '') {
+            if (name.search('billingCountryId') > -1) {
+                setBillingStatesCountryId(parseInt(target.value));
+                temp_data.address.billingAddress[name] = parseInt(target.value);
+                if (addressCopied) {
+                    setShippingStatesCountryId(parseInt(target.value));
+                    temp_data.address.shippingAddress[name] = parseInt(target.value);
+                }
+            } else if (name.search('shippingCountryId') > -1) {
                 setShippingStatesCountryId(parseInt(target.value));
-                temp_data.address.shippingAddress[target.id] = parseInt(target.value);
+                temp_data.address.shippingAddress[name] = parseInt(target.value);
             }
-        } else if (target.name.search('shippingCountryId') > -1) {
-            setShippingStatesCountryId(parseInt(target.value));
-            temp_data.address.shippingAddress[target.id] = parseInt(target.value);
+
+            temp_data[name] = target.value;
+            let temp = Object.assign({}, temp_data)
+            setData(temp)
         }
-        let temp = Object.assign({}, temp_data)
-        setData(temp);
     }
 
     return (
@@ -86,7 +91,7 @@ export default function Address({ countries, billingstates, shippingstates, ship
                             <label className={`${styles.companyInvoiceBillingComapnyCountrylabel}`}>Country / Region</label>
                         </div>
                         <div className="col-12 col-md-8">
-                            <SelectComponent id={'countryId'} data={countries} setSeletedId={handelSelectInput} seletedId={billingstatesCountryId == null ? 0 : billingstatesCountryId} name={'billingCountryId'} defaultText={'Select A Country'} />
+                            <CustomSelectComponent className={`${styles.companyInvoiceComapnyPlaceOfSupplySelect}`} data={countries} onOptionValueChange={handleInput} optionValue={billingstatesCountryId == null ? 0 : billingstatesCountryId} hasSearch={true} name={'billingCountryId'} isDisabled={false} defaultText={'Select A Country'} isInnerButtonRequired={false} />
                         </div>
                     </div>
 
@@ -117,7 +122,7 @@ export default function Address({ countries, billingstates, shippingstates, ship
                             <label className={`${styles.companyInvoiceBillingComapnyStatelabel}`}>State</label>
                         </div>
                         <div className="col-12 col-md-8">
-                            <SelectComponent id={"stateId"} data={billingstates} setSeletedId={handleBillingInput} seletedId={data.address.billingAddress.stateId == null ? 0 : data.address.billingAddress.stateId} name={'billingStateId'} defaultText={'Select A State'} />
+                            <CustomSelectComponent className={`${styles.companyInvoiceComapnyPlaceOfSupplySelect}`} data={billingstates} onOptionValueChange={handleInput} optionValue={data.address.billingAddress.stateId == null ? 0 : data.address.billingAddress.stateId} hasSearch={true} name={'billingStateId'} isDisabled={false} defaultText={'Select A State'} isInnerButtonRequired={false} />
                         </div>
                     </div>
 
@@ -174,8 +179,8 @@ export default function Address({ countries, billingstates, shippingstates, ship
                         <div className="col-12 col-md-4 d-flex align-items-center">
                             <label className={`${styles.companyInvoiceShippingComapnyCountrylabel}`}>Country / Region</label>
                         </div>
-                        <div className="col-12 col-md-8 d-flex">
-                            <SelectComponent id={'countryId'} data={countries} setSeletedId={handelSelectInput} seletedId={shippingstatesCountryId == null ? 0 : shippingstatesCountryId} name={'shippingCountryId'} isDisabled={addressCopied} defaultText={'Select A Country'} />
+                        <div className="col-12 col-md-8">
+                            <CustomSelectComponent className={`${styles.companyInvoiceComapnyPlaceOfSupplySelect}`} data={countries} onOptionValueChange={handleInput} optionValue={shippingstatesCountryId == null ? 0 : shippingstatesCountryId} hasSearch={true} name={'shippingCountryId'} isDisabled={addressCopied} defaultText={'Select A Country'} isInnerButtonRequired={false} />
                         </div>
                     </div>
 
@@ -205,8 +210,8 @@ export default function Address({ countries, billingstates, shippingstates, ship
                         <div className="col-12 col-md-4 d-flex align-items-center">
                             <label className={`${styles.companyInvoiceShippingComapnyStatelabel}`}>State</label>
                         </div>
-                        <div className="col-12 col-md-8 d-flex">
-                            <SelectComponent id={"stateId"} data={shippingstates} setSeletedId={handleShippingInput} seletedId={data.address.shippingAddress.stateId == null ? 0 : data.address.shippingAddress.stateId} name={'shippingStateId'} isDisabled={addressCopied} defaultText={'Select A State'} />
+                        <div className="col-12 col-md-8">
+                            <CustomSelectComponent className={`${styles.companyInvoiceComapnyPlaceOfSupplySelect}`} data={shippingstates} onOptionValueChange={handleInput} optionValue={data.address.shippingAddress.stateId == null ? 0 : data.address.shippingAddress.stateId} hasSearch={true} name={'shippingStateId'} isDisabled={addressCopied} defaultText={'Select A State'} isInnerButtonRequired={false} />
                         </div>
                     </div>
 

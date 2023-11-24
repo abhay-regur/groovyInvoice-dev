@@ -21,7 +21,7 @@ import { GST_TREATMENT } from '../../../../../constants';
 import { NavExpandedState } from '@/context/NavState.context';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 import { useRouter } from 'next/navigation';
-import DisplayNameSelect from '../../../../../components/customers/displayNameSelect';
+import DisplayNameSelect from '@/components/customers/displayNameSelect';
 
 export default function CustomerEditForm() {
     const { replace } = useRouter();

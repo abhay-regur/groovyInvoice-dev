@@ -5,8 +5,9 @@
     border-radius: 8px;
     max-height: 250px;
     overflow-y: auto;
+    width: 300px;
 
-    li{
+    li {
         border-bottom: 1px solid var.$primary-border-color;
 
         .menuItem {
@@ -23,12 +24,14 @@
                 font-size: 16px;
                 font-weight: 400;
             }
+
             .rate {
                 font-size: 14px !important;
                 font-weight: 400;
             }
         }
     }
+
     li:last-child {
         border-bottom: none;
     }
