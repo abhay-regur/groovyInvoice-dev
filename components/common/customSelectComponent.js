@@ -68,13 +68,15 @@ const CustomSelectComponent = ({ data, onOptionValueChange, optionValue, name, i
                             <hr className="mt-1 mb-1" />
                         </li>
                     </> : ""}
-                    {dataList.map(function (data, id) {
+                    {dataList != undefined && dataList.length > 0 ? dataList.map(function (data, id) {
+
                         return (
                             <li key={id} >
                                 <option className={`${style.menuItem} dropdown-item`} value={data.Id} name={name} onClick={(e) => { handleSelect(e); }}>{data.name}</option>
                             </li>
                         );
-                    })}
+                    }) : <li key='0' ><option className={`${style.menuItem} dropdown-item`} value="" name={name} onClick={(e) => { console.log('No-Value') }}>No-Options</option></li>
+                    }
                     {isInnerButtonRequired
                         ? <>
                             <li key='-1'><hr className="mt-1 mb-1" /></li>

@@ -67,6 +67,7 @@ export default function CustomerEditForm() {
         paymentTermId: null,
         address: {
             billingAddress: {
+                type: "billing-address",
                 attention: "",
                 countryId: null,
                 addressLine1: "",
@@ -78,6 +79,7 @@ export default function CustomerEditForm() {
                 fax: ""
             },
             shippingAddress: {
+                type: "shipping-address",
                 attention: "",
                 countryId: null,
                 addressLine1: "",
