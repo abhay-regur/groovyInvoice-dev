@@ -65,6 +65,7 @@ export default function CustomerAddForm() {
         paymentTermId: null,
         address: {
             billingAddress: {
+                type: "billing-address",
                 attention: "",
                 countryId: null,
                 addressLine1: "",
@@ -76,6 +77,7 @@ export default function CustomerAddForm() {
                 fax: ""
             },
             shippingAddress: {
+                type: "shipping-address",
                 attention: "",
                 countryId: null,
                 addressLine1: "",
@@ -313,6 +315,7 @@ export default function CustomerAddForm() {
             paymentTermId: null,
             address: {
                 billingAddress: {
+                    type: "billing-address",
                     attention: "",
                     countryId: null,
                     addressLine1: "",
@@ -324,6 +327,7 @@ export default function CustomerAddForm() {
                     fax: ""
                 },
                 shippingAddress: {
+                    type: "shipping-address",
                     attention: "",
                     countryId: null,
                     addressLine1: "",
