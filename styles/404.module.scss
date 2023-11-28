@@ -1,0 +1,34 @@
+@use './utility/variables' as var;
+
+.green {
+    color: var.$tertiary-color;
+
+    path {
+        color: var.$tertiary-color;
+    }
+}
+
+.mainContainer {
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+        color: var.$primary-color;
+        font-weight: 700;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    a {
+        border: 1px solid var.$primary-color;
+        border-radius: 6px;
+        padding: 10px;
+        background: var.$primary-color;
+        color: var.$white;
+    }
+}
