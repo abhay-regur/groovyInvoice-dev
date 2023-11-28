@@ -233,7 +233,7 @@ export default function CustomerEditForm() {
 
             var temp = [];
             uniqueCurriencies.forEach((elem) => {
-                temp.push({ Id: elem.symbol, name: (elem.symbol == '' ? elem.name : elem.symbol + ' - ' + elem.name) })
+                temp.push({ Id: elem.id, name: (elem.symbol == '' ? elem.name : elem.symbol + ' - ' + elem.name) })
             })
 
             setCurrencies(temp);
