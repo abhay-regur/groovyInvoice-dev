@@ -141,6 +141,14 @@
                         background: var.$table-head-background;
                         border-right: 1px solid var.$table-border;
 
+                        &:first-of-type {
+                            border-top-left-radius: 10px;
+                        }
+
+                        &:nth-of-type(5) {
+                            border-top-right-radius: 10px;
+                        }
+
                         .companyInvoiceTableInvoiceNumber {
                             label {
                                 display: block;
@@ -457,8 +465,9 @@
 }
 
 //Tablet Screen
-@media screen and (min-width: 676px) and (max-width: 991px) {
+@media screen and (min-width: 676px) and (max-width: 992px) {
     .main {
+        padding-top: 40px;
         margin: auto 30px;
         margin-left: 135px;
         transition: all 0.35s;
@@ -475,7 +484,7 @@
             .title {
                 color: var.$primary-color;
                 font-weight: 700;
-                font-size: 26px;
+                font-size: 36px;
                 line-height: 33px;
                 transition: all 0.35s;
             }
@@ -550,14 +559,14 @@
 
         .comapanyInoviceInvoiceTableWrapper {
             margin-top: 50px;
-            border: 1px solid var.$table-border;
             border-radius: 10px;
-            background: var.$white;
             overflow-x: auto;
             padding: 0;
 
             thead {
                 min-width: 663px;
+                background: var.$table-head-background;
+                border: 1px solid var.$table-border;
 
                 th {
                     margin-top: 13px;
@@ -565,8 +574,8 @@
                     font-weight: 600;
                     font-size: 14px;
                     color: var.$primary-color;
-                    background: var.$table-head-background;
                     border-right: 1px solid var.$table-border;
+
 
                     .companyInvoiceTableInvoiceNumber {
                         label {
@@ -634,6 +643,14 @@
                                 }
                             }
                         }
+                    }
+
+                    &:first-of-type {
+                        border-top-left-radius: 10px;
+                    }
+
+                    &:nth-of-type(5) {
+                        border-top-right-radius: 10px;
                     }
 
                     &:last-of-type {
@@ -821,6 +838,22 @@
                                 }
                             }
                         }
+
+                        ul {
+                            // display: flex;
+                            padding-left: 0.2rem;
+                            justify-content: space-between;
+
+                            li {
+                                list-style: none;
+                                display: grid;
+
+                                span:first-of-type {
+                                    color: var.$primary-color;
+                                    font-weight: 600;
+                                }
+                            }
+                        }
                     }
                 }
 
@@ -974,9 +1007,7 @@
 
         .comapanyInoviceInvoiceTableWrapper {
             margin-top: 50px;
-            border: 1px solid var.$table-border;
             border-radius: 10px;
-            background: var.$white;
             overflow-x: auto;
             padding: 0;
 
@@ -1058,6 +1089,14 @@
                                 }
                             }
                         }
+                    }
+
+                    &:first-of-type {
+                        border-top-left-radius: 10px;
+                    }
+
+                    &:nth-of-type(5) {
+                        border-top-right-radius: 10px;
                     }
 
                     &:last-of-type {

@@ -125,7 +125,16 @@ const AllUserTable = () => {
                 {/* <PageLoader isPageLoading={isPageLoading} /> */}
             </div>
             <div className={`col-sm-12 p-0`}>
-                <ServerSideDataTables ref={dtRef} id="manage-user--table" {...dtOptions} className={`table table-responsive responsive nowrap`} setIsPageLoading={setIsPageLoading} isLoading={isLoading} setIsLoading={setIsLoading} isSearchable={true}>
+                <ServerSideDataTables
+                    ref={dtRef}
+                    id="manage-user--table"
+                    {...dtOptions}
+                    className={`table table-responsive responsive nowrap`}
+                    setIsPageLoading={setIsPageLoading}
+                    isLoading={isLoading}
+                    setIsLoading={setIsLoading}
+                    isSearchable={true}
+                >
                     <thead>
                         <tr>
                             <th scope="col" className="ps-3" data-priority="1" >User Name</th>
