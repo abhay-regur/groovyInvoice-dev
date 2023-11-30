@@ -103,11 +103,10 @@ const AllInvoiceTable = ({ ItemsData }) => {
                 },
                 searchable: false,
                 orderable: false,
+                defaultContent: "-",
             }
         ],
     }
-
-
 
     return (
         <div className={`row`}>
@@ -128,11 +127,11 @@ const AllInvoiceTable = ({ ItemsData }) => {
                                 <th scope="col" className="ps-3" data-priority="1" >
                                     <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='Invoice Number' /></span>
                                 </th>
-                                <th scope="col" className="ps-3" data-priority="1" >Customer Name</th>
+                                <th scope="col" className="ps-3" data-priority="2" >Customer Name</th>
                                 <th scope="col" className="ps-3 hide" data-priority="99" >Last name</th>
                                 <th scope="col" className="ps-3" data-priority="99">Due Date</th>
                                 <th scope="col" className="ps-3" data-priority="99">Amount</th>
-                                <th scope="col" className="ps-3" data-priority="99">Action</th>
+                                <th scope="col" className="ps-3" data-priority="1">Action</th>
                                 <th scope="col" className="hide" ></th>
                             </tr>
                         </thead>

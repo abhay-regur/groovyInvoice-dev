@@ -610,7 +610,7 @@
     }
 }
 
-@media screen and (max-width: 991px) and (min-width: 676px) {
+@media screen and (max-width: 992px) and (min-width: 676px) {
     .main {
         padding-top: 40px;
         margin: auto 49px;
@@ -700,6 +700,7 @@
                         .companyInvoiceViewInvoiceActionBarActionItemText {
                             font-weight: 600;
                             font-size: 16px;
+                            margin-left: 10px;
                             line-height: 24px;
                             justify-content: center;
                             color: var.$primary-color;
@@ -709,7 +710,7 @@
             }
 
             .companyInvoiceViewInvoiceViewWrapper {
-                margin: 76px 0 0 0;
+                margin: 76px 0 20px 0;
                 padding: 36px 0 0 0;
                 background: var.$white;
                 border: 1px solid var.$primary-color;
@@ -930,7 +931,7 @@
     }
 }
 
-@media screen and (max-width: 675px) {
+@media screen and (max-width: 676px) {
     .main {
         margin: 89px 0 92px 0;
         transition: all 0.35s;
@@ -1017,6 +1018,7 @@
 
                         .companyInvoiceViewInvoiceActionBarActionItemText {
                             font-weight: 600;
+                            margin-left: 5px;
                             font-size: 16px;
                             line-height: 24px;
                             justify-content: center;

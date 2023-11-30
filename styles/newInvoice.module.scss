@@ -20,7 +20,7 @@
 
 
 //Big Screen
-@media screen and (min-width: 426px) {
+@media screen and (min-width: 676px) {
     .main {
         margin: auto 97px;
         margin-left: 135px;
@@ -430,33 +430,8 @@
 
 }
 
-//Tablet Screen
-@media screen and (max-width: 991px) {
-    .main {
-        .card {
-            .mainWrapper {
-                margin-top: 21px;
-            }
-
-            .companyNameWrapper {
-                margin-bottom: 1rem;
-            }
-
-            .companyInvoiceAdjustmentWrapper {
-                margin-top: 33px;
-
-                .companyInvoiceAdjustmentInputWrapper {
-                    div:first-of-type {
-                        margin-bottom: 14px;
-                    }
-                }
-            }
-        }
-    }
-}
-
 //Mobie Screen
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 676px) {
     .main {
         margin: 89px 15px 92px 15px;
         transition: all 0.35s;

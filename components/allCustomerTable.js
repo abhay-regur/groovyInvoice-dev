@@ -92,7 +92,7 @@ const AllCustomerTable = () => {
                             <th scope="col" className="ps-3" data-priority="99">Company Name</th>
                             <th scope="col" className="ps-3" data-priority="99">Email Address</th>
                             <th scope="col" className="ps-3" data-priority="1" >Receivables</th>
-                            <th scope="col" className="hide" ></th>
+                            <th scope="col" className="d-none" ></th>
                         </tr>
                     </thead>
                     <tbody></tbody>
