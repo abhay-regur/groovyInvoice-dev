@@ -26,6 +26,7 @@
             }
         }
     }
+
 }
 
 @media screen and (min-width: 676px) {
@@ -101,13 +102,17 @@
                 border-radius: 10px;
 
                 thead {
+                    border-top-right-radius: 10px;
+                    border-top-left-radius: 10px;
+                    background: var.$table-head-background;
+                    border: 1px solid var.$table-border;
+
                     th {
                         padding-top: 13px;
                         padding-bottom: 17px;
                         font-weight: 600;
                         font-size: 14px;
                         color: var.$primary-color;
-                        background: var.$table-head-background;
                         border-right: 1px solid var.$table-border;
                         border-bottom: 1px solid var.$table-border;
 
@@ -156,6 +161,14 @@
                             }
                         }
 
+                        &:first-of-type {
+                            border-top-left-radius: 10px;
+                        }
+
+                        &:nth-of-type(5) {
+                            border-top-right-radius: 10px;
+                        }
+
                         &:last-of-type {
                             border: none;
                             border-bottom: 1px solid var.$table-border;
@@ -169,10 +182,6 @@
                     tr {
                         &:last-child {
                             border: none;
-
-                            td {
-                                border: none !important;
-                            }
                         }
 
                         td {
@@ -183,14 +192,10 @@
                             color: var.$secondary-color;
                             border-bottom: 1px solid var.$table-border;
 
-                            &:nth-of-type(1) {
-                                padding-top: 23px;
-                                padding-bottom: 23px;
-                            }
-
                             &:nth-of-type(6) {
                                 display: none;
                             }
+
 
                             .companyCustomerTableInvoiceNumber {
                                 label {
@@ -376,7 +381,7 @@
 
 }
 
-@media screen and (max-width: 675px) {
+@media screen and (max-width: 676px) {
     .main {
         margin: 89px 15px 92px 15px;
         transition: all 0.35s;
@@ -451,13 +456,17 @@
                 border-radius: 10px;
 
                 thead {
+                    border-top-right-radius: 10px;
+                    border-top-left-radius: 10px;
+                    background: var.$table-head-background;
+                    border: 1px solid var.$table-border;
+
                     th {
                         padding-top: 13px;
                         padding-bottom: 17px;
                         font-weight: 600;
                         font-size: 14px;
                         color: var.$primary-color;
-                        background: var.$table-head-background;
                         border-right: 1px solid var.$table-border;
                         border-bottom: 1px solid var.$table-border;
 
@@ -506,6 +515,14 @@
                             }
                         }
 
+                        &:first-of-type {
+                            border-top-left-radius: 10px;
+                        }
+
+                        &:nth-of-type(5) {
+                            border-top-right-radius: 10px;
+                        }
+
                         &:last-of-type {
                             border: none;
                             border-bottom: 1px solid var.$table-border;
@@ -519,10 +536,6 @@
                     tr {
                         &:last-child {
                             border: none;
-
-                            td {
-                                border: none !important;
-                            }
                         }
 
                         td {

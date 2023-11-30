@@ -132,13 +132,15 @@
                 border-radius: 10px;
 
                 thead {
+                    background: var.$table-head-background;
+                    border: 1px solid var.$table-border;
+
                     th {
                         margin-top: 13px;
                         margin-bottom: 17px;
                         font-weight: 600;
                         font-size: 14px;
                         color: var.$primary-color;
-                        background: var.$table-head-background;
                         border-right: 1px solid var.$table-border;
 
                         &:first-of-type {
@@ -918,7 +920,7 @@
 }
 
 //Mobie Screen
-@media screen and (max-width: 675px) {
+@media screen and (max-width: 676px) {
     .main {
         margin: 89px 15px 92px 15px;
         transition: all 0.35s;
@@ -1013,6 +1015,8 @@
 
             thead {
                 min-width: 663px;
+                background: var.$table-head-background;
+                border: 1px solid var.$table-border;
 
                 th {
                     margin-top: 13px;
@@ -1020,7 +1024,6 @@
                     font-weight: 600;
                     font-size: 14px;
                     color: var.$primary-color;
-                    background: var.$table-head-background;
                     border-right: 1px solid var.$table-border;
 
                     .companyInvoiceTableInvoiceNumber {

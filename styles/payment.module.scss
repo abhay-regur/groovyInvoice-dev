@@ -12,7 +12,7 @@
     color: var.$secondary-color;
 }
 
-@media screen and (min-width: 426px) {
+@media screen and (min-width: 676px) {
     .main {
         margin: 56px auto 97px 97px;
         margin-left: 135px;
@@ -376,7 +376,7 @@
 
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 676px) {
     .main {
         margin: 89px 15px 92px 15px;
         transition: all 0.35s;
