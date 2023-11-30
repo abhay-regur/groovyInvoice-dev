@@ -241,26 +241,22 @@ export default function ProfileComponent() {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className="row justify-content-end">
-                                                        <div className="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-3">
-                                                            <div className="row">
-                                                                <div className="col-12 col-md-4 col-lg-3 col-xl-4 mt-3 mt-sm-0 d-flex justify-content-center">
-                                                                    <button className={`${styles.companyInvoiceSaveSendButton} btn blue`} name="btn-submit" type="submit">
-                                                                        <span>
-                                                                            <i><FaSave /></i>
-                                                                            Update
-                                                                        </span>
-                                                                    </button>
-                                                                </div>
-                                                                <div className="col-12 col-md-4 col-lg-3 col-xl-4 mt-3 mt-sm-0 d-flex justify-content-center">
-                                                                    {/* <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={() => { handleCancelClick() }}>
+                                                    <div className="row">
+                                                        <div className="offset-sm-3 col-12 col-sm-8 col-md-4 col-lg-3 col-xl-4 mt-3 mt-md-0">
+                                                            <button className={`${styles.companyInvoiceSaveSendButton} btn blue`} name="btn-submit" type="submit">
+                                                                <span>
+                                                                    <i><FaSave /></i>
+                                                                    Update
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div className="col-12 col-md-4 col-lg-3 col-xl-4 mt-3 mt-sm-0 d-flex justify-content-center">
+                                                            {/* <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={() => { handleCancelClick() }}>
                                                                     <span>
                                                                         <i><FaCircleXmark /></i>
                                                                         Cancel
                                                                     </span>
                                                                 </button> */}
-                                                                </div>
-                                                            </div>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -325,26 +321,22 @@ export default function ProfileComponent() {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className="row justify-content-end">
-                                                        <div className="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-5">
-                                                            <div className="row">
-                                                                <div className="col-12 col-md-4 col-lg-3 col-xl-4 mt-3 mt-sm-0 d-flex justify-content-center">
-                                                                    <button className={`${styles.companyInvoiceSaveSendButton} btn blue`} name="btn-submit" type="submit">
-                                                                        <span>
-                                                                            <i><FaSave /></i>
-                                                                            Update
-                                                                        </span>
-                                                                    </button>
-                                                                </div>
-                                                                <div className="col-12 col-md-4 col-lg-3 col-xl-4 mt-3 mt-sm-0 d-flex justify-content-center">
-                                                                    <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} type="reset" onClick={() => { handleCancelClick() }}>
-                                                                        <span>
-                                                                            <i><FaCircleXmark /></i>
-                                                                            Reset
-                                                                        </span>
-                                                                    </button>
-                                                                </div>
-                                                            </div>
+                                                    <div className="row">
+                                                        <div className="offset-sm-3 col-12 col-sm-8 col-md-4 col-lg-3 col-xl-4 mt-3 mt-md-0">
+                                                            <button className={`${styles.companyInvoiceSaveSendButton} btn blue`} name="btn-submit" type="submit">
+                                                                <span>
+                                                                    <i><FaSave /></i>
+                                                                    Update
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div className="offset-0 offset-sm-3 offset-md-0 col-12 col-sm-8 col-md-4 col-lg-3 col-xl-4 mt-3 mt-md-0">
+                                                            <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} type="reset" onClick={() => { handleCancelClick() }}>
+                                                                <span>
+                                                                    <i><FaCircleXmark /></i>
+                                                                    Reset
+                                                                </span>
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </form>
