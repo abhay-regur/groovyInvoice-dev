@@ -80,6 +80,20 @@
                             font-size: 14px;
                         }
 
+                        input {
+                            border: 1px solid transparent;
+                            box-shadow: none;
+                            outline: 0;
+                            text-align: right;
+                            font-size: 14px;
+                            background: white;
+                        }
+
+                        input:focus {
+                            border: 1px solid #E3EBF2;
+                            box-shadow: none;
+                        }
+
                         &.companyInvoiceContantPersonEditRow,
                         &.industryComponentEditRow {
                             div {

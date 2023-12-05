@@ -342,6 +342,19 @@
                         .companyInvoicePriceAdjustment2Wrapper {
                             align-items: center;
 
+                            input {
+                                border: 1px solid var.$white;
+                                background: var.$primary-color;
+                                color: var.$white;
+
+                                &::placeholder {
+                                    color: var.$white;
+                                    font-weight: 600;
+                                    font-size: 12px;
+                                    line-height: 15px;
+                                }
+                            }
+
                             i {
                                 margin-left: 5px;
 
@@ -725,13 +738,35 @@
                         margin-top: 33px;
 
                         .companyInvoiceAdjustmentInputWrapper {
-                            div:first-of-type {
-                                margin-bottom: 14px;
+                            input {
+                                border: 1px solid var.$white;
+                                background: var.$primary-color;
+                                color: var.$white;
+
+                                &::placeholder {
+                                    color: var.$white;
+                                    font-weight: 600;
+                                    font-size: 12px;
+                                    line-height: 15px;
+                                }
                             }
                         }
 
                         .companyInvoicePriceAdjustment2Wrapper {
                             align-items: center;
+
+                            input {
+                                border: 1px solid var.$white;
+                                background: var.$primary-color;
+                                color: var.$white;
+
+                                &::placeholder {
+                                    color: var.$white;
+                                    font-weight: 600;
+                                    font-size: 12px;
+                                    line-height: 15px;
+                                }
+                            }
 
                             i {
                                 margin-left: 5px;

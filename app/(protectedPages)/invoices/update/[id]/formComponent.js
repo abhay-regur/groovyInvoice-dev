@@ -301,10 +301,8 @@ export default function InvoiceEditForm() {
                                                         </span>
                                                     </div>
                                                     <div className={`${styles.companyInvoiceAdjustmentWrapper} d-flex row`}>
-                                                        <div className={`${styles.companyInvoiceAdjustmentInputWrapper} col-5 order-1 order-lg-1`}>
-                                                            <div className="">
-                                                                <input type="text" className={`${styles.companyInvoicePriceAdjustment} form-control`} placeholder="Adjustment" name="adjustmentText" value={data.adjustmentText} onChange={handleInput} />
-                                                            </div>
+                                                        <div className={`${styles.companyInvoiceAdjustmentInputWrapper} col-5 order-1 order-lg-1 mb-3`}>
+                                                            <input type="text" className={`${styles.companyInvoicePriceAdjustment} form-control`} placeholder="Adjustment" name="adjustmentText" value={data.adjustmentText} onChange={handleInput} />
                                                         </div>
                                                         <div className="col-6 order-3 col-lg-4 order-lg-2">
                                                             <div className={`${styles.companyInvoicePriceAdjustment2Wrapper} d-flex`}>
