@@ -1,12 +1,10 @@
 "use client"
 import { useContext, useEffect, useState } from 'react';
 import styles from '@/styles/configuration.module.scss';
-import FaPlus from '@/assets/icons/faCirclePlus.svg'
 import ErrorList from './errorList.js';
 import { getPaymentTerms, createPaymentTerms, updatePaymentTerms, deletePaymentTerms } from '@/services/paymentTerms.service'
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils';
 import TableLoading from '@/app/(protectedPages)/users/loading';
-import FaCilcleEllipses from "@/assets/icons/faCircleEllipses.svg";
 import FaCircleXmark from '@/assets/icons/faCircleXmark.svg';
 import FaCircleCheck from '@/assets/icons/faCircleCheck.svg';
 import FaCirclePlus from "@/assets/icons/faCirclePlus.svg";
