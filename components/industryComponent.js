@@ -7,24 +7,17 @@ import { ToastMsgContext } from '@/context/ToastMsg.context';
 import TableLoading from '../app/(protectedPages)/users/loading';
 import FaCircleXmark from '@/assets/icons/faCircleXmark.svg';
 import FaCircleCheck from '@/assets/icons/faCircleCheck.svg';
-import FaCilcleEllipses from "@/assets/icons/faCircleEllipses.svg";
 import FaCirclePlus from "@/assets/icons/faCirclePlus.svg";
-import FaPlus from '@/assets/icons/faCirclePlus.svg';
 
 export default function IndustryComponent() {
 
     const [errors, setErrors] = useState([]);
-    const [isLoading, setIsloading] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
     const { setToastList } = useContext(ToastMsgContext);
+    const [isEditing, setIsEditing] = useState(-1);
     const [showTableUserInput, setShowTableUserInput] = useState(false);
-    const [showUpdateForm, setShowUpdateForm] = useState(false);
 
     const [newIndustry, setNewIndustry] = useState({
-        name: ""
-    });
-
-    const [updateIndustryOjb, setupdateIndustryOjb] = useState({
-        id: "",
         name: ""
     });
 
@@ -38,19 +31,41 @@ export default function IndustryComponent() {
         getIndustryData()
     }, [])
 
-    const showUpdateSection = (id) => {
-        setErrors([]);
-        setShowTableUserInput(false);
-        var temp = itemData.find(item => item.id == id);
-        setupdateIndustryOjb({
-            id: temp.id,
-            name: temp.name
-        });
-        setShowUpdateForm(true);
+
+    const handleChange = (index, e) => {
+        e.preventDefault();
+        setIsEditing(index);
+        const rowData = itemData[index];
+        rowData.name = e.target.value;
+        itemData[index] = rowData;
+        let temp = Object.assign([], itemData);
+        setItemData(temp);
     }
 
-    const hideUpdateSection = () => {
-        setShowUpdateForm(false);
+    const handleInlineUpdate = async (index, id) => {
+        setErrors([]);
+        setIsLoading(true);
+        const rowData = itemData[index];
+        var data = {
+            name: rowData.name
+        }
+        try {
+            var result = await updateIndustry(id, data);
+            if (result.status == 200 || result.status == 201) {
+                setToastList([{
+                    id: Math.floor((Math.random() * 101) + 1),
+                    title: 'Industries',
+                    description: 'Entry Updated',
+                }]);
+                getIndustryData();
+            }
+        } catch (error) {
+            setErrors(genrateErrorMessage(error, '', setToastList));
+            setIsEditing(-1);
+            setIsLoading(false);
+        }
+        setIsEditing(-1);
+        setIsLoading(false);
     }
 
     const addInputsRow = () => {
@@ -66,9 +81,9 @@ export default function IndustryComponent() {
             }
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
-            setIsloading(false);
+            setIsLoading(false);
         }
-        setIsloading(false);
+        setIsLoading(false);
     }
 
     const handleInput = ({ target }) => {
@@ -77,11 +92,21 @@ export default function IndustryComponent() {
             temp_data['name'] = target.value;
             let temp = Object.assign({}, temp_data)
             setNewIndustry(temp);
-        } else if (target.name == 'updateName') {
-            var temp_data = updateIndustryOjb;
-            temp_data['name'] = target.value;
-            let temp = Object.assign({}, temp_data)
-            setupdateIndustryOjb(temp);
+        }
+    }
+
+    const handleRemove = (id) => {
+        setErrors([]);
+        setIsLoading(true);
+        if (isEditing > -1) {
+            setErrors([]);
+            setIsEditing(-1);
+            getIndustryData();
+            setIsLoading(false)
+        } else {
+            if (id != undefined) {
+                removeIndustryEntry(id);
+            }
         }
     }
 
@@ -103,7 +128,7 @@ export default function IndustryComponent() {
 
     const submitNewIndustry = async () => {
         setErrors([]);
-        setIsloading(true);
+        setIsLoading(true);
         try {
             const result = await addIndustry(newIndustry);
             if (result.status == 200 || result.status == 201) {
@@ -112,27 +137,6 @@ export default function IndustryComponent() {
             }
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
-        }
-    }
-
-    const updateIndustryData = async () => {
-        setErrors([]);
-        setIsloading(true);
-
-        var data = {
-            name: updateIndustryOjb.name
-        }
-
-        try {
-            const result = await updateIndustry(updateIndustryOjb.id, {
-                name: updateIndustryOjb.name
-            });
-            if (result.status == 200 || result.status == 201) {
-                getIndustryData();
-            }
-        } catch (error) {
-            setErrors(genrateErrorMessage(error, '', setToastList));
-            setIsloading(false);
         }
     }
 
@@ -151,7 +155,7 @@ export default function IndustryComponent() {
                 <hr />
                 <div className="row">
                     <div className="col-sm-2"></div>
-                    <div className="col-5">
+                    <div className="col-7">
                         <ErrorList errors={errors} />
                         <table className='table mb-4'>
                             <thead>
@@ -171,12 +175,12 @@ export default function IndustryComponent() {
                                                         <span>{idx + 1}</span>
                                                     </td>
                                                     <td>
-                                                        <span>{item.name}</span>
+                                                        <input type='text' className='form-control' name='label' value={item.name} onChange={(e) => handleChange(idx, e)} />
                                                     </td>
                                                     <td className={`${styles.industryComponentEditRow}`}>
                                                         <div className="d-flex">
-                                                            <span onClick={() => { showUpdateSection(item.id) }}><FaCilcleEllipses /></span>
-                                                            <span onClick={() => { removeIndustryEntry(item.id) }} className={`${styles.redColor}`}><FaCircleXmark /></span>
+                                                            {isEditing == idx ? <span onClick={() => handleInlineUpdate(idx, item.id)}><FaCircleCheck /></span> : <></>}
+                                                            <span onClick={() => { handleRemove(item.id) }} className={`${styles.redColor}`}><FaCircleXmark /></span>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -218,45 +222,9 @@ export default function IndustryComponent() {
                     </div>
 
                     <div className="col-8 offset-md-2">
-                        {showUpdateForm ?
-                            <div className="row">
-                                <div className="col-10">
-                                    <h5>Add New Industry</h5>
-                                </div>
-                                <div className="col-12 ">
-                                    <div className={`${styles.companyInvoicePaymentTermLabelWrapper} mb-4 row`}>
-                                        <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
-                                            <label className={`${styles.companyInvoicePaymentTermLabel}`}>Name</label>
-                                        </div>
-                                        <div className="col-12 col-lg-6 col-xl-6">
-                                            <input name='updateName' type="text" className="form-control" id="companyInvoicePaymentTermLabel" value={updateIndustryOjb.name} onChange={handleInput} placeholder='Name' />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-4 col-md-2">
-                                    <button name="btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`} onClick={updateIndustryData}>
-                                        <span>
-                                            <i><FaPlus /></i>
-                                            Add
-                                        </span>
-                                    </button>
-                                </div>
-                                <div className="col-4 col-md-2">
-                                    <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={hideUpdateSection}>
-                                        <span>
-                                            <i><FaCircleXmark /></i>
-                                            Cancel
-                                        </span>
-                                    </button>
-                                </div>
-                            </div>
-                            : !showTableUserInput
-                                ?
-                                <button className={`${styles.companyInvoiceAddIndustry} d-flex align-contect-center btn blue mb-4`} onClick={addInputsRow}>
-                                    <span><i><FaCirclePlus /></i>Add New Industry</span>
-                                </button>
-                                : ''
-                        }
+                        <button className={`${styles.companyInvoiceAddIndustry} d-flex align-contect-center btn blue mb-4`} onClick={addInputsRow}>
+                            <span><i><FaCirclePlus /></i>Add New Industry</span>
+                        </button>
                     </div>
                 </div>
             </div>

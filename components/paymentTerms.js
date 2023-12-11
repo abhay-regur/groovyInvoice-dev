@@ -24,12 +24,6 @@ export default function PaymentTermsComponent() {
         numberOfDays: 0
     })
 
-    const [updatePaymentTerm, setUpdatePaymentTerm] = useState({
-        id: 0,
-        label: "",
-        numberOfDays: 0
-    })
-
     useEffect(() => {
         setErrors([]);
         getPaymentTermsDetails();
@@ -122,7 +116,7 @@ export default function PaymentTermsComponent() {
         setIsLoading(false);
     }
 
-    const handleInlineUpdate = async (index, id,) => {
+    const handleInlineUpdate = async (index, id) => {
         setErrors([]);
         setIsLoading(true);
         const rowData = itemData[index];
@@ -131,7 +125,7 @@ export default function PaymentTermsComponent() {
             numberOfDays: parseInt(rowData.numberOfDays)
         }
         try {
-            var result = await updatePaymentTerms(rowData.id, data);
+            var result = await updatePaymentTerms(id, data);
             if (result.status == 200 || result.status == 201) {
                 setToastList([{
                     id: Math.floor((Math.random() * 101) + 1),
