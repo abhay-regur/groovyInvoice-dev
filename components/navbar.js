@@ -25,6 +25,7 @@ export default function Navbar() {
     const [activeIdx, setActiveIdx] = useState('-1');
     const { setToastList } = useContext(ToastMsgContext);
     const [profileImage, setProfileImage] = useState("/images/profile_img.png");
+    const [errors, setErrors] = useState([]);
     const [data, setData] = useState({
         id: "",
         email: "",

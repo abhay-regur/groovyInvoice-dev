@@ -1,12 +1,10 @@
 "use client"
 import { useContext, useEffect, useState } from 'react';
 import styles from '@/styles/configuration.module.scss';
-import FaPlus from '@/assets/icons/faCirclePlus.svg'
 import ErrorList from './errorList.js';
 import { getPaymentTerms, createPaymentTerms, updatePaymentTerms, deletePaymentTerms } from '@/services/paymentTerms.service'
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils';
-import TableLoading from '../app/(protectedPages)/users/loading';
-import FaCilcleEllipses from "@/assets/icons/faCircleEllipses.svg";
+import TableLoading from '@/app/(protectedPages)/users/loading';
 import FaCircleXmark from '@/assets/icons/faCircleXmark.svg';
 import FaCircleCheck from '@/assets/icons/faCircleCheck.svg';
 import FaCirclePlus from "@/assets/icons/faCirclePlus.svg";
@@ -17,17 +15,11 @@ export default function PaymentTermsComponent() {
     const [itemData, setItemData] = useState([]);
     const { setToastList } = useContext(ToastMsgContext);
     const [isLoading, setIsLoading] = useState(true);
+    const [isEditing, setIsEditing] = useState(-1);
     const [errors, setErrors] = useState([]);
-    const [showUpdateForm, setShowUpdateForm] = useState(false);
     const [showTableUserInput, setShowTableUserInput] = useState(false);
 
     const [paymentTerm, setPaymentTerm] = useState({
-        label: "",
-        numberOfDays: 0
-    })
-
-    const [updatePaymentTerm, setUpdatePaymentTerm] = useState({
-        id: 0,
         label: "",
         numberOfDays: 0
     })
@@ -72,8 +64,15 @@ export default function PaymentTermsComponent() {
     const handleRemove = (id) => {
         setErrors([]);
         setIsLoading(true);
-        if (id != undefined) {
-            removePaymentTerm(id);
+        if (isEditing > -1) {
+            setErrors([]);
+            setIsEditing(-1);
+            getPaymentTermsDetails();
+            setIsLoading(false)
+        } else {
+            if (id != undefined) {
+                removePaymentTerm(id);
+            }
         }
     }
 
@@ -117,15 +116,16 @@ export default function PaymentTermsComponent() {
         setIsLoading(false);
     }
 
-    const handleUpdate = async (e) => {
-        e.preventDefault();
+    const handleInlineUpdate = async (index, id) => {
         setErrors([]);
+        setIsLoading(true);
+        const rowData = itemData[index];
         var data = {
-            label: updatePaymentTerm.label,
-            numberOfDays: updatePaymentTerm.numberOfDays
+            label: rowData.label,
+            numberOfDays: parseInt(rowData.numberOfDays)
         }
         try {
-            var result = await updatePaymentTerms(updatePaymentTerm.id, data);
+            var result = await updatePaymentTerms(id, data);
             if (result.status == 200 || result.status == 201) {
                 setToastList([{
                     id: Math.floor((Math.random() * 101) + 1),
@@ -133,34 +133,24 @@ export default function PaymentTermsComponent() {
                     description: 'Entry Updated',
                 }]);
                 getPaymentTermsDetails();
-                hideUpdateSection();
             }
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
+            setIsEditing(-1);
             setIsLoading(false);
         }
+        setIsEditing(-1);
         setIsLoading(false);
     }
 
-    const showUpdateSection = (id) => {
-        setErrors([]);
-        var temp = itemData.find(item => item.id == id);
-        setUpdatePaymentTerm({
-            id: temp.id,
-            label: temp.label,
-            numberOfDays: temp.numberOfDays
-        })
-        setShowUpdateForm(true)
-    }
-
-    const hideUpdateSection = () => {
-        setErrors([]);
-        setShowUpdateForm(false)
-        setUpdatePaymentTerm({
-            id: 0,
-            label: '',
-            numberOfDays: 0
-        })
+    const handleChange = (index, e) => {
+        e.preventDefault();
+        setIsEditing(index);
+        const rowData = itemData[index];
+        rowData[e.target.name] = e.target.value;
+        itemData[index] = rowData;
+        let temp = Object.assign([], itemData);
+        setItemData(temp);
     }
 
     const addInputsRow = () => {
@@ -176,7 +166,6 @@ export default function PaymentTermsComponent() {
         })
         setErrors([]);
     }
-
 
     return (<>
         <div className="card mb-4">
@@ -205,22 +194,27 @@ export default function PaymentTermsComponent() {
                                                     <span>{idx + 1}</span>
                                                 </td>
                                                 <td>
-                                                    <span>{item.label}</span>
+                                                    {item.id > 3 ?
+                                                        <input type='text' className='form-control' name='label' value={item.label} onChange={(e) => handleChange(idx, e)} />
+                                                        : <span>{item.label}</span>
+                                                    }
                                                 </td>
                                                 <td>
-                                                    <span>{item.numberOfDays}</span>
+                                                    {item.id > 3 ?
+                                                        <input type='number' className='form-control' name='numberOfDays' value={item.numberOfDays} onChange={(e) => handleChange(idx, e)} />
+                                                        : <span>{item.numberOfDays}</span>
+                                                    }
                                                 </td>
                                                 <td className={`${styles.companyInvoiceContantPersonEditRow}`}>
-                                                    {
-                                                        item.id > 3
-                                                            ? <div className="d-flex">
-                                                                <span className={`${styles.companyInvoicePaymentTermEdit}`} onClick={() => { showUpdateSection(item.id) }}><FaCilcleEllipses /></span>
-
-                                                                <span className={`${styles.redColor} ${styles.companyInvoicePaymentTermRemove}`} onClick={() => { handleRemove(item.id) }}><FaCircleXmark /></span>
-                                                            </div>
-                                                            :
-                                                            ''
+                                                    {item.id > 3
+                                                        ? <div className="d-flex">
+                                                            {isEditing == idx ? <span onClick={() => handleInlineUpdate(idx, item.id)}><FaCircleCheck /></span> : <></>}
+                                                            <span className={`${styles.redColor} ${styles.companyInvoicePaymentTermRemove}`} onClick={() => { handleRemove(item.id) }}><FaCircleXmark /></span>
+                                                        </div>
+                                                        :
+                                                        ''
                                                     }
+
                                                 </td>
                                             </tr>
                                         )
@@ -249,59 +243,11 @@ export default function PaymentTermsComponent() {
                         </table>
                     </div>
                     <div className="col-sm-2"></div>
-                    {showUpdateForm ? <>
-                        <div className="col-10">
-                            <h5>Update Payment Term</h5>
-                        </div>
-                        <div className="col-sm-2"></div>
-                        <div className="col-10">
-                            <form className='row' onSubmit={handleUpdate}>
-                                <div className="col-12 ">
-                                    <div className={`${styles.companyInvoicePaymentTermLabelWrapper} mb-4 row`}>
-                                        <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
-                                            <label className={`${styles.companyInvoicePaymentTermLabel}`}>Label</label>
-                                        </div>
-                                        <div className="col-12 col-lg-6 col-xl-6">
-                                            <input name='label' type="text" className="form-control" id="companyInvoicePaymentTermLabel" value={updatePaymentTerm.label} onChange={handleInput} placeholder='Label' />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-12">
-                                    <div className={`${styles.companyInvoicePaymentTermDaysWrapper} mb-4 row`}>
-                                        <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
-                                            <label className={`${styles.companyInvoicePaymentTermDays}`}>Number of Days</label>
-                                        </div>
-                                        <div className="col-12 col-lg-6 col-xl-6">
-                                            <input name='numberOfDays' type="number" className="form-control" id="companyInvoiceNewCustomerCompanyName" min="0" value={updatePaymentTerm.numberOfDays} onChange={handleInput} />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-4 col-md-2">
-                                    <button name="btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`} type='submit'>
-                                        <span>
-                                            <i><FaPlus /></i>
-                                            Update
-                                        </span>
-                                    </button>
-                                </div>
-                                <div className="col-4 col-md-2">
-                                    <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={hideUpdateSection}>
-                                        <span>
-                                            <i><FaCircleXmark /></i>
-                                            Cancel
-                                        </span>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </> : <>
-                        <div className="col-10">
-                            <button className={`${styles.companyInvoiceAddIndustry} d-flex align-contect-center btn blue mb-4`} onClick={addInputsRow}>
-                                <span><i><FaCirclePlus /></i>Add New Payment Term</span>
-                            </button>
-                        </div>
-                    </>
-                    }
+                    <div className="col-10">
+                        <button className={`${styles.companyInvoiceAddIndustry} d-flex align-contect-center btn blue mb-4`} onClick={addInputsRow}>
+                            <span><i><FaCirclePlus /></i>Add New Payment Term</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

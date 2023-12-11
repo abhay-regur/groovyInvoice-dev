@@ -190,6 +190,7 @@
                         color: var.$secondary-color;
                         margin-bottom: 0;
                         text-align: center;
+                        justify-content: center;
                     }
 
                     .companyInvoiceTableTaxSelectWrapper {
@@ -304,11 +305,78 @@
 
         tbody {
             tr.comapnyInvoiceTableItemRow {
+                .companyInvoiceItemEditCols {
+                    div {
+                        span {
+                            padding-right: 6px;
+
+                            svg {
+                                width: 22px !important;
+                                height: 22px !important;
+
+                                path {
+                                    fill: var.$tertiary-color;
+                                }
+                            }
+
+                            &.redColor {
+                                path {
+                                    fill: var.$red-color;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                input[type=number] {
+                    -moz-appearance: textfield;
+                }
+
+                input[type=number]::-webkit-outer-spin-button,
+                input[type=number]::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+
                 td {
                     padding-bottom: 40px;
+                    border: 1px solid var.$primary-border-color;
+
+                    &:last-of-type {
+                        border: none;
+                    }
 
                     p {
                         margin-bottom: 0;
+                    }
+
+                    textarea {
+                        width: 100%;
+                        border: 1px solid transparent;
+                        box-shadow: none;
+                        outline: 0;
+                        resize: none;
+                        font-size: 14px;
+                        font-weight: 400;
+                        line-height: 1.6;
+                    }
+
+                    textarea:focus {
+                        border: 1px solid #E3EBF2;
+                        box-shadow: none;
+                    }
+
+                    input {
+                        border: 1px solid transparent;
+                        box-shadow: none;
+                        outline: 0;
+                        text-align: right;
+                        font-size: 14px;
+                    }
+
+                    input:focus {
+                        border: 1px solid #E3EBF2;
+                        box-shadow: none;
                     }
 
                     .companyInvoiceTableItemWarpper {
@@ -375,6 +443,16 @@
                         color: var.$secondary-color;
                         margin-bottom: 0;
                         text-align: center;
+                    }
+
+                    .companyInvoiceTableItemPercentage {
+                        margin-top: 15px;
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: var.$secondary-color;
+                        margin-bottom: 0;
+                        text-align: center;
+                        justify-content: center;
                     }
 
                     .companyInvoiceTableTaxSelectWrapper {

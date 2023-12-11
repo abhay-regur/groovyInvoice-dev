@@ -133,7 +133,7 @@ const InvoiceTable = (props) => {
                     </tbody>
                 </table>
             </div>
-            <div className="col-12">
+            <div className="col-12 mt-3 mt-xl-0">
                 <div className="btn-group">
                     <button type="button" className={`${styles.companyInvoiceAddlineBtn} btn btn-outline-primary dropdown-toggle`} onClick={() => addAnotherLine()}>
                         <i><FaCirclePlus /></i>

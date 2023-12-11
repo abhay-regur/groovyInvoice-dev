@@ -457,7 +457,7 @@ export default function CustomerEditForm() {
                                     <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
                                         <label className={`${styles.companyInvoiceCompanyPhoneLabel}`}>Customer Phone</label>
                                     </div>
-                                    <div className="col-12 col-lg-4 col-xl-2 d-flex align-items-center">
+                                    <div className="col-12 col-lg-4 col-xl-2 d-flex align-items-center mb-lg-0 mb-2">
                                         <input name='phone' type="tel" className={`${styles.companyInvoiceCompanyWorkPhone} form-control`} value={data.phone} placeholder='Work Phone' onChange={handleInput} />
                                     </div>
                                     <div className="col-12 col-lg-4 col-xl-2 d-flex align-items-center">
