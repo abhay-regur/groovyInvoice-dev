@@ -137,6 +137,7 @@ export default function IndustryComponent() {
             }
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
+            setIsLoading(false);
         }
     }
 
