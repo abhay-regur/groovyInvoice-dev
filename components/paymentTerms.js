@@ -30,7 +30,7 @@ export default function PaymentTermsComponent() {
         setIsLoading(false)
     }, []);
 
-    const handleInput = ({ target }) => {
+    const handleInlineNewInput = ({ target }) => {
         var temp_data = paymentTerm;
         if (target.name != '') {
             if (target.name == 'numberOfDays') {
@@ -143,7 +143,7 @@ export default function PaymentTermsComponent() {
         setIsLoading(false);
     }
 
-    const handleChange = (index, e) => {
+    const handleInlineUpdateInput = (index, e) => {
         e.preventDefault();
         setIsEditing(index);
         const rowData = itemData[index];
@@ -195,13 +195,13 @@ export default function PaymentTermsComponent() {
                                                 </td>
                                                 <td>
                                                     {item.id > 3 ?
-                                                        <input type='text' className='form-control' name='label' value={item.label} onChange={(e) => handleChange(idx, e)} />
+                                                        <input type='text' className='form-control' name='label' value={item.label} onChange={(e) => handleInlineUpdateInput(idx, e)} />
                                                         : <span>{item.label}</span>
                                                     }
                                                 </td>
                                                 <td>
                                                     {item.id > 3 ?
-                                                        <input type='number' className='form-control' name='numberOfDays' value={item.numberOfDays} onChange={(e) => handleChange(idx, e)} />
+                                                        <input type='number' className='form-control' name='numberOfDays' value={item.numberOfDays} onChange={(e) => handleInlineUpdateInput(idx, e)} />
                                                         : <span>{item.numberOfDays}</span>
                                                     }
                                                 </td>
@@ -225,10 +225,10 @@ export default function PaymentTermsComponent() {
                                                 <span>-</span>
                                             </td>
                                             <td>
-                                                <input name='label' type="text" className="form-control" id="companyInvoicePaymentTermLabel" value={paymentTerm.label} onChange={handleInput} placeholder='Label' />
+                                                <input name='label' type="text" className="form-control" id="companyInvoicePaymentTermLabel" value={paymentTerm.label} onChange={handleInlineNewInput} placeholder='Label' />
                                             </td>
                                             <td>
-                                                <input name='numberOfDays' type="number" className="form-control" id="companyInvoiceNewCustomerCompanyName" min="0" value={paymentTerm.numberOfDays} onChange={handleInput} />
+                                                <input name='numberOfDays' type="number" className="form-control" id="companyInvoiceNewCustomerCompanyName" min="0" value={paymentTerm.numberOfDays} onChange={handleInlineNewInput} />
                                             </td>
                                             <td className={`${styles.companyInvoiceContantPersonEditRow}`}>
                                                 <div className="d-flex">
