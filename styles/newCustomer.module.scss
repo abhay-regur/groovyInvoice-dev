@@ -635,6 +635,16 @@
                                             border: none;
                                         }
 
+                                        input {
+                                            border: 1px solid transparent;
+                                            box-shadow: none;
+                                            outline: 0;
+                                            text-align: left;
+                                            font-size: 14px;
+                                            background: white;
+                                            padding: 0;
+                                        }
+
                                         select {
                                             border: none;
                                             color: var.$secondary-color;
@@ -682,12 +692,14 @@
                             }
 
                             .companyInvoiceTableInput {
+                                border: 1px solid transparent;
+                                box-shadow: none;
+                                outline: 0;
+                                text-align: left;
                                 font-size: 14px;
-                                font-weight: 400;
-                                color: var.$secondary-color;
-                                background: var.$input-background-color;
-                                border: 1px solid var.$primary-border-color;
-                                border-radius: 8px;
+                                background: white;
+                                padding: 0;
+                                color: #8790B0;
 
                                 &[type='number'] {
 
@@ -1428,12 +1440,14 @@
                         }
 
                         .companyInvoiceTableInput {
+                            border: 1px solid transparent;
+                            box-shadow: none;
+                            outline: 0;
+                            text-align: left;
                             font-size: 14px;
-                            font-weight: 400;
-                            color: var.$secondary-color;
-                            background: var.$input-background-color;
-                            border: 1px solid var.$primary-border-color;
-                            border-radius: 8px;
+                            background: white;
+                            padding: 0;
+                            color: #8790B0;
 
                             &[type='number'] {
 
@@ -2159,12 +2173,14 @@
                         }
 
                         .companyInvoiceTableInput {
+                            border: 1px solid transparent;
+                            box-shadow: none;
+                            outline: 0;
+                            text-align: left;
                             font-size: 14px;
-                            font-weight: 400;
-                            color: var.$secondary-color;
-                            background: var.$input-background-color;
-                            border: 1px solid var.$primary-border-color;
-                            border-radius: 8px;
+                            background: white;
+                            padding: 0;
+                            color: #8790B0;
 
                             &[type='number'] {
 
