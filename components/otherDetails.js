@@ -16,9 +16,11 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
         label: "",
         numberOfDays: 0
     });
+
     const [taxExemptionReasonLable, setTaxExemptionReasonLable] = useState({
         label: ""
-    })
+    });
+
     const [modalErrors, setmodalErrors] = useState([]);
 
     const handleModalInput = ({ target }) => {
@@ -212,7 +214,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
             </div>
             <div className="col-12 col-lg-6 col-xl-6">
                 <div className="input-group">
-                    <span className="input-group-text">{data.currency.toUpperCase()}</span>
+                    <span className="input-group-text">{currencies[data.currency] == undefined ? '-' : currencies[data.currency].symbol}</span>
                     <input name='openingBalance' type="number" className="form-control" id="companyInvoiceOpeningBalance" value={data.openingBalance} placeholder='Opening Balance' onChange={handleInput} />
                 </div>
             </div>

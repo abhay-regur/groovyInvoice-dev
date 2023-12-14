@@ -60,7 +60,7 @@ export default function CustomerAddForm() {
         placeOfSupply: "",
         taxPreference: "",
         exemptionReason: "",
-        currency: "₹",
+        currency: 103,
         openingBalance: 0,
         paymentTermId: null,
         address: {
@@ -226,14 +226,10 @@ export default function CustomerAddForm() {
             const result = await getCurrencies();
             var data = result.data;
 
-            //Removing Duplicate value
-            const uniqueCurriencies = data.filter((obj, index) => {
-                return index === data.findIndex(o => obj.name === o.name);
-            });
-
             var temp = [];
-            uniqueCurriencies.forEach((elem) => {
-                temp.push({ Id: elem.ids, name: (elem.symbol == '' ? elem.name : elem.symbol + ' - ' + elem.name) })
+
+            data.forEach((elem, id) => {
+                temp.push({ Id: id, symbol: elem.symbol, name: (elem.symbol == '' ? elem.name : elem.symbol + ' - ' + elem.code + ' - ' + elem.name), code: elem.code })
             })
 
             setCurrencies(temp);
@@ -310,7 +306,7 @@ export default function CustomerAddForm() {
             placeOfSupply: "",
             taxPreference: "",
             exemptionReason: "",
-            currency: "₹",
+            currency: "INR",
             openingBalance: 0,
             paymentTermId: null,
             address: {

@@ -62,7 +62,7 @@ export default function CustomerEditForm() {
         placeOfSupply: "",
         taxPreference: "",
         exemptionReason: "",
-        currency: "₹",
+        currency: 115,
         openingBalance: 0,
         paymentTermId: null,
         address: {
@@ -226,14 +226,9 @@ export default function CustomerEditForm() {
             const result = await getCurrencies();
             var data = result.data;
 
-            //Removing Duplicate value
-            const uniqueCurriencies = data.filter((obj, index) => {
-                return index === data.findIndex(o => obj.name === o.name);
-            });
-
             var temp = [];
-            uniqueCurriencies.forEach((elem) => {
-                temp.push({ Id: elem.id, name: (elem.symbol == '' ? elem.name : elem.symbol + ' - ' + elem.name) })
+            data.forEach((elem, id) => {
+                temp.push({ Id: id, symbol: elem.symbol, name: (elem.symbol == '' ? elem.name : elem.symbol + ' - ' + elem.code + ' - ' + elem.name), code: elem.code })
             })
 
             setCurrencies(temp);
