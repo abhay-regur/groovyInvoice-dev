@@ -58,7 +58,12 @@ export default function InvoiceEditForm() {
             const result = await getInvoice(id);
             setData({ ...result.data, invoiceDate: new Date(result.data.invoiceDate), dueDate: new Date(result.data.dueDate) })
         } catch (error) {
-            setErrors(genrateErrorMessage(error, '', setToastList));
+            if (error.response != undefined && error.response.status == 404) {
+                replace('/404');
+            } else {
+                setErrors(genrateErrorMessage(error, '', setToastList));
+                setIsPageLoading(false);
+            }
         }
     }
 

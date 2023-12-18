@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, useState } from 'react';
 import { useContext } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { userDetails, updateUserDetails } from '@/services/user.service';
 import FaSave from '@/assets/icons/faSave.svg';
 import FaCircleXmark from '@/assets/icons/faCircleXmark.svg';
@@ -15,6 +15,7 @@ import Loading from './loading.js';
 
 export default function UserUpdateFormComponent() {
     const { id } = useParams();
+    const { replace } = useRouter();
     const { navExpandedState } = useContext(NavExpandedState);
     const { setToastList } = useContext(ToastMsgContext)
     const [errors, setErrors] = useState([])
@@ -46,9 +47,18 @@ export default function UserUpdateFormComponent() {
 
     const getUserDetails = async () => {
         setErrors([]);
-        const result = await userDetails(id);
-        setData(result.data);
-        setIsLoading(false);
+        try {
+            const result = await userDetails(id);
+            setData(result.data);
+            setIsLoading(false);
+        } catch (error) {
+            if (error.response != undefined && error.response.status == 404) {
+                replace('/404');
+            } else {
+                setErrors(genrateErrorMessage(error, '', setToastList));
+                setIsLoading(false);
+            }
+        }
     }
 
     const handleSaveClick = async (e) => {

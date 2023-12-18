@@ -302,7 +302,11 @@ export default function CustomerEditForm() {
                 setShippingStatesCountryId(result.data.address.shippingAddress.countryId);
             }
         } catch (error) {
-            setErrors(genrateErrorMessage(error, '', setToastList));
+            if (error.response != undefined && error.response.status == 404) {
+                replace('/404');
+            } else {
+                setErrors(genrateErrorMessage(error, '', setToastList));
+            }
         }
     }
 
