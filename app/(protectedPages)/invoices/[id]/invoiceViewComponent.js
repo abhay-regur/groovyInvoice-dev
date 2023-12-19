@@ -1,6 +1,6 @@
 "use client"
 import { useState, useContext, useEffect } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, notFound, useRouter } from 'next/navigation';
 import { NavExpandedState } from '@/context/NavState.context';
 import styles from '@/styles/viewInvoice.module.scss';
 import ViewInvoiceTable from '@/components/viewInvoiceTable.js';
@@ -11,18 +11,24 @@ import FaBell from '@/assets/icons/faBell.svg';
 import FaPDF from '@/assets/icons/faPDF.svg';
 import FaRupee from '@/assets/icons/faRupee.svg';
 import FaDropDown from '@/assets/icons/faDropDownGreen.svg';
+import { ToastMsgContext } from '@/context/ToastMsg.context';
 import { getInvoice } from '@/services/invoice.service';
 import { getCustomer } from '@/services/customer.service';
 import { getPaymentTerm } from '@/services/paymentTerms.service';
+import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 import { formatDate } from '@/utils/date.utils';
 import Link from 'next/link';
 import { convertNumberToWord } from '@/utils/number.utils';
 import Loading from '@/app/loading';
+import { Router } from 'next/router';
 
 export default function InvoiceViewComponent() {
     const { id } = useParams();
+    const router = useRouter();
     const { navExpandedState } = useContext(NavExpandedState);
     const [isPageLoading, setIsPageLoading] = useState(true);
+    const [errors, setErrors] = useState([]);
+    const { setToastList } = useContext(ToastMsgContext);
     const [actionBarExpandedState, setactionBarExpandedState] = useState(false);
     const [data, setData] = useState({
         customerId: 0,
@@ -44,18 +50,46 @@ export default function InvoiceViewComponent() {
     const [customer, setCustomer] = useState({ firstName: '', lastName: '' });
     const [paymentTerm, setPaymentTerm] = useState({ label: '' });
 
-    const getData = async () => {
-        const result = await getInvoice(id);
-        const customerData = await getCustomer(result.data.customerId)
-        const paymentTermData = await getPaymentTerm(result.data.termsId)
-        setCustomer(customerData.data);
-        setPaymentTerm(paymentTermData.data);
-        setData({ ...result.data, invoiceDate: new Date(result.data.invoiceDate), dueDate: new Date(result.data.dueDate) })
+    const getInvoiceData = async () => {
+        try {
+            const result = await getInvoice(id);
+            const data = result.data;
+            setData({ ...data, invoiceDate: new Date(data.invoiceDate), dueDate: new Date(data.dueDate) })
+
+            getCustomerData(data.customerId);
+            getPaymentTermData(data.termsId);
+            setIsPageLoading(false);
+
+        } catch (error) {
+            if (error.response != undefined && error.response.status == 404) {
+                router.push('/404');
+            } else {
+                setErrors(genrateErrorMessage(error, '', setToastList));
+            }
+        }
+    }
+
+    const getCustomerData = async (id) => {
+        try {
+            const customerData = await getCustomer(id);
+            setCustomer(customerData.data);
+        } catch (error) {
+            setErrors(genrateErrorMessage(error, '', setToastList));
+        }
+    }
+
+    const getPaymentTermData = async (id) => {
+        try {
+            const paymentTermData = await getPaymentTerm(id)
+            setPaymentTerm(paymentTermData.data);
+        } catch (error) {
+            setErrors(genrateErrorMessage(error, '', setToastList));
+        }
     }
 
     useEffect(() => {
-        getData();
-        setIsPageLoading(false);
+        setIsPageLoading(true);
+        getInvoiceData();
     }, [])
 
     return (
@@ -202,12 +236,12 @@ export default function InvoiceViewComponent() {
                                                 </div>
                                                 <div className="d-flex justify-content-between">
                                                     <span>Payment Made</span>
-                                                    <span className="red">-Rs. 1320.00</span>
+                                                    <span className="red">-Rs. 00.00</span>
                                                 </div>
                                                 <hr />
                                                 <div className="d-flex justify-content-between">
                                                     <span>Balance Due</span>
-                                                    <span>Rs. 1320.00</span>
+                                                    <span>Rs. 00.00</span>
                                                 </div>
                                             </div>
                                         </div>
