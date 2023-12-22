@@ -482,6 +482,25 @@
                     margin-top: 16px;
                     animation-duration: 1s;
                     animation-delay: 0s;
+
+                    a {
+                        &.hasNotification {
+
+                            position: relative;
+
+                            &::before {
+                                content: "";
+                                position: absolute;
+                                inset-inline-start: 1.3rem;
+                                inline-size: .5rem;
+                                aspect-ratio: 1;
+                                border-radius: 1e5px;
+                                background: var.$tertiary-color;
+                                box-shadow: 0 0 .3rem var.$tertiary-color-hover;
+                            }
+                        }
+                    }
+
                 }
 
                 .nav_menu_arrow {

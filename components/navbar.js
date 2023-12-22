@@ -26,6 +26,7 @@ export default function Navbar() {
     const { setToastList } = useContext(ToastMsgContext);
     const [profileImage, setProfileImage] = useState("/images/profile_img.png");
     const [errors, setErrors] = useState([]);
+    const [hasNotification, setHasNotification] = useState(true)
     const [data, setData] = useState({
         id: "",
         email: "",
@@ -100,7 +101,8 @@ export default function Navbar() {
                             <Link href={"/"}>
                                 <FaClockRotateLeft />
                             </Link>
-                            <Link href={"/"}>
+                            <Link className={hasNotification ? style.hasNotification : ""} href={"/notification"}>
+
                                 <FaEnvelope />
                             </Link>
                             <Link href={"/logout"}>
