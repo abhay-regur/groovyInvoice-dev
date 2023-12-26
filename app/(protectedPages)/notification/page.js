@@ -1,4 +1,4 @@
-import NotificationComponent from "./notificationComponent";
+import NotificationComponent from "./pageComponent";
 export const metadata = {
     title: 'Notifications',
 };
