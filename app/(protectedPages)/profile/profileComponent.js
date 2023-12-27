@@ -2,15 +2,15 @@
 import Image from "next/image";
 import { useContext, useState, useEffect } from 'react';
 import FaSave from '@/assets/icons/faSave.svg';
-import { faCamera, faCancel } from '@fortawesome/free-solid-svg-icons';
 import $ from 'jquery';
 import Loading from "./loading";
 import { getCurrentUserDetails, updateCurrentUserDetails, updateCurrentPassword } from '@/services/profile.service';
 import { generatePassword } from '@/utils/genratePassword.utils';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ToastMsgContext } from '@/context/ToastMsg.context';
 import ErrorList from '@/components/errorList';
 import FaCircleXmark from '@/assets/icons/faCircleXmark.svg';
+import FaCamera from '@/assets/icons/faCamera.svg';
+import FaBan from '@/assets/icons/faBan.svg';
 import PasswordInputField from '@/components/passwordInputField';
 import { disableSubmitButton, enableSubmitButton } from '@/utils/form.utils'
 import FaGear from '@/assets/icons/faGear.svg';
@@ -182,10 +182,10 @@ export default function ProfileComponent() {
                                                                     {
                                                                         profileImage ?
                                                                             <span onClick={(e) => { removeSelectedImage(e) }}>
-                                                                                <FontAwesomeIcon icon={faCancel} />
+                                                                                <FaBan />
                                                                             </span> :
                                                                             <span onClick={(e) => { clickImageInput(e) }}>
-                                                                                <FontAwesomeIcon icon={faCamera} />
+                                                                                <FaCamera />
                                                                             </span>
                                                                     }
                                                                     <input id='fileUploadInput' className={`${styles.fileUpload}`} type="file" accept="image/*" onChange={(e) => { previewandSetImage(e) }} />
