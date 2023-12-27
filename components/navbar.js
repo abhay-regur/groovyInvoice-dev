@@ -13,11 +13,12 @@ import FaUserGroup from '@/assets/icons/faUserGroup.svg';
 import FaGear from '@/assets/icons/faGear.svg';
 import FaLogout from '@/assets/icons/faLogout.svg';
 import FaUsers from '@/assets/icons/faUsers.svg';
+import FaArrowLeft from '@/assets/icons/faArrowLeft.svg';
+import FaArrowRight from '@/assets/icons/faArrowRight.svg';
+import FaSearch from '@/assets/icons/faSearch.svg';
 import { ToastMsgContext } from '@/context/ToastMsg.context';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FaScrewAndWrench from '@/assets/icons/faScrewAndWrench.svg';
 import { getCurrentUserDetails } from "@/services/profile.service";
-import { faSearch, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { NavExpandedState } from '@/context/NavState.context';
 
 const MENU_LIST = [{ key: 100, text: "Invoices", href: "/invoices", icon: <FaFileLines /> }, { key: 101, text: "Customers", href: "/customers", icon: <FaUserGroup /> }, { key: 102, text: "Reports", href: "/reports", icon: <FaChartLine /> }, { key: 103, text: "Settings", href: "/settings", icon: <FaGear />, subMenu: [{ key: 1031, text: "Users", href: "/users", icon: <FaUsers /> }, { key: 1032, text: "Config", href: "/configuration", icon: <FaScrewAndWrench /> }] }];
@@ -102,7 +103,6 @@ export default function Navbar() {
                                 <FaClockRotateLeft />
                             </Link>
                             <Link className={hasNotification ? style.hasNotification : ""} href={"/notification"}>
-
                                 <FaEnvelope />
                             </Link>
                             <Link href={"/logout"}>
@@ -110,7 +110,7 @@ export default function Navbar() {
                             </Link>
                         </div>
                         <div className={`${style.nav_menu_arrow} d-flex justify-content-center align-items-center`} onClick={() => { setNavExpandedState(prevCheck => !prevCheck) }}>
-                            <FontAwesomeIcon icon={navExpandedState ? faArrowLeft : faArrowRight}></FontAwesomeIcon>
+                            {navExpandedState ? <FaArrowLeft /> : <FaArrowRight />}
                         </div>
                     </div>
                     <hr />
@@ -119,14 +119,14 @@ export default function Navbar() {
                         <form className={`d-flex`} role="search">
                             <input className={`form-control me-2`} type="search" placeholder="Global Search" aria-label="Search" />
                             <i>
-                                <FontAwesomeIcon icon={faSearch} />
+                                <FaSearch />
                             </i>
                         </form>
                         :
                         <div className={`d-flex justify-content-center ${style.searchButtonWrapper}`}>
                             <button className="btn btn-outline-primary" style={{ width: '57px', height: '45px' }} onClick={() => { setNavExpandedState(prevCheck => !prevCheck) }}>
                                 <i>
-                                    <FontAwesomeIcon icon={faSearch} />
+                                    <FaSearch />
                                 </i>
                             </button>
                         </div>
