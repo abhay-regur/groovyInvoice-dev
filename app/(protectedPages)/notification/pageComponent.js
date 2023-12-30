@@ -17,6 +17,7 @@ export default function NotificationComponent() {
         { title: 'Notification 5', discription: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero et in, animi esse nam asperiores.', time: '14:06' },
         { title: 'Notification 6', discription: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero et in, animi esse nam asperiores.', time: '09:15' }
     ])
+
     const [notificationData, setNotificationData] = useState([
         { title: 'Notification 1', discription: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero et in, animi esse nam asperiores.', time: '20:11' },
         { title: 'Notification 2', discription: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero et in, animi esse nam asperiores.', time: '20:11' },

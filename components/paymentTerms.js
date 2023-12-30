@@ -27,7 +27,6 @@ export default function PaymentTermsComponent() {
     useEffect(() => {
         setErrors([]);
         getPaymentTermsDetails();
-        setIsLoading(false)
     }, []);
 
     const handleInlineNewInput = ({ target }) => {
@@ -56,8 +55,10 @@ export default function PaymentTermsComponent() {
                 temp.push({ id: elem.id, label: elem.label, numberOfDays: elem.numberOfDays });
             });
             setItemData(temp);
+            setIsLoading(false)
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
+            setIsLoading(false)
         }
     }
 
