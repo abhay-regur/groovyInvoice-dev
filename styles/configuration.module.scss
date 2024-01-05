@@ -36,6 +36,233 @@
 
         .paymentTermsDetailsWrapper,
         .industryComponentWrapper {
+            table {
+
+                thead {
+                    tr {
+                        th {
+                            background: var.$primary-color;
+                            color: var.$white;
+                            min-width: 144px;
+                            font-weight: 600;
+                            font-size: 14px;
+                            padding: 10px;
+                            border: 1px solid var.$border-color;
+                        }
+                    }
+                }
+
+                tbody {
+
+                    tr.companyInvoiceContactPersonRow,
+                    tr.industryComponentRow {
+                        td {
+                            padding: 12px 10px;
+                            border: 1px solid var.$primary-border-color;
+
+                            &:last-of-type {
+                                border: none;
+                            }
+
+                            select {
+                                border: none;
+                                color: var.$secondary-color;
+                                font-weight: 400;
+                                font-size: 14px;
+                                appearance: none;
+
+                                &:focus {
+                                    box-shadow: none;
+                                }
+                            }
+
+                            span {
+                                color: var.$secondary-color;
+                                font-weight: 400;
+                                font-size: 14px;
+                            }
+
+                            input {
+                                border: 1px solid transparent;
+                                box-shadow: none;
+                                outline: 0;
+                                text-align: left;
+                                font-size: 14px;
+                                background: white;
+                                padding: 0;
+                            }
+
+                            input:focus {
+                                border: 1px solid #E3EBF2;
+                                box-shadow: none;
+                            }
+
+                            &.companyInvoiceContantPersonEditRow,
+                            &.industryComponentEditRow {
+                                div {
+                                    span {
+
+                                        &.companyInvoicePaymentTermEdit,
+                                        &.companyInvoicePaymentTermRemove {
+                                            border: none;
+                                            background: none;
+                                        }
+
+                                        padding-right: 6px;
+                                        cursor: pointer;
+
+                                        svg {
+                                            width: 22px !important;
+                                            height: 22px !important;
+
+                                            path {
+                                                fill: var.$tertiary-color;
+                                            }
+
+                                            &.redColor {
+                                                path {
+                                                    fill: var.$red-color;
+                                                }
+                                            }
+                                        }
+
+                                        &.redColor {
+                                            path {
+                                                fill: var.$red-color;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            label {
+                display: flex;
+                align-items: center;
+                font-weight: 600;
+                font-size: 14px;
+                color: var.$primary-color;
+            }
+
+            input {
+                font-weight: 400;
+                font-size: 14px;
+                color: var.$secondary-color;
+                background: var.$input-background-color;
+                border: 1px solid var.$primary-border-color;
+                border-radius: 8px;
+            }
+        }
+
+        button {
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            color: var.$white;
+
+            &.companyInvoiceSaveSendButton,
+            &.companyInvoiceCancelButton,
+            &.companyInvoiceAddIndustry {
+                span {
+                    display: flex;
+                    text-align: center;
+                    justify-content: center;
+
+                    i {
+                        display: flex;
+                        margin-right: 5px;
+                        align-self: center;
+
+                        svg {
+                            height: 20px;
+                            width: 20px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .companyDetailsWrapper {
+            padding-bottom: 20px;
+
+            .companyInvoiceCompanyNameWrapper,
+            .companyInvoiceCompanyAddress1Wrapper,
+            .companyInvoiceCompanyAddress2Wrapper,
+            .companyInvoiceCompanyCityWrapper,
+            .companyInvoiceCompanyPostCodeWrapper,
+            .companyInvoiceCompanyStateWrapper,
+            .companyInvoiceCompanyCountryyWrapper {
+                label {
+                    align-items: center;
+                    font-weight: 600;
+                    font-size: 14px;
+                    color: var.$primary-color;
+                }
+
+                input {
+                    font-weight: 400;
+                    font-size: 14px;
+                    color: var.$secondary-color;
+                    background: var.$input-background-color;
+                    border: 1px solid var.$primary-border-color;
+                    border-radius: 8px;
+                }
+
+                select {
+                    border: 1px solid var.$primary-border-color;
+                    background: var.$input-background-color;
+                    border-radius: 8px;
+                    color: var.$secondary-color;
+
+                    &::placeholder {
+                        color: var.$secondary-color;
+                        font-weight: 400;
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+@media screen and (max-width: 676px) {
+    .main {
+        margin: 89px 15px 92px 15px;
+        transition: all 0.35s;
+
+        &.expanded {
+            margin: 89px 15px 92px 15px;
+            transition: all 0.35s;
+        }
+
+        .title {
+            color: var.$primary-color;
+            font-weight: 700;
+            font-size: 26px;
+            line-height: 33px;
+        }
+
+        h4 {
+            color: var.$primary-color;
+            font-weight: 700;
+            font-size: 23px;
+            line-height: 23px;
+        }
+
+        h5 {
+            color: var.$primary-color;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 23px;
+            margin-bottom: 20px;
+        }
+
+        .paymentTermsDetailsWrapper,
+        .industryComponentWrapper {
             thead {
                 tr {
                     th {
@@ -221,26 +448,6 @@
                     }
                 }
             }
-        }
-    }
-
-}
-
-@media screen and (max-width: 676px) {
-    .main {
-        margin: 89px 15px 92px 15px;
-        transition: all 0.35s;
-
-        &.expanded {
-            margin: 89px 15px 92px 15px;
-            transition: all 0.35s;
-        }
-
-        .title {
-            color: var.$primary-color;
-            font-weight: 700;
-            font-size: 26px;
-            line-height: 33px;
         }
     }
 }

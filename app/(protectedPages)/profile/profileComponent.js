@@ -14,7 +14,7 @@ import FaBan from '@/assets/icons/faBan.svg';
 import PasswordInputField from '@/components/passwordInputField';
 import { disableSubmitButton, enableSubmitButton } from '@/utils/form.utils'
 import FaGear from '@/assets/icons/faGear.svg';
-import { genrateErrorMessage } from '@/utils/genratePassword.utils';
+import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils';
 import styles from '@/styles/profile.module.scss';
 import { NavExpandedState } from '@/context/NavState.context';
 
