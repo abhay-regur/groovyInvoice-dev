@@ -298,8 +298,8 @@ export default function CustomerEditForm() {
             var result = await getCustomer(id);
             if (result.status == 200 || result.status == 201) {
                 setData(result.data);
-                setBillingStatesCountryId(result.data.address.billingAddress.countryId);
-                setShippingStatesCountryId(result.data.address.shippingAddress.countryId);
+                setBillingStatesCountryId(result.data.address.billingAddress.countryId ? result.data.address.billingAddress.countryId : '');
+                setShippingStatesCountryId(result.data.address.shippingAddress.countryId ? result.data.address.shippingAddress.countryId : '');
             }
         } catch (error) {
             if (error.response != undefined && error.response.status == 404) {
