@@ -121,7 +121,7 @@ export default function Address({ countries, billingstates, shippingstates, ship
                             <label className={`${styles.companyInvoiceBillingComapnyStatelabel}`}>State</label>
                         </div>
                         <div className="col-12 col-md-8">
-                            <CustomSelectComponent className={`${styles.companyInvoiceBillingComapnyStateSelect}`} data={billingstates} onOptionValueChange={handleBillingInput} optionValue={data.address.billingAddress.stateId == null ? 0 : data.address.billingAddress.stateId} hasSearch={true} name={'billingStateId'} isDisabled={false} defaultText={'Select A State'} isInnerButtonRequired={false} />
+                            <CustomSelectComponent className={`${styles.companyInvoiceBillingComapnyStateSelect}`} data={billingstates} onOptionValueChange={handleBillingInput} optionValue={data.address.billingAddress == null ? 0 : data.address.billingAddress.stateId} hasSearch={true} name={'billingStateId'} isDisabled={false} defaultText={'Select A State'} isInnerButtonRequired={false} />
                         </div>
                     </div>
 
@@ -210,7 +210,7 @@ export default function Address({ countries, billingstates, shippingstates, ship
                             <label className={`${styles.companyInvoiceShippingComapnyStatelabel}`}>State</label>
                         </div>
                         <div className="col-12 col-md-8">
-                            <CustomSelectComponent className={`${styles.companyInvoiceShippingComapnyStateSelect}`} data={shippingstates} onOptionValueChange={handleShippingInput} optionValue={data.address.shippingAddress == null ? '' : data.address.shippingAddress.stateId == null ? 0 : data.address.shippingAddress.stateId} hasSearch={true} name={'shippingStateId'} isDisabled={addressCopied} defaultText={'Select A State'} isInnerButtonRequired={false} />
+                            <CustomSelectComponent className={`${styles.companyInvoiceShippingComapnyStateSelect}`} data={shippingstates} onOptionValueChange={handleShippingInput} optionValue={data.address.shippingAddress == null ? 0 : data.address.shippingAddress.stateId} hasSearch={true} name={'shippingStateId'} isDisabled={addressCopied} defaultText={'Select A State'} isInnerButtonRequired={false} />
                         </div>
                     </div>
 
