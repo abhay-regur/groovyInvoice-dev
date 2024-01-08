@@ -81,7 +81,7 @@ export default function Address({ countries, billingstates, shippingstates, ship
                             <label className={`${styles.companyInvoiceBillingAttentionlabel}`}>Attention</label>
                         </div>
                         <div className="col-12 col-md-8 d-flex">
-                            <input type="text" name="attention" className="form-control" id="companyInvoiceBillingAttention" value={data.address.billingAddress.attention} onChange={handleBillingInput} placeholder='Attention' />
+                            <input type="text" name="attention" className="form-control" id="companyInvoiceBillingAttention" value={data.address.billingAddress == null ? '' : data.address.billingAddress.attention} onChange={handleBillingInput} placeholder='Attention' />
                         </div>
                     </div>
 
@@ -99,11 +99,11 @@ export default function Address({ countries, billingstates, shippingstates, ship
                             <label className={`${styles.companyInvoiceBillingAddresslabel}`}>Address</label>
                         </div>
                         <div className="col-12 col-md-8">
-                            <textarea name="addressLine1" id="companyInvoiceBillingAddress1" rows="3" value={data.address.billingAddress.addressLine1} onChange={handleBillingInput} placeholder='Address Line 1'></textarea>
+                            <textarea name="addressLine1" id="companyInvoiceBillingAddress1" rows="3" value={data.address.billingAddress == null ? '' : data.address.billingAddress.addressLine1} onChange={handleBillingInput} placeholder='Address Line 1'></textarea>
                         </div>
                         <div className="col-12 col-md-4"></div>
                         <div className="col-12 col-md-8">
-                            <textarea className='mb-0' name="addressLine2" id="companyInvoiceBillingAddress2" rows="3" value={data.address.billingAddress.addressLine2} onChange={handleBillingInput} placeholder='Address Line 2'></textarea>
+                            <textarea className='mb-0' name="addressLine2" id="companyInvoiceBillingAddress2" rows="3" value={data.address.billingAddress == null ? '' : data.address.billingAddress.addressLine2} onChange={handleBillingInput} placeholder='Address Line 2'></textarea>
                         </div>
                     </div>
 
@@ -112,7 +112,7 @@ export default function Address({ countries, billingstates, shippingstates, ship
                             <label className={`${styles.companyInvoiceBillingCitylabel}`}>City</label>
                         </div>
                         <div className="col-12 col-md-8 d-flex">
-                            <input name="city" type="text" className="form-control" id="companyInvoiceBillingCity" value={data.address.billingAddress.city} onChange={handleBillingInput} placeholder='City' />
+                            <input name="city" type="text" className="form-control" id="companyInvoiceBillingCity" value={data.address.billingAddress == null ? '' : data.address.billingAddress.city} onChange={handleBillingInput} placeholder='City' />
                         </div>
                     </div>
 
@@ -130,7 +130,7 @@ export default function Address({ countries, billingstates, shippingstates, ship
                             <label className={`${styles.companyInvoiceBillingZIPCodelabel}`}>ZIP Code</label>
                         </div>
                         <div className="col-12 col-md-8 d-flex">
-                            <input name="zipCode" type="text" className="form-control" id="companyInvoiceBillingZIPCode" value={data.address.billingAddress.zipCode} onChange={handleBillingInput} placeholder='ZIP Code' />
+                            <input name="zipCode" type="text" className="form-control" id="companyInvoiceBillingZIPCode" value={data.address.billingAddress == null ? '' : data.address.billingAddress.zipCode} onChange={handleBillingInput} placeholder='ZIP Code' />
                         </div>
                     </div>
 
@@ -139,7 +139,7 @@ export default function Address({ countries, billingstates, shippingstates, ship
                             <label className={`${styles.companyInvoiceBillingPhonelabel}`}>Phone</label>
                         </div>
                         <div className="col-12 col-md-8 d-flex">
-                            <input name="phone" type="text" className="form-control" id="companyInvoiceBillingPhone" value={data.address.billingAddress.phone} onChange={handleBillingInput} placeholder='Phone Number' />
+                            <input name="phone" type="text" className="form-control" id="companyInvoiceBillingPhone" value={data.address.billingAddress == null ? '' : data.address.billingAddress.phone} onChange={handleBillingInput} placeholder='Phone Number' />
                         </div>
                     </div>
 
@@ -148,7 +148,7 @@ export default function Address({ countries, billingstates, shippingstates, ship
                             <label className={`${styles.companyInvoiceBillingFaxlabel}`}>Fax</label>
                         </div>
                         <div className="col-12 col-md-8 d-flex">
-                            <input name="fax" type="text" className="form-control" id="companyInvoiceBillingFax" value={data.address.billingAddress.fax} onChange={handleBillingInput} placeholder='Fax Number' />
+                            <input name="fax" type="text" className="form-control" id="companyInvoiceBillingFax" value={data.address.billingAddress == null ? '' : data.address.billingAddress.fax} onChange={handleBillingInput} placeholder='Fax Number' />
                         </div>
                     </div>
                 </div>
@@ -170,7 +170,7 @@ export default function Address({ countries, billingstates, shippingstates, ship
                             <label className={`${styles.companyInvoiceShippingAttentionlabel}`}>Attention</label>
                         </div>
                         <div className="col-12 col-md-8 d-flex">
-                            <input name="attention" type="text" className="form-control" id="companyInvoiceShippingAttention" value={data.address.shippingAddress.attention} onChange={handleShippingInput} placeholder='Attention' disabled={addressCopied} />
+                            <input name="attention" type="text" className="form-control" id="companyInvoiceShippingAttention" value={data.address.shippingAddress == null ? '' : data.address.shippingAddress.attention} onChange={handleShippingInput} placeholder='Attention' disabled={addressCopied} />
                         </div>
                     </div>
 
@@ -188,11 +188,11 @@ export default function Address({ countries, billingstates, shippingstates, ship
                             <label className={`${styles.companyInvoiceShippingAddresslabel}`}>Address</label>
                         </div>
                         <div className="col-12 col-md-8">
-                            <textarea name="addressLine1" id="companyInvoiceShippingAddress1" rows="3" onChange={handleShippingInput} value={data.address.shippingAddress.addressLine1} placeholder='Address Line 1' disabled={addressCopied}></textarea>
+                            <textarea name="addressLine1" id="companyInvoiceShippingAddress1" rows="3" onChange={handleShippingInput} value={data.address.shippingAddress == null ? '' : data.address.shippingAddress.addressLine1} placeholder='Address Line 1' disabled={addressCopied}></textarea>
                         </div>
                         <div className="col-12 col-md-4"></div>
                         <div className="col-12 col-md-8">
-                            <textarea className='mb-0' name="addressLine2" id="companyInvoiceShippingAddress2" rows="3" onChange={handleShippingInput} value={data.address.shippingAddress.addressLine2} placeholder='Address Line 2' disabled={addressCopied}></textarea>
+                            <textarea className='mb-0' name="addressLine2" id="companyInvoiceShippingAddress2" rows="3" onChange={handleShippingInput} value={data.address.shippingAddress == null ? '' : data.address.shippingAddress.addressLine2} placeholder='Address Line 2' disabled={addressCopied}></textarea>
                         </div>
                     </div>
 
@@ -201,7 +201,7 @@ export default function Address({ countries, billingstates, shippingstates, ship
                             <label className={`${styles.companyInvoiceShippingCitylabel}`}>City</label>
                         </div>
                         <div className="col-12 col-md-8 d-flex">
-                            <input name="city" type="text" className="form-control" id="companyInvoiceShippingCity" onChange={handleShippingInput} value={data.address.shippingAddress.city} placeholder='City' disabled={addressCopied} />
+                            <input name="city" type="text" className="form-control" id="companyInvoiceShippingCity" onChange={handleShippingInput} value={data.address.shippingAddress == null ? '' : data.address.shippingAddress.city} placeholder='City' disabled={addressCopied} />
                         </div>
                     </div>
 
@@ -210,7 +210,7 @@ export default function Address({ countries, billingstates, shippingstates, ship
                             <label className={`${styles.companyInvoiceShippingComapnyStatelabel}`}>State</label>
                         </div>
                         <div className="col-12 col-md-8">
-                            <CustomSelectComponent className={`${styles.companyInvoiceShippingComapnyStateSelect}`} data={shippingstates} onOptionValueChange={handleShippingInput} optionValue={data.address.shippingAddress.stateId == null ? 0 : data.address.shippingAddress.stateId} hasSearch={true} name={'shippingStateId'} isDisabled={addressCopied} defaultText={'Select A State'} isInnerButtonRequired={false} />
+                            <CustomSelectComponent className={`${styles.companyInvoiceShippingComapnyStateSelect}`} data={shippingstates} onOptionValueChange={handleShippingInput} optionValue={data.address.shippingAddress == null ? '' : data.address.shippingAddress.stateId == null ? 0 : data.address.shippingAddress.stateId} hasSearch={true} name={'shippingStateId'} isDisabled={addressCopied} defaultText={'Select A State'} isInnerButtonRequired={false} />
                         </div>
                     </div>
 
@@ -219,7 +219,7 @@ export default function Address({ countries, billingstates, shippingstates, ship
                             <label className={`${styles.companyInvoiceShippingZIPCodelabel}`}>ZIP Code</label>
                         </div>
                         <div className="col-12 col-md-8 d-flex">
-                            <input name="zipCode" type="text" className="form-control" id="companyInvoiceShippingZIPCode" onChange={handleShippingInput} value={data.address.shippingAddress.zipCode} placeholder='ZIP Code' disabled={addressCopied} />
+                            <input name="zipCode" type="text" className="form-control" id="companyInvoiceShippingZIPCode" onChange={handleShippingInput} value={data.address.shippingAddress == null ? '' : data.address.shippingAddress.zipCode} placeholder='ZIP Code' disabled={addressCopied} />
                         </div>
                     </div>
 
@@ -228,7 +228,7 @@ export default function Address({ countries, billingstates, shippingstates, ship
                             <label className={`${styles.companyInvoiceShippingPhonelabel}`}>Phone</label>
                         </div>
                         <div className="col-12 col-md-8 d-flex">
-                            <input name="phone" type="text" className="form-control" id="companyInvoiceShippingPhone" onChange={handleShippingInput} value={data.address.shippingAddress.phone} placeholder='Phone Number' disabled={addressCopied} />
+                            <input name="phone" type="text" className="form-control" id="companyInvoiceShippingPhone" onChange={handleShippingInput} value={data.address.shippingAddress == null ? '' : data.address.shippingAddress.phone} placeholder='Phone Number' disabled={addressCopied} />
                         </div>
                     </div>
 
@@ -237,7 +237,7 @@ export default function Address({ countries, billingstates, shippingstates, ship
                             <label className={`${styles.companyInvoiceShippingFaxlabel}`}>Fax</label>
                         </div>
                         <div className="col-12 col-md-8 d-flex">
-                            <input name="fax" type="text" className="form-control" id="companyInvoiceShippingFax" onChange={handleShippingInput} value={data.address.shippingAddress.fax} placeholder='Fax Number' disabled={addressCopied} />
+                            <input name="fax" type="text" className="form-control" id="companyInvoiceShippingFax" onChange={handleShippingInput} value={data.address.shippingAddress == null ? '' : data.address.shippingAddress.fax} placeholder='Fax Number' disabled={addressCopied} />
                         </div>
                     </div>
 
