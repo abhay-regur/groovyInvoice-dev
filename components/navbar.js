@@ -20,6 +20,7 @@ import { ToastMsgContext } from '@/context/ToastMsg.context';
 import FaScrewAndWrench from '@/assets/icons/faScrewAndWrench.svg';
 import { getCurrentUserDetails } from "@/services/profile.service";
 import { NavExpandedState } from '@/context/NavState.context';
+import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 
 const MENU_LIST = [{ key: 100, text: "Invoices", href: "/invoices", icon: <FaFileLines /> }, { key: 101, text: "Customers", href: "/customers", icon: <FaUserGroup /> }, { key: 102, text: "Reports", href: "/reports", icon: <FaChartLine /> }, { key: 103, text: "Settings", href: "/settings", icon: <FaGear />, subMenu: [{ key: 1031, text: "Users", href: "/users", icon: <FaUsers /> }, { key: 1032, text: "Config", href: "/configuration", icon: <FaScrewAndWrench /> }] }];
 export default function Navbar() {
