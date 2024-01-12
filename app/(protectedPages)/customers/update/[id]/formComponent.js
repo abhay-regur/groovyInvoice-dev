@@ -126,9 +126,7 @@ export default function CustomerEditForm() {
         if (name != '') {
             if (name == 'openingBalance' || name == 'gstTreatment' || name == 'paymentTermId') {
                 if (!Number.isNaN((target.value)) && target.value != '') {
-                    temp_data[name] = parseInt(target.value)
-                } else {
-                    temp_data[name] = 0;
+                    temp_data[name] = parseInt(target.value);
                 }
             } else {
                 temp_data[name] = target.value;

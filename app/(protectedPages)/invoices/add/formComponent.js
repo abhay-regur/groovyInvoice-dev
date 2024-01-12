@@ -95,7 +95,10 @@ export default function InvoiceAddForm() {
         let name = target.name || target.getAttribute('name');
         if (name != '') {
             if (['openingBalance', 'gstTreatment', 'customerId', 'termsId', 'subtotalAmount', 'shippingCharges', 'totalTaxAmount', 'adjustmentAmount'].includes(name)) {
-                data[name] = parseInt(target.value)
+                if (!Number.isNaN((target.value)) && target.value != '') {
+                    data[name] = parseInt(target.value);
+                }
+
             } else {
                 data[name] = target.value;
             }
