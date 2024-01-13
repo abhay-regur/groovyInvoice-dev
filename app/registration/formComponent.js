@@ -35,7 +35,11 @@ export default function RegistrationForm() {
     });
 
     const handleInput = ({ target }) => {
-        data[target.name] = target.value
+        if (target.name == 'cellNumber') {
+            temp_data[target.name] = (target.value == '' ? '' : (target.value).match(/[0-9]+/g)[0]);
+        } else {
+            data[target.name] = target.value
+        }
         let temp = Object.assign({}, data)
         setData(temp)
     }
@@ -128,7 +132,7 @@ export default function RegistrationForm() {
                                             <label htmlFor="registrationContactNumber" className="form-label">Contact Number</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <i><FontAwesomeIcon icon={faMobileRetro} /></i>
-                                                <input type="number" className="form-control" placeholder="Contact Number" id="registrationContactNumber" name="cellNumber" value={data.cellNumber} onChange={handleInput} onKeyDown={addLoader} onBlur={handleValidation} aria-describedby="contactNumberHelp" autoComplete="off" required />
+                                                <input type="tel" minLength={4} maxLength={13} className="form-control" placeholder="Contact Number" id="registrationContactNumber" name="cellNumber" value={data.cellNumber} onChange={handleInput} onKeyDown={addLoader} onBlur={handleValidation} aria-describedby="contactNumberHelp" autoComplete="off" required />
                                                 <div htmlFor="registrationContactNumber" className="ms-3 invalid-feedback">
                                                     {validateErrorMessage.cellNumber}
                                                 </div>

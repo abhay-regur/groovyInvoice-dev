@@ -46,7 +46,11 @@ export default function UserUpdateFormComponent() {
     }
 
     const handleInput = ({ target }) => {
-        data[target.name] = target.value
+        if (target.name == 'phone') {
+            data[target.name] = (target.value == '' ? '' : (target.value).match(/[0-9]+/g)[0]);
+        } else {
+            data[target.name] = target.value;
+        }
         let temp = Object.assign({}, data)
         setData(temp)
     }
@@ -137,7 +141,7 @@ export default function UserUpdateFormComponent() {
                                     </div>
 
                                     <div className="col-12 col-lg-6 col-xl-6 d-flex align-items-center">
-                                        <input type="text" className={`${styles.companyInvoiceUserMobile} form-control`} placeholder='Mobile' onChange={handleInput} name='cellNumber' value={data.cellNumber} />
+                                        <input type="tel" minLength={4} maxLength={13} className={`${styles.companyInvoiceUserMobile} form-control`} placeholder='Mobile' onChange={handleInput} name='cellNumber' value={data.cellNumber} />
                                     </div>
                                 </div>
 

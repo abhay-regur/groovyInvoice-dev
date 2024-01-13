@@ -128,6 +128,8 @@ export default function CustomerEditForm() {
                 if (!Number.isNaN((target.value)) && target.value != '') {
                     temp_data[name] = parseInt(target.value);
                 }
+            } else if (name == 'phone' || name == 'cellNumber') {
+                temp_data[name] = (target.value == '' ? '' : (target.value).match(/[0-9]+/g)[0]);
             } else {
                 temp_data[name] = target.value;
             }
@@ -454,11 +456,11 @@ export default function CustomerEditForm() {
                                     <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
                                         <label className={`${styles.companyInvoiceCompanyPhoneLabel}`}>Customer Phone</label>
                                     </div>
-                                    <div className="col-12 col-lg-4 col-xl-2 d-flex align-items-center mb-lg-0 mb-2">
-                                        <input name='phone' type="tel" className={`${styles.companyInvoiceCompanyWorkPhone} form-control`} value={data.phone} placeholder='Work Phone' onChange={handleInput} />
+                                    <div className="col-12 col-lg-3 col-xl-3 d-flex align-items-center mb-lg-0 mb-2">
+                                        <input name='phone' type="tel" minLength={4} maxLength={13} className={`${styles.companyInvoiceCompanyWorkPhone} form-control`} value={data.phone} placeholder='Work Phone' onChange={handleInput} />
                                     </div>
-                                    <div className="col-12 col-lg-4 col-xl-2 d-flex align-items-center">
-                                        <input name='cellNumber' type="tel" className={`${styles.companyInvoiceCompanyMobile} form-control`} value={data.cellNumber} placeholder='Mobile' onChange={handleInput} />
+                                    <div className="col-12 col-lg-3 col-xl-3 d-flexalign-items-center">
+                                        <input name='cellNumber' type="tel" minLength={4} maxLength={13} className={`${styles.companyInvoiceCompanyMobile} form-control`} value={data.cellNumber} placeholder='Mobile' onChange={handleInput} />
                                         <FaExclamationCircle />
                                     </div>
                                 </div>
