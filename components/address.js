@@ -16,6 +16,11 @@ export default function Address({ countries, billingstates, shippingstates, ship
                 if (addressCopied) {
                     temp_data.address.shippingAddress['stateId'] = parseInt(target.value);
                 }
+            } else if (name == 'phone') {
+                temp_data.address.billingAddress[name] = (target.value == '' ? '' : (target.value).match(/[0-9]+/g)[0]);
+                if (addressCopied) {
+                    temp_data.address.shippingAddress[name] = (target.value == '' ? '' : (target.value).match(/[0-9]+/g)[0]);
+                }
             } else {
                 temp_data.address.billingAddress[name] = target.value;
                 if (addressCopied) {
@@ -33,6 +38,8 @@ export default function Address({ countries, billingstates, shippingstates, ship
         if (name != '' && !addressCopied) {
             if (name.search('shippingStateId') > -1) {
                 temp_data.address.shippingAddress['stateId'] = parseInt(target.value);
+            } else if (name == 'phone') {
+                temp_data.address.shippingAddress[name] = (target.value == '' ? '' : (target.value).match(/[0-9]+/g)[0]);
             } else {
                 temp_data.address.shippingAddress[name] = target.value;
             }
@@ -139,7 +146,7 @@ export default function Address({ countries, billingstates, shippingstates, ship
                             <label className={`${styles.companyInvoiceBillingPhonelabel}`}>Phone</label>
                         </div>
                         <div className="col-12 col-md-8 d-flex">
-                            <input name="phone" type="text" className="form-control" id="companyInvoiceBillingPhone" value={data.address.billingAddress == null ? '' : data.address.billingAddress.phone} onChange={handleBillingInput} placeholder='Phone Number' />
+                            <input name="phone" type="tel" minLength={4} maxLength={13} className="form-control" id="companyInvoiceBillingPhone" value={data.address.billingAddress == null ? '' : data.address.billingAddress.phone} onChange={handleBillingInput} placeholder='Phone Number' />
                         </div>
                     </div>
 
@@ -228,7 +235,7 @@ export default function Address({ countries, billingstates, shippingstates, ship
                             <label className={`${styles.companyInvoiceShippingPhonelabel}`}>Phone</label>
                         </div>
                         <div className="col-12 col-md-8 d-flex">
-                            <input name="phone" type="text" className="form-control" id="companyInvoiceShippingPhone" onChange={handleShippingInput} value={data.address.shippingAddress == null ? '' : data.address.shippingAddress.phone} placeholder='Phone Number' disabled={addressCopied} />
+                            <input name="phone" type="tel" minLength={4} maxLength={13} className="form-control" id="companyInvoiceShippingPhone" onChange={handleShippingInput} value={data.address.shippingAddress == null ? '' : data.address.shippingAddress.phone} placeholder='Phone Number' disabled={addressCopied} />
                         </div>
                     </div>
 
