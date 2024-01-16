@@ -59,9 +59,9 @@ export default function InvoiceAddForm() {
             subTotalAmount += data.invoiceItems[i].total
             totalTaxAmount += data.invoiceItems[i].taxAmount
         }
-        data.subTotalAmount = subTotalAmount
-        data.totalTaxAmount = totalTaxAmount
-        data.totalAmount = parseFloat(data.adjustmentAmount) + parseFloat(data.shippingCharges) + parseFloat(data.totalTaxAmount) + parseFloat(data.subTotalAmount);
+        data.subTotalAmount = subTotalAmount.toFixed(2)
+        data.totalTaxAmount = totalTaxAmount.toFixed(2)
+        data.totalAmount = (parseFloat(data.adjustmentAmount) + parseFloat(data.shippingCharges) + parseFloat(data.totalTaxAmount) + parseFloat(data.subTotalAmount)).toFixed(2);
         let temp = Object.assign({}, data)
         setData(temp)
     }
