@@ -161,7 +161,7 @@ export default function CustomerEditForm() {
             if (result.status == 200 || result.status == 201) {
                 setToastList([{
                     id: Math.floor((Math.random() * 101) + 1),
-                    title: 'Updated ' + data.firstName + '`s Details',
+                    title: 'Updated ' + data.firstName + "'s Details",
                     description: '',
                 }]);
             }
