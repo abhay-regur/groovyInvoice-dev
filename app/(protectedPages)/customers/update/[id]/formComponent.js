@@ -460,7 +460,7 @@ export default function CustomerEditForm() {
                                     <div className="col-12 col-lg-3 col-xl-3 d-flex align-items-center mb-lg-0 mb-2">
                                         <input name='phone' type="tel" minLength={4} maxLength={13} className={`${styles.companyInvoiceCompanyWorkPhone} form-control`} value={data.phone} placeholder='Work Phone' onChange={handleInput} />
                                     </div>
-                                    <div className="col-12 col-lg-3 col-xl-3 d-flexalign-items-center">
+                                    <div className="col-12 col-lg-3 col-xl-3 d-flex align-items-center">
                                         <input name='cellNumber' type="tel" minLength={4} maxLength={13} className={`${styles.companyInvoiceCompanyMobile} form-control`} value={data.cellNumber} placeholder='Mobile' onChange={handleInput} />
                                         <FaExclamationCircle />
                                     </div>
