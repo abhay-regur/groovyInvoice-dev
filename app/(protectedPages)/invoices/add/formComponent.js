@@ -241,7 +241,7 @@ export default function InvoiceAddForm() {
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2">
+                                    <div className="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-3">
                                         <DateInputField
                                             label="Invoice Date"
                                             id="companyInvoiceDate"
@@ -265,7 +265,7 @@ export default function InvoiceAddForm() {
                                             />
                                         </div>
                                     </div>
-                                    <div className="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2">
+                                    <div className="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-3">
                                         <DateInputField
                                             label="Due Date"
                                             id="companyInvoiceDueDate"
