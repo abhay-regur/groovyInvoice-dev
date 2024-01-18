@@ -94,9 +94,17 @@ export default function InvoiceAddForm() {
     const handleInput = ({ target }) => {
         let name = target.name || target.getAttribute('name');
         if (name != '') {
-            if (['openingBalance', 'gstTreatment', 'customerId', 'termsId', 'subtotalAmount', 'shippingCharges', 'totalTaxAmount', 'adjustmentAmount'].includes(name)) {
+            if (['openingBalance', 'gstTreatment', 'customerId', 'termsId', 'subtotalAmount', 'shippingCharges'].includes(name)) {
                 if (!Number.isNaN((target.value)) && target.value != '') {
                     data[name] = parseInt(target.value);
+                } else {
+                    data[name] = 0;
+                }
+            } else if (name == 'adjustmentAmount') {
+                if (!Number.isNaN((target.value)) && target.value != '') {
+                    data[name] = parseFloat(target.value);
+                } else {
+                    data[name] = 0.00;
                 }
 
             } else {
@@ -242,7 +250,7 @@ export default function InvoiceAddForm() {
                                         />
                                     </div>
                                     <div className="col-12 col-sm-5 col-md-4 col-lg-3">
-                                        <div className={`${styles.companyInvoicetermsWrapper} mb-3`}>
+                                        <div className={`${styles.companyInvoicetermsWrapper} mb-3 mt-0`}>
                                             <label htmlFor="companyInvoiceterms" className="form-label">Terms</label>
                                             <CustomSelectComponent
                                                 className={`${styles.companInvoicePaymentTermsSelect}`}
@@ -324,7 +332,7 @@ export default function InvoiceAddForm() {
                                                     </div>
                                                     <div className="col-6 order-3 col-lg-4 order-lg-2">
                                                         <div className={`${styles.companyInvoicePriceAdjustment2Wrapper} d-flex`}>
-                                                            <input type="number" className={`${styles.companyInvoicePriceAdjustment} form-control`} name="adjustmentAmount" value={data.adjustmentAmount} onChange={handleInput} />
+                                                            <input type="number" step="0.01" className={`${styles.companyInvoicePriceAdjustment} form-control`} name="adjustmentAmount" value={data.adjustmentAmount} onChange={handleInput} />
                                                             <i><FaCircleQuestion></FaCircleQuestion></i>
                                                         </div>
                                                     </div>

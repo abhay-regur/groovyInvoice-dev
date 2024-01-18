@@ -124,7 +124,7 @@ export default function CustomerEditForm() {
         var temp_data = data;
         var name = target.name || target.getAttribute('name');
         if (name != '') {
-            if (name == 'openingBalance' || name == 'gstTreatment' || name == 'paymentTermId') {
+            if (name == 'openingBalance' || name == 'gstTreatment' || name == 'paymentTermId' || name == 'currency') {
                 if (!Number.isNaN((target.value)) && target.value != '') {
                     temp_data[name] = parseInt(target.value);
                 }
@@ -298,6 +298,7 @@ export default function CustomerEditForm() {
             var result = await getCustomer(id);
             if (result.status == 200 || result.status == 201) {
                 setData(result.data);
+                console.log(result.data)
                 setBillingStatesCountryId(result.data.address.billingAddress != null ? result.data.address.billingAddress.countryId : 0);
                 setShippingStatesCountryId(result.data.address.shippingAddress != null ? result.data.address.shippingAddress.countryId : 0);
             }
