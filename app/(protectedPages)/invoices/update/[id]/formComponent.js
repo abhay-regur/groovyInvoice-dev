@@ -13,10 +13,7 @@ import FaCircleQuestion from '@/assets/icons/faCircleQuestion.svg';
 import FaGear from '@/assets/icons/faGear.svg';
 import "react-datepicker/dist/react-datepicker.css";
 import CustomSelectComponent from '@/components/common/customSelectComponent';
-<<<<<<< Updated upstream
-=======
 import Breadcrumb from '@/components/common/breadcrumb';
->>>>>>> Stashed changes
 import { getInvoice, updateInvoice } from '@/services/invoice.service';
 import { getCustomers } from '@/services/customer.service';
 import { getPaymentTerms } from '@/services/paymentTerms.service';
@@ -188,12 +185,9 @@ export default function InvoiceEditForm() {
     return (
         <div className={styles.container}>
             <main className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
-<<<<<<< Updated upstream
-=======
                 <div className="breadcrumbWrapper">
                     <Breadcrumb styles={styles} />
                 </div>
->>>>>>> Stashed changes
                 <h2 className={`${styles.title}`}>
                     Update Invoice
                 </h2>
