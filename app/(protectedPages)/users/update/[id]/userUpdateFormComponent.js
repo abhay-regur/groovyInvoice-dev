@@ -10,6 +10,7 @@ import ErrorList from '@/components/errorList';
 import { NavExpandedState } from '@/context/NavState.context';
 import { ToastMsgContext } from '@/context/ToastMsg.context';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
+import Breadcrumb from '@/components/common/breadcrumb';
 import Link from 'next/link';
 import Loading from './loading.js';
 
@@ -87,6 +88,9 @@ export default function UserUpdateFormComponent() {
     return (
         <main className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
             <div className="container-fluid">
+                <div className="breadcrumbWrapper">
+                    <Breadcrumb styles={styles} />
+                </div>
                 <div className={`${styles.card} card`}>
                     <div className={`${styles.cardBody} card-body`}>
                         <h4 className={`${styles.cardTitle} card-title`}>Update User</h4>

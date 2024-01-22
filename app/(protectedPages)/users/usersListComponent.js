@@ -4,6 +4,7 @@ import { useContext, useState } from 'react';
 import FaCirclePlus from "@/assets/icons/faCirclePlus.svg";
 import styles from '@/styles/user.module.scss';
 import { NavExpandedState } from '@/context/NavState.context';
+import Breadcrumb from '@/components/common/breadcrumb';
 import dynamic from 'next/dynamic';
 
 const AllUserTable = dynamic(
@@ -17,6 +18,9 @@ export default function UserListComponnt() {
         <div className={styles.container}>
             <main className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
                 <div className="container-fluid position-relative">
+                    <div className="breadcrumbWrapper">
+                        <Breadcrumb styles={styles} />
+                    </div>
                     <div className={`${styles.comapnyInvoiceHeadingWrapper} row`}>
                         <div className="col-6">
                             <h2 className={`${styles.title}`}>
