@@ -13,6 +13,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import { getPaymentTerms, getPaymentTerm } from '@/services/paymentTerms.service';
 import { getCustomers, getCustomer } from '@/services/customer.service';
 import CustomSelectComponent from '@/components/common/customSelectComponent';
+<<<<<<< Updated upstream
+=======
+import Breadcrumb from '@/components/common/breadcrumb';
+>>>>>>> Stashed changes
 import { saveInvoice } from '@/services/invoice.service';
 import ErrorList from '@/components/errorList';
 import { ToastMsgContext } from '@/context/ToastMsg.context';
@@ -33,6 +37,7 @@ export default function InvoiceAddForm() {
     const [errors, setErrors] = useState([]);
     const [customers, setCustomer] = useState([]);
     const { Modal } = require("bootstrap");
+<<<<<<< Updated upstream
     const initialData = {
         customerId: '',
         invoiceNo: '',
@@ -52,6 +57,29 @@ export default function InvoiceAddForm() {
     }
     const [data, setData] = useState(initialData)
 
+=======
+
+    const initialData = {
+        customerId: '',
+        invoiceNo: '',
+        orderNumber: '',
+        invoiceDate: new Date(),
+        termsId: '',
+        dueDate: new Date(),
+        customerNote: '',
+        subTotalAmount: 0,
+        shippingCharges: 0,
+        totalTaxAmount: 0,
+        totalAmount: 0,
+        adjustmentText: '',
+        adjustmentAmount: 0,
+        invoiceItems: [],
+        termsAndCondition: '',
+    }
+
+    const [data, setData] = useState(initialData);
+
+>>>>>>> Stashed changes
     const calculateTotalAmount = () => {
         let subTotalAmount = 0
         let totalTaxAmount = 0
@@ -195,6 +223,9 @@ export default function InvoiceAddForm() {
     return (
         <div className={styles.container}>
             <main className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
+                <div className="breadcrumbWrapper">
+                    <Breadcrumb styles={styles} />
+                </div>
                 <h2 className={`${styles.title}`}>
                     New Invoice
                 </h2>

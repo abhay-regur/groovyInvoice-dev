@@ -3,6 +3,10 @@ import { useContext } from "react";
 import Link from 'next/link';
 import FaCirclePlus from "@/assets/icons/faCirclePlus.svg";
 import styles from '@/styles/customers.module.scss';
+<<<<<<< Updated upstream
+=======
+import Breadcrumb from "@/components/common/breadcrumb";
+>>>>>>> Stashed changes
 import { NavExpandedState } from '@/context/NavState.context';
 import dynamic from 'next/dynamic';
 
@@ -17,6 +21,9 @@ export default function CustomerListComponent() {
         <div className={styles.container}>
             <main className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
                 <div className="container-fluid">
+                    <div className="breadcrumbWrapper">
+                        <Breadcrumb styles={styles} />
+                    </div>
                     <div className={`${styles.comapnyInvoiceHeadingWrapper} row`}>
                         <div className="col-6">
                             <h2 className={`${styles.title}`}>

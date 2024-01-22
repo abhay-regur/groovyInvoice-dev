@@ -11,6 +11,10 @@ import FaCircleXmark from '@/assets/icons/faCircleXmark.svg';
 import FaExclamationCircle from '@/assets/icons/faExclamationCircle.svg';
 import styles from "@/styles/newCustomer.module.scss";
 import ErrorList from '@/components/errorList';
+<<<<<<< Updated upstream
+=======
+import Breadcrumb from '@/components/common/breadcrumb.js';
+>>>>>>> Stashed changes
 import { ToastMsgContext } from '@/context/ToastMsg.context';
 import Loading from "../../loading.js";
 import { getPaymentTerms, createPaymentTerms } from "@/services/paymentTerms.service";
@@ -356,6 +360,12 @@ export default function CustomerEditForm() {
 
     return (
         <main className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
+<<<<<<< Updated upstream
+=======
+            <div className="breadcrumbWrapper">
+                <Breadcrumb styles={styles} />
+            </div>
+>>>>>>> Stashed changes
             <h2 className={`${styles.title}`}>
                 Update Customer
             </h2>

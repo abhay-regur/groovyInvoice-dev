@@ -20,6 +20,10 @@ import { NavExpandedState } from '@/context/NavState.context';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 import { useRouter } from 'next/navigation';
 import DisplayNameSelect from '@/components/customers/displayNameSelect';
+<<<<<<< Updated upstream
+=======
+import Breadcrumb from '@/components/common/breadcrumb.js';
+>>>>>>> Stashed changes
 
 export default function CustomerAddForm() {
 
@@ -374,6 +378,9 @@ export default function CustomerAddForm() {
 
     return (
         <main className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
+            <div className="breadcrumbWrapper">
+                <Breadcrumb styles={styles} />
+            </div>
             <h2 className={`${styles.title}`}>
                 New Customer
             </h2>
