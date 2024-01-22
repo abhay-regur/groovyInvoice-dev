@@ -2,6 +2,7 @@
 import { useState, useContext, useEffect } from 'react';
 import { useParams, notFound, useRouter } from 'next/navigation';
 import { NavExpandedState } from '@/context/NavState.context';
+import Breadcrumb from '@/components/common/breadcrumb';
 import styles from '@/styles/viewInvoice.module.scss';
 import ViewInvoiceTable from '@/components/viewInvoiceTable.js';
 import FaPen from '@/assets/icons/faPen.svg';
@@ -20,7 +21,6 @@ import { formatDate } from '@/utils/date.utils';
 import Link from 'next/link';
 import { convertNumberToWord } from '@/utils/number.utils';
 import Loading from '@/app/loading';
-import { Router } from 'next/router';
 
 export default function InvoiceViewComponent() {
     const { id } = useParams();
@@ -98,6 +98,9 @@ export default function InvoiceViewComponent() {
                 <Loading /> :
                 <main className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
                     <div className="container-fluid">
+                        <div className="breadcrumbWrapper">
+                            <Breadcrumb styles={styles} />
+                        </div>
                         <div className={`${styles.comapnyInvoiceViewInvoiceHeadWrapper} row`}>
                             <div className={`${styles.comapnyInvoiceViewInvoiceMainHeading} col-9 col-md-10 col-lg-7`}>{customer.firstName + ' ' + customer.lastName}<span className={`${styles.comapnyInvoiceViewInvoiceSubHeading}`}>#{formatDate(data.invoiceDate)}</span></div>
                             <div className={`${styles.companyInvoiceViewInvoiceActionBarWrapper} col-12`}>
@@ -179,6 +182,34 @@ export default function InvoiceViewComponent() {
                                         <div className="col-12 col-lg-6 order-0 order-lg-1">
                                             <div className={`${styles.comapnyInvoiceViewInvoiceHeading} d-flex justify-content-end`}>Tax Invoice</div>
                                             <div className={`${styles.comapnyInvoiceViewInvoiceInvoiceDate} d-flex justify-content-end`}>#2022/09-04</div>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div className="row">
+                                        <div className="col-12 col-lg-6">
+                                            <div className={`${styles.companyInvoiceViewInvoiceBillToHeading}`}>Bill To</div>
+                                            <div className={`${styles.companyInvoiceViewInvoiceBillToAddressWrapper}`}>
+                                                <div className={`${styles.companyInvoiceViewInvoiceBillToName}`}>Molestiequis ornare dignissim</div>
+                                                <div className={`${styles.companyInvoiceViewInvoiceBillToAddress}`}>Tempor ante phasellus auctor varius libero varius purus</div>
+                                            </div>
+                                        </div>
+                                        <div className="col-12 col-lg-6">
+                                            <div className={`${styles.comapnyInvoiceViewInvoiceDetails} row`}>
+                                                <span className={`${styles.comapnyInvoiceViewInvoiceDetailsHeading} col-6 text-align-start`}>Invoice#</span>
+                                                <span className={`${styles.comapnyInvoiceViewInvoiceDetailsEntry} col-6 text-align-start`}>{data.invoiceNo}</span>
+                                            </div>
+                                            <div className={`${styles.comapnyInvoiceViewInvoiceDetails} row`}>
+                                                <span className={`${styles.comapnyInvoiceViewInvoiceDetailsHeading} col-6 text-align-start`}>Invoice Date</span>
+                                                <span className={`${styles.comapnyInvoiceViewInvoiceDetailsEntry} col-6 text-align-start`}>{formatDate(data.invoiceDate)}</span>
+                                            </div>
+                                            <div className={`${styles.comapnyInvoiceViewInvoiceDetails} row`}>
+                                                <span className={`${styles.comapnyInvoiceViewInvoiceDetailsHeading} col-6 text-align-start`}>Terms</span>
+                                                <span className={`${styles.comapnyInvoiceViewInvoiceDetailsEntry} col-6 text-align-start`}>{paymentTerm.label}</span>
+                                            </div>
+                                            <div className={`${styles.comapnyInvoiceViewInvoiceDetails} row`}>
+                                                <span className={`${styles.comapnyInvoiceViewInvoiceDetailsHeading} col-6 text-align-start`}>Due Date</span>
+                                                <span className={`${styles.comapnyInvoiceViewInvoiceDetailsEntry} col-6 text-align-start`}>{formatDate(data.dueDate)}</span>
+                                            </div>
                                         </div>
                                     </div>
                                     <hr />

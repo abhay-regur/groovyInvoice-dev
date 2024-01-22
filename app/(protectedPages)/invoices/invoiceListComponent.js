@@ -5,6 +5,7 @@ import { NavExpandedState } from '@/context/NavState.context';
 import styles from '@/styles/invoice.module.scss';
 import FaCirclePlus from "@/assets/icons/faCirclePlus.svg";
 import FaRupeeCircle from "@/assets/icons/faRupeeCircle.svg";
+import Breadcrumb from '@/components/common/breadcrumb';
 import dynamic from 'next/dynamic';
 
 const AllInvoiceTable = dynamic(
@@ -18,6 +19,9 @@ export default function InvoiceListComponent() {
         <div className={styles.container}>
             <main className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
                 <div className="container-fluid">
+                    <div className="breadcrumbWrapper">
+                        <Breadcrumb styles={styles} />
+                    </div>
                     <div className={`${styles.comapnyInvoiceHeadingWrapper} row`}>
                         <div className="col-6">
                             <h2 className={`${styles.title}`}>

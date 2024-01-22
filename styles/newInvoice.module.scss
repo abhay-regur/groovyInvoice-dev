@@ -22,6 +22,7 @@
 //Big Screen
 @media screen and (min-width: 676px) {
     .main {
+        padding-top: 40px;
         margin: auto 97px;
         margin-left: 135px;
         transition: all 0.35s;
@@ -43,7 +44,6 @@
             font-size: 36px;
             line-height: 45px;
             color: var.$primary-color;
-            margin-top: 56px;
             margin-bottom: 49px;
             padding-left: 12px;
         }

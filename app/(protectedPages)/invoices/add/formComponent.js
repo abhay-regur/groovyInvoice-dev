@@ -13,6 +13,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { getPaymentTerms, getPaymentTerm } from '@/services/paymentTerms.service';
 import { getCustomers, getCustomer } from '@/services/customer.service';
 import CustomSelectComponent from '@/components/common/customSelectComponent';
+import Breadcrumb from '@/components/common/breadcrumb';
 import { saveInvoice } from '@/services/invoice.service';
 import ErrorList from '@/components/errorList';
 import { ToastMsgContext } from '@/context/ToastMsg.context';
@@ -33,6 +34,7 @@ export default function InvoiceAddForm() {
     const [errors, setErrors] = useState([]);
     const [customers, setCustomer] = useState([]);
     const { Modal } = require("bootstrap");
+
     const initialData = {
         customerId: '',
         invoiceNo: '',
@@ -50,7 +52,8 @@ export default function InvoiceAddForm() {
         invoiceItems: [],
         termsAndCondition: '',
     }
-    const [data, setData] = useState(initialData)
+
+    const [data, setData] = useState(initialData);
 
     const calculateTotalAmount = () => {
         let subTotalAmount = 0
@@ -195,6 +198,9 @@ export default function InvoiceAddForm() {
     return (
         <div className={styles.container}>
             <main className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
+                <div className="breadcrumbWrapper">
+                    <Breadcrumb styles={styles} />
+                </div>
                 <h2 className={`${styles.title}`}>
                     New Invoice
                 </h2>

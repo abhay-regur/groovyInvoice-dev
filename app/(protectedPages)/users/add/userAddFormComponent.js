@@ -14,6 +14,7 @@ import { disableSubmitButton, enableSubmitButton } from '@/utils/form.utils'
 import { useRouter } from 'next/navigation';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils';
 import Loading from './loading';
+import Breadcrumb from '@/components/common/breadcrumb';
 
 export default function UserUpdateFormComponent() {
     const { replace } = useRouter();
@@ -93,6 +94,9 @@ export default function UserUpdateFormComponent() {
     return (
         <main className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
             <div className="container-fluid">
+                <div className="breadcrumbWrapper">
+                    <Breadcrumb styles={styles} />
+                </div>
                 {isLoading ?
                     <Loading /> :
                     <div className={`${styles.card} card`}>
