@@ -20,10 +20,7 @@ import { NavExpandedState } from '@/context/NavState.context';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 import { useRouter } from 'next/navigation';
 import DisplayNameSelect from '@/components/customers/displayNameSelect';
-<<<<<<< Updated upstream
-=======
 import Breadcrumb from '@/components/common/breadcrumb.js';
->>>>>>> Stashed changes
 
 export default function CustomerAddForm() {
 

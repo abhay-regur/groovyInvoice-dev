@@ -5,10 +5,7 @@ import { NavExpandedState } from '@/context/NavState.context';
 import styles from '@/styles/invoice.module.scss';
 import FaCirclePlus from "@/assets/icons/faCirclePlus.svg";
 import FaRupeeCircle from "@/assets/icons/faRupeeCircle.svg";
-<<<<<<< Updated upstream
-=======
 import Breadcrumb from '@/components/common/breadcrumb';
->>>>>>> Stashed changes
 import dynamic from 'next/dynamic';
 
 const AllInvoiceTable = dynamic(

@@ -2,10 +2,7 @@
 import { useState, useContext, useEffect } from 'react';
 import { useParams, notFound, useRouter } from 'next/navigation';
 import { NavExpandedState } from '@/context/NavState.context';
-<<<<<<< Updated upstream
-=======
 import Breadcrumb from '@/components/common/breadcrumb';
->>>>>>> Stashed changes
 import styles from '@/styles/viewInvoice.module.scss';
 import ViewInvoiceTable from '@/components/viewInvoiceTable.js';
 import FaPen from '@/assets/icons/faPen.svg';
@@ -24,10 +21,6 @@ import { formatDate } from '@/utils/date.utils';
 import Link from 'next/link';
 import { convertNumberToWord } from '@/utils/number.utils';
 import Loading from '@/app/loading';
-<<<<<<< Updated upstream
-import { Router } from 'next/router';
-=======
->>>>>>> Stashed changes
 
 export default function InvoiceViewComponent() {
     const { id } = useParams();
@@ -105,12 +98,9 @@ export default function InvoiceViewComponent() {
                 <Loading /> :
                 <main className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
                     <div className="container-fluid">
-<<<<<<< Updated upstream
-=======
                         <div className="breadcrumbWrapper">
                             <Breadcrumb styles={styles} />
                         </div>
->>>>>>> Stashed changes
                         <div className={`${styles.comapnyInvoiceViewInvoiceHeadWrapper} row`}>
                             <div className={`${styles.comapnyInvoiceViewInvoiceMainHeading} col-9 col-md-10 col-lg-7`}>{customer.firstName + ' ' + customer.lastName}<span className={`${styles.comapnyInvoiceViewInvoiceSubHeading}`}>#{formatDate(data.invoiceDate)}</span></div>
                             <div className={`${styles.companyInvoiceViewInvoiceActionBarWrapper} col-12`}>
@@ -192,8 +182,6 @@ export default function InvoiceViewComponent() {
                                         <div className="col-12 col-lg-6 order-0 order-lg-1">
                                             <div className={`${styles.comapnyInvoiceViewInvoiceHeading} d-flex justify-content-end`}>Tax Invoice</div>
                                             <div className={`${styles.comapnyInvoiceViewInvoiceInvoiceDate} d-flex justify-content-end`}>#2022/09-04</div>
-<<<<<<< Updated upstream
-=======
                                         </div>
                                     </div>
                                     <hr />
@@ -222,7 +210,6 @@ export default function InvoiceViewComponent() {
                                                 <span className={`${styles.comapnyInvoiceViewInvoiceDetailsHeading} col-6 text-align-start`}>Due Date</span>
                                                 <span className={`${styles.comapnyInvoiceViewInvoiceDetailsEntry} col-6 text-align-start`}>{formatDate(data.dueDate)}</span>
                                             </div>
->>>>>>> Stashed changes
                                         </div>
                                     </div>
                                     <hr />
@@ -294,15 +281,9 @@ export default function InvoiceViewComponent() {
                             </div>
                         </div>
                     </div>
-<<<<<<< Updated upstream
                 </main>
             }
 
         </div>
-=======
-                </div>
-            </main>
-        </div >
->>>>>>> Stashed changes
     )
 }
