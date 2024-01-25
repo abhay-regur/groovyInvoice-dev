@@ -36,7 +36,7 @@ export default function RegistrationForm() {
 
     const handleInput = ({ target }) => {
         if (target.name == 'cellNumber') {
-            temp_data[target.name] = (target.value == '' ? '' : (target.value).match(/[0-9]+/g)[0]);
+            data[target.name] = (target.value == '' ? '' : (target.value).match(/[0-9]+/g)[0]);
         } else {
             data[target.name] = target.value
         }
