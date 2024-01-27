@@ -36,7 +36,7 @@ const InvoiceTable = (props) => {
             rowData[e.target.name] = e.target.value == '' ? '' : parseFloat(e.target.value);
             rowData['subTotal'] = (typeof rowData.quantity == 'number' ? rowData.quantity : 0) * (typeof rowData.rate == 'number' ? rowData.rate : 0)
             rowData['taxAmount'] = (rowData.subTotal / 100) * rowData.taxPercent
-            rowData['total'] = rowData.subTotal + rowData.taxAmount
+            rowData['total'] = parseFloat(rowData.subTotal + rowData.taxAmount).toFixed(2)
         } else {
             rowData[e.target.name] = e.target.value
         }
