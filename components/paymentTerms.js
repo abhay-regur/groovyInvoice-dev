@@ -175,9 +175,9 @@ export default function PaymentTermsComponent() {
                 <hr />
                 <div className="row">
                     <div className="col-sm-2"></div>
-                    <div className="col-10">
+                    <div className="col-10 overflow-auto">
                         <ErrorList errors={errors} />
-                        <table className='mb-4'>
+                        <table>
                             <thead>
                                 <tr>
                                     <th>Sr.</th>
@@ -245,7 +245,7 @@ export default function PaymentTermsComponent() {
                     </div>
                     <div className="col-sm-2"></div>
                     <div className="col-10">
-                        <button className={`${styles.companyInvoiceAddIndustry} d-flex align-contect-center btn blue mb-4`} onClick={addInputsRow}>
+                        <button className={`${styles.companyInvoiceAddIndustry} d-flex align-contect-center btn blue mt-4 mb-4`} onClick={addInputsRow}>
                             <span><i><FaCirclePlus /></i>Add New Payment Term</span>
                         </button>
                     </div>

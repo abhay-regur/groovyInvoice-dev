@@ -266,7 +266,7 @@
 @media screen and (max-width: 676px) {
 
     .companyInvoiceTable {
-        border: 1px solid var.$primary-border-color;
+        // border: 1px solid var.$primary-border-color;
         border-radius: 10%;
 
         thead {
@@ -280,11 +280,7 @@
                     background: var.$table-head-color;
                     padding-top: 13px;
                     padding-bottom: 17px;
-                    border-right: 1px solid var.$table-head-border-color;
-
-                    &:last-of-type {
-                        border-right: none;
-                    }
+                    border: 1px solid var.$table-head-border-color;
 
                     &:nth-of-type(4) {
                         width: 184px;
