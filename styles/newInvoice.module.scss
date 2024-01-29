@@ -824,8 +824,6 @@
                 }
 
                 .companyInvoiceSaveButtonsWrapper {
-                    display: flex;
-                    justify-content: space-evenly;
                     margin-bottom: 21px;
                     font-size: 14px;
 
@@ -851,7 +849,6 @@
                 }
 
                 .companyInvoiceCancelButton {
-                    margin-left: 16px;
 
                     span {
                         display: flex;

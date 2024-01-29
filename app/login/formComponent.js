@@ -78,7 +78,7 @@ export default function LoginForm() {
     return (
         <div className={`${styles.loginContainer} container-fluid`}>
             <div className="row mx-0">
-                <div className="col-md-6">
+                <div className={`${styles.loginInnerWrapper} col-md-6`}>
                     <div className="row">
                         <div className="col-sm-12 d-flex justify-content-center justify-content-md-start">
                             <h1 className={`${styles.mainHeading} main-heading`}>Groovy <span className={styles.green}>Invoice</span></h1>
