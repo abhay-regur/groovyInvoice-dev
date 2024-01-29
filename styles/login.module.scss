@@ -5,6 +5,13 @@
     color: var.$primary-color;
     margin: 0;
     padding: 0;
+    background: linear-gradient(0deg, var.$background-primary-color, var.$background-primary-color), url('/images/login_page.png') no-repeat;
+    background-size: contain;
+    background-position-x: right;
+
+    .loginInnerWrapper {
+        background: var.$primary-background;
+    }
 
     input {
         &::placeholder {
@@ -182,7 +189,6 @@
     }
 
     .loginBackground {
-        background: linear-gradient(0deg, var.$background-primary-color, var.$background-primary-color), url('/images/login_page.png') no-repeat;
         background-size: cover;
         height: 100vh;
 
