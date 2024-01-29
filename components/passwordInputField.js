@@ -18,7 +18,7 @@ export default function PasswordInputField(props) {
           <FontAwesomeIcon icon={faKey} />
         </i>
       ) : ''}
-      <input type={passwordShown ? "test" : "password"} placeholder={props.placeholder} className="form-control" name={props.name} value={props.value} onChange={props.onChange} id="password" />
+      <input type={passwordShown ? "test" : "password"} placeholder={props.placeholder} className="form-control" name={props.name} value={props.value} onChange={props.onChange} id={props.name} />
       <i className="toggle-visibility-wrapper" onClick={togglePassword}>
         <FontAwesomeIcon icon={passwordShown ? faEyeSlash : faEye} />
       </i>
