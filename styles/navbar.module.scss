@@ -607,6 +607,7 @@
             .navHeadingWrapper {
                 flex-direction: row;
                 width: 100%;
+                align-items: center;
 
                 .mainHeading {
                     font-weight: 700;
@@ -632,7 +633,6 @@
                 }
 
                 .hamburgerMenu {
-                    margin-top: 14px;
                     justify-self: end;
                     display: flex;
                     flex-direction: column;
