@@ -92,7 +92,7 @@
     .loginCard {
         box-sizing: border-box;
 
-        width: 450px;
+        max-width: 450px;
         padding: 39px 50px;
         margin: 0 auto;
 
@@ -102,16 +102,7 @@
         color: var.$secondary-color;
 
         @media (max-width: var.$screen-size-md) {
-            width: 375px;
             padding: 32px 24px;
-        }
-
-        @media (max-width: var.$screen-size-sm) {
-            width: 375px;
-        }
-
-        @media (max-width: var.$screen-size-xm) {
-            width: 300px;
         }
 
         label {
