@@ -59,12 +59,12 @@ export default function InvoiceAddForm() {
         let subTotalAmount = 0
         let totalTaxAmount = 0
         for (let i = 0; i < data.invoiceItems.length; i++) {
-            subTotalAmount += data.invoiceItems[i].total
-            totalTaxAmount += data.invoiceItems[i].taxAmount
+            subTotalAmount = parseFloat(subTotalAmount) + parseFloat(data.invoiceItems[i].total)
+            totalTaxAmount = parseFloat(totalTaxAmount) + parseFloat(data.invoiceItems[i].taxAmount)
         }
-        data.subTotalAmount = parseFloat(subTotalAmount).toFixed(2)
-        data.totalTaxAmount = totalTaxAmount.toFixed(2)
-        data.totalAmount = (parseFloat(data.adjustmentAmount) + parseFloat(data.shippingCharges) + parseFloat(data.totalTaxAmount) + parseFloat(data.subTotalAmount)).toFixed(2);
+        data.subTotalAmount = parseFloat(subTotalAmount)
+        data.totalTaxAmount = parseFloat(totalTaxAmount);
+        data.totalAmount = parseFloat(data.adjustmentAmount) + parseFloat(data.shippingCharges) + parseFloat(data.totalTaxAmount) + parseFloat(data.subTotalAmount);
         let temp = Object.assign({}, data)
         setData(temp)
     }
@@ -329,7 +329,7 @@ export default function InvoiceAddForm() {
                                                         </span>
                                                     </span>
                                                     <span className={`${styles.totalCalculatedTax} d-flex`}>
-                                                        <span className='text-start text-lg-right text-xl-left'> Rs. {data.totalTaxAmount}</span>
+                                                        <span className='text-start text-lg-right text-xl-left'> Rs. {parseFloat(data.totalTaxAmount).toFixed(2)}</span>
                                                     </span>
                                                 </div>
                                                 <div className={`${styles.companyInvoiceAdjustmentWrapper} d-flex row`}>
@@ -344,7 +344,7 @@ export default function InvoiceAddForm() {
                                                     </div>
                                                     <div className="col-7 col-lg-3 order-2 order-lg-3">
                                                         <span className={`${styles.totalCalculatedAdjustment} d-flex justify-content-end`}>
-                                                            <span> Rs. {data.adjustmentAmount}</span>
+                                                            <span> Rs. {parseFloat(data.adjustmentAmount).toFixed(2)}</span>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -354,7 +354,7 @@ export default function InvoiceAddForm() {
                                                         <h5>Total</h5>
                                                     </div>
                                                     <div className="col-6 text-center text-sm-end">
-                                                        <h5>Rs. {data.totalAmount}</h5>
+                                                        <h5>Rs. {parseFloat(data.totalAmount).toFixed(2)}</h5>
                                                     </div>
 
                                                 </div>
@@ -370,7 +370,7 @@ export default function InvoiceAddForm() {
                                     <div className="width-100"></div>
                                     <div className="col-md-12 col-lg-9 col-xl-8 col-xxl-6 px-1">
                                         <div className="row gx-1">
-                                            <div className="col-6 col-md-4 col-lg-4 col-xl-3">
+                                            <div className="col-6 col-md-4 col-lg-4 col-xl-4">
                                                 <span className={`${styles.companyInvoiceSaveButtonsWrapper} d-flex flex-column`}>
                                                     <button name="btn-submit" className={`${styles.companyInvoiceSaveDraftButton} btn green`} onClick={(e) => handleSubmit(e, 'draft')}>
                                                         <span>
@@ -380,9 +380,9 @@ export default function InvoiceAddForm() {
                                                     </button>
                                                 </span>
                                             </div>
-                                            <div className="col-6 col-md-4 col-lg-4 col-xl-3">
+                                            <div className="col-6 col-md-4 col-lg-4 col-xl-4">
                                                 <span className={`${styles.companyInvoiceSaveButtonsWrapper} d-flex flex-column`}>
-                                                    <button name="btn-submit" className={`${styles.companyInvoiceSavenSendButton} btn blue`} onClick={(e) => handleSubmit(e, 'unpaid')}>
+                                                    <button name="btn-submit" className={`${styles.companyInvoiceSavenSendButton} btn blue`} onClick={(e) => handleSubmit(e, 'send')}>
                                                         <span>
                                                             <i><FaSave /></i>
                                                             Save & Send
