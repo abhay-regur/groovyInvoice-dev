@@ -93,11 +93,11 @@ export default function InvoiceEditForm() {
         let subTotalAmount = 0
         let totalTaxAmount = 0
         for (let i = 0; i < data.invoiceItems.length; i++) {
-            subTotalAmount += data.invoiceItems[i].total
-            totalTaxAmount += data.invoiceItems[i].taxAmount
+            subTotalAmount = parseFloat(subTotalAmount) + parseFloat(data.invoiceItems[i].total)
+            totalTaxAmount = parseFloat(totalTaxAmount) + parseFloat(data.invoiceItems[i].taxAmount)
         }
         data.subTotalAmount = parseFloat(subTotalAmount).toFixed(2)
-        data.totalTaxAmount = parseFloat(data.totalTaxAmount).toFixed(2);
+        data.totalTaxAmount = parseFloat(totalTaxAmount).toFixed(2);
         data.totalAmount = (parseFloat(data.adjustmentAmount) + parseFloat(data.shippingCharges) + parseFloat(data.totalTaxAmount) + parseFloat(data.subTotalAmount)).toFixed(2);
         let temp = Object.assign({}, data)
         setData(temp)
@@ -288,7 +288,7 @@ export default function InvoiceEditForm() {
                                                 <div className="card-body">
                                                     <div className="d-flex justify-content-between">
                                                         <div className={`${styles.subtotalLabel}`}>Sub Total</div>
-                                                        <div className={`${styles.subtotalresult}`}>Rs. {data.subTotalAmount}</div>
+                                                        <div className={`${styles.subtotalresult}`}>Rs. {parseFloat(data.subTotalAmount).toFixed(2)}</div>
                                                     </div>
                                                     <div className={`${styles.companyInvoiceTaxOptionWrapper} d-flex align-content-center`}>
                                                         <span className={`${styles.companyInvoiceTaxOptionInputWrapper}`}>
@@ -317,11 +317,11 @@ export default function InvoiceEditForm() {
                                                             </span>
                                                         </span>
                                                         <span className={`${styles.totalCalculatedTax} d-flex`}>
-                                                            <span className='text-start text-lg-right text-xl-left'> Rs. {data.totalTaxAmount}</span>
+                                                            <span className='text-start text-lg-right text-xl-left'> Rs. {parseFloat(data.totalTaxAmount).toFixed(2)}</span>
                                                         </span>
                                                     </div>
                                                     <div className={`${styles.companyInvoiceAdjustmentWrapper} d-flex row`}>
-                                                        <div className={`${styles.companyInvoiceAdjustmentInputWrapper} col-5 order-1 order-lg-1 mb-3`}>
+                                                        <div className={`${styles.companyInvoiceAdjustmentInputWrapper} col-5 order-1 col-lg-4 order-lg-1 mb-3`}>
                                                             <input type="text" className={`${styles.companyInvoicePriceAdjustment} form-control`} placeholder="Adjustment" name="adjustmentText" value={data.adjustmentText} onChange={handleInput} />
                                                         </div>
                                                         <div className="col-6 order-3 col-lg-4 order-lg-2">
@@ -330,9 +330,9 @@ export default function InvoiceEditForm() {
                                                                 <i><FaCircleQuestion></FaCircleQuestion></i>
                                                             </div>
                                                         </div>
-                                                        <div className="col-7 col-lg-3 order-2 order-lg-3">
+                                                        <div className="col-7 col-lg-4 order-2 order-lg-3">
                                                             <span className={`${styles.totalCalculatedAdjustment} d-flex justify-content-end`}>
-                                                                <span> Rs. {data.adjustmentAmount}</span>
+                                                                <span> Rs. {parseFloat(data.adjustmentAmount).toFixed(2)}</span>
                                                             </span>
                                                         </div>
                                                     </div>
@@ -342,7 +342,7 @@ export default function InvoiceEditForm() {
                                                             <h5>Total</h5>
                                                         </div>
                                                         <div className="col-6 text-center text-sm-end">
-                                                            <h5>Rs. {data.totalAmount}</h5>
+                                                            <h5>Rs. {parseFloat(data.totalAmount).toFixed(2)}</h5>
                                                         </div>
 
                                                     </div>
@@ -358,7 +358,7 @@ export default function InvoiceEditForm() {
                                         <div className="width-100"></div>
                                         <div className="col-md-12 col-lg-9 col-xl-8 col-xxl-6 px-1">
                                             <div className="row gx-1">
-                                                <div className="col-6 col-md-4 col-lg-4 col-xl-3">
+                                                <div className="col-6 col-md-4 col-lg-4 col-xl-4">
                                                     <span className={`${styles.companyInvoiceSaveButtonsWrapper} d-flex flex-column`}>
                                                         <button name="btn-submit" className={`${styles.companyInvoiceSaveDraftButton} btn green`} onClick={(e) => handleSubmit(e, 'draft')}>
                                                             <span>
@@ -368,9 +368,9 @@ export default function InvoiceEditForm() {
                                                         </button>
                                                     </span>
                                                 </div>
-                                                <div className="col-6 col-md-4 col-lg-4 col-xl-3">
+                                                <div className="col-6 col-md-4 col-lg-4 col-xl-4">
                                                     <span className={`${styles.companyInvoiceSaveButtonsWrapper} d-flex flex-column`}>
-                                                        <button name="btn-submit" className={`${styles.companyInvoiceSavenSendButton} btn blue`} onClick={(e) => handleSubmit(e, 'unpaid')}>
+                                                        <button name="btn-submit" className={`${styles.companyInvoiceSavenSendButton} btn blue`} onClick={(e) => handleSubmit(e, 'send')}>
                                                             <span>
                                                                 <i><FaSave /></i>
                                                                 Save & Send
