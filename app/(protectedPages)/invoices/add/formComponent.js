@@ -300,7 +300,7 @@ export default function InvoiceAddForm() {
                                             <div className="card-body">
                                                 <div className="d-flex justify-content-between">
                                                     <div className={`${styles.subtotalLabel}`}>Sub Total</div>
-                                                    <div className={`${styles.subtotalresult}`}>Rs. {data.subTotalAmount}</div>
+                                                    <div className={`${styles.subtotalresult}`}>Rs. {parseFloat(data.subTotalAmount).toFixed(2)}</div>
                                                 </div>
                                                 <div className={`${styles.companyInvoiceTaxOptionWrapper} d-flex align-content-center`}>
                                                     <span className={`${styles.companyInvoiceTaxOptionInputWrapper}`}>
