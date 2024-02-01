@@ -4,6 +4,13 @@
     color: var.$primary-color;
     margin: 0;
     padding: 0;
+    background: linear-gradient(0deg, var.$background-primary-color, var.$background-primary-color), url('/images/registration_page.png') no-repeat;
+    background-size: 60% 100%;
+    background-position-x: left;
+
+    .loginInnerWrapper {
+        background: var.$primary-background;
+    }
 
     input {
         &::placeholder {
@@ -168,9 +175,8 @@
     }
 
     .loginBackground {
-        background: linear-gradient(0deg, var.$background-primary-color, var.$background-primary-color), url('/images/registration_page.png') no-repeat;
         background-size: cover;
-        height: inherit;
+        height: 100vh;
 
         @media (max-width: var.$screen-size-mm) {
             display: none;

@@ -179,11 +179,13 @@
                 min-width: 100px;
 
                 &.companyInvoiceSaveSendButton {
+                    min-height: 34px;
                     display: flex;
                     justify-content: center;
+                    align-items: center;
 
                     &:disabled {
-                        padding-top: 15px;
+                        padding-top: 10px;
                     }
 
                     span {
@@ -418,12 +420,14 @@
                 font-size: 14px;
 
                 &.companyInvoiceSaveSendButton {
+                    min-height: 34px;
                     width: 100%;
                     display: flex;
                     justify-content: center;
+                    align-items: center;
 
                     &:disabled {
-                        padding-top: 15px;
+                        padding-top: 10px;
                     }
 
                     span {
