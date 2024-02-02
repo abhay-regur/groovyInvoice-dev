@@ -94,7 +94,7 @@ export default function RegistrationForm() {
             <div className="row mx-0">
                 <div className={`${styles.loginBackground} col-md-6 .d-none .d-lg-block .d-xl-none`}>
                 </div>
-                <div className="col-md-6">
+                <div className={`${styles.loginInnerWrapper} col-md-6`}>
                     <div className="row">
                         <div className="col-sm-12 d-flex justify-content-center justify-content-md-start">
                             <h1 className={`${styles.mainHeading} main-heading`}>Groovy <span className={styles.green}>Invoice</span></h1>

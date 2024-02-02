@@ -63,9 +63,9 @@ const CustomSelectComponent = ({ data, onOptionValueChange, optionValue, name, i
                 <i className={`${style.companyInvoiceCustomSelectInputIcon}`}><FaAngleDown /></i>
                 <ul className={`${style.companyInvoiceCustomSelectMenu} dropdown-menu w-100`}>
                     {hasSearch ? <>
-                        <li className={` ${style.menuItem} dropdown-item sticky-top`} name={name}>
+                        <li className={` ${style.menuItem} dropdown-item sticky-top mt-1`} name={name}>
                             <input type="text" className={`${style.companyInvoiceCustomSelectSearchInput} form-control`} onChange={(e) => { handleSearchChange(e.target) }} onBlur={(e => { e.target.value = '' })} />
-                            <hr className="mt-1 mb-1" />
+                            <hr className="mt-1 mb-0" />
                         </li>
                     </> : ""}
                     {dataList != undefined && dataList.length > 0 ? dataList.map(function (data, id) {
@@ -90,9 +90,10 @@ const CustomSelectComponent = ({ data, onOptionValueChange, optionValue, name, i
         return (
             <div className={`${style.companyInvoiceCustomSelectWrapper} dropdown d-flex`}>
                 <input id={`${name}_customSelect`} className={`dropdown-toggle w-100 ${inputClass}`} type="button" data-bs-toggle="dropdown" aria-expanded="false" value={genrateSelectInputValue(optionValue)} placeholder="Select a Value" />
+                <i className={`${style.companyInvoiceCustomSelectInputIcon}`}><FaAngleDown /></i>
                 <ul className={`${style.companyInvoiceCustomSelectMenu} dropdown-menu w-100`}>
                     <li key='0' >
-                        <option className={`${style.menuItem} dropdown-item`} value="" name={name} onClick={(e) => { console.log('No-Value') }}>No-Options</option>
+                        <option className={`${style.menuItem} dropdown-item mt-1 mb-1`} value="" name={name} onClick={(e) => { console.log('No-Value') }}>No-Options</option>
                     </li>
                     {isInnerButtonRequired
                         ? <>
