@@ -12,6 +12,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
     const [overseas, setOverseas] = useState(false);
     const { Modal } = require("bootstrap");
     const [modelFor, setModalFor] = useState('');
+
     const [paymentTermLabel, setPaymentTermLable] = useState({
         label: "",
         numberOfDays: 0
