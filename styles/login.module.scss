@@ -6,7 +6,7 @@
     margin: 0;
     padding: 0;
     background: linear-gradient(0deg, var.$background-primary-color, var.$background-primary-color), url('/images/login_page.png') no-repeat;
-    background-size: contain;
+    background-size: 60% 100%;
     background-position-x: right;
 
     .loginInnerWrapper {
@@ -180,7 +180,6 @@
     }
 
     .loginBackground {
-        background-size: cover;
         height: 100vh;
 
         @media (max-width: var.$screen-size-mm) {
