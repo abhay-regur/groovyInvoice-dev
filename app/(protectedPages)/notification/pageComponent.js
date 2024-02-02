@@ -23,8 +23,6 @@ export default function NotificationComponent() {
         { title: 'Notification 2', discription: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero et in, animi esse nam asperiores.', time: '20:11' },
         { title: 'Notification 3', discription: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero et in, animi esse nam asperiores.', time: '18:26' },
         { title: 'Notification 4', discription: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero et in, animi esse nam asperiores.', time: '14:56' },
-        { title: 'Notification 5', discription: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero et in, animi esse nam asperiores.', time: '14:06' },
-        { title: 'Notification 6', discription: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero et in, animi esse nam asperiores.', time: '09:15' }
     ])
 
 
@@ -40,55 +38,68 @@ export default function NotificationComponent() {
                         </div>
                     </div>
 
-                    <div className={`${styles.companyInvoiceTimeHeaderWrapper}`}>
-                        <h4>Today</h4>
-                        <hr />
-                    </div>
-                    <div className="row">
-                        {
-                            currentnotificationData.map(function (elem, idx) {
-                                return (
-                                    <div key={idx} className="col-10 mb-3">
-                                        <NotificationCard idx={idx} data={elem} styles={styles} />
-                                    </div>
-                                )
+                    <div className="accordion accordion-flush" id="accordionNotification">
+                        <div className="accordion-item">
+                            <h2 className={`${styles.companyInvoiceTimeHeaderWrapper} accordion-header d-flex align-items-center`} id="accordionNotificationTodayHeader">
+                                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionNotificationTodayContainer" aria-expanded="false" aria-controls="accordionNotificationTodayContainer">
+                                    Today
+                                    <span className="badge rounded-pill ms-3">{currentnotificationData.length}</span>
+                                </button>
+                            </h2>
+                            <div id="accordionNotificationTodayContainer" className="accordion-collapse collapse show" aria-labelledby="accordionNotificationTodayHeader" data-bs-parent="#accordionNotificationTodayHeader">
+                                {
+                                    currentnotificationData.map(function (elem, idx) {
+                                        return (
+                                            <div key={idx} className="col-12 mb-3">
+                                                <NotificationCard idx={idx} data={elem} styles={styles} />
+                                            </div>
+                                        )
 
-                            })
-                        }
-                    </div>
-                    <div className={`${styles.companyInvoiceTimeHeaderWrapper}`}>
-                        <h4>Yesterday</h4>
-                        <hr />
-                    </div>
-                    <div className="row">
-                        {
-                            notificationData.map(function (elem, idx) {
-                                return (
-                                    <div key={idx} className="col-10 mb-3">
-                                        <NotificationCard idx={idx} data={elem} styles={styles} />
-                                    </div>
-                                )
+                                    })
+                                }
+                            </div>
+                        </div>
+                        <div className="accordion-item">
+                            <h2 className={`${styles.companyInvoiceTimeHeaderWrapper} accordion-header d-flex align-items-center`} id="accordionNotificationYesterdayHeader">
+                                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionNotificationYesterdayContainer" aria-expanded="false" aria-controls="accordionNotificationYesterdayContainer">
+                                    Yesterday
+                                    <span className="badge rounded-pill ms-3">{notificationData.length}</span>
+                                </button>
+                            </h2>
+                            <div id="accordionNotificationYesterdayContainer" className="accordion-collapse collapse" aria-labelledby="accordionNotificationYesterdayHeader" data-bs-parent="#accordionNotificationYesterdayHeader">
+                                {
+                                    notificationData.map(function (elem, idx) {
+                                        return (
+                                            <div key={idx} className="col-12 mb-3">
+                                                <NotificationCard idx={idx} data={elem} styles={styles} />
+                                            </div>
+                                        )
 
-                            })
-                        }
-                    </div>
-                    <div className={`${styles.companyInvoiceTimeHeaderWrapper}`}>
-                        <h4>Older</h4>
-                        <hr />
-                    </div>
-                    <div className="row">
-                        {
-                            notificationData.map(function (elem, idx) {
-                                return (
-                                    <div key={idx} className="col-10 mb-3">
-                                        <NotificationCard idx={idx} data={elem} styles={styles} />
-                                    </div>
-                                )
+                                    })
+                                }
+                            </div>
+                        </div>
+                        <div className="accordion-item">
+                            <h2 className={`${styles.companyInvoiceTimeHeaderWrapper} accordion-header d-flex align-items-center`} id="accordionNotificationOlderHeader">
+                                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionNotificationOlderContainer" aria-expanded="false" aria-controls="accordionNotificationOlderContainer">
+                                    Older
+                                    <span className="badge rounded-pill ms-3">{notificationData.length}</span>
+                                </button>
+                            </h2>
+                            <div id="accordionNotificationOlderContainer" className="accordion-collapse collapse" aria-labelledby="accordionNotificationOlderHeader" data-bs-parent="#accordionNotificationOlderHeader">
+                                {
+                                    notificationData.map(function (elem, idx) {
+                                        return (
+                                            <div key={idx} className="col-12 mb-3">
+                                                <NotificationCard idx={idx} data={elem} styles={styles} />
+                                            </div>
+                                        )
 
-                            })
-                        }
+                                    })
+                                }
+                            </div>
+                        </div>
                     </div>
-
                 </div>
             </main>
         </div>

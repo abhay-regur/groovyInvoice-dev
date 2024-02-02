@@ -6,7 +6,7 @@
     margin: 0;
     padding: 0;
     background: linear-gradient(0deg, var.$background-primary-color, var.$background-primary-color), url('/images/login_page.png') no-repeat;
-    background-size: contain;
+    background-size: 60% 100%;
     background-position-x: right;
 
     .loginInnerWrapper {
@@ -83,7 +83,7 @@
     .loginCard {
         box-sizing: border-box;
 
-        width: 450px;
+        max-width: 450px;
         padding: 39px 50px;
         margin: 0 auto;
 
@@ -93,16 +93,7 @@
         color: var.$secondary-color;
 
         @media (max-width: var.$screen-size-md) {
-            width: 360px;
             padding: 32px 24px;
-        }
-
-        @media (max-width: var.$screen-size-sm) {
-            width: 375px;
-        }
-
-        @media (max-width: var.$screen-size-xm) {
-            width: 300px;
         }
 
         .hide {
@@ -189,7 +180,6 @@
     }
 
     .loginBackground {
-        background-size: cover;
         height: 100vh;
 
         @media (max-width: var.$screen-size-mm) {
