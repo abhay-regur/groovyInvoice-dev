@@ -95,7 +95,7 @@ const AllUserTable = () => {
         var result = '';
         var table = $('#manage-user--table').DataTable();
         table.clear();
-        setIsLoading(true);
+        // setIsLoading(true);
         if (rowData.active) {
             result = await userDeactivate(rowData.id);
         } else {
@@ -103,7 +103,7 @@ const AllUserTable = () => {
         }
 
         if (result.status == 200) {
-            setIsLoading(false);
+
             dtRef.current.reload();
             setToastList([{
                 id: Math.floor((Math.random() * 101) + 1),
@@ -122,7 +122,6 @@ const AllUserTable = () => {
                     <label className="input-group-text">Search:</label>
                     <input type="search" className="form-control" placeholder="Name" aria-controls="table-input" />
                 </div>
-                {/* <PageLoader isPageLoading={isPageLoading} /> */}
             </div>
             <div className={`col-sm-12 p-0`}>
                 <ServerSideDataTables
