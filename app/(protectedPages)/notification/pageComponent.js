@@ -39,14 +39,14 @@ export default function NotificationComponent() {
                     </div>
 
                     <div className="accordion accordion-flush" id="accordionNotification">
-                        <div className="accordion-item">
+                        <div className={` ${styles.comapnyNotificationAccordianMain} accordion-item`}>
                             <h2 className={`${styles.companyInvoiceTimeHeaderWrapper} accordion-header d-flex align-items-center`} id="accordionNotificationTodayHeader">
                                 <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionNotificationTodayContainer" aria-expanded="false" aria-controls="accordionNotificationTodayContainer">
                                     Today
                                     <span className="badge rounded-pill ms-3">{currentnotificationData.length}</span>
                                 </button>
                             </h2>
-                            <div id="accordionNotificationTodayContainer" className="accordion-collapse collapse show" aria-labelledby="accordionNotificationTodayHeader" data-bs-parent="#accordionNotificationTodayHeader">
+                            <div id="accordionNotificationTodayContainer" className="accordion-collapse collapse mt-1 show" aria-labelledby="accordionNotificationTodayHeader" data-bs-parent="#accordionNotificationTodayHeader">
                                 {
                                     currentnotificationData.map(function (elem, idx) {
                                         return (
@@ -59,14 +59,14 @@ export default function NotificationComponent() {
                                 }
                             </div>
                         </div>
-                        <div className="accordion-item">
+                        <div className={`${styles.comapnyNotificationAccordianMain} accordion-item`}>
                             <h2 className={`${styles.companyInvoiceTimeHeaderWrapper} accordion-header d-flex align-items-center`} id="accordionNotificationYesterdayHeader">
                                 <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionNotificationYesterdayContainer" aria-expanded="false" aria-controls="accordionNotificationYesterdayContainer">
                                     Yesterday
                                     <span className="badge rounded-pill ms-3">{notificationData.length}</span>
                                 </button>
                             </h2>
-                            <div id="accordionNotificationYesterdayContainer" className="accordion-collapse collapse" aria-labelledby="accordionNotificationYesterdayHeader" data-bs-parent="#accordionNotificationYesterdayHeader">
+                            <div id="accordionNotificationYesterdayContainer" className="accordion-collapse collapse mt-1" aria-labelledby="accordionNotificationYesterdayHeader" data-bs-parent="#accordionNotificationYesterdayHeader">
                                 {
                                     notificationData.map(function (elem, idx) {
                                         return (
@@ -79,14 +79,14 @@ export default function NotificationComponent() {
                                 }
                             </div>
                         </div>
-                        <div className="accordion-item">
+                        <div className={`${styles.comapnyNotificationAccordianMain} accordion-item`}>
                             <h2 className={`${styles.companyInvoiceTimeHeaderWrapper} accordion-header d-flex align-items-center`} id="accordionNotificationOlderHeader">
                                 <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionNotificationOlderContainer" aria-expanded="false" aria-controls="accordionNotificationOlderContainer">
                                     Older
                                     <span className="badge rounded-pill ms-3">{notificationData.length}</span>
                                 </button>
                             </h2>
-                            <div id="accordionNotificationOlderContainer" className="accordion-collapse collapse" aria-labelledby="accordionNotificationOlderHeader" data-bs-parent="#accordionNotificationOlderHeader">
+                            <div id="accordionNotificationOlderContainer" className="accordion-collapse collapse mt-1" aria-labelledby="accordionNotificationOlderHeader" data-bs-parent="#accordionNotificationOlderHeader">
                                 {
                                     notificationData.map(function (elem, idx) {
                                         return (
@@ -94,7 +94,6 @@ export default function NotificationComponent() {
                                                 <NotificationCard idx={idx} data={elem} styles={styles} />
                                             </div>
                                         )
-
                                     })
                                 }
                             </div>
