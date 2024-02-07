@@ -115,7 +115,7 @@ export default function InvoiceEditForm() {
         if (name != '') {
             if (['openingBalance', 'gstTreatment', 'customerId', 'termsId', 'subtotalAmount', 'shippingCharges'].includes(name)) {
                 if (!Number.isNaN((target.value)) && target.value != '') {
-                    data[name] = parseInt(target.value);
+                    data[name] = parseInt(target.value).toFixed(2);
                 } else {
                     data[name] = 0;
                 }
