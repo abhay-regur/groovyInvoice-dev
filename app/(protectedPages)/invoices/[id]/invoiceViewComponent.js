@@ -259,11 +259,11 @@ export default function InvoiceViewComponent() {
                                             <div className={`${styles.companyInvoiceViewInvoiceTotalCard} card`}>
                                                 <div className="d-flex justify-content-between">
                                                     <span>Sub Total</span>
-                                                    <span>Rs. {data.subTotalAmount}</span>
+                                                    <span>Rs. {parseFloat(data.subTotalAmount).toFixed(2)}</span>
                                                 </div>
                                                 <div className="d-flex justify-content-between">
                                                     <span>Total</span>
-                                                    <span>Rs. {data.totalAmount}</span>
+                                                    <span>Rs. {parseFloat(data.totalAmount).toFixed(2)}</span>
                                                 </div>
                                                 <div className="d-flex justify-content-between">
                                                     <span>Payment Made</span>
