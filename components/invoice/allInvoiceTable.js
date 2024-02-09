@@ -92,11 +92,10 @@ const AllInvoiceTable = ({ ItemsData }) => {
                 orderable: true,
             },
             {
-                data: 'totalAmount', name: 'totalAmount',
+                data: 'totalAmount', name: 'totalAmount', searchable: true,
                 render: (data, type, row) => {
-                    return parseFloat(row.totalAmount).toFixed(2);
+                    return parseFloat(row.totalAmount).toFixed(2)
                 },
-                searchable: true,
                 orderable: true,
             },
             {

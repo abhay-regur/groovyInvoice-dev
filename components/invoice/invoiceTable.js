@@ -117,7 +117,7 @@ const InvoiceTable = (props) => {
                                     </td>
                                     <td>
                                         <p className={`${styles.companyInvoiceTableItemAmount}`}>
-                                            Rs. {item.total}
+                                            Rs. {parseFloat(item.total).toFixed(2)}
                                         </p>
                                     </td>
                                     <td className={`${styles.companyInvoiceItemEditCols}`}>
