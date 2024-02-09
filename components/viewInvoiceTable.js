@@ -1,41 +1,7 @@
 import styles from '@/styles/viewInvoice.module.scss';
 import React from 'react';
-import { useTable, usePagination } from 'react-table';
 
 const ViewInvoiceTable = ({ items = [] }) => {
-
-    const columns = React.useMemo(
-        () => [
-            {
-                Header: '#',
-                accessor: 'indexNumber',
-            },
-            {
-                Header: 'Item & Description',
-                accessor: 'itemDescription',
-            },
-            {
-                Header: 'HSN/SAC',
-                accessor: 'taxCode',
-            },
-            {
-                Header: 'Qty',
-                accessor: 'quantity',
-            },
-            {
-                Header: 'Rate',
-                accessor: 'rate',
-            },
-            {
-                Header: 'Amount',
-                accessor: 'amount',
-            },
-        ],
-        []
-    )
-
-    
-    
 
     return (
         <div className="row">
@@ -61,7 +27,7 @@ const ViewInvoiceTable = ({ items = [] }) => {
                                         <td >991512</td>
                                         <td >{item.quantity}</td>
                                         <td >{item.rate}</td>
-                                        <td >{item.total}</td>
+                                        <td >{parseFloat(item.total).toFixed(2)}</td>
                                     </tr>
                                 );
                             })}
