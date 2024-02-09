@@ -44,6 +44,8 @@ export default function InvoiceViewComponent() {
         totalAmount: 0,
         adjustmentText: '',
         adjustmentAmount: 0,
+        paidAmount: 0,
+        unpaidAmount: 0,
         invoiceItems: []
     })
 
@@ -267,12 +269,12 @@ export default function InvoiceViewComponent() {
                                                 </div>
                                                 <div className="d-flex justify-content-between">
                                                     <span>Payment Made</span>
-                                                    <span className="red">-Rs. 00.00</span>
+                                                    <span className="red">-Rs. {parseFloat(data.paidAmount).toFixed(2)}</span>
                                                 </div>
                                                 <hr />
                                                 <div className="d-flex justify-content-between">
                                                     <span>Balance Due</span>
-                                                    <span>Rs. 00.00</span>
+                                                    <span>Rs. {parseFloat(data.unpaidAmount).toFixed(2)}</span>
                                                 </div>
                                             </div>
                                         </div>
