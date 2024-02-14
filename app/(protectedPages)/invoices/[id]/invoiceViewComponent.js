@@ -21,6 +21,7 @@ import { formatDate } from '@/utils/date.utils';
 import Link from 'next/link';
 import { convertNumberToWord } from '@/utils/number.utils';
 import Loading from '@/app/loading';
+import { paymentInfoForInvoice } from '@/services/payment.service';
 
 export default function InvoiceViewComponent() {
     const { id } = useParams();
@@ -46,6 +47,10 @@ export default function InvoiceViewComponent() {
         adjustmentAmount: 0,
         invoiceItems: []
     })
+    const [paymentInfo, setPaymentInfo] = useState({
+        paidAmount: 0,
+        unpaidAmount: 0,
+    })
 
     const [customer, setCustomer] = useState({ firstName: '', lastName: '' });
     const [paymentTerm, setPaymentTerm] = useState({ label: '' });
@@ -59,6 +64,8 @@ export default function InvoiceViewComponent() {
             getCustomerData(data.customerId);
             getPaymentTermData(data.termsId);
             setIsPageLoading(false);
+            const paymentResult = await paymentInfoForInvoice(id);
+            setPaymentInfo(paymentResult.data)
 
         } catch (error) {
             if (error.response != undefined && error.response.status == 404) {
@@ -267,12 +274,12 @@ export default function InvoiceViewComponent() {
                                                 </div>
                                                 <div className="d-flex justify-content-between">
                                                     <span>Payment Made</span>
-                                                    <span className="red">-Rs. 00.00</span>
+                                                    <span className="red">-Rs. {parseFloat(paymentInfo.paidAmount).toFixed(2)}</span>
                                                 </div>
                                                 <hr />
                                                 <div className="d-flex justify-content-between">
                                                     <span>Balance Due</span>
-                                                    <span>Rs. 00.00</span>
+                                                    <span>Rs. {parseFloat(paymentInfo.unpaidAmount).toFixed(2)}</span>
                                                 </div>
                                             </div>
                                         </div>
