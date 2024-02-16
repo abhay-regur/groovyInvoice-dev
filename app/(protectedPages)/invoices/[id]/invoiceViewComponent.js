@@ -194,52 +194,25 @@ export default function InvoiceViewComponent() {
                                             </div>
                                         </div>
                                         <div className="col-12 col-lg-6">
-                                            <div className={`${styles.comapnyInvoiceViewInvoiceDetails} row`}>
-                                                <span className={`${styles.comapnyInvoiceViewInvoiceDetailsHeading} col-6 text-align-start`}>Invoice#</span>
+                                            <div className={`${styles.comapnyInvoiceViewInvoiceDetails} row justify-content-end`}>
+                                                <span className={`${styles.comapnyInvoiceViewInvoiceDetailsHeading} col-3 text-align-start`}>Invoice#</span>
                                                 <span className={`${styles.comapnyInvoiceViewInvoiceDetailsEntry} col-6 text-align-start`}>{data.invoiceNo}</span>
                                             </div>
-                                            <div className={`${styles.comapnyInvoiceViewInvoiceDetails} row`}>
-                                                <span className={`${styles.comapnyInvoiceViewInvoiceDetailsHeading} col-6 text-align-start`}>Invoice Date</span>
+                                            <div className={`${styles.comapnyInvoiceViewInvoiceDetails} row justify-content-end`}>
+                                                <span className={`${styles.comapnyInvoiceViewInvoiceDetailsHeading} col-3 text-align-start`}>Invoice Date</span>
                                                 <span className={`${styles.comapnyInvoiceViewInvoiceDetailsEntry} col-6 text-align-start`}>{formatDate(data.invoiceDate)}</span>
                                             </div>
-                                            <div className={`${styles.comapnyInvoiceViewInvoiceDetails} row`}>
-                                                <span className={`${styles.comapnyInvoiceViewInvoiceDetailsHeading} col-6 text-align-start`}>Terms</span>
+                                            <div className={`${styles.comapnyInvoiceViewInvoiceDetails} row justify-content-end`}>
+                                                <span className={`${styles.comapnyInvoiceViewInvoiceDetailsHeading} col-3 text-align-start`}>Terms</span>
                                                 <span className={`${styles.comapnyInvoiceViewInvoiceDetailsEntry} col-6 text-align-start`}>{paymentTerm.label}</span>
                                             </div>
-                                            <div className={`${styles.comapnyInvoiceViewInvoiceDetails} row`}>
-                                                <span className={`${styles.comapnyInvoiceViewInvoiceDetailsHeading} col-6 text-align-start`}>Due Date</span>
+                                            <div className={`${styles.comapnyInvoiceViewInvoiceDetails} row justify-content-end`}>
+                                                <span className={`${styles.comapnyInvoiceViewInvoiceDetailsHeading} col-3 text-align-start`}>Due Date</span>
                                                 <span className={`${styles.comapnyInvoiceViewInvoiceDetailsEntry} col-6 text-align-start`}>{formatDate(data.dueDate)}</span>
                                             </div>
                                         </div>
                                     </div>
                                     <hr />
-                                    <div className="row">
-                                        <div className="col-12 col-lg-6">
-                                            <div className={`${styles.companyInvoiceViewInvoiceBillToHeading}`}>Bill To</div>
-                                            <div className={`${styles.companyInvoiceViewInvoiceBillToAddressWrapper}`}>
-                                                <div className={`${styles.companyInvoiceViewInvoiceBillToName}`}>Molestiequis ornare dignissim</div>
-                                                <div className={`${styles.companyInvoiceViewInvoiceBillToAddress}`}>Tempor ante phasellus auctor varius libero varius purus</div>
-                                            </div>
-                                        </div>
-                                        <div className="col-12 col-lg-6">
-                                            <div className={`${styles.comapnyInvoiceViewInvoiceDetails} row`}>
-                                                <span className={`${styles.comapnyInvoiceViewInvoiceDetailsHeading} col-6 text-align-start`}>Invoice#</span>
-                                                <span className={`${styles.comapnyInvoiceViewInvoiceDetailsEntry} col-6 text-align-start`}>{data.invoiceNo}</span>
-                                            </div>
-                                            <div className={`${styles.comapnyInvoiceViewInvoiceDetails} row`}>
-                                                <span className={`${styles.comapnyInvoiceViewInvoiceDetailsHeading} col-6 text-align-start`}>Invoice Date</span>
-                                                <span className={`${styles.comapnyInvoiceViewInvoiceDetailsEntry} col-6 text-align-start`}>{formatDate(data.invoiceDate)}</span>
-                                            </div>
-                                            <div className={`${styles.comapnyInvoiceViewInvoiceDetails} row`}>
-                                                <span className={`${styles.comapnyInvoiceViewInvoiceDetailsHeading} col-6 text-align-start`}>Terms</span>
-                                                <span className={`${styles.comapnyInvoiceViewInvoiceDetailsEntry} col-6 text-align-start`}>{paymentTerm.label}</span>
-                                            </div>
-                                            <div className={`${styles.comapnyInvoiceViewInvoiceDetails} row`}>
-                                                <span className={`${styles.comapnyInvoiceViewInvoiceDetailsHeading} col-6 text-align-start`}>Due Date</span>
-                                                <span className={`${styles.comapnyInvoiceViewInvoiceDetailsEntry} col-6 text-align-start`}>{formatDate(data.dueDate)}</span>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <ViewInvoiceTable items={data.invoiceItems} />
                                     <div className="row">
                                         <div className="col-12 col-lg-5 order-1 order-lg-0">
