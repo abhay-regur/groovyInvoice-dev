@@ -191,7 +191,6 @@ export default function OrganizationSetupForm() {
             temp.GSTIN = "";
         }
         setData(Object.assign({}, temp));
-        console.log(data)
         try {
             var result = await updateCompanyDetails(data)
             if (result.status == 200 || result.status == 201) {
