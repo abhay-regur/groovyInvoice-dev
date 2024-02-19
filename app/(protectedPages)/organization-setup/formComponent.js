@@ -94,8 +94,8 @@ export default function OrganizationSetupForm() {
             const result = await getCurrencies();
             var data = result.data;
             var temp = [];
-            data.forEach((elem) => {
-                temp.push({ Id: elem.symbol, name: elem.symbol + ' - ' + elem.name })
+            data.forEach((elem, id) => {
+                temp.push({ Id: id, symbol: elem.symbol, name: (elem.symbol == '' ? elem.name : elem.symbol + ' - ' + elem.code + ' - ' + elem.name), code: elem.code })
             })
             setCurrencies(temp);
         } catch (error) {
@@ -166,7 +166,7 @@ export default function OrganizationSetupForm() {
         if (name != '') {
             if (name == 'stateId' || name == 'countryId') {
                 temp_data.businessLocation[name] = parseInt(target.value);
-            } else if (name == 'industryId') {
+            } else if (name == 'industryId' || name == 'currency') {
                 temp_data[name] = parseInt(target.value);
             } else {
                 temp_data[name] = target.value;
