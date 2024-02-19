@@ -1,283 +1,405 @@
-@use './utility/variables' as var;
-
+@use "./utility/variables" as var;
 
 .green {
-    color: var.$tertiary-color;
+  color: var.$tertiary-color;
 
-    path {
-        color: var.$tertiary-color;
-    }
+  path {
+    color: var.$tertiary-color;
+  }
 }
 
 @media screen and (min-width: 676px) {
-    .main {
-        padding-top: 40px;
-        margin: auto 49px;
-        margin-left: 135px;
-        transition: all 0.35s;
-        margin-bottom: 60px;
+  .main {
+    padding-top: 40px;
+    margin: auto 49px;
+    margin-left: 135px;
+    transition: all 0.35s;
+    margin-bottom: 60px;
 
-        &.expanded {
-            margin-left: 329px !important;
-            transition: all 0.35s;
-        }
-
-
-        .title {
-            font-weight: 700;
-            font-size: 36px;
-            line-height: 45px;
-            color: var.$primary-color;
-            margin-left: 3rem;
-            margin-top: 56px;
-            margin-bottom: 49px;
-            padding-left: 12px;
-        }
-
-        .organizationSetupcard {
-            background: var.$white;
-            border: 1px solid var.$border-color;
-            border-radius: 10px;
-            color: var.$secondary-color;
-            margin-bottom: 20px;
-
-            .cardTitle {
-                color: var.$primary-color;
-                font-weight: 700;
-                font-size: 22px;
-                line-height: 28px;
-            }
-
-            .cardMiniheading {
-                color: var.$tertiary-color;
-                font-weight: 400;
-                font-size: 16px;
-                line-height: 18px;
-            }
-
-            .form {
-
-                input,
-                select {
-                    height: 41px;
-                }
-
-                svg {
-                    width: 19px;
-                    height: 19px;
-                }
-
-                .companyInvoiceOrganizationNameWrapper,
-                .companyInvoiceOrganizationIndustryWrapper,
-                .companyInvoiceOrganizationStateWrapper,
-                .companyInvoiceOrganizationLocationWrapper,
-                .companyInvoiceOrganizationStateWrapper,
-                .companyInvoiceOrganizationCurrencyWrapper,
-                .companyInvoiceOrganizationLanguageWrapper,
-                .companyInvoiceOrganizationTimeZoneWrapper,
-                .companyInvoiceOrganizationGSTINWrapper,
-                .companyInvoiceOrganizationCurrentInvoicingWrapper {
-
-                    .companyInvoiceCompanyOrganizationName,
-                    .companyInvoiceOrganizationIndustrylabel,
-                    .companyInvoiceOrganizationStatelabel,
-                    .companyInvoiceOrganizationLocationlabel,
-                    .companyInvoiceOrganizationStatelabel,
-                    .companyInvoiceOrganizationCurrencylabel,
-                    .companyInvoiceOrganizationLanguagelabel,
-                    .companyInvoiceOrganizationTimeZonelabel,
-                    .companyInvoiceOrganizationGSTlabel,
-                    .companyInvoiceOrganizationCurrentInvoicinglabel {
-                        display: flex;
-                        align-items: center;
-                        font-weight: 600;
-                        font-size: 14px;
-                        color: var.$primary-color;
-                    }
-
-                    input,
-                    Select {
-                        font-weight: 400;
-                        font-size: 14px;
-                        color: var.$secondary-color;
-                        background: var.$input-background-color;
-                        border: 1px solid var.$primary-border-color;
-                        border-radius: 8px;
-                    }
-                }
-
-                .companyInvoiceOrganizationGSTWrapper {
-                    .companyInvoiceOrganizationGSTlabel {
-                        display: flex;
-                        align-items: center;
-                        font-weight: 600;
-                        font-size: 14px;
-                        color: var.$primary-color;
-                    }
-
-                    .companyInvoiceOrganizationGSTSwitchWrapper {
-                        .companyInvoiceOrganizationGSTSwitch {
-                            height: 1em;
-                            width: 2em;
-
-                            &:checked {
-                                background-color: var.$primary-color;
-                                border-color: var.$primary-color;
-                            }
-
-                            &:focus {
-                                border-color: #364aab5e;
-                                outline: 0;
-                                box-shadow: none;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // .loginBackground {
-        //     background: linear-gradient(0deg, var.$background-primary-color, var.$background-primary-color), url('/images/login_page.png') no-repeat;
-        //     background-size: cover;
-        //     min-height: 100vh;
-
-        //     @media (max-width: var.$screen-size-mm) {
-        //         display: none;
-        //     }
-        // }
+    &.expanded {
+      margin-left: 329px !important;
+      transition: all 0.35s;
     }
+
+    .title {
+      font-weight: 700;
+      font-size: 36px;
+      line-height: 45px;
+      color: var.$primary-color;
+      margin-left: 3rem;
+      margin-top: 56px;
+      margin-bottom: 49px;
+      padding-left: 12px;
+    }
+
+    .organizationSetupcard {
+      background: var.$white;
+      border: 1px solid var.$border-color;
+      border-radius: 10px;
+      color: var.$secondary-color;
+      margin-bottom: 20px;
+
+      .cardTitle {
+        color: var.$primary-color;
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 28px;
+      }
+
+      .cardMiniheading {
+        color: var.$tertiary-color;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 18px;
+      }
+
+      .form {
+        input,
+        select {
+          height: 41px;
+        }
+
+        svg {
+          width: 19px;
+          height: 19px;
+        }
+
+        .companyInvoiceOrganizationNameWrapper,
+        .companyInvoiceOrganizationIndustryWrapper,
+        .companyInvoiceOrganizationStateWrapper,
+        .companyInvoiceOrganizationLocationWrapper,
+        .companyInvoiceOrganizationStateWrapper,
+        .companyInvoiceOrganizationCurrencyWrapper,
+        .companyInvoiceOrganizationLanguageWrapper,
+        .companyInvoiceOrganizationTimeZoneWrapper,
+        .companyInvoiceOrganizationGSTINWrapper,
+        .companyInvoiceOrganizationCurrentInvoicingWrapper,
+        .companyInvoiceOrganizationImageWrapper {
+          .companyInvoiceCompanyOrganizationName,
+          .companyInvoiceOrganizationIndustrylabel,
+          .companyInvoiceOrganizationStatelabel,
+          .companyInvoiceOrganizationLocationlabel,
+          .companyInvoiceOrganizationStatelabel,
+          .companyInvoiceOrganizationCurrencylabel,
+          .companyInvoiceOrganizationLanguagelabel,
+          .companyInvoiceOrganizationTimeZonelabel,
+          .companyInvoiceOrganizationGSTlabel,
+          .companyInvoiceOrganizationCurrentInvoicinglabel,
+          .companyInvoiceOrganizationImagelabel {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            font-size: 14px;
+            color: var.$primary-color;
+          }
+
+          input,
+          Select {
+            font-weight: 400;
+            font-size: 14px;
+            color: var.$secondary-color;
+            background: var.$input-background-color;
+            border: 1px solid var.$primary-border-color;
+            border-radius: 8px;
+          }
+        }
+
+        .companyInvoiceOrganizationGSTWrapper {
+          .companyInvoiceOrganizationGSTlabel {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            font-size: 14px;
+            color: var.$primary-color;
+          }
+
+          .companyInvoiceOrganizationGSTSwitchWrapper {
+            .companyInvoiceOrganizationGSTSwitch {
+              height: 1em;
+              width: 2em;
+
+              &:checked {
+                background-color: var.$primary-color;
+                border-color: var.$primary-color;
+              }
+
+              &:focus {
+                border-color: #364aab5e;
+                outline: 0;
+                box-shadow: none;
+              }
+            }
+          }
+        }
+
+        .companyInvoiceOrganizationInputFileWrapper{
+          // border: 1px dashed var.$file-input-border;
+          background-color: var.$input-background-color;
+          background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%238DA4B8FF' stroke-width='3' stroke-dasharray='10' stroke-dashoffset='22' stroke-linecap='square'/%3e%3c/svg%3e");
+          border-radius: 6px;
+          padding: 10px;
+          align-items: center;
+          cursor: pointer;
+
+          .companyInvoiceOrganizationImageInputWrapper {
+            display: flex;
+            width: 100%;
+            cursor: default;
+
+            .companyInvoiceOrganizationImageDisplay {
+              max-height: 200px;
+              max-width: 200px;
+            }
+
+            .companyInvoiceOrganizationImageUploadWrapper {
+              margin-left: 10px;
+              p{
+                font-size: 14px;
+                color: var.$darker-grey;
+                &:nth-of-type(2){
+                  color: var.$grey;
+                }
+              }
+              
+              
+              .companyInvoiceOrganizationRemoveLogoLink {
+                color: var.$button-red-color;
+                cursor: pointer;
+              }
+            }
+          }
+
+          .companyInvoiceOrganizationInputFileSVGButton {
+            border-right: 1px var.$tertiary-color solid;
+            background: var.$tertiary-color;
+            color: var.$white;
+            font-size: 14px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            height: 41px;
+            cursor: inherit;
+            svg {
+              fill: var.$white;
+              height: 15px;
+              width: 15px;
+              margin: 0 5px;
+            }
+          }
+
+          .companyInvoiceOrganizationInputFile{
+            border: none;
+            border-radius: 0;
+            display: none;
+
+            &::-webkit-file-upload-button {
+              visibility: hidden;
+              width: 0;
+            }
+          }
+
+          label {
+            margin-left: 15px;
+            font-size: 14px;
+            cursor: inherit;
+          }
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 676px) {
-    .main {
-        padding-top: 40px;
-        transition: all 0.35s;
-        margin-bottom: 60px;
+  .main {
+    padding-top: 40px;
+    transition: all 0.35s;
+    margin-bottom: 60px;
 
-        &.expanded {
-            margin-left: 329px !important;
-            transition: all 0.35s;
-        }
-
-
-        .title {
-            font-weight: 700;
-            font-size: 36px;
-            line-height: 45px;
-            color: var.$primary-color;
-            text-align: center;
-            margin: 56px auto 49px auto;
-        }
-
-        .organizationSetupcard {
-            background: var.$white;
-            border: 1px solid var.$border-color;
-            border-radius: 10px;
-            color: var.$secondary-color;
-            margin-bottom: 20px;
-
-            .cardTitle {
-                color: var.$primary-color;
-                font-weight: 700;
-                font-size: 22px;
-                line-height: 28px;
-            }
-
-            .cardMiniheading {
-                color: var.$tertiary-color;
-                font-weight: 400;
-                font-size: 16px;
-                line-height: 18px;
-            }
-
-            .form {
-
-                input,
-                select {
-                    height: 41px;
-                }
-
-                svg {
-                    width: 19px;
-                    height: 19px;
-                }
-
-                .companyInvoiceOrganizationNameWrapper,
-                .companyInvoiceOrganizationIndustryWrapper,
-                .companyInvoiceOrganizationStateWrapper,
-                .companyInvoiceOrganizationLocationWrapper,
-                .companyInvoiceOrganizationStateWrapper,
-                .companyInvoiceOrganizationCurrencyWrapper,
-                .companyInvoiceOrganizationLanguageWrapper,
-                .companyInvoiceOrganizationTimeZoneWrapper,
-                .companyInvoiceOrganizationGSTINWrapper,
-                .companyInvoiceOrganizationCurrentInvoicingWrapper {
-
-                    .companyInvoiceCompanyOrganizationName,
-                    .companyInvoiceOrganizationIndustrylabel,
-                    .companyInvoiceOrganizationStatelabel,
-                    .companyInvoiceOrganizationLocationlabel,
-                    .companyInvoiceOrganizationStatelabel,
-                    .companyInvoiceOrganizationCurrencylabel,
-                    .companyInvoiceOrganizationLanguagelabel,
-                    .companyInvoiceOrganizationTimeZonelabel,
-                    .companyInvoiceOrganizationGSTlabel,
-                    .companyInvoiceOrganizationCurrentInvoicinglabel {
-                        display: flex;
-                        align-items: center;
-                        font-weight: 600;
-                        font-size: 14px;
-                        color: var.$primary-color;
-                    }
-
-                    input {
-                        font-weight: 400;
-                        font-size: 14px;
-                        color: var.$secondary-color;
-                        background: var.$input-background-color;
-                        border: 1px solid var.$primary-border-color;
-                        border-radius: 8px;
-                    }
-                }
-
-                .companyInvoiceOrganizationGSTWrapper {
-                    .companyInvoiceOrganizationGSTlabel {
-                        display: flex;
-                        align-items: center;
-                        font-weight: 600;
-                        font-size: 14px;
-                        color: var.$primary-color;
-                    }
-
-                    .companyInvoiceOrganizationGSTSwitchWrapper {
-                        .companyInvoiceOrganizationGSTSwitch {
-                            height: 1em;
-                            width: 2em;
-
-                            &:checked {
-                                background-color: var.$primary-color;
-                                border-color: var.$primary-color;
-                            }
-
-                            &:focus {
-                                border-color: #364aab5e;
-                                outline: 0;
-                                box-shadow: none;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // .loginBackground {
-        //     background: linear-gradient(0deg, var.$background-primary-color, var.$background-primary-color), url('/images/login_page.png') no-repeat;
-        //     background-size: cover;
-        //     min-height: 100vh;
-
-        //     @media (max-width: var.$screen-size-mm) {
-        //         display: none;
-        //     }
-        // }
+    &.expanded {
+      margin-left: 329px !important;
+      transition: all 0.35s;
     }
+
+    .title {
+      font-weight: 700;
+      font-size: 36px;
+      line-height: 45px;
+      color: var.$primary-color;
+      text-align: center;
+      margin: 56px auto 49px auto;
+    }
+
+    .organizationSetupcard {
+      background: var.$white;
+      border: 1px solid var.$border-color;
+      border-radius: 10px;
+      color: var.$secondary-color;
+      margin-bottom: 20px;
+
+      .cardTitle {
+        color: var.$primary-color;
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 28px;
+      }
+
+      .cardMiniheading {
+        color: var.$tertiary-color;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 18px;
+      }
+
+      .form {
+        input,
+        select {
+          height: 41px;
+        }
+
+        svg {
+          width: 19px;
+          height: 19px;
+        }
+
+        .companyInvoiceOrganizationNameWrapper,
+        .companyInvoiceOrganizationIndustryWrapper,
+        .companyInvoiceOrganizationStateWrapper,
+        .companyInvoiceOrganizationLocationWrapper,
+        .companyInvoiceOrganizationStateWrapper,
+        .companyInvoiceOrganizationCurrencyWrapper,
+        .companyInvoiceOrganizationLanguageWrapper,
+        .companyInvoiceOrganizationTimeZoneWrapper,
+        .companyInvoiceOrganizationGSTINWrapper,
+        .companyInvoiceOrganizationCurrentInvoicingWrapper {
+          .companyInvoiceCompanyOrganizationName,
+          .companyInvoiceOrganizationIndustrylabel,
+          .companyInvoiceOrganizationStatelabel,
+          .companyInvoiceOrganizationLocationlabel,
+          .companyInvoiceOrganizationStatelabel,
+          .companyInvoiceOrganizationCurrencylabel,
+          .companyInvoiceOrganizationLanguagelabel,
+          .companyInvoiceOrganizationTimeZonelabel,
+          .companyInvoiceOrganizationGSTlabel,
+          .companyInvoiceOrganizationCurrentInvoicinglabel {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            font-size: 14px;
+            color: var.$primary-color;
+          }
+
+          input {
+            font-weight: 400;
+            font-size: 14px;
+            color: var.$secondary-color;
+            background: var.$input-background-color;
+            border: 1px solid var.$primary-border-color;
+            border-radius: 8px;
+          }
+        }
+
+        .companyInvoiceOrganizationGSTWrapper {
+          .companyInvoiceOrganizationGSTlabel {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            font-size: 14px;
+            color: var.$primary-color;
+          }
+
+          .companyInvoiceOrganizationGSTSwitchWrapper {
+            .companyInvoiceOrganizationGSTSwitch {
+              height: 1em;
+              width: 2em;
+
+              &:checked {
+                background-color: var.$primary-color;
+                border-color: var.$primary-color;
+              }
+
+              &:focus {
+                border-color: #364aab5e;
+                outline: 0;
+                box-shadow: none;
+              }
+            }
+          }
+        }
+      
+        .companyInvoiceOrganizationInputFileWrapper{
+          // border: 1px dashed var.$file-input-border;
+          background-color: var.$input-background-color;
+          background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%238DA4B8FF' stroke-width='3' stroke-dasharray='10' stroke-dashoffset='22' stroke-linecap='square'/%3e%3c/svg%3e");
+          border-radius: 6px;
+          padding: 10px;
+          align-items: center;
+          cursor: pointer;
+
+          .companyInvoiceOrganizationImageInputWrapper {
+            display: flex;
+            width: 100%;
+            cursor: default;
+            flex-direction: column;
+
+            .companyInvoiceOrganizationImageDisplay {
+              max-height: 200px;
+              max-width: 100%;
+            }
+
+            .companyInvoiceOrganizationImageUploadWrapper {
+              margin-left: 10px;
+              p{
+                font-size: 14px;
+                color: var.$darker-grey;
+                &:nth-of-type(2){
+                  color: var.$grey;
+                }
+              }
+              
+              
+              .companyInvoiceOrganizationRemoveLogoLink {
+                color: var.$button-red-color;
+                cursor: pointer;
+              }
+            }
+          }
+
+          .companyInvoiceOrganizationInputFileSVGButton {
+            border-right: 1px var.$tertiary-color solid;
+            background: var.$tertiary-color;
+            color: var.$white;
+            font-size: 14px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            height: 41px;
+            cursor: inherit;
+            svg {
+              fill: var.$white;
+              height: 15px;
+              width: 15px;
+              margin: 0 5px;
+            }
+          }
+
+          .companyInvoiceOrganizationInputFile{
+            border: none;
+            border-radius: 0;
+            display: none;
+
+            &::-webkit-file-upload-button {
+              visibility: hidden;
+              width: 0;
+            }
+          }
+
+          label {
+            margin-left: 15px;
+            font-size: 14px;
+            cursor: inherit;
+          }
+        }
+      }
+    }
+  }
 }

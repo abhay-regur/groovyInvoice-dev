@@ -1,4 +1,5 @@
 "use client"
+import Image from "next/image";
 import { useRouter } from 'next/navigation';
 import styles from "@/styles/organizationSetup.module.scss";
 import { useContext, useEffect, useState } from "react";
@@ -8,6 +9,8 @@ import { getCompanyDetails, updateCompanyDetails } from '@/services/companies.se
 import { getCurrencies, getTimeZonesList } from '@/services/common/general.service';
 import { getIndianStates, getCountries } from '@/services/countriesState.service';
 import CustomSelectComponent from "@/components/common/customSelectComponent";
+import IndustryModal from "@/components/industryModal";
+import FaCamera from '@/assets/icons/faCamera.svg';
 import { NavExpandedState } from '@/context/NavState.context';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 import Loading from "../loading";
@@ -16,24 +19,17 @@ import { getIndustryList } from '@/services/industry.service';
 
 export default function OrganizationSetupForm() {
     const { replace } = useRouter();
-
     const [errors, setErrors] = useState([]);
-
     const { navExpandedState } = useContext(NavExpandedState);
-
     const { setToastList } = useContext(ToastMsgContext);
-
     const [isLoading, setIsLoading] = useState(true);
-
     const [industryList, setIndustryList] = useState([]);
-
     const [timeZoneList, setTimeZoneList] = useState([]);
-
     const [countryArray, setCountryArray] = useState([]);
-
     const [currencies, setCurrencies] = useState([]);
-
-    const [statesArray, getStateArray] = useState([])
+    const [statesArray, getStateArray] = useState([]);
+    const [profileImage, setProfileImage] = useState("");
+    const { Modal } = require("bootstrap");
 
     const [data, setData] = useState({
         companyName: '',
@@ -98,8 +94,8 @@ export default function OrganizationSetupForm() {
             const result = await getCurrencies();
             var data = result.data;
             var temp = [];
-            data.forEach((elem) => {
-                temp.push({ Id: elem.symbol, name: elem.symbol + ' - ' + elem.name })
+            data.forEach((elem, id) => {
+                temp.push({ Id: id, symbol: elem.symbol, name: (elem.symbol == '' ? elem.name : elem.symbol + ' - ' + elem.code + ' - ' + elem.name), code: elem.code })
             })
             setCurrencies(temp);
         } catch (error) {
@@ -145,11 +141,22 @@ export default function OrganizationSetupForm() {
         }
     }
 
-    const [modelFor, setModalFor] = useState('');
+    const previewandSetImage = function (e) {
+        if (e.target.files && e.target.files.length > 0) {
+            setProfileImage(e.target.files[0]);
+        }
+    }
+
+    const removeSelectedImage = function (e) {
+        setProfileImage("")
+    }
+
+    const showIndustyModal = function () {
+        const addIndustyModal = new Modal("#add-industry-modal");
+        addIndustyModal.show();
+    }
 
     const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
 
     const handleShow = (e) => setShow(true);
 
@@ -158,7 +165,9 @@ export default function OrganizationSetupForm() {
         var name = target.name || target.getAttribute('name');
         if (name != '') {
             if (name == 'stateId' || name == 'countryId') {
-                temp_data.businessLocation[0][name] = parseInt(target.value);
+                temp_data.businessLocation[name] = parseInt(target.value);
+            } else if (name == 'industryId' || name == 'currency') {
+                temp_data[name] = parseInt(target.value);
             } else {
                 temp_data[name] = target.value;
             }
@@ -168,7 +177,6 @@ export default function OrganizationSetupForm() {
     }
 
     const handleCheckBoxChange = ({ target }) => {
-        console.log(data.isRegisteredForGST);
         data[target.name] = !data[target.name];
         let temp = Object.assign({}, data);
         setData(temp);
@@ -218,6 +226,7 @@ export default function OrganizationSetupForm() {
                                     <ErrorList errors={errors} />
                                     <div className={`${styles.form} mb4 row`}>
                                         <form onSubmit={handleSubmit}>
+
                                             <div className={`${styles.companyInvoiceOrganizationNameWrapper} mb-4 row`}>
                                                 <div className="d-flex align-items-center col-12 col-lg-4">
                                                     <label className={`${styles.companyInvoiceCompanyOrganizationName}`}>Organization Name</label>
@@ -232,7 +241,7 @@ export default function OrganizationSetupForm() {
                                                     <label className={`${styles.companyInvoiceOrganizationIndustrylabel}`}>Industry </label>
                                                 </div>
                                                 <div className="col-12 col-lg-6 col-xl-7">
-                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationIndustrySelect}`} data={industryList} onOptionValueChange={handleInput} optionValue={parseInt(data.industryId)} name={'industryId'} isDisabled={false} defaultText={'Select an Option'} isInnerButtonRequired={false} />
+                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationIndustrySelect}`} data={industryList} onOptionValueChange={handleInput} optionValue={parseInt(data.industryId)} name='industryId' isDisabled={false} defaultText={'Select an Option'} isInnerButtonRequired={true} onOptionInnerButtonClick={showIndustyModal} />
                                                 </div>
                                             </div>
 
@@ -241,7 +250,7 @@ export default function OrganizationSetupForm() {
                                                     <label className={`${styles.companyInvoiceOrganizationLocationlabel}`}>Business Location <span className={`${styles.green}`}>*</span> </label>
                                                 </div>
                                                 <div className="col-12 col-lg-6 col-xl-7">
-                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationLocationSelect}`} data={countryArray} onOptionValueChange={handleInput} optionValue={data.businessLocation[0]['countryId']} name={'countryId'} onOptionInnerButtonClick={handleShow} isDisabled={false} defaultText={'Select an location'} isInnerButtonRequired={true} />
+                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationLocationSelect}`} data={countryArray} onOptionValueChange={handleInput} optionValue={data.businessLocation['countryId']} name={'countryId'} onOptionInnerButtonClick={handleShow} hasSearch={true} isDisabled={false} defaultText={'Select an location'} isInnerButtonRequired={true} />
                                                 </div>
                                             </div>
 
@@ -250,7 +259,7 @@ export default function OrganizationSetupForm() {
                                                     <label className={`${styles.companyInvoiceOrganizationStatelabel}`}>State <span className={`${styles.green}`}>*</span></label>
                                                 </div>
                                                 <div className="col-12 col-lg-6 col-xl-7">
-                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationStateSelect}`} data={statesArray} onOptionValueChange={handleInput} optionValue={data.businessLocation[0]['stateId']} name={'stateId'} isDisabled={false} defaultText={'Select a State'} isInnerButtonRequired={false} />
+                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationStateSelect}`} data={statesArray} onOptionValueChange={handleInput} optionValue={data.businessLocation['stateId']} name={'stateId'} isDisabled={false} defaultText={'Select a State'} hasSearch={true} isInnerButtonRequired={false} />
                                                 </div>
                                             </div>
 
@@ -259,7 +268,7 @@ export default function OrganizationSetupForm() {
                                                     <label className={`${styles.companyInvoiceOrganizationCurrencylabel}`}>Currency <span className={`${styles.green}`}>*</span></label>
                                                 </div>
                                                 <div className="col-12 col-lg-6 col-xl-7">
-                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationCurrencySelect}`} data={currencies} onOptionValueChange={handleInput} optionValue={data.currency} name={'currency'} isDisabled={false} defaultText={'Select a Currency'} isInnerButtonRequired={false} />
+                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationCurrencySelect}`} data={currencies} onOptionValueChange={handleInput} optionValue={data.currency} name={'currency'} isDisabled={false} defaultText={'Select a Currency'} hasSearch={true} isInnerButtonRequired={false} />
                                                 </div>
                                             </div>
 
@@ -277,7 +286,7 @@ export default function OrganizationSetupForm() {
                                                     <label className={`${styles.companyInvoiceOrganizationTimeZonelabel}`}>Time Zone <span className={`${styles.green}`}>*</span></label>
                                                 </div>
                                                 <div className="col-12 col-lg-6 col-xl-7">
-                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationTimeZoneSelect}`} data={timeZoneList} onOptionValueChange={handleInput} optionValue={data.timeZone} name={'timeZone'} isDisabled={false} defaultText={'Select a Time Zone'} isInnerButtonRequired={false} />
+                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationTimeZoneSelect}`} data={timeZoneList} onOptionValueChange={handleInput} optionValue={data.timeZone} name={'timeZone'} isDisabled={false} defaultText={'Select a Time Zone'} hasSearch={true} isInnerButtonRequired={false} />
                                                 </div>
                                             </div>
 
@@ -309,7 +318,42 @@ export default function OrganizationSetupForm() {
                                                     <label className={`${styles.companyInvoiceOrganizationCurrentInvoicinglabel}`}>How are you managing invoicing currently? </label>
                                                 </div>
                                                 <div className="col-12 col-lg-6 col-xl-7">
-                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationCurrentInvoicingSelect}`} data={''} onOptionValueChange={handleInput} optionValue={data.currentInvoicing} name={'currentInvoicing'} isDisabled={false} defaultText={''} isInnerButtonRequired={true} />
+                                                    {/* <input name='currentInvoicing' type="text" className="form-control" id="companyInvoiceOrganizationCurrentInvoicingSelect" value={data.currentInvoicing} onChange={handleInput} placeholder=' ' /> */}
+                                                </div>
+                                            </div>
+
+                                            <div className={`${styles.companyInvoiceOrganizationImageWrapper} row mb-4`}>
+                                                <div className="d-flex align-items-center col-12 col-lg-4">
+                                                    <label className={`${styles.companyInvoiceOrganizationImagelabel}`}>Organization Logo</label>
+                                                </div>
+                                                <div className="col-12 col-lg-6 col-xl-7">
+                                                    <div className={`${styles.companyInvoiceOrganizationInputFileWrapper} d-flex`}>
+                                                        {profileImage ?
+                                                            <div className={`${styles.companyInvoiceOrganizationImageInputWrapper}`}>
+                                                                <Image className={`${styles.companyInvoiceOrganizationImageDisplay}`} src={profileImage != "" ? URL.createObjectURL(profileImage) : "/images/default_profile_icon.png"} width={250} height={125} alt="organization_logo" />
+                                                                <span className={`${styles.companyInvoiceOrganizationImageUploadWrapper}`}>
+                                                                    <p>
+                                                                        This logo will be displayed in transaction PDF&apos;s and email notifications.
+                                                                    </p>
+                                                                    <p>
+                                                                        Max File Size: 1MB
+                                                                    </p>
+                                                                    <span className={`${styles.companyInvoiceOrganizationRemoveLogoLink}`} onClick={(e) => { removeSelectedImage(e) }}>
+                                                                        Remove Logo
+                                                                    </span>
+                                                                </span>
+
+                                                            </div>
+                                                            :
+                                                            <>
+                                                                <input id="companyInvoiceOrganizationLogoInput" className={`${styles.companyInvoiceOrganizationInputFile}`} accept="image/*" type="file" onChange={(e) => { previewandSetImage(e) }} />
+                                                                <label className={`${styles.companyInvoiceOrganizationInputFileSVGButton} btn ms-0`} htmlFor="companyInvoiceOrganizationLogoInput">
+                                                                    <FaCamera />
+                                                                    Upload Image
+                                                                </label>
+                                                                <label htmlFor="companyInvoiceOrganizationLogoInput">We accept JPEG, PNG...</label>
+                                                            </>}
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -330,6 +374,7 @@ export default function OrganizationSetupForm() {
                         </div>
                     </div>
                 </div>
+                <IndustryModal getIndustryData={getIndustryData} setToastList={setToastList} Loading={Loading} />
             </>
         }
     </div>)

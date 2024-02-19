@@ -40,6 +40,7 @@ export default function CustomerAddForm() {
     const [placeOfSupply, setPlaceOfSupply] = useState([]);
     const [paymentTerms, setPaymentTerms] = useState([]);
     const [taxExemptionReason, setTaxExemptionReason] = useState([]);
+    const [isSubmit, setIsSubmit] = useState(false);
 
     const [data, setData] = useState({
         type: "",
@@ -145,7 +146,7 @@ export default function CustomerAddForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors([]);
-        setIsLoading(true);
+        setIsSubmit(true);
         var temp = data;
         if (temp.taxPreference == "taxable") temp.exemptionReason = "";
         if (temp.gstTreatment == GST_TREATMENT.UNREGISTERED_BUSINESS || temp.gstTreatment == GST_TREATMENT.CONSUMER || temp.gstTreatment == GST_TREATMENT.OVERSEAS) temp.GSTIN = "";
@@ -169,9 +170,9 @@ export default function CustomerAddForm() {
             }
         } catch (error) {
             setErrors(genrateErrorMessage(error, 'Customer', setToastList))
-            setIsLoading(false);
+            setIsSubmit(false);
         }
-        setIsLoading(false);
+        setIsSubmit(false);
     }
 
     const getStateData = async (id, setStates) => {
@@ -555,15 +556,24 @@ export default function CustomerAddForm() {
                                 <div className={`${styles.companyInvoiceFormButtonsWrapper} row`}>
                                     <div className="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-5">
                                         <div className="row">
-                                            <div className="col-6 col-md-4 col-lg-3 col-xl-3">
+                                            <div className="col-6 col-md-4 col-lg-3 col-xl-4">
                                                 <button name="btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`} type='submit'>
-                                                    <span>
-                                                        <i><FaSave /></i>
-                                                        Save
-                                                    </span>
+                                                    {
+                                                        isSubmit ?
+                                                            <span className={`d-flex align-items-center`}>
+                                                                <span class={`spinner-border spinner-border-sm text-light`} role="status">
+                                                                </span>
+                                                                <span class="status ms-1">Loading</span>
+                                                            </span>
+                                                            :
+                                                            <span>
+                                                                <i><FaSave /></i>
+                                                                Save
+                                                            </span>
+                                                    }
                                                 </button>
                                             </div>
-                                            <div className="col-6 col-md-4 col-lg-3 col-xl-3">
+                                            <div className="col-6 col-md-4 col-lg-3 col-xl-4">
                                                 <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} type='reset' onClick={resetPage}>
                                                     <span>
                                                         <i><FaCircleXmark /></i>

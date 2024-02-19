@@ -72,7 +72,7 @@ const AllInvoiceTable = ({ ItemsData }) => {
                 orderable: true,
             },
             {
-                data: 'customer.firstName', name: 'customer.firstName',
+                data: { customer: 'firstName' }, name: 'customer.firstName',
                 createdCell: function (cell, cellData, rowData, rowIndex, colIndex) {
                     const root = ReactDOM.createRoot(cell)
                     root.render(draw_userName(rowData))
@@ -81,7 +81,7 @@ const AllInvoiceTable = ({ ItemsData }) => {
                 orderable: true,
             },
             {
-                data: 'customer.lastName', name: 'customer.lastName', visible: false,
+                data: { customer: 'lastName' }, name: 'customer.lastName', visible: false,
             },
             {
                 data: 'dueDate',

@@ -24,3 +24,9 @@ export const getOverdue = async () => {
         return await httpService.get('payments/overdue');
     } catch (error) { throw error; }
 }
+
+export const paymentInfoForInvoice = async (id) => {
+    try {
+        return await httpService.get(`payments/invoice-info/${id}`);
+    } catch (error) { throw error; }
+}
