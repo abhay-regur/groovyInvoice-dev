@@ -8,8 +8,8 @@ export default function ReportListsComponent() {
     return (
         <div className={styles.container}>
             <main className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
-                <h2 className={`${styles.title}`}>
-                    Reports
+                <h2 className={`${styles.title} mt-3`}>
+                    Reports (W.I.P)
                 </h2>
 
             </main>
