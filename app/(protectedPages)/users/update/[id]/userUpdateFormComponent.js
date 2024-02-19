@@ -19,7 +19,8 @@ export default function UserUpdateFormComponent() {
     const { replace } = useRouter();
     const { navExpandedState } = useContext(NavExpandedState);
     const { setToastList } = useContext(ToastMsgContext)
-    const [errors, setErrors] = useState([])
+    const [errors, setErrors] = useState([]);
+    const [isSubmit, setIsSubmit] = useState(false);
 
     const [isLoading, setIsLoading] = useState(true)
 
@@ -69,6 +70,7 @@ export default function UserUpdateFormComponent() {
 
     const handleSaveClick = async (e) => {
         setErrors([]);
+        setIsSubmit(true);
         try {
             const result = await updateUserDetails(id, data);
             setToastList([{
@@ -76,8 +78,10 @@ export default function UserUpdateFormComponent() {
                 title: data.firstName + ' ' + data.lastName + ' details updated',
                 description: result.data.message,
             }]);
+            setIsSubmit(false);
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
+            setIsSubmit(false);
         }
     }
 
@@ -148,10 +152,19 @@ export default function UserUpdateFormComponent() {
                                         <div className="row">
                                             <div className="col-6 col-md-4 col-lg-3 col-xl-6">
                                                 <button className={`${styles.companyInvoiceSavenSendButton} btn blue`} name='btn-submit' onClick={(e) => { handleSaveClick(e) }}>
-                                                    <span>
-                                                        <i><FaSave /></i>
-                                                        Save
-                                                    </span>
+                                                    {
+                                                        isSubmit ?
+                                                            <span className={`d-flex align-items-center`}>
+                                                                <span class={`spinner-border spinner-border-sm text-light`} role="status">
+                                                                </span>
+                                                                <span class="status ms-1">Loading</span>
+                                                            </span>
+                                                            :
+                                                            <span>
+                                                                <i><FaSave /></i>
+                                                                Save
+                                                            </span>
+                                                    }
                                                 </button>
                                             </div>
                                             <div className="col-6 col-md-4 col-lg-3 col-xl-6">
