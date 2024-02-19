@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import style from "../../styles/customSelect.module.scss";
 import FaCirclePlus from '../../assets/icons/faCirclePlus.svg';
 import FaAngleDown from '../../assets/icons/faAngleDown.svg';
-const CustomSelectComponent = ({ data, onOptionValueChange, optionValue, name, isDisabled, hasSearch, onOptionInnerButtonClick, defaultText, isInnerButtonRequired, inputClass }) => {
+const CustomSelectComponent = ({ data, onOptionValueChange, optionValue, name, isDisabled, hasSearch, onOptionInnerButtonClick, defaultText, isInnerButtonRequired, inputClass, multiple }) => {
 
     const [dataList, setDataList] = useState(data);
 
@@ -63,7 +63,7 @@ const CustomSelectComponent = ({ data, onOptionValueChange, optionValue, name, i
                 <i className={`${style.companyInvoiceCustomSelectInputIcon}`}><FaAngleDown /></i>
                 <ul className={`${style.companyInvoiceCustomSelectMenu} dropdown-menu w-100`}>
                     {hasSearch ? <>
-                        <li className={` ${style.menuItem} dropdown-item sticky-top mt-1`} name={name}>
+                        <li className={`${style.menuItem} dropdown-item sticky-top mt-1`} name={name}>
                             <input type="text" className={`${style.companyInvoiceCustomSelectSearchInput} form-control`} onChange={(e) => { handleSearchChange(e.target) }} onBlur={(e => { e.target.value = '' })} />
                             <hr className="mt-1 mb-0" />
                         </li>
