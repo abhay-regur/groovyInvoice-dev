@@ -139,7 +139,7 @@ export default function Navbar() {
                                 return (
                                     <Fragment key={idx}>
                                         <hr />
-                                        <div className={`${style.navItemWrapper} d-flex align-item-center`} onClick={() => { setNavItemExpanded(!navItemExpanded); }}>
+                                        <div className={`${style.navItemWrapper} d-flex align-item-center p-0 m-0`} onClick={() => { setNavItemExpanded(!navItemExpanded); }}>
                                             <NavList activeIdx={activeIdx} expanded={navItemExpanded} text={menu.text} icon={menu.icon} subMenu={menu.subMenu} setActiveIdx={setActiveIdx} setNavItemExpanded={setNavItemExpanded}></NavList>
                                         </div>
                                     </Fragment>
