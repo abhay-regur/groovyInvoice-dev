@@ -38,7 +38,7 @@ export default function PaymentFormComponent() {
                             <div className="col-10">
                                 <label className={`${styles.companyInvoiceCustomerNameLabel}`}>Customer Name<span className={`${styles.green}`}>*</span></label>
                             </div>
-                            <div className="col-12 col-lg-5 mt-2">
+                            <div className="col-12 col-lg-10 col-xl-5 mt-2">
                                 <input type="email" className="form-control" id="companyInvoiceCustomerName" placeholder='Customer Name' />
                             </div>
                             <div className="col-12 mt-1">
@@ -51,17 +51,13 @@ export default function PaymentFormComponent() {
                             <div className="col-10">
                                 <label className={`${styles.companyInvoicePaymentNumberLabel}`}>Payment Invoice#<span className={`${styles.green}`}>*</span></label>
                             </div>
-                            <div className="col-12 col-md-7 col-lg-5">
-                                <div className="row">
-                                    <div className="col-12 col-md-7 col-lg-12 d-flex align-items-center mt-2">
-                                        <input type="text" className="form-control" id="companyInvoicePaymentNumber" placeholder='Invoice Number' /><FaGear />
-                                    </div>
-                                </div>
+                            <div className="col-12 col-lg-10 col-xl-5 d-flex align-items-center mt-2">
+                                <input type="text" className="form-control" id="companyInvoicePaymentNumber" placeholder='Invoice Number' /><FaGear />
                             </div>
                         </div>
 
                         <div className="row mb-3">
-                            <div className="col-12 col-lg-10 col-xl-5">
+                            <div className="col-12 col-lg-10 col-xl-7">
                                 <div className={`${styles.companyInvoiceAmountcard} card`}>
                                     <div className="container row p-0">
                                         <div className="col-12 col-lg-6">
@@ -117,7 +113,7 @@ export default function PaymentFormComponent() {
                         </div>
 
                         <div className={`${styles.companyInvoicePaymentDateModeWrapper} row`}>
-                            <div className="col-12 col-md-4 col-lg-2">
+                            <div className="col-12 col-md-6 col-lg-5 col-xl-2">
                                 <div className="row">
                                     <div className="col-12">
                                         <label className={`${styles.companyInvoicePaymentDateLabel}`}>Payment Date<span className={`${styles.green}`}>*</span></label>
@@ -127,7 +123,7 @@ export default function PaymentFormComponent() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-12 col-md-4 col-lg-2 mt-2">
+                            <div className="col-12 col-md-6 col-lg-5 col-xl-2">
                                 <div className="row">
                                     <div className="col-12">
                                         <label className={`${styles.companyInvoicePaymentModeLabel}`}>Payment Mode<span className={`${styles.green}`}>*</span></label>
@@ -143,7 +139,7 @@ export default function PaymentFormComponent() {
                                 </div>
                             </div>
                             <div className="col-12"></div>
-                            <div className="col-12 col-md-5 mt-2">
+                            <div className="col-12 col-lg-10 col-xl-5 mt-2">
                                 <div className={`${styles.companyInvoicePaymentReferenceWrapper} mb-3 row`}>
                                     <div className="col-12 mb-2">
                                         <label className={`${styles.companyInvoicePaymentReferenceLabel}`}>Reference<span className={`${styles.green}`}>#</span></label>
@@ -154,19 +150,19 @@ export default function PaymentFormComponent() {
                                 </div>
                             </div>
                             <div className="col-12"></div>
-                            <div className="col-12 col-md-5">
+                            <div className="col-12 col-lg-10 col-xl-5">
                                 <div className={`${styles.companyInvoicePaymentNoteWrapper} mb-3 row`}>
                                     <div className="col-12">
                                         <label className={`${styles.companyInvoicePaymentNoteLabel}`}>Notes</label>
                                     </div>
                                     <div className="col-12 d-flex align-items-center mt-2">
-                                        <textarea className="form-control" id="companyInvoicePaymentModer" placeholder='Add Notes' />
+                                        <textarea className="form-control" id="companyInvoicePaymentMode" placeholder='Add Notes' />
                                     </div>
                                 </div>
                             </div>
                             <div className="col-12"><label className={`${styles.companyInvoicePaymentInputFilelabel}`}>Attach File(s)</label></div>
                             <div className="col-12"></div>
-                            <div className="col-11 col-md-6 col-lg-3 mt-2">
+                            <div className="col-11 col-md-7 col-lg-5 col-xl-3 mt-2">
                                 <div className={`${styles.companyInvoicePaymentInputFileWrapper} d-flex`}>
                                     <span className={`${styles.companyInvoicePaymentInputFileSVGWrapper}`}>
                                         <FaUpload />
@@ -180,7 +176,7 @@ export default function PaymentFormComponent() {
                                 <hr />
                             </div>
                             <div className="col-12"></div>
-                            <div className="col-12 col-md-5 mt-3">
+                            <div className="col-12 col-md-7 mt-3">
                                 <div className={`${styles.companyInvoicePaymentThankYouCheckboxWrapper}`}>
                                     <Checkbox label="Email a “Thank You” note for this payment" />
                                 </div>
