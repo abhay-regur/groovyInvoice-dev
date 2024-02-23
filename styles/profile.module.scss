@@ -29,16 +29,20 @@
             border-radius: 10px;
             margin-bottom: 30px;
 
+            & > div{
+                padding: 33px 31px 16px 33px;
+            }
+
             hr {
                 color: var.$primary-border-color;
             }
 
             .personalDetailsWrapper,
             .passwordDetailsWrapper {
-                padding-bottom: 20px;
 
                 .profileImageWrapper {
-                    position: absolute;
+                    width: 125px;
+                    position: relative;
 
                     .profileImageDisplay {
                         border-radius: 50%;
@@ -58,6 +62,8 @@
                         }
 
                         svg {
+                            height: 15px;
+                            width: 15px;
                             font-size: 1.2em;
 
                             &:hover {
@@ -83,7 +89,7 @@
                     label {
                         align-items: center;
                         font-weight: 600;
-                        font-size: 14px;
+                        font-size: 14px; 
                         color: var.$primary-color;
                     }
 
@@ -102,8 +108,8 @@
                         border: none;
 
                         svg {
-                            height: 20px;
-                            width: 20px;
+                            height: 15px;
+                            width: 15px;
 
                             path {
                                 fill: var.$primary-color;
@@ -114,8 +120,10 @@
 
                 .companyInvoiceCurrentPasswordWrapper {
                     svg {
+                        height: 15px;
+                        width: 15px;
                         position: absolute;
-                        right: 0;
+                        right: 5px;
                         padding: 10px 16px;
                         cursor: pointer;
                         color: var.$secondary-color;
@@ -165,10 +173,11 @@
                 }
             }
 
-            h3 {
+            h4 {
                 color: var.$primary-color;
                 font-weight: 700;
                 line-height: 33px;
+                font-size: 22px;
             }
 
             button {
@@ -199,8 +208,8 @@
                             align-self: center;
 
                             svg {
-                                height: 20px;
-                                width: 20px;
+                                height: 15px;
+                                width: 15px;
                             }
                         }
                     }
@@ -215,6 +224,8 @@
                         }
 
                         svg {
+                            height: 15px;
+                            width: 15px;
                             path {
                                 fill: var.$white;
                             }
@@ -232,8 +243,8 @@
                             align-self: center;
 
                             svg {
-                                height: 20px;
-                                width: 20px;
+                                height: 15px;
+                                width: 15px;
                             }
                         }
                     }
@@ -277,9 +288,9 @@
 
             .personalDetailsWrapper,
             .passwordDetailsWrapper {
-                padding-bottom: 20px;
 
                 .profileImageWrapper {
+                    width: 125px;
                     position: relative;
 
                     .profileImageDisplay {
@@ -300,6 +311,8 @@
                         }
 
                         svg {
+                            height: 15px;
+                            width: 15px;
                             font-size: 1.2em;
 
                             &:hover {
@@ -340,13 +353,12 @@
 
                     button {
                         display: flex;
-                        margin-left: 5px;
                         align-self: center;
                         border: none;
 
                         svg {
-                            height: 20px;
-                            width: 20px;
+                            height: 15px;
+                            width: 15px;
 
                             path {
                                 fill: var.$primary-color;
@@ -357,8 +369,10 @@
 
                 .companyInvoiceCurrentPasswordWrapper {
                     svg {
+                        height: 15px;
+                        width: 15px;
                         position: absolute;
-                        right: 0;
+                        right: 5px;
                         padding: 10px 16px;
                         cursor: pointer;
                         color: var.$secondary-color;
@@ -408,10 +422,11 @@
                 }
             }
 
-            h3 {
+            h4 {
                 color: var.$primary-color;
                 font-weight: 700;
                 line-height: 33px;
+                font-size: 22px;
             }
 
             button {
@@ -442,8 +457,8 @@
                             align-self: center;
 
                             svg {
-                                height: 20px;
-                                width: 20px;
+                                height: 15px;
+                                width: 15px;
                                 fill: var.$white;
                             }
                         }
@@ -465,8 +480,8 @@
                             color: var.$primary-color;
 
                             svg {
-                                height: 20px;
-                                width: 20px;
+                                height: 15px;
+                                width: 15px;
                                 color: var.$primary-color;
                             }
                         }
