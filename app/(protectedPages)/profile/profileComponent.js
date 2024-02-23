@@ -171,7 +171,7 @@ export default function ProfileComponent() {
                                                     <div className="row">
                                                         <div className="col-12 col-md-3 d-flex justify-content-center">
                                                             <div className={`${styles.profileImageWrapper}`}>
-                                                                <Image className={`${styles.profileImageDisplay}`} src={profileImage != "" ? URL.createObjectURL(profileImage) : "/images/default_profile_icon.png"} width={125} height={125} alt="profile_Image" />
+                                                                <Image className={`${styles.profileImageDisplay}`} src={profileImage != "" ? URL.createObjectURL(profileImage) : "/images/default_profile_icon.png"} width={105} height={105} alt="profile_Image" />
                                                                 <span className={`${styles.profileImageUploadWrapper}`}>
                                                                     {
                                                                         profileImage ?
