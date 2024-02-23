@@ -46,7 +46,7 @@ export default function NotificationComponent() {
                                     <span className="badge rounded-pill ms-3">{currentnotificationData.length}</span>
                                 </button>
                             </h2>
-                            <div id="accordionNotificationTodayContainer" className="accordion-collapse collapse mt-1 show" aria-labelledby="accordionNotificationTodayHeader" data-bs-parent="#accordionNotificationTodayHeader">
+                            <div id="accordionNotificationTodayContainer" className="accordion-collapse collapse pt-5 show" aria-labelledby="accordionNotificationTodayHeader" data-bs-parent="#accordionNotificationTodayHeader">
                                 {
                                     currentnotificationData.map(function (elem, idx) {
                                         return (
@@ -66,7 +66,7 @@ export default function NotificationComponent() {
                                     <span className="badge rounded-pill ms-3">{notificationData.length}</span>
                                 </button>
                             </h2>
-                            <div id="accordionNotificationYesterdayContainer" className="accordion-collapse collapse mt-1" aria-labelledby="accordionNotificationYesterdayHeader" data-bs-parent="#accordionNotificationYesterdayHeader">
+                            <div id="accordionNotificationYesterdayContainer" className="accordion-collapse collapse pt-5" aria-labelledby="accordionNotificationYesterdayHeader" data-bs-parent="#accordionNotificationYesterdayHeader">
                                 {
                                     notificationData.map(function (elem, idx) {
                                         return (
@@ -86,7 +86,7 @@ export default function NotificationComponent() {
                                     <span className="badge rounded-pill ms-3">{notificationData.length}</span>
                                 </button>
                             </h2>
-                            <div id="accordionNotificationOlderContainer" className="accordion-collapse collapse mt-1" aria-labelledby="accordionNotificationOlderHeader" data-bs-parent="#accordionNotificationOlderHeader">
+                            <div id="accordionNotificationOlderContainer" className="accordion-collapse collapse pt-5" aria-labelledby="accordionNotificationOlderHeader" data-bs-parent="#accordionNotificationOlderHeader">
                                 {
                                     notificationData.map(function (elem, idx) {
                                         return (

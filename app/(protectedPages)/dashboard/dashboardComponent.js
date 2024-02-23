@@ -156,7 +156,7 @@ export default function DashboardComponent() {
                                     <div className="col-12 col-lg-8">
                                         <Bar data={salesChartData} height={300} options={salesChartOptions} />
                                     </div>
-                                    <div className="col-12 col-lg-4">
+                                    <div className="col-12 col-lg-4 mt-md-3">
                                         <div className={`${styles.companyInvoiceChartTotalWrapper}`}>
                                             <div className={`${styles.companyInvoiceChartTotalSaleWrapper}`}>
                                                 <div className={`${styles.companyInvoiceChartTotalSaleTitle}`}>Total Sales</div>

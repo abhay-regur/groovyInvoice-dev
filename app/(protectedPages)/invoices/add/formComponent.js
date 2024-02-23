@@ -298,11 +298,11 @@ export default function InvoiceAddForm() {
                                     <div className="col-md-12 col-lg-7 col-xl-5">
                                         <div className={`${styles.card} card justify-content-between`} >
                                             <div className="card-body">
-                                                <div className="d-flex justify-content-between">
+                                                <div className="d-flex justify-content-between px-3">
                                                     <div className={`${styles.subtotalLabel}`}>Sub Total</div>
                                                     <div className={`${styles.subtotalresult}`}>Rs. {parseFloat(data.subTotalAmount).toFixed(2)}</div>
                                                 </div>
-                                                <div className={`${styles.companyInvoiceTaxOptionWrapper} d-flex align-content-center`}>
+                                                <div className={`${styles.companyInvoiceTaxOptionWrapper} d-flex align-content-center px-3`}>
                                                     <span className={`${styles.companyInvoiceTaxOptionInputWrapper}`}>
                                                         <span className={`${styles.companyInvoiceTaxSelectorMainWrapper}`}>
                                                             <span className={`${styles.taxTDSRadioButtonWrapper} d-flex align-items-center`}>
@@ -329,10 +329,10 @@ export default function InvoiceAddForm() {
                                                         </span>
                                                     </span>
                                                     <span className={`${styles.totalCalculatedTax} d-flex`}>
-                                                        <span className='text-start text-lg-right text-xl-left'> Rs. {parseFloat(data.totalTaxAmount).toFixed(2)}</span>
+                                                        <span className='text-start text-lg-right text-xl-left'> {parseFloat(data.totalTaxAmount).toFixed(2)}</span>
                                                     </span>
                                                 </div>
-                                                <div className={`${styles.companyInvoiceAdjustmentWrapper} d-flex row`}>
+                                                <div className={`${styles.companyInvoiceAdjustmentWrapper} d-flex row px-3`}>
                                                     <div className={`${styles.companyInvoiceAdjustmentInputWrapper} col-5 order-1 order-lg-1 mb-3`}>
                                                         <input type="text" className={`${styles.companyInvoicePriceAdjustment} form-control`} placeholder="Adjustment" name="adjustmentText" value={data.adjustmentText} onChange={handleInput} />
                                                     </div>
@@ -344,7 +344,7 @@ export default function InvoiceAddForm() {
                                                     </div>
                                                     <div className="col-7 col-lg-3 order-2 order-lg-3">
                                                         <span className={`${styles.totalCalculatedAdjustment} d-flex justify-content-end`}>
-                                                            <span> Rs. {parseFloat(data.adjustmentAmount).toFixed(2)}</span>
+                                                            <span> {parseFloat(data.adjustmentAmount).toFixed(2)}</span>
                                                         </span>
                                                     </div>
                                                 </div>
