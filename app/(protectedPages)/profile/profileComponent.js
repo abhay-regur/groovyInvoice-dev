@@ -164,20 +164,14 @@ export default function ProfileComponent() {
                                     <div className={`${styles.profileCard} card`}>
                                         <div className="card-body">
                                             <div className={`${styles.personalDetailsWrapper}`}>
-                                                <h3>Personal Details</h3>
+                                                <h4 className="mb-0">Personal Details</h4>
                                                 <hr />
                                                 <form action="#" onSubmit={handleUserSaveClick}>
+
                                                     <div className="row">
-                                                        <div className="col-sm-3">
-                                                        </div>
-                                                        <div className="col-sm-8">
-                                                            <ErrorList errors={errors} />
-                                                        </div>
-                                                    </div>
-                                                    <div className="row">
-                                                        <div className="col-sm-3 d-flex justify-content-center">
+                                                        <div className="col-12 col-md-3 d-flex justify-content-center">
                                                             <div className={`${styles.profileImageWrapper}`}>
-                                                                <Image className={`${styles.profileImageDisplay}`} src={profileImage != "" ? URL.createObjectURL(profileImage) : "/images/default_profile_icon.png"} width={125} height={125} alt="profile_Image" />
+                                                                <Image className={`${styles.profileImageDisplay}`} src={profileImage != "" ? URL.createObjectURL(profileImage) : "/images/default_profile_icon.png"} width={105} height={105} alt="profile_Image" />
                                                                 <span className={`${styles.profileImageUploadWrapper}`}>
                                                                     {
                                                                         profileImage ?
@@ -192,71 +186,57 @@ export default function ProfileComponent() {
                                                                 </span>
                                                             </div>
                                                         </div>
-                                                        <div className="col-sm-4">
-                                                            <div className={`${styles.companyInvoiceUserNameWrapper} mb-1 mb-md-4 row`}>
-                                                                <div className="col-12 mb-2">
-                                                                    <label className={`${styles.companyInvoiceProfileFirstName}`}>First Name</label>
+                                                        <div className="col-md-9">
+                                                            <div className="row">
+                                                                <div className="col-md-4">
+                                                                    <div className={`${styles.companyInvoiceUserNameWrapper} mb-1 mb-md-2 row`}>
+                                                                        <div className="col-12 mb-1">
+                                                                            <label className={`${styles.companyInvoiceProfileFirstName}`}>First Name</label>
+                                                                        </div>
+                                                                        <div className="col-12">
+                                                                            <input type="text" className="form-control" name="firstName" value={userData.firstName == null ? '' : userData.firstName} id="companyInvoiceProfileFirstName" placeholder='First Name' onChange={(e => { handleInput(e) })} />
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                                <div className="col-12">
-                                                                    <input type="text" className="form-control" name="firstName" value={userData.firstName == null ? '' : userData.firstName} id="companyInvoiceProfileFirstName" placeholder='First Name' onChange={(e => { handleInput(e) })} />
+                                                                <div className="col-md-4">
+                                                                    <div className={`${styles.companyInvoiceUserNameWrapper} mb-1 mb-md-2 row`}>
+                                                                        <div className="col-12 mb-1">
+                                                                            <label className={`${styles.companyInvoiceProfileLastName}`}>Last Name</label>
+                                                                        </div>
+                                                                        <div className="col-12">
+                                                                            <input type="text" className="form-control" name="lastName" value={userData.lastName == null ? '' : userData.lastName} id="companyInvoiceProfileLastName" placeholder='Last Name' onChange={(e => { handleInput(e) })} />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div className="col-md-8">
+                                                                    <div className={`${styles.companyInvoiceContactNumberWrapper} mb-1 mb-md-1 row`}>
+                                                                        <div className="col-12 mb-1">
+                                                                            <label className={`${styles.companyInvoiceContactNumber}`}>Contact Number</label>
+                                                                        </div>
+                                                                        <div className="col-12">
+                                                                            <input type="text" className="form-control" name="cellNumber" value={userData.cellNumber} id="companyInvoiceContactNumber" placeholder='Contact Number' onChange={(e => { handleInput(e) })} />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div className="col-md-8">
+                                                                    <div className={`${styles.companyInvoiceEmailIDWrapper} mb-2 mb-md-3 row`}>
+                                                                        <div className="col-12 mb-1">
+                                                                            <label className={`${styles.companyInvoiceEmailID}`}>Email ID</label>
+                                                                        </div>
+                                                                        <div className="col-12">
+                                                                            <input type="text" className="form-control" name="email" value={userData.email} id="companyInvoiceEmailID" placeholder='Email ID' onChange={(e => { handleInput(e) })} disabled />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div className="col-12 col-sm-8 col-md-6">
+                                                                    <button className={`${styles.companyInvoiceSaveSendButton} btn blue`} name="btn-submit" type="submit">
+                                                                        <span>
+                                                                            <i><FaSave /></i>
+                                                                            Update
+                                                                        </span>
+                                                                    </button>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div className="col-sm-4">
-                                                            <div className={`${styles.companyInvoiceUserNameWrapper} mb-1 mb-md-4 row`}>
-                                                                <div className="col-12 mb-2">
-                                                                    <label className={`${styles.companyInvoiceProfileLastName}`}>Last Name</label>
-                                                                </div>
-                                                                <div className="col-12">
-                                                                    <input type="text" className="form-control" name="lastName" value={userData.lastName == null ? '' : userData.lastName} id="companyInvoiceProfileLastName" placeholder='Last Name' onChange={(e => { handleInput(e) })} />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="row">
-                                                        <div className="col-sm-3">
-                                                        </div>
-                                                        <div className="col-sm-8">
-                                                            <div className={`${styles.companyInvoiceContactNumberWrapper} mb-1 mb-md-4 row`}>
-                                                                <div className="col-12 mb-2">
-                                                                    <label className={`${styles.companyInvoiceContactNumber}`}>Contact Number</label>
-                                                                </div>
-                                                                <div className="col-12">
-                                                                    <input type="text" className="form-control" name="cellNumber" value={userData.cellNumber} id="companyInvoiceContactNumber" placeholder='Contact Number' onChange={(e => { handleInput(e) })} />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="row">
-                                                        <div className="col-sm-3">
-                                                        </div>
-                                                        <div className="col-sm-8">
-                                                            <div className={`${styles.companyInvoiceEmailIDWrapper} mb-1 mb-md-4 row`}>
-                                                                <div className="col-12 mb-2">
-                                                                    <label className={`${styles.companyInvoiceEmailID}`}>Email ID</label>
-                                                                </div>
-                                                                <div className="col-12">
-                                                                    <input type="text" className="form-control" name="email" value={userData.email} id="companyInvoiceEmailID" placeholder='Email ID' onChange={(e => { handleInput(e) })} disabled />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="row">
-                                                        <div className="offset-sm-3 col-12 col-sm-8 col-md-4 col-lg-3 col-xl-4 mt-3 mt-md-0">
-                                                            <button className={`${styles.companyInvoiceSaveSendButton} btn blue`} name="btn-submit" type="submit">
-                                                                <span>
-                                                                    <i><FaSave /></i>
-                                                                    Update
-                                                                </span>
-                                                            </button>
-                                                        </div>
-                                                        <div className="col-12 col-md-4 col-lg-3 col-xl-4 mt-3 mt-sm-0 d-flex justify-content-center">
-                                                            {/* <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={() => { handleCancelClick() }}>
-                                                                    <span>
-                                                                        <i><FaCircleXmark /></i>
-                                                                        Cancel
-                                                                    </span>
-                                                                </button> */}
                                                         </div>
                                                     </div>
                                                 </form>
@@ -268,22 +248,18 @@ export default function ProfileComponent() {
                                     <div className={`${styles.profileCard} card`}>
                                         <div className="card-body">
                                             <div className={`${styles.passwordDetailsWrapper}`}>
-                                                <h3>Update Password</h3>
+                                                <h4 className="mb-0">Update Password</h4>
                                                 <hr />
                                                 <form action="#" onSubmit={handlePasswordSaveClick}>
-                                                    <div className="row">
-                                                        <div className="col-sm-3">
-                                                        </div>
+                                                    <div className="row mb-1 mb-md-2">
                                                         <div className="col-sm-8">
                                                             <ErrorList errors={passwordErrors} />
                                                         </div>
                                                     </div>
                                                     <div className="row">
-                                                        <div className="col-sm-3">
-                                                        </div>
                                                         <div className="col-sm-8">
-                                                            <div className={`${styles.companyInvoiceCurrentPasswordWrapper} mb-1 mb-md-4 row`}>
-                                                                <div className="col-12 mb-2">
+                                                            <div className={`${styles.companyInvoiceCurrentPasswordWrapper} mb-1 mb-md-2 row`}>
+                                                                <div className="col-12">
                                                                     <label className={`${styles.companyInvoiceCurrentPasswordID}`}>Current Password</label>
                                                                 </div>
                                                                 <div className="col-12 position-relative d-flex">
@@ -293,26 +269,29 @@ export default function ProfileComponent() {
                                                         </div>
                                                     </div>
                                                     <div className="row">
-                                                        <div className="col-sm-3">
-                                                        </div>
                                                         <div className="col-sm-8">
-                                                            <div className={`${styles.companyInvoicePasswordWrapper} mb-1 mb-md-4 row`}>
-                                                                <div className="col-12 mb-2">
+                                                            <div className={`${styles.companyInvoicePasswordWrapper} mb-1 mb-md-2 row`}>
+                                                                <div className="col-12">
                                                                     <label className={`${styles.companyInvoicePasswordID}`}>New Password</label>
                                                                 </div>
-                                                                <div className="col-12 d-flex">
-                                                                    <input type="text" className="form-control" value={userNewPassword} onInput={(e) => { setUserNewPassword(e.target.value) }} id="companyInvoiceUserPassword" placeholder=' New Password' />
-                                                                    <button className="btn blueOutline" onClick={() => { genrateNewPassword() }}><FaGear /></button>
+                                                                <div className="col-12">
+                                                                    <div className="row g-0">
+                                                                        <div className="col-11">
+                                                                            <input type="text" className="form-control" value={userNewPassword} onInput={(e) => { setUserNewPassword(e.target.value) }} id="companyInvoiceUserPassword" placeholder=' New Password' />
+
+                                                                        </div>
+                                                                        <div className="col-1">
+                                                                            <button className="btn blueOutline" onClick={() => { genrateNewPassword() }}><FaGear /></button>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div className="row">
-                                                        <div className="col-sm-3">
-                                                        </div>
                                                         <div className="col-sm-8">
-                                                            <div className={`${styles.companyInvoiceConfirmPasswordIDWrapper} mb-1 mb-md-4 row`}>
-                                                                <div className="col-12 mb-2">
+                                                            <div className={`${styles.companyInvoiceConfirmPasswordIDWrapper} mb-2 mb-md-3 row`}>
+                                                                <div className="col-12">
                                                                     <label className={`${styles.companyInvoiceConfirmPasswordID}`}>Confirm Password</label>
                                                                 </div>
                                                                 <div className="col-12">
@@ -322,21 +301,27 @@ export default function ProfileComponent() {
                                                         </div>
                                                     </div>
                                                     <div className="row">
-                                                        <div className="offset-sm-3 col-12 col-sm-8 col-md-4 col-lg-3 col-xl-4 mt-3 mt-md-0">
-                                                            <button className={`${styles.companyInvoiceSaveSendButton} btn blue`} name="btn-submit" type="submit">
-                                                                <span>
-                                                                    <i><FaSave /></i>
-                                                                    Update
-                                                                </span>
-                                                            </button>
-                                                        </div>
-                                                        <div className="offset-0 offset-sm-3 offset-md-0 col-12 col-sm-8 col-md-4 col-lg-3 col-xl-4 mt-3 mt-md-0">
-                                                            <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} type="reset" onClick={() => { handleCancelClick() }}>
-                                                                <span>
-                                                                    <i><FaCircleXmark /></i>
-                                                                    Reset
-                                                                </span>
-                                                            </button>
+                                                        <div className="col-12 col-sm-8 col-md-6 col-lg-6 col-xl-4 col-xxl-4">
+                                                            <div className="row g-1">
+                                                                <div className="col-6 col-xl-4 col-xxl-4">
+                                                                    <button className={`${styles.companyInvoiceSaveSendButton} btn blue`} name="btn-submit" type="submit">
+                                                                        <span>
+                                                                            <i><FaSave /></i>
+                                                                            Update
+                                                                        </span>
+                                                                    </button>
+                                                                </div>
+                                                                <div className="col-6 col-xl-4 col-xxl-4">
+                                                                    <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} type="reset" onClick={() => { handleCancelClick() }}>
+                                                                        <span>
+                                                                            <i><FaCircleXmark /></i>
+                                                                            Reset
+                                                                        </span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+
+
                                                         </div>
                                                     </div>
                                                 </form>

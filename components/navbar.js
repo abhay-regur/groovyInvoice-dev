@@ -21,10 +21,12 @@ import FaScrewAndWrench from '@/assets/icons/faScrewAndWrench.svg';
 import { getCurrentUserDetails } from "@/services/profile.service";
 import { NavExpandedState } from '@/context/NavState.context';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
+import { usePathname } from "next/navigation";
 
 const MENU_LIST = [{ key: 100, text: "Invoices", href: "/invoices", icon: <FaFileLines /> }, { key: 101, text: "Customers", href: "/customers", icon: <FaUserGroup /> }, { key: 102, text: "Reports", href: "/reports", icon: <FaChartLine /> }, { key: 103, text: "Settings", href: "/settings", icon: <FaGear />, subMenu: [{ key: 1031, text: "Users", href: "/users", icon: <FaUsers /> }, { key: 1032, text: "Config", href: "/configuration", icon: <FaScrewAndWrench /> }] }];
 export default function Navbar() {
-    const [activeIdx, setActiveIdx] = useState('-1');
+    const [activeIdx, setActiveIdx] = useState(-1);
+    const pathname = usePathname();
     const { setToastList } = useContext(ToastMsgContext);
     const [profileImage, setProfileImage] = useState("/images/profile_img.png");
     const [errors, setErrors] = useState([]);
@@ -43,6 +45,15 @@ export default function Navbar() {
     useEffect(() => {
         getLoggedUserDetails();
     }, [])
+
+    useEffect(() => {
+        for (let i = 0; i < MENU_LIST.length; i++) {
+            if (pathname.search(MENU_LIST[i].href) != -1) {
+                setActiveIdx(i);
+                break;
+            }
+        }
+    }, [pathname])
 
     useEffect(() => {
         var temp_ = activeIdx;
@@ -139,7 +150,7 @@ export default function Navbar() {
                                 return (
                                     <Fragment key={idx}>
                                         <hr />
-                                        <div className={`${style.navItemWrapper} d-flex align-item-center`} onClick={() => { setNavItemExpanded(!navItemExpanded); }}>
+                                        <div className={`${style.navItemWrapper} d-flex align-item-center p-0 m-0`} onClick={() => { setNavItemExpanded(!navItemExpanded); }}>
                                             <NavList activeIdx={activeIdx} expanded={navItemExpanded} text={menu.text} icon={menu.icon} subMenu={menu.subMenu} setActiveIdx={setActiveIdx} setNavItemExpanded={setNavItemExpanded}></NavList>
                                         </div>
                                     </Fragment>

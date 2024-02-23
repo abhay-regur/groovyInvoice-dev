@@ -41,8 +41,18 @@
         }
 
         .dropdownWrapper {
+            margin-top: 10px;
+
             .dropdownNavitemWrapper {
                 width: 0;
+
+                .navItemListWrapper {
+                    padding: 10px 15px;
+                    margin: 0 19.99px 0 19.99px;
+                    &.active{
+                        border-radius: 10px;
+                    }
+                }
 
                 &.expanded {
                     width: auto !important;
@@ -50,7 +60,6 @@
 
                     .navItemListWrapper {
                         display: flex;
-                        margin-bottom: 5px;
                     }
                 }
 
@@ -230,6 +239,7 @@
                 color: var.$line-color;
                 width: var.$nonexpanded-width;
                 transition: all 0.2s;
+                margin-top: 3px;
             }
 
             .profileDetailWrapper {
@@ -256,8 +266,6 @@
 
             .active {
                 background-color: var.$navItem-hightlight;
-                padding-top: 10px !important;
-                padding-bottom: 10px !important;
                 border-radius: 10px;
 
                 &.navItemListWrapper {
@@ -358,7 +366,7 @@
             .nav_menu_list {
                 display: flex;
                 flex-direction: column;
-                row-gap: 16px;
+                row-gap: 0px;
                 padding: 24px 0px;
                 font-size: var.$font-size-text;
 
@@ -372,8 +380,8 @@
                 }
 
                 .navItemWrapper {
-                    padding: 0px 15px;
-                    margin-right: 0px;
+                    padding: 10px 15px;
+                    margin: 0 19.99px 0 19.99px;
                     -webkit-transition: background-color 0.31s, padding 0.31s;
                     transition: background-color 0.31s, padding 0.31s;
                     justify-content: center;
@@ -506,21 +514,21 @@
                 }
 
                 .nav_menu_arrow {
-                    top: 56px !important;
-                    right: -6px !important;
+                    top: 23px !important;
+                    right: -16px !important;
                     -webkit-transition: all 0.2s;
                     transition: all 0.5s;
                 }
             }
 
             hr {
-                width: var.$expanded-width !important;
+                width: 100% !important;
                 -webkit-transition: all 0.2s;
                 transition: all 0.2s;
             }
 
             .active {
-                border-radius: 10px 0px 0px 10px !important;
+                border-radius: 10px 0px 0px 10px;
             }
 
             form {
@@ -532,13 +540,17 @@
             .nav_menu_list {
                 padding: 24px 0px !important;
                 padding-left: 11px !important;
+                width: 300px;
 
                 .navItemWrapper {
+                    margin-right: 0 !important;
 
                     .dropdownWrapper {
                         width: 100%;
                         justify-content: left;
                         flex-direction: column;
+                        margin-left: 19.990px;
+                        padding-left: 15px;
 
                         .dropdownNavitem {
                             .nav_item_innerwrapper {
@@ -549,6 +561,15 @@
 
                         .dropdownNavitemWrapper {
                             width: auto;
+
+                            &.expanded {
+                                .navItemListWrapper {
+                                    margin: 0;
+                                    &.active{
+                                        border-radius: 10px 0 0 10px;
+                                    }
+                                }
+                            }
 
                             .navItemListWrapper {
                                 svg {
@@ -889,6 +910,8 @@
                         justify-content: left;
 
                         .dropdownWrapper {
+                            padding: 0px 15px;
+                            margin: 0px 42px;
                             width: 100%;
                             justify-content: left;
                             flex-direction: column;
@@ -904,9 +927,8 @@
                                 width: auto;
 
                                 .navItemListWrapper {
-                                    padding-top: 0;
-                                    padding-bottom: 0;
-                                    padding-left: 10px;
+                                    padding: 0 10px;
+                                    margin: 0 -10px;
                                 }
 
                                 .nav_menuName {

@@ -42,20 +42,20 @@
             transition: all 0.35s;
         }
 
+        .comapnyNotificationHeadingWrapper {
+            margin-bottom: 40px;
+
+            .title{
+                color: var.$primary-color;
+                font-weight: 700;
+                font-size: 36px;
+                line-height: 33px;
+                transition: all 0.35s;
+            }
+        }
+
         .comapnyNotificationAccordianMain {
             background-color: var.$transprant;
-
-            .comapnyNotificationHeadingWrapper {
-                margin-bottom: 40px;
-
-                .title {
-                    color: var.$primary-color;
-                    font-weight: 700;
-                    font-size: 36px;
-                    line-height: 33px;
-                    transition: all 0.35s;
-                }
-            }
 
             .companyInvoiceTimeHeaderWrapper {
                 button {
@@ -85,10 +85,8 @@
                 background: var.$white;
                 pointer-events: auto;
                 overflow: hidden;
-                // max-height: 100px;
-                border: 1px solid var.$primary-border-color;
+                border: 1px solid var.$checkbox-background-hover;
                 border-radius: 3px 3px 3px 3px;
-                box-shadow: 2px 2px 7px #00000040;
                 opacity: .9;
                 background-repeat: no-repeat;
                 color: var.$primary-color;
@@ -98,7 +96,7 @@
                 animation-fill-mode: both;
 
                 &:hover {
-                    box-shadow: 0 0 20px 10px #00000040;
+                    box-shadow: 0 0 20px 10px rgba(182, 203, 221, 0.584);
                     opacity: 1;
                     cursor: pointer
                 }
@@ -172,6 +170,7 @@
         }
 
         .comapnyNotificationHeadingWrapper {
+            
             .title {
                 color: var.$primary-color;
                 font-weight: 700;
@@ -209,7 +208,7 @@
             pointer-events: auto;
             overflow: hidden;
             // max-height: 100px;
-            border: 1px solid var.$primary-border-color;
+            border: 1px solid var.$checkbox-background-hover;
             border-radius: 3px 3px 3px 3px;
             box-shadow: 2px 2px 7px #00000040;
             opacity: .9;
