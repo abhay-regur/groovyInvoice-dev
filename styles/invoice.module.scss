@@ -64,6 +64,7 @@
                     font-weight: 600;
                     font-size: 16px;
                     color: var.$secondary-color;
+                    min-height: 50px;
                 }
 
                 .companyInvoiceTopInvoiceHeaderNumber {
@@ -77,12 +78,12 @@
                 .companyInvoiceTopHeaderDueWithinWrapper {
                     border-right: 1px solid var.$header-top-border-color;
                     margin-top: 23px;
-                    margin-bottom: 27px;
+                    margin-bottom: 0;
                 }
 
                 .companyInvoiceTopHeaderOverdueInvoiceWrapper {
                     margin-top: 23px;
-                    margin-bottom: 27px;
+                    margin-bottom: 0;
                 }
 
                 .companyInvoiceTopHeaderDaysGettingPaidWrapper {
@@ -233,6 +234,7 @@
 
                         td {
                             padding-top: 19px;
+                            padding-bottom: 19px;
                             padding-left: 16px;
                             font-weight: 400;
                             font-size: 14px;
@@ -720,6 +722,7 @@
 
                         td {
                             padding-top: 19px;
+                            padding-bottom: 19px;
                             padding-left: 16px;
                             font-weight: 400;
                             font-size: 14px;
@@ -1201,6 +1204,7 @@
 
                         td {
                             padding-top: 19px;
+                            padding-bottom: 19px;
                             padding-left: 16px;
                             font-weight: 400;
                             font-size: 14px;
