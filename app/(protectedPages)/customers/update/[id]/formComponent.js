@@ -536,8 +536,8 @@ export default function CustomerEditForm() {
                                 {
                                     ActiveTabID == 3 ? ''
                                         :
-                                        <div className="row">
-                                            <div className={`${styles.companyInvoiceFormButtonsWrapper} col-12 col-sm-10 col-md-6 col-lg-7 col-xl-5`}>
+                                        <div className={`${styles.companyInvoiceFormButtonsWrapper} row`}>
+                                            <div className="d-flex gap-3 col-12 col-sm-10 col-md-5 col-lg-7 col-xl-5">
                                                 <button name="btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`} type='submit' disabled={isSubmit}>
                                                     {
                                                         isSubmit ?
