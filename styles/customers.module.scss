@@ -182,7 +182,8 @@
                     tr {
 
                         td {
-                            padding-top: 34px;
+                            padding-top: 16px;
+                            padding-bottom: 16px;
                             padding-left: 16px;
                             font-weight: 400;
                             font-size: 14px;
@@ -307,6 +308,10 @@
                                     }
                                 }
                             }
+                        }
+
+                        td:first-child {
+                            padding-left: 35px;
                         }
 
                         &:last-child {
@@ -564,7 +569,8 @@
                         }
 
                         td {
-                            padding-top: 34px;
+                            padding-top: 16px;
+                            padding-bottom: 16px;
                             padding-left: 16px;
                             font-weight: 400;
                             font-size: 14px;
@@ -692,6 +698,9 @@
                                     }
                                 }
                             }
+                        }
+                        td:first-child {
+                            padding-left: 30px;
                         }
                     }
                 }
