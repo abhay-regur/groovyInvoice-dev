@@ -302,23 +302,19 @@ export default function ProfileComponent() {
                                                     </div>
                                                     <div className="row">
                                                         <div className="col-12 col-sm-8 col-md-6 col-lg-6 col-xl-4 col-xxl-4">
-                                                            <div className="row g-1">
-                                                                <div className="col-6 col-xl-4 col-xxl-4">
+                                                            <div className={`${styles.profileSubmitWrapper} row g-1 gap-3`}>
                                                                     <button className={`${styles.companyInvoiceSaveSendButton} btn blue`} name="btn-submit" type="submit">
                                                                         <span>
                                                                             <i><FaSave /></i>
                                                                             Update
                                                                         </span>
                                                                     </button>
-                                                                </div>
-                                                                <div className="col-6 col-xl-4 col-xxl-4">
                                                                     <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} type="reset" onClick={() => { handleCancelClick() }}>
                                                                         <span>
                                                                             <i><FaCircleXmark /></i>
                                                                             Reset
                                                                         </span>
                                                                     </button>
-                                                                </div>
                                                             </div>
 
 
