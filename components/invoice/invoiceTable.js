@@ -3,6 +3,7 @@ import styles from "@/styles/invoiceTable.module.scss";
 import FaCircleXmark from '@/assets/icons/faCircleXmark.svg';
 import FaExclamationCircle from '@/assets/icons/faExclamationCircle.svg';
 import FaCirclePlus from '@/assets/icons/faCirclePlus.svg';
+import FaAngleDown from '@/assets/icons/faAngleDown.svg';
 import ItemsAutoCompleteTextArea from "./itemsAutoCompleteTextArea";
 import { searchItems } from "@/services/items.service";
 
@@ -138,6 +139,7 @@ const InvoiceTable = (props) => {
                     <button type="button" className={`${styles.companyInvoiceAddlineBtn} btn btn-outline-primary dropdown-toggle`} onClick={() => addAnotherLine()}>
                         <i><FaCirclePlus /></i>
                         Add Another Line
+                        <span><FaAngleDown /></span>
                     </button>
                 </div>
 

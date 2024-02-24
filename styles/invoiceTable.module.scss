@@ -231,6 +231,10 @@
         display: flex;
         align-items: center;
 
+        &::after{
+            display: none;
+        }
+
         &:hover {
             background: var.$primary-color;
             color: white;
@@ -249,6 +253,7 @@
             margin-right: 7px;
             display: flex;
             width: 18px;
+            height: 17px;
 
             svg {
                 width: 18px;
@@ -257,6 +262,14 @@
                 path {
                     transition: 0.5s
                 }
+            }
+        }
+
+        span{
+            margin-left: 5px;
+            svg{
+                 width: 10px;
+                 height: 10px;
             }
         }
     }
@@ -486,11 +499,17 @@
         display: flex;
         align-items: center;
 
+        &::after{
+            display: none;
+        }
+
         &:hover {
             background: var.$primary-color;
             color: white;
 
             i {
+                width: 18px;
+                height: 17px;
                 svg {
                     path {
                         transition: 0.5s;
@@ -512,6 +531,14 @@
                 path {
                     transition: 0.5s
                 }
+            }
+        }
+
+        span{
+            margin-left: 5px;
+            svg{
+                 width: 10px;
+                 height: 10px;
             }
         }
     }
