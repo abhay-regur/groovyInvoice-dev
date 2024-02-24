@@ -247,7 +247,7 @@ export default function InvoiceAddForm() {
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-3">
+                                    <div className="col-12 col-sm-5 col-md-6 col-lg-3 col-xl-3">
                                         <DateInputField
                                             label="Invoice Date"
                                             id="companyInvoiceDate"
@@ -255,7 +255,7 @@ export default function InvoiceAddForm() {
                                             onChange={(date) => setDateChange(date, 'invoiceDate')}
                                         />
                                     </div>
-                                    <div className="col-12 col-sm-5 col-md-4 col-lg-3">
+                                    <div className="col-12 col-sm-5 col-md-6 col-lg-3">
                                         <div className={`${styles.companyInvoicetermsWrapper} mb-3 mt-0`}>
                                             <label htmlFor="companyInvoiceterms" className="form-label">Terms</label>
                                             <CustomSelectComponent
@@ -271,7 +271,7 @@ export default function InvoiceAddForm() {
                                             />
                                         </div>
                                     </div>
-                                    <div className="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-3">
+                                    <div className="col-12 col-sm-5 col-md-6 col-lg-3 col-xl-3">
                                         <DateInputField
                                             label="Due Date"
                                             id="companyInvoiceDueDate"
@@ -296,53 +296,72 @@ export default function InvoiceAddForm() {
                                         </div>
                                     </div>
                                     <div className="col-md-12 col-lg-7 col-xl-5">
-                                        <div className={`${styles.card} card justify-content-between`} >
+                                        <div className={`${styles.card} card justify-content-between p-0`} >
                                             <div className="card-body">
-                                                <div className="d-flex justify-content-between px-3">
+                                                <div className="d-flex justify-content-between">
                                                     <div className={`${styles.subtotalLabel}`}>Sub Total</div>
                                                     <div className={`${styles.subtotalresult}`}>Rs. {parseFloat(data.subTotalAmount).toFixed(2)}</div>
                                                 </div>
-                                                <div className={`${styles.companyInvoiceTaxOptionWrapper} d-flex align-content-center px-3`}>
-                                                    <span className={`${styles.companyInvoiceTaxOptionInputWrapper}`}>
-                                                        <span className={`${styles.companyInvoiceTaxSelectorMainWrapper}`}>
-                                                            <span className={`${styles.taxTDSRadioButtonWrapper} d-flex align-items-center`}>
-                                                                <RadioButton
-                                                                    label="TDS"
-                                                                    checked={taxValueSelected === 'tds'}
-                                                                    onChange={handleTDSChange}
-                                                                />
+                                                <div className={`${styles.companyInvoiceTaxOptionWrapper} row`}>
+                                                    <div className="col-9">
+                                                        <span className={`${styles.companyInvoiceTaxOptionInputWrapper}`}>
+                                                            <span className={`${styles.companyInvoiceTaxSelectorMainWrapper}`}>
+                                                                <span className={`${styles.taxTDSRadioButtonWrapper} d-flex align-items-center`}>
+                                                                    <RadioButton
+                                                                        label="TDS"
+                                                                        checked={taxValueSelected === 'tds'}
+                                                                        onChange={handleTDSChange}
+                                                                    />
+                                                                </span>
+                                                                <span className={`${styles.taxTCSRadioButtonWrapper} d-flex align-items-center`}>
+                                                                    <RadioButton
+                                                                        label="TCS"
+                                                                        checked={taxValueSelected === 'tcs'}
+                                                                        onChange={handleTCSChange}
+                                                                    />
+                                                                </span>
                                                             </span>
-                                                            <span className={`${styles.taxTCSRadioButtonWrapper} d-flex align-items-center`}>
-                                                                <RadioButton
-                                                                    label="TCS"
-                                                                    checked={taxValueSelected === 'tcs'}
-                                                                    onChange={handleTCSChange}
+                                                            <span className={`${styles.taxTypeSelectWrapper}`}>
+                                                                <CustomSelectComponent
+                                                                    className={`${styles.taxTypeSelect}`}
+                                                                    inputClass="form-control"
+                                                                    data={[
+                                                                        {
+                                                                            "Id": 1,
+                                                                            "name": "One"
+                                                                        },
+                                                                        {
+                                                                            "Id": 2,
+                                                                            "name": "Two"
+                                                                        }
+                                                                    ]}
+                                                                    onOptionValueChange={(e) => { console.log(e) }}
+                                                                    optionValue={""}
+                                                                    name={'taxType'}
+                                                                    isDisabled={false}
+                                                                    defaultText={'Select Tax'}
+                                                                    isInnerButtonRequired={false}
                                                                 />
                                                             </span>
                                                         </span>
-                                                        <span className={`${styles.taxTypeSelectWrapper}`}>
-                                                            <select className={`${styles.taxTypeSelect}`}>
-                                                                <option defaultValue>Select Tax</option>
-                                                                <option value="1">One</option>
-                                                                <option value="2">Two</option>
-                                                            </select>
+                                                    </div>
+                                                    <div className="col-3">
+                                                        <span className={`${styles.totalCalculatedTax} d-flex`}>
+                                                            <span className='text-start text-lg-right text-xl-left'> {parseFloat(data.totalTaxAmount).toFixed(2)}</span>
                                                         </span>
-                                                    </span>
-                                                    <span className={`${styles.totalCalculatedTax} d-flex`}>
-                                                        <span className='text-start text-lg-right text-xl-left'> {parseFloat(data.totalTaxAmount).toFixed(2)}</span>
-                                                    </span>
+                                                    </div>
                                                 </div>
-                                                <div className={`${styles.companyInvoiceAdjustmentWrapper} d-flex row px-3`}>
-                                                    <div className={`${styles.companyInvoiceAdjustmentInputWrapper} col-5 order-1 order-lg-1 mb-3`}>
+                                                <div className={`${styles.companyInvoiceAdjustmentWrapper} d-flex row`}>
+                                                    <div className={`${styles.companyInvoiceAdjustmentInputWrapper} col-8 col-lg-4 order-1 order-lg-1 mb-3`}>
                                                         <input type="text" className={`${styles.companyInvoicePriceAdjustment} form-control`} placeholder="Adjustment" name="adjustmentText" value={data.adjustmentText} onChange={handleInput} />
                                                     </div>
-                                                    <div className="col-6 order-3 col-lg-4 order-lg-2">
+                                                    <div className="col-9 order-3 col-lg-6 order-lg-2">
                                                         <div className={`${styles.companyInvoicePriceAdjustment2Wrapper} d-flex`}>
                                                             <input type="number" step="0.01" className={`${styles.companyInvoicePriceAdjustment} form-control`} name="adjustmentAmount" value={data.adjustmentAmount} onChange={handleInput} />
                                                             <i><FaCircleQuestion></FaCircleQuestion></i>
                                                         </div>
                                                     </div>
-                                                    <div className="col-7 col-lg-3 order-2 order-lg-3">
+                                                    <div className="col-4 col-lg-2 order-2 order-lg-3">
                                                         <span className={`${styles.totalCalculatedAdjustment} d-flex justify-content-end`}>
                                                             <span> {parseFloat(data.adjustmentAmount).toFixed(2)}</span>
                                                         </span>

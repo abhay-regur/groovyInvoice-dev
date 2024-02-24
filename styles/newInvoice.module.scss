@@ -23,7 +23,7 @@
 @media screen and (min-width: 676px) {
     .main {
         padding-top: 40px;
-        margin: auto 97px;
+        margin: auto 40px;
         margin-left: 135px;
         transition: all 0.35s;
         margin-bottom: 120px;
@@ -64,6 +64,7 @@
                 margin-top: 41px;
 
                 .companyNameWrapper {
+                    margin-bottom: 1rem;
                     label {
                         color: var.$primary-color;
                         font-weight: 600;
@@ -196,6 +197,10 @@
                     color: var.$white;
                     padding: 5px 12px 21px 5px;
 
+                    & > div{
+                        padding: 28px 21px;
+                    }
+
                     .subtotalLabel,
                     .subtotalresult {
                         font-weight: 700;
@@ -283,13 +288,15 @@
                             }
 
                             .taxTypeSelectWrapper {
+                                width: 100px;
 
                                 *::before,
                                 *::after {
                                     box-sizing: border-box;
                                 }
 
-                                select.taxTypeSelect {
+                                select.taxTypeSelect,
+                                input {
                                     background: var.$white;
                                     border: 1px solid var.$primary-color;
                                     border-radius: 8px;
@@ -297,9 +304,13 @@
                                     font-size: 12px;
                                     color: var.$primary-color;
 
-                                    padding: 0.5em 1em 0.5em 0;
+                                    padding: 0.5em 1em 0.5em 1em;
                                     margin: 0;
                                     width: 100%;
+                                }
+
+                                svg{
+                                    fill: var.$tertiary-color !important;
                                 }
                             }
 
@@ -310,6 +321,7 @@
                             font-size: 18px;
                             color: var.$white;
                             margin-left: auto;
+                            justify-content: end;
                         }
 
 
@@ -627,7 +639,7 @@
                     .subtotalLabel,
                     .subtotalresult {
                         font-weight: 700;
-                        font-size: 16px;
+                        font-size: 18px;
                         line-height: 28px;
                     }
 
@@ -711,24 +723,29 @@
 
 
                             .taxTypeSelectWrapper {
-                                select.taxTypeSelect {
+                                select.taxTypeSelect,
+                                 input {
                                     background: var.$white;
                                     border: 1px solid var.$primary-color;
                                     border-radius: 8px;
                                     font-size: 16px;
                                     font-weight: 600;
                                     font-size: 12px;
-                                    padding: 0.5em 1em 0.5em 0;
+                                    padding: 0.5em 1em 0.5em 1em;
                                     color: var.$primary-color;
+                                }
+                                svg{
+                                    fill: var.$tertiary-color !important;
                                 }
                             }
                         }
 
                         .totalCalculatedTax {
                             font-weight: 700;
-                            font-size: 18px;
+                            font-size: 16px;
                             color: var.$white;
                             margin-left: auto;
+                            justify-content: end;
                         }
 
 
