@@ -344,7 +344,7 @@ export default function CompanyComponent() {
                                 </div>
 
                                 <div className="row">
-                                    <div className="col-6 col-md-4 col-lg-3 col-xl-4 mt-3 mt-sm-0">
+                                    <div className="d-flex gap-3 col-12 col-sm-10 col-md-5 col-lg-7 col-xl-5">
                                         <button className={`${styles.companyInvoiceSaveSendButton} btn blue`} onClick={(e) => { handleSubmit(e) }}>
                                             {
                                                 isSubmit ?
@@ -360,8 +360,6 @@ export default function CompanyComponent() {
                                                     </span>
                                             }
                                         </button>
-                                    </div>
-                                    <div className="col-6 col-md-4 col-lg-3 col-xl-4 mt-3 mt-sm-0">
                                         <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={() => { console.log('Cancel'); }}>
                                             <span>
                                                 <i><FaCircleXmark /></i>
