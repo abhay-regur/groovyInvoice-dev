@@ -2,6 +2,22 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '3001',
+        pathname: '/uploads/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'api.groovyinvoice.com',
+        port: '',
+        pathname: '/uploads/**',
+      }
+    ],
+  },
 }
 
 module.exports = nextConfig
