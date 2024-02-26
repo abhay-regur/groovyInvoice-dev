@@ -85,7 +85,7 @@ export default function Navbar() {
         }
     }
     const imageLoader = ({ src, width, quality }) => {
-        return src.replaceAll('\\', '/');
+        return src;
     }
 
     return (
