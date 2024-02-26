@@ -310,19 +310,23 @@ export default function ProfileComponent() {
                                                         </div>
                                                     </div>
                                                     <div className="row">
-                                                        <div className="col-12 col-sm-8 col-md-6 col-lg-6 col-xl-4 col-xxl-4 d-flex gap-2">
-                                                            <button className={`${styles.companyInvoiceSaveSendButton} btn blue`} name="btn-submit" type="submit">
-                                                                <span>
-                                                                    <i><FaSave /></i>
-                                                                    Update
-                                                                </span>
-                                                            </button>
-                                                            <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} type="reset" onClick={() => { handleCancelClick() }}>
-                                                                <span>
-                                                                    <i><FaCircleXmark /></i>
-                                                                    Reset
-                                                                </span>
-                                                            </button>
+                                                        <div className="col-12 col-sm-8 col-md-6 col-lg-6 col-xl-4 col-xxl-4">
+                                                            <div className={`${styles.profileSubmitWrapper} row g-1 gap-3`}>
+                                                                    <button className={`${styles.companyInvoiceSaveSendButton} btn blue`} name="btn-submit" type="submit">
+                                                                        <span>
+                                                                            <i><FaSave /></i>
+                                                                            Update
+                                                                        </span>
+                                                                    </button>
+                                                                    <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} type="reset" onClick={() => { handleCancelClick() }}>
+                                                                        <span>
+                                                                            <i><FaCircleXmark /></i>
+                                                                            Reset
+                                                                        </span>
+                                                                    </button>
+                                                            </div>
+
+
                                                         </div>
                                                     </div>
                                                 </form>

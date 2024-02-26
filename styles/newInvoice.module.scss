@@ -35,8 +35,21 @@
 
         select {
             &:focus {
-                box-shadow: none;
+                box-shadow: none !important;
+                border: var.$primary-color solid 1px !important;
             }
+        }
+
+        input:focus {
+            box-shadow: none !important;
+            border: var.$primary-color solid 1px !important;
+        }
+        textarea:focus {
+            box-shadow: none !important;
+            border: var.$primary-color solid 1px !important;
+        }
+        .companyInvoicePriceAdjustment:focus {
+            border: #ffffff solid 1px !important;
         }
 
         .title {
@@ -404,13 +417,18 @@
                     font-weight: 600;
                     font-size: 14px;
                     color: var.$white;
-                    margin-right: 11px;
                 }
 
-                .companyInvoiceSaveButtonsWrapper {
+                .companyInvoiceButtonsWrapper {
+
+                    .companyInvoiceSubmitButtonsWrapper {
+                        margin-left: 0;
+                    }
 
                     .companyInvoiceSaveDraftButton,
-                    .companyInvoiceSavenSendButton {
+                    .companyInvoiceSaveSendButton {
+                        width: auto;
+
                         span {
                             display: flex;
                             text-align: center;
@@ -422,8 +440,8 @@
                                 align-self: center;
 
                                 svg {
-                                    height: 20px;
-                                    width: 20px;
+                                        height: 20px;
+                                        width: 20px;
                                 }
                             }
                         }
@@ -431,6 +449,8 @@
                 }
 
                 .companyInvoiceCancelButton {
+                    width: auto;
+
                     span {
                         display: flex;
                         text-align: center;
@@ -468,8 +488,21 @@
 
         select {
             &:focus {
-                box-shadow: none;
+                box-shadow: none !important;
+                border: var.$primary-color solid 1px !important;
             }
+        }
+
+        input:focus {
+            box-shadow: none !important;
+            border: var.$primary-color solid 1px !important;
+        }
+        textarea:focus {
+            box-shadow: none !important;
+            border: var.$primary-color solid 1px !important;
+        }
+        .companyInvoicePriceAdjustment:focus {
+            border: #ffffff solid 1px !important;
         }
 
         .title {
@@ -837,12 +870,17 @@
 
                 }
 
-                .companyInvoiceSaveButtonsWrapper {
+                .companyInvoiceButtonsWrapper {
                     margin-bottom: 21px;
                     font-size: 14px;
 
+                    .companyInvoiceSubmitButtonsWrapper {
+                        margin-left: 0;
+                    }
+                    
                     .companyInvoiceSaveDraftButton,
-                    .companyInvoiceSavenSendButton {
+                    .companyInvoiceSaveSendButton {
+                        width: 46%;
                         span {
                             display: flex;
                             text-align: center;
