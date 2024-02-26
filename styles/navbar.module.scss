@@ -330,7 +330,12 @@
 
                 input {
                     padding: 7px 17px;
-                    border: var.$primary-color solid 1px;
+                    border: var.$primary-border-color solid 1px;
+
+                    &:focus{
+                        border: var.$primary-color solid 1px;
+                        box-shadow: none;
+                    }
 
                     &::placeholder {
                         color: var.$secondary-color;
@@ -855,7 +860,12 @@
 
                     input {
                         padding: 7px 17px;
-                        border: var.$primary-color solid 1px;
+                        border: var.$primary-border-color solid 1px;
+
+                        &:focus{
+                            border: var.$primary-color solid 1px;
+                            box-shadow: none;
+                        }
 
                         &::placeholder {
                             color: var.$secondary-color;
