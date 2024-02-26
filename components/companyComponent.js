@@ -30,10 +30,8 @@ export default function CompanyComponent() {
     const [data, setData] = useState({
         companyName: '',
         industryId: 0,
-        businessLocation: [{
-            stateId: 0,
-            countryId: 0
-        }],
+        stateId: 0,
+        countryId: 0,
         currency: '',
         language: '',
         timeZone: '',
@@ -161,7 +159,7 @@ export default function CompanyComponent() {
         var name = target.name || target.getAttribute('name');
         if (name != '') {
             if (name == 'stateId' || name == 'countryId') {
-                temp_data.businessLocation[name] = parseInt(target.value);
+                temp_data[name] = parseInt(target.value);
             } else if (name == 'industryId' || name == 'currency') {
                 temp_data[name] = parseInt(target.value);
             } else {
@@ -238,7 +236,7 @@ export default function CompanyComponent() {
                                         <label className={`${styles.companyInvoiceOrganizationLocationlabel}`}>Business Location <span className={`${styles.green}`}>*</span> </label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-7">
-                                        <CustomSelectComponent className={`${styles.companyInvoiceOrganizationLocationSelect}`} data={countryArray} onOptionValueChange={handleInput} optionValue={data.businessLocation['countryId']} name={'countryId'} onOptionInnerButtonClick={handleShow} hasSearch={true} isDisabled={false} defaultText={'Select an location'} isInnerButtonRequired={true} multiple={true} />
+                                        <CustomSelectComponent className={`${styles.companyInvoiceOrganizationLocationSelect}`} data={countryArray} onOptionValueChange={handleInput} optionValue={data.countryId} name={'countryId'} onOptionInnerButtonClick={handleShow} hasSearch={true} isDisabled={false} defaultText={'Select an location'} isInnerButtonRequired={true} multiple={true} />
                                     </div>
                                 </div>
 
@@ -247,7 +245,7 @@ export default function CompanyComponent() {
                                         <label className={`${styles.companyInvoiceOrganizationStatelabel}`}>State <span className={`${styles.green}`}>*</span></label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-7">
-                                        <CustomSelectComponent className={`${styles.companyInvoiceOrganizationStateSelect}`} data={statesArray} onOptionValueChange={handleInput} optionValue={data.businessLocation['stateId']} name={'stateId'} isDisabled={false} defaultText={'Select a State'} hasSearch={true} isInnerButtonRequired={false} multiple={true} />
+                                        <CustomSelectComponent className={`${styles.companyInvoiceOrganizationStateSelect}`} data={statesArray} onOptionValueChange={handleInput} optionValue={data.stateId} name={'stateId'} isDisabled={false} defaultText={'Select a State'} hasSearch={true} isInnerButtonRequired={false} multiple={true} />
                                     </div>
                                 </div>
 

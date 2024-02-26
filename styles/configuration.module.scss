@@ -35,6 +35,10 @@
             margin-bottom: 20px;
         }
 
+        input:focus {
+          border: var.$primary-color solid 1px !important;
+          box-shadow: none !important;
+        }
         .paymentTermsDetailsWrapper,
         .industryComponentWrapper {
             table {
@@ -81,6 +85,7 @@
                                 color: var.$secondary-color;
                                 font-weight: 400;
                                 font-size: 14px;
+                                padding: 0 10px;
                             }
 
                             input {
@@ -90,12 +95,12 @@
                                 text-align: left;
                                 font-size: 14px;
                                 background: white;
-                                padding: 0;
+                                padding: 0px 10px;
+                                border-radius: 4px;
                             }
-
                             input:focus {
-                                border: 1px solid #E3EBF2;
-                                box-shadow: none;
+                              border: var.$primary-border-color solid 1px !important;
+                              box-shadow: none;
                             }
 
                             &.companyInvoiceContantPersonEditRow,
@@ -416,6 +421,11 @@
             margin-bottom: 20px;
         }
 
+        input:focus {
+          border: solid 1px var.$primary-color !important;
+          box-shadow: none !important;
+        }
+
         .paymentTermsDetailsWrapper,
         .industryComponentWrapper {
             thead {
@@ -460,6 +470,7 @@
                             color: var.$secondary-color;
                             font-weight: 400;
                             font-size: 14px;
+                            padding: 0 10px;
                         }
 
                         input {
@@ -469,12 +480,8 @@
                             text-align: left;
                             font-size: 14px;
                             background: white;
-                            padding: 0;
-                        }
-
-                        input:focus {
-                            border: 1px solid #E3EBF2;
-                            box-shadow: none;
+                            padding: 10px 0;
+                            border-radius: 4px;
                         }
 
                         &.companyInvoiceContantPersonEditRow,
