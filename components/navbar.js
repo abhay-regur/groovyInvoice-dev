@@ -37,7 +37,7 @@ export default function Navbar() {
         firstName: "",
         lastName: "",
         cellNumber: "",
-        profileImage: "/images/profile_img.png"
+        profilePicFile: "/images/profile_img.png"
     })
     const { navExpandedState, setNavExpandedState } = useContext(NavExpandedState);
     const [navItemExpanded, setNavItemExpanded] = useState(false);
@@ -73,12 +73,15 @@ export default function Navbar() {
                     firstName: data.firstName,
                     lastName: data.lastName,
                     cellNumber: data.cellNumber,
-                    profileImage: "/images/profile_img.png"
+                    profilePicFile: data.profile_image
                 });
             }
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
         }
+    }
+    const imageLoader = ({ src, width, quality }) => {
+        return src.replaceAll('\\', '/');
     }
 
     return (
@@ -103,7 +106,7 @@ export default function Navbar() {
                         <Link href={"/profile"}>
                             <span className="d-flex flex-column" onClick={() => { setActiveIdx('-1') }}>
                                 <div className={`profileImageWrapper d-flex justify-content-center`}>
-                                    <Image className={`${style.profileImage}`} src={data.profileImage} width={45} height={45} alt="profile_Image" />
+                                    <Image className={`${style.profileImage}`} loader={imageLoader} src={data.profilePicFile} width={45} height={45} alt="profile_Image" />
                                 </div>
                                 <div className={`${style.profileNameWrapper} justify-content-center`}>
                                     <div className={`username`}>{data.firstName == null ? '-' : data.firstName} {data.lastName == null ? '-' : data.lastName} <span className={``}></span></div>

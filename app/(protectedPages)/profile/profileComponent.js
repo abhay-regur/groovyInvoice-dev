@@ -22,7 +22,7 @@ export default function ProfileComponent() {
     const { navExpandedState } = useContext(NavExpandedState);
     const { setToastList } = useContext(ToastMsgContext);
     const [isLoading, setIsLoading] = useState(true);
-    const [isUpdating, setIsUpdating] = useState(false);
+    const [isImageSet, setIsImageSet] = useState(false);
     const [errors, setErrors] = useState([]);
     const [passwordErrors, setPasswordErrors] = useState([]);
     const [userCurrentPassword, setUserCurrentPassword] = useState('');
@@ -35,7 +35,7 @@ export default function ProfileComponent() {
         lastName: "",
         cellNumber: "",
         active: true,
-        profilePicFile: ""
+        profilePicFile: "/images/default_profile_icon.png"
     });
 
     const clickImageInput = function (e) {
@@ -58,14 +58,19 @@ export default function ProfileComponent() {
         try {
             const result = await getCurrentUserDetails();
             var data = result.data;
-            console.log(data)
+            var temp_profilephoto = "/images/default_profile_icon.png";
+            if (data.profile_image != "" || data.profile_image != undefined) {
+                temp_profilephoto = data.profile_image.replaceAll('\\', '/');
+                setIsImageSet(true);
+            }
+
             setUserData({
                 id: data.id,
                 email: data.email,
                 firstName: data.firstName,
                 lastName: data.lastName,
                 cellNumber: data.cellNumber,
-                profilePicFile: data.profilePicFile,
+                profilePicFile: temp_profilephoto,
             });
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
@@ -77,17 +82,15 @@ export default function ProfileComponent() {
         e.preventDefault();
         setErrors([]);
         disableSubmitButton(e.target);
-        const data = {
-            firstName: userData.firstName,
-            lastName: userData.lastName,
-            cellNumber: userData.cellNumber,
-            active: true,
-            profilePicFile: userData.profilePicFile
-        }
-        console.log(data)
+        var myFormData = new FormData();
+        myFormData.append('firstName', userData.firstName);
+        myFormData.append('lastName', userData.lastName);
+        myFormData.append('cellNumber', userData.cellNumber);
+        myFormData.append('active', true);
+        myFormData.append('profilePicFile', userData.profilePicFile);
 
         try {
-            const result = await updateCurrentUserDetails(data);
+            const result = await updateCurrentUserDetails(myFormData);
             if (result.status == 200) {
                 setToastList([{
                     id: Math.floor((Math.random() * 101) + 1),
@@ -108,16 +111,23 @@ export default function ProfileComponent() {
     }
 
     const previewandSetImage = function (e) {
+        e.preventDefault();
+        e.stopPropagation();
         var temp_obj = { ...userData }
         if (e.target.files && e.target.files.length > 0) {
             temp_obj.profilePicFile = e.target.files[0];
-            console.log(temp_obj)
+            setIsImageSet(true);
             setUserData(temp_obj);
         }
     }
 
     const removeSelectedImage = function (e) {
-        setProfileImage("")
+        e.preventDefault();
+        e.stopPropagation();
+        var temp_obj = { ...userData }
+        temp_obj.profilePicFile = "";
+        setIsImageSet(false);
+        setUserData(temp_obj);
     }
 
     const handlePasswordSaveClick = async (e) => {
@@ -154,6 +164,11 @@ export default function ProfileComponent() {
         setUserConfirmPassword('');
     }
 
+    const imageLoader = ({ src, width, quality }) => {
+        return src;
+    }
+
+
     return (
         <div className={styles.container}>
             {
@@ -180,16 +195,24 @@ export default function ProfileComponent() {
                                                     <div className="row">
                                                         <div className="col-12 col-md-3 d-flex justify-content-center">
                                                             <div className={`${styles.profileImageWrapper}`}>
-                                                                <Image className={`${styles.profileImageDisplay}`} src={(userData.profilePicFile != null || userData.profilePicFile != undefined) ? URL.createObjectURL(userData.profilePicFile) : "/images/default_profile_icon.png"} width={105} height={105} alt="profile_Image" />
+                                                                <Image className={`${styles.profileImageDisplay}`} loader={imageLoader} src={userData.profilePicFile != "" ? (typeof (userData.profilePicFile) == 'string'
+                                                                    ? userData.profilePicFile
+                                                                    : URL.createObjectURL(userData.profilePicFile)) : "/images/default_profile_icon.png"} width={105} height={105} alt="profile_Image" />
                                                                 <span className={`${styles.profileImageUploadWrapper}`}>
                                                                     {
-                                                                        userData.profileImage ?
-                                                                            <span onClick={(e) => { removeSelectedImage(e) }}>
-                                                                                <FaBan />
-                                                                            </span> :
-                                                                            <span onClick={(e) => { clickImageInput(e) }}>
-                                                                                <FaCamera />
-                                                                            </span>
+                                                                        isImageSet ?
+                                                                            <button className="btn" onClick={(e) => { removeSelectedImage(e) }}>
+                                                                                <span>
+                                                                                    <FaBan />
+                                                                                </span>
+                                                                            </button>
+                                                                            :
+                                                                            <button className="btn" onClick={(e) => { clickImageInput(e) }}>
+                                                                                <span>
+                                                                                    <FaCamera />
+                                                                                </span>
+                                                                            </button>
+
                                                                     }
                                                                     <input id='fileUploadInput' className={`${styles.fileUpload}`} type="file" accept="image/*" onChange={(e) => { previewandSetImage(e) }} />
                                                                 </span>
@@ -312,18 +335,18 @@ export default function ProfileComponent() {
                                                     <div className="row">
                                                         <div className="col-12 col-sm-8 col-md-6 col-lg-6 col-xl-4 col-xxl-4">
                                                             <div className={`${styles.profileSubmitWrapper} row g-1 gap-3`}>
-                                                                    <button className={`${styles.companyInvoiceSaveSendButton} btn blue`} name="btn-submit" type="submit">
-                                                                        <span>
-                                                                            <i><FaSave /></i>
-                                                                            Update
-                                                                        </span>
-                                                                    </button>
-                                                                    <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} type="reset" onClick={() => { handleCancelClick() }}>
-                                                                        <span>
-                                                                            <i><FaCircleXmark /></i>
-                                                                            Reset
-                                                                        </span>
-                                                                    </button>
+                                                                <button className={`${styles.companyInvoiceSaveSendButton} btn blue`} name="btn-submit" type="submit">
+                                                                    <span>
+                                                                        <i><FaSave /></i>
+                                                                        Update
+                                                                    </span>
+                                                                </button>
+                                                                <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} type="reset" onClick={() => { handleCancelClick() }}>
+                                                                    <span>
+                                                                        <i><FaCircleXmark /></i>
+                                                                        Reset
+                                                                    </span>
+                                                                </button>
                                                             </div>
 
 
