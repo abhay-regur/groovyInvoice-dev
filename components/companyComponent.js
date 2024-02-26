@@ -261,7 +261,7 @@ export default function CompanyComponent() {
                                         <label className={`${styles.companyInvoiceOrganizationLanguagelabel}`}>Language <span className={`${styles.green}`}>*</span></label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-7">
-                                        <CustomSelectComponent className={`${styles.companyInvoiceOrganizationLanguageSelect}`} data={[{ Id: 1, name: 'English' }]} onOptionValueChange={handleInput} optionValue={parseInt(data.language)} name={'language'} isDisabled={false} defaultText={'Select a Languange'} isInnerButtonRequired={false} />
+                                        <CustomSelectComponent className={`${styles.companyInvoiceOrganizationLanguageSelect}`} data={[{ Id: 'English', name: 'English' }]} onOptionValueChange={handleInput} optionValue={parseInt(data.language)} name={'language'} isDisabled={false} defaultText={'Select a Languange'} isInnerButtonRequired={false} />
                                     </div>
                                 </div>
 
