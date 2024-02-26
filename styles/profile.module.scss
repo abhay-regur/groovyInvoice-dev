@@ -15,12 +15,12 @@
         }
         select:focus {
             box-shadow: none !important;
-            border: #3649AB solid 1px !important;
+            border: var.$primary-color solid 1px !important;
         }
 
         input:focus {
             box-shadow: none !important;
-            border: #3649AB solid 1px !important;
+            border: var.$primary-color solid 1px !important;
         }
 
         .comapnyInvoiceHeadingWrapper {
@@ -282,12 +282,12 @@
         }
         select:focus {
             box-shadow: none !important;
-            border: #3649AB solid 1px !important;
+            border: var.$primary-color solid 1px !important;
         }
 
         input:focus {
             box-shadow: none !important;
-            border: #3649AB solid 1px !important;
+            border: var.$primary-color solid 1px !important;
         }
         .comapnyInvoiceHeadingWrapper {
             .title {
