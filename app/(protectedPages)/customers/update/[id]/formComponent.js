@@ -537,34 +537,28 @@ export default function CustomerEditForm() {
                                     ActiveTabID == 3 ? ''
                                         :
                                         <div className={`${styles.companyInvoiceFormButtonsWrapper} row`}>
-                                            <div className="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-5">
-                                                <div className="row">
-                                                    <div className="col-6 col-md-4 col-lg-3 col-xl-4">
-                                                        <button name="btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`} type='submit' disabled={isSubmit}>
-                                                            {
-                                                                isSubmit ?
-                                                                    <span className={`d-flex align-items-center`}>
-                                                                        <span class={`spinner-border spinner-border-sm text-light`} role="status">
-                                                                        </span>
-                                                                        <span class="status ms-1">Loading</span>
-                                                                    </span>
-                                                                    :
-                                                                    <span>
-                                                                        <i><FaSave /></i>
-                                                                        Save
-                                                                    </span>
-                                                            }
-                                                        </button>
-                                                    </div>
-                                                    <div className="col-6 col-md-4 col-lg-3 col-xl-4">
-                                                        <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} type='reset' onClick={handleReset}>
-                                                            <span>
-                                                                <i><FaCircleXmark /></i>
-                                                                Cancel
+                                            <div className="d-flex gap-3 col-12 col-sm-10 col-md-5 col-lg-7 col-xl-5">
+                                                <button name="btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`} type='submit' disabled={isSubmit}>
+                                                    {
+                                                        isSubmit ?
+                                                            <span className={`d-flex align-items-center`}>
+                                                                <span class={`spinner-border spinner-border-sm text-light`} role="status">
+                                                                </span>
+                                                                <span class="status ms-1">Loading</span>
                                                             </span>
-                                                        </button>
-                                                    </div>
-                                                </div>
+                                                            :
+                                                            <span>
+                                                                <i><FaSave /></i>
+                                                                Save
+                                                            </span>
+                                                    }
+                                                </button>
+                                                <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} type='reset' onClick={handleReset}>
+                                                    <span>
+                                                        <i><FaCircleXmark /></i>
+                                                        Cancel
+                                                    </span>
+                                                </button>
                                             </div>
                                         </div>
                                 }

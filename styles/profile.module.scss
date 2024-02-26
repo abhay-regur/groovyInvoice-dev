@@ -13,6 +13,15 @@
             margin-left: 329px !important;
             transition: all 0.35s;
         }
+        select:focus {
+            box-shadow: none !important;
+            border: var.$primary-color solid 1px !important;
+        }
+
+        input:focus {
+            box-shadow: none !important;
+            border: var.$primary-color solid 1px !important;
+        }
 
         .comapnyInvoiceHeadingWrapper {
             .title {
@@ -80,6 +89,10 @@
 
                 }
 
+                .profileSubmitWrapper {
+                    margin-left: 0;
+                }
+
                 .companyInvoiceUserNameWrapper,
                 .companyInvoiceContactNumberWrapper,
                 .companyInvoiceEmailIDWrapper,
@@ -106,6 +119,7 @@
                         display: flex;
                         align-self: center;
                         border: none;
+                        width: auto;
 
                         svg {
                             height: 15px;
@@ -185,7 +199,7 @@
                 font-weight: 600;
                 font-size: 14px;
                 color: var.$white;
-                min-width: 100px;
+                width: auto;
 
                 &.companyInvoiceSaveSendButton {
                     min-height: 34px;
@@ -266,7 +280,15 @@
             margin: 89px 15px 92px 15px;
             transition: all 0.35s;
         }
+        select:focus {
+            box-shadow: none !important;
+            border: var.$primary-color solid 1px !important;
+        }
 
+        input:focus {
+            box-shadow: none !important;
+            border: var.$primary-color solid 1px !important;
+        }
         .comapnyInvoiceHeadingWrapper {
             .title {
                 color: var.$primary-color;
@@ -433,10 +455,10 @@
                 border-radius: 6px;
                 font-weight: 600;
                 font-size: 14px;
+                width: auto;
 
                 &.companyInvoiceSaveSendButton {
                     min-height: 34px;
-                    width: 100%;
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -466,7 +488,6 @@
                 }
 
                 &.companyInvoiceCancelButton {
-                    width: 100%;
 
                     span {
                         display: flex;
@@ -488,6 +509,10 @@
                     }
                 }
             }
+        }
+
+        .profileSubmitWrapper {
+            margin-left: 0;
         }
     }
 }
