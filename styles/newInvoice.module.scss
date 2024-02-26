@@ -35,8 +35,21 @@
 
         select {
             &:focus {
-                box-shadow: none;
+                box-shadow: none !important;
+                border: #3649AB solid 1px !important;
             }
+        }
+
+        input:focus {
+            box-shadow: none !important;
+            border: #3649AB solid 1px !important;
+        }
+        textarea:focus {
+            box-shadow: none !important;
+            border: #3649AB solid 1px !important;
+        }
+        .companyInvoicePriceAdjustment:focus {
+            border: #ffffff solid 1px !important;
         }
 
         .title {
@@ -463,8 +476,21 @@
 
         select {
             &:focus {
-                box-shadow: none;
+                box-shadow: none !important;
+                border: #3649AB solid 1px !important;
             }
+        }
+
+        input:focus {
+            box-shadow: none !important;
+            border: #3649AB solid 1px !important;
+        }
+        textarea:focus {
+            box-shadow: none !important;
+            border: #3649AB solid 1px !important;
+        }
+        .companyInvoicePriceAdjustment:focus {
+            border: #ffffff solid 1px !important;
         }
 
         .title {

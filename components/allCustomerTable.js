@@ -80,7 +80,7 @@ const AllCustomerTable = () => {
             <div className="col-lg-4 col-md-6 col-9 mb-3 p-0">
                 <div id="table_filter" className={`${styles.filter_wrapper} input-group`}>
                     <label className="input-group-text">Search:</label>
-                    <input type="search" className="form-control" placeholder="Name" aria-controls="table-input" />
+                    <input type="search" className={`${styles.searchInput} form-control`} placeholder="Name" aria-controls="table-input" />
                 </div>
             </div>
             <div className={`col-sm-12 p-0`}>

@@ -26,6 +26,10 @@
             }
         }
     }
+    .searchInput:focus {
+        box-shadow: none !important;
+        border: #3649AB solid 1px !important;
+    }
 
 }
 

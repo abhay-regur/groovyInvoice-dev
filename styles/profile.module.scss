@@ -13,6 +13,15 @@
             margin-left: 329px !important;
             transition: all 0.35s;
         }
+        select:focus {
+            box-shadow: none !important;
+            border: #3649AB solid 1px !important;
+        }
+
+        input:focus {
+            box-shadow: none !important;
+            border: #3649AB solid 1px !important;
+        }
 
         .comapnyInvoiceHeadingWrapper {
             .title {
@@ -271,7 +280,15 @@
             margin: 89px 15px 92px 15px;
             transition: all 0.35s;
         }
+        select:focus {
+            box-shadow: none !important;
+            border: #3649AB solid 1px !important;
+        }
 
+        input:focus {
+            box-shadow: none !important;
+            border: #3649AB solid 1px !important;
+        }
         .comapnyInvoiceHeadingWrapper {
             .title {
                 color: var.$primary-color;

@@ -84,6 +84,15 @@
                 hr {
                     margin-top: 14px;
                 }
+                select:focus {
+                    box-shadow: none !important;
+                    border: #3649AB solid 1px !important;
+                }
+
+                input:focus {
+                    box-shadow: none !important;
+                    border: #3649AB solid 1px !important;
+                }
 
                 .companyCustomerTypeOptionWrapper {
                     display: flex;
@@ -189,7 +198,6 @@
                         border: 1px solid var.$primary-border-color;
                         border-radius: 8px;
                     }
-
                     input {
                         font-weight: 400;
                         font-size: 14px;
@@ -826,6 +834,15 @@
                         color: var.$primary-color;
                         margin-bottom: 10px;
                     }
+                    select:focus {
+                        box-shadow: none !important;
+                        border: #3649AB solid 1px !important;
+                    }
+    
+                    input:focus {
+                        box-shadow: none !important;
+                        border: #3649AB solid 1px !important;
+                    }
 
                     .companyCustomerTypeSelectorMainWrapper {
                         display: flex;
@@ -922,7 +939,6 @@
                         border-radius: 8px;
                         margin-bottom: 21px;
                     }
-
                     .companyInvoiceNewCustomerFirstName {
                         font-weight: 400;
                         font-size: 14px;
@@ -1549,6 +1565,15 @@
             line-height: 45px;
             margin-bottom: 27px;
             padding-left: 12px;
+        }
+        select:focus {
+            box-shadow: none !important;
+            border: #3649AB solid 1px !important;
+        }
+
+        input:focus {
+            box-shadow: none !important;
+            border: #3649AB solid 1px !important;
         }
 
         .card {
