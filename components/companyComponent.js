@@ -32,9 +32,9 @@ export default function CompanyComponent() {
         industryId: 0,
         stateId: 0,
         countryId: 0,
-        currency: '',
+        currencyId: null,
         language: '',
-        timeZone: '',
+        timeZoneId: null,
         isRegisteredForGST: true,
         GSTIN: '',
         currentInvoicing: ''
@@ -158,9 +158,7 @@ export default function CompanyComponent() {
         var temp_data = data;
         var name = target.name || target.getAttribute('name');
         if (name != '') {
-            if (name == 'stateId' || name == 'countryId') {
-                temp_data[name] = parseInt(target.value);
-            } else if (name == 'industryId' || name == 'currency') {
+            if (name == 'stateId' || name == 'countryId' || name == 'currencyId' || name == 'timeZoneId' || name == 'industryId') {
                 temp_data[name] = parseInt(target.value);
             } else {
                 temp_data[name] = target.value;
@@ -254,7 +252,7 @@ export default function CompanyComponent() {
                                         <label className={`${styles.companyInvoiceOrganizationCurrencylabel}`}>Currency <span className={`${styles.green}`}>*</span></label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-7">
-                                        <CustomSelectComponent className={`${styles.companyInvoiceOrganizationCurrencySelect}`} data={currencies} onOptionValueChange={handleInput} optionValue={data.currency} name={'currency'} isDisabled={false} defaultText={'Select a Currency'} hasSearch={true} isInnerButtonRequired={false} />
+                                        <CustomSelectComponent className={`${styles.companyInvoiceOrganizationCurrencySelect}`} data={currencies} onOptionValueChange={handleInput} optionValue={data.currencyId} name={'currencyId'} isDisabled={false} defaultText={'Select a Currency'} hasSearch={true} isInnerButtonRequired={false} />
                                     </div>
                                 </div>
 
@@ -272,7 +270,7 @@ export default function CompanyComponent() {
                                         <label className={`${styles.companyInvoiceOrganizationTimeZonelabel}`}>Time Zone <span className={`${styles.green}`}>*</span></label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-7">
-                                        <CustomSelectComponent className={`${styles.companyInvoiceOrganizationTimeZoneSelect}`} data={timeZoneList} onOptionValueChange={handleInput} optionValue={data.timeZone} name={'timeZone'} isDisabled={false} defaultText={'Select a Time Zone'} hasSearch={true} isInnerButtonRequired={false} />
+                                        <CustomSelectComponent className={`${styles.companyInvoiceOrganizationTimeZoneSelect}`} data={timeZoneList} onOptionValueChange={handleInput} optionValue={data.timeZoneId} name={'timeZoneId'} isDisabled={false} defaultText={'Select a Time Zone'} hasSearch={true} isInnerButtonRequired={false} />
                                     </div>
                                 </div>
 
