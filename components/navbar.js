@@ -67,13 +67,17 @@ export default function Navbar() {
             const result = await getCurrentUserDetails();
             if (result.status == 200) {
                 var data = result.data;
+                var temp_profilephoto = "/images/default_profile_icon.png";
+                if (data.profile_image != "" || data.profile_image != undefined) {
+                    temp_profilephoto = data.profile_image.replaceAll('\\', '/');
+                }
                 setData({
                     id: data.id,
                     email: data.email,
                     firstName: data.firstName,
                     lastName: data.lastName,
                     cellNumber: data.cellNumber,
-                    profilePicFile: data.profile_image
+                    profilePicFile: temp_profilephoto
                 });
             }
         } catch (error) {
