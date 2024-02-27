@@ -174,7 +174,6 @@ export default function PaymentTermsComponent() {
                 <h4>Payment Terms</h4>
                 <hr />
                 <div className="row">
-                    <div className="col-sm-2"></div>
                     <div className="col-10 overflow-auto">
                         <ErrorList errors={errors} />
                         <table>
