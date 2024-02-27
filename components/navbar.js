@@ -28,7 +28,6 @@ export default function Navbar() {
     const [activeIdx, setActiveIdx] = useState(-1);
     const pathname = usePathname();
     const { setToastList } = useContext(ToastMsgContext);
-    const [profileImage, setProfileImage] = useState("/images/profile_img.png");
     const [errors, setErrors] = useState([]);
     const [hasNotification, setHasNotification] = useState(true)
     const [data, setData] = useState({
@@ -37,7 +36,7 @@ export default function Navbar() {
         firstName: "",
         lastName: "",
         cellNumber: "",
-        profilePicFile: "/images/profile_img.png"
+        profilePicFile: "/images/default_profile_icon.png"
     })
     const { navExpandedState, setNavExpandedState } = useContext(NavExpandedState);
     const [navItemExpanded, setNavItemExpanded] = useState(false);
@@ -85,7 +84,7 @@ export default function Navbar() {
         }
     }
     const imageLoader = ({ src, width, quality }) => {
-        return src;
+        return (`${src}?w=${width}&q=${quality || 75}`);
     }
 
     return (

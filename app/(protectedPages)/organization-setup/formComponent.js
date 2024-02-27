@@ -251,7 +251,7 @@ export default function OrganizationSetupForm() {
     }
 
     const imageLoader = ({ src, width, quality }) => {
-        return src;
+        return (`${src}?w=${width}&q=${quality || 75}`);
     }
 
     return (<div className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
@@ -377,7 +377,7 @@ export default function OrganizationSetupForm() {
                                                     <div className={`${styles.companyInvoiceOrganizationInputFileWrapper} d-flex`}>
                                                         {isImageSet ?
                                                             <div className={`${styles.companyInvoiceOrganizationImageInputWrapper} d-flex flex-column`}>
-                                                                <Image className={`${styles.companyInvoiceOrganizationImageDisplay}`} src={(typeof (data.logo) == 'string'
+                                                                <Image className={`${styles.companyInvoiceOrganizationImageDisplay}`} loader={imageLoader} src={(typeof (data.logo) == 'string'
                                                                     ? data.logo
                                                                     : URL.createObjectURL(data.logo))} width={250} height={125} alt="organization_logo" />
                                                                 <span className={`${styles.companyInvoiceOrganizationImageUploadWrapper}`}>
