@@ -542,9 +542,9 @@ export default function CustomerEditForm() {
                                                     {
                                                         isSubmit ?
                                                             <span className={`d-flex align-items-center`}>
-                                                                <span class={`spinner-border spinner-border-sm text-light`} role="status">
+                                                                <span className={`spinner-border spinner-border-sm text-light`} role="status">
                                                                 </span>
-                                                                <span class="status ms-1">Loading</span>
+                                                                <span className="status ms-1">Loading</span>
                                                             </span>
                                                             :
                                                             <span>

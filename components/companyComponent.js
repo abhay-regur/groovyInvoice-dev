@@ -22,7 +22,6 @@ export default function CompanyComponent() {
     const [countryArray, setCountryArray] = useState([]);
     const [currencies, setCurrencies] = useState([]);
     const [statesArray, getStateArray] = useState([]);
-    const [profileImage, setProfileImage] = useState("");
     const [isSubmit, setIsSubmit] = useState(false);
     // const { Modal } = require("bootstrap");
 
@@ -37,7 +36,9 @@ export default function CompanyComponent() {
         timeZoneId: null,
         isRegisteredForGST: true,
         GSTIN: '',
-        currentInvoicing: ''
+        currentInvoicing: '',
+        logo: '',
+        logoFile: ''
     });
 
     useEffect(() => {
@@ -135,16 +136,6 @@ export default function CompanyComponent() {
         }
     }
 
-    const previewandSetImage = function (e) {
-        if (e.target.files && e.target.files.length > 0) {
-            setProfileImage(e.target.files[0]);
-        }
-    }
-
-    const removeSelectedImage = function (e) {
-        setProfileImage("")
-    }
-
     const showIndustyModal = function () {
         const addIndustyModal = new Modal("#add-industry-modal");
         addIndustyModal.show();
@@ -168,6 +159,28 @@ export default function CompanyComponent() {
         }
     }
 
+    const setImage = function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (e.target.files && e.target.files.length > 0) {
+            var temp_data = data;
+            temp_data.logo = URL.createObjectURL(e.target.files[0]);
+            temp_data.logoFile = e.target.files[0];
+            let temp = Object.assign({}, temp_data);
+            setData(temp);
+        }
+    }
+
+    const removeSelectedImage = function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var temp_data = data;
+        temp_data.logo = '';
+        temp_data.logoFile = '';
+        let temp = Object.assign({}, temp_data);
+        setData(temp);
+    }
+
     const handleCheckBoxChange = ({ target }) => {
         data[target.name] = !data[target.name];
         let temp = Object.assign({}, data);
@@ -182,9 +195,20 @@ export default function CompanyComponent() {
         if (!temp.isRegisteredForGST) {
             temp.GSTIN = "";
         }
-        setData(Object.assign({}, temp));
+        var myFormData = new FormData();
+        myFormData.append('companyName', temp.companyName);
+        myFormData.append('industryId', temp.industryId);
+        myFormData.append('stateId', parseInt(temp.stateId));
+        myFormData.append('countryId', temp.countryId);
+        myFormData.append('currencyId', parseInt(temp.currencyId));
+        myFormData.append('language', temp.language);
+        myFormData.append('timeZoneId', parseInt(temp.timeZoneId));
+        myFormData.append('isRegisteredForGST', temp.isRegisteredForGST);
+        myFormData.append('GSTIN', temp.GSTIN);
+        myFormData.append('currentInvoicing', temp.currentInvoicing);
+        myFormData.append('logoFile', temp.logoFile);
         try {
-            var result = await updateCompanyDetails(data)
+            var result = await updateCompanyDetails(myFormData)
             if (result.status == 200 || result.status == 201) {
                 setToastList([{
                     id: Math.floor((Math.random() * 101) + 1),
@@ -199,6 +223,9 @@ export default function CompanyComponent() {
         }
     }
 
+    const imageLoader = ({ src, width, quality }) => {
+        return src;
+    }
 
     return (
         <div className="col-12">
@@ -261,7 +288,7 @@ export default function CompanyComponent() {
                                         <label className={`${styles.companyInvoiceOrganizationLanguagelabel}`}>Language <span className={`${styles.green}`}>*</span></label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-7">
-                                        <CustomSelectComponent className={`${styles.companyInvoiceOrganizationLanguageSelect}`} data={[{ Id: 'English', name: 'English' }]} onOptionValueChange={handleInput} optionValue={parseInt(data.language)} name={'language'} isDisabled={false} defaultText={'Select a Languange'} isInnerButtonRequired={false} />
+                                        <CustomSelectComponent className={`${styles.companyInvoiceOrganizationLanguageSelect}`} data={[{ Id: 'English', name: 'English' }]} onOptionValueChange={handleInput} optionValue={data.language} name={'language'} isDisabled={false} defaultText={'Select a Languange'} isInnerButtonRequired={false} />
                                     </div>
                                 </div>
 
@@ -312,9 +339,9 @@ export default function CompanyComponent() {
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-7">
                                         <div className={`${styles.companyInvoiceOrganizationInputFileWrapper} d-flex`}>
-                                            {profileImage ?
+                                            {data.logo ?
                                                 <div className={`${styles.companyInvoiceOrganizationImageInputWrapper}`}>
-                                                    <Image className={`${styles.companyInvoiceOrganizationImageDisplay}`} src={profileImage != "" ? URL.createObjectURL(profileImage) : "/images/default_profile_icon.png"} width={250} height={125} alt="organization_logo" />
+                                                    <Image className={`${styles.companyInvoiceOrganizationImageDisplay}`} loader={imageLoader} src={data.logo} width={250} height={125} alt="organization_logo" />
                                                     <span className={`${styles.companyInvoiceOrganizationImageUploadWrapper}`}>
                                                         <p>
                                                             This logo will be displayed in transaction PDF&apos;s and email notifications.
@@ -330,8 +357,8 @@ export default function CompanyComponent() {
                                                 </div>
                                                 :
                                                 <>
-                                                    <input id="companyInvoiceOrganizationLogoInput" className={`${styles.companyInvoiceOrganizationInputFile}`} accept="image/*" type="file" onChange={(e) => { previewandSetImage(e) }} />
-                                                    <label className={`${styles.companyInvoiceOrganizationInputFileSVGButton} btn ms-0`} htmlFor="companyInvoiceOrganizationLogoInput">
+                                                    <input id="companyInvoiceOrganizationLogoInput" className={`${styles.companyInvoiceOrganizationInputFile}`} accept="image/*" type="file" onChange={setImage} />
+                                                    <label className={`${styles.companyInvoiceOrganizationInputFileSVGButton} btn ms-0`} htmlFor="companyInvoiceOrganizationLogoInput" >
                                                         <FaCamera />
                                                         Upload Image
                                                     </label>
