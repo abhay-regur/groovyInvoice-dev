@@ -110,7 +110,7 @@ export default function Navbar() {
                         <Link href={"/profile"}>
                             <span className="d-flex flex-column" onClick={() => { setActiveIdx('-1') }}>
                                 <div className={`profileImageWrapper d-flex justify-content-center`}>
-                                    <Image className={`${style.profileImage}`} loader={imageLoader} src={data.profilePicFile} width={45} height={45} alt="profile_Image" />
+                                    <Image className={`${style.profileImage}`} loader={imageLoader} src={data.profilePicFile} width={45} height={45} unoptimized alt="profile_Image" />
                                 </div>
                                 <div className={`${style.profileNameWrapper} justify-content-center`}>
                                     <div className={`username`}>{data.firstName == null ? '-' : data.firstName} {data.lastName == null ? '-' : data.lastName} <span className={``}></span></div>
