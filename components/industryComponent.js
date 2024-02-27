@@ -155,7 +155,7 @@ export default function IndustryComponent() {
                 <h4>Industries</h4>
                 <hr />
                 <div className="row">
-                    <div className="col-7">
+                    <div className="col-10 col-sm-8 col-md-8 col-lg-5 overflow-auto">
                         <ErrorList errors={errors} />
                         <table className='table mb-4'>
                             <thead>
