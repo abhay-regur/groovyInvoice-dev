@@ -68,7 +68,7 @@ export default function Navbar() {
             if (result.status == 200) {
                 var data = result.data;
                 var temp_profilephoto = "/images/default_profile_icon.png";
-                if (data.profile_image != "" || data.profile_image != undefined) {
+                if (data.profile_image != "" && data.profile_image != null) {
                     temp_profilephoto = data.profile_image.replaceAll('\\', '/');
                 }
                 setData({
