@@ -302,7 +302,7 @@ export default function CompanyComponent() {
                                         <label className={`${styles.companyInvoiceOrganizationCurrentInvoicinglabel}`}>How are you managing invoicing currently? </label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-7">
-                                        {/* <input name='currentInvoicing' type="text" className="form-control" id="companyInvoiceOrganizationCurrentInvoicingSelect" value={data.currentInvoicing} onChange={handleInput} placeholder=' ' /> */}
+                                        <input name='currentInvoicing' type="text" className="form-control" id="companyInvoiceOrganizationCurrentInvoicingSelect" value={data.currentInvoicing} onChange={handleInput} placeholder=' ' />
                                     </div>
                                 </div>
 

@@ -632,7 +632,8 @@
             .companyInvoiceOrganizationLanguageWrapper,
             .companyInvoiceOrganizationTimeZoneWrapper,
             .companyInvoiceOrganizationGSTINWrapper,
-            .companyInvoiceOrganizationCurrentInvoicingWrapper {
+            .companyInvoiceOrganizationCurrentInvoicingWrapper,
+            .companyInvoiceOrganizationImageWrapper {
               .companyInvoiceCompanyOrganizationName,
               .companyInvoiceOrganizationIndustrylabel,
               .companyInvoiceOrganizationStatelabel,
@@ -642,7 +643,8 @@
               .companyInvoiceOrganizationLanguagelabel,
               .companyInvoiceOrganizationTimeZonelabel,
               .companyInvoiceOrganizationGSTlabel,
-              .companyInvoiceOrganizationCurrentInvoicinglabel {
+              .companyInvoiceOrganizationCurrentInvoicinglabel,
+              .companyInvoiceOrganizationImagelabel {
                 display: flex;
                 align-items: center;
                 font-weight: 600;
