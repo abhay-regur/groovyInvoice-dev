@@ -211,7 +211,7 @@ export default function CompanyComponent() {
                             <ErrorList errors={errors} />
                             <form onSubmit={handleSubmit}>
 
-                                <div className={`${styles.companyInvoiceOrganizationNameWrapper} mb-4 row`}>
+                                <div className={`${styles.companyInvoiceOrganizationNameWrapper} gap-2 mb-4 row`}>
                                     <div className="d-flex align-items-center col-12 col-lg-4">
                                         <label className={`${styles.companyInvoiceCompanyOrganizationName}`}>Organization Name</label>
                                     </div>
@@ -220,7 +220,7 @@ export default function CompanyComponent() {
                                     </div>
                                 </div>
 
-                                <div className={`${styles.companyInvoiceOrganizationIndustryWrapper} mb-4 row`}>
+                                <div className={`${styles.companyInvoiceOrganizationIndustryWrapper} gap-2 mb-4 row`}>
                                     <div className="d-flex align-items-center col-12 col-lg-4">
                                         <label className={`${styles.companyInvoiceOrganizationIndustrylabel}`}>Industry </label>
                                     </div>
@@ -229,7 +229,7 @@ export default function CompanyComponent() {
                                     </div>
                                 </div>
 
-                                <div className={`${styles.companyInvoiceOrganizationLocationWrapper} mb-4 row`}>
+                                <div className={`${styles.companyInvoiceOrganizationLocationWrapper} gap-2 mb-4 row`}>
                                     <div className="d-flex align-items-center col-12 col-lg-4">
                                         <label className={`${styles.companyInvoiceOrganizationLocationlabel}`}>Business Location <span className={`${styles.green}`}>*</span> </label>
                                     </div>
@@ -238,7 +238,7 @@ export default function CompanyComponent() {
                                     </div>
                                 </div>
 
-                                <div className={`${styles.companyInvoiceOrganizationStateWrapper} mb-4 row`}>
+                                <div className={`${styles.companyInvoiceOrganizationStateWrapper} gap-2 mb-4 row`}>
                                     <div className="d-flex align-items-center col-12 col-lg-4">
                                         <label className={`${styles.companyInvoiceOrganizationStatelabel}`}>State <span className={`${styles.green}`}>*</span></label>
                                     </div>
@@ -247,7 +247,7 @@ export default function CompanyComponent() {
                                     </div>
                                 </div>
 
-                                <div className={`${styles.companyInvoiceOrganizationCurrencyWrapper} mb-4 row`}>
+                                <div className={`${styles.companyInvoiceOrganizationCurrencyWrapper} gap-2 mb-4 row`}>
                                     <div className="d-flex align-items-center col-12 col-lg-4">
                                         <label className={`${styles.companyInvoiceOrganizationCurrencylabel}`}>Currency <span className={`${styles.green}`}>*</span></label>
                                     </div>
@@ -256,7 +256,7 @@ export default function CompanyComponent() {
                                     </div>
                                 </div>
 
-                                <div className={`${styles.companyInvoiceOrganizationLanguageWrapper} mb-4 row`}>
+                                <div className={`${styles.companyInvoiceOrganizationLanguageWrapper} gap-2 mb-4 row`}>
                                     <div className="d-flex align-items-center col-12 col-lg-4">
                                         <label className={`${styles.companyInvoiceOrganizationLanguagelabel}`}>Language <span className={`${styles.green}`}>*</span></label>
                                     </div>
@@ -265,7 +265,7 @@ export default function CompanyComponent() {
                                     </div>
                                 </div>
 
-                                <div className={`${styles.companyInvoiceOrganizationTimeZoneWrapper} mb-4 row`}>
+                                <div className={`${styles.companyInvoiceOrganizationTimeZoneWrapper} gap-2 mb-4 row`}>
                                     <div className="d-flex align-items-center col-12 col-lg-4">
                                         <label className={`${styles.companyInvoiceOrganizationTimeZonelabel}`}>Time Zone <span className={`${styles.green}`}>*</span></label>
                                     </div>
@@ -274,7 +274,7 @@ export default function CompanyComponent() {
                                     </div>
                                 </div>
 
-                                <div className={`${styles.companyInvoiceOrganizationGSTWrapper} mb-4 row`}>
+                                <div className={`${styles.companyInvoiceOrganizationGSTWrapper} gap-2 mb-4 row`}>
                                     <div className="d-flex align-items-center col-12 col-lg-4">
                                         <label className={`${styles.companyInvoiceOrganizationGSTlabel}`}>Is this business registred for GST?</label>
                                     </div>
@@ -286,7 +286,7 @@ export default function CompanyComponent() {
                                 </div>
 
                                 {data.isRegisteredForGST ?
-                                    <div className={`${styles.companyInvoiceOrganizationGSTINWrapper} mb-4 row`}>
+                                    <div className={`${styles.companyInvoiceOrganizationGSTINWrapper} gap-2 mb-4 row`}>
                                         <div className="d-flex align-items-center col-12 col-lg-4">
                                             <label className={`${styles.companyInvoiceOrganizationGSTlabel}`}>GST Number <span className={`${styles.green}`}>*</span></label>
                                         </div>
@@ -297,7 +297,7 @@ export default function CompanyComponent() {
                                     : ''
                                 }
 
-                                <div className={`${styles.companyInvoiceOrganizationCurrentInvoicingWrapper} mb-4 row`}>
+                                <div className={`${styles.companyInvoiceOrganizationCurrentInvoicingWrapper} gap-2 mb-4 row`}>
                                     <div className="d-flex align-items-center col-12 col-lg-4">
                                         <label className={`${styles.companyInvoiceOrganizationCurrentInvoicinglabel}`}>How are you managing invoicing currently? </label>
                                     </div>
@@ -306,7 +306,7 @@ export default function CompanyComponent() {
                                     </div>
                                 </div>
 
-                                <div className={`${styles.companyInvoiceOrganizationImageWrapper} row mb-4`}>
+                                <div className={`${styles.companyInvoiceOrganizationImageWrapper} gap-2 row mb-4`}>
                                     <div className="d-flex align-items-center col-12 col-lg-4">
                                         <label className={`${styles.companyInvoiceOrganizationImagelabel}`}>Organization Logo</label>
                                     </div>
