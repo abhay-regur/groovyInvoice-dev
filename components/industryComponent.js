@@ -222,7 +222,7 @@ export default function IndustryComponent() {
                     </div>
 
                     <div className="col-8">
-                        <button className={`${styles.companyInvoiceAddIndustry} d-flex align-contect-center btn blue mb-4`} onClick={addInputsRow}>
+                        <button className={`${styles.companyInvoiceAddIndustry} d-flex align-contect-center btn blueOutline mb-4`} onClick={addInputsRow}>
                             <span><i><FaCirclePlus /></i>Add New Industry</span>
                         </button>
                     </div>
