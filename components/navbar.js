@@ -28,7 +28,6 @@ export default function Navbar() {
     const [activeIdx, setActiveIdx] = useState(-1);
     const pathname = usePathname();
     const { setToastList } = useContext(ToastMsgContext);
-    const [profileImage, setProfileImage] = useState("/images/profile_img.png");
     const [errors, setErrors] = useState([]);
     const [hasNotification, setHasNotification] = useState(true)
     const [data, setData] = useState({
@@ -37,7 +36,7 @@ export default function Navbar() {
         firstName: "",
         lastName: "",
         cellNumber: "",
-        profilePicFile: "/images/profile_img.png"
+        profilePicFile: "/images/default_profile_icon.png"
     })
     const { navExpandedState, setNavExpandedState } = useContext(NavExpandedState);
     const [navItemExpanded, setNavItemExpanded] = useState(false);
@@ -68,7 +67,7 @@ export default function Navbar() {
             if (result.status == 200) {
                 var data = result.data;
                 var temp_profilephoto = "/images/default_profile_icon.png";
-                if (data.profile_image != "" || data.profile_image != undefined) {
+                if (data.profile_image != "" && data.profile_image != null) {
                     temp_profilephoto = data.profile_image.replaceAll('\\', '/');
                 }
                 setData({
@@ -85,7 +84,7 @@ export default function Navbar() {
         }
     }
     const imageLoader = ({ src, width, quality }) => {
-        return src;
+        return (`${src}?w=${width}&q=${quality || 75}`);
     }
 
     return (
@@ -110,7 +109,7 @@ export default function Navbar() {
                         <Link href={"/profile"}>
                             <span className="d-flex flex-column" onClick={() => { setActiveIdx('-1') }}>
                                 <div className={`profileImageWrapper d-flex justify-content-center`}>
-                                    <Image className={`${style.profileImage}`} loader={imageLoader} src={data.profilePicFile} width={45} height={45} alt="profile_Image" />
+                                    <Image className={`${style.profileImage}`} loader={imageLoader} src={data.profilePicFile} width={45} height={45} unoptimized alt="profile_Image" />
                                 </div>
                                 <div className={`${style.profileNameWrapper} justify-content-center`}>
                                     <div className={`username`}>{data.firstName == null ? '-' : data.firstName} {data.lastName == null ? '-' : data.lastName} <span className={``}></span></div>

@@ -11,6 +11,7 @@ import { getIndianStates, getCountries } from '@/services/countriesState.service
 import CustomSelectComponent from "@/components/common/customSelectComponent";
 import IndustryModal from "@/components/industryModal";
 import FaCamera from '@/assets/icons/faCamera.svg';
+import FaCircleXmark from '@/assets/icons/faCircleXmark.svg';
 import { NavExpandedState } from '@/context/NavState.context';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 import Loading from "../loading";
@@ -28,22 +29,21 @@ export default function OrganizationSetupForm() {
     const [countryArray, setCountryArray] = useState([]);
     const [currencies, setCurrencies] = useState([]);
     const [statesArray, getStateArray] = useState([]);
-    const [profileImage, setProfileImage] = useState("");
+    const [isImageSet, setIsImageSet] = useState(false);
     const { Modal } = require("bootstrap");
 
     const [data, setData] = useState({
         companyName: '',
         industryId: 0,
-        businessLocation: [{
-            stateId: 0,
-            countryId: 0
-        }],
-        currency: '',
+        stateId: 0,
+        countryId: 0,
+        currencyId: '',
         language: '',
-        timeZone: '',
+        timeZoneId: '',
         isRegisteredForGST: true,
         GSTIN: '',
-        currentInvoicing: ''
+        currentInvoicing: '',
+        logo: ""
     });
 
     useEffect(() => {
@@ -105,8 +105,30 @@ export default function OrganizationSetupForm() {
 
     const getCompanyData = async () => {
         setErrors([]);
-        const result = await getCompanyDetails();
-        setData(result.data);
+        try {
+            const result = await getCompanyDetails();
+            var data = result.data;
+            var temp_profilephoto = "/images/default_profile_icon.png";
+            if (data.logo != "" && data.logo != null) {
+                temp_profilephoto = data.logo.replaceAll('\\', '/');
+                setIsImageSet(true);
+            }
+            setData({
+                companyName: data.companyName,
+                industryId: data.industryId,
+                stateId: data.stateId,
+                countryId: data.countryId,
+                currencyId: data.currencyId,
+                language: data.language,
+                timeZoneId: data.timeZoneId,
+                isRegisteredForGST: data.isRegisteredForGST,
+                GSTIN: data.GSTIN,
+                currentInvoicing: data.currentInvoicing,
+                logo: temp_profilephoto
+            });
+        } catch (error) {
+            setErrors(genrateErrorMessage(error, '', setToastList));
+        }
     }
 
     const getIndustryData = async () => {
@@ -142,13 +164,23 @@ export default function OrganizationSetupForm() {
     }
 
     const previewandSetImage = function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var temp_obj = { ...data }
         if (e.target.files && e.target.files.length > 0) {
-            setProfileImage(e.target.files[0]);
+            temp_obj.logo = e.target.files[0];
+            setIsImageSet(true);
+            setData(temp_obj);
         }
     }
 
     const removeSelectedImage = function (e) {
-        setProfileImage("")
+        e.preventDefault();
+        e.stopPropagation();
+        var temp_obj = { ...data }
+        temp_obj.logo = "";
+        setIsImageSet(false);
+        setData(temp_obj);
     }
 
     const showIndustyModal = function () {
@@ -164,9 +196,7 @@ export default function OrganizationSetupForm() {
         var temp_data = data;
         var name = target.name || target.getAttribute('name');
         if (name != '') {
-            if (name == 'stateId' || name == 'countryId') {
-                temp_data.businessLocation[name] = parseInt(target.value);
-            } else if (name == 'industryId' || name == 'currency') {
+            if (name == 'industryId' || name == 'currencyId' || name == 'stateId' || name == 'countryId' || name == 'timeZoneId' || name == 'language') {
                 temp_data[name] = parseInt(target.value);
             } else {
                 temp_data[name] = target.value;
@@ -191,8 +221,21 @@ export default function OrganizationSetupForm() {
             temp.GSTIN = "";
         }
         setData(Object.assign({}, temp));
+        var myFormData = new FormData();
+        myFormData.append('industryId', data.industryId);
+        myFormData.append('companyName', data.companyName);
+        myFormData.append('stateId', data.stateId);
+        myFormData.append('countryId', data.countryId);
+        myFormData.append('currencyId', data.currencyId);
+        myFormData.append('language', data.language);
+        myFormData.append('timeZoneId', data.timeZoneId);
+        myFormData.append('isRegisteredForGST', data.isRegisteredForGST);
+        myFormData.append('GSTIN', data.GSTIN);
+        myFormData.append('currentInvoicing', data.currentInvoicing);
+        myFormData.append('logoFile', data.logo);
+
         try {
-            var result = await updateCompanyDetails(data)
+            var result = await updateCompanyDetails(myFormData)
             if (result.status == 200 || result.status == 201) {
                 setToastList([{
                     id: Math.floor((Math.random() * 101) + 1),
@@ -205,6 +248,10 @@ export default function OrganizationSetupForm() {
             setErrors(genrateErrorMessage(error, '', setToastList));
             setIsLoading(false);
         }
+    }
+
+    const imageLoader = ({ src, width, quality }) => {
+        return (`${src}?w=${width}&q=${quality || 75}`);
     }
 
     return (<div className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
@@ -250,7 +297,7 @@ export default function OrganizationSetupForm() {
                                                     <label className={`${styles.companyInvoiceOrganizationLocationlabel}`}>Business Location <span className={`${styles.green}`}>*</span> </label>
                                                 </div>
                                                 <div className="col-12 col-lg-6 col-xl-7">
-                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationLocationSelect}`} data={countryArray} onOptionValueChange={handleInput} optionValue={data.businessLocation['countryId']} name={'countryId'} onOptionInnerButtonClick={handleShow} hasSearch={true} isDisabled={false} defaultText={'Select an location'} isInnerButtonRequired={true} />
+                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationLocationSelect}`} data={countryArray} onOptionValueChange={handleInput} optionValue={data.countryId} name={'countryId'} onOptionInnerButtonClick={handleShow} hasSearch={true} isDisabled={false} defaultText={'Select an location'} isInnerButtonRequired={true} />
                                                 </div>
                                             </div>
 
@@ -259,7 +306,7 @@ export default function OrganizationSetupForm() {
                                                     <label className={`${styles.companyInvoiceOrganizationStatelabel}`}>State <span className={`${styles.green}`}>*</span></label>
                                                 </div>
                                                 <div className="col-12 col-lg-6 col-xl-7">
-                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationStateSelect}`} data={statesArray} onOptionValueChange={handleInput} optionValue={data.businessLocation['stateId']} name={'stateId'} isDisabled={false} defaultText={'Select a State'} hasSearch={true} isInnerButtonRequired={false} />
+                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationStateSelect}`} data={statesArray} onOptionValueChange={handleInput} optionValue={data.stateId} name={'stateId'} isDisabled={false} defaultText={'Select a State'} hasSearch={true} isInnerButtonRequired={false} />
                                                 </div>
                                             </div>
 
@@ -268,7 +315,7 @@ export default function OrganizationSetupForm() {
                                                     <label className={`${styles.companyInvoiceOrganizationCurrencylabel}`}>Currency <span className={`${styles.green}`}>*</span></label>
                                                 </div>
                                                 <div className="col-12 col-lg-6 col-xl-7">
-                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationCurrencySelect}`} data={currencies} onOptionValueChange={handleInput} optionValue={data.currency} name={'currency'} isDisabled={false} defaultText={'Select a Currency'} hasSearch={true} isInnerButtonRequired={false} />
+                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationCurrencySelect}`} data={currencies} onOptionValueChange={handleInput} optionValue={data.currencyId} name={'currencyId'} isDisabled={false} defaultText={'Select a Currency'} hasSearch={true} isInnerButtonRequired={false} />
                                                 </div>
                                             </div>
 
@@ -286,7 +333,7 @@ export default function OrganizationSetupForm() {
                                                     <label className={`${styles.companyInvoiceOrganizationTimeZonelabel}`}>Time Zone <span className={`${styles.green}`}>*</span></label>
                                                 </div>
                                                 <div className="col-12 col-lg-6 col-xl-7">
-                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationTimeZoneSelect}`} data={timeZoneList} onOptionValueChange={handleInput} optionValue={data.timeZone} name={'timeZone'} isDisabled={false} defaultText={'Select a Time Zone'} hasSearch={true} isInnerButtonRequired={false} />
+                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationTimeZoneSelect}`} data={timeZoneList} onOptionValueChange={handleInput} optionValue={data.timeZoneId} name={'timeZoneId'} isDisabled={false} defaultText={'Select a Time Zone'} hasSearch={true} isInnerButtonRequired={false} />
                                                 </div>
                                             </div>
 
@@ -318,7 +365,7 @@ export default function OrganizationSetupForm() {
                                                     <label className={`${styles.companyInvoiceOrganizationCurrentInvoicinglabel}`}>How are you managing invoicing currently? </label>
                                                 </div>
                                                 <div className="col-12 col-lg-6 col-xl-7">
-                                                    {/* <input name='currentInvoicing' type="text" className="form-control" id="companyInvoiceOrganizationCurrentInvoicingSelect" value={data.currentInvoicing} onChange={handleInput} placeholder=' ' /> */}
+                                                    <input name='currentInvoicing' type="text" className="form-control" id="companyInvoiceOrganizationCurrentInvoicingSelect" value={data.currentInvoicing} onChange={handleInput} placeholder=' ' />
                                                 </div>
                                             </div>
 
@@ -328,18 +375,20 @@ export default function OrganizationSetupForm() {
                                                 </div>
                                                 <div className="col-12 col-lg-6 col-xl-7">
                                                     <div className={`${styles.companyInvoiceOrganizationInputFileWrapper} d-flex`}>
-                                                        {profileImage ?
-                                                            <div className={`${styles.companyInvoiceOrganizationImageInputWrapper}`}>
-                                                                <Image className={`${styles.companyInvoiceOrganizationImageDisplay}`} src={profileImage != "" ? URL.createObjectURL(profileImage) : "/images/default_profile_icon.png"} width={250} height={125} alt="organization_logo" />
+                                                        {isImageSet ?
+                                                            <div className={`${styles.companyInvoiceOrganizationImageInputWrapper} d-flex flex-column`}>
+                                                                <Image className={`${styles.companyInvoiceOrganizationImageDisplay}`} loader={imageLoader} src={(typeof (data.logo) == 'string'
+                                                                    ? data.logo
+                                                                    : URL.createObjectURL(data.logo))} width={250} height={125} alt="organization_logo" />
                                                                 <span className={`${styles.companyInvoiceOrganizationImageUploadWrapper}`}>
                                                                     <p>
                                                                         This logo will be displayed in transaction PDF&apos;s and email notifications.
                                                                     </p>
                                                                     <p>
-                                                                        Max File Size: 1MB
+                                                                        Max File Size: 2MB
                                                                     </p>
                                                                     <span className={`${styles.companyInvoiceOrganizationRemoveLogoLink}`} onClick={(e) => { removeSelectedImage(e) }}>
-                                                                        Remove Logo
+                                                                        <FaCircleXmark /> <span className="ms-1">Remove Logo</span>
                                                                     </span>
                                                                 </span>
 

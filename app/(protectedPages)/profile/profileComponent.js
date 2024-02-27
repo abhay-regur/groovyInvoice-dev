@@ -59,7 +59,7 @@ export default function ProfileComponent() {
             const result = await getCurrentUserDetails();
             var data = result.data;
             var temp_profilephoto = "/images/default_profile_icon.png";
-            if (data.profile_image != "" || data.profile_image != undefined) {
+            if (data.profile_image != "" && data.profile_image != null) {
                 temp_profilephoto = data.profile_image.replaceAll('\\', '/');
                 setIsImageSet(true);
             }
@@ -165,7 +165,7 @@ export default function ProfileComponent() {
     }
 
     const imageLoader = ({ src, width, quality }) => {
-        return src;
+        return (`${src}?w=${width}&q=${quality || 75}`);
     }
 
 

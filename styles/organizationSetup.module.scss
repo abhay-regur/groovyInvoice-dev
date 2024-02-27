@@ -165,6 +165,18 @@
               .companyInvoiceOrganizationRemoveLogoLink {
                 color: var.$button-red-color;
                 cursor: pointer;
+                
+                span{
+                  margin-top: 0;
+                  margin-bottom: 0;
+                }
+                svg{
+                  margin-top: 0;
+                  margin-bottom: 0;
+                  path{
+                    fill: var.$button-red-color;
+                  }
+                }
               }
             }
           }
