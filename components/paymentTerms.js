@@ -243,7 +243,7 @@ export default function PaymentTermsComponent() {
                         </table>
                     </div>
                     <div className="col-sm-2"></div>
-                    <div className="col-10">
+                    <div className="col-12">
                         <button className={`${styles.companyInvoiceAddIndustry} d-flex align-contect-center btn blueOutline mt-4 mb-4`} onClick={addInputsRow}>
                             <span><i><FaCirclePlus /></i>Add New Payment Term</span>
                         </button>

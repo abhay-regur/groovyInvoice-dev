@@ -157,7 +157,7 @@ export default function IndustryComponent() {
                 <div className="row">
                     <div className="col-10 col-sm-8 col-md-8 col-lg-5 overflow-auto">
                         <ErrorList errors={errors} />
-                        <table className='table mb-4'>
+                        <table >
                             <thead>
                                 <tr>
                                     <th scope="col" className="text-left">Sr.</th>
@@ -220,9 +220,8 @@ export default function IndustryComponent() {
                             }
                         </table>
                     </div>
-
-                    <div className="col-8">
-                        <button className={`${styles.companyInvoiceAddIndustry} d-flex align-contect-center btn blueOutline mb-4`} onClick={addInputsRow}>
+                    <div className="col-12">
+                        <button className={`${styles.companyInvoiceAddIndustry} d-flex align-contect-center btn blueOutline mt-4 mb-4`} onClick={addInputsRow}>
                             <span><i><FaCirclePlus /></i>Add New Industry</span>
                         </button>
                     </div>
