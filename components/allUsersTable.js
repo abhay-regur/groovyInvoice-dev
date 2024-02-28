@@ -21,12 +21,16 @@ const AllUserTable = () => {
 
     const dtRef = useRef();
 
+    const imageLoader = ({ src, width, quality }) => {
+        return src;
+    }
+
     const draw_userName = (row) => {
         var fullName = (row.firstName == null ? '-' : row.firstName) + ' ' + (row.lastName == null ? '-' : row.lastName);
         return (
             <>
                 <div className={`${styles.companyUserTableCustomerImage}`}>
-                    <Image src={defaultProfile} alt="Picture of the author" width={42} height={42} />
+                    <Image src={row.profile_image} loader={imageLoader} alt="Picture of the author" width={42} height={42} />
                     <span className={`${styles.companyUserTableCustomerNameWrapper}`} >
                         {
                             <div className={`${styles.companyUserTableCustomerName}`}>
