@@ -18,6 +18,10 @@
             color: #8790b08a;
         }
     }
+    input:focus {
+        box-shadow: none;
+        border: var.$primary-color solid 1px !important;
+    }
 
     .mainHeading {
         height: 47px;
