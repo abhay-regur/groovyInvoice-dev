@@ -15,6 +15,11 @@
     select {
         height: 41px;
     }
+    input:focus,
+    select:focus {
+        box-shadow: none;
+        border: var.$primary-color solid 1px !important;
+    }
 }
 
 //Big Screen
@@ -457,7 +462,6 @@
                         font-weight: 600;
                         font-size: 14px;
                         color: var.$white;
-                        width: 100%;
 
                         &.companyInvoiceSavenSendButton {
                             &:active {
