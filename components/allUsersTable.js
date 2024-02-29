@@ -26,7 +26,6 @@ const AllUserTable = () => {
         return (
             <>
                 <div className={`${styles.companyUserTableCustomerImage}`}>
-                    <Image src={defaultProfile} alt="Picture of the author" width={42} height={42} />
                     <span className={`${styles.companyUserTableCustomerNameWrapper}`} >
                         {
                             <div className={`${styles.companyUserTableCustomerName}`}>
