@@ -1,8 +1,13 @@
 @use './utility/variables' as var;
+
+
+
 @media screen and (min-width: 676px) {
     .breadcrumbMainNav {
-        margin-top: 10px;
+        margin: 0 -40px 62px -40px;
+        padding: 13px 0 13px 40px;
         font-weight: 700;
+        border-bottom: 1px solid var.$primary-border-color;
 
         .breadcrumbItem {
             color: var.$primary-color;
@@ -10,9 +15,10 @@
             position: relative;
             list-style-type: none;
             margin-right: 5px;
+            font-size: 13px;
 
             &::after {
-                content: '\\';
+                content: '>';
                 position: absolute;
                 top: 20%;
             }
@@ -47,9 +53,12 @@
 }
 
 @media screen and (max-width: 676px) {
+    
     .breadcrumbMainNav {
-        margin-top: 10px;
+        margin-bottom:32px;
+        padding: 13px 0px;
         font-weight: 700;
+        border-bottom: 1px solid var.$primary-border-color;
 
         .breadcrumbItem {
             color: var.$primary-color;
@@ -57,9 +66,10 @@
             position: relative;
             list-style-type: none;
             margin-right: 5px;
+            font-size: 12px;
 
             &::after {
-                content: '\\';
+                content: '>';
                 position: absolute;
                 top: 20%;
             }

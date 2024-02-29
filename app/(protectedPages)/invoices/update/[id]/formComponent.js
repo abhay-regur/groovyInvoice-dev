@@ -36,6 +36,7 @@ export default function InvoiceEditForm() {
     const { setToastList } = useContext(ToastMsgContext);
     const [errors, setErrors] = useState([]);
     const [isPageLoading, setIsPageLoading] = useState(true);
+
     const [data, setData] = useState({
         customerId: 0,
         invoiceNo: '',
@@ -186,7 +187,7 @@ export default function InvoiceEditForm() {
         <div className={styles.container}>
             <main className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
                 <div className="breadcrumbWrapper">
-                    <Breadcrumb styles={styles} />
+                    <Breadcrumb />
                 </div>
                 <h2 className={`${styles.title}`}>
                     Update Invoice

@@ -38,7 +38,7 @@ export default function InvoiceListComponent() {
     return (
         <div className={styles.container}>
             <main className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
-                <div className="container-fluid">
+                <div className="main">
                     <div className="breadcrumbWrapper">
                         <Breadcrumb styles={styles} />
                     </div>
