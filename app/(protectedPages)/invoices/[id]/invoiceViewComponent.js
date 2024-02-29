@@ -104,10 +104,10 @@ export default function InvoiceViewComponent() {
             {isPageLoading ?
                 <Loading /> :
                 <main className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
-                    <div className="container-fluid">
-                        <div className="breadcrumbWrapper">
-                            <Breadcrumb styles={styles} />
-                        </div>
+                    <div className="breadcrumbWrapper">
+                        <Breadcrumb styles={styles} />
+                    </div>
+                    <div className="container px-3 px-sm-0">
                         <div className={`${styles.comapnyInvoiceViewInvoiceHeadWrapper} row`}>
                             <div className={`${styles.comapnyInvoiceViewInvoiceMainHeading} col-9 col-md-10 col-lg-7`}>{customer.firstName + ' ' + customer.lastName}<span className={`${styles.comapnyInvoiceViewInvoiceSubHeading}`}>#{formatDate(data.invoiceDate)}</span></div>
                             <div className={`${styles.companyInvoiceViewInvoiceActionBarWrapper} col-12`}>

@@ -17,10 +17,11 @@ export default function UserListComponnt() {
     return (
         <div className={styles.container}>
             <main className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
+                <div className="breadcrumbWrapper">
+                    <Breadcrumb styles={styles} />
+                </div>
                 <div className="container-fluid position-relative">
-                    <div className="breadcrumbWrapper">
-                        <Breadcrumb styles={styles} />
-                    </div>
+
                     <div className={`${styles.comapnyInvoiceHeadingWrapper} row`}>
                         <div className="col-6">
                             <h2 className={`${styles.title}`}>
