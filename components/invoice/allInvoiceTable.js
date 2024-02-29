@@ -119,9 +119,7 @@ const AllInvoiceTable = ({ ItemsData }) => {
                     >
                         <thead>
                             <tr>
-                                <th scope="col" className="ps-3" data-priority="1" >
-                                    <span className={`${styles.companyInvoiceTableInvoiceNumber}`}>Invoice Number</span>
-                                </th>
+                                <th scope="col" className="ps-3" data-priority="1" >Invoice Number</th>
                                 <th scope="col" className="ps-3" data-priority="2" >Customer Name</th>
                                 <th scope="col" className="ps-3 hide" data-priority="99" >Last name</th>
                                 <th scope="col" className="ps-3" data-priority="99">Due Date</th>
