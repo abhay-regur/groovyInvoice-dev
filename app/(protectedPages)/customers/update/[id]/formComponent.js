@@ -452,7 +452,7 @@ export default function CustomerEditForm() {
                                         <label className={`${styles.companyInvoiceCompanyEmailLabel}`}>Customer Email</label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-6 d-flex align-items-center">
-                                        <input name='email' type="email" className="form-control" id="companyInvoiceCompanyEmail" value={data.email} placeholder='Company Email' onChange={handleInput} />
+                                        <input name='email' type="email" className="form-control" id="companyInvoiceCompanyEmail" value={data.email} placeholder='Email Address' onChange={handleInput} />
                                         <FaExclamationCircle />
                                     </div>
                                 </div>

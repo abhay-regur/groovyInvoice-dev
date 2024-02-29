@@ -471,7 +471,7 @@ export default function CustomerAddForm() {
                                         <label className={`${styles.companyInvoiceCompanyEmailLabel}`}>Customer Email</label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-6 d-flex align-items-center">
-                                        <input name='email' type="email" className="form-control" id="companyInvoiceCompanyEmail" placeholder='Company Email' value={data.email} onChange={handleInput} />
+                                        <input name='email' type="email" className="form-control" id="companyInvoiceCompanyEmail" placeholder='Email Address' value={data.email} onChange={handleInput} />
                                         <FaExclamationCircle />
                                     </div>
                                 </div>
