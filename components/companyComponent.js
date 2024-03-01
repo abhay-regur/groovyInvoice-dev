@@ -174,6 +174,7 @@ export default function CompanyComponent() {
     const removeSelectedImage = function (e) {
         e.preventDefault();
         e.stopPropagation();
+        $('#companyInvoiceOrganizationLogoInput').val('');
         var temp_data = data;
         temp_data.logo = '';
         temp_data.logoFile = '';
@@ -222,9 +223,14 @@ export default function CompanyComponent() {
             setIsSubmit(false);
         }
     }
+    const cancleHandler = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        console.log('Cancled')
+    }
 
     const imageLoader = ({ src, width, quality }) => {
-        return src;
+        return (`${src}?w=${width}&q=${quality || 75}`);
     }
 
     return (
@@ -236,7 +242,7 @@ export default function CompanyComponent() {
                         <hr />
                         <div className={`${styles.form} mb4 row`}>
                             <ErrorList errors={errors} />
-                            <form onSubmit={handleSubmit}>
+                            <form >
 
                                 <div className={`${styles.companyInvoiceOrganizationNameWrapper} gap-2 mb-4 row`}>
                                     <div className="d-flex align-items-center col-12 col-lg-4">
@@ -261,7 +267,7 @@ export default function CompanyComponent() {
                                         <label className={`${styles.companyInvoiceOrganizationLocationlabel}`}>Business Location <span className={`${styles.green}`}>*</span> </label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-7">
-                                        <CustomSelectComponent className={`${styles.companyInvoiceOrganizationLocationSelect}`} data={countryArray} onOptionValueChange={handleInput} optionValue={data.countryId} name={'countryId'} onOptionInnerButtonClick={handleShow} hasSearch={true} isDisabled={false} defaultText={'Select an location'} isInnerButtonRequired={true} multiple={true} />
+                                        <CustomSelectComponent className={`${styles.companyInvoiceOrganizationLocationSelect}`} data={countryArray} onOptionValueChange={handleInput} optionValue={data.countryId} name={'countryId'} onOptionInnerButtonClick={handleShow} hasSearch={true} isDisabled={false} defaultText={'Select an location'} isInnerButtonRequired={false} multiple={true} />
                                     </div>
                                 </div>
 
@@ -374,9 +380,9 @@ export default function CompanyComponent() {
                                             {
                                                 isSubmit ?
                                                     <span className={`d-flex align-items-center`}>
-                                                        <span class={`spinner-border spinner-border-sm text-light`} role="status">
+                                                        <span className={`spinner-border spinner-border-sm text-light`} role="status">
                                                         </span>
-                                                        <span class="status ms-1">Loading</span>
+                                                        <span className="status ms-1">Loading</span>
                                                     </span>
                                                     :
                                                     <span>
@@ -385,7 +391,7 @@ export default function CompanyComponent() {
                                                     </span>
                                             }
                                         </button>
-                                        <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={() => { console.log('Cancel'); }}>
+                                        <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={(e) => { cancleHandler(e); }}>
                                             <span>
                                                 <i><FaCircleXmark /></i>
                                                 Cancel

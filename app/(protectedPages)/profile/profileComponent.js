@@ -111,8 +111,7 @@ export default function ProfileComponent() {
     }
 
     const previewandSetImage = function (e) {
-        e.preventDefault();
-        e.stopPropagation();
+        console.log('Image IN')
         var temp_obj = { ...userData }
         if (e.target.files && e.target.files.length > 0) {
             temp_obj.profilePicFile = e.target.files[0];
@@ -128,6 +127,7 @@ export default function ProfileComponent() {
         temp_obj.profilePicFile = "";
         setIsImageSet(false);
         setUserData(temp_obj);
+        $('#fileUploadInput').val('');
     }
 
     const handlePasswordSaveClick = async (e) => {
@@ -214,7 +214,7 @@ export default function ProfileComponent() {
                                                                             </button>
 
                                                                     }
-                                                                    <input id='fileUploadInput' className={`${styles.fileUpload}`} type="file" accept="image/*" onChange={(e) => { previewandSetImage(e) }} />
+                                                                    <input id='fileUploadInput' className={`${styles.fileUpload}`} type="file" accept="image/*" onChange={previewandSetImage} />
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -348,7 +348,6 @@ export default function ProfileComponent() {
                                                                     </span>
                                                                 </button>
                                                             </div>
-
 
                                                         </div>
                                                     </div>

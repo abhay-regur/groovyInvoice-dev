@@ -3,8 +3,7 @@
 //Big Screen
 @media screen and (min-width: 992px) {
     .main {
-        padding-top: 40px;
-        margin: auto 47px;
+        margin: auto 40px;
         margin-left: 135px;
         transition: all 0.35s;
         background: var.$background-color;
@@ -20,7 +19,7 @@
                 color: var.$primary-color;
                 font-weight: 700;
                 font-size: 36px;
-                line-height: 33px;
+                line-height: 33px; 
                 transition: all 0.35s;
             }
 
@@ -152,73 +151,6 @@
                             border-top-right-radius: 10px;
                         }
 
-                        .companyInvoiceTableInvoiceNumber {
-                            label {
-                                display: block;
-                                position: relative;
-                                padding-left: 35px;
-                                cursor: pointer;
-                                font-size: 14px;
-                                -webkit-user-select: none;
-                                -moz-user-select: none;
-                                -ms-user-select: none;
-                                user-select: none;
-
-                                &:hover {
-                                    input~span {
-                                        background-color: var.$checkbox-background-hover
-                                    }
-                                }
-
-                                input {
-                                    position: absolute;
-                                    opacity: 0;
-                                    cursor: pointer;
-                                    height: 0;
-                                    width: 0;
-
-                                    &~span {
-                                        background-color: var.$white;
-                                        border: 1px solid var.$checkbox-backgound;
-                                        border-radius: 3px;
-                                    }
-
-                                    &:checked~span {
-                                        background-color: var.$primary-color;
-
-                                        &::after {
-                                            display: block;
-                                        }
-                                    }
-                                }
-
-                                span {
-                                    position: absolute;
-                                    top: 0;
-                                    left: 0;
-                                    height: 20px;
-                                    width: 20px;
-                                    background-color: var.$white;
-
-                                    &::after {
-                                        content: "";
-                                        position: absolute;
-                                        display: none;
-                                        left: 6px;
-                                        top: 1px;
-                                        width: 7px;
-                                        height: 13px;
-                                        border: solid var.$white;
-                                        border-radius: 1px;
-                                        border-width: 0 3px 3px 0;
-                                        -webkit-transform: rotate(45deg);
-                                        -ms-transform: rotate(45deg);
-                                        transform: rotate(45deg);
-                                    }
-                                }
-                            }
-                        }
-
                         &:last-of-type {
                             border: none;
                             border-bottom: 1px solid var.$table-border;
@@ -242,70 +174,9 @@
                             border-bottom: 1px solid var.$table-border;
 
                             .companyInvoiceTableInvoiceNumber {
-                                label {
-                                    display: block;
-                                    position: relative;
-                                    padding-left: 35px;
-                                    cursor: pointer;
-                                    font-size: 14px;
-                                    -webkit-user-select: none;
-                                    -moz-user-select: none;
-                                    -ms-user-select: none;
-                                    user-select: none;
-
-                                    &:hover {
-                                        input~span {
-                                            background-color: var.$checkbox-background-hover
-                                        }
-                                    }
-
-                                    input {
-                                        position: absolute;
-                                        opacity: 0;
-                                        cursor: pointer;
-                                        height: 0;
-                                        width: 0;
-
-                                        &~span {
-                                            background-color: var.$white;
-                                            border: 1px solid var.$checkbox-backgound;
-                                            border-radius: 3px;
-                                        }
-
-                                        &:checked~span {
-                                            background-color: var.$primary-color;
-
-                                            &::after {
-                                                display: block;
-                                            }
-                                        }
-                                    }
-
-                                    span {
-                                        position: absolute;
-                                        top: 0;
-                                        left: 0;
-                                        height: 20px;
-                                        width: 20px;
-                                        background-color: var.$white;
-
-                                        &::after {
-                                            content: "";
-                                            position: absolute;
-                                            display: none;
-                                            left: 6px;
-                                            top: 1px;
-                                            width: 7px;
-                                            height: 13px;
-                                            border: solid var.$white;
-                                            border-radius: 1px;
-                                            border-width: 0 3px 3px 0;
-                                            -webkit-transform: rotate(45deg);
-                                            -ms-transform: rotate(45deg);
-                                            transform: rotate(45deg);
-                                        }
-                                    }
-                                }
+                                    font-weight: 600;
+                                    font-size: 16px;
+                                    color: var.$primary-color;
                             }
 
                             .companyInvoiceTableCustomerImage {
@@ -320,7 +191,6 @@
                                     display: flex;
                                     align-items: center;
                                     margin-left: 10px;
-                                    font-weight: 700;
                                     font-size: 16px;
                                     color: var.$primary-color;
                                 }
@@ -615,74 +485,6 @@
                         border-right: 1px solid var.$table-border;
 
 
-                        .companyInvoiceTableInvoiceNumber {
-                            label {
-                                display: block;
-                                position: relative;
-                                padding-left: 35px;
-                                cursor: pointer;
-                                font-size: 14px;
-                                -webkit-user-select: none;
-                                -moz-user-select: none;
-                                -ms-user-select: none;
-                                user-select: none;
-
-                                &:hover {
-                                    input~span {
-                                        background-color: var.$checkbox-background-hover
-                                    }
-                                }
-
-                                input {
-                                    position: absolute;
-                                    opacity: 0;
-                                    cursor: pointer;
-                                    height: 0;
-                                    width: 0;
-
-                                    &~span {
-                                        background-color: var.$white;
-                                        border: 1px solid var.$checkbox-backgound;
-                                        border-radius: 3px;
-                                    }
-
-                                    &:checked~span {
-                                        background-color: var.$primary-color;
-
-                                        &::after {
-                                            display: block;
-                                        }
-                                    }
-
-                                }
-
-                                span {
-                                    position: absolute;
-                                    top: 0;
-                                    left: 0;
-                                    height: 20px;
-                                    width: 20px;
-                                    background-color: var.$white;
-
-                                    &::after {
-                                        content: "";
-                                        position: absolute;
-                                        display: none;
-                                        left: 6px;
-                                        top: 1px;
-                                        width: 7px;
-                                        height: 13px;
-                                        border: solid var.$white;
-                                        border-radius: 1px;
-                                        border-width: 0 3px 3px 0;
-                                        -webkit-transform: rotate(45deg);
-                                        -ms-transform: rotate(45deg);
-                                        transform: rotate(45deg);
-                                    }
-                                }
-                            }
-                        }
-
                         &:first-of-type {
                             border-top-left-radius: 10px;
                         }
@@ -730,71 +532,10 @@
                             border-bottom: 1px solid var.$table-border;
 
                             .companyInvoiceTableInvoiceNumber {
-                                label {
-                                    display: block;
-                                    position: relative;
-                                    padding-left: 35px;
-                                    cursor: pointer;
-                                    font-size: 14px;
-                                    -webkit-user-select: none;
-                                    -moz-user-select: none;
-                                    -ms-user-select: none;
-                                    user-select: none;
-
-                                    &:hover {
-                                        input~span {
-                                            background-color: var.$checkbox-background-hover
-                                        }
-                                    }
-
-                                    input {
-                                        position: absolute;
-                                        opacity: 0;
-                                        cursor: pointer;
-                                        height: 0;
-                                        width: 0;
-
-                                        &~span {
-                                            background-color: var.$white;
-                                            border: 1px solid var.$checkbox-backgound;
-                                            border-radius: 3px;
-                                        }
-
-                                        &:checked~span {
-                                            background-color: var.$primary-color;
-
-                                            &::after {
-                                                display: block;
-                                            }
-                                        }
-                                    }
-
-                                    span {
-                                        position: absolute;
-                                        top: 0;
-                                        left: 0;
-                                        height: 20px;
-                                        width: 20px;
-                                        background-color: var.$white;
-
-                                        &::after {
-                                            content: "";
-                                            position: absolute;
-                                            display: none;
-                                            left: 6px;
-                                            top: 1px;
-                                            width: 7px;
-                                            height: 13px;
-                                            border: solid var.$white;
-                                            border-radius: 1px;
-                                            border-width: 0 3px 3px 0;
-                                            -webkit-transform: rotate(45deg);
-                                            -ms-transform: rotate(45deg);
-                                            transform: rotate(45deg);
-                                        }
-                                    }
-                                }
-                            }
+                                font-weight: 600;
+                                font-size: 16px;
+                                color: var.$primary-color;
+                        }
 
                             .companyInvoiceTableCustomerImage {
                                 display: flex;
@@ -808,7 +549,6 @@
                                     display: flex;
                                     align-items: center;
                                     margin-left: 10px;
-                                    font-weight: 700;
                                     font-size: 16px;
                                     color: var.$primary-color;
                                 }
@@ -1098,73 +838,7 @@
                         color: var.$primary-color;
                         border-right: 1px solid var.$table-border;
 
-                        .companyInvoiceTableInvoiceNumber {
-                            label {
-                                display: block;
-                                position: relative;
-                                padding-left: 35px;
-                                cursor: pointer;
-                                font-size: 14px;
-                                -webkit-user-select: none;
-                                -moz-user-select: none;
-                                -ms-user-select: none;
-                                user-select: none;
-
-                                &:hover {
-                                    input~span {
-                                        background-color: var.$checkbox-background-hover
-                                    }
-                                }
-
-                                input {
-                                    position: absolute;
-                                    opacity: 0;
-                                    cursor: pointer;
-                                    height: 0;
-                                    width: 0;
-
-                                    &~span {
-                                        background-color: var.$white;
-                                        border: 1px solid var.$checkbox-backgound;
-                                        border-radius: 3px;
-                                    }
-
-                                    &:checked~span {
-                                        background-color: var.$primary-color;
-
-                                        &::after {
-                                            display: block;
-                                        }
-                                    }
-
-                                }
-
-                                span {
-                                    position: absolute;
-                                    top: 0;
-                                    left: 0;
-                                    height: 20px;
-                                    width: 20px;
-                                    background-color: var.$white;
-
-                                    &::after {
-                                        content: "";
-                                        position: absolute;
-                                        display: none;
-                                        left: 6px;
-                                        top: 1px;
-                                        width: 7px;
-                                        height: 13px;
-                                        border: solid var.$white;
-                                        border-radius: 1px;
-                                        border-width: 0 3px 3px 0;
-                                        -webkit-transform: rotate(45deg);
-                                        -ms-transform: rotate(45deg);
-                                        transform: rotate(45deg);
-                                    }
-                                }
-                            }
-                        }
+                        
 
                         &:first-of-type {
                             border-top-left-radius: 10px;
@@ -1212,71 +886,9 @@
                             border-bottom: 1px solid var.$table-border;
 
                             .companyInvoiceTableInvoiceNumber {
-                                label {
-                                    display: block;
-                                    position: relative;
-                                    padding-left: 35px;
-                                    cursor: pointer;
-                                    font-size: 14px;
-                                    -webkit-user-select: none;
-                                    -moz-user-select: none;
-                                    -ms-user-select: none;
-                                    user-select: none;
-                                    width: 50%;
-
-                                    &:hover {
-                                        input~span {
-                                            background-color: var.$checkbox-background-hover
-                                        }
-                                    }
-
-                                    input {
-                                        position: absolute;
-                                        opacity: 0;
-                                        cursor: pointer;
-                                        height: 0;
-                                        width: 0;
-
-                                        &~span {
-                                            background-color: var.$white;
-                                            border: 1px solid var.$checkbox-backgound;
-                                            border-radius: 3px;
-                                        }
-
-                                        &:checked~span {
-                                            background-color: var.$primary-color;
-
-                                            &::after {
-                                                display: block;
-                                            }
-                                        }
-                                    }
-
-                                    span {
-                                        position: absolute;
-                                        top: 0;
-                                        left: 0;
-                                        height: 20px;
-                                        width: 20px;
-                                        background-color: var.$white;
-
-                                        &::after {
-                                            content: "";
-                                            position: absolute;
-                                            display: none;
-                                            left: 6px;
-                                            top: 1px;
-                                            width: 7px;
-                                            height: 13px;
-                                            border: solid var.$white;
-                                            border-radius: 1px;
-                                            border-width: 0 3px 3px 0;
-                                            -webkit-transform: rotate(45deg);
-                                            -ms-transform: rotate(45deg);
-                                            transform: rotate(45deg);
-                                        }
-                                    }
-                                }
+                                    font-weight: 600;
+                                    font-size: 16px;
+                                    color: var.$primary-color;
                             }
 
                             .companyInvoiceTableCustomerImage {
@@ -1291,7 +903,6 @@
                                     display: flex;
                                     align-items: center;
                                     margin-left: 10px;
-                                    font-weight: 700;
                                     font-size: 16px;
                                     color: var.$primary-color;
                                 }

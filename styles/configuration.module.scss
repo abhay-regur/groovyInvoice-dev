@@ -1,768 +1,782 @@
 @use './utility/variables' as var;
 
 @media screen and (min-width: 676px) {
-    .main {
-        padding-top: 40px;
-        margin: auto 97px;
-        margin-left: 135px;
-        margin-bottom: 30px;
-        transition: all 0.35s;
+  .main {
+    padding-top: 40px;
+    margin: auto 97px;
+    margin-left: 135px;
+    margin-bottom: 30px;
+    transition: all 0.35s;
 
-        &.expanded {
-            margin-left: 329px !important;
-            transition: all 0.35s;
-        }
-
-        .title {
-            color: var.$primary-color;
-            font-weight: 700;
-            font-size: 26px;
-            line-height: 33px;
-        }
-
-        h4 {
-            color: var.$primary-color;
-            font-weight: 700;
-            font-size: 23px;
-            line-height: 23px;
-        }
-
-        h5 {
-            color: var.$primary-color;
-            font-weight: 700;
-            font-size: 16px;
-            line-height: 23px;
-            margin-bottom: 20px;
-        }
-
-        input:focus {
-          border: var.$primary-color solid 1px !important;
-          box-shadow: none !important;
-        }
-        .paymentTermsDetailsWrapper,
-        .industryComponentWrapper {
-            table {
-
-                thead {
-                    tr {
-                        th {
-                            background: var.$primary-color;
-                            color: var.$white;
-                            min-width: 144px;
-                            font-weight: 600;
-                            font-size: 14px;
-                            padding: 10px;
-                            border: 1px solid var.$border-color;
-                        }
-                    }
-                }
-
-                tbody {
-
-                    tr.companyInvoiceContactPersonRow,
-                    tr.industryComponentRow {
-                        td {
-                            padding: 12px 10px;
-                            border: 1px solid var.$primary-border-color;
-
-                            &:last-of-type {
-                                border: none;
-                            }
-
-                            select {
-                                border: none;
-                                color: var.$secondary-color;
-                                font-weight: 400;
-                                font-size: 14px;
-                                appearance: none;
-
-                                &:focus {
-                                    box-shadow: none;
-                                }
-                            }
-
-                            span {
-                                color: var.$secondary-color;
-                                font-weight: 400;
-                                font-size: 14px;
-                                padding: 0 10px;
-                            }
-
-                            input {
-                                border: 1px solid transparent;
-                                box-shadow: none;
-                                outline: 0;
-                                text-align: left;
-                                font-size: 14px;
-                                background: white;
-                                padding: 0px 10px;
-                                border-radius: 4px;
-                            }
-                            input:focus {
-                              border: var.$primary-border-color solid 1px !important;
-                              box-shadow: none;
-                            }
-
-                            &.companyInvoiceContantPersonEditRow,
-                            &.industryComponentEditRow {
-                                div {
-                                    span {
-
-                                        &.companyInvoicePaymentTermEdit,
-                                        &.companyInvoicePaymentTermRemove {
-                                            border: none;
-                                            background: none;
-                                        }
-
-                                        padding-right: 6px;
-                                        cursor: pointer;
-
-                                        svg {
-                                            width: 22px !important;
-                                            height: 22px !important;
-
-                                            path {
-                                                fill: var.$tertiary-color;
-                                            }
-
-                                            &.redColor {
-                                                path {
-                                                    fill: var.$red-color;
-                                                }
-                                            }
-                                        }
-
-                                        &.redColor {
-                                            path {
-                                                fill: var.$red-color;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            label {
-                display: flex;
-                align-items: center;
-                font-weight: 600;
-                font-size: 14px;
-                color: var.$primary-color;
-            }
-
-            input {
-                font-weight: 400;
-                font-size: 14px;
-                color: var.$secondary-color;
-                background: var.$input-background-color;
-                border: 1px solid var.$primary-border-color;
-                border-radius: 8px;
-            }
-        }
-
-        button {
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 14px;
-            color: var.$white;
-
-            &.companyInvoiceSaveSendButton,
-            &.companyInvoiceCancelButton,
-            &.companyInvoiceAddIndustry {
-                span {
-                    display: flex;
-                    text-align: center;
-                    justify-content: center;
-
-                    i {
-                        display: flex;
-                        margin-right: 5px;
-                        align-self: center;
-
-                        svg {
-                            height: 20px;
-                            width: 20px;
-                        }
-                    }
-                }
-            }
-        }
-
-        .companyDetailsWrapper {
-            padding-bottom: 20px;
-
-            .companyInvoiceCompanyNameWrapper,
-            .companyInvoiceCompanyAddress1Wrapper,
-            .companyInvoiceCompanyAddress2Wrapper,
-            .companyInvoiceCompanyCityWrapper,
-            .companyInvoiceCompanyPostCodeWrapper,
-            .companyInvoiceCompanyStateWrapper,
-            .companyInvoiceCompanyCountryyWrapper {
-                label {
-                    align-items: center;
-                    font-weight: 600;
-                    font-size: 14px;
-                    color: var.$primary-color;
-                }
-
-                input {
-                    font-weight: 400;
-                    font-size: 14px;
-                    color: var.$secondary-color;
-                    background: var.$input-background-color;
-                    border: 1px solid var.$primary-border-color;
-                    border-radius: 8px;
-                }
-
-                select {
-                    border: 1px solid var.$primary-border-color;
-                    background: var.$input-background-color;
-                    border-radius: 8px;
-                    color: var.$secondary-color;
-
-                    &::placeholder {
-                        color: var.$secondary-color;
-                        font-weight: 400;
-                        font-size: 14px;
-                    }
-                }
-            }
-        }
-
-        .form {
-            input,
-            select {
-              height: 41px;
-            }
-    
-            svg {
-              width: 19px;
-              height: 19px;
-            }
-    
-            .companyInvoiceOrganizationNameWrapper,
-            .companyInvoiceOrganizationIndustryWrapper,
-            .companyInvoiceOrganizationStateWrapper,
-            .companyInvoiceOrganizationLocationWrapper,
-            .companyInvoiceOrganizationStateWrapper,
-            .companyInvoiceOrganizationCurrencyWrapper,
-            .companyInvoiceOrganizationLanguageWrapper,
-            .companyInvoiceOrganizationTimeZoneWrapper,
-            .companyInvoiceOrganizationGSTINWrapper,
-            .companyInvoiceOrganizationCurrentInvoicingWrapper,
-            .companyInvoiceOrganizationImageWrapper {
-              .companyInvoiceCompanyOrganizationName,
-              .companyInvoiceOrganizationIndustrylabel,
-              .companyInvoiceOrganizationStatelabel,
-              .companyInvoiceOrganizationLocationlabel,
-              .companyInvoiceOrganizationStatelabel,
-              .companyInvoiceOrganizationCurrencylabel,
-              .companyInvoiceOrganizationLanguagelabel,
-              .companyInvoiceOrganizationTimeZonelabel,
-              .companyInvoiceOrganizationGSTlabel,
-              .companyInvoiceOrganizationCurrentInvoicinglabel,
-              .companyInvoiceOrganizationImagelabel {
-                display: flex;
-                align-items: center;
-                font-weight: 600;
-                font-size: 14px;
-                color: var.$primary-color;
-              }
-    
-              input,
-              Select {
-                font-weight: 400;
-                font-size: 14px;
-                color: var.$secondary-color;
-                background: var.$input-background-color;
-                border: 1px solid var.$primary-border-color;
-                border-radius: 8px;
-              }
-            }
-    
-            .companyInvoiceOrganizationGSTWrapper {
-              .companyInvoiceOrganizationGSTlabel {
-                display: flex;
-                align-items: center;
-                font-weight: 600;
-                font-size: 14px;
-                color: var.$primary-color;
-              }
-    
-              .companyInvoiceOrganizationGSTSwitchWrapper {
-                .companyInvoiceOrganizationGSTSwitch {
-                  height: 1.5em;
-                  width: 2.5em;
-    
-                  &:checked {
-                    background-color: var.$primary-color;
-                    border-color: var.$primary-color;
-                  }
-    
-                  &:focus {
-                    border-color: #364aab5e;
-                    outline: 0;
-                    box-shadow: none;
-                  }
-                }
-              }
-            }
-    
-            .companyInvoiceOrganizationInputFileWrapper{
-              // border: 1px dashed var.$file-input-border;
-              background-color: var.$input-background-color;
-              background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%238DA4B8FF' stroke-width='3' stroke-dasharray='10' stroke-dashoffset='22' stroke-linecap='square'/%3e%3c/svg%3e");
-              border-radius: 6px;
-              padding: 10px;
-              align-items: center;
-              cursor: pointer;
-    
-              .companyInvoiceOrganizationImageInputWrapper {
-                display: flex;
-                width: 100%;
-                cursor: default;
-    
-                .companyInvoiceOrganizationImageDisplay {
-                  max-height: 200px;
-                  max-width: 200px;
-                }
-    
-                .companyInvoiceOrganizationImageUploadWrapper {
-                  margin-left: 10px;
-                  p{
-                    font-size: 14px;
-                    color: var.$darker-grey;
-                    &:nth-of-type(2){
-                      color: var.$grey;
-                    }
-                  }
-                  
-                  
-                  .companyInvoiceOrganizationRemoveLogoLink {
-                    color: var.$button-red-color;
-                    cursor: pointer;
-                  }
-                }
-              }
-    
-              .companyInvoiceOrganizationInputFileSVGButton {
-                border-right: 1px var.$tertiary-color solid;
-                background: var.$tertiary-color;
-                color: var.$white;
-                font-size: 14px;
-                padding: 10px;
-                display: flex;
-                align-items: center;
-                height: 41px;
-                cursor: inherit;
-                svg {
-                  fill: var.$white;
-                  height: 15px;
-                  width: 15px;
-                  margin: 0 5px;
-                }
-              }
-    
-              .companyInvoiceOrganizationInputFile{
-                border: none;
-                border-radius: 0;
-                display: none;
-    
-                &::-webkit-file-upload-button {
-                  visibility: hidden;
-                  width: 0;
-                }
-              }
-    
-              label {
-                margin-left: 15px;
-                font-size: 14px;
-                cursor: inherit;
-              }
-            }
-        }
+    &.expanded {
+      margin-left: 329px !important;
+      transition: all 0.35s;
     }
+
+    .title {
+      color: var.$primary-color;
+      font-weight: 700;
+      font-size: 26px;
+      line-height: 33px;
+    }
+
+    h4 {
+      color: var.$primary-color;
+      font-weight: 700;
+      font-size: 23px;
+      line-height: 23px;
+    }
+
+    h5 {
+      color: var.$primary-color;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 23px;
+      margin-bottom: 20px;
+    }
+
+    input:focus {
+      border: var.$primary-color solid 1px !important;
+      box-shadow: none !important;
+    }
+
+    .paymentTermsDetailsWrapper,
+    .industryComponentWrapper {
+      table {
+
+        thead {
+          tr {
+            th {
+              background: var.$primary-color;
+              color: var.$white;
+              min-width: 144px;
+              font-weight: 600;
+              font-size: 14px;
+              padding: 10px;
+              border: 1px solid var.$border-color;
+            }
+          }
+        }
+
+        tbody {
+
+          tr.companyInvoiceContactPersonRow,
+          tr.industryComponentRow {
+            td {
+              padding: 12px 10px;
+              border: 1px solid var.$primary-border-color;
+
+              &:last-of-type {
+                border: none;
+              }
+
+              select {
+                border: none;
+                color: var.$secondary-color;
+                font-weight: 400;
+                font-size: 14px;
+                appearance: none;
+
+                &:focus {
+                  box-shadow: none;
+                }
+              }
+
+              span {
+                color: var.$secondary-color;
+                font-weight: 400;
+                font-size: 14px;
+                padding: 0 10px;
+              }
+
+              input {
+                color: var.$secondary-color;
+                border: 1px solid transparent;
+                box-shadow: none;
+                outline: 0;
+                text-align: left;
+                font-size: 14px;
+                background: var.$white;
+                padding: 0px 10px;
+                border-radius: 4px;
+              }
+
+              input:focus {
+                border: var.$primary-border-color solid 1px !important;
+                box-shadow: none;
+              }
+
+              &.companyInvoiceContantPersonEditRow,
+              &.industryComponentEditRow {
+                div {
+                  span {
+
+                    &.companyInvoicePaymentTermEdit,
+                    &.companyInvoicePaymentTermRemove {
+                      border: none;
+                      background: none;
+                    }
+
+                    padding-right: 6px;
+                    cursor: pointer;
+
+                    svg {
+                      width: 22px !important;
+                      height: 22px !important;
+
+                      path {
+                        fill: var.$tertiary-color;
+                      }
+
+                      &.redColor {
+                        path {
+                          fill: var.$red-color;
+                        }
+                      }
+                    }
+
+                    &.redColor {
+                      path {
+                        fill: var.$red-color;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      label {
+        display: flex;
+        align-items: center;
+        font-weight: 600;
+        font-size: 14px;
+        color: var.$primary-color;
+      }
+
+      input {
+        font-weight: 400;
+        font-size: 14px;
+        color: var.$secondary-color;
+        background: var.$input-background-color;
+        border: 1px solid var.$primary-border-color;
+        border-radius: 8px;
+      }
+    }
+
+    button {
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 14px;
+      color: var.$white;
+
+      &.companyInvoiceSaveSendButton,
+      &.companyInvoiceCancelButton,
+      &.companyInvoiceAddIndustry {
+        span {
+          display: flex;
+          text-align: center;
+          justify-content: center;
+
+          i {
+            display: flex;
+            margin-right: 5px;
+            align-self: center;
+
+            svg {
+              height: 20px;
+              width: 20px;
+            }
+          }
+        }
+      }
+    }
+
+    .companyDetailsWrapper {
+      padding-bottom: 20px;
+
+      .companyInvoiceCompanyNameWrapper,
+      .companyInvoiceCompanyAddress1Wrapper,
+      .companyInvoiceCompanyAddress2Wrapper,
+      .companyInvoiceCompanyCityWrapper,
+      .companyInvoiceCompanyPostCodeWrapper,
+      .companyInvoiceCompanyStateWrapper,
+      .companyInvoiceCompanyCountryyWrapper {
+        label {
+          align-items: center;
+          font-weight: 600;
+          font-size: 14px;
+          color: var.$primary-color;
+        }
+
+        input {
+          font-weight: 400;
+          font-size: 14px;
+          color: var.$secondary-color;
+          background: var.$input-background-color;
+          border: 1px solid var.$primary-border-color;
+          border-radius: 8px;
+        }
+
+        select {
+          border: 1px solid var.$primary-border-color;
+          background: var.$input-background-color;
+          border-radius: 8px;
+          color: var.$secondary-color;
+
+          &::placeholder {
+            color: var.$input-placeholder-color;
+            font-weight: 400;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+
+    .form {
+
+      input,
+      select {
+        height: 41px;
+      }
+
+      svg {
+        width: 19px;
+        height: 19px;
+      }
+
+      .companyInvoiceOrganizationNameWrapper,
+      .companyInvoiceOrganizationIndustryWrapper,
+      .companyInvoiceOrganizationStateWrapper,
+      .companyInvoiceOrganizationLocationWrapper,
+      .companyInvoiceOrganizationStateWrapper,
+      .companyInvoiceOrganizationCurrencyWrapper,
+      .companyInvoiceOrganizationLanguageWrapper,
+      .companyInvoiceOrganizationTimeZoneWrapper,
+      .companyInvoiceOrganizationGSTINWrapper,
+      .companyInvoiceOrganizationCurrentInvoicingWrapper,
+      .companyInvoiceOrganizationImageWrapper {
+
+        .companyInvoiceCompanyOrganizationName,
+        .companyInvoiceOrganizationIndustrylabel,
+        .companyInvoiceOrganizationStatelabel,
+        .companyInvoiceOrganizationLocationlabel,
+        .companyInvoiceOrganizationStatelabel,
+        .companyInvoiceOrganizationCurrencylabel,
+        .companyInvoiceOrganizationLanguagelabel,
+        .companyInvoiceOrganizationTimeZonelabel,
+        .companyInvoiceOrganizationGSTlabel,
+        .companyInvoiceOrganizationCurrentInvoicinglabel,
+        .companyInvoiceOrganizationImagelabel {
+          display: flex;
+          align-items: center;
+          font-weight: 600;
+          font-size: 14px;
+          color: var.$primary-color;
+        }
+
+        input,
+        Select {
+          font-weight: 400;
+          font-size: 14px;
+          color: var.$secondary-color;
+          background: var.$input-background-color;
+          border: 1px solid var.$primary-border-color;
+          border-radius: 8px;
+        }
+      }
+
+      .companyInvoiceOrganizationGSTWrapper {
+        .companyInvoiceOrganizationGSTlabel {
+          display: flex;
+          align-items: center;
+          font-weight: 600;
+          font-size: 14px;
+          color: var.$primary-color;
+        }
+
+        .companyInvoiceOrganizationGSTSwitchWrapper {
+          .companyInvoiceOrganizationGSTSwitch {
+            height: 1.5em;
+            width: 2.5em;
+
+            &:checked {
+              background-color: var.$primary-color;
+              border-color: var.$primary-color;
+            }
+
+            &:focus {
+              border-color: #364aab5e;
+              outline: 0;
+              box-shadow: none;
+            }
+          }
+        }
+      }
+
+      .companyInvoiceOrganizationInputFileWrapper {
+        // border: 1px dashed var.$file-input-border;
+        background-color: var.$input-background-color;
+        background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%238DA4B8FF' stroke-width='3' stroke-dasharray='10' stroke-dashoffset='22' stroke-linecap='square'/%3e%3c/svg%3e");
+        border-radius: 6px;
+        padding: 10px;
+        align-items: center;
+        cursor: pointer;
+
+        .companyInvoiceOrganizationImageInputWrapper {
+          display: flex;
+          width: 100%;
+          cursor: default;
+
+          .companyInvoiceOrganizationImageDisplay {
+            max-height: 200px;
+            max-width: 200px;
+          }
+
+          .companyInvoiceOrganizationImageUploadWrapper {
+            margin-left: 10px;
+
+            p {
+              font-size: 14px;
+              color: var.$darker-grey;
+
+              &:nth-of-type(2) {
+                color: var.$grey;
+              }
+            }
+
+
+            .companyInvoiceOrganizationRemoveLogoLink {
+              color: var.$button-red-color;
+              cursor: pointer;
+            }
+          }
+        }
+
+        .companyInvoiceOrganizationInputFileSVGButton {
+          border-right: 1px var.$tertiary-color solid;
+          background: var.$tertiary-color;
+          color: var.$white;
+          font-size: 14px;
+          padding: 10px;
+          display: flex;
+          align-items: center;
+          height: 41px;
+          cursor: inherit;
+
+          svg {
+            fill: var.$white;
+            height: 15px;
+            width: 15px;
+            margin: 0 5px;
+          }
+        }
+
+        .companyInvoiceOrganizationInputFile {
+          border: none;
+          border-radius: 0;
+          display: none;
+
+          &::-webkit-file-upload-button {
+            visibility: hidden;
+            width: 0;
+          }
+        }
+
+        label {
+          margin-left: 15px;
+          font-size: 14px;
+          cursor: inherit;
+        }
+      }
+    }
+  }
 
 
 }
 
 @media screen and (max-width: 676px) {
-    .main {
-        margin: 89px 15px 92px 15px;
-        transition: all 0.35s;
+  .main {
+    margin: 89px 15px 92px 15px;
+    transition: all 0.35s;
 
-        &.expanded {
-            margin: 89px 15px 92px 15px;
-            transition: all 0.35s;
+    &.expanded {
+      margin: 89px 15px 92px 15px;
+      transition: all 0.35s;
+    }
+
+    .title {
+      color: var.$primary-color;
+      font-weight: 700;
+      font-size: 26px;
+      line-height: 33px;
+    }
+
+    h4 {
+      color: var.$primary-color;
+      font-weight: 700;
+      font-size: 23px;
+      line-height: 23px;
+    }
+
+    h5 {
+      color: var.$primary-color;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 23px;
+      margin-bottom: 20px;
+    }
+
+    input:focus {
+      border: solid 1px var.$primary-color !important;
+      box-shadow: none !important;
+    }
+
+    .paymentTermsDetailsWrapper,
+    .industryComponentWrapper {
+      thead {
+        tr {
+          th {
+            background: var.$primary-color;
+            color: var.$white;
+            min-width: 144px;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 10px;
+            border: 1px solid var.$border-color;
+          }
         }
+      }
 
-        .title {
-            color: var.$primary-color;
-            font-weight: 700;
-            font-size: 26px;
-            line-height: 33px;
-        }
+      tbody {
 
-        h4 {
-            color: var.$primary-color;
-            font-weight: 700;
-            font-size: 23px;
-            line-height: 23px;
-        }
+        tr.companyInvoiceContactPersonRow,
+        tr.industryComponentRow {
+          td {
+            padding: 12px 10px;
+            border: 1px solid var.$primary-border-color;
 
-        h5 {
-            color: var.$primary-color;
-            font-weight: 700;
-            font-size: 16px;
-            line-height: 23px;
-            margin-bottom: 20px;
-        }
-
-        input:focus {
-          border: solid 1px var.$primary-color !important;
-          box-shadow: none !important;
-        }
-
-        .paymentTermsDetailsWrapper,
-        .industryComponentWrapper {
-            thead {
-                tr {
-                    th {
-                        background: var.$primary-color;
-                        color: var.$white;
-                        min-width: 144px;
-                        font-weight: 600;
-                        font-size: 14px;
-                        padding: 10px;
-                        border: 1px solid var.$border-color;
-                    }
-                }
+            &:last-of-type {
+              border: none;
             }
 
-            tbody {
+            select {
+              border: none;
+              color: var.$secondary-color;
+              font-weight: 400;
+              font-size: 14px;
+              appearance: none;
 
-                tr.companyInvoiceContactPersonRow,
-                tr.industryComponentRow {
-                    td {
-                        padding: 12px 10px;
-                        border: 1px solid var.$primary-border-color;
-
-                        &:last-of-type {
-                            border: none;
-                        }
-
-                        select {
-                            border: none;
-                            color: var.$secondary-color;
-                            font-weight: 400;
-                            font-size: 14px;
-                            appearance: none;
-
-                            &:focus {
-                                box-shadow: none;
-                            }
-                        }
-
-                        span {
-                            color: var.$secondary-color;
-                            font-weight: 400;
-                            font-size: 14px;
-                            padding: 0 10px;
-                        }
-
-                        input {
-                            border: 1px solid transparent;
-                            box-shadow: none;
-                            outline: 0;
-                            text-align: left;
-                            font-size: 14px;
-                            background: white;
-                            padding: 10px 0;
-                            border-radius: 4px;
-                        }
-
-                        &.companyInvoiceContantPersonEditRow,
-                        &.industryComponentEditRow {
-                            div {
-                                span {
-
-                                    &.companyInvoicePaymentTermEdit,
-                                    &.companyInvoicePaymentTermRemove {
-                                        border: none;
-                                        background: none;
-                                    }
-
-                                    padding-right: 6px;
-                                    cursor: pointer;
-
-                                    svg {
-                                        width: 22px !important;
-                                        height: 22px !important;
-
-                                        path {
-                                            fill: var.$tertiary-color;
-                                        }
-
-                                        &.redColor {
-                                            path {
-                                                fill: var.$red-color;
-                                            }
-                                        }
-                                    }
-
-                                    &.redColor {
-                                        path {
-                                            fill: var.$red-color;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+              &:focus {
+                box-shadow: none;
+              }
             }
 
-            label {
-                display: flex;
-                align-items: center;
-                font-weight: 600;
-                font-size: 14px;
-                color: var.$primary-color;
+            span {
+              color: var.$secondary-color;
+              font-weight: 400;
+              font-size: 14px;
+              padding: 0 10px;
             }
 
             input {
-                font-weight: 400;
-                font-size: 14px;
-                color: var.$secondary-color;
-                background: var.$input-background-color;
-                border: 1px solid var.$primary-border-color;
-                border-radius: 8px;
+              color: var.$secondary-color;
+              border: 1px solid transparent;
+              box-shadow: none;
+              outline: 0;
+              text-align: left;
+              font-size: 14px;
+              background: white;
+              padding: 10px 0;
+              border-radius: 4px;
             }
-        }
 
-        button {
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 14px;
-            color: var.$white;
-
-            &.companyInvoiceSaveSendButton,
-            &.companyInvoiceCancelButton,
-            &.companyInvoiceAddIndustry {
+            &.companyInvoiceContantPersonEditRow,
+            &.industryComponentEditRow {
+              div {
                 span {
-                    display: flex;
-                    text-align: center;
-                    justify-content: center;
 
-                    i {
-                        display: flex;
-                        margin-right: 5px;
-                        align-self: center;
-
-                        svg {
-                            height: 20px;
-                            width: 20px;
-                        }
-                    }
-                }
-            }
-        }
-
-        .companyDetailsWrapper {
-            padding-bottom: 20px;
-
-            .companyInvoiceCompanyNameWrapper,
-            .companyInvoiceCompanyAddress1Wrapper,
-            .companyInvoiceCompanyAddress2Wrapper,
-            .companyInvoiceCompanyCityWrapper,
-            .companyInvoiceCompanyPostCodeWrapper,
-            .companyInvoiceCompanyStateWrapper,
-            .companyInvoiceCompanyCountryyWrapper {
-                label {
-                    align-items: center;
-                    font-weight: 600;
-                    font-size: 14px;
-                    color: var.$primary-color;
-                }
-
-                input {
-                    font-weight: 400;
-                    font-size: 14px;
-                    color: var.$secondary-color;
-                    background: var.$input-background-color;
-                    border: 1px solid var.$primary-border-color;
-                    border-radius: 8px;
-                }
-
-                select {
-                    border: 1px solid var.$primary-border-color;
-                    background: var.$input-background-color;
-                    border-radius: 8px;
-                    color: var.$secondary-color;
-
-                    &::placeholder {
-                        color: var.$secondary-color;
-                        font-weight: 400;
-                        font-size: 14px;
-                    }
-                }
-            }
-        }
-
-        .form {
-            input,
-            select {
-              height: 41px;
-            }
-    
-            svg {
-              width: 19px;
-              height: 19px;
-            }
-    
-            .companyInvoiceOrganizationNameWrapper,
-            .companyInvoiceOrganizationIndustryWrapper,
-            .companyInvoiceOrganizationStateWrapper,
-            .companyInvoiceOrganizationLocationWrapper,
-            .companyInvoiceOrganizationStateWrapper,
-            .companyInvoiceOrganizationCurrencyWrapper,
-            .companyInvoiceOrganizationLanguageWrapper,
-            .companyInvoiceOrganizationTimeZoneWrapper,
-            .companyInvoiceOrganizationGSTINWrapper,
-            .companyInvoiceOrganizationCurrentInvoicingWrapper,
-            .companyInvoiceOrganizationImageWrapper {
-              .companyInvoiceCompanyOrganizationName,
-              .companyInvoiceOrganizationIndustrylabel,
-              .companyInvoiceOrganizationStatelabel,
-              .companyInvoiceOrganizationLocationlabel,
-              .companyInvoiceOrganizationStatelabel,
-              .companyInvoiceOrganizationCurrencylabel,
-              .companyInvoiceOrganizationLanguagelabel,
-              .companyInvoiceOrganizationTimeZonelabel,
-              .companyInvoiceOrganizationGSTlabel,
-              .companyInvoiceOrganizationCurrentInvoicinglabel,
-              .companyInvoiceOrganizationImagelabel {
-                display: flex;
-                align-items: center;
-                font-weight: 600;
-                font-size: 14px;
-                color: var.$primary-color;
-              }
-    
-              input {
-                font-weight: 400;
-                font-size: 14px;
-                color: var.$secondary-color;
-                background: var.$input-background-color;
-                border: 1px solid var.$primary-border-color;
-                border-radius: 8px;
-              }
-            }
-    
-            .companyInvoiceOrganizationGSTWrapper {
-              .companyInvoiceOrganizationGSTlabel {
-                display: flex;
-                align-items: center;
-                font-weight: 600;
-                font-size: 14px;
-                color: var.$primary-color;
-              }
-    
-              .companyInvoiceOrganizationGSTSwitchWrapper {
-                .companyInvoiceOrganizationGSTSwitch {
-                  height: 1.3em;
-                  width: 2.3em;
-    
-                  &:checked {
-                    background-color: var.$primary-color;
-                    border-color: var.$primary-color;
+                  &.companyInvoicePaymentTermEdit,
+                  &.companyInvoicePaymentTermRemove {
+                    border: none;
+                    background: none;
                   }
-    
-                  &:focus {
-                    border-color: #364aab5e;
-                    outline: 0;
-                    box-shadow: none;
-                  }
-                }
-              }
-            }
-          
-            .companyInvoiceOrganizationInputFileWrapper{
-              // border: 1px dashed var.$file-input-border;
-              background-color: var.$input-background-color;
-              background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%238DA4B8FF' stroke-width='3' stroke-dasharray='10' stroke-dashoffset='22' stroke-linecap='square'/%3e%3c/svg%3e");
-              border-radius: 6px;
-              padding: 10px;
-              align-items: center;
-              cursor: pointer;
-    
-              .companyInvoiceOrganizationImageInputWrapper {
-                display: flex;
-                width: 100%;
-                cursor: default;
-                flex-direction: column;
-    
-                .companyInvoiceOrganizationImageDisplay {
-                  max-height: 200px;
-                  max-width: 100%;
-                }
-    
-                .companyInvoiceOrganizationImageUploadWrapper {
-                  margin-left: 10px;
-                  p{
-                    font-size: 14px;
-                    color: var.$darker-grey;
-                    &:nth-of-type(2){
-                      color: var.$grey;
+
+                  padding-right: 6px;
+                  cursor: pointer;
+
+                  svg {
+                    width: 22px !important;
+                    height: 22px !important;
+
+                    path {
+                      fill: var.$tertiary-color;
+                    }
+
+                    &.redColor {
+                      path {
+                        fill: var.$red-color;
+                      }
                     }
                   }
-                  
-                  
-                  .companyInvoiceOrganizationRemoveLogoLink {
-                    color: var.$button-red-color;
-                    cursor: pointer;
+
+                  &.redColor {
+                    path {
+                      fill: var.$red-color;
+                    }
                   }
                 }
               }
-    
-              .companyInvoiceOrganizationInputFileSVGButton {
-                border-right: 1px var.$tertiary-color solid;
-                background: var.$tertiary-color;
-                color: var.$white;
-                font-size: 14px;
-                padding: 10px;
-                display: flex;
-                align-items: center;
-                height: 41px;
-                cursor: inherit;
-                svg {
-                  fill: var.$white;
-                  height: 15px;
-                  width: 15px;
-                  margin: 0 5px;
-                }
-              }
-    
-              .companyInvoiceOrganizationInputFile{
-                border: none;
-                border-radius: 0;
-                display: none;
-    
-                &::-webkit-file-upload-button {
-                  visibility: hidden;
-                  width: 0;
-                }
-              }
-    
-              label {
-                margin-left: 15px;
-                font-size: 14px;
-                cursor: inherit;
-              }
             }
+          }
         }
+      }
+
+      label {
+        display: flex;
+        align-items: center;
+        font-weight: 600;
+        font-size: 14px;
+        color: var.$primary-color;
+      }
+
+      input {
+        font-weight: 400;
+        font-size: 14px;
+        color: var.$secondary-color;
+        background: var.$input-background-color;
+        border: 1px solid var.$primary-border-color;
+        border-radius: 8px;
+      }
     }
+
+    button {
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 14px;
+      color: var.$white;
+
+      &.companyInvoiceSaveSendButton,
+      &.companyInvoiceCancelButton,
+      &.companyInvoiceAddIndustry {
+        span {
+          display: flex;
+          text-align: center;
+          justify-content: center;
+
+          i {
+            display: flex;
+            margin-right: 5px;
+            align-self: center;
+
+            svg {
+              height: 20px;
+              width: 20px;
+            }
+          }
+        }
+      }
+    }
+
+    .companyDetailsWrapper {
+      padding-bottom: 20px;
+
+      .companyInvoiceCompanyNameWrapper,
+      .companyInvoiceCompanyAddress1Wrapper,
+      .companyInvoiceCompanyAddress2Wrapper,
+      .companyInvoiceCompanyCityWrapper,
+      .companyInvoiceCompanyPostCodeWrapper,
+      .companyInvoiceCompanyStateWrapper,
+      .companyInvoiceCompanyCountryyWrapper {
+        label {
+          align-items: center;
+          font-weight: 600;
+          font-size: 14px;
+          color: var.$primary-color;
+        }
+
+        input {
+          font-weight: 400;
+          font-size: 14px;
+          color: var.$secondary-color;
+          background: var.$input-background-color;
+          border: 1px solid var.$primary-border-color;
+          border-radius: 8px;
+        }
+
+        select {
+          border: 1px solid var.$primary-border-color;
+          background: var.$input-background-color;
+          border-radius: 8px;
+          color: var.$secondary-color;
+
+          &::placeholder {
+            color: var.$input-placeholder-color;
+            font-weight: 400;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+
+    .form {
+
+      input,
+      select {
+        height: 41px;
+      }
+
+      svg {
+        width: 19px;
+        height: 19px;
+      }
+
+      .companyInvoiceOrganizationNameWrapper,
+      .companyInvoiceOrganizationIndustryWrapper,
+      .companyInvoiceOrganizationStateWrapper,
+      .companyInvoiceOrganizationLocationWrapper,
+      .companyInvoiceOrganizationStateWrapper,
+      .companyInvoiceOrganizationCurrencyWrapper,
+      .companyInvoiceOrganizationLanguageWrapper,
+      .companyInvoiceOrganizationTimeZoneWrapper,
+      .companyInvoiceOrganizationGSTINWrapper,
+      .companyInvoiceOrganizationCurrentInvoicingWrapper,
+      .companyInvoiceOrganizationImageWrapper {
+
+        .companyInvoiceCompanyOrganizationName,
+        .companyInvoiceOrganizationIndustrylabel,
+        .companyInvoiceOrganizationStatelabel,
+        .companyInvoiceOrganizationLocationlabel,
+        .companyInvoiceOrganizationStatelabel,
+        .companyInvoiceOrganizationCurrencylabel,
+        .companyInvoiceOrganizationLanguagelabel,
+        .companyInvoiceOrganizationTimeZonelabel,
+        .companyInvoiceOrganizationGSTlabel,
+        .companyInvoiceOrganizationCurrentInvoicinglabel,
+        .companyInvoiceOrganizationImagelabel {
+          display: flex;
+          align-items: center;
+          font-weight: 600;
+          font-size: 14px;
+          color: var.$primary-color;
+        }
+
+        input {
+          font-weight: 400;
+          font-size: 14px;
+          color: var.$secondary-color;
+          background: var.$input-background-color;
+          border: 1px solid var.$primary-border-color;
+          border-radius: 8px;
+        }
+      }
+
+      .companyInvoiceOrganizationGSTWrapper {
+        .companyInvoiceOrganizationGSTlabel {
+          display: flex;
+          align-items: center;
+          font-weight: 600;
+          font-size: 14px;
+          color: var.$primary-color;
+        }
+
+        .companyInvoiceOrganizationGSTSwitchWrapper {
+          .companyInvoiceOrganizationGSTSwitch {
+            height: 1.3em;
+            width: 2.3em;
+
+            &:checked {
+              background-color: var.$primary-color;
+              border-color: var.$primary-color;
+            }
+
+            &:focus {
+              border-color: #364aab5e;
+              outline: 0;
+              box-shadow: none;
+            }
+          }
+        }
+      }
+
+      .companyInvoiceOrganizationInputFileWrapper {
+        // border: 1px dashed var.$file-input-border;
+        background-color: var.$input-background-color;
+        background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%238DA4B8FF' stroke-width='3' stroke-dasharray='10' stroke-dashoffset='22' stroke-linecap='square'/%3e%3c/svg%3e");
+        border-radius: 6px;
+        padding: 10px;
+        align-items: center;
+        cursor: pointer;
+
+        .companyInvoiceOrganizationImageInputWrapper {
+          display: flex;
+          width: 100%;
+          cursor: default;
+          flex-direction: column;
+
+          .companyInvoiceOrganizationImageDisplay {
+            max-height: 200px;
+            max-width: 100%;
+          }
+
+          .companyInvoiceOrganizationImageUploadWrapper {
+            margin-left: 10px;
+
+            p {
+              font-size: 14px;
+              color: var.$darker-grey;
+
+              &:nth-of-type(2) {
+                color: var.$grey;
+              }
+            }
+
+
+            .companyInvoiceOrganizationRemoveLogoLink {
+              color: var.$button-red-color;
+              cursor: pointer;
+            }
+          }
+        }
+
+        .companyInvoiceOrganizationInputFileSVGButton {
+          border-right: 1px var.$tertiary-color solid;
+          background: var.$tertiary-color;
+          color: var.$white;
+          font-size: 14px;
+          padding: 10px;
+          display: flex;
+          align-items: center;
+          height: 41px;
+          cursor: inherit;
+
+          svg {
+            fill: var.$white;
+            height: 15px;
+            width: 15px;
+            margin: 0 5px;
+          }
+        }
+
+        .companyInvoiceOrganizationInputFile {
+          border: none;
+          border-radius: 0;
+          display: none;
+
+          &::-webkit-file-upload-button {
+            visibility: hidden;
+            width: 0;
+          }
+        }
+
+        label {
+          margin-left: 15px;
+          font-size: 14px;
+          cursor: inherit;
+        }
+      }
+    }
+  }
 }

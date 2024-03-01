@@ -13,6 +13,7 @@
             margin-left: 329px !important;
             transition: all 0.35s;
         }
+
         select:focus {
             box-shadow: none !important;
             border: var.$primary-color solid 1px !important;
@@ -38,7 +39,7 @@
             border-radius: 10px;
             margin-bottom: 30px;
 
-            & > div{
+            &>div {
                 padding: 33px 31px 16px 33px;
             }
 
@@ -102,7 +103,7 @@
                     label {
                         align-items: center;
                         font-weight: 600;
-                        font-size: 14px; 
+                        font-size: 14px;
                         color: var.$primary-color;
                     }
 
@@ -179,7 +180,7 @@
                         color: var.$secondary-color;
 
                         &::placeholder {
-                            color: var.$secondary-color;
+                            color: var.$input-placeholder-color;
                             font-weight: 400;
                             font-size: 14px;
                         }
@@ -240,6 +241,7 @@
                         svg {
                             height: 15px;
                             width: 15px;
+
                             path {
                                 fill: var.$white;
                             }
@@ -280,6 +282,7 @@
             margin: 89px 15px 92px 15px;
             transition: all 0.35s;
         }
+
         select:focus {
             box-shadow: none !important;
             border: var.$primary-color solid 1px !important;
@@ -289,6 +292,7 @@
             box-shadow: none !important;
             border: var.$primary-color solid 1px !important;
         }
+
         .comapnyInvoiceHeadingWrapper {
             .title {
                 color: var.$primary-color;
@@ -436,7 +440,7 @@
                         color: var.$secondary-color;
 
                         &::placeholder {
-                            color: var.$secondary-color;
+                            color: var.$input-placeholder-color;
                             font-weight: 400;
                             font-size: 14px;
                         }

@@ -1,18 +1,14 @@
 "use client"
-import styles from '../../styles/invoice.module.scss';
+import styles from '@/styles/invoice.module.scss';
 import React, { useContext, useRef, useState } from 'react';
-import Image from 'next/image';
-import defaultProfile from '../../public/images/profile_Default.png';
-import { ToastMsgContext } from '../../context/ToastMsg.context';
-import CheckBox from '../../components/checkBox.js';
+import { ToastMsgContext } from '@/context/ToastMsg.context';
 import ReactDOM from "react-dom/client";
 import 'datatables.net-dt/js/dataTables.dataTables';
 import 'datatables.net-dt/css/jquery.dataTables.min.css';
-import ServerSideDataTables from './../serverSideDataTable';
-import { formatDate } from '../../utils/date.utils';
-import FaEye from '../../assets/icons/faEye.svg';
-import FaExclamationCircle from '../../assets/icons/faExclamationCircle.svg';
-import FaPen from '../../assets/icons/faPen.svg';
+import ServerSideDataTables from '@/components/serverSideDataTable';
+import { formatDate } from '@/utils/date.utils';
+import FaExclamationCircle from '@/assets/icons/faExclamationCircle.svg';
+import FaPen from '@/assets/icons/faPen.svg';
 import Link from 'next/link';
 
 const AllInvoiceTable = ({ ItemsData }) => {
@@ -26,9 +22,7 @@ const AllInvoiceTable = ({ ItemsData }) => {
     const draw_invoiceNo = (row) => {
         return (
             <>
-                <span className={`${styles.companyInvoiceTableInvoiceNumber}`}>
-                    <CheckBox label={row.invoiceNo} />
-                </span>
+                <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><Link href={`/invoices/${row.id}`}>{row.invoiceNo}</Link></span>
             </>
         )
     }
@@ -37,7 +31,6 @@ const AllInvoiceTable = ({ ItemsData }) => {
         return (
             <>
                 <div className={`${styles.companyInvoiceTableCustomerImage}`}>
-                    <Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} />
                     <span className={`${styles.companyInvoiceTableCustomerName}`} >
                         {row.customer.firstName + ' ' + row.customer.lastName}
                     </span>
@@ -53,7 +46,6 @@ const AllInvoiceTable = ({ ItemsData }) => {
                     <span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span>
                 </Link>
                 <span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span>
-                <Link href={`/invoices/${rowData.id}`}><span className={`${styles.companyInvoiceTableActionView}`}><FaEye /></span></Link>
             </span>
         );
     }
@@ -127,9 +119,7 @@ const AllInvoiceTable = ({ ItemsData }) => {
                     >
                         <thead>
                             <tr>
-                                <th scope="col" className="ps-3" data-priority="1" >
-                                    <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><CheckBox label='Invoice Number' /></span>
-                                </th>
+                                <th scope="col" className="ps-3" data-priority="1" >Invoice Number</th>
                                 <th scope="col" className="ps-3" data-priority="2" >Customer Name</th>
                                 <th scope="col" className="ps-3 hide" data-priority="99" >Last name</th>
                                 <th scope="col" className="ps-3" data-priority="99">Due Date</th>

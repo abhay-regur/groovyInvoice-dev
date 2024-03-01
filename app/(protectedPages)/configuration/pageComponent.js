@@ -3,7 +3,6 @@ import { useContext } from 'react';
 import styles from '@/styles/configuration.module.scss';
 import PaymentTerms from "@/components/paymentTerms.js";
 import Breadcrumb from '@/components/common/breadcrumb';
-import CompanyComponent from '@/components/companyComponent';
 import { NavExpandedState } from '@/context/NavState.context';
 import IndustryComponent from '@/components/industryComponent';
 
@@ -21,7 +20,6 @@ export default function ConfigComponent() {
                 <hr />
                 <PaymentTerms />
                 <IndustryComponent />
-                <CompanyComponent />
 
             </main>
         </div>
