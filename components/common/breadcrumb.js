@@ -27,7 +27,7 @@ export default function Breadcrumb() {
 
     return (
         <div className={`${styles.breadcrumbMainNav}`}>
-            <ol className="breadcrumbs ps-0">
+            <ol className="breadcrumbs m-0 ps-0">
                 {
                     breadcrumb.map((crumb, idx) => {
                         if (idx != (breadcrumb.length - 1)) {

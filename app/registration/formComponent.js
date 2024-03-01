@@ -36,7 +36,7 @@ export default function RegistrationForm() {
 
     const handleInput = ({ target }) => {
         if (target.name == 'cellNumber') {
-            data[target.name] = (target.value == '' ? '' : (target.value).match(/[0-9]+/g)[0]);
+            data[target.name] = (target.value == '' ? '' : ((target.value).match(/[0-9]+/g) || ''));
         } else {
             data[target.name] = target.value
         }
@@ -59,10 +59,10 @@ export default function RegistrationForm() {
     const handleValidation = async ({ target }) => {
         if (target.classList.contains('is-loading')) target.classList.remove('is-loading')
 
-        if (target.name == 'email' && target.value == '') {
+        if (target.value == '') {
             target.classList.add('is-invalid');
-            handleValidationError(target.name, 'Email should not be empty');
-        } else {
+            handleValidationError(target.name, 'Can not be empty');
+        } else if (target.name != 'cellNumber') {
             try {
                 var result = await validateInput(target.name, target.value)
                 if (result.status == 200) {
@@ -107,7 +107,7 @@ export default function RegistrationForm() {
                             <div className={`${styles.loginCard} card`}>
                                 <div className="card-body p-0">
                                     <ErrorList errors={errors} />
-                                    <form onSubmit={handleSubmit} className="needs-validation" noValidate>
+                                    <form onSubmit={handleSubmit} className="needs-validation">
                                         <div className="mb-3 has-validation">
                                             <label htmlFor="registrationCompanyName" className="form-label">Company Name</label>
                                             <div className={styles.innerInputIconWrapper}>

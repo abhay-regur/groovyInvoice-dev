@@ -104,10 +104,10 @@ export default function InvoiceViewComponent() {
             {isPageLoading ?
                 <Loading /> :
                 <main className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
-                    <div className="container-fluid">
-                        <div className="breadcrumbWrapper">
-                            <Breadcrumb styles={styles} />
-                        </div>
+                    <div className="breadcrumbWrapper">
+                        <Breadcrumb styles={styles} />
+                    </div>
+                    <div className="container px-3 px-sm-0">
                         <div className={`${styles.comapnyInvoiceViewInvoiceHeadWrapper} row`}>
                             <div className={`${styles.comapnyInvoiceViewInvoiceMainHeading} col-9 col-md-10 col-lg-7`}>{customer.firstName + ' ' + customer.lastName}<span className={`${styles.comapnyInvoiceViewInvoiceSubHeading}`}>#{formatDate(data.invoiceDate)}</span></div>
                             <div className={`${styles.companyInvoiceViewInvoiceActionBarWrapper} col-12`}>
@@ -138,24 +138,6 @@ export default function InvoiceViewComponent() {
                                                         <li><span className="dropdown-item">Something else here</span></li>
                                                     </ul>
                                                 </li>
-                                                <li className={`${styles.companyInvoiceViewInvoiceActionBarActionItem} nav-item`}>
-                                                    <div className="nav-link d-flex justify-content-lg-center">
-                                                        <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}><FaShare /></span>
-                                                        <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText}`}>Share</span>
-                                                    </div>
-                                                </li>
-                                                <li className={`${styles.companyInvoiceViewInvoiceActionBarActionItem} nav-item dropdown`}>
-                                                    <div className="nav-link d-flex justify-content-lg-center">
-                                                        <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}><FaBell /></span>
-                                                        <a className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText}`}>
-                                                            Reminders
-                                                        </a>
-                                                    </div>
-                                                    <ul className="dropdown-menu">
-                                                        <li><span className="dropdown-item">Action</span></li>
-                                                        <li><span className="dropdown-item">Another action</span></li>
-                                                    </ul>
-                                                </li>
                                                 <li className={`${styles.companyInvoiceViewInvoiceActionBarActionItem} nav-item dropdown`}>
                                                     <div className="nav-link d-flex justify-content-lg-center">
                                                         <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}><FaPDF /></span>
@@ -169,10 +151,11 @@ export default function InvoiceViewComponent() {
                                                     </ul>
                                                 </li>
                                                 <li className={`${styles.companyInvoiceViewInvoiceActionBarActionItem} nav-item`}>
-                                                    <div className="nav-link d-flex justify-content-lg-center">
+                                                    <Link href={`/invoices/${id}/payment`} className="nav-link d-flex justify-content-lg-center">
                                                         <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}><FaRupee /></span>
                                                         <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText}`}>Record Payment</span>
-                                                    </div>
+                                                    </Link>
+
                                                 </li>
                                             </ul>
                                         </div>

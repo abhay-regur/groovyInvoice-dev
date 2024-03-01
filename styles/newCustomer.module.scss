@@ -47,8 +47,7 @@
 //Big Screen
 @media screen and (min-width: 993px) {
     .main {
-        padding-top: 40px;
-        margin: auto 97px;
+        margin: auto 40px;
         margin-left: 135px;
         transition: all 0.35s;
         margin-bottom: 120px;
@@ -790,7 +789,7 @@
 //Tablet Screen
 @media screen and (max-width: 993px) and (min-width: 676px) {
     .main {
-        margin: auto 60px;
+        margin: auto 40px;
         margin-left: 135px;
         transition: all 0.35s;
         margin-bottom: 120px;
@@ -1550,11 +1549,11 @@
 //Mobie Screen
 @media screen and (max-width: 676px) {
     .main {
-        margin: 55px 15px 92px 15px;
+        margin: 55px 0 92px 0;
         transition: all 0.35s;
 
         &.expanded {
-            margin: 55px 15px 92px 15px;
+            margin: 55px 0 92px 0;
             transition: all 0.35s;
         }
 

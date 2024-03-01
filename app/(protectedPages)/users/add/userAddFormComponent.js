@@ -95,10 +95,10 @@ export default function UserUpdateFormComponent() {
 
     return (
         <main className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
+            <div className="breadcrumbWrapper">
+                <Breadcrumb styles={styles} />
+            </div>
             <div className="container-fluid">
-                <div className="breadcrumbWrapper">
-                    <Breadcrumb styles={styles} />
-                </div>
                 {isLoading ?
                     <Loading /> :
                     <div className={`${styles.card} card`}>

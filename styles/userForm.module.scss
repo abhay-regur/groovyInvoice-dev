@@ -19,76 +19,12 @@
 
 //Big Screen
 .main {
-    padding-top: 40px;
-    margin: auto 97px;
-    margin-left: 135px;
-    transition: all 0.35s;
-    margin-bottom: 120px;
-
-    &.expanded {
-        margin-left: 329px !important;
-        transition: all 0.35s;
-    }
-
-    .title {
-        font-weight: 700;
-        font-size: 36px;
-        line-height: 45px;
-        color: var.$primary-color;
-        margin-top: 56px;
-        margin-bottom: 49px;
-        padding-left: 12px;
-    }
-
     .card {
-        border: 1px solid var.$primary-border-color;
-        border-radius: 10px;
-        padding: 31px 33px;
-        margin-top: 50px;
 
         .cardBody {
 
-            .cardTitle {
-                color: var.$primary-color;
-                font-weight: 700;
-                font-size: 22px;
-                line-height: 28px;
-            }
-
             hr {
                 margin-top: 14px;
-            }
-
-            .companyUserActiveUserWrapper {
-                display: flex;
-
-                label {
-                    display: flex;
-                    align-items: center;
-                    font-weight: 600;
-                    font-size: 14px;
-                    color: var.$primary-color;
-                }
-
-                .companyUserActiveUserSwitchWrapper {
-                    display: flex;
-
-                    .companyUserActiveUserSwitch {
-                        height: 2em;
-                        width: 3em;
-
-                        &:checked {
-                            background-color: var.$primary-color;
-                            border-color: var.$primary-color;
-                        }
-
-                        &:focus {
-                            border-color: #364aab5e;
-                            outline: 0;
-                            box-shadow: none;
-                        }
-                    }
-                }
             }
 
             .companyInvoiceUserNameWrapper {
@@ -283,10 +219,10 @@
 //Tablet Screen
 @media screen and (min-width: 676px) {
     .main {
-        margin: auto 60px;
+        margin: auto 40px;
         margin-left: 135px;
         transition: all 0.35s;
-        margin-bottom: 120px;
+        margin-bottom: 50px;
 
         &.expanded {
             margin-left: 329px !important;
@@ -535,11 +471,11 @@
 //Mobie Screen
 @media screen and (max-width: 676px) {
     .main {
-        margin: 89px 15px 92px 15px;
+        margin: 55px 0 92px 0;
         transition: all 0.35s;
 
         &.expanded {
-            margin: 89px 15px 92px 15px;
+            margin: 55px 0 92px 0;
             transition: all 0.35s;
         }
 

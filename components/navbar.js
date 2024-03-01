@@ -16,6 +16,7 @@ import FaUsers from '@/assets/icons/faUsers.svg';
 import FaArrowLeft from '@/assets/icons/faArrowLeft.svg';
 import FaArrowRight from '@/assets/icons/faArrowRight.svg';
 import FaSearch from '@/assets/icons/faSearch.svg';
+import FaBreifcase from '@/assets/icons/faBriefcase.svg';
 import { ToastMsgContext } from '@/context/ToastMsg.context';
 import FaScrewAndWrench from '@/assets/icons/faScrewAndWrench.svg';
 import { getCurrentUserDetails } from "@/services/profile.service";
@@ -23,7 +24,8 @@ import { NavExpandedState } from '@/context/NavState.context';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 import { usePathname } from "next/navigation";
 
-const MENU_LIST = [{ key: 100, text: "Invoices", href: "/invoices", icon: <FaFileLines /> }, { key: 101, text: "Customers", href: "/customers", icon: <FaUserGroup /> }, { key: 102, text: "Reports", href: "/reports", icon: <FaChartLine /> }, { key: 103, text: "Settings", href: "/settings", icon: <FaGear />, subMenu: [{ key: 1031, text: "Users", href: "/users", icon: <FaUsers /> }, { key: 1032, text: "Config", href: "/configuration", icon: <FaScrewAndWrench /> }] }];
+const MENU_LIST = [{ key: 100, text: "Invoices", href: "/invoices", icon: <FaFileLines /> }, { key: 101, text: "Customers", href: "/customers", icon: <FaUserGroup /> }, { key: 102, text: "Reports", href: "/reports", icon: <FaChartLine /> }, { key: 103, text: "Settings", href: "/settings", icon: <FaGear />, subMenu: [{ key: 1031, text: "Users", href: "/users", icon: <FaUsers /> }, { key: 1032, text: "Organization", href: "/organization", icon: <FaBreifcase /> }, { key: 1033, text: "Config", href: "/configuration", icon: <FaScrewAndWrench /> }] }];
+
 export default function Navbar() {
     const [activeIdx, setActiveIdx] = useState(-1);
     const pathname = usePathname();
@@ -162,6 +164,7 @@ export default function Navbar() {
                                     </Fragment>
                                 );
                             } else {
+                                console.log('menu.href')
                                 return (
                                     <div key={idx} className={`${style.navItemWrapper} ${(activeIdx === idx) ? style.active : " "} d-flex align-item-center`} onClick={() => { setActiveIdx(idx); }}>
                                         <NavItem active={activeIdx === idx} text={menu.text} href={menu.href} icon={menu.icon}></NavItem>

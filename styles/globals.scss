@@ -57,6 +57,16 @@ body {
 
   input {
     border-radius: 6px;
+    color: var.$primary-color;
+
+    &::placeholder {
+      color: var.$input-placeholder-color;
+    }
+
+    ::-ms-input-placeholder {
+      /* Edge 12 -18 */
+      color: var.$input-placeholder-color;
+    }
 
     &.is-loading {
       background-color: var.$white;

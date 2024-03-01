@@ -22,15 +22,39 @@ export default function LoginForm() {
     const [errors, setErrors] = useState([])
     const { setToastList } = useContext(ToastMsgContext);
     const formErrors = []
+
     const [data, setData] = useState({
         username: '',
         password: ''
     });
 
+    const [validateErrorMessage, setvalidateErrorMessage] = useState("");
+
     const handleInput = ({ target }) => {
         data[target.name] = target.value
         let temp = Object.assign({}, data)
         setData(temp)
+    }
+
+    const handleValidation = async ({ target }) => {
+        if (target.classList.contains('is-loading')) target.classList.remove('is-loading')
+        if (target.name == 'username') {
+            if (target.value == '') {
+                target.classList.add('is-invalid');
+                setvalidateErrorMessage('Email should not be empty');
+            } else if (!target.value.match(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
+                target.classList.add('is-invalid');
+                setvalidateErrorMessage('Email Format is incorrect');
+            }
+        }
+    }
+
+    const addLoader = ({ target }) => {
+        if (!target.classList.contains('is-loading')) {
+            if (target.classList.contains('is-valid')) target.classList.remove('is-valid');
+            if (target.classList.contains('is-invalid')) target.classList.remove('is-invalid');
+            target.classList.add('is-loading')
+        }
     }
 
     const toggleRememberMe = () => {
@@ -97,13 +121,16 @@ export default function LoginForm() {
                                             <label htmlFor="loginEmail" className="form-label">Email address</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <i><FontAwesomeIcon icon={faEnvelope} /></i>
-                                                <input type="email" className="form-control" placeholder='Email' id="loginEmail" name="username" value={data.username} onChange={handleInput} aria-describedby="emailHelp" />
+                                                <input type="email" className="form-control" placeholder="Email address" id="loginEmail" name="username" value={data.username} onChange={handleInput} onKeyDown={addLoader} onBlur={handleValidation} aria-describedby="emailHelp" autoComplete="off" required />
+                                                <div htmlFor="loginEmail" className="ms-3 invalid-feedback">
+                                                    {validateErrorMessage}
+                                                </div>
                                             </div>
                                         </div>
                                         <div className="mb-3">
                                             <label htmlFor="password" className="form-label">Password</label>
                                             <div className={styles.innerInputIconWrapper}>
-                                                <PasswordInputField placeholder="Password" showKeyIcon={true} name="password" value={data.password} onChange={handleInput} />
+                                                <PasswordInputField placeholder="Password" id='loginPassword' showKeyIcon={true} name="password" value={data.password} onChange={handleInput} />
                                             </div>
                                         </div>
                                         <div className="row">
