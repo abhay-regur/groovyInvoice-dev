@@ -101,8 +101,8 @@ export default function ResetPasswordForm() {
                             </div>
                         </div>
                         <div className="col-sm-12">
-                            <div className={`${styles.loginLinkWrapper}`}>
-                                <p><Link href="/login">Login</Link></p>
+                            <div className={`${styles.loginLinkWrapper} mt-4`}>
+                                <p>Back to <Link href="/login">Login</Link></p>
                             </div>
                         </div>
                     </div>
