@@ -313,7 +313,7 @@ export default function OrganizationUpdateForm() {
                                                 <label className={`${styles.companyInvoiceOrganizationDateFormatlabel}`}>Date Format<span className={`${styles.green}`}>*</span></label> (W.I.P)
                                             </div>
                                             <div className="col-12 col-lg-6 col-xl-7">
-                                                <CustomSelectComponent className={`${styles.companyInvoiceOrganizationDateFormatSelect}`} data={timeZoneList} onOptionValueChange={handleInput} optionValue={data.timeZoneId} name={'timeZoneId'} isDisabled={false} defaultText={'Select a Time Zone'} hasSearch={true} isInnerButtonRequired={false} />
+                                                -
                                             </div>
                                         </div>
 
