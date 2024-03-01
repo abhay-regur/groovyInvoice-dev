@@ -48,7 +48,7 @@
 
                 .navItemListWrapper {
 
-                    &.active{
+                    &.active {
                         border-radius: 10px;
                     }
                 }
@@ -265,7 +265,7 @@
 
             .active {
 
-                a{
+                a {
                     background-color: var.$navItem-hightlight;
                     border-radius: 10px;
                 }
@@ -339,13 +339,13 @@
                     padding: 7px 17px;
                     border: var.$primary-border-color solid 1px;
 
-                    &:focus{
+                    &:focus {
                         border: var.$primary-color solid 1px;
                         box-shadow: none;
                     }
 
                     &::placeholder {
-                        color: var.$secondary-color;
+                        color: var.$input-placeholder-color;
                         font-weight: 400;
                         font-size: var.$font-size-text -1;
                         line-height: 18px;
@@ -396,7 +396,7 @@
                     transition: background-color 0.31s, padding 0.31s;
                     justify-content: center;
                     cursor: pointer;
-                    
+
                     a {
                         margin: 0 19.99px 0 19.99px;
                         padding: 10px 15px;
@@ -580,7 +580,8 @@
                             &.expanded {
                                 .navItemListWrapper {
                                     margin: 0;
-                                    &.active{
+
+                                    &.active {
                                         border-radius: 10px 0 0 10px;
                                     }
                                 }
@@ -605,7 +606,7 @@
                         .nav_item_innerwrapper {
                             display: flex;
                             justify-content: left;
-                            width: 50%;
+                            width: 100%;
 
                             svg {
                                 margin-right: 15px !important;
@@ -872,13 +873,13 @@
                         padding: 7px 17px;
                         border: var.$primary-border-color solid 1px;
 
-                        &:focus{
+                        &:focus {
                             border: var.$primary-color solid 1px;
                             box-shadow: none;
                         }
 
                         &::placeholder {
-                            color: var.$secondary-color;
+                            color: var.$input-placeholder-color;
                             font-weight: 400;
                             font-size: var.$font-size-text -1;
                             line-height: 18px;
@@ -949,6 +950,7 @@
                                 .navItemListWrapper {
                                     padding: 0 10px;
                                     margin: 0 -10px;
+
                                     a {
                                         margin: 0 19.99px 0 19.99px;
                                     }

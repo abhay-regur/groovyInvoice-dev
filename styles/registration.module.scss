@@ -14,7 +14,7 @@
 
     input {
         &::placeholder {
-            color: #8790b08a;
+            color: var.$input-placeholder-color;
         }
     }
 
