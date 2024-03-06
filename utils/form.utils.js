@@ -1,11 +1,15 @@
 const disableSubmitButton = (form, name = 'btn-submit') => {
-  form.elements[name].disabled = true
-  form.elements[name].classList.add('loading')
+  const element = form.elements[name];
+  if (element.length > 0) {
+    disableElement(element[element.length - 1])
+  }
 }
 
 const enableSubmitButton = (form, name = 'btn-submit') => {
-  form.elements[name].disabled = false
-  form.elements[name].classList.remove('loading')
+  const element = form.elements[name];
+  if (element.length > 0) {
+    enableElement(element[element.length - 1])
+  }
 }
 
 const disableElement = (element) => {
