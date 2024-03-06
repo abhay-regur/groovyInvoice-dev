@@ -145,7 +145,7 @@ export default function CustomerAddForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        disableSubmitButton(e.target)
+        disableSubmitButton(e.target, 'customer-btn-submit');
         setErrors([]);
         var temp = data;
         if (temp.taxPreference == "taxable") temp.exemptionReason = "";
@@ -171,7 +171,7 @@ export default function CustomerAddForm() {
         } catch (error) {
             setErrors(genrateErrorMessage(error, 'Customer', setToastList))
         }
-        enableSubmitButton(e.target)
+        enableSubmitButton(e.target, 'customer-btn-submit');
     }
 
     const getStateData = async (id, setStates) => {
@@ -554,7 +554,7 @@ export default function CustomerAddForm() {
 
                                 <div className={`${styles.companyInvoiceFormButtonsWrapper} row`}>
                                     <div className="d-flex gap-3 col-12 col-sm-10 col-md-5 col-lg-7 col-xl-5">
-                                        <button name="btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`} type='submit'>
+                                        <button type='submit' name="customer-btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`}>
                                             <span>
                                                 <i><FaSave /></i>
                                                 Save

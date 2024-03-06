@@ -1,15 +1,12 @@
 const disableSubmitButton = (form, name = 'btn-submit') => {
   const element = form.elements[name];
-  if (element.length > 0) {
-    disableElement(element[element.length - 1])
-  }
+  console.log(element)
+  disableElement(element)
 }
 
 const enableSubmitButton = (form, name = 'btn-submit') => {
   const element = form.elements[name];
-  if (element.length > 0) {
-    enableElement(element[element.length - 1])
-  }
+  enableElement(element)
 }
 
 const disableElement = (element) => {
