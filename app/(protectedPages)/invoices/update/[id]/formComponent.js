@@ -135,8 +135,8 @@ export default function InvoiceEditForm() {
         calculateTotalAmount()
     }
 
-    const handleSubmit = async (e, status) => {
-        disableElement(e.target)
+    const handleSubmit = async ({currentTarget}, status) => {
+        disableElement(currentTarget)
         setErrors([])
         try {
             await updateInvoice(id, { ...data, status })
@@ -148,7 +148,7 @@ export default function InvoiceEditForm() {
         } catch (error) {
             setErrors(genrateErrorMessage(error, 'Invoices', setToastList));
         }
-        enableElement(e.target)
+        enableElement(currentTarget)
     }
 
     const getCustomersList = async () => {

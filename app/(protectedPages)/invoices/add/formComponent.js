@@ -177,8 +177,8 @@ export default function InvoiceAddForm() {
         calculateTotalAmount()
     }
 
-    const handleSubmit = async (e, status) => {
-        disableElement(e.target)
+    const handleSubmit = async ({currentTarget}, status) => {
+        disableElement(currentTarget)
         setErrors([])
         try {
             await saveInvoice({ ...data, status })
@@ -192,7 +192,7 @@ export default function InvoiceAddForm() {
         } catch (error) {
             setErrors(genrateErrorMessage(error, 'Invoice', setToastList));
         }
-        enableElement(e.target)
+        enableElement(currentTarget)
     }
 
     return (
@@ -388,7 +388,7 @@ export default function InvoiceAddForm() {
                                     </div>
                                     <div className={`${styles.companyInvoiceButtonsWrapper}`}>
                                         <div className={`${styles.companyInvoiceSubmitButtonsWrapper} col-12 row gap-3`}>
-                                            <button name="btn-submit" className={`${styles.companyInvoiceSaveDraftButton} btn green`} onClick={(e) => handleSubmit(e, 'draft')}>
+                                            <button name="btn-submit" className={`${styles.companyInvoiceSaveDraftButton} green`} onClick={(e) => handleSubmit(e, 'draft')}>
                                                 <span>
                                                     <i><FaPaperPen /></i>
                                                     Save as Draft
