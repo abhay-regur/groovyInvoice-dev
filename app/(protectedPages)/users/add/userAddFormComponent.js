@@ -14,6 +14,7 @@ import { useRouter } from 'next/navigation';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils';
 import Loading from './loading';
 import Breadcrumb from '@/components/common/breadcrumb';
+import { disableSubmitButton, enableSubmitButton } from '@/utils/form.utils.js';
 
 export default function UserUpdateFormComponent() {
     const { replace } = useRouter();
@@ -65,7 +66,7 @@ export default function UserUpdateFormComponent() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setIsSubmit(true);
+        disableSubmitButton(e.target)
         setErrors([]);
         try {
             var result = await createUser(data);
@@ -84,13 +85,12 @@ export default function UserUpdateFormComponent() {
                     title: data.firstName + ' ' + data.lastName + ' added successfully',
                     description: result.data.message,
                 }]);
-                setIsSubmit(false);
                 // window.location.pathname = '/users/';
             }
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
-            setIsSubmit(false);
         }
+        enableSubmitButton(e.target)
     }
 
     return (
@@ -175,19 +175,9 @@ export default function UserUpdateFormComponent() {
                                         <div className="row">
                                             <div className="col-6 col-md-4 col-lg-3 col-xl-6">
                                                 <button type="submit" name="btn-submit" className={`${styles.companyInvoiceSavenSendButton} btn blue`}>
-                                                    {
-                                                        isSubmit ?
-                                                            <span className={`d-flex align-items-center`}>
-                                                                <span className={`spinner-border spinner-border-sm text-light`} role="status">
-                                                                </span>
-                                                                <span className="status ms-1">Loading</span>
-                                                            </span>
-                                                            :
-                                                            <span>
-                                                                <i><FaSave /></i>
-                                                                Save
-                                                            </span>
-                                                    }
+                                                    <span>
+                                                        <i><FaSave /></i> Save
+                                                    </span>
                                                 </button>
                                             </div>
                                             <div className="col-6 col-md-4 col-lg-3 col-xl-6">

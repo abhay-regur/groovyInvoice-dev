@@ -21,6 +21,7 @@ import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 import { useRouter } from 'next/navigation';
 import DisplayNameSelect from '@/components/customers/displayNameSelect';
 import Breadcrumb from '@/components/common/breadcrumb.js';
+import { disableSubmitButton, enableSubmitButton } from '@/utils/form.utils.js';
 
 export default function CustomerAddForm() {
 
@@ -40,7 +41,6 @@ export default function CustomerAddForm() {
     const [placeOfSupply, setPlaceOfSupply] = useState([]);
     const [paymentTerms, setPaymentTerms] = useState([]);
     const [taxExemptionReason, setTaxExemptionReason] = useState([]);
-    const [isSubmit, setIsSubmit] = useState(false);
 
     const [data, setData] = useState({
         type: "",
@@ -145,8 +145,8 @@ export default function CustomerAddForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        disableSubmitButton(e.target, 'customer-btn-submit');
         setErrors([]);
-        setIsSubmit(true);
         var temp = data;
         if (temp.taxPreference == "taxable") temp.exemptionReason = "";
         if (temp.gstTreatment == GST_TREATMENT.UNREGISTERED_BUSINESS || temp.gstTreatment == GST_TREATMENT.CONSUMER || temp.gstTreatment == GST_TREATMENT.OVERSEAS) temp.GSTIN = "";
@@ -170,9 +170,8 @@ export default function CustomerAddForm() {
             }
         } catch (error) {
             setErrors(genrateErrorMessage(error, 'Customer', setToastList))
-            setIsSubmit(false);
         }
-        setIsSubmit(false);
+        enableSubmitButton(e.target, 'customer-btn-submit');
     }
 
     const getStateData = async (id, setStates) => {
@@ -555,20 +554,11 @@ export default function CustomerAddForm() {
 
                                 <div className={`${styles.companyInvoiceFormButtonsWrapper} row`}>
                                     <div className="d-flex gap-3 col-12 col-sm-10 col-md-5 col-lg-7 col-xl-5">
-                                        <button name="btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`} type='submit'>
-                                            {
-                                                isSubmit ?
-                                                    <span className={`d-flex align-items-center`}>
-                                                        <span className={`spinner-border spinner-border-sm text-light`} role="status">
-                                                        </span>
-                                                        <span className="status ms-1">Loading</span>
-                                                    </span>
-                                                    :
-                                                    <span>
-                                                        <i><FaSave /></i>
-                                                        Save
-                                                    </span>
-                                            }
+                                        <button type='submit' name="customer-btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`}>
+                                            <span>
+                                                <i><FaSave /></i>
+                                                Save
+                                            </span>
                                         </button>
                                         <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} type='reset' onClick={resetPage}>
                                             <span>

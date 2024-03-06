@@ -253,7 +253,10 @@ button {
     }
   }
 }
-
+button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
 .react-datepicker {
   border: 1px solid var.$primary-border-color !important;
 
@@ -336,26 +339,27 @@ button {
   }
 }
 
+.hide {
+  display: none !important;
+}
+
 .loading {
   // position: relative;
   display: flex;
   justify-content: center;
+  align-items: center;
   min-height: 100%;
-
-  span {
-    display: none !important;
-  }
 }
 
-.loading::after {
+.loading::before {
   content: "";
   background: url(../assets/icons/circle-notch-solid.svg) no-repeat top left;
   background-size: contain;
   cursor: pointer;
   height: 15px;
   width: 15px;
-  position: absolute;
   animation: spin infinite 1s linear;
+  margin-right: 4px;
 }
 
 .icon-loading svg {

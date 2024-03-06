@@ -12,6 +12,7 @@ import { ToastMsgContext } from '@/context/ToastMsg.context';
 import styles from '@/styles/configuration.module.scss';
 import FaCamera from '@/assets/icons/faCamera.svg';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils';
+import { disableSubmitButton, enableSubmitButton } from '@/utils/form.utils.js';
 
 export default function CompanyComponent() {
     const { setToastList } = useContext(ToastMsgContext);
@@ -22,7 +23,6 @@ export default function CompanyComponent() {
     const [countryArray, setCountryArray] = useState([]);
     const [currencies, setCurrencies] = useState([]);
     const [statesArray, getStateArray] = useState([]);
-    const [isSubmit, setIsSubmit] = useState(false);
     // const { Modal } = require("bootstrap");
 
 
@@ -191,7 +191,7 @@ export default function CompanyComponent() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors([]);
-        setIsSubmit(true);
+        disableSubmitButton(e.target)
         var temp = data;
         if (!temp.isRegisteredForGST) {
             temp.GSTIN = "";
@@ -216,12 +216,11 @@ export default function CompanyComponent() {
                     title: 'Organization Details Updated',
                     description: '',
                 }]);
-                setIsSubmit(false);
             }
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
-            setIsSubmit(false);
         }
+        enableSubmitButton(e.target)
     }
     const cancleHandler = (event) => {
         event.preventDefault();
@@ -376,22 +375,12 @@ export default function CompanyComponent() {
 
                                 <div className="row">
                                     <div className="d-flex gap-3 col-12 col-sm-10 col-md-5 col-lg-7 col-xl-5">
-                                        <button className={`${styles.companyInvoiceSaveSendButton} btn blue`} onClick={(e) => { handleSubmit(e) }}>
-                                            {
-                                                isSubmit ?
-                                                    <span className={`d-flex align-items-center`}>
-                                                        <span className={`spinner-border spinner-border-sm text-light`} role="status">
-                                                        </span>
-                                                        <span className="status ms-1">Loading</span>
-                                                    </span>
-                                                    :
-                                                    <span>
-                                                        <i><FaSave /></i>
-                                                        Save
-                                                    </span>
-                                            }
+                                        <button type="submit" name="btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`} >
+                                            <span>
+                                                <i><FaSave /></i> Save
+                                            </span>
                                         </button>
-                                        <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={(e) => { cancleHandler(e); }}>
+                                        <button type="button" className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={() => { console.log('Cancel'); }}>
                                             <span>
                                                 <i><FaCircleXmark /></i>
                                                 Cancel

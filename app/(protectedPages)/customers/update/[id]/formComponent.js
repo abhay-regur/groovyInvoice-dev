@@ -23,6 +23,7 @@ import { NavExpandedState } from '@/context/NavState.context';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 import { useRouter } from 'next/navigation';
 import DisplayNameSelect from '@/components/customers/displayNameSelect';
+import { disableSubmitButton, enableSubmitButton } from '@/utils/form.utils.js';
 
 export default function CustomerEditForm() {
     const { replace } = useRouter();
@@ -149,7 +150,7 @@ export default function CustomerEditForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors([]);
-        setIsSubmit(true);
+        disableSubmitButton(e.target, 'customer-btn-submit');
         var temp = data;
         if (temp.taxPreference == "taxable") temp.exemptionReason = "";
         if (temp.gstTreatment == GST_TREATMENT.UNREGISTERED_BUSINESS || temp.gstTreatment == GST_TREATMENT.CONSUMER || temp.gstTreatment == GST_TREATMENT.OVERSEAS) temp.GSTIN = "";
@@ -169,9 +170,8 @@ export default function CustomerEditForm() {
             }
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
-            setIsSubmit(false);
         }
-        setIsSubmit(false);
+        enableSubmitButton(e.target, 'customer-btn-submit');
     }
 
     const getStateData = async (id, setStates) => {
@@ -538,20 +538,11 @@ export default function CustomerEditForm() {
                                         :
                                         <div className={`${styles.companyInvoiceFormButtonsWrapper} row`}>
                                             <div className="d-flex gap-3 col-12 col-sm-10 col-md-5 col-lg-7 col-xl-5">
-                                                <button name="btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`} type='submit' disabled={isSubmit}>
-                                                    {
-                                                        isSubmit ?
-                                                            <span className={`d-flex align-items-center`}>
-                                                                <span className={`spinner-border spinner-border-sm text-light`} role="status">
-                                                                </span>
-                                                                <span className="status ms-1">Loading</span>
-                                                            </span>
-                                                            :
-                                                            <span>
-                                                                <i><FaSave /></i>
-                                                                Save
-                                                            </span>
-                                                    }
+                                                <button name="customer-btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`} type='submit' >
+                                                    <span>
+                                                        <i><FaSave /></i>
+                                                        Save
+                                                    </span>
                                                 </button>
                                                 <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} type='reset' onClick={handleReset}>
                                                     <span>

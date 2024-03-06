@@ -50,9 +50,9 @@ const InvoiceNumberSettingsPopup = ({ getInvoiceNumber }) => {
     getInvoiceNumber()
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async ({currentTarget}) => {
     setErrors([])
-    disableElement(e.target)
+    disableElement(currentTarget)
     try {
       const result = await saveInvoiceNumberSetting(data)
       setToastList([{
@@ -64,7 +64,7 @@ const InvoiceNumberSettingsPopup = ({ getInvoiceNumber }) => {
     } catch (error) {
       setErrors(error.response.data.message)
     }
-    enableElement(e.target)
+    enableElement(currentTarget)
   }
 
   useEffect(() => {
