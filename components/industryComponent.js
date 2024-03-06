@@ -28,7 +28,7 @@ export default function IndustryComponent() {
 
     useEffect(() => {
         setErrors([]);
-        getIndustryData()
+        getIndustryData();
     }, [])
 
 
@@ -44,7 +44,6 @@ export default function IndustryComponent() {
 
     const handleInlineUpdate = async (index, id) => {
         setErrors([]);
-        setIsLoading(true);
         const rowData = itemData[index];
         var data = {
             name: rowData.name
@@ -57,15 +56,13 @@ export default function IndustryComponent() {
                     title: 'Industries',
                     description: 'Entry Updated',
                 }]);
-                getIndustryData();
+                await getIndustryData();
             }
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
             setIsEditing(-1);
-            setIsLoading(false);
         }
         setIsEditing(-1);
-        setIsLoading(false);
     }
 
     const addInputsRow = () => {
@@ -81,7 +78,6 @@ export default function IndustryComponent() {
             }
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
-            setIsLoading(false);
         }
         setIsLoading(false);
     }
@@ -97,12 +93,10 @@ export default function IndustryComponent() {
 
     const handleRemove = (id) => {
         setErrors([]);
-        setIsLoading(true);
         if (isEditing > -1) {
             setErrors([]);
             setIsEditing(-1);
             getIndustryData();
-            setIsLoading(false)
         } else {
             if (id != undefined) {
                 removeIndustryEntry(id);
@@ -128,16 +122,14 @@ export default function IndustryComponent() {
 
     const submitNewIndustry = async () => {
         setErrors([]);
-        setIsLoading(true);
         try {
             const result = await addIndustry(newIndustry);
             if (result.status == 200 || result.status == 201) {
+                await getIndustryData();
                 removeInputRow();
-                getIndustryData();
             }
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
-            setIsLoading(false);
         }
     }
 
