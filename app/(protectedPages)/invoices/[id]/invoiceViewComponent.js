@@ -1,14 +1,12 @@
 "use client"
 import { useState, useContext, useEffect } from 'react';
-import { useParams, notFound, useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { NavExpandedState } from '@/context/NavState.context';
 import Breadcrumb from '@/components/common/breadcrumb';
 import styles from '@/styles/viewInvoice.module.scss';
 import ViewInvoiceTable from '@/components/viewInvoiceTable.js';
 import FaPen from '@/assets/icons/faPen.svg';
 import FaMail from '@/assets/icons/faEnvelopeGreen.svg';
-import FaShare from '@/assets/icons/faShare.svg';
-import FaBell from '@/assets/icons/faBell.svg';
 import FaPDF from '@/assets/icons/faPDF.svg';
 import FaRupee from '@/assets/icons/faRupee.svg';
 import FaDropDown from '@/assets/icons/faDropDownGreen.svg';
@@ -22,6 +20,7 @@ import Link from 'next/link';
 import { convertNumberToWord } from '@/utils/number.utils';
 import Loading from '@/app/loading';
 import { paymentInfoForInvoice } from '@/services/payment.service';
+import { getCompanyDetails } from '@/services/companies.service'
 
 export default function InvoiceViewComponent() {
     const { id } = useParams();
@@ -31,6 +30,8 @@ export default function InvoiceViewComponent() {
     const [errors, setErrors] = useState([]);
     const { setToastList } = useContext(ToastMsgContext);
     const [actionBarExpandedState, setactionBarExpandedState] = useState(false);
+    const [dateFormat, setDateFormat] = useState('dd/MM/yyyy');
+
     const [data, setData] = useState({
         customerId: 0,
         invoiceNo: '',
@@ -57,6 +58,8 @@ export default function InvoiceViewComponent() {
 
     const getInvoiceData = async () => {
         try {
+            const companyData = await getCompanyDetails();
+            setDateFormat(companyData.data.dateFormat);
             const result = await getInvoice(id);
             const data = result.data;
             setData({ ...data, invoiceDate: new Date(data.invoiceDate), dueDate: new Date(data.dueDate) })
@@ -109,7 +112,7 @@ export default function InvoiceViewComponent() {
                     </div>
                     <div className="container px-3 px-sm-0">
                         <div className={`${styles.comapnyInvoiceViewInvoiceHeadWrapper} row`}>
-                            <div className={`${styles.comapnyInvoiceViewInvoiceMainHeading} col-9 col-md-10 col-lg-7`}>{customer.firstName + ' ' + customer.lastName}<span className={`${styles.comapnyInvoiceViewInvoiceSubHeading}`}>#{formatDate(data.invoiceDate)}</span></div>
+                            <div className={`${styles.comapnyInvoiceViewInvoiceMainHeading} col-9 col-md-10 col-lg-7`}>{customer.firstName + ' ' + customer.lastName}<span className={`${styles.comapnyInvoiceViewInvoiceSubHeading}`}>#{formatDate(data.invoiceDate, dateFormat)}</span></div>
                             <div className={`${styles.companyInvoiceViewInvoiceActionBarWrapper} col-12`}>
                                 <nav className={`${styles.companyInvoiceViewInvoiceActionBar} navbar navbar-expand-lg`}>
                                     <div className="container-fluid">
@@ -171,7 +174,7 @@ export default function InvoiceViewComponent() {
                                         </div>
                                         <div className="col-12 col-lg-6 order-0 order-lg-1">
                                             <div className={`${styles.comapnyInvoiceViewInvoiceHeading} d-flex justify-content-end`}>Tax Invoice</div>
-                                            <div className={`${styles.comapnyInvoiceViewInvoiceInvoiceDate} d-flex justify-content-end`}>#2022/09-04</div>
+                                            <div className={`${styles.comapnyInvoiceViewInvoiceInvoiceDate} d-flex justify-content-end`}>#{formatDate(data.invoiceDate, dateFormat)}</div>
                                         </div>
                                     </div>
                                     <hr />
@@ -190,7 +193,7 @@ export default function InvoiceViewComponent() {
                                             </div>
                                             <div className={`${styles.comapnyInvoiceViewInvoiceDetails} row justify-content-end`}>
                                                 <span className={`${styles.comapnyInvoiceViewInvoiceDetailsHeading} col-3 text-align-start`}>Invoice Date</span>
-                                                <span className={`${styles.comapnyInvoiceViewInvoiceDetailsEntry} col-6 text-align-start`}>{formatDate(data.invoiceDate)}</span>
+                                                <span className={`${styles.comapnyInvoiceViewInvoiceDetailsEntry} col-6 text-align-start`}>{formatDate(data.invoiceDate, dateFormat)}</span>
                                             </div>
                                             <div className={`${styles.comapnyInvoiceViewInvoiceDetails} row justify-content-end`}>
                                                 <span className={`${styles.comapnyInvoiceViewInvoiceDetailsHeading} col-3 text-align-start`}>Terms</span>
@@ -198,7 +201,7 @@ export default function InvoiceViewComponent() {
                                             </div>
                                             <div className={`${styles.comapnyInvoiceViewInvoiceDetails} row justify-content-end`}>
                                                 <span className={`${styles.comapnyInvoiceViewInvoiceDetailsHeading} col-3 text-align-start`}>Due Date</span>
-                                                <span className={`${styles.comapnyInvoiceViewInvoiceDetailsEntry} col-6 text-align-start`}>{formatDate(data.dueDate)}</span>
+                                                <span className={`${styles.comapnyInvoiceViewInvoiceDetailsEntry} col-6 text-align-start`}>{formatDate(data.dueDate, dateFormat)}</span>
                                             </div>
                                         </div>
                                     </div>

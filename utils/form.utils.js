@@ -1,6 +1,5 @@
 const disableSubmitButton = (form, name = 'btn-submit') => {
   const element = form.elements[name];
-  console.log(element)
   disableElement(element)
 }
 

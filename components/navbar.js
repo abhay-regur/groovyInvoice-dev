@@ -164,7 +164,6 @@ export default function Navbar() {
                                     </Fragment>
                                 );
                             } else {
-                                console.log('menu.href')
                                 return (
                                     <div key={idx} className={`${style.navItemWrapper} ${(activeIdx === idx) ? style.active : " "} d-flex align-item-center`} onClick={() => { setActiveIdx(idx); }}>
                                         <NavItem active={activeIdx === idx} text={menu.text} href={menu.href} icon={menu.icon}></NavItem>

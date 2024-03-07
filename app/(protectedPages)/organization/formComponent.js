@@ -28,6 +28,14 @@ export default function OrganizationUpdateForm() {
     const [currencies, setCurrencies] = useState([]);
     const [statesArray, getStateArray] = useState([]);
     const [isSubmit, setIsSubmit] = useState(false);
+    const dateFormatList = [
+        {Id: 'dd-MM-yyyy', name: 'dd-MM-yyyy'},
+        {Id: 'MM-dd-yyyy', name: 'MM-dd-yyyy'},
+        {Id: 'yyyy-MM-dd', name: 'yyyy-MM-dd'},
+        {Id: 'dd/MM/yyyy', name: 'dd/MM/yyyy'},
+        {Id: 'MM/dd/yyyy', name: 'MM/dd/yyyy'},
+        {Id: 'yyyy/MM/dd', name: 'yyyy/MM/dd'},
+    ]
     // const { Modal } = require("bootstrap");
 
 
@@ -43,6 +51,7 @@ export default function OrganizationUpdateForm() {
         GSTIN: '',
         currentInvoicing: '',
         logo: '',
+        dateFormat: '',
         logoFile: ''
     });
 
@@ -212,6 +221,7 @@ export default function OrganizationUpdateForm() {
         myFormData.append('isRegisteredForGST', temp.isRegisteredForGST);
         myFormData.append('GSTIN', temp.GSTIN);
         myFormData.append('currentInvoicing', temp.currentInvoicing);
+        myFormData.append('dateFormat', temp.dateFormat);
         myFormData.append('logoFile', temp.logoFile);
         try {
             var result = await updateCompanyDetails(myFormData)
@@ -313,7 +323,17 @@ export default function OrganizationUpdateForm() {
                                                 <label className={`${styles.companyInvoiceOrganizationDateFormatlabel}`}>Date Format<span className={`${styles.green}`}>*</span></label> (W.I.P)
                                             </div>
                                             <div className="col-12 col-lg-6 col-xl-7">
-                                                -
+                                            <CustomSelectComponent
+                                                className={`${styles.companyInvoiceOrganizationTimeZoneSelect}`}
+                                                data={dateFormatList}
+                                                onOptionValueChange={handleInput}
+                                                optionValue={data.dateFormat}
+                                                name={'dateFormat'}
+                                                isDisabled={false}
+                                                defaultText={'Select a Date format'}
+                                                hasSearch={true}
+                                                isInnerButtonRequired={false}
+                                            />
                                             </div>
                                         </div>
 
