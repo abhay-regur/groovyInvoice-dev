@@ -62,7 +62,7 @@ const AllCustomerTable = () => {
                 orderable: true,
             },
             {
-                data: 'cellNumber', name: 'receivables', searchable: false,
+                data: 'receivables', name: 'receivables', searchable: false,
                 orderable: false,
             },
             { //Added a extra empty Column
