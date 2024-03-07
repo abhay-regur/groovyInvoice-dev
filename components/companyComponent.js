@@ -89,8 +89,8 @@ export default function CompanyComponent() {
             const result = await getCurrencies();
             var data = result.data;
             var temp = [];
-            data.forEach((elem, id) => {
-                temp.push({ Id: id, symbol: elem.symbol, name: (elem.symbol == '' ? elem.name : elem.symbol + ' - ' + elem.code + ' - ' + elem.name), code: elem.code })
+            data.forEach((elem) => {
+                temp.push({ Id: elem.id, symbol: elem.symbol, name: (elem.symbol == '' ? elem.name : elem.symbol + ' - ' + elem.code + ' - ' + elem.name), code: elem.code })
             })
             setCurrencies(temp);
         } catch (error) {

@@ -62,7 +62,7 @@ export default function CustomerAddForm() {
         placeOfSupply: "",
         taxPreference: "",
         exemptionReason: "",
-        currency: 103,
+        currencyId: 103,
         openingBalance: 0,
         paymentTermId: null,
         address: {
@@ -121,7 +121,7 @@ export default function CustomerAddForm() {
         var temp_data = data;
         var name = target.name || target.getAttribute('name');
         if (name != '') {
-            if (name == 'openingBalance' || name == 'gstTreatment' || name == 'paymentTermId' || name == 'currency') {
+            if (name == 'openingBalance' || name == 'gstTreatment' || name == 'paymentTermId' || name == 'currencyId') {
                 if (!Number.isNaN((target.value)) && target.value != '') {
                     temp_data[name] = parseInt(target.value)
                 } else {
@@ -231,8 +231,8 @@ export default function CustomerAddForm() {
 
             var temp = [];
 
-            data.forEach((elem, id) => {
-                temp.push({ Id: id, symbol: elem.symbol, name: (elem.symbol == '' ? elem.name : elem.symbol + ' - ' + elem.code + ' - ' + elem.name), code: elem.code })
+            data.forEach((elem) => {
+                temp.push({ Id: elem.id, symbol: elem.symbol, name: (elem.symbol == '' ? elem.name : elem.symbol + ' - ' + elem.code + ' - ' + elem.name), code: elem.code })
             })
 
             setCurrencies(temp);
@@ -309,7 +309,7 @@ export default function CustomerAddForm() {
             placeOfSupply: "",
             taxPreference: "",
             exemptionReason: "",
-            currency: "INR",
+            currencyId: 108,
             openingBalance: 0,
             paymentTermId: null,
             address: {
