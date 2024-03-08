@@ -62,8 +62,10 @@ const AllCustomerTable = () => {
                 orderable: true,
             },
             {
-                data: 'cellNumber', name: 'receivables', searchable: false,
-                orderable: false,
+                data: 'receivables', searchable: false, orderable: false,
+                render: (data, type, row) => {
+                    return row.currency.symbol + ' ' + row.receivables;
+                },
             },
             { //Added a extra empty Column
                 data: null,

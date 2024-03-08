@@ -16,6 +16,7 @@ import { NavExpandedState } from '@/context/NavState.context';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 import Loading from "../loading";
 import { getIndustryList } from '@/services/industry.service';
+import { disableSubmitButton, enableSubmitButton } from '@/utils/form.utils.js';
 
 
 export default function OrganizationSetupForm() {
@@ -82,7 +83,6 @@ export default function OrganizationSetupForm() {
                 temp.push({ Id: elem.id, name: elem.name })
             })
             setCountryArray(temp);
-            setIsLoading(false);
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
         }
@@ -94,8 +94,8 @@ export default function OrganizationSetupForm() {
             const result = await getCurrencies();
             var data = result.data;
             var temp = [];
-            data.forEach((elem, id) => {
-                temp.push({ Id: id, symbol: elem.symbol, name: (elem.symbol == '' ? elem.name : elem.symbol + ' - ' + elem.code + ' - ' + elem.name), code: elem.code })
+            data.forEach((elem) => {
+                temp.push({ Id: elem.id, symbol: elem.symbol, name: (elem.symbol == '' ? elem.name : elem.symbol + ' - ' + elem.code + ' - ' + elem.name), code: elem.code })
             })
             setCurrencies(temp);
         } catch (error) {
@@ -213,9 +213,9 @@ export default function OrganizationSetupForm() {
     }
 
     const handleSubmit = async (e) => {
+        disableSubmitButton(e.target);
         e.preventDefault();
         setErrors([]);
-        setIsLoading(true);
         var temp = data;
         if (!temp.isRegisteredForGST) {
             temp.GSTIN = "";
@@ -246,8 +246,8 @@ export default function OrganizationSetupForm() {
             }
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
-            setIsLoading(false);
         }
+        enableSubmitButton(e.target);
     }
 
     const imageLoader = ({ src, width, quality }) => {

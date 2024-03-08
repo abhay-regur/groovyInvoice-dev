@@ -64,12 +64,10 @@ export default function PaymentTermsComponent() {
 
     const handleRemove = (id) => {
         setErrors([]);
-        setIsLoading(true);
         if (isEditing > -1) {
             setErrors([]);
             setIsEditing(-1);
             getPaymentTermsDetails();
-            setIsLoading(false)
         } else {
             if (id != undefined) {
                 removePaymentTerm(id);
@@ -98,7 +96,6 @@ export default function PaymentTermsComponent() {
 
     const handleSubmit = async () => {
         setErrors([]);
-        setIsLoading(true);
         try {
             var result = await createPaymentTerms(paymentTerm);
             if (result.status == 200 || result.status == 201) {
@@ -107,19 +104,16 @@ export default function PaymentTermsComponent() {
                     title: 'Payment Terms',
                     description: 'Added an entry',
                 }]);
-                getPaymentTermsDetails();
+                await getPaymentTermsDetails();
                 removeInputRow();
             }
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
-            setIsLoading(false);
         }
-        setIsLoading(false);
     }
 
     const handleInlineUpdate = async (index, id) => {
         setErrors([]);
-        setIsLoading(true);
         const rowData = itemData[index];
         var data = {
             label: rowData.label,
@@ -138,10 +132,8 @@ export default function PaymentTermsComponent() {
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
             setIsEditing(-1);
-            setIsLoading(false);
         }
         setIsEditing(-1);
-        setIsLoading(false);
     }
 
     const handleInlineUpdateInput = (index, e) => {

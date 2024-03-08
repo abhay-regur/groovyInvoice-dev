@@ -14,6 +14,7 @@ import { useRouter } from 'next/navigation';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils';
 import Loading from './loading';
 import Breadcrumb from '@/components/common/breadcrumb';
+import { disableSubmitButton, enableSubmitButton } from '@/utils/form.utils.js';
 
 export default function UserUpdateFormComponent() {
     const { replace } = useRouter();
@@ -65,7 +66,7 @@ export default function UserUpdateFormComponent() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setIsSubmit(true);
+        disableSubmitButton(e.target)
         setErrors([]);
         try {
             var result = await createUser(data);
@@ -84,13 +85,12 @@ export default function UserUpdateFormComponent() {
                     title: data.firstName + ' ' + data.lastName + ' added successfully',
                     description: result.data.message,
                 }]);
-                setIsSubmit(false);
                 // window.location.pathname = '/users/';
             }
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
-            setIsSubmit(false);
         }
+        enableSubmitButton(e.target)
     }
 
     return (
@@ -110,7 +110,7 @@ export default function UserUpdateFormComponent() {
                             <ErrorList errors={errors} />
                             <form onSubmit={handleSubmit}>
                                 <div className={`${styles.companyUserActiveUserWrapper} mb-4 row`}>
-                                    <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
+                                    <div className="d-flex align-items-center col-12 col-lg-2 col-xl-2">
                                         <label className="">Active</label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-6">
@@ -121,7 +121,7 @@ export default function UserUpdateFormComponent() {
                                 </div>
 
                                 <div className={`${styles.companyInvoiceUserNameWrapper} mb-0 mb-md-4 row`}>
-                                    <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
+                                    <div className="d-flex align-items-center col-12 col-lg-2 col-xl-2">
                                         <label className="">Name</label>
                                     </div>
                                     <div className="col-12 col-lg-3 col-xl-3">
@@ -133,7 +133,7 @@ export default function UserUpdateFormComponent() {
                                 </div>
 
                                 <div className={`${styles.companyInvoiceUserEmailWrapper} mb-4 row`}>
-                                    <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
+                                    <div className="d-flex align-items-center col-12 col-lg-2 col-xl-2">
                                         <label className={`${styles.companyInvoiceUserEmailLabel}`}>Email</label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-6 d-flex align-items-center">
@@ -142,7 +142,7 @@ export default function UserUpdateFormComponent() {
                                 </div>
 
                                 <div className={`${styles.companyInvoiceUserPhone} mb-4 row`}>
-                                    <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
+                                    <div className="d-flex align-items-center col-12 col-lg-2 col-xl-2">
                                         <label className={`${styles.companyInvoiceUserPhoneLabel}`}>Phone</label>
                                     </div>
 
@@ -152,7 +152,7 @@ export default function UserUpdateFormComponent() {
                                 </div>
 
                                 <div className={`${styles.companyInvoiceUserPasswordWrapper} mb-4 row`}>
-                                    <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
+                                    <div className="d-flex align-items-center col-12 col-lg-2 col-xl-2">
                                         <label className={`${styles.companyInvoiceUserPasswordLabel}`}>Password</label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-6 d-flex">
@@ -162,7 +162,7 @@ export default function UserUpdateFormComponent() {
                                 </div>
 
                                 <div className={`${styles.companyInvoiceUserPasswordWrapper} mb-4 row`}>
-                                    <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
+                                    <div className="d-flex align-items-center col-12 col-lg-2 col-xl-2">
                                         <label className={`${styles.companyInvoiceUserPasswordLabel}`}>Confirm Password</label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-6">
@@ -175,19 +175,9 @@ export default function UserUpdateFormComponent() {
                                         <div className="row">
                                             <div className="col-6 col-md-4 col-lg-3 col-xl-6">
                                                 <button type="submit" name="btn-submit" className={`${styles.companyInvoiceSavenSendButton} btn blue`}>
-                                                    {
-                                                        isSubmit ?
-                                                            <span className={`d-flex align-items-center`}>
-                                                                <span className={`spinner-border spinner-border-sm text-light`} role="status">
-                                                                </span>
-                                                                <span className="status ms-1">Loading</span>
-                                                            </span>
-                                                            :
-                                                            <span>
-                                                                <i><FaSave /></i>
-                                                                Save
-                                                            </span>
-                                                    }
+                                                    <span>
+                                                        <i><FaSave /></i> Save
+                                                    </span>
                                                 </button>
                                             </div>
                                             <div className="col-6 col-md-4 col-lg-3 col-xl-6">

@@ -8,6 +8,7 @@ import FaRupeeCircle from "@/assets/icons/faRupeeCircle.svg";
 import Breadcrumb from '@/components/common/breadcrumb';
 import dynamic from 'next/dynamic';
 import { getTotalOutstandingReceivables, getDueToday, getDueWithin30Days, getOverdue } from '@/services/payment.service';
+import { getCompanyDetails } from '@/services/companies.service'
 
 const AllInvoiceTable = dynamic(
     () => import("@/components/invoice/allInvoiceTable"),
@@ -20,6 +21,16 @@ export default function InvoiceListComponent() {
     const [dueToday, setDueToday] = useState(0)
     const [dueWithin30Days, setDueWithin30Days] = useState(0)
     const [overdue, setOverdue] = useState(0)
+    const [dateFormat, setDateFormat] = useState('');
+
+    const getDateFormat = async () => {
+        const result = await getCompanyDetails();
+        setDateFormat(result.data.dateFormat);
+    }
+
+    useEffect(() => {
+        getDateFormat();
+    }, [])
 
     const getData = async () => {
         const totalOutstandingReceivableData = await getTotalOutstandingReceivables()
@@ -70,7 +81,7 @@ export default function InvoiceListComponent() {
                     </div>
 
                     <div className='p-2'>
-                        <AllInvoiceTable />
+                        <AllInvoiceTable dateFormat={dateFormat} />
                     </div>
                 </div>
             </main>

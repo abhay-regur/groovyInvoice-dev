@@ -177,8 +177,8 @@ export default function InvoiceAddForm() {
         calculateTotalAmount()
     }
 
-    const handleSubmit = async (e, status) => {
-        disableElement(e.target)
+    const handleSubmit = async ({currentTarget}, status) => {
+        disableElement(currentTarget)
         setErrors([])
         try {
             await saveInvoice({ ...data, status })
@@ -192,7 +192,7 @@ export default function InvoiceAddForm() {
         } catch (error) {
             setErrors(genrateErrorMessage(error, 'Invoice', setToastList));
         }
-        enableElement(e.target)
+        enableElement(currentTarget)
     }
 
     return (
@@ -387,27 +387,27 @@ export default function InvoiceAddForm() {
                                                 <textarea className="form-control" placeholder='Enter the terms and conditions of your business to be displayed in your transaction' id="companyInvoiceTerms&Conditions" rows="7" name="termsAndCondition" value={data.termsAndCondition} onChange={handleInput}></textarea>
                                             </div>
                                         </div>
-                                        <div className={`${styles.companyInvoiceButtonsWrapper}`}>
-                                            <div className={`${styles.companyInvoiceSubmitButtonsWrapper} col-12 row gap-3`}>
-                                                <button name="btn-submit" className={`${styles.companyInvoiceSaveDraftButton} btn green`} onClick={(e) => handleSubmit(e, 'draft')}>
-                                                    <span>
-                                                        <i><FaPaperPen /></i>
-                                                        Save as Draft
-                                                    </span>
-                                                </button>
-                                                <button name="btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`} onClick={(e) => handleSubmit(e, 'send')}>
-                                                    <span>
-                                                        <i><FaSave /></i>
-                                                        Save & Send
-                                                    </span>
-                                                </button>
-                                                <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={() => { replace('/invoices') }}>
-                                                    <span>
-                                                        <i><FaCircleXmark /></i>
-                                                        Cancel
-                                                    </span>
-                                                </button>
-                                            </div>
+                                    </div>
+                                    <div className={`${styles.companyInvoiceButtonsWrapper}`}>
+                                        <div className={`${styles.companyInvoiceSubmitButtonsWrapper} col-12 row gap-3`}>
+                                            <button name="btn-submit" className={`${styles.companyInvoiceSaveDraftButton} green`} onClick={(e) => handleSubmit(e, 'draft')}>
+                                                <span>
+                                                    <i><FaPaperPen /></i>
+                                                    Save as Draft
+                                                </span>
+                                            </button>
+                                            <button name="btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`} onClick={(e) => handleSubmit(e, 'send')}>
+                                                <span>
+                                                    <i><FaSave /></i>
+                                                    Save & Send
+                                                </span>
+                                            </button>
+                                            <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={() => { replace('/invoices') }}>
+                                                <span>
+                                                    <i><FaCircleXmark /></i>
+                                                    Cancel
+                                                </span>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>

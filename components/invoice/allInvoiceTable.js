@@ -1,7 +1,6 @@
 "use client"
 import styles from '@/styles/invoice.module.scss';
-import React, { useContext, useRef, useState } from 'react';
-import { ToastMsgContext } from '@/context/ToastMsg.context';
+import React, { useRef, useState } from 'react';
 import ReactDOM from "react-dom/client";
 import 'datatables.net-dt/js/dataTables.dataTables';
 import 'datatables.net-dt/css/jquery.dataTables.min.css';
@@ -11,8 +10,7 @@ import FaExclamationCircle from '@/assets/icons/faExclamationCircle.svg';
 import FaPen from '@/assets/icons/faPen.svg';
 import Link from 'next/link';
 
-const AllInvoiceTable = ({ ItemsData }) => {
-    const { setToastList } = useContext(ToastMsgContext);
+const AllInvoiceTable = ({ dateFormat }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [isPageLoading, setIsPageLoading] = useState(true);
 
@@ -78,7 +76,7 @@ const AllInvoiceTable = ({ ItemsData }) => {
             {
                 data: 'dueDate',
                 render: (data, type, row) => {
-                    return formatDate(row.dueDate)
+                    return formatDate(row.dueDate, dateFormat)
                 },
                 searchable: true,
                 orderable: true,

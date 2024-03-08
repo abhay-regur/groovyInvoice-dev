@@ -205,7 +205,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
                 <label className={`${styles.companyInvoiceCurrencylabel}`}>Currency</label>
             </div>
             <div className="col-12 col-lg-6 col-xl-6">
-                <CustomSelectComponent className={`${styles.companyInvoiceCurrencySelect}`} data={currencies} onOptionValueChange={handleInput} optionValue={data.currency} name={'currency'} hasSearch={true} isDisabled={false} defaultText={'Select a Currency'} canAddButton={false} />
+                <CustomSelectComponent className={`${styles.companyInvoiceCurrencySelect}`} data={currencies} onOptionValueChange={handleInput} optionValue={data.currencyId} name={'currencyId'} hasSearch={true} isDisabled={false} defaultText={'Select a Currency'} canAddButton={false} />
             </div>
         </div>
 
@@ -215,7 +215,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
             </div>
             <div className="col-12 col-lg-6 col-xl-6">
                 <div className="input-group">
-                    <span className="input-group-text">{(currencies[data.currency] == undefined || currencies[data.currency] == '') ? '-' : currencies[data.currency].symbol}</span>
+                    <span className="input-group-text">{(currencies[data.currencyId] == undefined || currencies[data.currencyId] == '') ? '-' : currencies[data.currencyId].symbol}</span>
                     <input name='openingBalance' type="number" className="form-control" id="companyInvoiceOpeningBalance" value={data.openingBalance} placeholder='Opening Balance' onChange={handleInput} />
                 </div>
             </div>
