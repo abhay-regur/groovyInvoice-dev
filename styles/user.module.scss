@@ -87,6 +87,10 @@
                     margin-bottom: 10px;
                     margin-top: 10px;
                 }
+                input:focus {
+                    box-shadow: none;
+                    border: var.$primary-color solid 1px !important;
+                }
             }
 
             table {
@@ -401,6 +405,10 @@
                     border-radius: 0 8px 8px 0;
                     margin-bottom: 10px;
                     margin-top: 10px;
+                }
+                input:focus {
+                    box-shadow: none;
+                    border: var.$primary-color solid 1px !important;
                 }
             }
 

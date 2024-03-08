@@ -110,7 +110,7 @@ export default function UserUpdateFormComponent() {
                             <ErrorList errors={errors} />
                             <form onSubmit={handleSubmit}>
                                 <div className={`${styles.companyUserActiveUserWrapper} mb-4 row`}>
-                                    <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
+                                    <div className="d-flex align-items-center col-12 col-lg-2 col-xl-2">
                                         <label className="">Active</label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-6">
@@ -121,7 +121,7 @@ export default function UserUpdateFormComponent() {
                                 </div>
 
                                 <div className={`${styles.companyInvoiceUserNameWrapper} mb-0 mb-md-4 row`}>
-                                    <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
+                                    <div className="d-flex align-items-center col-12 col-lg-2 col-xl-2">
                                         <label className="">Name</label>
                                     </div>
                                     <div className="col-12 col-lg-3 col-xl-3">
@@ -133,7 +133,7 @@ export default function UserUpdateFormComponent() {
                                 </div>
 
                                 <div className={`${styles.companyInvoiceUserEmailWrapper} mb-4 row`}>
-                                    <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
+                                    <div className="d-flex align-items-center col-12 col-lg-2 col-xl-2">
                                         <label className={`${styles.companyInvoiceUserEmailLabel}`}>Email</label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-6 d-flex align-items-center">
@@ -142,7 +142,7 @@ export default function UserUpdateFormComponent() {
                                 </div>
 
                                 <div className={`${styles.companyInvoiceUserPhone} mb-4 row`}>
-                                    <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
+                                    <div className="d-flex align-items-center col-12 col-lg-2 col-xl-2">
                                         <label className={`${styles.companyInvoiceUserPhoneLabel}`}>Phone</label>
                                     </div>
 
@@ -152,7 +152,7 @@ export default function UserUpdateFormComponent() {
                                 </div>
 
                                 <div className={`${styles.companyInvoiceUserPasswordWrapper} mb-4 row`}>
-                                    <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
+                                    <div className="d-flex align-items-center col-12 col-lg-2 col-xl-2">
                                         <label className={`${styles.companyInvoiceUserPasswordLabel}`}>Password</label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-6 d-flex">
@@ -162,7 +162,7 @@ export default function UserUpdateFormComponent() {
                                 </div>
 
                                 <div className={`${styles.companyInvoiceUserPasswordWrapper} mb-4 row`}>
-                                    <div className="d-flex align-items-center col-12 col-lg-4 col-xl-2">
+                                    <div className="d-flex align-items-center col-12 col-lg-2 col-xl-2">
                                         <label className={`${styles.companyInvoiceUserPasswordLabel}`}>Confirm Password</label>
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-6">
