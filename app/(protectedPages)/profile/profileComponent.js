@@ -17,6 +17,7 @@ import FaGear from '@/assets/icons/faGear.svg';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils';
 import styles from '@/styles/profile.module.scss';
 import { NavExpandedState } from '@/context/NavState.context';
+import defaultProfile from '../../../public/images/default_profile_icon.png';
 
 export default function ProfileComponent() {
     const { navExpandedState } = useContext(NavExpandedState);
@@ -24,6 +25,7 @@ export default function ProfileComponent() {
     const [isLoading, setIsLoading] = useState(true);
     const [isImageSet, setIsImageSet] = useState(false);
     const [errors, setErrors] = useState([]);
+    const [imageSrc, setImageSrc] = useState('');
     const [passwordErrors, setPasswordErrors] = useState([]);
     const [userCurrentPassword, setUserCurrentPassword] = useState('');
     const [userNewPassword, setUserNewPassword] = useState('');
@@ -57,21 +59,12 @@ export default function ProfileComponent() {
         setErrors([]);
         try {
             const result = await getCurrentUserDetails();
-            var data = result.data;
-            var temp_profilephoto = "/images/default_profile_icon.png";
-            if (data.profile_image != "" && data.profile_image != null) {
-                temp_profilephoto = data.profile_image.replaceAll('\\', '/');
-                setIsImageSet(true);
+            const {profile_image, ...userData} = result.data
+            setData(userData);
+            if (profile_image) {
+                setImage(userData)
+                setIsImageSet(true)
             }
-
-            setUserData({
-                id: data.id,
-                email: data.email,
-                firstName: data.firstName,
-                lastName: data.lastName,
-                cellNumber: data.cellNumber,
-                profilePicFile: temp_profilephoto,
-            });
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
         }
@@ -195,9 +188,7 @@ export default function ProfileComponent() {
                                                     <div className="row">
                                                         <div className="col-12 col-md-3 d-flex justify-content-center">
                                                             <div className={`${styles.profileImageWrapper}`}>
-                                                                <Image className={`${styles.profileImageDisplay}`} loader={imageLoader} src={userData.profilePicFile != "" ? (typeof (userData.profilePicFile) == 'string'
-                                                                    ? userData.profilePicFile
-                                                                    : URL.createObjectURL(userData.profilePicFile)) : "/images/default_profile_icon.png"} width={105} height={105} alt="profile_Image" />
+                                                                <Image className={`${styles.profileImageDisplay}`} loader={imageLoader}  src={imageSrc}  onError={()=>setImageSrc(defaultProfile)} width={105} height={105} alt="profile_Image" />
                                                                 <span className={`${styles.profileImageUploadWrapper}`}>
                                                                     {
                                                                         isImageSet ?
