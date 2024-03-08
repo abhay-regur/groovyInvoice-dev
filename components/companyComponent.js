@@ -13,6 +13,7 @@ import styles from '@/styles/configuration.module.scss';
 import FaCamera from '@/assets/icons/faCamera.svg';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils';
 import { disableSubmitButton, enableSubmitButton } from '@/utils/form.utils.js';
+import defaultProfile from '../public/images/default-company-icon.png';
 
 export default function CompanyComponent() {
     const { setToastList } = useContext(ToastMsgContext);
@@ -23,8 +24,7 @@ export default function CompanyComponent() {
     const [countryArray, setCountryArray] = useState([]);
     const [currencies, setCurrencies] = useState([]);
     const [statesArray, getStateArray] = useState([]);
-    // const { Modal } = require("bootstrap");
-
+    const [imageSrc, setImageSrc] = useState('');
 
     const [data, setData] = useState({
         companyName: '',
@@ -37,7 +37,6 @@ export default function CompanyComponent() {
         isRegisteredForGST: true,
         GSTIN: '',
         currentInvoicing: '',
-        logo: '',
         logoFile: ''
     });
 
@@ -101,7 +100,9 @@ export default function CompanyComponent() {
     const getCompanyData = async () => {
         setErrors([]);
         const result = await getCompanyDetails();
-        setData(result.data);
+        const {logo, ...companyData} = result.data;
+        setData(companyData);
+        setImageSrc(logo)
     }
 
     const getIndustryData = async () => {
@@ -164,7 +165,7 @@ export default function CompanyComponent() {
         e.stopPropagation();
         if (e.target.files && e.target.files.length > 0) {
             var temp_data = data;
-            temp_data.logo = URL.createObjectURL(e.target.files[0]);
+            setImageSrc(URL.createObjectURL(e.target.files[0]));
             temp_data.logoFile = e.target.files[0];
             let temp = Object.assign({}, temp_data);
             setData(temp);
@@ -175,7 +176,7 @@ export default function CompanyComponent() {
         e.preventDefault();
         e.stopPropagation();
         var temp_data = data;
-        temp_data.logo = '';
+        setImageSrc('');
         temp_data.logoFile = '';
         let temp = Object.assign({}, temp_data);
         setData(temp);
@@ -338,9 +339,9 @@ export default function CompanyComponent() {
                                     </div>
                                     <div className="col-12 col-lg-6 col-xl-7">
                                         <div className={`${styles.companyInvoiceOrganizationInputFileWrapper} d-flex`}>
-                                            {data.logo ?
+                                            {imageSrc ?
                                                 <div className={`${styles.companyInvoiceOrganizationImageInputWrapper}`}>
-                                                    <Image className={`${styles.companyInvoiceOrganizationImageDisplay}`} loader={imageLoader} src={data.logo} width={250} height={125} alt="organization_logo" />
+                                                    <Image className={`${styles.companyInvoiceOrganizationImageDisplay}`} loader={imageLoader} onError={()=>setImageSrc(defaultProfile)} src={imageSrc} width={250} height={125} alt="organization_logo" />
                                                     <span className={`${styles.companyInvoiceOrganizationImageUploadWrapper}`}>
                                                         <p>
                                                             This logo will be displayed in transaction PDF&apos;s and email notifications.

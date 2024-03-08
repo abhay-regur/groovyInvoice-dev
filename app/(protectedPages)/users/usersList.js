@@ -12,7 +12,7 @@ const AllUserTable = dynamic(
     { ssr: false }
 );
 
-export default function UserListComponnt() {
+export default function UsersList() {
     const { navExpandedState } = useContext(NavExpandedState);
     return (
         <div className={styles.container}>
