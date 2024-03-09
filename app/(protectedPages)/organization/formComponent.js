@@ -212,12 +212,12 @@ export default function OrganizationUpdateForm() {
         }
         var myFormData = new FormData();
         myFormData.append('companyName', temp.companyName);
-        myFormData.append('industryId', temp.industryId);
-        myFormData.append('stateId', parseInt(temp.stateId));
-        myFormData.append('countryId', temp.countryId);
-        myFormData.append('currencyId', parseInt(temp.currencyId));
+        if(temp.industryId) { myFormData.append('industryId', parseInt(temp.industryId)) };
+        if(temp.stateId) { myFormData.append('stateId', parseInt(temp.stateId)) };
+        if(temp.countryId) { myFormData.append('countryId', parseInt(temp.countryId)) };
+        if(temp.currencyId) { myFormData.append('currencyId', parseInt(temp.currencyId)) };
         myFormData.append('language', temp.language);
-        myFormData.append('timeZoneId', parseInt(temp.timeZoneId));
+        if(temp.timeZoneId) { myFormData.append('timeZoneId', parseInt(temp.timeZoneId)) };
         myFormData.append('isRegisteredForGST', temp.isRegisteredForGST);
         myFormData.append('GSTIN', temp.GSTIN);
         myFormData.append('currentInvoicing', temp.currentInvoicing);
