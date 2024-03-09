@@ -8,7 +8,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import 'datatables.net-dt/css/jquery.dataTables.min.css';
 import defaultProfile from '../public/images/profile_Default.png';
-import PageLoader from '../app/(protectedPages)/customers/pageLoader.js';
 import ServerSideDataTables from './serverSideDataTable';
 import FaPen from '@/assets/icons/faPen.svg';
 
@@ -22,7 +21,6 @@ const AllCustomerTable = () => {
         return (
             <>
                 <div className={`${styles.companyCustomerTableCustomerImage}`}>
-                    <Image src={defaultProfile} alt="Picture of the author" width={'42px'} height={'42px'} />
                     <span className={`${styles.companyCustomerTableCustomerNameWrapper}`}>
                         <div className={`${styles.companyCustomerTableCustomerName}`} >
                             {row.displayName}
@@ -64,7 +62,7 @@ const AllCustomerTable = () => {
             {
                 data: 'receivables', searchable: false, orderable: false,
                 render: (data, type, row) => {
-                    return row.currency.symbol + ' ' + row.receivables;
+                    return (row.currency ? row.currency.symbol : '$') + ' ' + row.receivables;
                 },
             },
             { //Added a extra empty Column
