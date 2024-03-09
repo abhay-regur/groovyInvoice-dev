@@ -29,14 +29,14 @@ export default function RegistrationForm() {
     const [validateErrorMessage, setvalidateErrorMessage] = useState({
         email: 'Cannot be empty',
         companyName: 'Cannot be empty',
-        cellNumber: 'Cannot be empty',
+        cellNumber: 'Cell phone number must be valid',
         password: '',
         confirmPassword: ''
     });
 
     const handleInput = ({ target }) => {
         if (target.name == 'cellNumber') {
-            data[target.name] = (target.value == '' ? '' : ((target.value).match(/[0-9]+/g) || ''));
+            data[target.name] = (target.value == '' ? '' : target.value.replace(/[^\d\+]/g, ''));
         } else {
             data[target.name] = target.value
         }
@@ -62,7 +62,15 @@ export default function RegistrationForm() {
         if (target.value == '') {
             target.classList.add('is-invalid');
             handleValidationError(target.name, 'Can not be empty');
-        } else if (target.name != 'cellNumber') {
+        } else if (target.name == 'cellNumber') {
+            const regexp = /^\d{10}$/;
+            if (regexp.test(target.value)) {
+                target.classList.add('is-valid');
+            } else {
+                target.classList.add('is-invalid');
+            }
+        }
+        else{
             try {
                 var result = await validateInput(target.name, target.value)
                 if (result.status == 200) {
