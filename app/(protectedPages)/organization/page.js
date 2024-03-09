@@ -4,7 +4,7 @@ const OrganizationSetupForm = dynamic(
     { ssr: false }
 );
 export const metadata = {
-    title: 'Organization Setup',
+    title: 'Update Organization',
 }
 export default function OrganizationSetup() {
     return (
