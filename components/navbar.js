@@ -68,7 +68,11 @@ export default function Navbar() {
         try {
             const result = await getCurrentUserDetails();
             setData(result.data);
-            setImage(result.data.profile_image)
+            if (result.data.profile_image) {
+                setImage(result.data.profile_image)
+            } else {
+                setImage(defaultProfile)
+            }
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
         }
