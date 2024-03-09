@@ -198,10 +198,10 @@ export default function OrganizationUpdateForm() {
         e.stopPropagation();
         $('#companyInvoiceOrganizationLogoInput').val('');
         var temp_data = data;
-        temp_data.logo = '';
         temp_data.logoFile = '';
         let temp = Object.assign({}, temp_data);
         setData(temp);
+        setImageSrc('');
     }
 
     const handleCheckBoxChange = ({ target }) => {
