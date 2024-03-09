@@ -81,7 +81,7 @@ export default function InvoiceListComponent() {
                     </div>
 
                     <div className='p-2'>
-                        <AllInvoiceTable dateFormat={dateFormat} />
+                        {dateFormat &&<AllInvoiceTable dateFormat={dateFormat} />}
                     </div>
                 </div>
             </main>
