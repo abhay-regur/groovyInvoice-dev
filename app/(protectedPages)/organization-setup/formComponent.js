@@ -169,6 +169,7 @@ export default function OrganizationSetupForm() {
         temp_obj.logo = "";
         setIsImageSet(false);
         setData(temp_obj);
+        setImageSrc('');
     }
 
     const showIndustyModal = function () {

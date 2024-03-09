@@ -16,6 +16,7 @@ import styles from '@/styles/organization.module.scss';
 import Breadcrumb from '@/components/common/breadcrumb';
 import FaCamera from '@/assets/icons/faCamera.svg';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils';
+import defaultProfile from '../../../public/images/default-company-icon.png';
 
 export default function OrganizationUpdateForm() {
     const { navExpandedState } = useContext(NavExpandedState);
@@ -28,6 +29,7 @@ export default function OrganizationUpdateForm() {
     const [currencies, setCurrencies] = useState([]);
     const [statesArray, getStateArray] = useState([]);
     const [isSubmit, setIsSubmit] = useState(false);
+    const [imageSrc, setImageSrc] = useState('');
     const dateFormatList = [
         {Id: 'dd-MM-yyyy', name: 'dd-MM-yyyy'},
         {Id: 'MM-dd-yyyy', name: 'MM-dd-yyyy'},
@@ -115,7 +117,13 @@ export default function OrganizationUpdateForm() {
     const getCompanyData = async () => {
         setErrors([]);
         const result = await getCompanyDetails();
-        setData(result.data);
+        const {logo, ...companyData} = result.data;
+        setData(companyData);
+        if (logo) {
+            setImageSrc(logo)
+        } else {
+            setImageSrc(defaultProfile)
+        }
     }
 
     const getIndustryData = async () => {
@@ -178,10 +186,10 @@ export default function OrganizationUpdateForm() {
         e.stopPropagation();
         if (e.target.files && e.target.files.length > 0) {
             var temp_data = data;
-            temp_data.logo = URL.createObjectURL(e.target.files[0]);
             temp_data.logoFile = e.target.files[0];
             let temp = Object.assign({}, temp_data);
             setData(temp);
+            setImageSrc(URL.createObjectURL(e.target.files[0]))
         }
     }
 
@@ -190,10 +198,10 @@ export default function OrganizationUpdateForm() {
         e.stopPropagation();
         $('#companyInvoiceOrganizationLogoInput').val('');
         var temp_data = data;
-        temp_data.logo = '';
         temp_data.logoFile = '';
         let temp = Object.assign({}, temp_data);
         setData(temp);
+        setImageSrc('');
     }
 
     const handleCheckBoxChange = ({ target }) => {
@@ -212,12 +220,12 @@ export default function OrganizationUpdateForm() {
         }
         var myFormData = new FormData();
         myFormData.append('companyName', temp.companyName);
-        myFormData.append('industryId', temp.industryId);
-        myFormData.append('stateId', parseInt(temp.stateId));
-        myFormData.append('countryId', temp.countryId);
-        myFormData.append('currencyId', parseInt(temp.currencyId));
+        if(temp.industryId) { myFormData.append('industryId', parseInt(temp.industryId)) };
+        if(temp.stateId) { myFormData.append('stateId', parseInt(temp.stateId)) };
+        if(temp.countryId) { myFormData.append('countryId', parseInt(temp.countryId)) };
+        if(temp.currencyId) { myFormData.append('currencyId', parseInt(temp.currencyId)) };
         myFormData.append('language', temp.language);
-        myFormData.append('timeZoneId', parseInt(temp.timeZoneId));
+        if(temp.timeZoneId) { myFormData.append('timeZoneId', parseInt(temp.timeZoneId)) };
         myFormData.append('isRegisteredForGST', temp.isRegisteredForGST);
         myFormData.append('GSTIN', temp.GSTIN);
         myFormData.append('currentInvoicing', temp.currentInvoicing);
@@ -384,9 +392,9 @@ export default function OrganizationUpdateForm() {
                                             </div>
                                             <div className="col-12 col-lg-6 col-xl-7">
                                                 <div className={`${styles.companyInvoiceOrganizationInputFileWrapper} d-flex`}>
-                                                    {data.logo ?
+                                                    {imageSrc ?
                                                         <div className={`${styles.companyInvoiceOrganizationImageInputWrapper}`}>
-                                                            <Image className={`${styles.companyInvoiceOrganizationImageDisplay}`} loader={imageLoader} src={data.logo} width={250} height={125} alt="organization_logo" />
+                                                            <Image className={`${styles.companyInvoiceOrganizationImageDisplay}`} loader={imageLoader} onError={()=>setImageSrc(defaultProfile)} src={imageSrc} width={250} height={125} alt="organization_logo" />
                                                             <span className={`${styles.companyInvoiceOrganizationImageUploadWrapper}`}>
                                                                 <p>
                                                                     This logo will be displayed in transaction PDF&apos;s and email notifications.
