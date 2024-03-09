@@ -15,6 +15,23 @@
     transition: all 0.35s;
     margin-bottom: 60px;
 
+    select {
+      &:focus {
+          box-shadow: none !important;
+          border: var.$primary-color solid 1px !important;
+      }
+    }
+    
+    input:focus {
+      box-shadow: none !important;
+      border: var.$primary-color solid 1px !important;
+    }
+    
+    textarea:focus {
+      box-shadow: none !important;
+      border: var.$primary-color solid 1px !important;
+    }
+
     &.expanded {
       margin-left: 329px !important;
       transition: all 0.35s;
@@ -219,6 +236,22 @@
     margin: 55px 15px 0 15px;
     transition: all 0.35s;
 
+    select {
+      &:focus {
+          box-shadow: none !important;
+          border: var.$primary-color solid 1px !important;
+      }
+    }
+    
+    input:focus {
+      box-shadow: none !important;
+      border: var.$primary-color solid 1px !important;
+    }
+    
+    textarea:focus {
+      box-shadow: none !important;
+      border: var.$primary-color solid 1px !important;
+    }
     &.expanded {
       margin: 55px 15px 0 15px;
       transition: all 0.35s;
