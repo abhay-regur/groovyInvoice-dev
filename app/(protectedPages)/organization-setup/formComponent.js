@@ -17,7 +17,7 @@ import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 import Loading from "../loading";
 import { getIndustryList } from '@/services/industry.service';
 import { disableSubmitButton, enableSubmitButton } from '@/utils/form.utils.js';
-
+import defaultProfile from '../../../public/images/default-company-icon.png';
 
 export default function OrganizationSetupForm() {
     const { replace } = useRouter();
@@ -31,6 +31,7 @@ export default function OrganizationSetupForm() {
     const [currencies, setCurrencies] = useState([]);
     const [statesArray, getStateArray] = useState([]);
     const [isImageSet, setIsImageSet] = useState(false);
+    const [imageSrc, setImageSrc] = useState('');
     const { Modal } = require("bootstrap");
 
     const [data, setData] = useState({
@@ -107,25 +108,12 @@ export default function OrganizationSetupForm() {
         setErrors([]);
         try {
             const result = await getCompanyDetails();
-            var data = result.data;
-            var temp_profilephoto = "/images/default_profile_icon.png";
-            if (data.logo != "" && data.logo != null) {
-                temp_profilephoto = data.logo.replaceAll('\\', '/');
-                setIsImageSet(true);
+            const {logo, ...companyData} = result.data;
+            setData(companyData);
+            if(logo) {
+                setImageSrc(logo)
+                setIsImageSet(true)
             }
-            setData({
-                companyName: data.companyName,
-                industryId: data.industryId,
-                stateId: data.stateId,
-                countryId: data.countryId,
-                currencyId: data.currencyId,
-                language: data.language,
-                timeZoneId: data.timeZoneId,
-                isRegisteredForGST: data.isRegisteredForGST,
-                GSTIN: data.GSTIN,
-                currentInvoicing: data.currentInvoicing,
-                logo: temp_profilephoto
-            });
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
         }
@@ -377,9 +365,7 @@ export default function OrganizationSetupForm() {
                                                     <div className={`${styles.companyInvoiceOrganizationInputFileWrapper} d-flex`}>
                                                         {isImageSet ?
                                                             <div className={`${styles.companyInvoiceOrganizationImageInputWrapper} d-flex flex-column`}>
-                                                                <Image className={`${styles.companyInvoiceOrganizationImageDisplay}`} loader={imageLoader} src={(typeof (data.logo) == 'string'
-                                                                    ? data.logo
-                                                                    : URL.createObjectURL(data.logo))} width={250} height={125} alt="organization_logo" />
+                                                                <Image className={`${styles.companyInvoiceOrganizationImageDisplay}`} loader={imageLoader} src={imageSrc}  onError={()=>setImageSrc(defaultProfile)} width={250} height={125} alt="organization_logo" />
                                                                 <span className={`${styles.companyInvoiceOrganizationImageUploadWrapper}`}>
                                                                     <p>
                                                                         This logo will be displayed in transaction PDF&apos;s and email notifications.

@@ -23,6 +23,7 @@ import { getCurrentUserDetails } from "@/services/profile.service";
 import { NavExpandedState } from '@/context/NavState.context';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 import { usePathname } from "next/navigation";
+import defaultProfile from '../public/images/default_profile_icon.png';
 
 const MENU_LIST = [{ key: 100, text: "Invoices", href: "/invoices", icon: <FaFileLines /> }, { key: 101, text: "Customers", href: "/customers", icon: <FaUserGroup /> }, { key: 102, text: "Reports", href: "/reports", icon: <FaChartLine /> }, { key: 103, text: "Settings", href: "/settings", icon: <FaGear />, subMenu: [{ key: 1031, text: "Users", href: "/users", icon: <FaUsers /> }, { key: 1032, text: "Organization", href: "/organization", icon: <FaBreifcase /> }, { key: 1033, text: "Config", href: "/configuration", icon: <FaScrewAndWrench /> }] }];
 
@@ -38,8 +39,8 @@ export default function Navbar() {
         firstName: "",
         lastName: "",
         cellNumber: "",
-        profilePicFile: "/images/default_profile_icon.png"
     })
+    const [image, setImage] = useState('');
     const { navExpandedState, setNavExpandedState } = useContext(NavExpandedState);
     const [navItemExpanded, setNavItemExpanded] = useState(false);
 
@@ -66,21 +67,8 @@ export default function Navbar() {
     const getLoggedUserDetails = async () => {
         try {
             const result = await getCurrentUserDetails();
-            if (result.status == 200) {
-                var data = result.data;
-                var temp_profilephoto = "/images/default_profile_icon.png";
-                if (data.profile_image != "" && data.profile_image != null) {
-                    temp_profilephoto = data.profile_image.replaceAll('\\', '/');
-                }
-                setData({
-                    id: data.id,
-                    email: data.email,
-                    firstName: data.firstName,
-                    lastName: data.lastName,
-                    cellNumber: data.cellNumber,
-                    profilePicFile: temp_profilephoto
-                });
-            }
+            setData(result.data);
+            setImage(result.data.profile_image)
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
         }
@@ -111,7 +99,7 @@ export default function Navbar() {
                         <Link href={"/profile"}>
                             <span className="d-flex flex-column" onClick={() => { setActiveIdx('-1') }}>
                                 <div className={`profileImageWrapper d-flex justify-content-center`}>
-                                    <Image className={`${style.profileImage}`} loader={imageLoader} src={data.profilePicFile} width={45} height={45} unoptimized alt="profile_Image" />
+                                    <Image src={image} className={`${style.profileImage}`} loader={imageLoader} onError={()=>setImage(defaultProfile)} width={45} height={45} unoptimized alt="profile_Image" />
                                 </div>
                                 <div className={`${style.profileNameWrapper} justify-content-center`}>
                                     <div className={`username`}>{data.firstName == null ? '-' : data.firstName} {data.lastName == null ? '-' : data.lastName} <span className={``}></span></div>

@@ -5,14 +5,25 @@ import 'datatables.net-dt/js/dataTables.dataTables';
 import Image from 'next/image';
 import $ from 'jquery';
 import ReactDOM from "react-dom/client";
-import defaultProfile from '../public/images/profile_Default.png';
+import defaultProfile from '../public/images/default_profile_icon.png';
 import { userActivate, userDeactivate } from '@/services/user.service';
 import { ToastMsgContext } from '@/context/ToastMsg.context';
 import FaPen from '@/assets/icons/faPen.svg';
-import PageLoader from '../app/(protectedPages)/users/pageLoader.js';
 import 'datatables.net-dt/css/jquery.dataTables.min.css';
 import ServerSideDataTables from './serverSideDataTable';
 import Link from 'next/link';
+
+const ProfileImage = ({ imgSrc }) => {
+    const [image, setImage] = useState(imgSrc);
+    const imageLoader = ({ src, width, quality }) => {
+        return src;
+    }
+    return (
+        <>
+            <Image src={image} loader={imageLoader} alt="Picture of the author" onError={()=>setImage(defaultProfile)}  width={42} height={42} />
+        </>
+    )
+}
 
 const AllUserTable = () => {
     const { setToastList } = useContext(ToastMsgContext);
@@ -21,16 +32,12 @@ const AllUserTable = () => {
 
     const dtRef = useRef();
 
-    const imageLoader = ({ src, width, quality }) => {
-        return src;
-    }
-
     const draw_userName = (row) => {
         var fullName = (row.firstName == null ? '-' : row.firstName) + ' ' + (row.lastName == null ? '-' : row.lastName);
         return (
             <>
                 <div className={`${styles.companyUserTableCustomerImage}`}>
-                    <Image src={row.profile_image} loader={imageLoader} alt="Picture of the author" width={42} height={42} />
+                    <ProfileImage src={row.profile_image} />
                     <span className={`${styles.companyUserTableCustomerNameWrapper}`} >
                         {
                             <div className={`${styles.companyUserTableCustomerName}`}>
