@@ -30,6 +30,7 @@ export default function ProfileComponent() {
     const [userCurrentPassword, setUserCurrentPassword] = useState('');
     const [userNewPassword, setUserNewPassword] = useState('');
     const [userConfirmPassword, setUserConfirmPassword] = useState('');
+
     const [userData, setUserData] = useState({
         id: "",
         email: "",
@@ -59,12 +60,23 @@ export default function ProfileComponent() {
         setErrors([]);
         try {
             const result = await getCurrentUserDetails();
-            const {profile_image, ...userData} = result.data
-            setData(userData);
-            if (profile_image) {
-                setImage(userData)
-                setIsImageSet(true)
+            var data = result.data;
+            var temp_profilephoto = "";
+            if (data.profile_image != "" && data.profile_image != null) {
+                temp_profilephoto = data.profile_image.replaceAll('\\', '/');
+                setImageSrc(temp_profilephoto)
+                setIsImageSet(true);
             }
+
+            setUserData({
+                id: data.id,
+                email: data.email,
+                firstName: data.firstName,
+                lastName: data.lastName,
+                cellNumber: data.cellNumber,
+                profilePicFile: temp_profilephoto,
+            });
+
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
         }
@@ -104,12 +116,12 @@ export default function ProfileComponent() {
     }
 
     const previewandSetImage = function (e) {
-        console.log('Image IN')
         var temp_obj = { ...userData }
         if (e.target.files && e.target.files.length > 0) {
             temp_obj.profilePicFile = e.target.files[0];
-            setIsImageSet(true);
+            setImageSrc(URL.createObjectURL(e.target.files[0]));
             setUserData(temp_obj);
+            setIsImageSet(true);
         }
     }
 
@@ -118,6 +130,7 @@ export default function ProfileComponent() {
         e.stopPropagation();
         var temp_obj = { ...userData }
         temp_obj.profilePicFile = "";
+        setImageSrc(defaultProfile);
         setIsImageSet(false);
         setUserData(temp_obj);
         $('#fileUploadInput').val('');
@@ -188,7 +201,7 @@ export default function ProfileComponent() {
                                                     <div className="row">
                                                         <div className="col-12 col-md-3 d-flex justify-content-center">
                                                             <div className={`${styles.profileImageWrapper}`}>
-                                                                <Image className={`${styles.profileImageDisplay}`} loader={imageLoader}  src={imageSrc}  onError={()=>setImageSrc(defaultProfile)} width={105} height={105} alt="profile_Image" />
+                                                                <Image className={`${styles.profileImageDisplay}`} loader={imageLoader} src={imageSrc} onError={() => setImageSrc(defaultProfile)} width={105} height={105} alt="profile_Image" />
                                                                 <span className={`${styles.profileImageUploadWrapper}`}>
                                                                     {
                                                                         isImageSet ?
