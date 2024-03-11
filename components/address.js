@@ -49,14 +49,11 @@ export default function Address({ countries, billingstates, shippingstates, ship
     }
 
     const handleCopyClick = () => {
-        var temp_data = data;
         setShippingStatesCountryId(parseInt(billingstatesCountryId));
-        temp_data.address.shippingAddress = temp_data.address.billingAddress;
-        temp_data.address.shippingAddress.type = "shipping-address";
-        let temp = Object.assign({}, temp_data);
+        data['address']['shippingAddress'] = {...data['address']['billingAddress'], type: 'shipping-address'};
+        let temp = Object.assign({}, data);
         setAddressCopied(true);
         setData(temp);
-
     }
 
     const handleInput = ({ target }) => {

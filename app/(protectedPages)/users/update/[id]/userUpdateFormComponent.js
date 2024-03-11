@@ -13,6 +13,7 @@ import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 import Breadcrumb from '@/components/common/breadcrumb';
 import Link from 'next/link';
 import Loading from './loading.js';
+import { disableElement, enableElement } from '@/utils/form.utils.js';
 
 export default function UserUpdateFormComponent() {
     const { id } = useParams();
@@ -68,9 +69,9 @@ export default function UserUpdateFormComponent() {
         }
     }
 
-    const handleSaveClick = async (e) => {
+    const handleSaveClick = async ({currentTarget}) => {
+        disableElement(currentTarget)
         setErrors([]);
-        setIsSubmit(true);
         try {
             const result = await updateUserDetails(id, data);
             setToastList([{
@@ -78,11 +79,10 @@ export default function UserUpdateFormComponent() {
                 title: data.firstName + ' ' + data.lastName + ' details updated',
                 description: result.data.message,
             }]);
-            setIsSubmit(false);
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
-            setIsSubmit(false);
         }
+        enableElement(currentTarget)
     }
 
     const handleCancelClick = () => {
@@ -151,19 +151,9 @@ export default function UserUpdateFormComponent() {
                                     <div className="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-5">
                                         <div className="d-flex gap-3">
                                             <button className={`${styles.companyInvoiceSavenSendButton} btn blue`} name='btn-submit' onClick={(e) => { handleSaveClick(e) }}>
-                                                {
-                                                    isSubmit ?
-                                                        <span className={`d-flex align-items-center`}>
-                                                            <span className={`spinner-border spinner-border-sm text-light`} role="status">
-                                                            </span>
-                                                            <span className="status ms-1">Loading</span>
-                                                        </span>
-                                                        :
-                                                        <span>
-                                                            <i><FaSave /></i>
-                                                            Save
-                                                        </span>
-                                                }
+                                                <span>
+                                                    <i><FaSave /></i> Save
+                                                </span>
                                             </button>
                                             <Link href={'/users/'}>
                                                 <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={() => { handleCancelClick() }}>

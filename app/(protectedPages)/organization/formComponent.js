@@ -339,7 +339,7 @@ export default function OrganizationUpdateForm() {
                                                 name={'dateFormat'}
                                                 isDisabled={false}
                                                 defaultText={'Select a Date format'}
-                                                hasSearch={true}
+                                                hasSearch={false}
                                                 isInnerButtonRequired={false}
                                             />
                                             </div>
