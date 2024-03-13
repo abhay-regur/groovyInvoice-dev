@@ -13,14 +13,15 @@ import 'datatables.net-dt/css/jquery.dataTables.min.css';
 import ServerSideDataTables from './serverSideDataTable';
 import Link from 'next/link';
 
-const ProfileImage = ({ imgSrc }) => {
-    const [image, setImage] = useState(imgSrc);
+const ProfileImage = ({ src }) => {
+    const [image, setImage] = useState(src.replaceAll('\\', '/'));
+
     const imageLoader = ({ src, width, quality }) => {
-        return src;
+        return (`${src}?w=${width}&q=${quality || 75}`);
     }
     return (
         <>
-            <Image src={image} loader={imageLoader} alt="Picture of the author" onError={()=>setImage(defaultProfile)}  width={42} height={42} />
+            <Image src={image || defaultProfile} loader={imageLoader} alt="Picture of the author" onError={() => setImage(defaultProfile)} width={42} height={42} />
         </>
     )
 }
@@ -34,6 +35,7 @@ const AllUserTable = () => {
 
     const draw_userName = (row) => {
         var fullName = (row.firstName == null ? '-' : row.firstName) + ' ' + (row.lastName == null ? '-' : row.lastName);
+
         return (
             <>
                 <div className={`${styles.companyUserTableCustomerImage}`}>

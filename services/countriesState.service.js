@@ -25,11 +25,27 @@ export const getStates = async (id) => {
     }
 }
 
+export const getCountry = async (id) => {
+    try {
+        return await httpService.get('countries/' + id);
+    } catch (error) {
+        throw error;
+    }
+}
+
 export const getIndianStates = async () => {
     try {
         return await httpService.get('states');
     } catch (error) {
         throw error;
+    }
+}
+
+export const getState = async (id) => {
+    try {
+        return await httpService.get('states/' + id);
+    } catch (error) {
+        throw error
     }
 }
 
