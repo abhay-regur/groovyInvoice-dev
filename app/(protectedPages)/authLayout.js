@@ -50,7 +50,6 @@ function AuthLayout({ children }) {
                 tempData.userCompanyImage = currentUserCompanyDetails.data.userComapanyImage;
                 tempData.datePref = currentUserCompanyDetails.data.dateFormat;
                 tempData.currencyId = currentUserCompanyDetails.data.currencyId;
-                console.log(tempData.datePref)
                 const companyState = await getState(currentUserCompanyDetails.data.stateId);
                 if (companyState.status == '200') {
                     tempData.companyAddress = companyState.data.name + ', ' + companyState.data.country.name;
