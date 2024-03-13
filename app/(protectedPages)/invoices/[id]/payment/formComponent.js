@@ -2,11 +2,11 @@
 import { useState, useContext } from 'react';
 import DatePicker from "react-datepicker";
 import styles from '@/styles/payment.module.scss';
-import FaProfile from '@/assets/icons/faProfile.svg';
 import FaGear from '@/assets/icons/faGear.svg';
+import FaSave from '@/assets/icons/faSave.svg';
 import FaUpload from '@/assets/icons/faUpload.svg';
 import FaCalendar from '@/assets/icons/faCalendar.svg';
-import RadioButton from '@/components/radioButton.js';
+import Breadcrumb from '@/components/common/breadcrumb';
 import Checkbox from '@/components/checkBox';
 import "react-datepicker/dist/react-datepicker.css";
 import { NavExpandedState } from '@/context/NavState.context';
@@ -14,21 +14,14 @@ import { NavExpandedState } from '@/context/NavState.context';
 export default function PaymentFormComponent() {
     const { navExpandedState } = useContext(NavExpandedState);
 
-    const [tdsSelected, settdsSelected] = useState();
-
     const [startDate, setStartDate] = useState(new Date());
-
-    const handleTDSRemoved = () => {
-        settdsSelected('');
-    };
-
-    const handleTDSChange = () => {
-        settdsSelected('tds');
-    };
 
     return (
         <div className={styles.container}>
             <main className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
+                <div className="breadcrumbWrapper">
+                    <Breadcrumb />
+                </div>
                 <div className="container-fluid">
                     <h2 className={`${styles.title}`}>
                         Payment for #VS2022/09-01
@@ -121,6 +114,14 @@ export default function PaymentFormComponent() {
                                 <div className={`${styles.companyInvoicePaymentThankYouCheckboxWrapper}`}>
                                     <Checkbox label="Email a “Thank You” note for this payment" />
                                 </div>
+                            </div>
+                            <div className="col-12 mt-3">
+                                <button name="btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`} onClick={(e) => console.log('click')}>
+                                    <span>
+                                        <i className='me-2'><FaSave /></i>
+                                        Save
+                                    </span>
+                                </button>
                             </div>
                         </div>
                     </div>

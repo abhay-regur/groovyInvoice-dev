@@ -20,12 +20,13 @@ import Link from 'next/link';
 import { convertNumberToWord } from '@/utils/number.utils';
 import Loading from '@/app/loading';
 import { paymentInfoForInvoice } from '@/services/payment.service';
-import { getCompanyDetails } from '@/services/companies.service'
+import { useUser } from "@/context/CurrentUserData.context";
 
 export default function InvoiceViewComponent() {
     const { id } = useParams();
     const router = useRouter();
     const { navExpandedState } = useContext(NavExpandedState);
+    const { companyName, companyAddress, userCompanyImage, datePref, currencyId } = useUser();
     const [isPageLoading, setIsPageLoading] = useState(true);
     const [errors, setErrors] = useState([]);
     const { setToastList } = useContext(ToastMsgContext);
@@ -53,13 +54,35 @@ export default function InvoiceViewComponent() {
         unpaidAmount: 0,
     })
 
-    const [customer, setCustomer] = useState({ firstName: '', lastName: '' });
+    const [customer, setCustomer] = useState({
+        firstName: "",
+        lastName: "",
+        customerCompanyName: "",
+        email: "",
+        phone: "",
+        GSTIN: "",
+        panNumber: "",
+        currencyId: 103,
+        openingBalance: 0,
+        paymentTermId: null,
+        address: {
+            type: "billing-address",
+            attention: "-",
+            countryId: null,
+            addressLine1: "-",
+            addressLine2: "-",
+            city: "-",
+            stateId: null,
+            zipCode: "-",
+            phone: "-",
+            fax: "-"
+        }
+    });
+
     const [paymentTerm, setPaymentTerm] = useState({ label: '' });
 
     const getInvoiceData = async () => {
         try {
-            const companyData = await getCompanyDetails();
-            setDateFormat(companyData.data.dateFormat);
             const result = await getInvoice(id);
             const data = result.data;
             setData({ ...data, invoiceDate: new Date(data.invoiceDate), dueDate: new Date(data.dueDate) })
@@ -82,7 +105,30 @@ export default function InvoiceViewComponent() {
     const getCustomerData = async (id) => {
         try {
             const customerData = await getCustomer(id);
-            setCustomer(customerData.data);
+            setCustomer({
+                firstName: customerData.data.firstName,
+                lastName: customerData.data.lastName,
+                customerCompanyName: customerData.data.customerCompanyName,
+                email: customerData.data.email,
+                phone: customerData.data.phone,
+                GSTIN: customerData.data.GSTIN,
+                panNumber: customerData.data.panNumber,
+                currencyId: customerData.data.currencyId,
+                openingBalance: customerData.data.openingBalance,
+                paymentTermId: customerData.data.paymentTermId,
+                address: {
+                    type: "billing-address",
+                    attention: customerData.data.address.billingAddress.attention,
+                    countryId: customerData.data.address.billingAddress.countryId,
+                    addressLine1: customerData.data.address.billingAddress.addressLine1,
+                    addressLine2: customerData.data.address.billingAddress.addressLine2,
+                    city: customerData.data.address.billingAddress.city,
+                    stateId: customerData.data.address.billingAddress.stateId,
+                    zipCode: customerData.data.address.billingAddress.zipCode,
+                    phone: customerData.data.address.billingAddress.phone,
+                    fax: customerData.data.address.billingAddress.fax
+                }
+            });
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
         }
@@ -101,6 +147,12 @@ export default function InvoiceViewComponent() {
         setIsPageLoading(true);
         getInvoiceData();
     }, [])
+
+    useEffect(() => {
+        setDateFormat(datePref);
+    }, [datePref])
+
+
 
     return (
         <div className={styles.container}>
@@ -169,8 +221,8 @@ export default function InvoiceViewComponent() {
                                 <div className={`${styles.companyInvoiceViewInvoiceViewWrapper}`}>
                                     <div className="row">
                                         <div className="col-12 col-lg-6 order-1 order-lg-0">
-                                            <div className={`${styles.companyInvoiceViewInvoiceComapnyName}`}>Verities Systems</div>
-                                            <div className={`${styles.comapanyInvoiceViewInvoiceComapanyDescription}`}>Donec libero massa lacinia maximus tempor ante, phasellus auctor varius libero varius purus</div>
+                                            <div className={`${styles.companyInvoiceViewInvoiceComapnyName}`}>{companyName}</div>
+                                            <div className={`${styles.comapanyInvoiceViewInvoiceComapanyDescription}`}>{companyAddress}</div>
                                         </div>
                                         <div className="col-12 col-lg-6 order-0 order-lg-1">
                                             <div className={`${styles.comapnyInvoiceViewInvoiceHeading} d-flex justify-content-end`}>Tax Invoice</div>
@@ -182,8 +234,12 @@ export default function InvoiceViewComponent() {
                                         <div className="col-12 col-lg-6">
                                             <div className={`${styles.companyInvoiceViewInvoiceBillToHeading}`}>Bill To</div>
                                             <div className={`${styles.companyInvoiceViewInvoiceBillToAddressWrapper}`}>
-                                                <div className={`${styles.companyInvoiceViewInvoiceBillToName}`}>Molestiequis ornare dignissim</div>
-                                                <div className={`${styles.companyInvoiceViewInvoiceBillToAddress}`}>Tempor ante phasellus auctor varius libero varius purus</div>
+                                                <div className={`${styles.companyInvoiceViewInvoiceBillToName}`}>{customer.customerCompanyName}</div>
+                                                <div className={`${styles.companyInvoiceViewInvoiceBillToAddress}`}>
+                                                    {customer.address.addressLine1 + ' ' + customer.address.addressLine2}
+                                                    <br />
+                                                    {customer.address.city + ', ' + customer.address.zipCode}
+                                                </div>
                                             </div>
                                         </div>
                                         <div className="col-12 col-lg-6">
