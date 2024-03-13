@@ -21,6 +21,7 @@ const DateInputField = (props) => {
           selected={props.selected}
           onChange={props.onChange}
           ref={datePickerElement}
+          dateFormat={props.dateFormat || "dd/mm/yyyy"}
         />
         <i><FaCalendar onClick={openDatePicker} /></i>
       </div>

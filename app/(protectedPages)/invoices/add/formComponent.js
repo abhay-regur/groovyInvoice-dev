@@ -24,6 +24,7 @@ import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 import InvoiceNumberSettingsPopup from '@/components/settings/invoiceNumberSettingsPopup';
 import { useRouter } from 'next/navigation';
 import { getInvoiceNumberSetting } from '@/services/invoice-number-setting.service';
+import { useUser } from '@/context/CurrentUserData.context';
 
 export default function InvoiceAddForm() {
     const [taxValueSelected, settaxValueSelected] = useState();
@@ -54,6 +55,8 @@ export default function InvoiceAddForm() {
     }
 
     const [data, setData] = useState(initialData);
+
+    const { datePref } = useUser();
 
     const calculateTotalAmount = () => {
         let subTotalAmount = 0
@@ -177,7 +180,7 @@ export default function InvoiceAddForm() {
         calculateTotalAmount()
     }
 
-    const handleSubmit = async ({currentTarget}, status) => {
+    const handleSubmit = async ({ currentTarget }, status) => {
         disableElement(currentTarget)
         setErrors([])
         try {
@@ -254,6 +257,7 @@ export default function InvoiceAddForm() {
                                                 id="companyInvoiceDate"
                                                 selected={data.invoiceDate}
                                                 onChange={(date) => setDateChange(date, 'invoiceDate')}
+                                                dateFormat={datePref}
                                             />
                                         </div>
                                         <div className="col-12 col-sm-5 col-md-6 col-lg-3">
@@ -278,6 +282,7 @@ export default function InvoiceAddForm() {
                                                 id="companyInvoiceDueDate"
                                                 selected={data.dueDate}
                                                 onChange={(date) => setDateChange(date, 'dueDate')}
+                                                dateFormat={datePref}
                                             />
                                         </div>
                                     </div>
