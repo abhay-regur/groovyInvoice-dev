@@ -17,6 +17,7 @@ import FaGear from '@/assets/icons/faGear.svg';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils';
 import styles from '@/styles/profile.module.scss';
 import { NavExpandedState } from '@/context/NavState.context';
+import { useCurrentUserData } from "@/context/CurrentUserData.context";
 import defaultProfile from '../../../public/images/default_profile_icon.png';
 
 export default function ProfileComponent() {
@@ -30,6 +31,7 @@ export default function ProfileComponent() {
     const [userCurrentPassword, setUserCurrentPassword] = useState('');
     const [userNewPassword, setUserNewPassword] = useState('');
     const [userConfirmPassword, setUserConfirmPassword] = useState('');
+    const { userInfo, setUserInfo } = useCurrentUserData();
 
     const [userData, setUserData] = useState({
         id: "",
@@ -87,6 +89,7 @@ export default function ProfileComponent() {
         e.preventDefault();
         setErrors([]);
         disableSubmitButton(e.target);
+        var tempcurrentUserData = { ...userInfo }
         var myFormData = new FormData();
         myFormData.append('firstName', userData.firstName);
         myFormData.append('lastName', userData.lastName);
@@ -94,14 +97,20 @@ export default function ProfileComponent() {
         myFormData.append('active', true);
         myFormData.append('profilePicFile', userData.profilePicFile);
 
+        tempcurrentUserData.userName = userData.firstName + ' ' + userData.lastName;
+        tempcurrentUserData.userProfileImage = URL.createObjectURL(userData.profilePicFile);
+
         try {
             const result = await updateCurrentUserDetails(myFormData);
             if (result.status == 200) {
+
                 setToastList([{
                     id: Math.floor((Math.random() * 101) + 1),
                     title: 'My Profile',
                     description: 'Details Updated Successfully',
                 }]);
+
+                setUserInfo(Object.assign({}, tempcurrentUserData));
             }
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
