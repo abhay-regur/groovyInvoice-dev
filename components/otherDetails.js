@@ -12,6 +12,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
     const [overseas, setOverseas] = useState(false);
     const { Modal } = require("bootstrap");
     const [modelFor, setModalFor] = useState('');
+    const [currencySymbol, setCurrencySymbol] = useState('₹')
 
     const [paymentTermLabel, setPaymentTermLable] = useState({
         label: "",
@@ -37,6 +38,9 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
             } else {
                 temp_data[name] = target.value;
             }
+            console.log(name)
+            if (name == 'currencyId') console.log(target.value)
+
             let temp = Object.assign({}, temp_data)
             setPaymentTermLable(temp);
         } else if (modelFor == 'exemptionReason') {
@@ -60,6 +64,12 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
             setOverseas(false);
         }
     }, [data.gstTreatment])
+
+    useEffect(() => {
+        currencies.forEach(element => {
+            if (element.Id == data.currencyId) setCurrencySymbol(element.symbol);
+        });
+    }, [data.currencyId])
 
     const showModal = ({ target }) => {
         setModalFor(target.name || target.getAttribute('name'));
@@ -215,7 +225,7 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
             </div>
             <div className="col-12 col-lg-6 col-xl-6">
                 <div className="input-group">
-                    <span className="input-group-text">{(currencies[data.currencyId] == undefined || currencies[data.currencyId] == '') ? '-' : currencies[data.currencyId].symbol}</span>
+                    <span className="input-group-text">{currencySymbol}</span>
                     <input name='openingBalance' type="number" className="form-control" id="companyInvoiceOpeningBalance" value={data.openingBalance} placeholder='Opening Balance' onChange={handleInput} />
                 </div>
             </div>
