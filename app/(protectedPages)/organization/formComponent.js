@@ -9,12 +9,15 @@ import { getIndustryList } from '@/services/industry.service';
 import { NavExpandedState } from '@/context/NavState.context';
 import ErrorList from '@/components/errorList';
 import FaSave from '@/assets/icons/faSave.svg';
+import IndustryModal from "@/components/industryModal";
+import Loading from "../loading";
 import FaCircleXmark from '@/assets/icons/faCircleXmark.svg';
 import CustomSelectComponent from "@/components/common/customSelectComponent";
 import { ToastMsgContext } from '@/context/ToastMsg.context';
 import styles from '@/styles/organization.module.scss';
 import Breadcrumb from '@/components/common/breadcrumb';
 import FaCamera from '@/assets/icons/faCamera.svg';
+import { useCurrentUserData } from "@/context/CurrentUserData.context";
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils';
 
 export default function OrganizationUpdateForm() {
@@ -28,15 +31,17 @@ export default function OrganizationUpdateForm() {
     const [currencies, setCurrencies] = useState([]);
     const [statesArray, getStateArray] = useState([]);
     const [isSubmit, setIsSubmit] = useState(false);
+    const { userInfo, setUserInfo } = useCurrentUserData()
+    const { Modal } = require("bootstrap");
+
     const dateFormatList = [
-        {Id: 'dd-MM-yyyy', name: 'dd-MM-yyyy'},
-        {Id: 'MM-dd-yyyy', name: 'MM-dd-yyyy'},
-        {Id: 'yyyy-MM-dd', name: 'yyyy-MM-dd'},
-        {Id: 'dd/MM/yyyy', name: 'dd/MM/yyyy'},
-        {Id: 'MM/dd/yyyy', name: 'MM/dd/yyyy'},
-        {Id: 'yyyy/MM/dd', name: 'yyyy/MM/dd'},
+        { Id: 'dd-MM-yyyy', name: 'dd-MM-yyyy' },
+        { Id: 'MM-dd-yyyy', name: 'MM-dd-yyyy' },
+        { Id: 'yyyy-MM-dd', name: 'yyyy-MM-dd' },
+        { Id: 'dd/MM/yyyy', name: 'dd/MM/yyyy' },
+        { Id: 'MM/dd/yyyy', name: 'MM/dd/yyyy' },
+        { Id: 'yyyy/MM/dd', name: 'yyyy/MM/dd' },
     ]
-    // const { Modal } = require("bootstrap");
 
 
     const [data, setData] = useState({
@@ -210,6 +215,7 @@ export default function OrganizationUpdateForm() {
         if (!temp.isRegisteredForGST) {
             temp.GSTIN = "";
         }
+        var tempcurrentUserData = { ...userInfo };
         var myFormData = new FormData();
         myFormData.append('companyName', temp.companyName);
         myFormData.append('industryId', temp.industryId);
@@ -223,6 +229,10 @@ export default function OrganizationUpdateForm() {
         myFormData.append('currentInvoicing', temp.currentInvoicing);
         myFormData.append('dateFormat', temp.dateFormat);
         myFormData.append('logoFile', temp.logoFile);
+
+        tempcurrentUserData.companyName = temp.companyName;
+        tempcurrentUserData.currencyId = parseInt(temp.currencyId);
+
         try {
             var result = await updateCompanyDetails(myFormData)
             if (result.status == 200 || result.status == 201) {
@@ -231,6 +241,7 @@ export default function OrganizationUpdateForm() {
                     title: 'Organization Details Updated',
                     description: '',
                 }]);
+                setUserInfo(Object.assign({}, tempcurrentUserData));
                 setIsSubmit(false);
             }
         } catch (error) {
@@ -323,17 +334,17 @@ export default function OrganizationUpdateForm() {
                                                 <label className={`${styles.companyInvoiceOrganizationDateFormatlabel}`}>Date Format<span className={`${styles.green}`}>*</span></label> (W.I.P)
                                             </div>
                                             <div className="col-12 col-lg-6 col-xl-7">
-                                            <CustomSelectComponent
-                                                className={`${styles.companyInvoiceOrganizationTimeZoneSelect}`}
-                                                data={dateFormatList}
-                                                onOptionValueChange={handleInput}
-                                                optionValue={data.dateFormat}
-                                                name={'dateFormat'}
-                                                isDisabled={false}
-                                                defaultText={'Select a Date format'}
-                                                hasSearch={true}
-                                                isInnerButtonRequired={false}
-                                            />
+                                                <CustomSelectComponent
+                                                    className={`${styles.companyInvoiceOrganizationTimeZoneSelect}`}
+                                                    data={dateFormatList}
+                                                    onOptionValueChange={handleInput}
+                                                    optionValue={data.dateFormat}
+                                                    name={'dateFormat'}
+                                                    isDisabled={false}
+                                                    defaultText={'Select a Date format'}
+                                                    hasSearch={true}
+                                                    isInnerButtonRequired={false}
+                                                />
                                             </div>
                                         </div>
 
@@ -443,6 +454,7 @@ export default function OrganizationUpdateForm() {
                             </div>
                         </div>
                     </div>
+                    <IndustryModal getIndustryData={getIndustryData} setToastList={setToastList} Loading={Loading} />
                 </div>
             </main>
         </div>
