@@ -38,8 +38,6 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
             } else {
                 temp_data[name] = target.value;
             }
-            console.log(name)
-            if (name == 'currencyId') console.log(target.value)
 
             let temp = Object.assign({}, temp_data)
             setPaymentTermLable(temp);
