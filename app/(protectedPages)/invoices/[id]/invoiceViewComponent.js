@@ -20,13 +20,13 @@ import Link from 'next/link';
 import { convertNumberToWord } from '@/utils/number.utils';
 import Loading from '@/app/loading';
 import { paymentInfoForInvoice } from '@/services/payment.service';
-import { useUser } from "@/context/CurrentUserData.context";
+import { useCurrentUserData } from "@/context/CurrentUserData.context";
 
 export default function InvoiceViewComponent() {
     const { id } = useParams();
     const router = useRouter();
     const { navExpandedState } = useContext(NavExpandedState);
-    const { companyName, companyAddress, userCompanyImage, datePref, currencyId } = useUser();
+    const { userInfo } = useCurrentUserData();
     const [isPageLoading, setIsPageLoading] = useState(true);
     const [errors, setErrors] = useState([]);
     const { setToastList } = useContext(ToastMsgContext);
@@ -149,8 +149,8 @@ export default function InvoiceViewComponent() {
     }, [])
 
     useEffect(() => {
-        setDateFormat(datePref);
-    }, [datePref])
+        setDateFormat(userInfo.datePref);
+    }, [userInfo.datePref])
 
 
 
@@ -221,8 +221,8 @@ export default function InvoiceViewComponent() {
                                 <div className={`${styles.companyInvoiceViewInvoiceViewWrapper}`}>
                                     <div className="row">
                                         <div className="col-12 col-lg-6 order-1 order-lg-0">
-                                            <div className={`${styles.companyInvoiceViewInvoiceComapnyName}`}>{companyName}</div>
-                                            <div className={`${styles.comapanyInvoiceViewInvoiceComapanyDescription}`}>{companyAddress}</div>
+                                            <div className={`${styles.companyInvoiceViewInvoiceComapnyName}`}>{userInfo.companyName}</div>
+                                            <div className={`${styles.comapanyInvoiceViewInvoiceComapanyDescription}`}>{userInfo.companyAddress}</div>
                                         </div>
                                         <div className="col-12 col-lg-6 order-0 order-lg-1">
                                             <div className={`${styles.comapnyInvoiceViewInvoiceHeading} d-flex justify-content-end`}>Tax Invoice</div>

@@ -10,12 +10,12 @@ import Loading from './loading';
 import { getCurrentUserDetails } from "@/services/profile.service";
 import { getCompanyDetails } from '@/services/companies.service';
 import { UserLoggedState } from '@/context/UserState.context';
-import { useUser } from '@/context/CurrentUserData.context';
-import { getCountry, getState } from '@/services/countriesState.service';
+import { useCurrentUserData } from '@/context/CurrentUserData.context';
+import { getState } from '@/services/countriesState.service';
 
 function AuthLayout({ children }) {
     const { userLoggedState, setUserLoggedState } = useContext(UserLoggedState);
-    const { setUserInfo } = useUser();
+    const { setUserInfo } = useCurrentUserData();
 
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -25,8 +25,9 @@ function AuthLayout({ children }) {
         setUserLoggedState(isUserLoggedIn);
         if (!userLoggedState) {
             redirect('/login')
+        } else {
+            setRequiredVariables();
         }
-        setRequiredVariables();
     }, []);
 
     const setRequiredVariables = async () => {
@@ -51,7 +52,7 @@ function AuthLayout({ children }) {
                 tempData.datePref = currentUserCompanyDetails.data.dateFormat;
                 tempData.currencyId = currentUserCompanyDetails.data.currencyId;
                 const companyState = await getState(currentUserCompanyDetails.data.stateId);
-                if (companyState.status == '200') {
+                if (companyState.status == '200' && companyState.data.name !== null) {
                     tempData.companyAddress = companyState.data.name + ', ' + companyState.data.country.name;
                 }
 
