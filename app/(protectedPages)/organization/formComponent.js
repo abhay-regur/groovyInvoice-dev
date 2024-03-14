@@ -116,13 +116,17 @@ export default function OrganizationUpdateForm() {
 
     const getCompanyData = async () => {
         setErrors([]);
-        const result = await getCompanyDetails();
-        const {logo, ...companyData} = result.data;
-        setData(companyData);
-        if (logo) {
-            setImageSrc(logo)
-        } else {
-            setImageSrc(defaultProfile)
+        try {
+            const result = await getCompanyDetails();
+            const {logo, ...companyData} = result.data;
+            setData(companyData);
+            if (logo) {
+                setImageSrc(logo)
+            } else {
+                setImageSrc(defaultProfile)
+            }
+        } catch (error) {
+            setErrors(genrateErrorMessage(error, '', setToastList));
         }
     }
 
