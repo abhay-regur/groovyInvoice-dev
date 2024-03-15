@@ -43,6 +43,7 @@ export default function InvoiceViewComponent() {
         customerNote: '',
         subTotalAmount: 0,
         shippingCharges: 0,
+        status: '',
         totalTaxAmount: 0,
         totalAmount: 0,
         adjustmentText: '',
@@ -219,7 +220,7 @@ export default function InvoiceViewComponent() {
                             </div>
                             <div className="col-12">
                                 <div className={`${styles.companyInvoiceViewInvoiceViewWrapper}`}>
-                                    <div className={`${styles.companyInvoiceViewInvoiceStatusRibbion}`}> <span>Paid</span> </div>
+                                    <div className={`${styles.companyInvoiceViewInvoiceStatusRibbion} ${data.paid == "paid" ? "" : "d-none"}`}> <span>Paid</span> </div>
                                     <div className="row">
                                         <div className="col-12 col-lg-6 order-1 order-lg-0">
                                             <div className={`${styles.companyInvoiceViewInvoiceComapnyName}`}>{userInfo.companyName}</div>
