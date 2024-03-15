@@ -33,6 +33,7 @@ export default function OrganizationUpdateForm() {
     const [statesArray, getStateArray] = useState([]);
     const [isSubmit, setIsSubmit] = useState(false);
     const { userInfo, setUserInfo } = useCurrentUserData()
+    const [imageSrc, setImageSrc] = useState("");
     const { Modal } = require("bootstrap");
 
     const dateFormatList = [
