@@ -30,7 +30,6 @@ export default function OrganizationSetupForm() {
     const [countryArray, setCountryArray] = useState([]);
     const [currencies, setCurrencies] = useState([]);
     const [statesArray, getStateArray] = useState([]);
-    const [isImageSet, setIsImageSet] = useState(false);
     const [imageSrc, setImageSrc] = useState('');
     const { Modal } = require("bootstrap");
 
@@ -110,9 +109,10 @@ export default function OrganizationSetupForm() {
             const result = await getCompanyDetails();
             const {logo, ...companyData} = result.data;
             setData(companyData);
-            if(logo) {
+            if (logo) {
                 setImageSrc(logo)
-                setIsImageSet(true)
+            } else {
+                setImageSrc(defaultProfile)
             }
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
@@ -151,14 +151,16 @@ export default function OrganizationSetupForm() {
         }
     }
 
-    const previewandSetImage = function (e) {
+    
+    const setImage = function (e) {
         e.preventDefault();
         e.stopPropagation();
-        var temp_obj = { ...data }
         if (e.target.files && e.target.files.length > 0) {
-            temp_obj.logo = e.target.files[0];
-            setIsImageSet(true);
-            setData(temp_obj);
+            var temp_data = data;
+            temp_data.logoFile = e.target.files[0];
+            let temp = Object.assign({}, temp_data);
+            setData(temp);
+            setImageSrc(URL.createObjectURL(e.target.files[0]))
         }
     }
 
@@ -167,7 +169,6 @@ export default function OrganizationSetupForm() {
         e.stopPropagation();
         var temp_obj = { ...data }
         temp_obj.logo = "";
-        setIsImageSet(false);
         setData(temp_obj);
         setImageSrc('');
     }
@@ -364,7 +365,7 @@ export default function OrganizationSetupForm() {
                                                 </div>
                                                 <div className="col-12 col-lg-6 col-xl-7">
                                                     <div className={`${styles.companyInvoiceOrganizationInputFileWrapper} d-flex`}>
-                                                        {isImageSet ?
+                                                        {imageSrc ?
                                                             <div className={`${styles.companyInvoiceOrganizationImageInputWrapper} d-flex flex-column`}>
                                                                 <Image className={`${styles.companyInvoiceOrganizationImageDisplay}`} loader={imageLoader} src={imageSrc}  onError={()=>setImageSrc(defaultProfile)} width={250} height={125} alt="organization_logo" />
                                                                 <span className={`${styles.companyInvoiceOrganizationImageUploadWrapper}`}>
@@ -382,7 +383,7 @@ export default function OrganizationSetupForm() {
                                                             </div>
                                                             :
                                                             <>
-                                                                <input id="companyInvoiceOrganizationLogoInput" className={`${styles.companyInvoiceOrganizationInputFile}`} accept="image/*" type="file" onChange={(e) => { previewandSetImage(e) }} />
+                                                                <input id="companyInvoiceOrganizationLogoInput" className={`${styles.companyInvoiceOrganizationInputFile}`} accept="image/*" type="file" onChange={setImage} />
                                                                 <label className={`${styles.companyInvoiceOrganizationInputFileSVGButton} btn ms-0`} htmlFor="companyInvoiceOrganizationLogoInput">
                                                                     <FaCamera />
                                                                     Upload Image
