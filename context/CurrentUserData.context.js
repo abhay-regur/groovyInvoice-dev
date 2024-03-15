@@ -27,10 +27,10 @@ export const UserDataProvider = ({ children }) => {
     });
 
     return (
-        <UserContext.Provider value={{ ...userInfo, setUserInfo }}>
+        <UserContext.Provider value={{ userInfo, setUserInfo }}>
             {children}
         </UserContext.Provider>
     );
 };
 
-export const useUser = () => useContext(UserContext);
+export const useCurrentUserData = () => useContext(UserContext);

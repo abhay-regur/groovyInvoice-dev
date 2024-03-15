@@ -87,9 +87,53 @@
 
             }
 
+            .companyInvoiceViewInvoiceStatusRibbion {
+                width: 120px;
+                height: 120px;
+                overflow: hidden;
+                position: absolute;
+                top: -5px;
+                left: -5px;
+
+                &::before,
+                &::after {
+                    position: absolute;
+                    z-index: 0;
+                    content: '';
+                    display: block;
+                    border: 5px solid var.$tertiary-color-darker;
+                }
+
+                span {
+                    position: absolute;
+                    display: block;
+                    height: 33.73px;
+                    width: 156.46px;
+                    background-color: var.$tertiary-color;
+                    color: var.$white;
+                    font-size: 18px;
+                    text-align: center;
+                    font-weight: 700;
+                    left: -41px;
+                    top: 30px;
+                    transform: rotate(-49.45deg);
+                    z-index: 2;
+                }
+
+                &::before {
+                    top: -4px;
+                    right: 21px;
+                }
+
+                &::after {
+                    bottom: 3px;
+                    left: -4px;
+                }
+            }
+
             .companyInvoiceViewInvoiceViewWrapper {
+                position: relative;
                 margin: 76px 0 0 0;
-                padding: 76px 0 0 0;
                 background: var.$white;
                 border: 1px solid var.$primary-color;
                 border-radius: 10px;
@@ -100,6 +144,7 @@
                     line-height: 32px;
                     color: var.$primary-color;
                     margin-bottom: 10px;
+                    margin-top: 76px;
                     padding-left: 37px;
                 }
 
@@ -117,6 +162,7 @@
                     line-height: 32px;
                     color: var.$primary-color;
                     padding-right: 44px;
+                    margin-top: 76px;
                 }
 
                 .comapnyInvoiceViewInvoiceInvoiceDate {
@@ -389,9 +435,53 @@
 
             }
 
+            .companyInvoiceViewInvoiceStatusRibbion {
+                width: 120px;
+                height: 120px;
+                overflow: hidden;
+                position: absolute;
+                top: -5px;
+                left: -5px;
+
+                &::before,
+                &::after {
+                    position: absolute;
+                    z-index: 0;
+                    content: '';
+                    display: block;
+                    border: 5px solid var.$tertiary-color-darker;
+                }
+
+                span {
+                    position: absolute;
+                    display: block;
+                    height: 33.73px;
+                    width: 156.46px;
+                    background-color: var.$tertiary-color;
+                    color: var.$white;
+                    font-size: 18px;
+                    text-align: center;
+                    font-weight: 700;
+                    left: -41px;
+                    top: 30px;
+                    transform: rotate(-49.45deg);
+                    z-index: 2;
+                }
+
+                &::before {
+                    top: -4px;
+                    right: 21px;
+                }
+
+                &::after {
+                    bottom: 3px;
+                    left: -4px;
+                }
+            }
+
             .companyInvoiceViewInvoiceViewWrapper {
+                position: relative;
                 margin: 76px 0 0 0;
-                padding: 76px 0 0 0;
                 background: var.$white;
                 border: 1px solid var.$primary-color;
                 border-radius: 10px;
@@ -402,6 +492,7 @@
                     line-height: 32px;
                     color: var.$primary-color;
                     margin-bottom: 10px;
+                    margin-top: 76px;
                     padding-left: 37px;
                 }
 
@@ -419,6 +510,7 @@
                     line-height: 32px;
                     color: var.$primary-color;
                     padding-right: 44px;
+                    margin-top: 76px;
                 }
 
                 .comapnyInvoiceViewInvoiceInvoiceDate {
@@ -709,7 +801,52 @@
                 }
             }
 
+            .companyInvoiceViewInvoiceStatusRibbion {
+                width: 120px;
+                height: 120px;
+                overflow: hidden;
+                position: absolute;
+                top: -5px;
+                left: -5px;
+
+                &::before,
+                &::after {
+                    position: absolute;
+                    z-index: 0;
+                    content: '';
+                    display: block;
+                    border: 5px solid var.$tertiary-color-darker;
+                }
+
+                span {
+                    position: absolute;
+                    display: block;
+                    height: 33.73px;
+                    width: 156.46px;
+                    background-color: var.$tertiary-color;
+                    color: var.$white;
+                    font-size: 18px;
+                    text-align: center;
+                    font-weight: 700;
+                    left: -41px;
+                    top: 30px;
+                    transform: rotate(-49.45deg);
+                    z-index: 2;
+                }
+
+                &::before {
+                    top: -4px;
+                    right: 21px;
+                }
+
+                &::after {
+                    bottom: 3px;
+                    left: -4px;
+                }
+            }
+
             .companyInvoiceViewInvoiceViewWrapper {
+                position: relative;
                 margin: 76px 0 20px 0;
                 padding: 36px 0 0 0;
                 background: var.$white;
@@ -933,7 +1070,7 @@
 
 @media screen and (max-width: 676px) {
     .main {
-        
+
         margin: 59px 0 92px 0;
         transition: all 0.35s;
 
@@ -1029,7 +1166,52 @@
 
             }
 
+            .companyInvoiceViewInvoiceStatusRibbion {
+                width: 120px;
+                height: 120px;
+                overflow: hidden;
+                position: absolute;
+                top: -5px;
+                left: -5px;
+
+                &::before,
+                &::after {
+                    position: absolute;
+                    z-index: 0;
+                    content: '';
+                    display: block;
+                    border: 5px solid var.$tertiary-color-darker;
+                }
+
+                span {
+                    position: absolute;
+                    display: block;
+                    height: 33.73px;
+                    width: 156.46px;
+                    background-color: var.$tertiary-color;
+                    color: var.$white;
+                    font-size: 18px;
+                    text-align: center;
+                    font-weight: 700;
+                    left: -41px;
+                    top: 30px;
+                    transform: rotate(-49.45deg);
+                    z-index: 2;
+                }
+
+                &::before {
+                    top: -4px;
+                    right: 21px;
+                }
+
+                &::after {
+                    bottom: 3px;
+                    left: -4px;
+                }
+            }
+
             .companyInvoiceViewInvoiceViewWrapper {
+                position: relative;
                 margin: 76px 0px 0 0px;
                 padding: 76px 0 0 0;
                 background: var.$white;

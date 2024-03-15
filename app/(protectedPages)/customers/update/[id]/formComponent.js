@@ -65,7 +65,7 @@ export default function CustomerEditForm() {
         placeOfSupply: "",
         taxPreference: "",
         exemptionReason: "",
-        currencyId: 108,
+        currencyId: 105,
         openingBalance: 0,
         paymentTermId: null,
         address: {
