@@ -5,7 +5,7 @@ import styles from "@/styles/organizationSetup.module.scss";
 import { useContext, useEffect, useState } from "react";
 import ErrorList from '@/components/errorList';
 import { ToastMsgContext } from '@/context/ToastMsg.context';
-import { getCompanyDetails, updateCompanyDetails } from '@/services/companies.service';
+import { getCompanyDetails, setupCompanyDetails } from '@/services/companies.service';
 import { getCurrencies, getTimeZonesList } from '@/services/common/general.service';
 import { getIndianStates, getCountries } from '@/services/countriesState.service';
 import CustomSelectComponent from "@/components/common/customSelectComponent";
@@ -15,6 +15,7 @@ import FaCircleXmark from '@/assets/icons/faCircleXmark.svg';
 import { NavExpandedState } from '@/context/NavState.context';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 import Loading from "../loading";
+import { DATE_FORMATE_LIST } from "constants";
 import { getIndustryList } from '@/services/industry.service';
 import { disableSubmitButton, enableSubmitButton } from '@/utils/form.utils.js';
 import defaultProfile from '../../../public/images/default-company-icon.png';
@@ -30,7 +31,6 @@ export default function OrganizationSetupForm() {
     const [countryArray, setCountryArray] = useState([]);
     const [currencies, setCurrencies] = useState([]);
     const [statesArray, getStateArray] = useState([]);
-    const [isImageSet, setIsImageSet] = useState(false);
     const [imageSrc, setImageSrc] = useState('');
     const { Modal } = require("bootstrap");
 
@@ -39,14 +39,23 @@ export default function OrganizationSetupForm() {
         industryId: 0,
         stateId: 0,
         countryId: 0,
-        currencyId: '',
+        currencyId: null,
         language: '',
-        timeZoneId: '',
+        timeZoneId: null,
         isRegisteredForGST: true,
         GSTIN: '',
         currentInvoicing: '',
-        logo: ""
+        logo: '',
+        dateFormat: '',
+        logoFile: '',
+        profileCompleted: false
     });
+
+    useEffect(() => {
+        if (data.profileCompleted) {
+            replace('/dashboard')
+        }
+    }, [data.profileCompleted])
 
     useEffect(() => {
         setIsLoading(true);
@@ -108,11 +117,12 @@ export default function OrganizationSetupForm() {
         setErrors([]);
         try {
             const result = await getCompanyDetails();
-            const {logo, ...companyData} = result.data;
+            const { logo, ...companyData } = result.data;
             setData(companyData);
-            if(logo) {
+            if (logo) {
                 setImageSrc(logo)
-                setIsImageSet(true)
+            } else {
+                setImageSrc(defaultProfile)
             }
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
@@ -151,14 +161,15 @@ export default function OrganizationSetupForm() {
         }
     }
 
-    const previewandSetImage = function (e) {
+    const setImage = function (e) {
         e.preventDefault();
         e.stopPropagation();
-        var temp_obj = { ...data }
         if (e.target.files && e.target.files.length > 0) {
-            temp_obj.logo = e.target.files[0];
-            setIsImageSet(true);
-            setData(temp_obj);
+            var temp_data = data;
+            temp_data.logoFile = e.target.files[0];
+            let temp = Object.assign({}, temp_data);
+            setData(temp);
+            setImageSrc(URL.createObjectURL(e.target.files[0]))
         }
     }
 
@@ -167,8 +178,8 @@ export default function OrganizationSetupForm() {
         e.stopPropagation();
         var temp_obj = { ...data }
         temp_obj.logo = "";
-        setIsImageSet(false);
         setData(temp_obj);
+        setImageSrc('');
     }
 
     const showIndustyModal = function () {
@@ -184,7 +195,7 @@ export default function OrganizationSetupForm() {
         var temp_data = data;
         var name = target.name || target.getAttribute('name');
         if (name != '') {
-            if (name == 'industryId' || name == 'currencyId' || name == 'stateId' || name == 'countryId' || name == 'timeZoneId' || name == 'language') {
+            if (['stateId', 'countryId', 'currencyId', 'timeZoneId', 'industryId'].includes(name)) {
                 temp_data[name] = parseInt(target.value);
             } else {
                 temp_data[name] = target.value;
@@ -210,20 +221,21 @@ export default function OrganizationSetupForm() {
         }
         setData(Object.assign({}, temp));
         var myFormData = new FormData();
-        myFormData.append('industryId', data.industryId);
         myFormData.append('companyName', data.companyName);
-        myFormData.append('stateId', data.stateId);
+        myFormData.append('industryId', data.industryId);
+        myFormData.append('stateId', parseInt(data.stateId));
         myFormData.append('countryId', data.countryId);
-        myFormData.append('currencyId', data.currencyId);
+        myFormData.append('currencyId', parseInt(data.currencyId));
         myFormData.append('language', data.language);
-        myFormData.append('timeZoneId', data.timeZoneId);
+        myFormData.append('timeZoneId', parseInt(data.timeZoneId));
         myFormData.append('isRegisteredForGST', data.isRegisteredForGST);
         myFormData.append('GSTIN', data.GSTIN);
         myFormData.append('currentInvoicing', data.currentInvoicing);
-        myFormData.append('logoFile', data.logo);
+        myFormData.append('dateFormat', data.dateFormat);
+        myFormData.append('logoFile', data.logoFile);
 
         try {
-            var result = await updateCompanyDetails(myFormData)
+            var result = await setupCompanyDetails(myFormData)
             if (result.status == 200 || result.status == 201) {
                 setToastList([{
                     id: Math.floor((Math.random() * 101) + 1),
@@ -312,7 +324,26 @@ export default function OrganizationSetupForm() {
                                                     <label className={`${styles.companyInvoiceOrganizationLanguagelabel}`}>Language <span className={`${styles.green}`}>*</span></label>
                                                 </div>
                                                 <div className="col-12 col-lg-6 col-xl-7">
-                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationLanguageSelect}`} data={[{ Id: 1, name: 'English' }]} onOptionValueChange={handleInput} optionValue={parseInt(data.language)} name={'language'} isDisabled={false} defaultText={'Select a Languange'} isInnerButtonRequired={false} />
+                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationLanguageSelect}`} data={[{ Id: 'English', name: 'English' }]} onOptionValueChange={handleInput} optionValue={parseInt(data.language)} name={'language'} isDisabled={false} defaultText={'Select a Languange'} isInnerButtonRequired={false} />
+                                                </div>
+                                            </div>
+
+                                            <div className={`${styles.companyInvoiceOrganizationDateFormatWrapper} gap-2 mb-4 row`}>
+                                                <div className="d-flex align-items-center col-12 col-lg-4">
+                                                    <label className={`${styles.companyInvoiceOrganizationDateFormatlabel}`}>Date Format<span className={`${styles.green}`}>*</span></label>
+                                                </div>
+                                                <div className="col-12 col-lg-6 col-xl-7">
+                                                    <CustomSelectComponent
+                                                        className={`${styles.companyInvoiceOrganizationTimeZoneSelect}`}
+                                                        data={DATE_FORMATE_LIST}
+                                                        onOptionValueChange={handleInput}
+                                                        optionValue={data.dateFormat}
+                                                        name={'dateFormat'}
+                                                        isDisabled={false}
+                                                        defaultText={'Select a Date format'}
+                                                        hasSearch={false}
+                                                        isInnerButtonRequired={false}
+                                                    />
                                                 </div>
                                             </div>
 
@@ -363,9 +394,9 @@ export default function OrganizationSetupForm() {
                                                 </div>
                                                 <div className="col-12 col-lg-6 col-xl-7">
                                                     <div className={`${styles.companyInvoiceOrganizationInputFileWrapper} d-flex`}>
-                                                        {isImageSet ?
+                                                        {imageSrc ?
                                                             <div className={`${styles.companyInvoiceOrganizationImageInputWrapper} d-flex flex-column`}>
-                                                                <Image className={`${styles.companyInvoiceOrganizationImageDisplay}`} loader={imageLoader} src={imageSrc}  onError={()=>setImageSrc(defaultProfile)} width={250} height={125} alt="organization_logo" />
+                                                                <Image className={`${styles.companyInvoiceOrganizationImageDisplay}`} loader={imageLoader} src={imageSrc} onError={() => setImageSrc(defaultProfile)} width={250} height={125} alt="organization_logo" />
                                                                 <span className={`${styles.companyInvoiceOrganizationImageUploadWrapper}`}>
                                                                     <p>
                                                                         This logo will be displayed in transaction PDF&apos;s and email notifications.
@@ -381,7 +412,7 @@ export default function OrganizationSetupForm() {
                                                             </div>
                                                             :
                                                             <>
-                                                                <input id="companyInvoiceOrganizationLogoInput" className={`${styles.companyInvoiceOrganizationInputFile}`} accept="image/*" type="file" onChange={(e) => { previewandSetImage(e) }} />
+                                                                <input id="companyInvoiceOrganizationLogoInput" className={`${styles.companyInvoiceOrganizationInputFile}`} accept="image/*" type="file" onChange={setImage} />
                                                                 <label className={`${styles.companyInvoiceOrganizationInputFileSVGButton} btn ms-0`} htmlFor="companyInvoiceOrganizationLogoInput">
                                                                     <FaCamera />
                                                                     Upload Image
