@@ -32,6 +32,7 @@ export default function OrganizationUpdateForm() {
     const [statesArray, getStateArray] = useState([]);
     const [isSubmit, setIsSubmit] = useState(false);
     const { userInfo, setUserInfo } = useCurrentUserData()
+    const [imageSrc, setImageSrc] = useState("");
     const { Modal } = require("bootstrap");
 
     const dateFormatList = [
@@ -183,10 +184,10 @@ export default function OrganizationUpdateForm() {
         e.stopPropagation();
         if (e.target.files && e.target.files.length > 0) {
             var temp_data = data;
-            temp_data.logo = URL.createObjectURL(e.target.files[0]);
             temp_data.logoFile = e.target.files[0];
             let temp = Object.assign({}, temp_data);
             setData(temp);
+            setImageSrc(URL.createObjectURL(e.target.files[0]))
         }
     }
 
@@ -195,10 +196,10 @@ export default function OrganizationUpdateForm() {
         e.stopPropagation();
         $('#companyInvoiceOrganizationLogoInput').val('');
         var temp_data = data;
-        temp_data.logo = '';
         temp_data.logoFile = '';
         let temp = Object.assign({}, temp_data);
         setData(temp);
+        setImageSrc('');
     }
 
     const handleCheckBoxChange = ({ target }) => {
@@ -395,9 +396,9 @@ export default function OrganizationUpdateForm() {
                                             </div>
                                             <div className="col-12 col-lg-6 col-xl-7">
                                                 <div className={`${styles.companyInvoiceOrganizationInputFileWrapper} d-flex`}>
-                                                    {data.logo ?
+                                                    {imageSrc ?
                                                         <div className={`${styles.companyInvoiceOrganizationImageInputWrapper}`}>
-                                                            <Image className={`${styles.companyInvoiceOrganizationImageDisplay}`} loader={imageLoader} src={data.logo} width={250} height={125} alt="organization_logo" />
+                                                            <Image className={`${styles.companyInvoiceOrganizationImageDisplay}`} loader={imageLoader} onError={() => setImageSrc(defaultProfile)} src={imageSrc} width={250} height={125} alt="organization_logo" />
                                                             <span className={`${styles.companyInvoiceOrganizationImageUploadWrapper}`}>
                                                                 <p>
                                                                     This logo will be displayed in transaction PDF&apos;s and email notifications.
