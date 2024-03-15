@@ -80,9 +80,14 @@ export default function LoginForm() {
         } else {
             try {
                 disableSubmitButton(e.target)
-                await login(data, rememberMe)
-                router.push('/')
+                const result = await login(data, rememberMe)
+                if (result.profileCompleted) {
+                    router.push('/')
+                } else {
+                    router.push('/organization-setup')
+                }
             } catch (error) {
+                console.log(error)
                 if (typeof error.response !== 'undefined' && typeof error.response.status !== 'undefined' && typeof error.response.data.message !== 'undefined') {
                     var status = error.response.status;
                     if (status == '404' || status == '401') {
