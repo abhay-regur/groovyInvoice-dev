@@ -9,6 +9,8 @@ import Breadcrumb from '@/components/common/breadcrumb';
 import dynamic from 'next/dynamic';
 import { getTotalOutstandingReceivables, getDueToday, getDueWithin30Days, getOverdue } from '@/services/payment.service';
 import { getCompanyDetails } from '@/services/companies.service'
+import { useCurrentUserData } from '@/context/CurrentUserData.context';
+import { getCurrencyById } from '@/services/common/general.service';
 
 const AllInvoiceTable = dynamic(
     () => import("@/components/invoice/allInvoiceTable"),
@@ -22,6 +24,8 @@ export default function InvoiceListComponent() {
     const [dueWithin30Days, setDueWithin30Days] = useState(0)
     const [overdue, setOverdue] = useState(0)
     const [dateFormat, setDateFormat] = useState('');
+    const [currencySymbol, setCurrencySymbol] = useState('₹');
+    const { userInfo } = useCurrentUserData()
 
     const getDateFormat = async () => {
         const result = await getCompanyDetails();
@@ -32,15 +36,35 @@ export default function InvoiceListComponent() {
         getDateFormat();
     }, [])
 
+    useEffect(() => {
+        getCurrencySymbol(userInfo.currencyId);
+    }, [userInfo.currencyId])
+
+    const getCurrencySymbol = async (id) => {
+        try {
+            if (id != "" && id != null) {
+                const selectCurrencyDetails = await getCurrencyById(id);
+                if (selectCurrencyDetails.status == 200) setCurrencySymbol(selectCurrencyDetails.data.symbol);
+            }
+        } catch (error) {
+            setErrors(genrateErrorMessage(error, '', setToastList));
+        }
+    }
+
     const getData = async () => {
-        const totalOutstandingReceivableData = await getTotalOutstandingReceivables()
-        setTotalOutstandingReceivables(totalOutstandingReceivableData.data)
-        const dueTodayData = await getDueToday()
-        setDueToday(dueTodayData.data)
-        const dueWithin30DaysData = await getDueWithin30Days()
-        setDueWithin30Days(dueWithin30DaysData.data)
-        const overdueData = await getOverdue()
-        setOverdue(overdueData.data)
+        try {
+            const totalOutstandingReceivableData = await getTotalOutstandingReceivables()
+            setTotalOutstandingReceivables(totalOutstandingReceivableData.data)
+            const dueTodayData = await getDueToday()
+            setDueToday(dueTodayData.data)
+            const dueWithin30DaysData = await getDueWithin30Days()
+            setDueWithin30Days(dueWithin30DaysData.data)
+            const overdueData = await getOverdue()
+            setOverdue(overdueData.data)
+        } catch (error) {
+            setErrors(genrateErrorMessage(error, '', setToastList));
+        }
+
     }
 
     useEffect(() => {
@@ -72,16 +96,16 @@ export default function InvoiceListComponent() {
                     <div className={`${styles.companyInvoiceTopInvoiceHeader} card`}>
                         <div className={`${styles.card_body} card-body row`}>
                             <div className={`${styles.companyInvoiceTopHeaderSVGWrapper} col-12 col-lg-1 d-flex d-lg-none justify-content-lg-start align-items-center`}><i><FaRupeeCircle /></i></div>
-                            <div className={`${styles.companyInvoiceTopHeaderTotalOutstandingWrapper} col-6 col-lg-3`}><div className="row"><div className={`${styles.companyInvoiceTopHeaderSVGWrapper} col-12 col-lg-3 d-none d-lg-flex justify-content-lg-start align-items-center`}><i><FaRupeeCircle /></i></div><div className="col-12 col-lg-9"><div className={`${styles.companyInvoiceTopInvoiceHeaderText}`}>Total Outstanding Receivables</div><div className={`${styles.companyInvoiceTopInvoiceHeaderNumber}`}>Rs. {totalOutstandingReceivables}</div></div></div></div>
-                            <div className={`${styles.companyInvoiceTopHeaderDueTodayWrapper} col-6 col-lg-2`}><div className={`${styles.companyInvoiceTopInvoiceHeaderText}`}>Due Today</div> <div className={`${styles.companyInvoiceTopInvoiceHeaderNumber}`}>Rs. {dueToday}</div></div>
-                            <div className={`${styles.companyInvoiceTopHeaderDueWithinWrapper} col-6 col-lg-2`}><div className={`${styles.companyInvoiceTopInvoiceHeaderText}`}>Due Within 30 Days</div><div className={`${styles.companyInvoiceTopInvoiceHeaderNumber}`}>Rs. {dueWithin30Days}</div></div>
-                            <div className={`${styles.companyInvoiceTopHeaderOverdueInvoiceWrapper} col-6 col-lg-2`}><div className={`${styles.companyInvoiceTopInvoiceHeaderText}`}>Overdue Invoice</div><div className={`${styles.companyInvoiceTopInvoiceHeaderNumber}`}>Rs. {overdue}</div></div>
+                            <div className={`${styles.companyInvoiceTopHeaderTotalOutstandingWrapper} col-6 col-lg-3`}><div className="row"><div className={`${styles.companyInvoiceTopHeaderSVGWrapper} col-12 col-lg-3 d-none d-lg-flex justify-content-lg-start align-items-center`}><i><FaRupeeCircle /></i></div><div className="col-12 col-lg-9"><div className={`${styles.companyInvoiceTopInvoiceHeaderText}`}>Total Outstanding Receivables</div><div className={`${styles.companyInvoiceTopInvoiceHeaderNumber}`}>{currencySymbol} {totalOutstandingReceivables}</div></div></div></div>
+                            <div className={`${styles.companyInvoiceTopHeaderDueTodayWrapper} col-6 col-lg-2`}><div className={`${styles.companyInvoiceTopInvoiceHeaderText}`}>Due Today</div> <div className={`${styles.companyInvoiceTopInvoiceHeaderNumber}`}>{currencySymbol} {dueToday}</div></div>
+                            <div className={`${styles.companyInvoiceTopHeaderDueWithinWrapper} col-6 col-lg-2`}><div className={`${styles.companyInvoiceTopInvoiceHeaderText}`}>Due Within 30 Days</div><div className={`${styles.companyInvoiceTopInvoiceHeaderNumber}`}>{currencySymbol} {dueWithin30Days}</div></div>
+                            <div className={`${styles.companyInvoiceTopHeaderOverdueInvoiceWrapper} col-6 col-lg-2`}><div className={`${styles.companyInvoiceTopInvoiceHeaderText}`}>Overdue Invoice</div><div className={`${styles.companyInvoiceTopInvoiceHeaderNumber}`}>{currencySymbol} {overdue}</div></div>
                             <div className={`${styles.companyInvoiceTopHeaderDaysGettingPaidWrapper} col-12 col-lg-3`}><div className={`${styles.companyInvoiceTopInvoiceHeaderText}`}>Average No. of Days for Getting Paid</div><div className={`${styles.companyInvoiceTopInvoiceHeaderNumber}`}>5 Days</div></div>
                         </div>
                     </div>
 
                     <div className='p-2'>
-                        {dateFormat &&<AllInvoiceTable dateFormat={dateFormat} />}
+                        {dateFormat && <AllInvoiceTable dateFormat={dateFormat} />}
                     </div>
                 </div>
             </main>

@@ -191,7 +191,10 @@
                             color: var.$white;
 
                             tr {
+
                                 th {
+                                    background: var.$primary-color;
+                                    color: var.$white;
                                     border: 1px solid var.$border-color;
 
                                     &:nth-of-type(1),
@@ -540,6 +543,8 @@
 
                             tr {
                                 th {
+                                    background: var.$primary-color;
+                                    color: var.$white;
                                     border: 1px solid var.$border-color;
 
                                     &:nth-of-type(1),
@@ -905,6 +910,8 @@
 
                             tr {
                                 th {
+                                    background: var.$primary-color;
+                                    color: var.$white;
                                     border: 1px solid var.$border-color;
 
                                     &:nth-of-type(1),
@@ -1270,6 +1277,8 @@
 
                             tr {
                                 th {
+                                    background: var.$primary-color;
+                                    color: var.$white;
                                     border: 1px solid var.$border-color;
 
                                     &:nth-of-type(1),

@@ -22,12 +22,12 @@ const ViewInvoiceTable = ({ items = [] }) => {
                             {items.map((item, i) => {
                                 return (
                                     <tr key={i} >
-                                        <td >{i + 1}</td>
-                                        <td >{item.itemDescription}</td>
-                                        <td >991512</td>
-                                        <td >{item.quantity}</td>
-                                        <td >{item.rate}</td>
-                                        <td >{parseFloat(item.total).toFixed(2)}</td>
+                                        <td className={`${styles.companyInvoiceViewTableIndex}`}>{i + 1}</td>
+                                        <td className={`${styles.companyInvoiceViewTableItemDescription}`}>{item.itemDescription}</td>
+                                        <td className={`${styles.companyInvoiceViewTableItemCode}`}>991512</td>
+                                        <td className={`${styles.companyInvoiceViewTableQuantity}`}>{item.quantity}</td>
+                                        <td className={`${styles.companyInvoiceViewTableRate}`}>{item.rate}</td>
+                                        <td className={`${styles.companyInvoiceViewTableAmount}`}>{parseFloat(item.total).toFixed(2)}</td>
                                     </tr>
                                 );
                             })}
