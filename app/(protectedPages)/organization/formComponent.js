@@ -18,6 +18,7 @@ import styles from '@/styles/organization.module.scss';
 import Breadcrumb from '@/components/common/breadcrumb';
 import FaCamera from '@/assets/icons/faCamera.svg';
 import { useCurrentUserData } from "@/context/CurrentUserData.context";
+import { DATE_FORMATE_LIST } from "constants";
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils';
 import defaultProfile from '../../../public/images/default-company-icon.png';
 
@@ -35,16 +36,6 @@ export default function OrganizationUpdateForm() {
     const { userInfo, setUserInfo } = useCurrentUserData()
     const [imageSrc, setImageSrc] = useState("");
     const { Modal } = require("bootstrap");
-
-    const dateFormatList = [
-        { Id: 'dd-MM-yyyy', name: 'dd-MM-yyyy' },
-        { Id: 'MM-dd-yyyy', name: 'MM-dd-yyyy' },
-        { Id: 'yyyy-MM-dd', name: 'yyyy-MM-dd' },
-        { Id: 'dd/MM/yyyy', name: 'dd/MM/yyyy' },
-        { Id: 'MM/dd/yyyy', name: 'MM/dd/yyyy' },
-        { Id: 'yyyy/MM/dd', name: 'yyyy/MM/dd' },
-    ]
-
 
     const [data, setData] = useState({
         companyName: '',
@@ -180,7 +171,7 @@ export default function OrganizationUpdateForm() {
         var temp_data = data;
         var name = target.name || target.getAttribute('name');
         if (name != '') {
-            if (name == 'stateId' || name == 'countryId' || name == 'currencyId' || name == 'timeZoneId' || name == 'industryId') {
+            if (['stateId', 'countryId', 'currencyId', 'timeZoneId', 'industryId'].includes(name)) {
                 temp_data[name] = parseInt(target.value);
             } else {
                 temp_data[name] = target.value;
@@ -343,12 +334,12 @@ export default function OrganizationUpdateForm() {
 
                                         <div className={`${styles.companyInvoiceOrganizationDateFormatWrapper} gap-2 mb-4 row`}>
                                             <div className="d-flex align-items-center col-12 col-lg-4">
-                                                <label className={`${styles.companyInvoiceOrganizationDateFormatlabel}`}>Date Format<span className={`${styles.green}`}>*</span></label> (W.I.P)
+                                                <label className={`${styles.companyInvoiceOrganizationDateFormatlabel}`}>Date Format<span className={`${styles.green}`}>*</span></label>
                                             </div>
                                             <div className="col-12 col-lg-6 col-xl-7">
                                                 <CustomSelectComponent
                                                     className={`${styles.companyInvoiceOrganizationTimeZoneSelect}`}
-                                                    data={dateFormatList}
+                                                    data={DATE_FORMATE_LIST}
                                                     onOptionValueChange={handleInput}
                                                     optionValue={data.dateFormat}
                                                     name={'dateFormat'}
