@@ -62,7 +62,7 @@ export default function CustomerAddForm() {
         placeOfSupply: "",
         taxPreference: "",
         exemptionReason: "",
-        currencyId: 103,
+        currencyId: 105,
         openingBalance: 0,
         paymentTermId: null,
         address: {
@@ -234,7 +234,6 @@ export default function CustomerAddForm() {
             data.forEach((elem) => {
                 temp.push({ Id: elem.id, symbol: elem.symbol, name: (elem.symbol == '' ? elem.name : elem.symbol + ' - ' + elem.code + ' - ' + elem.name), code: elem.code })
             })
-
             setCurrencies(temp);
         } catch (error) {
             setErrors(genrateErrorMessage(error, 'Customer', setToastList));

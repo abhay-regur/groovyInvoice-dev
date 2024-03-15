@@ -23,7 +23,7 @@ import { NavExpandedState } from '@/context/NavState.context';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 import { usePathname } from "next/navigation";
 import defaultProfile from '../public/images/default_profile_icon.png';
-import { useUser } from "@/context/CurrentUserData.context"
+import { useCurrentUserData } from "@/context/CurrentUserData.context"
 
 const MENU_LIST = [{ key: 100, text: "Invoices", href: "/invoices", icon: <FaFileLines /> }, { key: 101, text: "Customers", href: "/customers", icon: <FaUserGroup /> }, { key: 102, text: "Reports", href: "/reports", icon: <FaChartLine /> }, { key: 103, text: "Settings", href: "/settings", icon: <FaGear />, subMenu: [{ key: 1031, text: "Users", href: "/users", icon: <FaUsers /> }, { key: 1032, text: "Organization", href: "/organization", icon: <FaBreifcase /> }, { key: 1033, text: "Config", href: "/configuration", icon: <FaScrewAndWrench /> }] }];
 
@@ -33,7 +33,7 @@ export default function Navbar() {
     const { setToastList } = useContext(ToastMsgContext);
     const [errors, setErrors] = useState([]);
     const [hasNotification, setHasNotification] = useState(true)
-    const { userName, userProfileImage } = useUser();
+    const { userInfo } = useCurrentUserData();
     const [image, setImage] = useState('');
     const { navExpandedState, setNavExpandedState } = useContext(NavExpandedState);
     const [navItemExpanded, setNavItemExpanded] = useState(false);
@@ -55,8 +55,8 @@ export default function Navbar() {
     }, [activeIdx]);
 
     useEffect(() => {
-        setImage(userProfileImage);
-    }, [userProfileImage])
+        setImage(userInfo.userProfileImage);
+    }, [userInfo.userProfileImage])
 
     const imageLoader = ({ src, width, quality }) => {
         return (`${src}?w=${width}&q=${quality || 75}`);
@@ -87,7 +87,7 @@ export default function Navbar() {
                                     <Image src={image || defaultProfile} className={`${style.profileImage}`} loader={imageLoader} onError={() => setImage(defaultProfile)} width={45} height={45} unoptimized alt="profile_Image" />
                                 </div>
                                 <div className={`${style.profileNameWrapper} justify-content-center`}>
-                                    <div className={`username`}>{userName == "" ? '- -' : userName}<span className={``}></span></div>
+                                    <div className={`username`}>{userInfo.userName == "" ? '- -' : userInfo.userName}<span className={``}></span></div>
                                 </div>
                             </span>
                         </Link>

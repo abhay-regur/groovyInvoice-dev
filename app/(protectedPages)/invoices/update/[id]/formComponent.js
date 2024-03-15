@@ -22,7 +22,7 @@ import Loading from "@/app/(protectedPages)/loading.js";
 import DateInputField from '@/components/common/dateInputField';
 import { addDaysInDate } from '@/utils/date.utils';
 import { useRouter } from 'next/navigation';
-import { useUser } from '@/context/CurrentUserData.context';
+import { useCurrentUserData } from '@/context/CurrentUserData.context';
 
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 import { enableElement, disableElement } from '@/utils/form.utils';
@@ -37,7 +37,7 @@ export default function InvoiceEditForm() {
     const { setToastList } = useContext(ToastMsgContext);
     const [errors, setErrors] = useState([]);
     const [isPageLoading, setIsPageLoading] = useState(true);
-    const { datePref } = useUser();
+    const { userInfo } = useCurrentUserData();
 
     const [data, setData] = useState({
         customerId: 0,
@@ -245,7 +245,7 @@ export default function InvoiceEditForm() {
                                                 id="companyInvoiceDate"
                                                 selected={data.invoiceDate}
                                                 onChange={(date) => setDateChange(date, 'invoiceDate')}
-                                                dateFormat={datePref}
+                                                dateFormat={userInfo.datePref}
                                             />
                                         </div>
                                         <div className="col-12 col-sm-5 col-md-6 col-lg-3">
@@ -270,7 +270,7 @@ export default function InvoiceEditForm() {
                                                 id="companyInvoiceDueDate"
                                                 selected={data.dueDate}
                                                 onChange={(date) => setDateChange(date, 'dueDate')}
-                                                dateFormat={datePref}
+                                                dateFormat={userInfo.datePref}
                                             />
                                         </div>
                                     </div>
