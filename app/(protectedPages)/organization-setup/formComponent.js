@@ -5,7 +5,7 @@ import styles from "@/styles/organizationSetup.module.scss";
 import { useContext, useEffect, useState } from "react";
 import ErrorList from '@/components/errorList';
 import { ToastMsgContext } from '@/context/ToastMsg.context';
-import { getCompanyDetails, updateCompanyDetails } from '@/services/companies.service';
+import { getCompanyDetails, setupCompanyDetails } from '@/services/companies.service';
 import { getCurrencies, getTimeZonesList } from '@/services/common/general.service';
 import { getIndianStates, getCountries } from '@/services/countriesState.service';
 import CustomSelectComponent from "@/components/common/customSelectComponent";
@@ -44,8 +44,15 @@ export default function OrganizationSetupForm() {
         isRegisteredForGST: true,
         GSTIN: '',
         currentInvoicing: '',
-        logo: ""
+        logo: "",
+        profileCompleted: false
     });
+
+    useEffect(() => {
+        if(data.profileCompleted) {
+            replace('/dashboard')
+        }
+    }, [data.profileCompleted])
 
     useEffect(() => {
         setIsLoading(true);
@@ -186,7 +193,7 @@ export default function OrganizationSetupForm() {
         var temp_data = data;
         var name = target.name || target.getAttribute('name');
         if (name != '') {
-            if (name == 'industryId' || name == 'currencyId' || name == 'stateId' || name == 'countryId' || name == 'timeZoneId' || name == 'language') {
+            if (name == 'industryId' || name == 'currencyId' || name == 'stateId' || name == 'countryId' || name == 'timeZoneId' ) {
                 temp_data[name] = parseInt(target.value);
             } else {
                 temp_data[name] = target.value;
@@ -225,7 +232,7 @@ export default function OrganizationSetupForm() {
         myFormData.append('logoFile', data.logo);
 
         try {
-            var result = await updateCompanyDetails(myFormData)
+            var result = await setupCompanyDetails(myFormData)
             if (result.status == 200 || result.status == 201) {
                 setToastList([{
                     id: Math.floor((Math.random() * 101) + 1),
@@ -314,7 +321,7 @@ export default function OrganizationSetupForm() {
                                                     <label className={`${styles.companyInvoiceOrganizationLanguagelabel}`}>Language <span className={`${styles.green}`}>*</span></label>
                                                 </div>
                                                 <div className="col-12 col-lg-6 col-xl-7">
-                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationLanguageSelect}`} data={[{ Id: 1, name: 'English' }]} onOptionValueChange={handleInput} optionValue={parseInt(data.language)} name={'language'} isDisabled={false} defaultText={'Select a Languange'} isInnerButtonRequired={false} />
+                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationLanguageSelect}`} data={[{ Id: 'English', name: 'English' }]} onOptionValueChange={handleInput} optionValue={parseInt(data.language)} name={'language'} isDisabled={false} defaultText={'Select a Languange'} isInnerButtonRequired={false} />
                                                 </div>
                                             </div>
 

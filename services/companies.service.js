@@ -7,6 +7,12 @@ export const getCompanyDetails = async () => {
     } catch (error) { throw error; }
 }
 
+export const setupCompanyDetails = async (data) => {
+    try {
+        return await httpService.put('companies/setup', data);
+    } catch (error) { throw error; }
+}
+
 export const updateCompanyDetails = async (data) => {
     try {
         return await httpService.put('companies', data);

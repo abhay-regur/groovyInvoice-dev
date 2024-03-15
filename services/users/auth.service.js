@@ -12,6 +12,7 @@ export const login = async (data, rememberMe) => {
     } else {
       localStorage.removeItem('rememberMe')
     }
+    return result;
   } catch (error) {
     throw error
   }
