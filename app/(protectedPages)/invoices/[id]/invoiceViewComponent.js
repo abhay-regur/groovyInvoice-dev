@@ -21,6 +21,7 @@ import { convertNumberToWord } from '@/utils/number.utils';
 import Loading from '@/app/loading';
 import { paymentInfoForInvoice } from '@/services/payment.service';
 import { useCurrentUserData } from "@/context/CurrentUserData.context";
+import { getCurrencyById } from '@/services/common/general.service';
 
 export default function InvoiceViewComponent() {
     const { id } = useParams();
@@ -32,6 +33,7 @@ export default function InvoiceViewComponent() {
     const { setToastList } = useContext(ToastMsgContext);
     const [actionBarExpandedState, setactionBarExpandedState] = useState(false);
     const [dateFormat, setDateFormat] = useState('dd/MM/yyyy');
+    const [currencySymbol, setCurrencySymbol] = useState('₹');
 
     const [data, setData] = useState({
         customerId: 0,
@@ -43,6 +45,7 @@ export default function InvoiceViewComponent() {
         customerNote: '',
         subTotalAmount: 0,
         shippingCharges: 0,
+        status: '',
         totalTaxAmount: 0,
         totalAmount: 0,
         adjustmentText: '',
@@ -143,6 +146,17 @@ export default function InvoiceViewComponent() {
         }
     }
 
+    const getCurrencySymbol = async (id) => {
+        try {
+            if (id != "" && id != null) {
+                const selectCurrencyDetails = await getCurrencyById(id);
+                if (selectCurrencyDetails.status == 200) setCurrencySymbol(selectCurrencyDetails.data.symbol);
+            }
+        } catch (error) {
+            setErrors(genrateErrorMessage(error, '', setToastList));
+        }
+    }
+
     useEffect(() => {
         setIsPageLoading(true);
         getInvoiceData();
@@ -151,6 +165,10 @@ export default function InvoiceViewComponent() {
     useEffect(() => {
         setDateFormat(userInfo.datePref);
     }, [userInfo.datePref])
+
+    useEffect(() => {
+        getCurrencySymbol(customer.currencyId)
+    }, [customer.currencyId])
 
 
 
@@ -219,7 +237,7 @@ export default function InvoiceViewComponent() {
                             </div>
                             <div className="col-12">
                                 <div className={`${styles.companyInvoiceViewInvoiceViewWrapper}`}>
-                                    <div className={`${styles.companyInvoiceViewInvoiceStatusRibbion}`}> <span>Paid</span> </div>
+                                    <div className={`${styles.companyInvoiceViewInvoiceStatusRibbion} ${data.paid == "paid" ? "" : "d-none"}`}> <span>Paid</span> </div>
                                     <div className="row">
                                         <div className="col-12 col-lg-6 order-1 order-lg-0">
                                             <div className={`${styles.companyInvoiceViewInvoiceComapnyName}`}>{userInfo.companyName}</div>
@@ -282,20 +300,20 @@ export default function InvoiceViewComponent() {
                                             <div className={`${styles.companyInvoiceViewInvoiceTotalCard} card`}>
                                                 <div className="d-flex justify-content-between">
                                                     <span>Sub Total</span>
-                                                    <span>Rs. {parseFloat(data.subTotalAmount).toFixed(2)}</span>
+                                                    <span>{currencySymbol} {parseFloat(data.subTotalAmount).toFixed(2)}</span>
                                                 </div>
                                                 <div className="d-flex justify-content-between">
                                                     <span>Total</span>
-                                                    <span>Rs. {parseFloat(data.totalAmount).toFixed(2)}</span>
+                                                    <span>{currencySymbol} {parseFloat(data.totalAmount).toFixed(2)}</span>
                                                 </div>
                                                 <div className="d-flex justify-content-between">
                                                     <span>Payment Made</span>
-                                                    <span className="red">-Rs. {parseFloat(paymentInfo.paidAmount).toFixed(2)}</span>
+                                                    <span className="red">- {currencySymbol} {parseFloat(paymentInfo.paidAmount).toFixed(2)}</span>
                                                 </div>
                                                 <hr />
                                                 <div className="d-flex justify-content-between">
                                                     <span>Balance Due</span>
-                                                    <span>Rs. {parseFloat(paymentInfo.unpaidAmount).toFixed(2)}</span>
+                                                    <span>{currencySymbol} {parseFloat(paymentInfo.unpaidAmount).toFixed(2)}</span>
                                                 </div>
                                             </div>
                                         </div>
