@@ -12,6 +12,7 @@ import { getCompanyDetails } from '@/services/companies.service';
 import { UserLoggedState } from '@/context/UserState.context';
 import { useCurrentUserData } from '@/context/CurrentUserData.context';
 import { getState } from '@/services/countriesState.service';
+import { InvoiceDetailsProvider } from '@/context/invoiceDetails.context';
 
 function AuthLayout({ children }) {
     const { userLoggedState, setUserLoggedState } = useContext(UserLoggedState);
@@ -71,9 +72,11 @@ function AuthLayout({ children }) {
             <div className='pageContent'>
                 <NavExpandedState>
                     <Navbar />
-                    <Suspense fallback={<Loading />}>
-                        {children}
-                    </Suspense>
+                    <InvoiceDetailsProvider>
+                        <Suspense fallback={<Loading />}>
+                            {children}
+                        </Suspense>
+                    </InvoiceDetailsProvider>
                 </NavExpandedState>
             </div>
             <Footer />
