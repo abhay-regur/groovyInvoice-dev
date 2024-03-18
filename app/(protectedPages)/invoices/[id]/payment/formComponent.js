@@ -62,7 +62,7 @@ export default function PaymentFormComponent() {
                             </div>
 
                             <div className={`${styles.companyInvoiceAmountcard} row p-0 mb-3`}>
-                                <div className="col-12 col-lg-10">
+                                <div className="col-12 col-lg-10 col-xl-5">
                                     <div className="row">
                                         <div className="col-12">
                                             <label className={`${styles.companyInvoiceAmountRecivedLabel}`}>Ammount Received</label>
@@ -78,7 +78,7 @@ export default function PaymentFormComponent() {
                             </div>
 
                             <div className={`${styles.companyInvoicePaymentDateModeWrapper} row`}>
-                                <div className="col-12 col-md-6 col-lg-10">
+                                <div className="col-12 col-md-6 col-lg-10 col-xl-5">
                                     <div className="row">
                                         <div className="col-12">
                                             <label className={`${styles.companyInvoicePaymentDateLabel}`}>Payment Date<span className={`${styles.green}`}>*</span></label>
