@@ -20,7 +20,7 @@ const AllInvoiceTable = ({ dateFormat }) => {
     const draw_invoiceNo = (row) => {
         return (
             <>
-                <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><Link href={`/invoices/${row.id}`}>{row.invoiceNo}</Link></span>
+                <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><Link href={`invoices/${row.id}`}>{row.invoiceNo}</Link></span>
             </>
         )
     }
@@ -40,7 +40,7 @@ const AllInvoiceTable = ({ dateFormat }) => {
     const draw_action = (rowData) => {
         return (
             <span className={`${styles.companyInvoiceTableActionWrapper}`}>
-                <Link href={`/invoices/update/${rowData.id}`}>
+                <Link href={`invoices/update/${rowData.id}`}>
                     <span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span>
                 </Link>
                 <span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span>

@@ -48,7 +48,7 @@ const AllUserTable = () => {
                                 }
                             </div>
                         }
-                        <Link className={`${styles.companyUserTableCustomerEdit} ps-2`} href={`/users/update/${row.id}`}>
+                        <Link className={`${styles.companyUserTableCustomerEdit} ps-2`} href={`users/update/${row.id}`}>
                             <FaPen />
                         </Link>
                     </span >
