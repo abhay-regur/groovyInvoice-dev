@@ -70,6 +70,7 @@ export default function InvoiceListComponent() {
     useEffect(() => {
         getData()
     }, [])
+
     return (
         <div className={styles.container}>
             <main className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>

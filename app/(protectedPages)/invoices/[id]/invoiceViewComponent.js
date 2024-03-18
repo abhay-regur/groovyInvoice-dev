@@ -193,7 +193,7 @@ export default function InvoiceViewComponent() {
                                         <div className={`${styles.companyInvoiceViewInvoiceActionBarCollapse} ${actionBarExpandedState ? "" : styles.collapse} navbar-collapse justify-content-lg-start`} id="navbarNavDropdown">
                                             <ul className={`${styles.companyInvoiceViewInvoiceActionBarnavbarNav} navbar-nav nav-fill`}>
                                                 <li className={`${styles.companyInvoiceViewInvoiceActionBarActionItem} nav-item`}>
-                                                    <Link href={`/invoices/update/${id}`} className="nav-link d-flex justify-content-lg-center">
+                                                    <Link href={`update/${id}`} className="nav-link d-flex justify-content-lg-center">
                                                         <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}><FaPen /></span>
                                                         <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText}`}> Edit</span>
                                                     </Link>
@@ -224,7 +224,7 @@ export default function InvoiceViewComponent() {
                                                     </ul>
                                                 </li>
                                                 <li className={`${styles.companyInvoiceViewInvoiceActionBarActionItem} nav-item`}>
-                                                    <Link href={`/invoices/${id}/payment`} className="nav-link d-flex justify-content-lg-center">
+                                                    <Link href={`${id}/payment`} className="nav-link d-flex justify-content-lg-center">
                                                         <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}><FaRupee /></span>
                                                         <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText}`}>Record Payment</span>
                                                     </Link>

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import style from '@/styles/navbar.module.scss';
-import { useState } from "react";
 
 
 export default function NavList({ activeIdx, expanded, text, icon, subMenu, setActiveIdx, setNavItemExpanded }) {
