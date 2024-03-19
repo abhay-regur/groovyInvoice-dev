@@ -30,3 +30,15 @@ export const paymentInfoForInvoice = async (id) => {
         return await httpService.get(`payments/invoice-info/${id}`);
     } catch (error) { throw error; }
 }
+
+export const savePaymentForInvoice = async (data) => {
+    try {
+        return await httpService.post(`payments`, data)
+    } catch (error) { throw error; }
+}
+
+export const getPaymentHistoryForInvoice = async (id) => {
+    try {
+        return await httpService.get(`payments/invoice-history/${id}`)
+    } catch (error) { throw error; }
+}

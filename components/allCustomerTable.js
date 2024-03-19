@@ -4,10 +4,8 @@ import { useRef, useState } from 'react';
 import 'datatables.net-dt/js/dataTables.dataTables';
 import React from 'react';
 import ReactDOM from "react-dom/client";
-import Image from 'next/image';
 import Link from 'next/link';
 import 'datatables.net-dt/css/jquery.dataTables.min.css';
-import defaultProfile from '../public/images/profile_Default.png';
 import ServerSideDataTables from './serverSideDataTable';
 import FaPen from '@/assets/icons/faPen.svg';
 
@@ -25,7 +23,7 @@ const AllCustomerTable = () => {
                         <div className={`${styles.companyCustomerTableCustomerName}`} >
                             {row.displayName}
                         </div>
-                        <Link className={`${styles.companyCustomerTableCustomerEdit} ps-2`} href={`/customers/update/${row.id}`}>
+                        <Link className={`${styles.companyCustomerTableCustomerEdit} ps-2`} href={`customers/update/${row.id}`}>
                             <FaPen />
                         </Link>
                     </span>
