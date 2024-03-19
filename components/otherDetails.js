@@ -6,6 +6,7 @@ import CustomSelectComponent from './common/customSelectComponent';
 import styles from "@/styles/newCustomer.module.scss";
 import { useEffect, useState } from 'react';
 import { GST_TREATMENT } from '../constants';
+import { REGX_GST, REGX_PAN } from 'constants/index.js';
 import $ from 'jquery';
 export default function OtherDetails({ data, handleInput, handleRadioButtonChange, ErrorList, gstTreatment, paymentTerms, currencies, placeOfSupply, taxExemptionReason, getPaymentTermsDetails, createPaymentTerms, createTaxExemptionReason, getTaxExemptedDetails, setToastList }) {
     const [unregistred, setUnregistred] = useState(false);
@@ -113,7 +114,31 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
         }
     }
 
-    return (<div className={`${styles.tab_content}`}>
+    const handleValidation = ({ target }) => {
+
+        if (target.name == 'GSTIN') {
+            if (REGX_GST.test(target.value)) {
+                target.classList.add('is-valid');
+            } else {
+                target.classList.add('is-invalid');
+            }
+        }
+
+        if (target.name == 'panNumber') {
+            if (REGX_PAN.test(target.value)) {
+                target.classList.add('is-valid');
+            } else {
+                target.classList.add('is-invalid');
+            }
+        }
+    }
+
+    const removeValidationClass = ({ target }) => {
+        if (target.classList.contains('is-valid')) target.classList.remove('is-valid');
+        if (target.classList.contains('is-invalid')) target.classList.remove('is-invalid');
+    }
+
+    return (<div className={`${styles.tab_content} needs-validation`}>
         <div className={`${styles.companyInvoiceComapnyGSTTreatmentWrapper} mb-4 row`}>
             <div className="col-12 col-lg-4 col-xl-2 d-flex align-items-center">
                 <label className={`${styles.companyInvoiceComapnyGSTTreatmentlabel}`}>GST Treatment <span className={`${styles.green}`}>*</span></label>
@@ -125,12 +150,15 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
         {
             unregistred ?
                 '' :
-                <div className={`${styles.companyInvoiceGSTINWrapper} mb-4 row`}>
+                <div className={`${styles.companyInvoiceGSTINWrapper} mb-4 row has-validation`}>
                     <div className="col-12 col-lg-4 col-xl-2 d-flex align-items-center">
                         <label className={`${styles.companyInvoiceGSTINlabel}`}>GSTIN/UIN<span className={`${styles.green}`}>*</span></label>
                     </div>
-                    <div className="col-12 col-lg-6 col-xl-6 d-flex align-items-center justify-content-center">
-                        <input name='GSTIN' type="text" className="form-control" id="companyInvoicePAN" value={data.GSTIN} placeholder='GSTIN/UIN' onChange={handleInput} />
+                    <div className="col-12 col-lg-6 col-xl-6">
+                        <input name='GSTIN' type="text" className="form-control" id="companyInvoicePAN" value={data.GSTIN} onKeyDown={removeValidationClass} onBlur={handleValidation} placeholder='GSTIN/UIN' minLength={15} maxLength={15} autoCapitalize="characters" onChange={handleInput} />
+                        <div htmlFor="companyInvoicePAN" className="ms-3 invalid-feedback">
+                            In-valid GSTIN
+                        </div>
                     </div>
                 </div>
         }
@@ -139,9 +167,11 @@ export default function OtherDetails({ data, handleInput, handleRadioButtonChang
             <div className="col-12 col-lg-4 col-xl-2 d-flex align-items-center">
                 <label className={`${styles.companyInvoicePANlabel}`}>PAN</label>
             </div>
-            <div className="col-12 col-lg-6 col-xl-6 d-flex align-items-center justify-content-center">
-                <input name='panNumber' type="text" className="form-control" id="companyInvoicePAN" value={data.panNumber} placeholder='PAN Number' onChange={handleInput} />
-                <FaExclamationCircle className={`${styles.green}`} />
+            <div className="col-12 col-lg-6 col-xl-6">
+                <input name='panNumber' type="text" className="form-control" id="companyInvoicePAN" value={data.panNumber} onKeyDown={removeValidationClass} minLength={10} maxLength={10} onBlur={handleValidation} autoCapitalize="characters" placeholder='PAN Number' onChange={handleInput} />
+                <div htmlFor="companyInvoicePAN" className="ms-3 invalid-feedback">
+                    In-valid PAN Number
+                </div>
             </div>
         </div>
 
