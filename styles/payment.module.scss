@@ -383,15 +383,14 @@
 
             .companyInvoicePreviousPaymentTableWrapper {
                 padding-top: 14px;
-                overflow-x: auto;
 
                 .companyInvoicePreviousPaymentTable {
-                    min-width: 850px;
                     border-color: var.$border-color;
 
                     thead {
                         background: var.$primary-color;
                         color: var.$white;
+                        min-width: 680px;
 
                         tr {
 
@@ -400,7 +399,7 @@
                                 color: var.$white;
                                 border: 1px solid var.$border-color;
                                 text-align: center;
-                                padding: 5px;
+                                padding: 6px;
                             }
                         }
                     }
@@ -805,7 +804,6 @@
                 overflow-x: auto;
 
                 .companyInvoicePreviousPaymentTable {
-                    min-width: 850px;
                     border-color: var.$border-color;
 
                     thead {

@@ -93,8 +93,6 @@ export default function InvoiceViewComponent() {
             const result = await getInvoice(id);
             const data = result.data;
             setData({ ...data, invoiceDate: new Date(data.invoiceDate), dueDate: new Date(data.dueDate) })
-            tempInvoiceDetails.invoiceDetails.invoiceNo = data.invoiceNo;
-            tempInvoiceDetails.invoiceDetails.totalAmount = data.totalAmount;
 
             getCustomerData(data.customerId, tempInvoiceDetails);
             getPaymentTermData(data.termsId);
@@ -102,6 +100,8 @@ export default function InvoiceViewComponent() {
             const paymentResult = await paymentInfoForInvoice(id);
             setPaymentInfo(paymentResult.data);
             setInvoiceDetailsContext(tempInvoiceDetails);
+            tempInvoiceDetails.invoiceDetails.invoiceNo = data.invoiceNo;
+            tempInvoiceDetails.invoiceDetails.totalAmount = paymentResult.data.unpaidAmount;
 
         } catch (error) {
             if (error.response != undefined && error.response.status == 404) {

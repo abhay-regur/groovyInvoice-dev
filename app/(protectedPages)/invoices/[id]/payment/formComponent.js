@@ -1,5 +1,5 @@
 "use client"
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import DatePicker from "react-datepicker";
 import styles from '@/styles/payment.module.scss';
 import FaSave from '@/assets/icons/faSave.svg';
@@ -11,25 +11,89 @@ import "react-datepicker/dist/react-datepicker.css";
 import { NavExpandedState } from '@/context/NavState.context';
 import { useInvoiceDetails } from '@/context/invoiceDetails.context';
 import { useParams } from 'next/navigation';
+import ErrorList from '@/components/errorList';
+import { savePaymentForInvoice, getPaymentHistoryForInvoice } from '@/services/payment.service';
+import { ToastMsgContext } from '@/context/ToastMsg.context';
 import InvoicePreviousPaymentTable from '@/components/invoice/invoicePreviousPaymentTable';
+import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils';
 
 export default function PaymentFormComponent() {
     const { id } = useParams();
     const { navExpandedState } = useContext(NavExpandedState);
     const { invoiceDetailsContext } = useInvoiceDetails();
-    const [startDate, setStartDate] = useState(new Date());
+    const [errors, setErrors] = useState([]);
+    const { setToastList } = useContext(ToastMsgContext);
+    const [previousPaymentData, setPreviewPaymentData] = useState([])
 
     const [data, setData] = useState({
         customerName: invoiceDetailsContext.customerDetails.name,
         invoiceNo: invoiceDetailsContext.invoiceDetails.invoiceNo,
         totalAmount: invoiceDetailsContext.invoiceDetails.totalAmount,
         amount: 0,
+        paymentDate: new Date(),
         panCardNumber: invoiceDetailsContext.customerDetails.panCardNumber,
         refrence: '',
         notes: '',
-        file: '',
+        attachedFiles: [],
         thankyouEmail: false
-    })
+    });
+
+    useEffect(() => {
+        getPaymentHistory()
+    }, [])
+
+    const getPaymentHistory = async () => {
+        try {
+            const result = await getPaymentHistoryForInvoice(id);
+            setPreviewPaymentData(result.data);
+        } catch (error) {
+            setErrors(genrateErrorMessage(error, '', setToastList));
+        }
+    }
+
+    const handleInput = ({ target }) => {
+        if (target.value != '') {
+            let name = target.name || target.getAttribute('name');
+
+            if (name == 'amount') {
+                data[name] = parseFloat(target.value);
+            } if (name == 'attachedFiles') {
+                data[name] = target.files[0]
+            } else data[name] = target.value;
+
+            let temp = Object.assign({}, data)
+            setData(temp);
+        }
+    }
+
+    const setDateChange = (value, name) => {
+        data[name] = value
+        let temp = Object.assign({}, data)
+        setData(temp);
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        var myFormData = new FormData();
+        myFormData.append('invoiceId', parseInt(id))
+        myFormData.append('amount', data.amount)
+        myFormData.append('paymentDate', data.paymentDate)
+        myFormData.append('references', data.refrence)
+        myFormData.append('notes', data.notes)
+        myFormData.append('file', data.attachedFiles)
+
+        try {
+            await savePaymentForInvoice(myFormData);
+            setToastList([{
+                id: Math.floor((Math.random() * 101) + 1),
+                title: 'Added Payment for the Invoice #' + invoiceDetailsContext.invoiceDetails.invoiceNo,
+                description: '',
+            }]);
+        } catch (error) {
+            console.log(error);
+            setErrors(genrateErrorMessage(error, '', setToastList));
+        }
+    }
 
     return (
         <div className={styles.container}>
@@ -44,6 +108,10 @@ export default function PaymentFormComponent() {
                         </h2>
 
                         <div className={`${styles.card} card`}>
+                            <div>
+                                <ErrorList errors={errors} />
+                            </div>
+
                             <div className={`${styles.companyInvoiceCustomerNameWrapper} mb-3 row`}>
                                 <div className="col-10">
                                     <label className={`${styles.companyInvoiceCustomerNameLabel}`}>Customer Name<span className={`${styles.green}`}>*</span></label>
@@ -57,7 +125,7 @@ export default function PaymentFormComponent() {
                                     <label className={`${styles.companyInvoicePaymentNumberLabel}`}>Payment Invoice#<span className={`${styles.green}`}>*</span></label>
                                 </div>
                                 <div className="col-12 col-lg-10 col-xl-5 d-flex align-items-center mt-2">
-                                    <input type="text" className="form-control" id="companyInvoicePaymentNumber" placeholder='Invoice Number' value={data.invoiceNo} disabled />
+                                    <input type="text" className="form-control" id="companyInvoicePaymentNumber" placeholder='Invoice Number' onChange={handleInput} disabled />
                                 </div>
                             </div>
 
@@ -68,7 +136,7 @@ export default function PaymentFormComponent() {
                                             <label className={`${styles.companyInvoiceAmountRecivedLabel}`}>Ammount Received</label>
                                         </div>
                                         <div className="col-12 mt-2">
-                                            <input type="number" className="form-control" id="companyInvoiceAmountRecived" placeholder={'Total Receivables: ' + data.totalAmount} />
+                                            <input type="number" className="form-control" id="companyInvoiceAmountRecived" name="amount" onChange={handleInput} min={1} max={data.totalAmount} placeholder={'Total Receivables: ' + data.totalAmount} required />
                                         </div>
                                         <div className="col-12 mt-2">
                                             <div className={`${styles.companyInvoiceAddPan}`}><span className={`${styles.grey}`}>PAN :</span> {data.panCardNumber}</div>
@@ -84,7 +152,7 @@ export default function PaymentFormComponent() {
                                             <label className={`${styles.companyInvoicePaymentDateLabel}`}>Payment Date<span className={`${styles.green}`}>*</span></label>
                                         </div>
                                         <div className="col-12 d-flex align-items-center mt-2">
-                                            <DatePicker className="form-control" id="companyInvoicePaymentDate" aria-describedby="emailHelp" selected={startDate} onChange={(date) => setStartDate(date)} />  <FaCalendar />
+                                            <DatePicker className="form-control" id="companyInvoicePaymentDate" name='paymentDate' selected={data.paymentDate} onChange={(date) => setDateChange(date, 'paymentDate')} />  <FaCalendar />
                                         </div>
                                     </div>
                                 </div>
@@ -96,7 +164,7 @@ export default function PaymentFormComponent() {
                                             <label className={`${styles.companyInvoicePaymentReferenceLabel}`}>Reference<span className={`${styles.green}`}>#</span></label>
                                         </div>
                                         <div className="col-12">
-                                            <input type="text" className="form-control" id="companyInvoicePaymentReference" placeholder='Reference' />
+                                            <input type="text" className="form-control" id="companyInvoicePaymentReference" name='refrence' placeholder='Reference' onChange={handleInput} />
                                         </div>
                                     </div>
                                 </div>
@@ -107,7 +175,7 @@ export default function PaymentFormComponent() {
                                             <label className={`${styles.companyInvoicePaymentNoteLabel}`}>Notes</label>
                                         </div>
                                         <div className="col-12 d-flex align-items-center mt-2">
-                                            <textarea className="form-control" id="companyInvoicePaymentMode" placeholder='Add Notes' />
+                                            <textarea className="form-control" id="companyInvoicePaymentMode" name='notes' placeholder='Add Notes' onChange={handleInput} />
                                         </div>
                                     </div>
                                 </div>
@@ -118,9 +186,9 @@ export default function PaymentFormComponent() {
                                         <span className={`${styles.companyInvoicePaymentInputFileSVGWrapper}`}>
                                             <FaUpload />
                                         </span>
-                                        <input className={`${styles.companyInvoicePaymentInputFile}`} type="file" />
+                                        <input className={`${styles.companyInvoicePaymentInputFile}`} type="file" name='attachedFiles' onChange={handleInput} />
                                     </div>
-                                    <div className={`${styles.companyInvoicePaymentInputFileMessage}`}>You can upload a maximum of 3 files, 5MB each</div>
+                                    <div className={`${styles.companyInvoicePaymentInputFileMessage}`}>You can upload one file of max-size 5MB</div>
                                 </div>
                                 <div className="col-12"></div>
                                 <div className="col-12 col-md-5 mt-3">
@@ -133,7 +201,7 @@ export default function PaymentFormComponent() {
                                     </div>
                                 </div>
                                 <div className="col-12 mt-3">
-                                    <button name="btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`} onClick={(e) => console.log('click')}>
+                                    <button name="btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`} onClick={handleSubmit}>
                                         <span>
                                             <i className='me-2'><FaSave /></i>
                                             Save
@@ -149,12 +217,12 @@ export default function PaymentFormComponent() {
                         <div className="container-fluid">
                             <div className={`${styles.card} card`}>
                                 <div className="card-body">
-                                    <h5 class={`card-title ${styles.previousPaymentTitle}`}>Previous Payments for #{invoiceDetailsContext.invoiceDetails.invoiceNo}</h5>
+                                    <h5 className={`card-title ${styles.previousPaymentTitle}`}>Previous Payments for #{invoiceDetailsContext.invoiceDetails.invoiceNo} (W.I.P)</h5>
                                 </div>
                                 <div className="row">
                                     <div className="col-12">
                                         <div className={`${styles.companyInvoicePreviousPaymentTableWrapper}`}>
-                                            <InvoicePreviousPaymentTable items={[]} styles={styles} />
+                                            <InvoicePreviousPaymentTable items={previousPaymentData} styles={styles} />
                                         </div>
                                     </div>
                                 </div>
