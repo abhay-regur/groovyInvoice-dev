@@ -14,7 +14,7 @@
 
 @media screen and (min-width: 676px) {
     .main {
-        margin: 0 auto 97px 97px;
+        margin: 0 40px 97px 97px;
         margin-left: 135px;
         transition: all 0.35s;
 
@@ -29,6 +29,13 @@
             font-size: 36px;
             line-height: 33px;
             margin-bottom: 49px;
+        }
+
+        .previousPaymentTitle {
+            color: var.$primary-color;
+            font-weight: 700;
+            font-size: 26px;
+            line-height: 33px;
         }
 
         .card {
@@ -373,6 +380,44 @@
                     }
                 }
             }
+
+            .companyInvoicePreviousPaymentTableWrapper {
+                padding-top: 14px;
+
+                .companyInvoicePreviousPaymentTable {
+                    border-color: var.$border-color;
+
+                    thead {
+                        background: var.$primary-color;
+                        color: var.$white;
+                        min-width: 680px;
+
+                        tr {
+
+                            th {
+                                background: var.$primary-color;
+                                color: var.$white;
+                                border: 1px solid var.$border-color;
+                                text-align: center;
+                                padding: 6px;
+                            }
+                        }
+                    }
+
+                    tbody {
+                        tr {
+                            td {
+                                padding: 25px;
+                                font-weight: 400;
+                                font-size: 14px;
+                                line-height: 21px;
+                                color: var.$secondary-color;
+                                border: 1px solid var.$border-color;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -394,6 +439,13 @@
             font-size: 26px;
             line-height: 33px;
             margin-bottom: 28px;
+        }
+
+        .previousPaymentTitle {
+            color: var.$primary-color;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 33px;
         }
 
         .card {
@@ -741,6 +793,44 @@
                                 -webkit-transform: rotate(45deg);
                                 -ms-transform: rotate(45deg);
                                 transform: rotate(45deg);
+                            }
+                        }
+                    }
+                }
+            }
+
+            .companyInvoicePreviousPaymentTableWrapper {
+                padding-top: 14px;
+                overflow-x: auto;
+
+                .companyInvoicePreviousPaymentTable {
+                    border-color: var.$border-color;
+
+                    thead {
+                        background: var.$primary-color;
+                        color: var.$white;
+
+                        tr {
+
+                            th {
+                                background: var.$primary-color;
+                                color: var.$white;
+                                border: 1px solid var.$border-color;
+                                text-align: center;
+                                padding: 5px;
+                            }
+                        }
+                    }
+
+                    tbody {
+                        tr {
+                            td {
+                                padding: 25px;
+                                font-weight: 400;
+                                font-size: 14px;
+                                line-height: 21px;
+                                color: var.$secondary-color;
+                                border: 1px solid var.$border-color;
                             }
                         }
                     }

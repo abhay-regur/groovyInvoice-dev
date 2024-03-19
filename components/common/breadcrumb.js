@@ -1,5 +1,6 @@
 import { usePathname, useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import Link from 'next/link'
 import styles from '@/styles/breadcrumb.module.scss';
 
 export default function Breadcrumb() {
@@ -31,7 +32,7 @@ export default function Breadcrumb() {
                 {
                     breadcrumb.map((crumb, idx) => {
                         if (idx != (breadcrumb.length - 1)) {
-                            return <li key={idx} className={`${styles.breadcrumbItem} breadcrumb_item`}><a href={crumb.href}>{crumb.title}</a></li>
+                            return <li key={idx} className={`${styles.breadcrumbItem} breadcrumb_item`}><Link href={crumb.href}>{crumb.title}</Link></li>
                         } else {
                             return <li key={idx} className={`${styles.breadcrumbItem} ${styles.currentPageWrapper} breadcrumb_item`}><span className={`${styles.currentPage}`}>{crumb.title}</span></li>
                         }

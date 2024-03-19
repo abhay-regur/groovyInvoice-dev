@@ -11,6 +11,7 @@ export const GST_TREATMENT = {
     SES_DEVELOPER: 9,
 };
 
+//Date Formate
 export const DATE_FORMATE_LIST = [
     { Id: 'dd-MM-yyyy', name: 'dd-MM-yyyy' },
     { Id: 'MM-dd-yyyy', name: 'MM-dd-yyyy' },
@@ -19,3 +20,7 @@ export const DATE_FORMATE_LIST = [
     { Id: 'MM/dd/yyyy', name: 'MM/dd/yyyy' },
     { Id: 'yyyy/MM/dd', name: 'yyyy/MM/dd' },
 ]
+
+// Regular Expressions
+export const REGX_GST = /^\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}[Z]{1}[A-Z\d]{1}$/;
+export const REGX_PAN = /^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/;

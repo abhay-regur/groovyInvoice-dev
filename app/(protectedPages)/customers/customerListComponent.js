@@ -28,7 +28,7 @@ export default function CustomerListComponent() {
                             </h2>
                         </div>
                         <div className="col-6 d-flex justify-content-end">
-                            <Link href={'/customers/add'}>
+                            <Link href={'customers/add'}>
                                 <button className="green align-content-center">
                                     <FaCirclePlus />
                                     Add Customer

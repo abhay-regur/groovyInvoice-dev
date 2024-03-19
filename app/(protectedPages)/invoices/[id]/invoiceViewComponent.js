@@ -22,10 +22,12 @@ import Loading from '@/app/loading';
 import { paymentInfoForInvoice } from '@/services/payment.service';
 import { useCurrentUserData } from "@/context/CurrentUserData.context";
 import { getCurrencyById } from '@/services/common/general.service';
+import { useInvoiceDetails } from '@/context/invoiceDetails.context';
 
 export default function InvoiceViewComponent() {
     const { id } = useParams();
     const router = useRouter();
+    const { invoiceDetailsContext, setInvoiceDetailsContext } = useInvoiceDetails();
     const { navExpandedState } = useContext(NavExpandedState);
     const { userInfo } = useCurrentUserData();
     const [isPageLoading, setIsPageLoading] = useState(true);
@@ -52,6 +54,7 @@ export default function InvoiceViewComponent() {
         adjustmentAmount: 0,
         invoiceItems: []
     })
+
     const [paymentInfo, setPaymentInfo] = useState({
         paidAmount: 0,
         unpaidAmount: 0,
@@ -86,15 +89,19 @@ export default function InvoiceViewComponent() {
 
     const getInvoiceData = async () => {
         try {
+            const tempInvoiceDetails = { ...invoiceDetailsContext }
             const result = await getInvoice(id);
             const data = result.data;
             setData({ ...data, invoiceDate: new Date(data.invoiceDate), dueDate: new Date(data.dueDate) })
 
-            getCustomerData(data.customerId);
+            getCustomerData(data.customerId, tempInvoiceDetails);
             getPaymentTermData(data.termsId);
             setIsPageLoading(false);
             const paymentResult = await paymentInfoForInvoice(id);
-            setPaymentInfo(paymentResult.data)
+            setPaymentInfo(paymentResult.data);
+            setInvoiceDetailsContext(tempInvoiceDetails);
+            tempInvoiceDetails.invoiceDetails.invoiceNo = data.invoiceNo;
+            tempInvoiceDetails.invoiceDetails.totalAmount = paymentResult.data.unpaidAmount;
 
         } catch (error) {
             if (error.response != undefined && error.response.status == 404) {
@@ -105,7 +112,7 @@ export default function InvoiceViewComponent() {
         }
     }
 
-    const getCustomerData = async (id) => {
+    const getCustomerData = async (id, tempInvoiceDetails) => {
         try {
             const customerData = await getCustomer(id);
             setCustomer({
@@ -132,6 +139,11 @@ export default function InvoiceViewComponent() {
                     fax: customerData.data.address.billingAddress.fax
                 }
             });
+
+            tempInvoiceDetails.customerDetails.name = customerData.data.firstName + " " + customerData.data.lastName;
+            tempInvoiceDetails.customerDetails.panCardNumber = customerData.data.panNumber;
+
+
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
         }
@@ -182,7 +194,7 @@ export default function InvoiceViewComponent() {
                     </div>
                     <div className="container px-3 px-sm-0">
                         <div className={`${styles.comapnyInvoiceViewInvoiceHeadWrapper} row`}>
-                            <div className={`${styles.comapnyInvoiceViewInvoiceMainHeading} col-9 col-md-10 col-lg-7`}>{customer.firstName + ' ' + customer.lastName}<span className={`${styles.comapnyInvoiceViewInvoiceSubHeading}`}>#{formatDate(data.invoiceDate, dateFormat)}</span></div>
+                            <div className={`${styles.comapnyInvoiceViewInvoiceMainHeading} col-9 col-md-10 col-lg-7`}>{customer.firstName + ' ' + customer.lastName}<span className={`${styles.comapnyInvoiceViewInvoiceSubHeading}`}>#{data.invoiceNo}</span></div>
                             <div className={`${styles.companyInvoiceViewInvoiceActionBarWrapper} col-12`}>
                                 <nav className={`${styles.companyInvoiceViewInvoiceActionBar} navbar navbar-expand-lg`}>
                                     <div className="container-fluid">
@@ -193,7 +205,7 @@ export default function InvoiceViewComponent() {
                                         <div className={`${styles.companyInvoiceViewInvoiceActionBarCollapse} ${actionBarExpandedState ? "" : styles.collapse} navbar-collapse justify-content-lg-start`} id="navbarNavDropdown">
                                             <ul className={`${styles.companyInvoiceViewInvoiceActionBarnavbarNav} navbar-nav nav-fill`}>
                                                 <li className={`${styles.companyInvoiceViewInvoiceActionBarActionItem} nav-item`}>
-                                                    <Link href={`/invoices/update/${id}`} className="nav-link d-flex justify-content-lg-center">
+                                                    <Link href={`update/${id}`} className="nav-link d-flex justify-content-lg-center">
                                                         <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}><FaPen /></span>
                                                         <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText}`}> Edit</span>
                                                     </Link>
@@ -224,7 +236,7 @@ export default function InvoiceViewComponent() {
                                                     </ul>
                                                 </li>
                                                 <li className={`${styles.companyInvoiceViewInvoiceActionBarActionItem} nav-item`}>
-                                                    <Link href={`/invoices/${id}/payment`} className="nav-link d-flex justify-content-lg-center">
+                                                    <Link href={`${id}/payment`} className="nav-link d-flex justify-content-lg-center">
                                                         <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}><FaRupee /></span>
                                                         <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText}`}>Record Payment</span>
                                                     </Link>
@@ -245,7 +257,7 @@ export default function InvoiceViewComponent() {
                                         </div>
                                         <div className="col-12 col-lg-6 order-0 order-lg-1">
                                             <div className={`${styles.comapnyInvoiceViewInvoiceHeading} d-flex justify-content-end`}>Tax Invoice</div>
-                                            <div className={`${styles.comapnyInvoiceViewInvoiceInvoiceDate} d-flex justify-content-end`}>#{formatDate(data.invoiceDate, dateFormat)}</div>
+                                            <div className={`${styles.comapnyInvoiceViewInvoiceInvoiceDate} d-flex justify-content-end`}>#{data.invoiceNo}</div>
                                         </div>
                                     </div>
                                     <hr />
