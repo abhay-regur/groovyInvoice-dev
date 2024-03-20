@@ -1,4 +1,4 @@
-const downloadImage = (imageUrl) => {
+export const downloadImage = (imageUrl) => {
     fetch(imageUrl)
         .then(response => response.blob())
         .then(blob => {
@@ -13,8 +13,4 @@ const downloadImage = (imageUrl) => {
             window.URL.revokeObjectURL(url);
         })
         .catch(error => console.error('Error downloading image:', error));
-}
-
-export {
-    downloadImage
 }

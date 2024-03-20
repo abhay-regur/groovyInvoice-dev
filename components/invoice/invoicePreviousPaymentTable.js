@@ -21,12 +21,12 @@ const InvoicePreviousPaymentsTable = ({ items = [], styles }) => {
                         {items.length > 0 ? items.map((item) => {
                             return (
                                 <tr key={item.id}>
-                                    <td className={`${styles.companyInvoicePreviousPaymentTablePaymentId}`} colSpan={1}>{item.id}</td>
+                                    <td className={`${styles.companyInvoicePreviousPaymentTablePaymentId}`} colSpan={1}>0{item.id}</td>
                                     <td className={`${styles.companyInvoicePreviousPaymentTableAmountRecived}`} colSpan={1}>{item.amount}</td>
                                     <td className={`${styles.companyInvoicePreviousPaymentTableReferences}`} colSpan={1}>{item.references}</td>
                                     <td className={`${styles.companyInvoicePreviousPaymentTablePaymentDate}`} colSpan={1}>{item.paymentDate}</td>
                                     <td className={`${styles.companyInvoicePreviousPaymentTableNotes}`} colSpan={1}>{item.notes}</td>
-                                    <td className={`${styles.companyInvoicePreviousPaymentTableAttachment}`} colSpan={1}> {item.file ? <i onClick={() => downloadImage(item.file)}><FaDownload /></i> : ''}</td>
+                                    <td className={`${styles.companyInvoicePreviousPaymentTableAttachment}`} colSpan={1}> {item.file ? <i onClick={() => downloadImage(item.file)}><FaDownload /></i> : ' - '}</td>
                                 </tr>
                             )
                         })
