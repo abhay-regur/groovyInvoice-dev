@@ -99,9 +99,9 @@ export default function InvoiceViewComponent() {
             setIsPageLoading(false);
             const paymentResult = await paymentInfoForInvoice(id);
             setPaymentInfo(paymentResult.data);
-            setInvoiceDetailsContext(tempInvoiceDetails);
             tempInvoiceDetails.invoiceDetails.invoiceNo = data.invoiceNo;
             tempInvoiceDetails.invoiceDetails.totalAmount = paymentResult.data.unpaidAmount;
+            setInvoiceDetailsContext(tempInvoiceDetails);
 
         } catch (error) {
             if (error.response != undefined && error.response.status == 404) {
@@ -139,9 +139,9 @@ export default function InvoiceViewComponent() {
                     fax: customerData.data.address.billingAddress.fax
                 }
             });
-
             tempInvoiceDetails.customerDetails.name = customerData.data.firstName + " " + customerData.data.lastName;
             tempInvoiceDetails.customerDetails.panCardNumber = customerData.data.panNumber;
+            tempInvoiceDetails.invoiceDetails.currencyId = customerData.data.currencyId;
 
 
         } catch (error) {

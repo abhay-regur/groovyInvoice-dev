@@ -7,7 +7,8 @@ const InvoiceDetailsContext = createContext({
     },
     invoiceDetails: {
         invoiceNo: '',
-        totalAmount: 0
+        totalAmount: 0,
+        currencyId: ''
     }
 })
 export const InvoiceDetailsProvider = ({ children }) => {
@@ -18,7 +19,8 @@ export const InvoiceDetailsProvider = ({ children }) => {
         },
         invoiceDetails: {
             invoiceNo: '',
-            totalAmount: 0
+            totalAmount: 0,
+            currencyId: ''
         }
     });
     return (
