@@ -98,7 +98,11 @@ export default function ProfileComponent() {
         myFormData.append('profilePicFile', userData.profilePicFile);
 
         tempcurrentUserData.userName = userData.firstName + ' ' + userData.lastName;
-        tempcurrentUserData.userProfileImage = URL.createObjectURL(userData.profilePicFile);
+        if (userData.profilePicFile) {
+            tempcurrentUserData.userProfileImage = URL.createObjectURL(userData.profilePicFile);
+        } else {
+            tempcurrentUserData.userProfileImage = "";
+        }
 
         try {
             const result = await updateCurrentUserDetails(myFormData);
