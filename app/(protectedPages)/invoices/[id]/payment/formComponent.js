@@ -89,6 +89,7 @@ export default function PaymentFormComponent() {
                 title: 'Added Payment for the Invoice #' + invoiceDetailsContext.invoiceDetails.invoiceNo,
                 description: '',
             }]);
+            getPaymentHistory();
         } catch (error) {
             console.log(error);
             setErrors(genrateErrorMessage(error, '', setToastList));

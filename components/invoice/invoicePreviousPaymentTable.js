@@ -1,3 +1,5 @@
+import FaDownload from '@/assets/icons/faDownload.svg'
+
 const InvoicePreviousPaymentsTable = ({ items = [], styles }) => {
     return (
         <div className="row">
@@ -22,13 +24,13 @@ const InvoicePreviousPaymentsTable = ({ items = [], styles }) => {
                                     <td className={`${styles.companyInvoicePreviousPaymentTableReferences}`} colSpan={1}>{item.references}</td>
                                     <td className={`${styles.companyInvoicePreviousPaymentTablePaymentDate}`} colSpan={1}>{item.paymentDate}</td>
                                     <td className={`${styles.companyInvoicePreviousPaymentTableNotes}`} colSpan={1}>{item.notes}</td>
-                                    <td className={`${styles.companyInvoicePreviousPaymentTableAttachment}`} colSpan={1}><a href={item.file} download={`${item.paymentDate}_ ${item.invoiceId}`}>Download</a></td>
+                                    <td className={`${styles.companyInvoicePreviousPaymentTableAttachment}`} colSpan={1}> <a href={item.file} download={`attachment_file_${item.id}`} ><i><FaDownload /></i></a></td>
                                 </tr>
                             )
                         })
                             :
                             <tr>
-                                <td className="text-center" colSpan={5}> No payments mades</td>
+                                <td className="text-center" colSpan={6}> No payments mades</td>
                             </tr>
                         }
                     </tbody>
