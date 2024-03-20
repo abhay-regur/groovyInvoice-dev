@@ -19,7 +19,7 @@
                 color: var.$primary-color;
                 font-weight: 700;
                 font-size: 36px;
-                line-height: 33px; 
+                line-height: 33px;
                 transition: all 0.35s;
             }
 
@@ -56,6 +56,20 @@
                     svg {
                         height: 41px;
                         width: 41px;
+                    }
+
+                    .companyInvoiceCurrencyIcon {
+                        background: var.$tertiary-color;
+                        text-align: center;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: var.$white;
+                        border-radius: 50%;
+                        font-size: 1.6rem;
+                        font-weight: 500;
+                        height: 40.99px;
+                        width: 40.99px
                     }
                 }
 
@@ -174,10 +188,9 @@
                             border-bottom: 1px solid var.$table-border;
 
                             .companyInvoiceTableInvoiceNumber {
-                                    font-weight: 600;
-                                    font-size: 16px;
-                                    color: var.$primary-color;
-                                    cursor: pointer;
+                                font-weight: 600;
+                                font-size: 16px;
+                                color: var.$primary-color;
                             }
 
                             .companyInvoiceTableCustomerImage {
@@ -396,9 +409,18 @@
                 padding: 16px 12px 0 12px;
 
                 .companyInvoiceTopHeaderSVGWrapper {
-                    svg {
-                        height: 41px;
-                        width: 41px;
+                    .companyInvoiceCurrencyIcon {
+                        background: var.$tertiary-color;
+                        text-align: center;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: var.$white;
+                        border-radius: 50%;
+                        font-size: 1.6rem;
+                        font-weight: 500;
+                        height: 40.99px;
+                        width: 40.99px
                     }
                 }
 
@@ -536,8 +558,7 @@
                                 font-weight: 600;
                                 font-size: 16px;
                                 color: var.$primary-color;
-                                cursor: pointer;
-                        }
+                            }
 
                             .companyInvoiceTableCustomerImage {
                                 display: flex;
@@ -750,9 +771,19 @@
                 padding: 16px 12px 0 12px;
 
                 .companyInvoiceTopHeaderSVGWrapper {
-                    svg {
-                        height: 41px;
-                        width: 41px;
+
+                    .companyInvoiceCurrencyIcon {
+                        background: var.$tertiary-color;
+                        text-align: center;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: var.$white;
+                        border-radius: 50%;
+                        font-size: 1.6rem;
+                        font-weight: 500;
+                        height: 40.99px;
+                        width: 40.99px
                     }
                 }
 
@@ -840,7 +871,7 @@
                         color: var.$primary-color;
                         border-right: 1px solid var.$table-border;
 
-                        
+
 
                         &:first-of-type {
                             border-top-left-radius: 10px;
@@ -888,10 +919,9 @@
                             border-bottom: 1px solid var.$table-border;
 
                             .companyInvoiceTableInvoiceNumber {
-                                    font-weight: 600;
-                                    font-size: 16px;
-                                    color: var.$primary-color;
-                                    cursor: pointer;
+                                font-weight: 600;
+                                font-size: 16px;
+                                color: var.$primary-color;
                             }
 
                             .companyInvoiceTableCustomerImage {
