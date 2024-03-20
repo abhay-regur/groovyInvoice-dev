@@ -1,6 +1,8 @@
 import FaDownload from '@/assets/icons/faDownload.svg'
+import { downloadImage } from '@/utils/file.utils';
 
 const InvoicePreviousPaymentsTable = ({ items = [], styles }) => {
+
     return (
         <div className="row">
             <div className="col-sm-12">
@@ -24,7 +26,7 @@ const InvoicePreviousPaymentsTable = ({ items = [], styles }) => {
                                     <td className={`${styles.companyInvoicePreviousPaymentTableReferences}`} colSpan={1}>{item.references}</td>
                                     <td className={`${styles.companyInvoicePreviousPaymentTablePaymentDate}`} colSpan={1}>{item.paymentDate}</td>
                                     <td className={`${styles.companyInvoicePreviousPaymentTableNotes}`} colSpan={1}>{item.notes}</td>
-                                    <td className={`${styles.companyInvoicePreviousPaymentTableAttachment}`} colSpan={1}> <a href={item.file} download={`attachment_file_${item.id}`} ><i><FaDownload /></i></a></td>
+                                    <td className={`${styles.companyInvoicePreviousPaymentTableAttachment}`} colSpan={1}> {item.file ? <i onClick={() => downloadImage(item.file)}><FaDownload /></i> : ''}</td>
                                 </tr>
                             )
                         })
