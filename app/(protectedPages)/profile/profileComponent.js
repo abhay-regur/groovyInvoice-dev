@@ -25,7 +25,7 @@ export default function ProfileComponent() {
     const { setToastList } = useContext(ToastMsgContext);
     const [isLoading, setIsLoading] = useState(true);
     const [isImageSet, setIsImageSet] = useState(false);
-    const [errors, setErrors] = useState([]);
+    const [profileInfoErrors, setProfileInfoErrors] = useState([]);
     const [imageSrc, setImageSrc] = useState('');
     const [passwordErrors, setPasswordErrors] = useState([]);
     const [userCurrentPassword, setUserCurrentPassword] = useState('');
@@ -59,7 +59,7 @@ export default function ProfileComponent() {
     }
 
     const getUserDetails = async () => {
-        setErrors([]);
+        setProfileInfoErrors([]);
         try {
             const result = await getCurrentUserDetails();
             var data = result.data;
@@ -80,14 +80,14 @@ export default function ProfileComponent() {
             });
 
         } catch (error) {
-            setErrors(genrateErrorMessage(error, '', setToastList));
+            setProfileInfoErrors(genrateErrorMessage(error, '', setToastList));
         }
         setIsLoading(false);
     }
 
     const handleUserSaveClick = async (e) => {
         e.preventDefault();
-        setErrors([]);
+        setProfileInfoErrors([]);
         disableSubmitButton(e.target);
         var tempcurrentUserData = { ...userInfo }
         var myFormData = new FormData();
@@ -113,7 +113,7 @@ export default function ProfileComponent() {
                 setUserInfo(Object.assign({}, tempcurrentUserData));
             }
         } catch (error) {
-            setErrors(genrateErrorMessage(error, '', setToastList));
+            setProfileInfoErrors(genrateErrorMessage(error, '', setToastList));
         }
         enableSubmitButton(e.target);
     }
@@ -147,7 +147,6 @@ export default function ProfileComponent() {
 
     const handlePasswordSaveClick = async (e) => {
         e.preventDefault();
-        setErrors([]);
         setPasswordErrors([]);
         disableSubmitButton(e.target);
         const data = {
@@ -166,13 +165,13 @@ export default function ProfileComponent() {
             setUserNewPassword('');
             setUserConfirmPassword('');
         } catch (error) {
-            setErrors(genrateErrorMessage(error, '', setToastList));
+            setPasswordErrors(genrateErrorMessage(error, '', setToastList));
         }
         enableSubmitButton(e.target);
     }
 
     const handleCancelClick = () => {
-        setErrors([]);
+        setProfileInfoErrors([]);
         setPasswordErrors([]);
         setUserCurrentPassword('');
         setUserNewPassword('');
@@ -205,6 +204,7 @@ export default function ProfileComponent() {
                                             <div className={`${styles.personalDetailsWrapper}`}>
                                                 <h4 className="mb-0">Personal Details</h4>
                                                 <hr />
+                                                <ErrorList errors={profileInfoErrors} />
                                                 <form action="#" onSubmit={handleUserSaveClick}>
 
                                                     <div className="row">
