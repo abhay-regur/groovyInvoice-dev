@@ -4,14 +4,15 @@ import { useRef, useState } from 'react';
 import 'datatables.net-dt/js/dataTables.dataTables';
 import React from 'react';
 import ReactDOM from "react-dom/client";
-import Link from 'next/link';
 import 'datatables.net-dt/css/jquery.dataTables.min.css';
 import ServerSideDataTables from './serverSideDataTable';
 import FaPen from '@/assets/icons/faPen.svg';
+import { useRouter } from 'next/navigation';
 
 const AllCustomerTable = () => {
     const [isPageLoading, setIsPageLoading] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
+    const { push } = useRouter();
 
     const dtRef = useRef();
 
@@ -23,9 +24,9 @@ const AllCustomerTable = () => {
                         <div className={`${styles.companyCustomerTableCustomerName}`} >
                             {row.displayName}
                         </div>
-                        <Link className={`${styles.companyCustomerTableCustomerEdit} ps-2`} href={`customers/update/${row.id}`}>
+                        <span className={`${styles.companyCustomerTableCustomerEdit} ps-2`} onClick={()=>push(`customers/update/${row.id}`)}>
                             <FaPen />
-                        </Link>
+                        </span>
                     </span>
                 </div>
             </>

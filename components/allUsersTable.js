@@ -14,7 +14,7 @@ import ServerSideDataTables from './serverSideDataTable';
 import Link from 'next/link';
 
 const ProfileImage = ({ src }) => {
-    const [image, setImage] = useState(src.replaceAll('\\', '/'));
+    const [image, setImage] = useState(src ? src.replaceAll('\\', '/') : '');
 
     const imageLoader = ({ src, width, quality }) => {
         return (`${src}?w=${width}&q=${quality || 75}`);
