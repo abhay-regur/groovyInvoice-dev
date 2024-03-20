@@ -330,7 +330,7 @@ export default function ProfileComponent() {
 
                                                                         </div>
                                                                         <div className="col-1">
-                                                                            <button className="btn blueOutline" onClick={() => { genrateNewPassword() }}><FaGear /></button>
+                                                                            <button type="button" className="btn blueOutline" onClick={() => { genrateNewPassword() }}><FaGear /></button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
