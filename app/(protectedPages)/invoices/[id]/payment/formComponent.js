@@ -149,7 +149,7 @@ export default function PaymentFormComponent() {
                                         <div className="col-12 col-lg-10">
                                             <div className="row">
                                                 <div className="col-12">
-                                                    <label className={`${styles.companyInvoiceAmountRecivedLabel}`}>Ammount Received</label>
+                                                    <label className={`${styles.companyInvoiceAmountRecivedLabel}`}>Amount Received</label>
                                                 </div>
                                                 <div className="col-12 mt-2">
                                                     <div className="input-group">
