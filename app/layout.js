@@ -3,6 +3,7 @@ import React from 'react';
 import { Suspense } from "react";
 import Loading from "./loading";
 import '@/styles/globals.scss';
+import NotificationLayout from "./notificationLayout";
 import { Mulish } from "@next/font/google";
 
 const mulish = Mulish({
@@ -25,7 +26,12 @@ function RootLayout({ children }) {
         <html lang="en" className={`${mulish.variable}`}>
             <body>
                 <React.StrictMode>
-                    <Suspense fallback={<Loading />}>{children}</Suspense>
+                    <Suspense fallback={<Loading />}>
+                        <NotificationLayout>
+                            {children}
+                        </NotificationLayout>
+
+                    </Suspense>
                 </React.StrictMode>
             </body>
         </html>)
