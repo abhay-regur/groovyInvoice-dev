@@ -80,8 +80,8 @@ export default function LoginForm() {
         } else {
             try {
                 disableSubmitButton(e.target)
-                const result = await login(data, rememberMe)
-                if (result.profileCompleted) {
+                const result = await login(data, rememberMe);
+                if (result.data.profileCompleted) {
                     router.push('/')
                 } else {
                     router.push('/organization-setup')

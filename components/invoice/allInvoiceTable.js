@@ -8,19 +8,19 @@ import ServerSideDataTables from '@/components/serverSideDataTable';
 import { formatDate } from '@/utils/date.utils';
 import FaExclamationCircle from '@/assets/icons/faExclamationCircle.svg';
 import FaPen from '@/assets/icons/faPen.svg';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const AllInvoiceTable = ({ dateFormat }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [isPageLoading, setIsPageLoading] = useState(true);
-
+    const { push } = useRouter();
 
     const dtRef = useRef();
 
     const draw_invoiceNo = (row) => {
         return (
             <>
-                <span className={`${styles.companyInvoiceTableInvoiceNumber}`}><Link href={`invoices/${row.id}`}>{row.invoiceNo}</Link></span>
+                <span className={`${styles.companyInvoiceTableInvoiceNumber}`} onClick={()=>push(`invoices/${row.id}`)}>{row.invoiceNo}</span>
             </>
         )
     }
@@ -40,9 +40,7 @@ const AllInvoiceTable = ({ dateFormat }) => {
     const draw_action = (rowData) => {
         return (
             <span className={`${styles.companyInvoiceTableActionWrapper}`}>
-                <Link href={`invoices/update/${rowData.id}`}>
-                    <span className={`${styles.companyInvoiceTableActionEdit}`}><FaPen /></span>
-                </Link>
+                <span className={`${styles.companyInvoiceTableActionEdit}`} onClick={()=>push(`invoices/update/${rowData.id}`)}><FaPen /></span>
                 <span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span>
             </span>
         );
