@@ -41,6 +41,12 @@ export default function ProfileComponent() {
         confirmPassword: ''
     });
 
+    const [profileValidateErrorMessage, setProfileValidateErrorMessage] = useState({
+        firstName: '',
+        lastName: '',
+        cellNumber: ''
+    });
+
     const [userData, setUserData] = useState({
         id: "",
         email: "",
@@ -97,35 +103,37 @@ export default function ProfileComponent() {
         e.preventDefault();
         setProfileInfoErrors([]);
         disableSubmitButton(e.target);
-        var tempcurrentUserData = { ...userInfo }
-        var myFormData = new FormData();
-        myFormData.append('firstName', userData.firstName);
-        myFormData.append('lastName', userData.lastName);
-        myFormData.append('cellNumber', userData.cellNumber);
-        myFormData.append('active', true);
-        myFormData.append('profilePicFile', userData.profilePicFile);
+        if (handleProfileValidation()) {
+            var tempcurrentUserData = { ...userInfo }
+            var myFormData = new FormData();
+            myFormData.append('firstName', userData.firstName);
+            myFormData.append('lastName', userData.lastName);
+            myFormData.append('cellNumber', userData.cellNumber);
+            myFormData.append('active', true);
+            myFormData.append('profilePicFile', userData.profilePicFile);
 
-        tempcurrentUserData.userName = userData.firstName + ' ' + userData.lastName;
-        if (userData.profilePicFile) {
-            tempcurrentUserData.userProfileImage = URL.createObjectURL(userData.profilePicFile);
-        } else {
-            tempcurrentUserData.userProfileImage = "";
-        }
-
-        try {
-            const result = await updateCurrentUserDetails(myFormData);
-            if (result.status == 200) {
-
-                setToastList([{
-                    id: Math.floor((Math.random() * 101) + 1),
-                    title: 'My Profile',
-                    description: 'Details Updated Successfully',
-                }]);
-
-                setUserInfo(Object.assign({}, tempcurrentUserData));
+            tempcurrentUserData.userName = userData.firstName + ' ' + userData.lastName;
+            if (userData.profilePicFile) {
+                tempcurrentUserData.userProfileImage = URL.createObjectURL(userData.profilePicFile);
+            } else {
+                tempcurrentUserData.userProfileImage = "";
             }
-        } catch (error) {
-            setProfileInfoErrors(genrateErrorMessage(error, '', setToastList));
+
+            try {
+                const result = await updateCurrentUserDetails(myFormData);
+                if (result.status == 200) {
+
+                    setToastList([{
+                        id: Math.floor((Math.random() * 101) + 1),
+                        title: 'My Profile',
+                        description: 'Details Updated Successfully',
+                    }]);
+
+                    setUserInfo(Object.assign({}, tempcurrentUserData));
+                }
+            } catch (error) {
+                setProfileInfoErrors(genrateErrorMessage(error, '', setToastList));
+            }
         }
         enableSubmitButton(e.target);
     }
@@ -163,7 +171,7 @@ export default function ProfileComponent() {
         e.preventDefault();
         setPasswordErrors([]);
         disableSubmitButton(e.target);
-        if(handlePasswordValidation()) {
+        if (handlePasswordValidation()) {
             try {
                 const result = await updateCurrentPassword(passwordData);
                 setToastList([{
@@ -197,36 +205,78 @@ export default function ProfileComponent() {
         return (`${src}?w=${width}&q=${quality || 75}`);
     }
 
-    const handleValidationError = (name, msg) => {
+    const handlePasswordValidationError = (name, msg) => {
         passwordValidateErrorMessage[name] = msg;
         let temp = Object.assign({}, passwordValidateErrorMessage)
         setPasswordValidateErrorMessage(temp)
     }
 
+    const handleProfileValidationError = (name, msg) => {
+        profileValidateErrorMessage[name] = msg;
+        let temp = Object.assign({}, profileValidateErrorMessage)
+        setProfileValidateErrorMessage(temp)
+    }
+
+    const validateProfileData = (name, value) => {
+        if (name == 'firstName') {
+            if (value == '') {
+                handleProfileValidationError(name, 'First name is required');
+            } else {
+                handleProfileValidationError(name, '');
+            }
+        }
+        if (name == 'lastName') {
+            if (value == '') {
+                handleProfileValidationError(name, 'Last name is required');
+            } else {
+                handleProfileValidationError(name, '');
+            }
+        }
+        if (name == 'cellNumber') {
+            if (value == '') {
+                handleProfileValidationError(name, 'Cell number is required');
+            } else {
+                handleProfileValidationError(name, '');
+            }
+        }
+    }
+
+    const handleProfileValidation = (e) => {
+        if (e) {
+            validateProfileData(e.target.name, e.target.value)
+        } else {
+            validateProfileData('firstName', userData.firstName);
+            validateProfileData('lastName', userData.lastName);
+            validateProfileData('cellNumber', userData.cellNumber);
+            if (profileValidateErrorMessage.firstName == '' && profileValidateErrorMessage.lastName == '' && profileValidateErrorMessage.cellNumber == '') {
+                return true;
+            }
+            return false;
+        }
+    }
+
     const validatePasswordData = (name, value) => {
         if (name == 'currentPassword') {
             if (value == '') {
-                handleValidationError(name,'Current password is required');
+                handlePasswordValidationError(name, 'Current password is required');
             } else {
-                handleValidationError(name,'');
+                handlePasswordValidationError(name, '');
             }
         } else if (name == 'newPassword') {
             if (value == '') {
-                handleValidationError(name,'New password is required');
+                handlePasswordValidationError(name, 'New password is required');
             } else if (value.length < 8 || value.length > 16) {
-                handleValidationError(name,'New password must be of 8 to 16 characters long');
+                handlePasswordValidationError(name, 'New password must be of 8 to 16 characters long');
             } else {
-                handleValidationError(name,'');
+                handlePasswordValidationError(name, '');
             }
         } else if (name == 'confirmPassword') {
-            console.log(passwordData.newPassword)
-            console.log(value)
             if (value == '') {
-                handleValidationError(name,'Confirm password is required');
+                handlePasswordValidationError(name, 'Confirm password is required');
             } else if (value != passwordData.newPassword) {
-                handleValidationError(name,'New password and confirm password must be same');
+                handlePasswordValidationError(name, 'New password and confirm password must be same');
             } else {
-                handleValidationError(name,'');
+                handlePasswordValidationError(name, '');
             }
         }
     }
@@ -307,7 +357,8 @@ export default function ProfileComponent() {
                                                                             <label className={`${styles.companyInvoiceProfileFirstName}`}>First Name</label>
                                                                         </div>
                                                                         <div className="col-12">
-                                                                            <input type="text" className="form-control" name="firstName" value={userData.firstName == null ? '' : userData.firstName} id="companyInvoiceProfileFirstName" placeholder='First Name' onChange={(e => { handleInput(e) })} />
+                                                                            <input type="text" className="form-control" name="firstName" value={userData.firstName == null ? '' : userData.firstName} id="companyInvoiceProfileFirstName" placeholder='First Name' onChange={(e => { handleInput(e) })} onBlur={handleProfileValidation} />
+                                                                            <div htmlFor="firstName" className="ms-3 invalid-data"> {profileValidateErrorMessage.firstName} </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -317,7 +368,8 @@ export default function ProfileComponent() {
                                                                             <label className={`${styles.companyInvoiceProfileLastName}`}>Last Name</label>
                                                                         </div>
                                                                         <div className="col-12">
-                                                                            <input type="text" className="form-control" name="lastName" value={userData.lastName == null ? '' : userData.lastName} id="companyInvoiceProfileLastName" placeholder='Last Name' onChange={(e => { handleInput(e) })} />
+                                                                            <input type="text" className="form-control" name="lastName" value={userData.lastName == null ? '' : userData.lastName} id="companyInvoiceProfileLastName" placeholder='Last Name' onBlur={handleProfileValidation} onChange={(e => { handleInput(e) })} />
+                                                                            <div htmlFor="lastName" className="ms-3 invalid-data"> {profileValidateErrorMessage.lastName} </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -327,7 +379,8 @@ export default function ProfileComponent() {
                                                                             <label className={`${styles.companyInvoiceContactNumber}`}>Contact Number</label>
                                                                         </div>
                                                                         <div className="col-12">
-                                                                            <input type="text" className="form-control" name="cellNumber" value={userData.cellNumber} id="companyInvoiceContactNumber" placeholder='Contact Number' onChange={(e => { handleInput(e) })} />
+                                                                            <input type="text" className="form-control" name="cellNumber" value={userData.cellNumber} id="companyInvoiceContactNumber" placeholder='Contact Number' onBlur={handleProfileValidation} onChange={(e => { handleInput(e) })} />
+                                                                            <div htmlFor="cellNumber" className="ms-3 invalid-data"> {profileValidateErrorMessage.cellNumber} </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -393,7 +446,7 @@ export default function ProfileComponent() {
                                                                 <div className="col-12">
                                                                     <div className="row g-0">
                                                                         <div className="col-11">
-                                                                            <input type="text" className="form-control" id="newPassword" name="newPassword" value={passwordData.newPassword}  onChange={handlePasswordChange} placeholder=' New Password' onBlur={handlePasswordValidation} />
+                                                                            <input type="text" className="form-control" id="newPassword" name="newPassword" value={passwordData.newPassword} onChange={handlePasswordChange} placeholder=' New Password' onBlur={handlePasswordValidation} />
                                                                             <div htmlFor="newPassword" className="ms-3 invalid-data">
                                                                                 {passwordValidateErrorMessage.newPassword}
                                                                             </div>
@@ -413,7 +466,7 @@ export default function ProfileComponent() {
                                                                     <label className={`${styles.companyInvoiceConfirmPasswordID}`}>Confirm Password</label>
                                                                 </div>
                                                                 <div className="col-12">
-                                                                    <input type="text" className="form-control" id="confirmPassword" name="confirmPassword" value={passwordData.confirmPassword}  onChange={handlePasswordChange} placeholder='Confirm Password' onBlur={handlePasswordValidation} />
+                                                                    <input type="text" className="form-control" id="confirmPassword" name="confirmPassword" value={passwordData.confirmPassword} onChange={handlePasswordChange} placeholder='Confirm Password' onBlur={handlePasswordValidation} />
                                                                     <div htmlFor="confirmPassword" className="ms-3 invalid-data">
                                                                         {passwordValidateErrorMessage.confirmPassword}
                                                                     </div>
