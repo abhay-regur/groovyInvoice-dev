@@ -163,20 +163,22 @@ export default function ProfileComponent() {
         e.preventDefault();
         setPasswordErrors([]);
         disableSubmitButton(e.target);
-        try {
-            const result = await updateCurrentPassword(passwordData);
-            setToastList([{
-                id: Math.floor((Math.random() * 101) + 1),
-                title: 'Your password is updated!',
-                description: result.data.message,
-            }]);
-            passwordData['currentPassword'] = '';
-            passwordData['newPassword'] = '';
-            passwordData['confirmPassword'] = '';
-            let temp = Object.assign({}, passwordData)
-            setPasswordData(temp);
-        } catch (error) {
-            setPasswordErrors(genrateErrorMessage(error, '', setToastList));
+        if(handlePasswordValidation()) {
+            try {
+                const result = await updateCurrentPassword(passwordData);
+                setToastList([{
+                    id: Math.floor((Math.random() * 101) + 1),
+                    title: 'Your password is updated!',
+                    description: result.data.message,
+                }]);
+                passwordData['currentPassword'] = '';
+                passwordData['newPassword'] = '';
+                passwordData['confirmPassword'] = '';
+                let temp = Object.assign({}, passwordData)
+                setPasswordData(temp);
+            } catch (error) {
+                setPasswordErrors(genrateErrorMessage(error, '', setToastList));
+            }
         }
         enableSubmitButton(e.target);
     }
@@ -201,25 +203,45 @@ export default function ProfileComponent() {
         setPasswordValidateErrorMessage(temp)
     }
 
-    const handlePasswordValidation = ({ target }) => {
-        if (target.name == 'currentPassword') {
-            if (target.value == '') {
-                handleValidationError(target.name,'Current password is required');
+    const validatePasswordData = (name, value) => {
+        if (name == 'currentPassword') {
+            if (value == '') {
+                handleValidationError(name,'Current password is required');
             } else {
-                handleValidationError(target.name,'');
+                handleValidationError(name,'');
             }
-        } else if (target.name == 'newPassword') {
-            if (target.value == '') {
-                handleValidationError(target.name,'New password is required');
+        } else if (name == 'newPassword') {
+            if (value == '') {
+                handleValidationError(name,'New password is required');
+            } else if (value.length < 8 || value.length > 16) {
+                handleValidationError(name,'New password must be of 8 to 16 characters long');
             } else {
-                handleValidationError(target.name,'');
+                handleValidationError(name,'');
             }
-        } else if (target.name == 'confirmPassword') {
-            if (target.value == '') {
-                handleValidationError(target.name,'Confirm password is required');
+        } else if (name == 'confirmPassword') {
+            console.log(passwordData.newPassword)
+            console.log(value)
+            if (value == '') {
+                handleValidationError(name,'Confirm password is required');
+            } else if (value != passwordData.newPassword) {
+                handleValidationError(name,'New password and confirm password must be same');
             } else {
-                handleValidationError(target.name,'');
+                handleValidationError(name,'');
             }
+        }
+    }
+
+    const handlePasswordValidation = (e) => {
+        if (e) {
+            validatePasswordData(e.target.name, e.target.value)
+        } else {
+            validatePasswordData('currentPassword', passwordData.currentPassword);
+            validatePasswordData('newPassword', passwordData.newPassword);
+            validatePasswordData('confirmPassword', passwordData.confirmPassword);
+            if (passwordValidateErrorMessage.currentPassword == '' && passwordValidateErrorMessage.newPassword == '' && passwordValidateErrorMessage.confirmPassword == '') {
+                return true;
+            }
+            return false;
         }
     }
 
