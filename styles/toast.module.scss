@@ -55,11 +55,9 @@
         .toastMessage {
             margin: 0;
             text-align: left;
-            height: 18px;
+            height: auto;
             margin-left: -1px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
+            text-wrap: wrap;
             color: var.$white;
             margin-bottom: 5px;
         }
@@ -79,6 +77,12 @@
             cursor: pointer;
             background: 0 0;
             border: 0;
+
+            &:hover {
+                -webkit-box-shadow: inset 0px 0px 30px 0px #00000046;
+                -moz-box-shadow: inset 0px 0px 30px 0px #00000046;
+                box-shadow: inset 0px 0px 30px 0px #00000046;
+            }
 
             svg {
                 path {
