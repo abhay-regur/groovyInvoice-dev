@@ -28,10 +28,18 @@ export default function ProfileComponent() {
     const [profileInfoErrors, setProfileInfoErrors] = useState([]);
     const [imageSrc, setImageSrc] = useState('');
     const [passwordErrors, setPasswordErrors] = useState([]);
-    const [userCurrentPassword, setUserCurrentPassword] = useState('');
-    const [userNewPassword, setUserNewPassword] = useState('');
-    const [userConfirmPassword, setUserConfirmPassword] = useState('');
+    const [passwordData, setPasswordData] = useState({
+        currentPassword: '',
+        newPassword: '',
+        confirmPassword: ''
+    });
     const { userInfo, setUserInfo } = useCurrentUserData();
+
+    const [passwordValidateErrorMessage, setPasswordValidateErrorMessage] = useState({
+        currentPassword: '',
+        newPassword: '',
+        confirmPassword: ''
+    });
 
     const [userData, setUserData] = useState({
         id: "",
@@ -123,9 +131,11 @@ export default function ProfileComponent() {
     }
 
     const genrateNewPassword = () => {
-        var temp = generatePassword()
-        setUserNewPassword(temp);
-        setUserConfirmPassword(temp);
+        var password = generatePassword()
+        passwordData['newPassword'] = password;
+        passwordData['confirmPassword'] = password;
+        let temp = Object.assign({}, passwordData);
+        setPasswordData(temp);
     }
 
     const previewandSetImage = function (e) {
@@ -153,21 +163,18 @@ export default function ProfileComponent() {
         e.preventDefault();
         setPasswordErrors([]);
         disableSubmitButton(e.target);
-        const data = {
-            currentPassword: userCurrentPassword,
-            newPassword: userNewPassword,
-            confirmPassword: userConfirmPassword
-        }
         try {
-            const result = await updateCurrentPassword(data);
+            const result = await updateCurrentPassword(passwordData);
             setToastList([{
                 id: Math.floor((Math.random() * 101) + 1),
                 title: 'Your password is updated!',
                 description: result.data.message,
             }]);
-            setUserCurrentPassword('');
-            setUserNewPassword('');
-            setUserConfirmPassword('');
+            passwordData['currentPassword'] = '';
+            passwordData['newPassword'] = '';
+            passwordData['confirmPassword'] = '';
+            let temp = Object.assign({}, passwordData)
+            setPasswordData(temp);
         } catch (error) {
             setPasswordErrors(genrateErrorMessage(error, '', setToastList));
         }
@@ -177,15 +184,50 @@ export default function ProfileComponent() {
     const handleCancelClick = () => {
         setProfileInfoErrors([]);
         setPasswordErrors([]);
-        setUserCurrentPassword('');
-        setUserNewPassword('');
-        setUserConfirmPassword('');
+        passwordData['currentPassword'] = '';
+        passwordData['newPassword'] = '';
+        passwordData['confirmPassword'] = '';
+        let temp = Object.assign({}, passwordData)
+        setPasswordData(temp);
     }
 
     const imageLoader = ({ src, width, quality }) => {
         return (`${src}?w=${width}&q=${quality || 75}`);
     }
 
+    const handleValidationError = (name, msg) => {
+        passwordValidateErrorMessage[name] = msg;
+        let temp = Object.assign({}, passwordValidateErrorMessage)
+        setPasswordValidateErrorMessage(temp)
+    }
+
+    const handlePasswordValidation = ({ target }) => {
+        if (target.name == 'currentPassword') {
+            if (target.value == '') {
+                handleValidationError(target.name,'Current password is required');
+            } else {
+                handleValidationError(target.name,'');
+            }
+        } else if (target.name == 'newPassword') {
+            if (target.value == '') {
+                handleValidationError(target.name,'New password is required');
+            } else {
+                handleValidationError(target.name,'');
+            }
+        } else if (target.name == 'confirmPassword') {
+            if (target.value == '') {
+                handleValidationError(target.name,'Confirm password is required');
+            } else {
+                handleValidationError(target.name,'');
+            }
+        }
+    }
+
+    const handlePasswordChange = ({ target }) => {
+        passwordData[target.name] = target.value;
+        let temp = Object.assign({}, passwordData)
+        setPasswordData(temp);
+    }
 
     return (
         <div className={styles.container}>
@@ -312,7 +354,10 @@ export default function ProfileComponent() {
                                                                     <label className={`${styles.companyInvoiceCurrentPasswordID}`}>Current Password</label>
                                                                 </div>
                                                                 <div className="col-12 position-relative d-flex">
-                                                                    <PasswordInputField placeholder="Current Password" name="password" value={userCurrentPassword} onChange={(e) => { setUserCurrentPassword(e.target.value) }} />
+                                                                    <PasswordInputField placeholder="Current Password" id="currentPassword" name="currentPassword" value={passwordData.currentPassword} onChange={handlePasswordChange} onBlur={handlePasswordValidation} />
+                                                                </div>
+                                                                <div htmlFor="currentPassword" className="ms-3 invalid-data">
+                                                                    {passwordValidateErrorMessage.currentPassword}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -326,8 +371,10 @@ export default function ProfileComponent() {
                                                                 <div className="col-12">
                                                                     <div className="row g-0">
                                                                         <div className="col-11">
-                                                                            <input type="text" className="form-control" value={userNewPassword} onInput={(e) => { setUserNewPassword(e.target.value) }} id="companyInvoiceUserPassword" placeholder=' New Password' />
-
+                                                                            <input type="text" className="form-control" id="newPassword" name="newPassword" value={passwordData.newPassword}  onChange={handlePasswordChange} placeholder=' New Password' onBlur={handlePasswordValidation} />
+                                                                            <div htmlFor="newPassword" className="ms-3 invalid-data">
+                                                                                {passwordValidateErrorMessage.newPassword}
+                                                                            </div>
                                                                         </div>
                                                                         <div className="col-1">
                                                                             <button type="button" className="btn blueOutline" onClick={() => { genrateNewPassword() }}><FaGear /></button>
@@ -344,7 +391,10 @@ export default function ProfileComponent() {
                                                                     <label className={`${styles.companyInvoiceConfirmPasswordID}`}>Confirm Password</label>
                                                                 </div>
                                                                 <div className="col-12">
-                                                                    <input type="text" className="form-control" id="companyInvoiceUserConfirmPassword" value={userConfirmPassword} onInput={(e) => { setUserConfirmPassword(e.target.value); }} placeholder='Confirm Password' />
+                                                                    <input type="text" className="form-control" id="confirmPassword" name="confirmPassword" value={passwordData.confirmPassword}  onChange={handlePasswordChange} placeholder='Confirm Password' onBlur={handlePasswordValidation} />
+                                                                    <div htmlFor="confirmPassword" className="ms-3 invalid-data">
+                                                                        {passwordValidateErrorMessage.confirmPassword}
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>

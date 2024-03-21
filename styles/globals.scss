@@ -143,6 +143,11 @@ body {
     color: var.$red-color;
   }
 
+  .invalid-data {
+    font-size: 0.8em;
+    color: var.$red-color;
+  }
+
   select.form-select {
     -webkit-appearance: auto;
     appearance: auto;
