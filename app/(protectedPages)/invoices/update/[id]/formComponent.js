@@ -381,7 +381,7 @@ export default function InvoiceEditForm() {
                                         </div>
                                         <div className={`${styles.companyInvoiceButtonsWrapper}`}>
                                             <div className={`${styles.companyInvoiceSubmitButtonsWrapper} col-12 row gap-3`}>
-                                                <button name="btn-submit" className={`${styles.companyInvoiceSaveDraftButton} btn green`} onClick={(e) => handleSubmit(e, 'draft')}>
+                                                <button name="btn-submit" className={`${styles.companyInvoiceSaveDraftButton} green`} onClick={(e) => handleSubmit(e, 'draft')}>
                                                     <span>
                                                         <i><FaPaperPen /></i>
                                                         Save as Draft
