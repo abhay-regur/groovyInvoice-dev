@@ -401,7 +401,7 @@ export default function InvoiceAddForm() {
                                                     Save as Draft
                                                 </span>
                                             </button>
-                                            <button name="btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`} onClick={(e) => handleSubmit(e, 'send')}>
+                                            <button name="btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`} onClick={(e) => handleSubmit(e, 'unpaid')}>
                                                 <span>
                                                     <i><FaSave /></i>
                                                     Save & Send
