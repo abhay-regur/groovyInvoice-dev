@@ -37,11 +37,11 @@ export default function InvoiceAddForm() {
     const { Modal } = require("bootstrap");
 
     const initialData = {
-        customerId: '',
+        customerId: null,
         invoiceNo: '',
         orderNumber: '',
         invoiceDate: new Date(),
-        termsId: '',
+        termsId: null,
         dueDate: new Date(),
         customerNote: '',
         subTotalAmount: 0,
