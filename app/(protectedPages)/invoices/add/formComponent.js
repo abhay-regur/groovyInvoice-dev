@@ -1,10 +1,24 @@
 "use client"
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
+import InvoiceTable from '@/components/invoice/invoiceTable';
+import RadioButton from '@/components/radioButton';
 import styles from "@/styles/newInvoice.module.scss";
 import { NavExpandedState } from '@/context/NavState.context';
+import FaSave from '@/assets/icons/faSave.svg';
+import FaPaperPen from '@/assets/icons/faPaperPen.svg';
+import FaCircleXmark from '@/assets/icons/faCircleXmark.svg';
+import FaCircleQuestion from '@/assets/icons/faCircleQuestion.svg';
+import FaGear from '@/assets/icons/faGear.svg';
+import "react-datepicker/dist/react-datepicker.css";
+import { getPaymentTerms, getPaymentTerm } from '@/services/paymentTerms.service';
+import { getCustomers, getCustomer } from '@/services/customer.service';
+import CustomSelectComponent from '@/components/common/customSelectComponent';
 import Breadcrumb from '@/components/common/breadcrumb';
 import { saveInvoice } from '@/services/invoice.service';
+import ErrorList from '@/components/errorList';
 import { ToastMsgContext } from '@/context/ToastMsg.context';
+import { addDaysInDate } from '@/utils/date.utils';
+import DateInputField from '@/components/common/dateInputField';
 import { enableElement, disableElement } from '@/utils/form.utils';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 import InvoiceNumberSettingsPopup from '@/components/settings/invoiceNumberSettingsPopup';
@@ -14,8 +28,10 @@ import { useCurrentUserData } from '@/context/CurrentUserData.context';
 import { getCurrencyById } from '@/services/common/general.service';
 
 export default function InvoiceAddForm() {
+    const [taxValueSelected, settaxValueSelected] = useState();
     const { replace } = useRouter();
     const { navExpandedState } = useContext(NavExpandedState);
+    const [paymentTerms, setPaymentTerms] = useState([]);
     const { setToastList } = useContext(ToastMsgContext);
     const [errors, setErrors] = useState([]);
     const [customers, setCustomer] = useState([]);
@@ -23,11 +39,11 @@ export default function InvoiceAddForm() {
     const { Modal } = require("bootstrap");
 
     const initialData = {
-        customerId: null,
+        customerId: '',
         invoiceNo: '',
         orderNumber: '',
         invoiceDate: new Date(),
-        termsId: null,
+        termsId: '',
         dueDate: new Date(),
         customerNote: '',
         subTotalAmount: 0,
@@ -418,6 +434,7 @@ export default function InvoiceAddForm() {
                         </div >
                     </div>
                 </div>
+                <InvoiceNumberSettingsPopup getInvoiceNumber={getInvoiceNumber} />
             </main>
         </div >
     )

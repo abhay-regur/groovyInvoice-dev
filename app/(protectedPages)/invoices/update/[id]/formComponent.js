@@ -1,39 +1,52 @@
 "use client"
 import { useState, useContext, useEffect } from 'react';
 import { useParams } from 'next/navigation';
+import InvoiceTable from '@/components/invoice/invoiceTable';
+import RadioButton from '@/components/radioButton';
 import styles from "@/styles/newInvoice.module.scss";
 import { NavExpandedState } from '@/context/NavState.context';
 import { ToastMsgContext } from '@/context/ToastMsg.context';
+import FaSave from '@/assets/icons/faSave.svg';
+import FaPaperPen from '@/assets/icons/faPaperPen.svg';
+import FaCircleXmark from '@/assets/icons/faCircleXmark.svg';
+import FaCircleQuestion from '@/assets/icons/faCircleQuestion.svg';
+import FaGear from '@/assets/icons/faGear.svg';
+import "react-datepicker/dist/react-datepicker.css";
+import CustomSelectComponent from '@/components/common/customSelectComponent';
 import Breadcrumb from '@/components/common/breadcrumb';
 import { getInvoice, updateInvoice } from '@/services/invoice.service';
 import { getCustomers, getCustomer } from '@/services/customer.service';
 import { getPaymentTerms } from '@/services/paymentTerms.service';
 import ErrorList from '@/components/errorList';
 import Loading from "@/app/(protectedPages)/loading.js";
+import DateInputField from '@/components/common/dateInputField';
+import { addDaysInDate } from '@/utils/date.utils';
 import { useRouter } from 'next/navigation';
 import { useCurrentUserData } from '@/context/CurrentUserData.context';
 import { getCurrencyById } from '@/services/common/general.service';
 
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 import { enableElement, disableElement } from '@/utils/form.utils';
-import InvoiceForm from '@/components/invoice/form';
 
 export default function InvoiceEditForm() {
     const { id } = useParams();
     const { replace } = useRouter();
-    const [errors, setErrors] = useState([]);
+    const [taxValueSelected, settaxValueSelected] = useState();
     const { navExpandedState } = useContext(NavExpandedState);
+    const [paymentTerms, setPaymentTerms] = useState([]);
+    const [customers, setCustomer] = useState([]);
     const { setToastList } = useContext(ToastMsgContext);
     const [currencySymbol, setCurrencySymbol] = useState('₹');
     const [errors, setErrors] = useState([]);
     const [isPageLoading, setIsPageLoading] = useState(true);
+    const { userInfo } = useCurrentUserData();
 
     const [data, setData] = useState({
-        customerId: null,
+        customerId: 0,
         invoiceNo: '',
         orderNumber: '',
         invoiceDate: new Date(),
-        termsId: null,
+        termsId: 0,
         dueDate: new Date(),
         customerNote: '',
         subTotalAmount: 0,
@@ -94,7 +107,55 @@ export default function InvoiceEditForm() {
     useEffect(() => {
         setIsPageLoading(true);
         getData();
+        getCustomersList();
+        getPaymentTermsDetails()
     }, [])
+
+    const calculateTotalAmount = () => {
+        let subTotalAmount = 0
+        let totalTaxAmount = 0
+        for (let i = 0; i < data.invoiceItems.length; i++) {
+            subTotalAmount = parseFloat(subTotalAmount) + parseFloat(data.invoiceItems[i].total)
+            totalTaxAmount = parseFloat(totalTaxAmount) + parseFloat(data.invoiceItems[i].taxAmount)
+        }
+        data.subTotalAmount = parseFloat(subTotalAmount)
+        data.totalTaxAmount = parseFloat(totalTaxAmount)
+        data.totalAmount = parseFloat(data.adjustmentAmount) + parseFloat(data.shippingCharges) + parseFloat(data.totalTaxAmount) + parseFloat(data.subTotalAmount);
+        let temp = Object.assign({}, data)
+        setData(temp)
+    }
+
+    const setItemsData = (itemsData) => {
+        data['invoiceItems'] = itemsData
+        let temp = Object.assign({}, data)
+        setData(temp)
+        calculateTotalAmount()
+    }
+
+    const handleInput = ({ target }) => {
+        let name = target.name || target.getAttribute('name');
+        if (name != '') {
+            if (['openingBalance', 'gstTreatment', 'customerId', 'termsId', 'subtotalAmount', 'shippingCharges'].includes(name)) {
+                if (!Number.isNaN((target.value)) && target.value != '') {
+                    data[name] = parseInt(target.value).toFixed(2);
+                } else {
+                    data[name] = 0;
+                }
+            } else if (name == 'adjustmentAmount') {
+                if (!Number.isNaN((target.value)) && target.value != '') {
+                    data[name] = parseFloat(target.value);
+                } else {
+                    data[name] = 0.00;
+                }
+
+            } else {
+                data[name] = target.value;
+            }
+            let temp = Object.assign({}, data)
+            setData(temp)
+        }
+        calculateTotalAmount()
+    }
 
     const handleSubmit = async ({ currentTarget }, status) => {
         disableElement(currentTarget)
@@ -110,6 +171,37 @@ export default function InvoiceEditForm() {
             setErrors(genrateErrorMessage(error, 'Invoices', setToastList));
         }
         enableElement(currentTarget)
+    }
+
+    const getCustomersList = async () => {
+        let temp = [];
+        try {
+            const result = await getCustomers();
+            result.data.forEach((elem) => {
+                temp.push({ Id: elem.id, name: elem.displayName })
+            });
+            setCustomer(temp);
+        } catch (error) {
+            setErrors(genrateErrorMessage(error, '', setToastList));
+        }
+    }
+
+    const handleTDSChange = () => {
+        settaxValueSelected('tds');
+    };
+
+    const handleTCSChange = () => {
+        settaxValueSelected('tcs');
+    };
+
+    const handlePaymentTermChange = ({ target }) => {
+        let name = target.name || target.getAttribute('name');
+        data[name] = parseInt(target.value)
+        const paymentTerm = paymentTerms.find((item) => item.Id == parseInt(target.value))
+        const date = addDaysInDate(new Date(), paymentTerm.numberOfDays)
+        data['dueDate'] = new Date(date)
+        let temp = Object.assign({}, data)
+        setData(temp)
     }
 
     return (
