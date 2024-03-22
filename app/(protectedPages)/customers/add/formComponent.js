@@ -161,8 +161,8 @@ export default function CustomerAddForm() {
             if (result.status == 200 || result.status == 201) {
                 setToastList([{
                     id: Math.floor((Math.random() * 101) + 1),
-                    title: 'Customer Added',
-                    description: '',
+                    title: 'Customer',
+                    description: data.salutation + ' ' + data.firstName + ' ' + data.lastName + ' has been added as a customer.',
                 }]);
                 setTimeout(function () {
                     replace('/customers');
