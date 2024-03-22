@@ -40,11 +40,11 @@ export default function InvoiceEditForm() {
     const { userInfo } = useCurrentUserData();
 
     const [data, setData] = useState({
-        customerId: 0,
+        customerId: null,
         invoiceNo: '',
         orderNumber: '',
         invoiceDate: new Date(),
-        termsId: 0,
+        termsId: null,
         dueDate: new Date(),
         customerNote: '',
         subTotalAmount: 0,
