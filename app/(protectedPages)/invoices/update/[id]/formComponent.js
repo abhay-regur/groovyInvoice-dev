@@ -15,7 +15,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import CustomSelectComponent from '@/components/common/customSelectComponent';
 import Breadcrumb from '@/components/common/breadcrumb';
 import { getInvoice, updateInvoice } from '@/services/invoice.service';
-import { getCustomers } from '@/services/customer.service';
+import { getCustomers, getCustomer } from '@/services/customer.service';
 import { getPaymentTerms } from '@/services/paymentTerms.service';
 import ErrorList from '@/components/errorList';
 import Loading from "@/app/(protectedPages)/loading.js";
@@ -23,6 +23,7 @@ import DateInputField from '@/components/common/dateInputField';
 import { addDaysInDate } from '@/utils/date.utils';
 import { useRouter } from 'next/navigation';
 import { useCurrentUserData } from '@/context/CurrentUserData.context';
+import { getCurrencyById } from '@/services/common/general.service';
 
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 import { enableElement, disableElement } from '@/utils/form.utils';
@@ -35,6 +36,7 @@ export default function InvoiceEditForm() {
     const [paymentTerms, setPaymentTerms] = useState([]);
     const [customers, setCustomer] = useState([]);
     const { setToastList } = useContext(ToastMsgContext);
+    const [currencySymbol, setCurrencySymbol] = useState('₹');
     const [errors, setErrors] = useState([]);
     const [isPageLoading, setIsPageLoading] = useState(true);
     const { userInfo } = useCurrentUserData();
@@ -61,6 +63,7 @@ export default function InvoiceEditForm() {
         try {
             const result = await getInvoice(id);
             setData({ ...result.data, invoiceDate: new Date(result.data.invoiceDate), dueDate: new Date(result.data.dueDate) })
+            getCustomerData(result.data.customerId);
         } catch (error) {
             if (error.response != undefined && error.response.status == 404) {
                 replace('/404');
@@ -68,6 +71,22 @@ export default function InvoiceEditForm() {
                 setErrors(genrateErrorMessage(error, '', setToastList));
                 setIsPageLoading(false);
             }
+        }
+    }
+
+    const getCustomerData = async (id) => {
+        const result = await getCustomer(id)
+        getCurrencySymbol(result.data.currencyId);
+    }
+
+    const getCurrencySymbol = async (id) => {
+        try {
+            if (id != "" && id != null) {
+                const selectCurrencyDetails = await getCurrencyById(id);
+                if (selectCurrencyDetails.status == 200) setCurrencySymbol(selectCurrencyDetails.data.symbol);
+            }
+        } catch (error) {
+            setErrors(genrateErrorMessage(error, '', setToastList));
         }
     }
 
@@ -146,7 +165,7 @@ export default function InvoiceEditForm() {
             setToastList([{
                 id: Math.floor((Math.random() * 101) + 1),
                 title: 'Invoice updated successfully',
-                description: '',
+                description: '#' + data.invoiceNo + ' with Amount:' + ' ' + data.total,
             }]);
         } catch (error) {
             setErrors(genrateErrorMessage(error, 'Invoices', setToastList));
@@ -214,7 +233,7 @@ export default function InvoiceEditForm() {
                                                     onOptionValueChange={handleInput}
                                                     optionValue={data.customerId}
                                                     name={'customersId'}
-                                                    isDisabled={false}
+                                                    isDisabled={true}
                                                     defaultText={'Select An Option'}
                                                     isInnerButtonRequired={false}
                                                 />
@@ -224,7 +243,7 @@ export default function InvoiceEditForm() {
                                             <div className={`${styles.companyInvoiceNumberWrapper} mb-3`}>
                                                 <label htmlFor="companyInvoiceNumber" className="form-label">Invoice#<span className={`${styles.green}`}>*</span></label>
                                                 <div className={`d-flex align-content-center`}>
-                                                    <input type="text" className="form-control" id="companyInvoiceNumber" aria-describedby="emailHelp" name="invoiceNo" value={data.invoiceNo} onChange={handleInput} />
+                                                    <input type="text" className="form-control" id="companyInvoiceNumber" aria-describedby="emailHelp" name="invoiceNo" value={data.invoiceNo} onChange={handleInput} disabled />
                                                     <i><FaGear /></i>
                                                 </div>
                                             </div>
@@ -233,7 +252,7 @@ export default function InvoiceEditForm() {
                                             <div className={`${styles.companyOrderNumberWrapper} mb-3`}>
                                                 <label htmlFor="companyOrderNumber" className="form-label">Order Number</label>
                                                 <div className={`d-flex align-content-center`}>
-                                                    <input type="text" className="form-control" id="companyOrderNumber" aria-describedby="emailHelp" name="orderNumber" value={data.orderNumber} onChange={handleInput} />
+                                                    <input type="text" className="form-control" id="companyOrderNumber" aria-describedby="emailHelp" name="orderNumber" value={data.orderNumber} onChange={handleInput} disabled />
                                                 </div>
                                             </div>
                                         </div>
@@ -277,7 +296,7 @@ export default function InvoiceEditForm() {
                                 </div>
                                 <hr />
                                 <div className={`${styles.companyInvoiceItemsTableMainWrapper} row`}>
-                                    <InvoiceTable itemsData={data.invoiceItems} setItemsData={setItemsData} />
+                                    <InvoiceTable itemsData={data.invoiceItems} setItemsData={setItemsData} currencySymbol={currencySymbol} />
                                 </div>
                                 <hr />
                                 <div className={`${styles.companyInvoiceBottomWrapper}`}>
@@ -293,7 +312,7 @@ export default function InvoiceEditForm() {
                                                 <div className="card-body">
                                                     <div className="d-flex justify-content-between">
                                                         <div className={`${styles.subtotalLabel}`}>Sub Total</div>
-                                                        <div className={`${styles.subtotalresult}`}>Rs. {parseFloat(data.subTotalAmount).toFixed(2)}</div>
+                                                        <div className={`${styles.subtotalresult}`}>{currencySymbol} {parseFloat(data.subTotalAmount).toFixed(2)}</div>
                                                     </div>
                                                     <div className={`${styles.companyInvoiceTaxOptionWrapper} row`}>
                                                         <div className="col-9">
@@ -340,7 +359,7 @@ export default function InvoiceEditForm() {
                                                         </div>
                                                         <div className="col-3">
                                                             <span className={`${styles.totalCalculatedTax} d-flex`}>
-                                                                <span className='text-start text-lg-right text-xl-left'> Rs. {parseFloat(data.totalTaxAmount).toFixed(2)}</span>
+                                                                <span className='text-start text-lg-right text-xl-left'> {parseFloat(data.totalTaxAmount).toFixed(2)}</span>
                                                             </span>
                                                         </div>
                                                     </div>
@@ -350,13 +369,13 @@ export default function InvoiceEditForm() {
                                                         </div>
                                                         <div className="col-9 order-3 col-lg-6 order-lg-2">
                                                             <div className={`${styles.companyInvoicePriceAdjustment2Wrapper} d-flex`}>
-                                                                <input type="number" className={`${styles.companyInvoicePriceAdjustment} form-control`} name="adjustmentAmount" value={data.adjustmentAmount} onChange={handleInput} />
+                                                                <input type="number" step="0.01" className={`${styles.companyInvoicePriceAdjustment} form-control`} name="adjustmentAmount" value={data.adjustmentAmount} onChange={handleInput} />
                                                                 <i><FaCircleQuestion></FaCircleQuestion></i>
                                                             </div>
                                                         </div>
                                                         <div className="col-4 col-lg-2 order-2 order-lg-3">
                                                             <span className={`${styles.totalCalculatedAdjustment} d-flex justify-content-end`}>
-                                                                <span> Rs. {parseFloat(data.adjustmentAmount).toFixed(2)}</span>
+                                                                <span> {parseFloat(data.adjustmentAmount).toFixed(2)}</span>
                                                             </span>
                                                         </div>
                                                     </div>
@@ -366,7 +385,7 @@ export default function InvoiceEditForm() {
                                                             <h5>Total</h5>
                                                         </div>
                                                         <div className="col-6 text-center text-sm-end">
-                                                            <h5>Rs. {parseFloat(data.totalAmount).toFixed(2)}</h5>
+                                                            <h5>{currencySymbol} {parseFloat(data.totalAmount).toFixed(2)}</h5>
                                                         </div>
 
                                                     </div>
