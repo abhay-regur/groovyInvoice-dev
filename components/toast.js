@@ -5,7 +5,7 @@ import styles from '@/styles/toast.module.scss';
 
 
 export default function Toast() {
-    const autoDeleteTime = 15000;
+    const autoDeleteTime = 150000;
     const { toastList } = useContext(ToastMsgContext);
     const [list, setList] = useState(toastList);
 

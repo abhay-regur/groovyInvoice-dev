@@ -25,6 +25,7 @@ import InvoiceNumberSettingsPopup from '@/components/settings/invoiceNumberSetti
 import { useRouter } from 'next/navigation';
 import { getInvoiceNumberSetting } from '@/services/invoice-number-setting.service';
 import { useCurrentUserData } from '@/context/CurrentUserData.context';
+import { getCurrencyById } from '@/services/common/general.service';
 
 export default function InvoiceAddForm() {
     const [taxValueSelected, settaxValueSelected] = useState();
@@ -34,14 +35,15 @@ export default function InvoiceAddForm() {
     const { setToastList } = useContext(ToastMsgContext);
     const [errors, setErrors] = useState([]);
     const [customers, setCustomer] = useState([]);
+    const [currencySymbol, setCurrencySymbol] = useState('₹');
     const { Modal } = require("bootstrap");
 
     const initialData = {
-        customerId: null,
+        customerId: '',
         invoiceNo: '',
         orderNumber: '',
         invoiceDate: new Date(),
-        termsId: null,
+        termsId: '',
         dueDate: new Date(),
         customerNote: '',
         subTotalAmount: 0,
@@ -81,6 +83,17 @@ export default function InvoiceAddForm() {
         }
         let temp = Object.assign({}, data)
         setData(temp)
+    }
+
+    const getCurrencySymbol = async (id) => {
+        try {
+            if (id != "" && id != null) {
+                const selectCurrencyDetails = await getCurrencyById(id);
+                if (selectCurrencyDetails.status == 200) setCurrencySymbol(selectCurrencyDetails.data.symbol);
+            }
+        } catch (error) {
+            setErrors(genrateErrorMessage(error, '', setToastList));
+        }
     }
 
     const getPaymentTermsDetails = async () => {
@@ -125,6 +138,7 @@ export default function InvoiceAddForm() {
     const handleCustomerSelect = async (e) => {
         handleInput(e)
         const result = await getCustomer(e.target.value)
+        getCurrencySymbol(result.data.currencyId);
         handlePaymentTermChange(result.data.paymentTermId)
     }
 
@@ -188,8 +202,8 @@ export default function InvoiceAddForm() {
             setData(initialData)
             setToastList([{
                 id: Math.floor((Math.random() * 101) + 1),
-                title: 'Invoice added successfully',
-                description: '',
+                title: 'Invoice Added',
+                description: '#' + data.invoiceNo + ' with Amount:' + ' ' + data.total,
             }]);
             replace('/invoices');
         } catch (error) {
@@ -290,7 +304,7 @@ export default function InvoiceAddForm() {
                                 <div id="invoiceNumberSettingsPopupRoot"></div>
                                 <hr />
                                 <div className={`${styles.companyInvoiceItemsTableMainWrapper} row`}>
-                                    <InvoiceTable itemsData={data.invoiceItems} setItemsData={setItemsData} />
+                                    <InvoiceTable itemsData={data.invoiceItems} setItemsData={setItemsData} currencySymbol={currencySymbol} />
                                 </div>
                                 <hr />
                                 <div className={`${styles.companyInvoiceBottomWrapper}`}>
@@ -306,7 +320,7 @@ export default function InvoiceAddForm() {
                                                 <div className="card-body">
                                                     <div className="d-flex justify-content-between">
                                                         <div className={`${styles.subtotalLabel}`}>Sub Total</div>
-                                                        <div className={`${styles.subtotalresult}`}>Rs. {parseFloat(data.subTotalAmount).toFixed(2)}</div>
+                                                        <div className={`${styles.subtotalresult}`}>{currencySymbol} {parseFloat(data.subTotalAmount).toFixed(2)}</div>
                                                     </div>
                                                     <div className={`${styles.companyInvoiceTaxOptionWrapper} row`}>
                                                         <div className="col-9">
@@ -379,7 +393,7 @@ export default function InvoiceAddForm() {
                                                             <h5>Total</h5>
                                                         </div>
                                                         <div className="col-6 text-center text-sm-end">
-                                                            <h5>Rs. {parseFloat(data.totalAmount).toFixed(2)}</h5>
+                                                            <h5>{currencySymbol} {parseFloat(data.totalAmount).toFixed(2)}</h5>
                                                         </div>
 
                                                     </div>
@@ -401,7 +415,7 @@ export default function InvoiceAddForm() {
                                                     Save as Draft
                                                 </span>
                                             </button>
-                                            <button name="btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`} onClick={(e) => handleSubmit(e, 'unpaid')}>
+                                            <button name="btn-submit" className={`${styles.companyInvoiceSaveSendButton} btn blue`} onClick={(e) => handleSubmit(e, 'send')}>
                                                 <span>
                                                     <i><FaSave /></i>
                                                     Save & Send
