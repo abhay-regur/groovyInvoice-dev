@@ -81,6 +81,7 @@ export default function UserUpdateFormComponent() {
                         setData={setData}
                         errors={errors}
                         label="Update User"
+                        mode="edit"
                     />
                 }
             </div>

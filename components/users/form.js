@@ -7,7 +7,7 @@ import FaGear from '@/assets/icons/faGear.svg';
 import ErrorList from '@/components/errorList';
 import { generatePassword } from '@/utils/genratePassword.utils';
 
-const UserForm = ({ data, setData, handleSubmit, errors, label }) => {
+const UserForm = ({ data, setData, handleSubmit, errors, label, mode }) => {
   const genrateNewPassword = () => {
     const password = generatePassword()
     data.password = password
@@ -70,7 +70,7 @@ const UserForm = ({ data, setData, handleSubmit, errors, label }) => {
                 <label className={`${styles.companyInvoiceUserEmailLabel}`}>Email</label>
               </div>
               <div className="col-12 col-lg-6 col-xl-6 d-flex align-items-center">
-                <input type="email" className="form-control" id="companyInvoiceUserEmail" placeholder='Email' onChange={handleInput} name='email' value={data.email} />
+                <input type="email" className="form-control" id="companyInvoiceUserEmail" placeholder='Email' onChange={handleInput} name='email' value={data.email} disabled={mode == 'edit' ? true : false} />
               </div>
             </div>
 
@@ -83,25 +83,28 @@ const UserForm = ({ data, setData, handleSubmit, errors, label }) => {
                 <input type="tel" minLength={4} maxLength={13} className={`${styles.companyInvoiceUserMobile} form-control`} placeholder='Mobile' onChange={handleInput} name='cellNumber' value={data.cellNumber} />
               </div>
             </div>
+            {mode == 'add' ? (
+              <>
+                <div className={`${styles.companyInvoiceUserPasswordWrapper} mb-4 row`}>
+                  <div className="d-flex align-items-center col-12 col-lg-2 col-xl-2">
+                    <label className={`${styles.companyInvoiceUserPasswordLabel}`}>Password</label>
+                  </div>
+                  <div className="col-12 col-lg-6 col-xl-6 d-flex">
+                    <input type="text" className="form-control" value={data.password} name="password" onChange={handleInput} id="companyInvoiceUserPassword" placeholder='Password' />
+                    <button type="button" className="btn blueOutline" onClick={() => { genrateNewPassword() }}><FaGear /></button>
+                  </div>
+                </div>
 
-            <div className={`${styles.companyInvoiceUserPasswordWrapper} mb-4 row`}>
-              <div className="d-flex align-items-center col-12 col-lg-2 col-xl-2">
-                <label className={`${styles.companyInvoiceUserPasswordLabel}`}>Password</label>
-              </div>
-              <div className="col-12 col-lg-6 col-xl-6 d-flex">
-                <input type="text" className="form-control" value={data.password} name="password" onChange={handleInput} id="companyInvoiceUserPassword" placeholder='Password' />
-                <button type="button" className="btn blueOutline" onClick={() => { genrateNewPassword() }}><FaGear /></button>
-              </div>
-            </div>
-
-            <div className={`${styles.companyInvoiceUserPasswordWrapper} mb-4 row`}>
-              <div className="d-flex align-items-center col-12 col-lg-2 col-xl-2">
-                <label className={`${styles.companyInvoiceUserPasswordLabel}`}>Confirm Password</label>
-              </div>
-              <div className="col-12 col-lg-6 col-xl-6">
-                <input type="text" className="form-control" id="companyInvoiceDesignation" value={data.confirmPassword} name="confirmPassword" onChange={handleInput} placeholder='Confirm Password' />
-              </div>
-            </div>
+                <div className={`${styles.companyInvoiceUserPasswordWrapper} mb-4 row`}>
+                  <div className="d-flex align-items-center col-12 col-lg-2 col-xl-2">
+                    <label className={`${styles.companyInvoiceUserPasswordLabel}`}>Confirm Password</label>
+                  </div>
+                  <div className="col-12 col-lg-6 col-xl-6">
+                    <input type="text" className="form-control" id="companyInvoiceDesignation" value={data.confirmPassword} name="confirmPassword" onChange={handleInput} placeholder='Confirm Password' />
+                  </div>
+                </div>
+              </>
+            ) : ''}
 
             <div className={`${styles.companyInvoiceFormButtonsWrapper} row`}>
               <div className="col-12 col-sm-10 col-md-8 col-lg-7 col-xl-5">

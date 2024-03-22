@@ -78,6 +78,7 @@ export default function UserUpdateFormComponent() {
                         setData={setData}
                         errors={errors}
                         label="Add New User"
+                        mode="add"
                     />
                 }
             </div>
