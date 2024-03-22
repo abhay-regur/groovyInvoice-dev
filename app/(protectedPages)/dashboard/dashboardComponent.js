@@ -109,7 +109,7 @@ export default function DashboardComponent() {
                                     <div className="row">
                                         <div className="col-12">
                                             <span className={`${styles.comapnyInvoiceTotalUnpaidInvoices}`}>Total Unpaid Invoices Rs. 217,416.39</span>
-                                            <button className="btn btn-primary ms-3" onClick={() => { setToastList([{ id: Math.floor((Math.random() * 101) + 1), title: 'Customer Added', description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quia iusto minus.', }]); }}>Test Notification</button>
+                                            {/* <button className="btn btn-primary ms-3" onClick={() => { setToastList([{ id: Math.floor((Math.random() * 101) + 1), title: 'Customer Added', description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quia iusto minus.', }]); }}>Test Notification</button> */}
                                         </div>
                                         <div className="col-12">
                                             <div className={`${styles.comapnyInvoiceTotalReceivedProgressBarWrapper}`}>
