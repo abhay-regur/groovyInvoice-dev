@@ -80,20 +80,22 @@ export default function InvoiceEditForm() {
                 <div className="breadcrumbWrapper">
                     <Breadcrumb />
                 </div>
-                <h2 className="container">
-                    Update Invoice
-                </h2>
-                {isPageLoading ?
-                    <Loading /> :
-                    <InvoiceForm
-                        data={data}
-                        setData={setData}
-                        handleSubmit={handleSubmit}
-                        setErrors={setErrors}
-                        errors={errors}
-                        mode="edit"
-                    />
-                }
+                <div className="container">
+                    <h2 className={`${styles.title}`}>
+                        Update Invoice
+                    </h2>
+                    {isPageLoading ?
+                        <Loading /> :
+                        <InvoiceForm
+                            data={data}
+                            setData={setData}
+                            handleSubmit={handleSubmit}
+                            setErrors={setErrors}
+                            errors={errors}
+                            mode="edit"
+                        />
+                    }
+                </div>
             </main >
         </div >
     )
