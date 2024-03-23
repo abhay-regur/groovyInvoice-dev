@@ -428,6 +428,7 @@
                     .tab_content_wrapper {
                         .tab_content {
                             padding-top: 45px;
+                            position: relative;
 
                             h3.tabtitle {
                                 color: var.$primary-color;
@@ -437,6 +438,7 @@
                             }
 
                             .companyInvoiceShippingCopyBillingWrapper {
+                                position: absolute;
                                 cursor: pointer;
 
                                 span {
@@ -1195,6 +1197,7 @@
                     .tab_content_wrapper {
                         .tab_content {
                             padding-top: 36px;
+                            position: relative;
 
                             h3.tabtitle {
                                 color: var.$primary-color;
@@ -1205,6 +1208,7 @@
 
                             .companyInvoiceShippingCopyBillingWrapper {
                                 cursor: pointer;
+                                position: absolute;
                                 margin-bottom: 19px;
 
                                 span {
@@ -1942,6 +1946,7 @@
                     .tab_content_wrapper {
                         .tab_content {
                             padding-top: 25px;
+                            position: relative;
 
                             h3.tabtitle {
                                 color: var.$primary-color;
@@ -1952,6 +1957,7 @@
 
                             .companyInvoiceShippingCopyBillingWrapper {
                                 cursor: pointer;
+                                position: absolute;
                                 margin-bottom: 19px;
 
                                 span {

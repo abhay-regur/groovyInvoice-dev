@@ -6,8 +6,9 @@ import FaCircleXmark from '@/assets/icons/faCircleXmark.svg';
 import FaCircleCheck from '@/assets/icons/faCircleCheck.svg';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils';
 import { useEffect, useState } from "react";
+import { addContactPerson, deleteContactPersonDetails, listContactPersonDetails, updateContactPersonDetails } from "@/services/customer.service";
 
-export default function ContactPerson({ custId, setToastList, ErrorList, addContactPerson, listContactPersonDetails, updateContactPersonDetails, deleteContactPersonDetails }) {
+export default function ContactPerson({ customerId, setToastList, ErrorList }) {
     const [showTableUserInput, setShowTableUserInput] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [isEditing, setIsEditing] = useState(-1);
@@ -70,7 +71,7 @@ export default function ContactPerson({ custId, setToastList, ErrorList, addCont
             mobile: rowData.mobile
         }
         try {
-            var result = await updateContactPersonDetails(id, custId, data);
+            var result = await updateContactPersonDetails(id, customerId, data);
             if (result.status == 200 || result.status == 201) {
                 setToastList([{
                     id: Math.floor((Math.random() * 101) + 1),
@@ -90,7 +91,7 @@ export default function ContactPerson({ custId, setToastList, ErrorList, addCont
 
     const getContactPersonList = async () => {
         try {
-            const result = await listContactPersonDetails(custId);
+            const result = await listContactPersonDetails(customerId);
             if (result.status == 200 || result.status == 201) {
                 var data = result.data;
                 setItemData(data);
@@ -124,7 +125,7 @@ export default function ContactPerson({ custId, setToastList, ErrorList, addCont
         setErrors([]);
         setIsLoading(true);
         try {
-            const result = await addContactPerson(custId, newPerson);
+            const result = await addContactPerson(customerId, newPerson);
             if (result.status == 200 || result.status == 201) {
                 setToastList([{
                     id: Math.floor((Math.random() * 101) + 1),
@@ -159,7 +160,7 @@ export default function ContactPerson({ custId, setToastList, ErrorList, addCont
 
     const removeContactPersonEntry = async (id) => {
         try {
-            const results = await deleteContactPersonDetails(id, custId);
+            const results = await deleteContactPersonDetails(id, customerId);
             if (results.status == 200 || results.status == 201) {
                 setToastList([{
                     id: Math.floor((Math.random() * 101) + 1),
