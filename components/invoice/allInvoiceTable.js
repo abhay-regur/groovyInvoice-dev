@@ -20,7 +20,8 @@ const AllInvoiceTable = ({ dateFormat }) => {
     const draw_invoiceNo = (row) => {
         return (
             <>
-                <span className={`${styles.companyInvoiceTableInvoiceNumber}`} onClick={()=>push(`invoices/${row.id}`)}>{row.invoiceNo}</span>
+                <span className={`${styles.companyInvoiceTableInvoiceNumber}`} onClick={() => push(`invoices/${row.id}`)}>{row.invoiceNo}</span>
+                <span class={`badge rounded-pill text-bg-primary ms-2`}>{row.status}</span>
             </>
         )
     }
@@ -40,7 +41,7 @@ const AllInvoiceTable = ({ dateFormat }) => {
     const draw_action = (rowData) => {
         return (
             <span className={`${styles.companyInvoiceTableActionWrapper}`}>
-                <span className={`${styles.companyInvoiceTableActionEdit}`} onClick={()=>push(`invoices/update/${rowData.id}`)}><FaPen /></span>
+                <span className={`${styles.companyInvoiceTableActionEdit}`} onClick={() => push(`invoices/update/${rowData.id}`)}><FaPen /></span>
                 <span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span>
             </span>
         );
