@@ -148,13 +148,18 @@ const InvoiceForm = ({ data, setData, handleSubmit, errors, setErrors, mode }) =
   }
 
   const openInvoiceNumberSettingsPopup = () => {
-    const invoiceNumberSettings = new Modal("#invoice-number-settings");
-    invoiceNumberSettings.show();
+    if (mode == 'add') {
+      const invoiceNumberSettings = new Modal("#invoice-number-settings");
+      invoiceNumberSettings.show();
+    }
   }
 
   useEffect(() => {
     getCustomersList();
-    getPaymentTermsDetails()
+    getPaymentTermsDetails();
+    if(mode == 'add') {
+      getInvoiceNumber();
+    }
   }, [])
 
   const getInvoiceNumber = async () => {
@@ -199,7 +204,7 @@ const InvoiceForm = ({ data, setData, handleSubmit, errors, setErrors, mode }) =
                     <label htmlFor="companyInvoiceNumber" className="form-label">Invoice#<span className={`${styles.green}`}>*</span></label>
                     <div className={`d-flex align-content-center`}>
                       <input type="text" className="form-control" id="companyInvoiceNumber" aria-describedby="emailHelp" name="invoiceNo" value={data.invoiceNo} onChange={handleInput} disabled={mode == 'edit' ? true : false}/>
-                      <i onClick={openInvoiceNumberSettingsPopup}><FaGear /></i>
+                      <i className={mode == 'edit' ? 'disabled' : ''} onClick={openInvoiceNumberSettingsPopup}><FaGear /></i>
                     </div>
                   </div>
                 </div>
