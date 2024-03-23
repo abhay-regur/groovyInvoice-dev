@@ -12,19 +12,22 @@ import CustomSelectComponent from '@/components/common/customSelectComponent';
 import ErrorList from '@/components/errorList';
 import DateInputField from '@/components/common/dateInputField';
 import { useCurrentUserData } from '@/context/CurrentUserData.context';
-import { getCustomers } from '@/services/customer.service';
+import { getCustomer, getCustomers } from '@/services/customer.service';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 import { ToastMsgContext } from '@/context/ToastMsg.context';
 import { getPaymentTerms } from "@/services/paymentTerms.service";
 import InvoiceNumberSettingsPopup from '@/components/settings/invoiceNumberSettingsPopup';
 import { getInvoiceNumberSetting } from "@/services/invoice-number-setting.service";
+import { getCurrencyById } from "@/services/common/general.service";
+import { addDaysInDate } from "@/utils/date.utils";
 
-const InvoiceForm = ({ data, setData, handleSubmit, errors, setErrors }) => {
+const InvoiceForm = ({ data, setData, handleSubmit, errors, setErrors, mode }) => {
   const [taxValueSelected, settaxValueSelected] = useState();
   const [paymentTerms, setPaymentTerms] = useState([]);
   const [customers, setCustomer] = useState([]);
   const { userInfo } = useCurrentUserData();
   const { setToastList } = useContext(ToastMsgContext);
+  const [currencySymbol, setCurrencySymbol] = useState('₹');
   const { Modal } = require("bootstrap");
 
   const handleTDSChange = () => {
@@ -35,14 +38,23 @@ const InvoiceForm = ({ data, setData, handleSubmit, errors, setErrors }) => {
     settaxValueSelected('tcs');
   };
 
-  const handlePaymentTermChange = ({ target }) => {
-    let name = target.name || target.getAttribute('name');
-    data[name] = parseInt(target.value)
-    const paymentTerm = paymentTerms.find((item) => item.Id == parseInt(target.value))
-    const date = addDaysInDate(new Date(), paymentTerm.numberOfDays)
-    data['dueDate'] = new Date(date)
+  const handlePaymentTermChange = (value) => {
+    if(value) {
+      data['termsId'] = parseInt(value)
+      const paymentTerm = paymentTerms.find((item) => item.Id == parseInt(value))
+      const date = addDaysInDate(new Date(), paymentTerm.numberOfDays)
+      data['dueDate'] = new Date(date)
+      let temp = Object.assign({}, data)
+      setData(temp)
+    }
+  }
+
+  const handleCustomerChange = async ({ target }) => {
+    data['customerId'] = parseInt(target.value)
     let temp = Object.assign({}, data)
     setData(temp)
+    const result = await getCustomer(data.customerId)
+    handlePaymentTermChange(result.data.paymentTermId)
   }
 
   const getCustomersList = async () => {
@@ -54,10 +66,27 @@ const InvoiceForm = ({ data, setData, handleSubmit, errors, setErrors }) => {
       });
       setCustomer(temp);
     } catch (error) {
-      console.log(error);
       setErrors(genrateErrorMessage(error, '', setToastList));
     }
   }
+
+  const getCurrencySymbol = async () => {
+    try {
+      if (data.customerId != "" && data.customerId != null) {
+        const result = await getCustomer(data.customerId)
+        const selectCurrencyDetails = await getCurrencyById(result.data.currencyId);
+        if (selectCurrencyDetails.status == 200) setCurrencySymbol(selectCurrencyDetails.data.symbol);
+      }
+    } catch (error) {
+      setErrors(genrateErrorMessage(error, '', setToastList));
+    }
+  }
+
+  useEffect(() => {
+    if (data.customerId) {
+      getCurrencySymbol()
+    }
+  }, [data.customerId])
 
   const handleInput = ({ target }) => {
     let name = target.name || target.getAttribute('name');
@@ -156,10 +185,10 @@ const InvoiceForm = ({ data, setData, handleSubmit, errors, setErrors }) => {
                       className={`${styles.companInvoicePaymentTermsSelect}`}
                       inputClass="form-control"
                       data={customers}
-                      onOptionValueChange={handleInput}
+                      onOptionValueChange={handleCustomerChange}
                       optionValue={data.customerId}
-                      name={'customersId'}
-                      isDisabled={false}
+                      name={'customerId'}
+                      isDisabled={mode == 'edit' ? true : false}
                       defaultText={'Select An Option'}
                       isInnerButtonRequired={false}
                     />
@@ -169,7 +198,7 @@ const InvoiceForm = ({ data, setData, handleSubmit, errors, setErrors }) => {
                   <div className={`${styles.companyInvoiceNumberWrapper} mb-3`}>
                     <label htmlFor="companyInvoiceNumber" className="form-label">Invoice#<span className={`${styles.green}`}>*</span></label>
                     <div className={`d-flex align-content-center`}>
-                      <input type="text" className="form-control" id="companyInvoiceNumber" aria-describedby="emailHelp" name="invoiceNo" value={data.invoiceNo} onChange={handleInput} />
+                      <input type="text" className="form-control" id="companyInvoiceNumber" aria-describedby="emailHelp" name="invoiceNo" value={data.invoiceNo} onChange={handleInput} disabled={mode == 'edit' ? true : false}/>
                       <i onClick={openInvoiceNumberSettingsPopup}><FaGear /></i>
                     </div>
                   </div>
@@ -178,7 +207,7 @@ const InvoiceForm = ({ data, setData, handleSubmit, errors, setErrors }) => {
                   <div className={`${styles.companyOrderNumberWrapper} mb-3`}>
                     <label htmlFor="companyOrderNumber" className="form-label">Order Number</label>
                     <div className={`d-flex align-content-center`}>
-                      <input type="text" className="form-control" id="companyOrderNumber" aria-describedby="emailHelp" name="orderNumber" value={data.orderNumber} onChange={handleInput} />
+                      <input type="text" className="form-control" id="companyOrderNumber" aria-describedby="emailHelp" name="orderNumber" value={data.orderNumber} onChange={handleInput} disabled={mode == 'edit' ? true : false} />
                     </div>
                   </div>
                 </div>
@@ -200,7 +229,7 @@ const InvoiceForm = ({ data, setData, handleSubmit, errors, setErrors }) => {
                       className={`${styles.companInvoicePaymentTermsSelect}`}
                       inputClass="form-control"
                       data={paymentTerms}
-                      onOptionValueChange={handlePaymentTermChange}
+                      onOptionValueChange={(e)=>handlePaymentTermChange(e.target.value)}
                       optionValue={data.termsId}
                       name={'termsId'}
                       isDisabled={false}
@@ -222,7 +251,7 @@ const InvoiceForm = ({ data, setData, handleSubmit, errors, setErrors }) => {
             </div>
             <hr />
             <div className={`${styles.companyInvoiceItemsTableMainWrapper} row`}>
-              <InvoiceTable itemsData={data.invoiceItems} setItemsData={setItemsData} />
+              <InvoiceTable itemsData={data.invoiceItems} setItemsData={setItemsData} currencySymbol={currencySymbol}/>
             </div>
             <hr />
             <div className={`${styles.companyInvoiceBottomWrapper}`}>
@@ -238,7 +267,7 @@ const InvoiceForm = ({ data, setData, handleSubmit, errors, setErrors }) => {
                     <div className="card-body">
                       <div className="d-flex justify-content-between">
                         <div className={`${styles.subtotalLabel}`}>Sub Total</div>
-                        <div className={`${styles.subtotalresult}`}>Rs. {parseFloat(data.subTotalAmount).toFixed(2)}</div>
+                        <div className={`${styles.subtotalresult}`}>{currencySymbol} {parseFloat(data.subTotalAmount).toFixed(2)}</div>
                       </div>
                       <div className={`${styles.companyInvoiceTaxOptionWrapper} row`}>
                         <div className="col-9">
@@ -285,7 +314,7 @@ const InvoiceForm = ({ data, setData, handleSubmit, errors, setErrors }) => {
                         </div>
                         <div className="col-3">
                           <span className={`${styles.totalCalculatedTax} d-flex`}>
-                            <span className='text-start text-lg-right text-xl-left'> Rs. {parseFloat(data.totalTaxAmount).toFixed(2)}</span>
+                            <span className='text-start text-lg-right text-xl-left'> {currencySymbol} {parseFloat(data.totalTaxAmount).toFixed(2)}</span>
                           </span>
                         </div>
                       </div>
@@ -295,13 +324,13 @@ const InvoiceForm = ({ data, setData, handleSubmit, errors, setErrors }) => {
                         </div>
                         <div className="col-9 order-3 col-lg-6 order-lg-2">
                           <div className={`${styles.companyInvoicePriceAdjustment2Wrapper} d-flex`}>
-                            <input type="number" className={`${styles.companyInvoicePriceAdjustment} form-control`} name="adjustmentAmount" value={data.adjustmentAmount} onChange={handleInput} />
+                            <input type="number" step="0.01" className={`${styles.companyInvoicePriceAdjustment} form-control`} name="adjustmentAmount" value={data.adjustmentAmount} onChange={handleInput} />
                             <i><FaCircleQuestion></FaCircleQuestion></i>
                           </div>
                         </div>
                         <div className="col-4 col-lg-2 order-2 order-lg-3">
                           <span className={`${styles.totalCalculatedAdjustment} d-flex justify-content-end`}>
-                            <span> Rs. {parseFloat(data.adjustmentAmount).toFixed(2)}</span>
+                            <span> {currencySymbol} {parseFloat(data.adjustmentAmount).toFixed(2)}</span>
                           </span>
                         </div>
                       </div>
@@ -311,7 +340,7 @@ const InvoiceForm = ({ data, setData, handleSubmit, errors, setErrors }) => {
                           <h5>Total</h5>
                         </div>
                         <div className="col-6 text-center text-sm-end">
-                          <h5>Rs. {parseFloat(data.totalAmount).toFixed(2)}</h5>
+                          <h5>{currencySymbol} {parseFloat(data.totalAmount).toFixed(2)}</h5>
                         </div>
 
                       </div>
