@@ -16,8 +16,9 @@ import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 import DisplayNameSelect from '@/components/customers/displayNameSelect';
 import { ToastMsgContext } from '@/context/ToastMsg.context';
 import { useRouter } from 'next/navigation';
+import ContactPerson from '../contactPerson';
 
-const CustomersForm = ({ data, setData, handleSubmit, errors, setErrors }) => {
+const CustomersForm = ({ data, setData, handleSubmit, errors, setErrors, mode, id = 0 }) => {
   const { replace } = useRouter();
   const [gstTreatment, setGSTTreatment] = useState([]);
   const [currencies, setCurrencies] = useState([]);
@@ -148,6 +149,11 @@ const CustomersForm = ({ data, setData, handleSubmit, errors, setErrors }) => {
     setToastList: setToastList
   };
 
+  var contactPersonProps = {
+    customerId: id,
+    setToastList: setToastList,
+    ErrorList: ErrorList,
+  };
   const resetPage = () => {
     setErrors([]);
     setActiveTabID(1);
@@ -376,16 +382,17 @@ const CustomersForm = ({ data, setData, handleSubmit, errors, setErrors }) => {
                       <span className={`${styles.nav_menuName}`}>Address</span>
                     </span>
                   </li>
-                  {/* <li className={`nav-item me-0 ${styles.nav_item} ${ActiveTabID == 3 ? styles.active : " "}`} onClick={() => { setActiveTabID(3) }}>
-                                            <span>
-                                                <span className={`${styles.nav_menuName}`}>Contact Persons</span>
-                                            </span>
-                                        </li> */}
+                  {mode == 'edit' ? (
+                    <li className={`nav-item me-0 ${styles.nav_item} ${ActiveTabID == 3 ? styles.active : " "}`} onClick={() => { setActiveTabID(3) }}>
+                      <span>
+                        <span className={`${styles.nav_menuName}`}>Contact Persons</span>
+                      </span>
+                    </li>) : ''}
                 </ul>
                 <div className={`${styles.tab_content_wrapper} `} id="myTabContent">
                   {ActiveTabID == 1 ? <OtherDetails {...otherDetailsProps} /> : " "}
                   {ActiveTabID == 2 ? <Address data={data.address} setData={setAddressData} /> : " "}
-                  {/* {ActiveTabID == 3 ? <ContactPerson /> : " "} */}
+                  {ActiveTabID == 3 ? <ContactPerson {...contactPersonProps} /> : " "}
                 </div>
               </div>
 

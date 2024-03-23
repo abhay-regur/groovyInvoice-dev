@@ -77,6 +77,7 @@ export default function CustomerEditForm() {
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
         }
+        setIsLoading(false)
     }
 
     useEffect(() => {
@@ -126,7 +127,8 @@ export default function CustomerEditForm() {
                     setData={setData}
                     setErrors={setErrors}
                     errors={errors}
-                    mode="add"
+                    mode="edit"
+                    id={id}
                 />
             }
         </main>
