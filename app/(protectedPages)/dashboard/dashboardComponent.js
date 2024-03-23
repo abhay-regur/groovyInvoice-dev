@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, LineElement, Title, Tooltip, Legend, Filler, elements, } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import styles from '@/styles/home.module.scss';
+import { ToastMsgContext } from '@/context/ToastMsg.context';
 import FaQuestionCircleOutline from '@/assets/icons/faQuestionCircleOutline.svg';
 import { NavExpandedState } from '@/context/NavState.context';
 
@@ -10,7 +11,7 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, LineElement, Title, Too
 
 export default function DashboardComponent() {
     const { navExpandedState } = useContext(NavExpandedState);
-
+    const { setToastList } = useContext(ToastMsgContext);
     // useEffect(() => {
     //   const listenStorageChange = () => {
     //     if (localStorage.getItem("language") === null) {
@@ -108,6 +109,7 @@ export default function DashboardComponent() {
                                     <div className="row">
                                         <div className="col-12">
                                             <span className={`${styles.comapnyInvoiceTotalUnpaidInvoices}`}>Total Unpaid Invoices Rs. 217,416.39</span>
+                                            {/* <button className="btn btn-primary ms-3" onClick={() => { setToastList([{ id: Math.floor((Math.random() * 101) + 1), title: 'Customer Added', description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quia iusto minus.', }]); }}>Test Notification</button> */}
                                         </div>
                                         <div className="col-12">
                                             <div className={`${styles.comapnyInvoiceTotalReceivedProgressBarWrapper}`}>
