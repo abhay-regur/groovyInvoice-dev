@@ -20,6 +20,7 @@ import InvoiceNumberSettingsPopup from '@/components/settings/invoiceNumberSetti
 import { getInvoiceNumberSetting } from "@/services/invoice-number-setting.service";
 import { getCurrencyById } from "@/services/common/general.service";
 import { addDaysInDate } from "@/utils/date.utils";
+import { useRouter } from 'next/navigation';
 
 const InvoiceForm = ({ data, setData, handleSubmit, errors, setErrors, mode }) => {
   const [taxValueSelected, settaxValueSelected] = useState();
@@ -28,6 +29,7 @@ const InvoiceForm = ({ data, setData, handleSubmit, errors, setErrors, mode }) =
   const { userInfo } = useCurrentUserData();
   const { setToastList } = useContext(ToastMsgContext);
   const [currencySymbol, setCurrencySymbol] = useState('₹');
+  const { replace } = useRouter();
   const { Modal } = require("bootstrap");
 
   const handleTDSChange = () => {

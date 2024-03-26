@@ -6,8 +6,10 @@ import styles from "@/styles/userForm.module.scss";
 import FaGear from '@/assets/icons/faGear.svg';
 import ErrorList from '@/components/errorList';
 import { generatePassword } from '@/utils/genratePassword.utils';
+import { useRouter } from 'next/navigation';
 
 const UserForm = ({ data, setData, handleSubmit, errors, label, mode }) => {
+  const { replace } = useRouter();
   const genrateNewPassword = () => {
     const password = generatePassword()
     data.password = password
