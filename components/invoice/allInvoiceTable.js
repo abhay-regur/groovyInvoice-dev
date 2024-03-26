@@ -21,7 +21,7 @@ const AllInvoiceTable = ({ dateFormat }) => {
         return (
             <>
                 <span className={`${styles.companyInvoiceTableInvoiceNumber}`} onClick={() => push(`invoices/${row.id}`)}>{row.invoiceNo}</span>
-                <span class={`badge rounded-pill text-bg-primary ms-2`}>{row.status}</span>
+                <span className={`badge rounded-pill text-bg-primary ms-2`}>{row.status}</span>
             </>
         )
     }
