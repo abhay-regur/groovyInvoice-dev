@@ -1,3 +1,7 @@
+import { useRouter } from "next/navigation";
+
+const { replace } = useRouter();
+
 const genrateErrorMessage = (error, pageName, setToastList) => {
     if (typeof error.response !== 'undefined' && typeof error.response.status !== 'undefined' && typeof error.response.data.message !== 'undefined') {
         const { statusCode } = error.response.data
@@ -10,7 +14,7 @@ const genrateErrorMessage = (error, pageName, setToastList) => {
                     description: 'The Login session has expired, Please login again!',
                 }]);
             }
-            return "Session Expired!";
+            replace("/login");
         } else {
             return error.response.data.message;
         }

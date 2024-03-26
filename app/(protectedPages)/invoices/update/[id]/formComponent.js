@@ -66,7 +66,7 @@ export default function InvoiceEditForm() {
             setToastList([{
                 id: Math.floor((Math.random() * 101) + 1),
                 title: 'Invoice updated successfully',
-                description: '#' + data.invoiceNo + ' with Amount:' + ' ' + data.total,
+                description: '#' + data.invoiceNo + ' with Amount:' + ' ' + data.totalAmount,
             }]);
         } catch (error) {
             setErrors(genrateErrorMessage(error, 'Invoices', setToastList));
