@@ -17,6 +17,10 @@ export default function ResetPasswordForm() {
     const [data, setData] = useState({ password: '', confirmPassword: '' })
     const { setToastList } = useContext(ToastMsgContext);
     const [isInvalidToken, SetIsInvalidToken] = useState(false)
+    const [passwordValidateErrorMessage, setPasswordValidateErrorMessage] = useState({
+        password: '',
+        confirmPassword: ''
+    });
     const params = useSearchParams();
     const { push } = useRouter();
 
@@ -58,6 +62,38 @@ export default function ResetPasswordForm() {
         }
     }
 
+    const handlePasswordValidationError = (name, msg) => {
+        passwordValidateErrorMessage[name] = msg;
+        let temp = Object.assign({}, passwordValidateErrorMessage)
+        setPasswordValidateErrorMessage(temp)
+    }
+
+    const handlePasswordValidation = ({ target }) => {
+        if (target.name == 'password') {
+            if (target.value == '') {
+                target.classList.add('is-invalid');
+                handlePasswordValidationError(target.name, 'New password is required');
+            } else if (target.value.length < 8 || target.value.length > 16) {
+                target.classList.add('is-invalid');
+                handlePasswordValidationError(target.name, 'New password must be of 8 to 16 characters long');
+            } else {
+                target.classList.remove('is-invalid');
+                handlePasswordValidationError(target.name, '');
+            }
+        } else if (target.name == 'confirmPassword') {
+            if (target.value == '') {
+                handlePasswordValidationError(target.name, 'Confirm password is required');
+                target.classList.add('is-invalid');
+            } else if (target.value != data.password) {
+                handlePasswordValidationError(target.name, 'New password and confirm password must be same');
+                target.classList.add('is-invalid');
+            } else {
+                handlePasswordValidationError(target.name, '');
+                target.classList.remove('is-invalid');
+            }
+        }
+    }
+
     return (
         <div className={`${styles.resetPasswordContainer} container-fluid`}>
             <div className="row mx-0">
@@ -81,13 +117,19 @@ export default function ResetPasswordForm() {
                                             <div className="mb-3">
                                                 <label htmlFor="loginPassword" className="form-label">Password</label>
                                                 <div className={styles.innerInputIconWrapper}>
-                                                    <PasswordInputField placeholder="Password" showKeyIcon={true} name="password" value={data.password} onChange={handleInput} />
+                                                    <PasswordInputField className={`form-control`} placeholder="Password" showKeyIcon={true} name="password" value={data.password} onBlur={handlePasswordValidation} onChange={handleInput} />
+                                                </div>
+                                                <div htmlFor="currentPassword" className="ms-3 invalid-data">
+                                                    {passwordValidateErrorMessage.password}
                                                 </div>
                                             </div>
                                             <div className="mb-3">
                                                 <label htmlFor="loginConfirmPassword" className="form-label">Confirm Password</label>
                                                 <div className={styles.innerInputIconWrapper}>
-                                                    <PasswordInputField placeholder="Confirm Password" showKeyIcon={true} name="confirmPassword" value={data.confirmPassword} onChange={handleInput} />
+                                                    <PasswordInputField className={`form-control`} placeholder="Confirm Password" showKeyIcon={true} name="confirmPassword" value={data.confirmPassword} onBlur={handlePasswordValidation} onChange={handleInput} />
+                                                </div>
+                                                <div htmlFor="currentPassword" className="ms-3 invalid-data">
+                                                    {passwordValidateErrorMessage.confirmPassword}
                                                 </div>
                                             </div>
                                             <div className="d-grid gap-2">

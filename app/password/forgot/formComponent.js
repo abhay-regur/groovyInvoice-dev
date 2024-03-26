@@ -19,6 +19,7 @@ export default function ForgotPasswordForm() {
     const [errors, setErrors] = useState([]);
     const { setToastList } = useContext(ToastMsgContext);
     const [data, setData] = useState({ email: '' });
+    const [validateErrorMessage, setvalidateErrorMessage] = useState("");
 
     const handleInput = ({ target }) => {
         data[target.name] = target.value;
@@ -46,8 +47,21 @@ export default function ForgotPasswordForm() {
                 push('/password/forgot/success');
             } catch (error) {
                 setErrors(genrateErrorMessage(error, '', setToastList));
+                enableSubmitButton(e.target)
             }
-            enableSubmitButton(e.target)
+        }
+    }
+
+    const handleValidation = ({ target }) => {
+        if (target.classList.contains('is-loading')) target.classList.remove('is-loading')
+        if (target.name == 'email') {
+            if (target.value == '') {
+                target.classList.add('is-invalid');
+                setvalidateErrorMessage('Email should not be empty');
+            } else if (!target.value.match(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
+                target.classList.add('is-invalid');
+                setvalidateErrorMessage('Email Format is incorrect');
+            }
         }
     }
 
@@ -73,7 +87,10 @@ export default function ForgotPasswordForm() {
                                             <label htmlFor="forgotPasswordEmail" className="form-label">Email address</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <i><FontAwesomeIcon icon={faEnvelope} /></i>
-                                                <input type="email" className="form-control" name='email' placeholder='Email' id="forgotPasswordEmail" onChange={handleInput} aria-describedby="emailHelp" />
+                                                <input type="email" className="form-control" name='email' placeholder='Email' id="forgotPasswordEmail" onChange={handleInput} onBlur={handleValidation} aria-describedby="emailHelp" required />
+                                                <div htmlFor="forgotPasswordEmail" className="ms-3 invalid-feedback">
+                                                    {validateErrorMessage}
+                                                </div>
                                             </div>
                                         </div>
                                         <div className="d-grid gap-2">

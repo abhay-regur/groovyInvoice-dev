@@ -429,7 +429,7 @@ export default function ProfileComponent() {
                                                                     <label className={`${styles.companyInvoiceCurrentPasswordID}`}>Current Password</label>
                                                                 </div>
                                                                 <div className="col-12 position-relative d-flex">
-                                                                    <PasswordInputField placeholder="Current Password" id="currentPassword" name="currentPassword" value={passwordData.currentPassword} onChange={handlePasswordChange} onBlur={handlePasswordValidation} />
+                                                                    <PasswordInputField placeholder="Current Password" className="form-control" id="currentPassword" name="currentPassword" value={passwordData.currentPassword} onChange={handlePasswordChange} onBlur={handlePasswordValidation} />
                                                                 </div>
                                                                 <div htmlFor="currentPassword" className="ms-3 invalid-data">
                                                                     {passwordValidateErrorMessage.currentPassword}
