@@ -55,12 +55,8 @@ export default function OrganizationUpdateForm() {
 
     useEffect(() => {
         setIsLoading(true);
-        getCurrenciesData();
-        getIndustryData();
-        getStatesData();
-        getTimeZonesData();
-        getCountriesData();
-        getCompanyData();
+        Promise.allSettled([getCurrenciesData(), getIndustryData(), getStatesData(), getTimeZonesData(), getCountriesData(), getCompanyData()]).then(() => setIsLoading(false))
+
     }, []);
 
     const getStatesData = async () => {
@@ -329,7 +325,7 @@ export default function OrganizationUpdateForm() {
                                                     <label className={`${styles.companyInvoiceOrganizationLanguagelabel}`}>Language <span className={`${styles.green}`}>*</span></label>
                                                 </div>
                                                 <div className="col-12 col-lg-6 col-xl-7">
-                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationLanguageSelect}`} data={[{ Id: 'English', name: 'English' }]} onOptionValueChange={handleInput} optionValue={data.language} name={'language'} isDisabled={false} defaultText={'Select a Languange'} isInnerButtonRequired={false} />
+                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationLanguageSelect}`} data={[{ Id: "1", name: 'English' }]} onOptionValueChange={handleInput} optionValue={data.language} name={'language'} isDisabled={false} defaultText={'Select a Languange'} isInnerButtonRequired={false} />
                                                 </div>
                                             </div>
 

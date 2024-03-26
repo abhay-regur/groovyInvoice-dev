@@ -59,13 +59,7 @@ export default function OrganizationSetupForm() {
 
     useEffect(() => {
         setIsLoading(true);
-        getCurrenciesData();
-        getIndustryData();
-        getStatesData();
-        getTimeZonesData();
-        getCountriesData();
-        getCompanyData();
-        setIsLoading(false);
+        Promise.allSettled([getCurrenciesData(), getIndustryData(), getStatesData(), getTimeZonesData(), getCountriesData(), getCompanyData()]).then(() => setIsLoading(false))
     }, []);
 
     const getStatesData = async () => {

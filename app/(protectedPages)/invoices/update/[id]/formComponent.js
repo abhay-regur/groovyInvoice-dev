@@ -49,12 +49,11 @@ export default function InvoiceEditForm() {
                 setErrors(genrateErrorMessage(error, '', setToastList));
             }
         }
-        setIsPageLoading(false);
     }
 
     useEffect(() => {
         setIsPageLoading(true);
-        getData();
+        getData().then(() => setIsPageLoading(false));
     }, [])
 
     const handleSubmit = async ({ currentTarget }, status) => {

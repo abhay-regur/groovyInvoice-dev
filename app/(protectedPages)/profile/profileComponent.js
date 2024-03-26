@@ -63,7 +63,7 @@ export default function ProfileComponent() {
     }
 
     useEffect(() => {
-        getUserDetails();
+        getUserDetails().then(() => setIsLoading(false));
     }, []);
 
     const handleInput = ({ target }) => {
@@ -96,7 +96,6 @@ export default function ProfileComponent() {
         } catch (error) {
             setProfileInfoErrors(genrateErrorMessage(error, '', setToastList));
         }
-        setIsLoading(false);
     }
 
     const handleUserSaveClick = async (e) => {
