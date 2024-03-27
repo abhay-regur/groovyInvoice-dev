@@ -10,13 +10,9 @@ import { getTokenKey } from '@/services/auth.service'
 import { getToken } from '@/services/token.service'
 import UserHTTPService from '@/services/user-http.service';
 
-
-var delayInMilliseconds = 500;
-
 function ServerSideDT(props, ref) {
     const userHttpService = new UserHTTPService('user');
-    let alreadyInitializing = false
-    const searchPlaceholder = "Name";
+    let alreadyInitializing = false;
     useImperativeHandle(ref, () => ({
         reload(cb = null, resetPaging = true) {
             const table = $('#' + props.id).DataTable()

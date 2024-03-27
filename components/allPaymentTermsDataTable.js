@@ -10,7 +10,7 @@ const AllPaymentTermsTable = () => {
     const [isPageLoading, setIsPageLoading] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
 
-    const dtRef = useRef();
+    const dtRef = useRef(null);
 
     const draw_buttons = (row) => {
         return (
