@@ -1,8 +1,6 @@
 import Link from "next/link";
-import style from '@/styles/navbar.module.scss';
 
-
-export default function NavList({ activeIdx, expanded, text, icon, subMenu, setActiveIdx, setNavItemExpanded }) {
+export default function NavList({ activeIdx, expanded, text, icon, subMenu, setActiveIdx, setNavItemExpanded, style }) {
     return (
         <div className={`${style.dropdownWrapper} d-flex`}>
             <div className={`nav__item ${style.dropdownNavitem}`}>
