@@ -1,8 +1,7 @@
 "use client"
 import Image from "next/image";
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect, useRef } from 'react';
 import FaSave from '@/assets/icons/faSave.svg';
-import $ from 'jquery';
 import Loading from "./loading";
 import { getCurrentUserDetails, updateCurrentUserDetails, updateCurrentPassword } from '@/services/profile.service';
 import { generatePassword } from '@/utils/genratePassword.utils';
@@ -35,6 +34,8 @@ export default function ProfileComponent() {
     });
     const { userInfo, setUserInfo } = useCurrentUserData();
 
+    const imageInputRef = useRef(null);
+
     const [passwordValidateErrorMessage, setPasswordValidateErrorMessage] = useState({
         currentPassword: '',
         newPassword: '',
@@ -59,7 +60,7 @@ export default function ProfileComponent() {
 
     const clickImageInput = function (e) {
         e.preventDefault();
-        $('#fileUploadInput').trigger('click');
+        imageInputRef.current.click();
     }
 
     useEffect(() => {
@@ -163,7 +164,7 @@ export default function ProfileComponent() {
         setImageSrc(defaultProfile);
         setIsImageSet(false);
         setUserData(temp_obj);
-        $('#fileUploadInput').val('');
+        imageInputRef.current.value = ""
     }
 
     const handlePasswordSaveClick = async (e) => {
@@ -307,6 +308,7 @@ export default function ProfileComponent() {
                     <Loading /> :
                     <main className={`${styles.main} ${navExpandedState ? styles.expanded : " "}`}>
                         <div className="container-fluid">
+
                             <div className={`${styles.comapnyInvoiceHeadingWrapper} row`}>
                                 <div className="col-12 col-md-6">
                                     <h2 className={`${styles.title}`}>
@@ -344,7 +346,7 @@ export default function ProfileComponent() {
                                                                             </button>
 
                                                                     }
-                                                                    <input id='fileUploadInput' className={`${styles.fileUpload}`} type="file" accept="image/*" onChange={previewandSetImage} />
+                                                                    <input id='fileUploadInput' className={`${styles.fileUpload}`} ref={imageInputRef} type="file" accept="image/*" onChange={previewandSetImage} />
                                                                 </span>
                                                             </div>
                                                         </div>
