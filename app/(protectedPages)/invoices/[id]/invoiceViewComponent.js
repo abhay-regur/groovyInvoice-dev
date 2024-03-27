@@ -96,7 +96,6 @@ export default function InvoiceViewComponent() {
 
             getCustomerData(data.customerId, tempInvoiceDetails);
             getPaymentTermData(data.termsId);
-            setIsPageLoading(false);
             const paymentResult = await paymentInfoForInvoice(id);
             setPaymentInfo(paymentResult.data);
             tempInvoiceDetails.invoiceDetails.invoiceNo = data.invoiceNo;
@@ -171,7 +170,7 @@ export default function InvoiceViewComponent() {
 
     useEffect(() => {
         setIsPageLoading(true);
-        getInvoiceData();
+        getInvoiceData().then(() => setIsPageLoading(false));
     }, [])
 
     useEffect(() => {

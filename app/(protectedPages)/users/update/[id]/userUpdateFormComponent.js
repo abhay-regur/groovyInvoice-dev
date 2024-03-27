@@ -31,7 +31,7 @@ export default function UserUpdateFormComponent() {
 
     useEffect(() => {
         setIsLoading(true);
-        getUserDetails();
+        getUserDetails().then(() => setIsLoading(false));
     }, []);
 
     const getUserDetails = async () => {
@@ -46,7 +46,6 @@ export default function UserUpdateFormComponent() {
                 setErrors(genrateErrorMessage(error, '', setToastList));
             }
         }
-        setIsLoading(false);
     }
 
     const handleSubmit = async (e) => {

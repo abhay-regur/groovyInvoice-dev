@@ -271,8 +271,6 @@
                 }
 
                 &.navItemListWrapper {
-                    margin-right: -5px;
-
                     a {
                         margin: 0 19.99px 0 19.99px;
                         padding: 10px 15px;
@@ -612,6 +610,13 @@
                                 margin-right: 15px !important;
                             }
                         }
+                    }
+                }
+
+                .subNavItemWrapper {
+                    a {
+                        margin: 0 19.99px 0 0px;
+                        padding-left: 0;
                     }
                 }
 

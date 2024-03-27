@@ -55,13 +55,8 @@ export default function OrganizationUpdateForm() {
 
     useEffect(() => {
         setIsLoading(true);
-        getCurrenciesData();
-        getIndustryData();
-        getStatesData();
-        getTimeZonesData();
-        getCountriesData();
-        getCompanyData();
-        setIsLoading(false);
+        Promise.allSettled([getCurrenciesData(), getIndustryData(), getStatesData(), getTimeZonesData(), getCountriesData(), getCompanyData()]).then(() => setIsLoading(false))
+
     }, []);
 
     const getStatesData = async () => {
@@ -114,7 +109,7 @@ export default function OrganizationUpdateForm() {
         setErrors([]);
         try {
             const result = await getCompanyDetails();
-            const {logo, ...companyData} = result.data;
+            const { logo, ...companyData } = result.data;
             setData(companyData);
             if (logo) {
                 setImageSrc(logo)
@@ -124,6 +119,7 @@ export default function OrganizationUpdateForm() {
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
         }
+        setIsLoading(false);
     }
 
     const getIndustryData = async () => {
@@ -269,196 +265,198 @@ export default function OrganizationUpdateForm() {
                 <div className="breadcrumbWrapper">
                     <Breadcrumb />
                 </div>
-                <div className="main">
-                    <div className={`${styles.companyDetailsWrapper}`}>
-                        <h4 className={`${styles.title}`}>Organization Details</h4>
-                        <div className={`${styles.organizationCard} card`}>
-                            <div className="card-body p-4">
-                                <div className={`${styles.form} mb4 row`}>
-                                    <ErrorList errors={errors} />
-                                    <form >
+                {isLoading ? <Loading /> :
+                    <div className="main">
+                        <div className={`${styles.companyDetailsWrapper}`}>
+                            <h4 className={`${styles.title}`}>Organization Details</h4>
+                            <div className={`${styles.organizationCard} card`}>
+                                <div className="card-body p-4">
+                                    <div className={`${styles.form} mb4 row`}>
+                                        <ErrorList errors={errors} />
+                                        <form >
 
-                                        <div className={`${styles.companyInvoiceOrganizationNameWrapper} gap-2 mb-4 row`}>
-                                            <div className="d-flex align-items-center col-12 col-lg-4">
-                                                <label className={`${styles.companyInvoiceCompanyOrganizationName}`}>Organization Name</label>
-                                            </div>
-                                            <div className="col-12 col-lg-6 col-xl-7">
-                                                <input name='companyName' type="text" className="form-control" id="companyInvoiceOrganizationName" value={data.companyName} onChange={handleInput} placeholder='Organization Name' />
-                                            </div>
-                                        </div>
-
-                                        <div className={`${styles.companyInvoiceOrganizationIndustryWrapper} gap-2 mb-4 row`}>
-                                            <div className="d-flex align-items-center col-12 col-lg-4">
-                                                <label className={`${styles.companyInvoiceOrganizationIndustrylabel}`}>Industry </label>
-                                            </div>
-                                            <div className="col-12 col-lg-6 col-xl-7">
-                                                <CustomSelectComponent className={`${styles.companyInvoiceOrganizationIndustrySelect}`} data={industryList} onOptionValueChange={handleInput} optionValue={parseInt(data.industryId)} name='industryId' isDisabled={false} defaultText={'Select an Option'} isInnerButtonRequired={true} onOptionInnerButtonClick={showIndustyModal} />
-                                            </div>
-                                        </div>
-
-                                        <div className={`${styles.companyInvoiceOrganizationLocationWrapper} gap-2 mb-4 row`}>
-                                            <div className="d-flex align-items-center col-12 col-lg-4">
-                                                <label className={`${styles.companyInvoiceOrganizationLocationlabel}`}>Business Location <span className={`${styles.green}`}>*</span> </label>
-                                            </div>
-                                            <div className="col-12 col-lg-6 col-xl-7">
-                                                <CustomSelectComponent className={`${styles.companyInvoiceOrganizationLocationSelect}`} data={countryArray} onOptionValueChange={handleInput} optionValue={data.countryId} name={'countryId'} onOptionInnerButtonClick={handleShow} hasSearch={true} isDisabled={false} defaultText={'Select an location'} isInnerButtonRequired={false} multiple={true} />
-                                            </div>
-                                        </div>
-
-                                        <div className={`${styles.companyInvoiceOrganizationStateWrapper} gap-2 mb-4 row`}>
-                                            <div className="d-flex align-items-center col-12 col-lg-4">
-                                                <label className={`${styles.companyInvoiceOrganizationStatelabel}`}>State <span className={`${styles.green}`}>*</span></label>
-                                            </div>
-                                            <div className="col-12 col-lg-6 col-xl-7">
-                                                <CustomSelectComponent className={`${styles.companyInvoiceOrganizationStateSelect}`} data={statesArray} onOptionValueChange={handleInput} optionValue={data.stateId} name={'stateId'} isDisabled={false} defaultText={'Select a State'} hasSearch={true} isInnerButtonRequired={false} multiple={true} />
-                                            </div>
-                                        </div>
-
-                                        <div className={`${styles.companyInvoiceOrganizationCurrencyWrapper} gap-2 mb-4 row`}>
-                                            <div className="d-flex align-items-center col-12 col-lg-4">
-                                                <label className={`${styles.companyInvoiceOrganizationCurrencylabel}`}>Currency <span className={`${styles.green}`}>*</span></label>
-                                            </div>
-                                            <div className="col-12 col-lg-6 col-xl-7">
-                                                <CustomSelectComponent className={`${styles.companyInvoiceOrganizationCurrencySelect}`} data={currencies} onOptionValueChange={handleInput} optionValue={data.currencyId} name={'currencyId'} isDisabled={false} defaultText={'Select a Currency'} hasSearch={true} isInnerButtonRequired={false} />
-                                            </div>
-                                        </div>
-
-                                        <div className={`${styles.companyInvoiceOrganizationLanguageWrapper} gap-2 mb-4 row`}>
-                                            <div className="d-flex align-items-center col-12 col-lg-4">
-                                                <label className={`${styles.companyInvoiceOrganizationLanguagelabel}`}>Language <span className={`${styles.green}`}>*</span></label>
-                                            </div>
-                                            <div className="col-12 col-lg-6 col-xl-7">
-                                                <CustomSelectComponent className={`${styles.companyInvoiceOrganizationLanguageSelect}`} data={[{ Id: 'English', name: 'English' }]} onOptionValueChange={handleInput} optionValue={data.language} name={'language'} isDisabled={false} defaultText={'Select a Languange'} isInnerButtonRequired={false} />
-                                            </div>
-                                        </div>
-
-                                        <div className={`${styles.companyInvoiceOrganizationDateFormatWrapper} gap-2 mb-4 row`}>
-                                            <div className="d-flex align-items-center col-12 col-lg-4">
-                                                <label className={`${styles.companyInvoiceOrganizationDateFormatlabel}`}>Date Format<span className={`${styles.green}`}>*</span></label>
-                                            </div>
-                                            <div className="col-12 col-lg-6 col-xl-7">
-                                                <CustomSelectComponent
-                                                    className={`${styles.companyInvoiceOrganizationTimeZoneSelect}`}
-                                                    data={DATE_FORMATE_LIST}
-                                                    onOptionValueChange={handleInput}
-                                                    optionValue={data.dateFormat}
-                                                    name={'dateFormat'}
-                                                    isDisabled={false}
-                                                    defaultText={'Select a Date format'}
-                                                    hasSearch={false}
-                                                    isInnerButtonRequired={false}
-                                                />
-                                            </div>
-                                        </div>
-
-                                        <div className={`${styles.companyInvoiceOrganizationTimeZoneWrapper} gap-2 mb-4 row`}>
-                                            <div className="d-flex align-items-center col-12 col-lg-4">
-                                                <label className={`${styles.companyInvoiceOrganizationTimeZonelabel}`}>Time Zone <span className={`${styles.green}`}>*</span></label>
-                                            </div>
-                                            <div className="col-12 col-lg-6 col-xl-7">
-                                                <CustomSelectComponent className={`${styles.companyInvoiceOrganizationTimeZoneSelect}`} data={timeZoneList} onOptionValueChange={handleInput} optionValue={data.timeZoneId} name={'timeZoneId'} isDisabled={false} defaultText={'Select a Time Zone'} hasSearch={true} isInnerButtonRequired={false} />
-                                            </div>
-                                        </div>
-
-                                        <div className={`${styles.companyInvoiceOrganizationGSTWrapper} gap-2 mb-4 row`}>
-                                            <div className="d-flex align-items-center col-12 col-lg-4">
-                                                <label className={`${styles.companyInvoiceOrganizationGSTlabel}`}>Is this business registred for GST?</label>
-                                            </div>
-                                            <div className="col-12 col-lg-6 col-xl-6 d-flex align-items-center">
-                                                <div className={`${styles.companyInvoiceOrganizationGSTSwitchWrapper} form-check form-switch align-items-center d-flex`}>
-                                                    <input className={`${styles.companyInvoiceOrganizationGSTSwitch} form-check-input`} type="checkbox" role="switch" id="isRegisteredForGSTSwitch" name='isRegisteredForGST' checked={data.isRegisteredForGST} onChange={handleCheckBoxChange} />
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        {data.isRegisteredForGST ?
-                                            <div className={`${styles.companyInvoiceOrganizationGSTINWrapper} gap-2 mb-4 row`}>
+                                            <div className={`${styles.companyInvoiceOrganizationNameWrapper} gap-2 mb-4 row`}>
                                                 <div className="d-flex align-items-center col-12 col-lg-4">
-                                                    <label className={`${styles.companyInvoiceOrganizationGSTlabel}`}>GST Number <span className={`${styles.green}`}>*</span></label>
+                                                    <label className={`${styles.companyInvoiceCompanyOrganizationName}`}>Organization Name</label>
                                                 </div>
                                                 <div className="col-12 col-lg-6 col-xl-7">
-                                                    <input name='GSTIN' type="text" className="form-control" id="companyInvoiceNewOrganizationGSTIN" value={data.GSTIN} onChange={handleInput} placeholder='GSTIN' />
+                                                    <input name='companyName' type="text" className="form-control" id="companyInvoiceOrganizationName" value={data.companyName} onChange={handleInput} placeholder='Organization Name' />
                                                 </div>
                                             </div>
-                                            : ''
-                                        }
 
-                                        <div className={`${styles.companyInvoiceOrganizationCurrentInvoicingWrapper} gap-2 mb-4 row`}>
-                                            <div className="d-flex align-items-center col-12 col-lg-4">
-                                                <label className={`${styles.companyInvoiceOrganizationCurrentInvoicinglabel}`}>How are you managing invoicing currently? </label>
-                                            </div>
-                                            <div className="col-12 col-lg-6 col-xl-7">
-                                                <input name='currentInvoicing' type="text" className="form-control" id="companyInvoiceOrganizationCurrentInvoicingSelect" value={data.currentInvoicing} onChange={handleInput} placeholder=' ' />
-                                            </div>
-                                        </div>
-
-                                        <div className={`${styles.companyInvoiceOrganizationImageWrapper} gap-2 row mb-4`}>
-                                            <div className="d-flex align-items-center col-12 col-lg-4">
-                                                <label className={`${styles.companyInvoiceOrganizationImagelabel}`}>Organization Logo</label>
-                                            </div>
-                                            <div className="col-12 col-lg-6 col-xl-7">
-                                                <div className={`${styles.companyInvoiceOrganizationInputFileWrapper} d-flex`}>
-                                                    {imageSrc ?
-                                                        <div className={`${styles.companyInvoiceOrganizationImageInputWrapper}`}>
-                                                            <Image className={`${styles.companyInvoiceOrganizationImageDisplay}`} loader={imageLoader} onError={() => setImageSrc(defaultProfile)} src={imageSrc} width={250} height={125} alt="organization_logo" />
-                                                            <span className={`${styles.companyInvoiceOrganizationImageUploadWrapper}`}>
-                                                                <p>
-                                                                    This logo will be displayed in transaction PDF&apos;s and email notifications.
-                                                                </p>
-                                                                <p>
-                                                                    Max File Size: 2MB
-                                                                </p>
-                                                                <span className={`${styles.companyInvoiceOrganizationRemoveLogoLink}`} onClick={(e) => { removeSelectedImage(e) }}>
-                                                                    Remove Logo
-                                                                </span>
-                                                            </span>
-
-                                                        </div>
-                                                        :
-                                                        <>
-                                                            <input id="companyInvoiceOrganizationLogoInput" className={`${styles.companyInvoiceOrganizationInputFile}`} accept="image/*" type="file" onChange={setImage} />
-                                                            <label className={`${styles.companyInvoiceOrganizationInputFileSVGButton} btn ms-0`} htmlFor="companyInvoiceOrganizationLogoInput" >
-                                                                <FaCamera />
-                                                                Upload Image
-                                                            </label>
-                                                            <label htmlFor="companyInvoiceOrganizationLogoInput">We accept JPEG, PNG...</label>
-                                                        </>}
+                                            <div className={`${styles.companyInvoiceOrganizationIndustryWrapper} gap-2 mb-4 row`}>
+                                                <div className="d-flex align-items-center col-12 col-lg-4">
+                                                    <label className={`${styles.companyInvoiceOrganizationIndustrylabel}`}>Industry </label>
+                                                </div>
+                                                <div className="col-12 col-lg-6 col-xl-7">
+                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationIndustrySelect}`} data={industryList} onOptionValueChange={handleInput} optionValue={parseInt(data.industryId)} name='industryId' isDisabled={false} defaultText={'Select an Option'} isInnerButtonRequired={true} onOptionInnerButtonClick={showIndustyModal} />
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div className="row">
-                                            <div className="d-flex gap-3 col-12 col-sm-10 col-md-5 col-lg-7 col-xl-5">
-                                                <button className={`${styles.companyInvoiceSaveSendButton} btn blue`} onClick={(e) => { handleSubmit(e) }}>
-                                                    {
-                                                        isSubmit ?
-                                                            <span className={`d-flex align-items-center`}>
-                                                                <span className={`spinner-border spinner-border-sm text-light`} role="status">
+                                            <div className={`${styles.companyInvoiceOrganizationLocationWrapper} gap-2 mb-4 row`}>
+                                                <div className="d-flex align-items-center col-12 col-lg-4">
+                                                    <label className={`${styles.companyInvoiceOrganizationLocationlabel}`}>Business Location <span className={`${styles.green}`}>*</span> </label>
+                                                </div>
+                                                <div className="col-12 col-lg-6 col-xl-7">
+                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationLocationSelect}`} data={countryArray} onOptionValueChange={handleInput} optionValue={data.countryId} name={'countryId'} onOptionInnerButtonClick={handleShow} hasSearch={true} isDisabled={false} defaultText={'Select an location'} isInnerButtonRequired={false} multiple={true} />
+                                                </div>
+                                            </div>
+
+                                            <div className={`${styles.companyInvoiceOrganizationStateWrapper} gap-2 mb-4 row`}>
+                                                <div className="d-flex align-items-center col-12 col-lg-4">
+                                                    <label className={`${styles.companyInvoiceOrganizationStatelabel}`}>State <span className={`${styles.green}`}>*</span></label>
+                                                </div>
+                                                <div className="col-12 col-lg-6 col-xl-7">
+                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationStateSelect}`} data={statesArray} onOptionValueChange={handleInput} optionValue={data.stateId} name={'stateId'} isDisabled={false} defaultText={'Select a State'} hasSearch={true} isInnerButtonRequired={false} multiple={true} />
+                                                </div>
+                                            </div>
+
+                                            <div className={`${styles.companyInvoiceOrganizationCurrencyWrapper} gap-2 mb-4 row`}>
+                                                <div className="d-flex align-items-center col-12 col-lg-4">
+                                                    <label className={`${styles.companyInvoiceOrganizationCurrencylabel}`}>Currency <span className={`${styles.green}`}>*</span></label>
+                                                </div>
+                                                <div className="col-12 col-lg-6 col-xl-7">
+                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationCurrencySelect}`} data={currencies} onOptionValueChange={handleInput} optionValue={data.currencyId} name={'currencyId'} isDisabled={false} defaultText={'Select a Currency'} hasSearch={true} isInnerButtonRequired={false} />
+                                                </div>
+                                            </div>
+
+                                            <div className={`${styles.companyInvoiceOrganizationLanguageWrapper} gap-2 mb-4 row`}>
+                                                <div className="d-flex align-items-center col-12 col-lg-4">
+                                                    <label className={`${styles.companyInvoiceOrganizationLanguagelabel}`}>Language <span className={`${styles.green}`}>*</span></label>
+                                                </div>
+                                                <div className="col-12 col-lg-6 col-xl-7">
+                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationLanguageSelect}`} data={[{ Id: "1", name: 'English' }]} onOptionValueChange={handleInput} optionValue={data.language} name={'language'} isDisabled={false} defaultText={'Select a Languange'} isInnerButtonRequired={false} />
+                                                </div>
+                                            </div>
+
+                                            <div className={`${styles.companyInvoiceOrganizationDateFormatWrapper} gap-2 mb-4 row`}>
+                                                <div className="d-flex align-items-center col-12 col-lg-4">
+                                                    <label className={`${styles.companyInvoiceOrganizationDateFormatlabel}`}>Date Format<span className={`${styles.green}`}>*</span></label>
+                                                </div>
+                                                <div className="col-12 col-lg-6 col-xl-7">
+                                                    <CustomSelectComponent
+                                                        className={`${styles.companyInvoiceOrganizationTimeZoneSelect}`}
+                                                        data={DATE_FORMATE_LIST}
+                                                        onOptionValueChange={handleInput}
+                                                        optionValue={data.dateFormat}
+                                                        name={'dateFormat'}
+                                                        isDisabled={false}
+                                                        defaultText={'Select a Date format'}
+                                                        hasSearch={false}
+                                                        isInnerButtonRequired={false}
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            <div className={`${styles.companyInvoiceOrganizationTimeZoneWrapper} gap-2 mb-4 row`}>
+                                                <div className="d-flex align-items-center col-12 col-lg-4">
+                                                    <label className={`${styles.companyInvoiceOrganizationTimeZonelabel}`}>Time Zone <span className={`${styles.green}`}>*</span></label>
+                                                </div>
+                                                <div className="col-12 col-lg-6 col-xl-7">
+                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationTimeZoneSelect}`} data={timeZoneList} onOptionValueChange={handleInput} optionValue={data.timeZoneId} name={'timeZoneId'} isDisabled={false} defaultText={'Select a Time Zone'} hasSearch={true} isInnerButtonRequired={false} />
+                                                </div>
+                                            </div>
+
+                                            <div className={`${styles.companyInvoiceOrganizationGSTWrapper} gap-2 mb-4 row`}>
+                                                <div className="d-flex align-items-center col-12 col-lg-4">
+                                                    <label className={`${styles.companyInvoiceOrganizationGSTlabel}`}>Is this business registred for GST?</label>
+                                                </div>
+                                                <div className="col-12 col-lg-6 col-xl-6 d-flex align-items-center">
+                                                    <div className={`${styles.companyInvoiceOrganizationGSTSwitchWrapper} form-check form-switch align-items-center d-flex`}>
+                                                        <input className={`${styles.companyInvoiceOrganizationGSTSwitch} form-check-input`} type="checkbox" role="switch" id="isRegisteredForGSTSwitch" name='isRegisteredForGST' checked={data.isRegisteredForGST} onChange={handleCheckBoxChange} />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            {data.isRegisteredForGST ?
+                                                <div className={`${styles.companyInvoiceOrganizationGSTINWrapper} gap-2 mb-4 row`}>
+                                                    <div className="d-flex align-items-center col-12 col-lg-4">
+                                                        <label className={`${styles.companyInvoiceOrganizationGSTlabel}`}>GST Number <span className={`${styles.green}`}>*</span></label>
+                                                    </div>
+                                                    <div className="col-12 col-lg-6 col-xl-7">
+                                                        <input name='GSTIN' type="text" className="form-control" id="companyInvoiceNewOrganizationGSTIN" value={data.GSTIN} onChange={handleInput} placeholder='GSTIN' />
+                                                    </div>
+                                                </div>
+                                                : ''
+                                            }
+
+                                            <div className={`${styles.companyInvoiceOrganizationCurrentInvoicingWrapper} gap-2 mb-4 row`}>
+                                                <div className="d-flex align-items-center col-12 col-lg-4">
+                                                    <label className={`${styles.companyInvoiceOrganizationCurrentInvoicinglabel}`}>How are you managing invoicing currently? </label>
+                                                </div>
+                                                <div className="col-12 col-lg-6 col-xl-7">
+                                                    <input name='currentInvoicing' type="text" className="form-control" id="companyInvoiceOrganizationCurrentInvoicingSelect" value={data.currentInvoicing == 'undefined' ? 'N.A' : data.currentInvoicing} onChange={handleInput} placeholder=' ' />
+                                                </div>
+                                            </div>
+
+                                            <div className={`${styles.companyInvoiceOrganizationImageWrapper} gap-2 row mb-4`}>
+                                                <div className="d-flex align-items-center col-12 col-lg-4">
+                                                    <label className={`${styles.companyInvoiceOrganizationImagelabel}`}>Organization Logo</label>
+                                                </div>
+                                                <div className="col-12 col-lg-6 col-xl-7">
+                                                    <div className={`${styles.companyInvoiceOrganizationInputFileWrapper} d-flex`}>
+                                                        {imageSrc ?
+                                                            <div className={`${styles.companyInvoiceOrganizationImageInputWrapper}`}>
+                                                                <Image className={`${styles.companyInvoiceOrganizationImageDisplay}`} loader={imageLoader} onError={() => setImageSrc(defaultProfile)} src={imageSrc} width={250} height={125} alt="organization_logo" />
+                                                                <span className={`${styles.companyInvoiceOrganizationImageUploadWrapper}`}>
+                                                                    <p>
+                                                                        This logo will be displayed in transaction PDF&apos;s and email notifications.
+                                                                    </p>
+                                                                    <p>
+                                                                        Max File Size: 2MB
+                                                                    </p>
+                                                                    <span className={`${styles.companyInvoiceOrganizationRemoveLogoLink}`} onClick={(e) => { removeSelectedImage(e) }}>
+                                                                        Remove Logo
+                                                                    </span>
                                                                 </span>
-                                                                <span className="status ms-1">Loading</span>
-                                                            </span>
+
+                                                            </div>
                                                             :
-                                                            <span>
-                                                                <i className="pe-1"><FaSave /></i>
-                                                                Save
-                                                            </span>
-                                                    }
-                                                </button>
-                                                <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={(e) => { cancleHandler(e); }}>
-                                                    <span>
-                                                        <i className="pe-1"><FaCircleXmark /></i>
-                                                        Cancel
-                                                    </span>
-                                                </button>
+                                                            <>
+                                                                <input id="companyInvoiceOrganizationLogoInput" className={`${styles.companyInvoiceOrganizationInputFile}`} accept="image/*" type="file" onChange={setImage} />
+                                                                <label className={`${styles.companyInvoiceOrganizationInputFileSVGButton} btn ms-0`} htmlFor="companyInvoiceOrganizationLogoInput" >
+                                                                    <FaCamera />
+                                                                    Upload Image
+                                                                </label>
+                                                                <label htmlFor="companyInvoiceOrganizationLogoInput">We accept JPEG, PNG...</label>
+                                                            </>}
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </form>
+
+                                            <div className="row">
+                                                <div className="d-flex gap-3 col-12 col-sm-10 col-md-5 col-lg-7 col-xl-5">
+                                                    <button className={`${styles.companyInvoiceSaveSendButton} btn blue`} onClick={(e) => { handleSubmit(e) }}>
+                                                        {
+                                                            isSubmit ?
+                                                                <span className={`d-flex align-items-center`}>
+                                                                    <span className={`spinner-border spinner-border-sm text-light`} role="status">
+                                                                    </span>
+                                                                    <span className="status ms-1">Loading</span>
+                                                                </span>
+                                                                :
+                                                                <span>
+                                                                    <i className="pe-1"><FaSave /></i>
+                                                                    Save
+                                                                </span>
+                                                        }
+                                                    </button>
+                                                    <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={(e) => { cancleHandler(e); }}>
+                                                        <span>
+                                                            <i className="pe-1"><FaCircleXmark /></i>
+                                                            Cancel
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <IndustryModal getIndustryData={getIndustryData} setToastList={setToastList} Loading={Loading} />
                     </div>
-                    <IndustryModal getIndustryData={getIndustryData} setToastList={setToastList} Loading={Loading} />
-                </div>
+                }
             </main>
         </div>
     )

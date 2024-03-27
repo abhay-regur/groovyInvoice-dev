@@ -135,7 +135,7 @@ export default function LoginForm() {
                                         <div className="mb-3">
                                             <label htmlFor="password" className="form-label">Password</label>
                                             <div className={styles.innerInputIconWrapper}>
-                                                <PasswordInputField placeholder="Password" id='loginPassword' showKeyIcon={true} name="password" value={data.password} onChange={handleInput} />
+                                                <PasswordInputField placeholder="Password" className={`form-control`} id='loginPassword' showKeyIcon={true} name="password" value={data.password} onChange={handleInput} />
                                             </div>
                                         </div>
                                         <div className="row">

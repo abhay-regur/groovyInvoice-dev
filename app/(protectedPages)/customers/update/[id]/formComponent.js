@@ -77,11 +77,10 @@ export default function CustomerEditForm() {
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
         }
-        setIsLoading(false)
     }
 
     useEffect(() => {
-        getData();
+        getData().then(() => setIsLoading(false));
     }, [])
 
     const handleSubmit = async (e) => {

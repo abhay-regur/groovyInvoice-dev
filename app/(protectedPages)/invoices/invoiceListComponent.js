@@ -4,7 +4,6 @@ import { useContext, useEffect, useState } from 'react';
 import { NavExpandedState } from '@/context/NavState.context';
 import styles from '@/styles/invoice.module.scss';
 import FaCirclePlus from "@/assets/icons/faCirclePlus.svg";
-import FaRupeeCircle from "@/assets/icons/faRupeeCircle.svg";
 import Breadcrumb from '@/components/common/breadcrumb';
 import dynamic from 'next/dynamic';
 import { getTotalOutstandingReceivables, getDueToday, getDueWithin30Days, getOverdue } from '@/services/payment.service';
