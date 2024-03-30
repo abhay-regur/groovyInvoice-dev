@@ -20,6 +20,7 @@ import InvoiceNumberSettingsPopup from '@/components/settings/invoiceNumberSetti
 import { getInvoiceNumberSetting } from "@/services/invoice-number-setting.service";
 import { getCurrencyById } from "@/services/common/general.service";
 import { addDaysInDate } from "@/utils/date.utils";
+import { useRouter } from 'next/navigation';
 
 const InvoiceForm = ({ data, setData, handleSubmit, errors, setErrors, mode }) => {
   const [taxValueSelected, settaxValueSelected] = useState();
@@ -28,6 +29,7 @@ const InvoiceForm = ({ data, setData, handleSubmit, errors, setErrors, mode }) =
   const { userInfo } = useCurrentUserData();
   const { setToastList } = useContext(ToastMsgContext);
   const [currencySymbol, setCurrencySymbol] = useState('₹');
+  const { replace } = useRouter();
   const { Modal } = require("bootstrap");
 
   const handleTDSChange = () => {
@@ -39,7 +41,7 @@ const InvoiceForm = ({ data, setData, handleSubmit, errors, setErrors, mode }) =
   };
 
   const handlePaymentTermChange = (value) => {
-    if(value) {
+    if (value) {
       data['termsId'] = parseInt(value)
       const paymentTerm = paymentTerms.find((item) => item.Id == parseInt(value))
       const date = addDaysInDate(new Date(), paymentTerm.numberOfDays)
@@ -157,7 +159,7 @@ const InvoiceForm = ({ data, setData, handleSubmit, errors, setErrors, mode }) =
   useEffect(() => {
     getCustomersList();
     getPaymentTermsDetails();
-    if(mode == 'add') {
+    if (mode == 'add') {
       getInvoiceNumber();
     }
   }, [])
@@ -203,7 +205,7 @@ const InvoiceForm = ({ data, setData, handleSubmit, errors, setErrors, mode }) =
                   <div className={`${styles.companyInvoiceNumberWrapper} mb-3`}>
                     <label htmlFor="companyInvoiceNumber" className="form-label">Invoice#<span className={`${styles.green}`}>*</span></label>
                     <div className={`d-flex align-content-center`}>
-                      <input type="text" className="form-control" id="companyInvoiceNumber" aria-describedby="emailHelp" name="invoiceNo" value={data.invoiceNo} onChange={handleInput} disabled={mode == 'edit' ? true : false}/>
+                      <input type="text" className="form-control" id="companyInvoiceNumber" aria-describedby="emailHelp" name="invoiceNo" value={data.invoiceNo} onChange={handleInput} disabled={mode == 'edit' ? true : false} />
                       <i className={mode == 'edit' ? 'disabled' : ''} onClick={openInvoiceNumberSettingsPopup}><FaGear /></i>
                     </div>
                   </div>
@@ -234,7 +236,7 @@ const InvoiceForm = ({ data, setData, handleSubmit, errors, setErrors, mode }) =
                       className={`${styles.companInvoicePaymentTermsSelect}`}
                       inputClass="form-control"
                       data={paymentTerms}
-                      onOptionValueChange={(e)=>handlePaymentTermChange(e.target.value)}
+                      onOptionValueChange={(e) => handlePaymentTermChange(e.target.value)}
                       optionValue={data.termsId}
                       name={'termsId'}
                       isDisabled={false}
@@ -256,7 +258,7 @@ const InvoiceForm = ({ data, setData, handleSubmit, errors, setErrors, mode }) =
             </div>
             <hr />
             <div className={`${styles.companyInvoiceItemsTableMainWrapper} row`}>
-              <InvoiceTable itemsData={data.invoiceItems} setItemsData={setItemsData} currencySymbol={currencySymbol}/>
+              <InvoiceTable itemsData={data.invoiceItems} setItemsData={setItemsData} currencySymbol={currencySymbol} />
             </div>
             <hr />
             <div className={`${styles.companyInvoiceBottomWrapper}`}>
@@ -275,9 +277,9 @@ const InvoiceForm = ({ data, setData, handleSubmit, errors, setErrors, mode }) =
                         <div className={`${styles.subtotalresult}`}>{currencySymbol} {parseFloat(data.subTotalAmount).toFixed(2)}</div>
                       </div>
                       <div className={`${styles.companyInvoiceTaxOptionWrapper} row`}>
-                        <div className="col-9">
-                          <span className={`${styles.companyInvoiceTaxOptionInputWrapper}`}>
-                            <span className={`${styles.companyInvoiceTaxSelectorMainWrapper}`}>
+                        <div className="col-7">
+                          <div className={`${styles.companyInvoiceTaxOptionInputWrapper} d-block`}>
+                            <div className={`${styles.companyInvoiceTaxSelectorMainWrapper}`}>
                               <span className={`${styles.taxTDSRadioButtonWrapper} d-flex align-items-center`}>
                                 <RadioButton
                                   label="TDS"
@@ -292,8 +294,8 @@ const InvoiceForm = ({ data, setData, handleSubmit, errors, setErrors, mode }) =
                                   onChange={handleTCSChange}
                                 />
                               </span>
-                            </span>
-                            <span className={`${styles.taxTypeSelectWrapper}`}>
+                            </div>
+                            <div className={`${styles.taxTypeSelectWrapper} mt-2`}>
                               <CustomSelectComponent
                                 className={`${styles.taxTypeSelect}`}
                                 inputClass="form-control"
@@ -314,10 +316,10 @@ const InvoiceForm = ({ data, setData, handleSubmit, errors, setErrors, mode }) =
                                 defaultText={'Select Tax'}
                                 isInnerButtonRequired={false}
                               />
-                            </span>
-                          </span>
+                            </div>
+                          </div>
                         </div>
-                        <div className="col-3">
+                        <div className="col-5">
                           <span className={`${styles.totalCalculatedTax} d-flex`}>
                             <span className='text-start text-lg-right text-xl-left'> {currencySymbol} {parseFloat(data.totalTaxAmount).toFixed(2)}</span>
                           </span>
@@ -327,13 +329,13 @@ const InvoiceForm = ({ data, setData, handleSubmit, errors, setErrors, mode }) =
                         <div className={`${styles.companyInvoiceAdjustmentInputWrapper} col-8 col-lg-4 order-1 order-lg-1 mb-3`}>
                           <input type="text" className={`${styles.companyInvoicePriceAdjustment} form-control`} placeholder="Adjustment" name="adjustmentText" value={data.adjustmentText} onChange={handleInput} />
                         </div>
-                        <div className="col-9 order-3 col-lg-6 order-lg-2">
+                        <div className="col-9 order-3 col-lg-5 order-lg-2">
                           <div className={`${styles.companyInvoicePriceAdjustment2Wrapper} d-flex`}>
                             <input type="number" step="0.01" className={`${styles.companyInvoicePriceAdjustment} form-control`} name="adjustmentAmount" value={data.adjustmentAmount} onChange={handleInput} />
                             <i><FaCircleQuestion></FaCircleQuestion></i>
                           </div>
                         </div>
-                        <div className="col-4 col-lg-2 order-2 order-lg-3">
+                        <div className="col-4 col-lg-3 order-2 order-lg-3">
                           <span className={`${styles.totalCalculatedAdjustment} d-flex justify-content-end`}>
                             <span> {currencySymbol} {parseFloat(data.adjustmentAmount).toFixed(2)}</span>
                           </span>
