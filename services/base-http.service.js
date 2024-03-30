@@ -100,7 +100,7 @@ export default class BaseHttpService {
       } else {
         this.removeToken() //remove any existing token of this user..
         if (this.userType === 'user') {
-          window.location = '/login'
+          // window.location = '/login'
         }
         // throw new Error('No user type specified in _handle401() method')
         throw error
