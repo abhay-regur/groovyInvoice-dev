@@ -1,17 +1,21 @@
 /* eslint-disable react/prop-types */
-import { useEffect, forwardRef, useImperativeHandle, useState } from 'react';
+import { useEffect, forwardRef, useImperativeHandle, useContext } from 'react';
 import TableLoading from '../app/(protectedPages)/users/loading';
+import { useRouter } from 'next/navigation'
 import $ from 'jquery';
-import 'datatables.net-dt/js/dataTables.dataTables'
+import 'datatables.net-dt/js/dataTables.dataTables';
 import 'datatables.net-responsive-dt';
-import 'datatables.net-dt/css/jquery.dataTables.css'
+import 'datatables.net-dt/css/jquery.dataTables.css';
 import '@/styles/table.style.scss';
-import { getTokenKey } from '@/services/auth.service'
-import { getToken } from '@/services/token.service'
+import { getTokenKey } from '@/services/auth.service';
+import { getToken } from '@/services/token.service';
 import UserHTTPService from '@/services/user-http.service';
+import { ToastMsgContext } from '@/context/ToastMsg.context';
 
 function ServerSideDT(props, ref) {
     const userHttpService = new UserHTTPService('user');
+    const router = useRouter()
+    const { setToastList } = useContext(ToastMsgContext);
     let alreadyInitializing = false;
     useImperativeHandle(ref, () => ({
         reload(cb = null, resetPaging = true) {
@@ -29,8 +33,12 @@ function ServerSideDT(props, ref) {
             await userHttpService.refreshAccessToken();
             window.location.reload();
         } else {
-            if (userType === 'user') window.location = '/login'
-            throw new Error('No user type specified in _handle401() method')
+            setToastList([{
+                id: Math.floor((Math.random() * 101) + 1),
+                title: 'Login Expired',
+                description: 'The Login session has expired, Please login again!',
+            }]);
+            router.push("/login");
         }
     }
 

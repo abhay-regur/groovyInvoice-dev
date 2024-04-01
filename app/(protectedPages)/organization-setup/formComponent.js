@@ -322,7 +322,7 @@ export default function OrganizationSetupForm() {
                                                 </div>
                                             </div>
 
-                                            <div className={`${styles.companyInvoiceOrganizationDateFormatWrapper} gap-2 mb-4 row`}>
+                                            <div className={`${styles.companyInvoiceOrganizationDateFormatWrapper} mb-4 row`}>
                                                 <div className="d-flex align-items-center col-12 col-lg-4">
                                                     <label className={`${styles.companyInvoiceOrganizationDateFormatlabel}`}>Date Format<span className={`${styles.green}`}>*</span></label>
                                                 </div>

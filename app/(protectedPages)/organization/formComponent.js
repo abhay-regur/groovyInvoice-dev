@@ -249,7 +249,7 @@ export default function OrganizationUpdateForm() {
         }
     }
 
-    const cancleHandler = (event) => {
+    const cancelHandler = (event) => {
         event.preventDefault();
         event.stopPropagation();
         console.log('Cancled')
@@ -441,7 +441,7 @@ export default function OrganizationUpdateForm() {
                                                                 </span>
                                                         }
                                                     </button>
-                                                    <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={(e) => { cancleHandler(e); }}>
+                                                    <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={(e) => { cancelHandler(e); }}>
                                                         <span>
                                                             <i className="pe-1"><FaCircleXmark /></i>
                                                             Cancel
@@ -456,7 +456,6 @@ export default function OrganizationUpdateForm() {
                         </div>
                         <IndustryModal getIndustryData={getIndustryData} setToastList={setToastList} Loading={Loading} />
                     </div>
-                }
             </main>
         </div>
     )

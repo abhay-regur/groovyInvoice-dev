@@ -60,18 +60,8 @@ export default class BaseHttpService {
     if (statusCode !== 401) {
       throw error
     } else {
-      if (
-        window.location.pathname.search('/login') > -1
-      ) {
-        throw error
-      } else {
-        this.removeToken(); //remove any existing token of this user..
-        if (this.userType === 'user') {
-          window.location = '/login'
-        }
-        // throw new Error('No user type specified in _handle401() method')
-        throw error
-      }
+      this.removeToken(); //remove any existing token of this user..
+      throw error
     }
   }
 
@@ -98,6 +88,7 @@ export default class BaseHttpService {
 
   async _handle401(error) {
     const rememberMe = localStorage.getItem('rememberMe') === 'true'
+    console.log(rememberMe)
     if (rememberMe) {
       await this.refreshAccessToken()
       return this.previousRequestRecall(error.config)
@@ -109,7 +100,7 @@ export default class BaseHttpService {
       } else {
         this.removeToken() //remove any existing token of this user..
         if (this.userType === 'user') {
-          window.location = '/login'
+          // window.location = '/login'
         }
         // throw new Error('No user type specified in _handle401() method')
         throw error
