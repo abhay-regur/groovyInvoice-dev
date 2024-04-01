@@ -8,8 +8,10 @@ import Breadcrumb from '@/components/common/breadcrumb';
 import dynamic from 'next/dynamic';
 import { getTotalOutstandingReceivables, getDueToday, getDueWithin30Days, getOverdue } from '@/services/payment.service';
 import { getCompanyDetails } from '@/services/companies.service'
+import { ToastMsgContext } from '@/context/ToastMsg.context';
 import { useCurrentUserData } from '@/context/CurrentUserData.context';
 import { getCurrencyById } from '@/services/common/general.service';
+import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils';
 
 const AllInvoiceTable = dynamic(
     () => import("@/components/invoice/allInvoiceTable"),
@@ -21,7 +23,9 @@ export default function InvoiceListComponent() {
     const [totalOutstandingReceivables, setTotalOutstandingReceivables] = useState(0)
     const [dueToday, setDueToday] = useState(0)
     const [dueWithin30Days, setDueWithin30Days] = useState(0)
-    const [overdue, setOverdue] = useState(0)
+    const [overdue, setOverdue] = useState(0);
+    const [errors, setErrors] = useState(false)
+    const { setToastList } = useContext(ToastMsgContext);
     const [dateFormat, setDateFormat] = useState('');
     const [currencySymbol, setCurrencySymbol] = useState('₹');
     const { userInfo } = useCurrentUserData()
@@ -46,7 +50,7 @@ export default function InvoiceListComponent() {
                 if (selectCurrencyDetails.status == 200) setCurrencySymbol(selectCurrencyDetails.data.symbol);
             }
         } catch (error) {
-            setErrors(genrateErrorMessage(error, '', setToastList));
+            setErrors(genrateErrorMessage({}, '', setToastList));
         }
     }
 

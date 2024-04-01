@@ -249,7 +249,7 @@ export default function OrganizationUpdateForm() {
         }
     }
 
-    const cancleHandler = (event) => {
+    const cancelHandler = (event) => {
         event.preventDefault();
         event.stopPropagation();
         console.log('Cancled')
@@ -458,7 +458,7 @@ export default function OrganizationUpdateForm() {
                             <IndustryModal getIndustryData={getIndustryData} setToastList={setToastList} Loading={Loading} />
                         </div>
                 }
-            </main>
-        </div>
+            </main >
+        </div >
     )
 }

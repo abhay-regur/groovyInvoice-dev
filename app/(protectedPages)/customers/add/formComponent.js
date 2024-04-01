@@ -7,9 +7,11 @@ import { GST_TREATMENT } from 'constants/index.js';
 import { NavExpandedState } from '@/context/NavState.context';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
 import { useRouter } from 'next/navigation';
+import { ToastMsgContext } from '@/context/ToastMsg.context';
 import Breadcrumb from '@/components/common/breadcrumb.js';
 import { disableSubmitButton, enableSubmitButton } from '@/utils/form.utils.js';
 import CustomersForm from '@/components/customers/form.js';
+
 
 export default function CustomerAddForm() {
 
@@ -17,6 +19,7 @@ export default function CustomerAddForm() {
     const { navExpandedState } = useContext(NavExpandedState);
     const [isLoading, setIsLoading] = useState(true);
     const [errors, setErrors] = useState([]);
+    const { setToastList } = useContext(ToastMsgContext);
 
     const [data, setData] = useState({
         type: "",
