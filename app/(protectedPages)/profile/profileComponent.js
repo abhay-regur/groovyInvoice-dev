@@ -111,9 +111,9 @@ export default function ProfileComponent() {
             myFormData.append('cellNumber', userData.cellNumber);
             myFormData.append('active', true);
             myFormData.append('profilePicFile', userData.profilePicFile);
-
             tempcurrentUserData.userName = userData.firstName + ' ' + userData.lastName;
-            if (userData.profilePicFile) {
+
+            if (userData.profilePicFile != null && typeof userData.profilePicFile != 'string') {
                 tempcurrentUserData.userProfileImage = URL.createObjectURL(userData.profilePicFile);
             } else {
                 tempcurrentUserData.userProfileImage = "";
