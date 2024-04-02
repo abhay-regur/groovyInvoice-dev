@@ -70,7 +70,7 @@ export default function RegistrationForm() {
                 target.classList.add('is-invalid');
             }
         }
-        else{
+        else {
             try {
                 var result = await validateInput(target.name, target.value)
                 if (result.status == 200) {
@@ -149,13 +149,13 @@ export default function RegistrationForm() {
                                         <div className="mb-3 has-validation">
                                             <label htmlFor="loginPassword" className="form-label">Password</label>
                                             <div className={styles.innerInputIconWrapper}>
-                                                <PasswordInputField placeholder="Password" showKeyIcon={true} name="password" value={data.password} onChange={handleInput} onBlur={handleValidation} required />
+                                                <PasswordInputField className="form-control" placeholder="Password" showKeyIcon={true} name="password" value={data.password} onChange={handleInput} onBlur={handleValidation} required />
                                             </div>
                                         </div>
                                         <div className="mb-3 has-validation">
                                             <label htmlFor="confirm-password" className="form-label">Confirm Password</label>
                                             <div className={styles.innerInputIconWrapper}>
-                                                <PasswordInputField placeholder="Confirm Password" showKeyIcon={true} name="confirmPassword" value={data.confirmPassword} onChange={handleInput} onBlur={handleValidation} required />
+                                                <PasswordInputField className="form-control" placeholder="Confirm Password" showKeyIcon={true} name="confirmPassword" value={data.confirmPassword} onChange={handleInput} onBlur={handleValidation} required />
                                             </div>
                                         </div>
                                         <div className="d-grid gap-2">
