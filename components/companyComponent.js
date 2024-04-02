@@ -5,6 +5,7 @@ import { getCurrencies, getTimeZonesList } from '@/services/common/general.servi
 import { getIndianStates, getCountries } from '@/services/countriesState.service';
 import { getIndustryList } from '@/services/industry.service';
 import ErrorList from '@/components/errorList';
+import { useRouter } from "next/navigation";
 import FaSave from '@/assets/icons/faSave.svg';
 import FaCircleXmark from '@/assets/icons/faCircleXmark.svg';
 import CustomSelectComponent from "@/components/common/customSelectComponent";
@@ -25,6 +26,7 @@ export default function CompanyComponent() {
     const [currencies, setCurrencies] = useState([]);
     const [statesArray, getStateArray] = useState([]);
     const [imageSrc, setImageSrc] = useState('');
+    const Router = useRouter();
 
     const [data, setData] = useState({
         companyName: '',
@@ -100,7 +102,7 @@ export default function CompanyComponent() {
     const getCompanyData = async () => {
         setErrors([]);
         const result = await getCompanyDetails();
-        const {logo, ...companyData} = result.data;
+        const { logo, ...companyData } = result.data;
         setData(companyData);
         setImageSrc(logo)
     }
@@ -226,7 +228,7 @@ export default function CompanyComponent() {
     const cancleHandler = (event) => {
         event.preventDefault();
         event.stopPropagation();
-        console.log('Cancled')
+        Router.back()
     }
 
     const imageLoader = ({ src, width, quality }) => {
@@ -347,7 +349,7 @@ export default function CompanyComponent() {
                                         <div className={`${styles.companyInvoiceOrganizationInputFileWrapper} d-flex`}>
                                             {imageSrc ?
                                                 <div className={`${styles.companyInvoiceOrganizationImageInputWrapper}`}>
-                                                    <Image className={`${styles.companyInvoiceOrganizationImageDisplay}`} loader={imageLoader} onError={()=>setImageSrc(defaultProfile)} src={imageSrc} width={250} height={125} alt="organization_logo" />
+                                                    <Image className={`${styles.companyInvoiceOrganizationImageDisplay}`} loader={imageLoader} onError={() => setImageSrc(defaultProfile)} src={imageSrc} width={250} height={125} alt="organization_logo" />
                                                     <span className={`${styles.companyInvoiceOrganizationImageUploadWrapper}`}>
                                                         <p>
                                                             This logo will be displayed in transaction PDF&apos;s and email notifications.
@@ -381,7 +383,7 @@ export default function CompanyComponent() {
                                                 <i><FaSave /></i> Save
                                             </span>
                                         </button>
-                                        <button type="button" className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={() => { console.log('Cancel'); }}>
+                                        <button type="button" className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={(e) => { cancleHandler(e) }}>
                                             <span>
                                                 <i><FaCircleXmark /></i>
                                                 Cancel
