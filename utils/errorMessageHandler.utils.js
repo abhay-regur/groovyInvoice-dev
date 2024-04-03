@@ -7,7 +7,7 @@ const genrateErrorMessage = (error, pageName, setToastList) => {
             return error.response.data.message;
         }
     } else {
-        window.location.replace('/login?session="false"');
+        window.location.replace('/login?session="expired"');
         return 'Internal Error occurred!';
     }
 }
