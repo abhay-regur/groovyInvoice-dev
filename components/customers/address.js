@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import styles from "@/styles/newCustomer.module.scss";
 import FaCopy from "@/assets/icons/faCopy.svg";
 import CustomSelectComponent from "../common/customSelectComponent";
@@ -27,7 +27,7 @@ const AddressComponent = ({ data, handleInput, label, disabled = false }) => {
     }
 
     useEffect(() => {
-        if(data.countryId) {
+        if (data.countryId) {
             getStateData()
         }
     }, [data.countryId])
@@ -45,7 +45,7 @@ const AddressComponent = ({ data, handleInput, label, disabled = false }) => {
                         <label className={`${styles.companyInvoiceBillingAttentionlabel}`}>Attention</label>
                     </div>
                     <div className="col-12 col-md-8 d-flex">
-                        <input type="text" name="attention" className="form-control" id="companyInvoiceBillingAttention" value={data.attention} onChange={handleInput} placeholder='Attention' disabled={disabled} />
+                        <input type="text" name="attention" className="form-control" id="companyInvoiceBillingAttention" value={data.attention} onChange={(e) => handleInput(e, data)} placeholder='Attention' disabled={disabled} />
                     </div>
                 </div>
 
@@ -54,7 +54,7 @@ const AddressComponent = ({ data, handleInput, label, disabled = false }) => {
                         <label className={`${styles.companyInvoiceBillingComapnyCountrylabel}`}>Country / Region</label>
                     </div>
                     <div className="col-12 col-md-8">
-                        <CustomSelectComponent className={`${styles.companyInvoiceBillingComapnyCountrySelect}`} data={countries} onOptionValueChange={handleInput} optionValue={data.countryId} hasSearch={true} name={'countryId'} isDisabled={disabled} defaultText={'Select A Country'} isInnerButtonRequired={false} />
+                        <CustomSelectComponent className={`${styles.companyInvoiceBillingComapnyCountrySelect}`} data={countries} onOptionValueChange={(e) => handleInput(e, data)} optionValue={data.countryId} hasSearch={true} name={'countryId'} isDisabled={disabled} defaultText={'Select A Country'} isInnerButtonRequired={false} />
                     </div>
                 </div>
 
@@ -63,11 +63,11 @@ const AddressComponent = ({ data, handleInput, label, disabled = false }) => {
                         <label className={`${styles.companyInvoiceBillingAddresslabel}`}>Address</label>
                     </div>
                     <div className="col-12 col-md-8">
-                        <textarea name="addressLine1" id="companyInvoiceBillingAddress1" rows="3" value={data.addressLine1} onChange={handleInput} placeholder='Address Line 1' disabled={disabled}></textarea>
+                        <textarea name="addressLine1" id="companyInvoiceBillingAddress1" rows="3" value={data.addressLine1} onChange={(e) => handleInput(e, data)} placeholder='Address Line 1' disabled={disabled}></textarea>
                     </div>
                     <div className="col-12 col-md-4"></div>
                     <div className="col-12 col-md-8">
-                        <textarea className='mb-0' name="addressLine2" id="companyInvoiceBillingAddress2" rows="3" value={data.addressLine2} onChange={handleInput} placeholder='Address Line 2' disabled={disabled}></textarea>
+                        <textarea className='mb-0' name="addressLine2" id="companyInvoiceBillingAddress2" rows="3" value={data.addressLine2} onChange={(e) => handleInput(e, data)} placeholder='Address Line 2' disabled={disabled}></textarea>
                     </div>
                 </div>
 
@@ -76,7 +76,7 @@ const AddressComponent = ({ data, handleInput, label, disabled = false }) => {
                         <label className={`${styles.companyInvoiceBillingCitylabel}`}>City</label>
                     </div>
                     <div className="col-12 col-md-8 d-flex">
-                        <input name="city" type="text" className="form-control" id="companyInvoiceBillingCity" value={data.city} onChange={handleInput} placeholder='City' disabled={disabled} />
+                        <input name="city" type="text" className="form-control" id="companyInvoiceBillingCity" value={data.city} onChange={(e) => handleInput(e, data)} placeholder='City' disabled={disabled} />
                     </div>
                 </div>
 
@@ -85,7 +85,7 @@ const AddressComponent = ({ data, handleInput, label, disabled = false }) => {
                         <label className={`${styles.companyInvoiceBillingComapnyStatelabel}`}>State</label>
                     </div>
                     <div className="col-12 col-md-8">
-                        <CustomSelectComponent className={`${styles.companyInvoiceBillingComapnyStateSelect}`} data={states} onOptionValueChange={handleInput} optionValue={data.stateId} hasSearch={true} name={'billingStateId'} isDisabled={disabled} defaultText={'Select A State'} isInnerButtonRequired={false} />
+                        <CustomSelectComponent className={`${styles.companyInvoiceBillingComapnyStateSelect}`} data={states} onOptionValueChange={(e) => handleInput(e, data)} optionValue={data.stateId} hasSearch={true} name={'billingStateId'} isDisabled={disabled} defaultText={'Select A State'} isInnerButtonRequired={false} />
                     </div>
                 </div>
 
@@ -94,7 +94,7 @@ const AddressComponent = ({ data, handleInput, label, disabled = false }) => {
                         <label className={`${styles.companyInvoiceBillingZIPCodelabel}`}>ZIP Code</label>
                     </div>
                     <div className="col-12 col-md-8 d-flex">
-                        <input name="zipCode" type="text" className="form-control" id="companyInvoiceBillingZIPCode" value={data.zipCode} onChange={handleInput} placeholder='ZIP Code' disabled={disabled} />
+                        <input name="zipCode" type="text" className="form-control" id="companyInvoiceBillingZIPCode" value={data.zipCode} onChange={(e) => handleInput(e, data)} placeholder='ZIP Code' disabled={disabled} />
                     </div>
                 </div>
 
@@ -103,7 +103,7 @@ const AddressComponent = ({ data, handleInput, label, disabled = false }) => {
                         <label className={`${styles.companyInvoiceBillingPhonelabel}`}>Phone</label>
                     </div>
                     <div className="col-12 col-md-8 d-flex">
-                        <input name="phone" type="tel" minLength={4} maxLength={13} className="form-control" id="companyInvoiceBillingPhone" value={data.phone} onChange={handleInput} placeholder='Phone Number' disabled={disabled} />
+                        <input name="phone" type="tel" minLength={4} maxLength={13} className="form-control" id="companyInvoiceBillingPhone" value={data.phone} onChange={(e) => handleInput(e, data)} placeholder='Phone Number' disabled={disabled} />
                     </div>
                 </div>
 
@@ -112,7 +112,7 @@ const AddressComponent = ({ data, handleInput, label, disabled = false }) => {
                         <label className={`${styles.companyInvoiceBillingFaxlabel}`}>Fax</label>
                     </div>
                     <div className="col-12 col-md-8 d-flex">
-                        <input name="fax" type="text" className="form-control" id="companyInvoiceBillingFax" value={data.fax} onChange={handleInput} placeholder='Fax Number' disabled={disabled} />
+                        <input name="fax" type="text" className="form-control" id="companyInvoiceBillingFax" value={data.fax} onChange={(e) => handleInput(e, data)} placeholder='Fax Number' disabled={disabled} />
                     </div>
                 </div>
             </div>
@@ -123,23 +123,28 @@ const AddressComponent = ({ data, handleInput, label, disabled = false }) => {
 export default function Address({ data, setData }) {
     const [addressCopied, setAddressCopied] = useState(false);
 
-    const handleBillingInput = ({ target }) => {
-        var name = target.name || target.getAttribute('name');
+    const handleBillingInput = (event, currentData) => {
+        var name = event.target.name || event.target.getAttribute('name');
         if (name != '') {
             if (name.search('billingStateId') > -1) {
-                data.billingAddress['stateId'] = parseInt(target.value);
+                currentData['stateId'] = parseInt(event.target.value);
                 if (addressCopied) {
-                    data.shippingAddress['stateId'] = parseInt(target.value);
+                    data.shippingAddress['stateId'] = parseInt(event.target.value);
+                }
+            } else if (name.search('countryId') > -1) {
+                currentData['countryId'] = parseInt(event.target.value);
+                if (addressCopied) {
+                    data.shippingAddress['countryId'] = parseInt(event.target.value);
                 }
             } else if (name == 'phone') {
-                data.billingAddress[name] = (target.value == '' ? '' : (target.value).match(/[0-9]+/g)[0]);
+                currentData[name] = (event.target.value == '' ? '' : (event.target.value).match(/[0-9]+/g)[0]);
                 if (addressCopied) {
-                    data.shippingAddress[name] = (target.value == '' ? '' : (target.value).match(/[0-9]+/g)[0]);
+                    data.shippingAddress[name] = (event.target.value == '' ? '' : (event.target.value).match(/[0-9]+/g)[0]);
                 }
             } else {
-                data.billingAddress[name] = target.value;
+                currentData[name] = event.target.value;
                 if (addressCopied) {
-                    data.shippingAddress[name] = target.value;
+                    data.shippingAddress[name] = event.target.value;
                 }
             }
             let temp = Object.assign({}, data);
