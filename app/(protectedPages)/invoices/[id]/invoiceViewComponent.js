@@ -68,7 +68,7 @@ export default function InvoiceViewComponent() {
         phone: "",
         GSTIN: "",
         panNumber: "",
-        currencyId: 103,
+        currencyId: 31,
         openingBalance: 0,
         paymentTermId: null,
         address: {
@@ -178,6 +178,7 @@ export default function InvoiceViewComponent() {
     }, [userInfo.datePref])
 
     useEffect(() => {
+
         getCurrencySymbol(customer.currencyId)
     }, [customer.currencyId])
 

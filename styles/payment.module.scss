@@ -424,6 +424,12 @@
 
 }
 
+@media screen and (min-width: 676px) and (max-width: 770px) {
+    .companyInvoicePreviousPaymentTableWrapper {
+        overflow-x: auto;
+    }
+}
+
 @media screen and (max-width: 676px) {
     .main {
         margin: 55px 15px 92px 15px;

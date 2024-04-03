@@ -88,7 +88,6 @@ export default class BaseHttpService {
 
   async _handle401(error) {
     const rememberMe = localStorage.getItem('rememberMe') === 'true'
-    console.log(rememberMe)
     if (rememberMe) {
       await this.refreshAccessToken()
       return this.previousRequestRecall(error.config)
