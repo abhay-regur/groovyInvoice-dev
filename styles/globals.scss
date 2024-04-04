@@ -401,7 +401,10 @@ button[disabled] {
   display: none;
 }
 
-input[type="password"] {
+
+//For Password Valuidation Symbol
+input#password,
+input#confirmPassword {
 
   &.is-invalid,
   &.is-valid {
