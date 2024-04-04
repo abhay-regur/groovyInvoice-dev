@@ -30,8 +30,8 @@ export default function RegistrationForm() {
         email: 'Cannot be empty',
         companyName: 'Cannot be empty',
         cellNumber: 'Cell phone number must be valid',
-        password: '',
-        confirmPassword: ''
+        password: 'Cannot be empty',
+        confirmPassword: 'Cannot be empty'
     });
 
     const handleInput = ({ target }) => {
@@ -69,8 +69,18 @@ export default function RegistrationForm() {
                 target.classList.add('is-invalid');
             }
         } else if (target.name == 'password' || target.name == 'confirmPassword') {
-            target.classList.remove('is-invalid');
-            target.classList.add('is-valid');
+            if (target.value == '') {
+                handleValidationError(target.name, 'Password is required');
+                target.classList.add('is-invalid');
+            } else if (target.value.length < 8 || target.value.length > 16) {
+                handleValidationError(target.name, 'Password must be of 8 to 16 characters long');
+                target.classList.add('is-invalid');
+            } else {
+                handleValidationError(target.name, '');
+                target.classList.remove('is-invalid');
+                target.classList.add('is-valid');
+            }
+
         } else {
             try {
                 var result = await validateInput(target.name, encodeURIComponent(target.value))
@@ -151,12 +161,18 @@ export default function RegistrationForm() {
                                             <label htmlFor="loginPassword" className="form-label">Password</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <PasswordInputField className={`form-control ${styles.companyInvoiceRegistrationPassword}`} placeholder="Password" showKeyIcon={true} name="password" value={data.password} onChange={handleInput} onBlur={handleValidation} required />
+                                                <div htmlFor="registrationPassword" className="ms-3 invalid-feedback">
+                                                    {validateErrorMessage.password}
+                                                </div>
                                             </div>
                                         </div>
                                         <div className="mb-3 has-validation">
                                             <label htmlFor="confirm-password" className="form-label">Confirm Password</label>
                                             <div className={styles.innerInputIconWrapper}>
                                                 <PasswordInputField className={`form-control ${styles.companyInvoiceRegistrationPassword}`} placeholder="Confirm Password" showKeyIcon={true} name="confirmPassword" value={data.confirmPassword} onChange={handleInput} onBlur={handleValidation} required />
+                                                <div htmlFor="confirmPassword" className="ms-3 invalid-feedback">
+                                                    {validateErrorMessage.confirmPassword}
+                                                </div>
                                             </div>
                                         </div>
                                         <div className="d-grid gap-2">
