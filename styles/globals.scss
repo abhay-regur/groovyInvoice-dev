@@ -258,14 +258,17 @@ button {
     }
   }
 }
+
 button[disabled] {
   opacity: 0.6;
   cursor: not-allowed;
 }
+
 .disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
+
 .react-datepicker {
   border: 1px solid var.$primary-border-color !important;
 
@@ -398,9 +401,17 @@ button[disabled] {
   display: none;
 }
 
+input[type="password"] {
+
+  &.is-invalid,
+  &.is-valid {
+    background-position: right calc(1.375em + 0.4875rem) center;
+  }
+}
+
 .toggle-visibility-wrapper {
   pointer-events: all !important;
   color: var.$secondary-color !important;
   top: 0;
-  right: 0;
+  right: -7px;
 }

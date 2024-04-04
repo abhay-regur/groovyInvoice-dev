@@ -193,105 +193,103 @@ export default function ContactPerson({ customerId, setToastList, ErrorList }) {
                                 <th scope="col" className={`${styles.companyInvoiceTableEditButtonsHeader}`}></th>
                             </tr>
                         </thead>
-                        {isLoading
-                            ? <TableLoading isLoading={true} columnLength={6} rowsLength={4} isProfile={false} />
-                            : <tbody>
-                                {itemData.length > 0
-                                    ? itemData.map(function (item, idx) {
-                                        return (
-                                            <tr key={idx} className={`${tableStyles.companyInvoiceContactPersonRow}`}>
-                                                <td>
-                                                    <select name='salutation' className={`${styles.companySalutationSelect} form-select`} value={item.salutation} onChange={(e) => handleInlineUpdateInput(idx, e)}>
-                                                        <option defaultValue>Salutation</option>
-                                                        <option value="ms">Ms.</option>
-                                                        <option value="mr">Mr.</option>
-                                                        <option value="mrs">Mrs.</option>
-                                                        <option value="dr">Dr.</option>
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <input name='firstName' type="text" className={`${styles.companyInvoiceTableInput} form-control`} id="companyInvoiceCompanyEmail" value={item.firstName} placeholder='First Name' onChange={(e) => handleInlineUpdateInput(idx, e)} />
-                                                </td>
-                                                <td>
-                                                    <input name='lastName' type="text" className={`${styles.companyInvoiceTableInput} form-control`} id="companyInvoiceCompanyEmail" value={item.lastName} placeholder='Last Name' onChange={(e) => handleInlineUpdateInput(idx, e)} />
-                                                </td>
-                                                <td>
-                                                    <input name='email' type="email" className={`${styles.companyInvoiceTableInput} form-control`} id="companyInvoiceCompanyEmail" value={item.email} placeholder='Email' onChange={(e) => handleInlineUpdateInput(idx, e)} />
-                                                </td>
-                                                <td>
-                                                    <input name='workPhone' type="number" className={`${styles.companyInvoiceTableInput} form-control`} id="companyInvoiceCompanyEmail" value={item.workPhone} placeholder='Work Phone' onChange={(e) => handleInlineUpdateInput(idx, e)} />
-                                                </td>
-                                                <td>
-                                                    <input name='mobile' type="number" className={`${styles.companyInvoiceTableInput} form-control`} id="companyInvoiceCompanyEmail" value={item.mobile} placeholder='Mobile' onChange={(e) => handleInlineUpdateInput(idx, e)} />
-                                                </td>
-                                                <td className={`${tableStyles.companyInvoiceContantPersonEditRow}`}>
-                                                    <div className="d-flex">
-                                                        {isEditing == idx ? <span onClick={() => handleInlineUpdate(idx, item.id)}><FaCircleCheck /></span> : <></>}
-                                                        <span onClick={() => { handleRemove(item.id); }} className={`${tableStyles.redColor}`}><FaCircleXmark /></span>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        );
-                                    })
-                                    :
-                                    <tr className={`${tableStyles.companyInvoiceContactPersonRow}`}>
-                                        <td>
-                                            <span>-</span>
-                                        </td>
-                                        <td>
-                                            <span>-</span>
-                                        </td>
-                                        <td>
-                                            <span>-</span>
-                                        </td>
-                                        <td>
-                                            <span>-</span>
-                                        </td>
-                                        <td>
-                                            <span>-</span>
-                                        </td>
-                                        <td>
-                                            <span>-</span>
-                                        </td>
-                                        <td className={`${tableStyles.companyInvoiceContantPersonEditRow}`}>
+                        <tbody>
+                            {itemData.length > 0
+                                ? itemData.map(function (item, idx) {
+                                    return (
+                                        <tr key={idx} className={`${tableStyles.companyInvoiceContactPersonRow}`}>
+                                            <td>
+                                                <select name='salutation' className={`${styles.companySalutationSelect} form-select`} value={item.salutation} onChange={(e) => handleInlineUpdateInput(idx, e)}>
+                                                    <option defaultValue>Salutation</option>
+                                                    <option value="ms">Ms.</option>
+                                                    <option value="mr">Mr.</option>
+                                                    <option value="mrs">Mrs.</option>
+                                                    <option value="dr">Dr.</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <input name='firstName' type="text" className={`${styles.companyInvoiceTableInput} form-control`} id="companyInvoiceCompanyEmail" value={item.firstName} placeholder='First Name' onChange={(e) => handleInlineUpdateInput(idx, e)} />
+                                            </td>
+                                            <td>
+                                                <input name='lastName' type="text" className={`${styles.companyInvoiceTableInput} form-control`} id="companyInvoiceCompanyEmail" value={item.lastName} placeholder='Last Name' onChange={(e) => handleInlineUpdateInput(idx, e)} />
+                                            </td>
+                                            <td>
+                                                <input name='email' type="email" className={`${styles.companyInvoiceTableInput} form-control`} id="companyInvoiceCompanyEmail" value={item.email} placeholder='Email' onChange={(e) => handleInlineUpdateInput(idx, e)} />
+                                            </td>
+                                            <td>
+                                                <input name='workPhone' type="number" className={`${styles.companyInvoiceTableInput} form-control`} id="companyInvoiceCompanyEmail" value={item.workPhone} placeholder='Work Phone' onChange={(e) => handleInlineUpdateInput(idx, e)} />
+                                            </td>
+                                            <td>
+                                                <input name='mobile' type="number" className={`${styles.companyInvoiceTableInput} form-control`} id="companyInvoiceCompanyEmail" value={item.mobile} placeholder='Mobile' onChange={(e) => handleInlineUpdateInput(idx, e)} />
+                                            </td>
+                                            <td className={`${tableStyles.companyInvoiceContantPersonEditRow}`}>
+                                                <div className="d-flex">
+                                                    {isEditing == idx ? <span onClick={() => handleInlineUpdate(idx, item.id)}><FaCircleCheck /></span> : <></>}
+                                                    <span onClick={() => { handleRemove(item.id); }} className={`${tableStyles.redColor}`}><FaCircleXmark /></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    );
+                                })
+                                :
+                                <tr className={`${tableStyles.companyInvoiceContactPersonRow}`}>
+                                    <td>
+                                        <span>-</span>
+                                    </td>
+                                    <td>
+                                        <span>-</span>
+                                    </td>
+                                    <td>
+                                        <span>-</span>
+                                    </td>
+                                    <td>
+                                        <span>-</span>
+                                    </td>
+                                    <td>
+                                        <span>-</span>
+                                    </td>
+                                    <td>
+                                        <span>-</span>
+                                    </td>
+                                    <td className={`${tableStyles.companyInvoiceContantPersonEditRow}`}>
 
-                                        </td>
-                                    </tr>}
-                                {showTableUserInput
-                                    ? <tr className={`${tableStyles.companyInvoiceContactPersonRow}`}>
-                                        <td>
-                                            <select name='salutation' className={`${styles.companySalutationSelect} form-select`} value={newPerson.salutation} onChange={handleInlineNewInput}>
-                                                <option defaultValue>Salutation</option>
-                                                <option value="ms">Ms.</option>
-                                                <option value="mr">Mr.</option>
-                                                <option value="mrs">Mrs.</option>
-                                                <option value="dr">Dr.</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <input name='firstName' type="text" className={`${styles.companyInvoiceTableInput} form-control`} id="companyInvoiceCompanyEmail" value={newPerson.firstName} placeholder='First Name' onChange={handleInlineNewInput} />
-                                        </td>
-                                        <td>
-                                            <input name='lastName' type="text" className={`${styles.companyInvoiceTableInput} form-control`} id="companyInvoiceCompanyEmail" value={newPerson.lastName} placeholder='Last Name' onChange={handleInlineNewInput} />
-                                        </td>
-                                        <td>
-                                            <input name='email' type="email" className={`${styles.companyInvoiceTableInput} form-control`} id="companyInvoiceCompanyEmail" value={newPerson.email} placeholder='Email' onChange={handleInlineNewInput} />
-                                        </td>
-                                        <td>
-                                            <input name='workPhone' type="number" className={`${styles.companyInvoiceTableInput} form-control`} id="companyInvoiceCompanyEmail" value={newPerson.workPhone} placeholder='Work Phone' onChange={handleInlineNewInput} />
-                                        </td>
-                                        <td>
-                                            <input name='mobile' type="number" className={`${styles.companyInvoiceTableInput} form-control`} id="companyInvoiceCompanyEmail" value={newPerson.mobile} placeholder='Mobile' onChange={handleInlineNewInput} />
-                                        </td>
-                                        <td className={`${tableStyles.companyInvoiceContantPersonEditRow}`}>
-                                            <div className="d-flex">
-                                                <span onClick={submitNewPerson}><FaCircleCheck /></span>
-                                                <span className={`${tableStyles.redColor}`} onClick={removeInputRow}><FaCircleXmark /></span>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    : ''}
-                            </tbody>}
+                                    </td>
+                                </tr>}
+                            {showTableUserInput
+                                ? <tr className={`${tableStyles.companyInvoiceContactPersonRow}`}>
+                                    <td>
+                                        <select name='salutation' className={`${styles.companySalutationSelect} form-select`} value={newPerson.salutation} onChange={handleInlineNewInput}>
+                                            <option defaultValue>Salutation</option>
+                                            <option value="ms">Ms.</option>
+                                            <option value="mr">Mr.</option>
+                                            <option value="mrs">Mrs.</option>
+                                            <option value="dr">Dr.</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input name='firstName' type="text" className={`${styles.companyInvoiceTableInput} form-control`} id="companyInvoiceCompanyEmail" value={newPerson.firstName} placeholder='First Name' onChange={handleInlineNewInput} />
+                                    </td>
+                                    <td>
+                                        <input name='lastName' type="text" className={`${styles.companyInvoiceTableInput} form-control`} id="companyInvoiceCompanyEmail" value={newPerson.lastName} placeholder='Last Name' onChange={handleInlineNewInput} />
+                                    </td>
+                                    <td>
+                                        <input name='email' type="email" className={`${styles.companyInvoiceTableInput} form-control`} id="companyInvoiceCompanyEmail" value={newPerson.email} placeholder='Email' onChange={handleInlineNewInput} />
+                                    </td>
+                                    <td>
+                                        <input name='workPhone' type="number" className={`${styles.companyInvoiceTableInput} form-control`} id="companyInvoiceCompanyEmail" value={newPerson.workPhone} placeholder='Work Phone' onChange={handleInlineNewInput} />
+                                    </td>
+                                    <td>
+                                        <input name='mobile' type="number" className={`${styles.companyInvoiceTableInput} form-control`} id="companyInvoiceCompanyEmail" value={newPerson.mobile} placeholder='Mobile' onChange={handleInlineNewInput} />
+                                    </td>
+                                    <td className={`${tableStyles.companyInvoiceContantPersonEditRow}`}>
+                                        <div className="d-flex">
+                                            <span onClick={submitNewPerson}><FaCircleCheck /></span>
+                                            <span className={`${tableStyles.redColor}`} onClick={removeInputRow}><FaCircleXmark /></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                : ''}
+                        </tbody>
                     </table>
                 </div>
                 <div className="col-12 d-flex">
