@@ -58,7 +58,6 @@ export default function RegistrationForm() {
 
     const handleValidation = async ({ target }) => {
         if (target.classList.contains('is-loading')) target.classList.remove('is-loading')
-
         if (target.value == '') {
             target.classList.add('is-invalid');
             handleValidationError(target.name, 'Can not be empty');
@@ -69,10 +68,12 @@ export default function RegistrationForm() {
             } else {
                 target.classList.add('is-invalid');
             }
-        }
-        else {
+        } else if (target.name == 'password' || target.name == 'confirmPassword') {
+            target.classList.remove('is-invalid');
+            target.classList.add('is-valid');
+        } else {
             try {
-                var result = await validateInput(target.name, target.value)
+                var result = await validateInput(target.name, encodeURIComponent(target.value))
                 if (result.status == 200) {
                     target.classList.add('is-valid');
                 }
@@ -149,13 +150,13 @@ export default function RegistrationForm() {
                                         <div className="mb-3 has-validation">
                                             <label htmlFor="loginPassword" className="form-label">Password</label>
                                             <div className={styles.innerInputIconWrapper}>
-                                                <PasswordInputField className="form-control" placeholder="Password" showKeyIcon={true} name="password" value={data.password} onChange={handleInput} onBlur={handleValidation} required />
+                                                <PasswordInputField className={`form-control ${styles.companyInvoiceRegistrationPassword}`} placeholder="Password" showKeyIcon={true} name="password" value={data.password} onChange={handleInput} onBlur={handleValidation} required />
                                             </div>
                                         </div>
                                         <div className="mb-3 has-validation">
                                             <label htmlFor="confirm-password" className="form-label">Confirm Password</label>
                                             <div className={styles.innerInputIconWrapper}>
-                                                <PasswordInputField className="form-control" placeholder="Confirm Password" showKeyIcon={true} name="confirmPassword" value={data.confirmPassword} onChange={handleInput} onBlur={handleValidation} required />
+                                                <PasswordInputField className={`form-control ${styles.companyInvoiceRegistrationPassword}`} placeholder="Confirm Password" showKeyIcon={true} name="confirmPassword" value={data.confirmPassword} onChange={handleInput} onBlur={handleValidation} required />
                                             </div>
                                         </div>
                                         <div className="d-grid gap-2">
