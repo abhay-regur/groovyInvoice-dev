@@ -57,7 +57,8 @@ export default function RegistrationForm() {
     }
 
     const handleValidation = async ({ target }) => {
-        if (target.classList.contains('is-loading')) target.classList.remove('is-loading')
+        if (target.classList.contains('is-loading')) target.classList.remove('is-loading');
+
         if (target.value == '') {
             target.classList.add('is-invalid');
             handleValidationError(target.name, 'Can not be empty');
@@ -74,6 +75,9 @@ export default function RegistrationForm() {
                 target.classList.add('is-invalid');
             } else if (target.value.length < 8 || target.value.length > 16) {
                 handleValidationError(target.name, 'Password must be of 8 to 16 characters long');
+                target.classList.add('is-invalid');
+            } else if (target.name == 'confirmPassword' && target.value != data.password) {
+                handleValidationError(target.name, 'Password do not match');
                 target.classList.add('is-invalid');
             } else {
                 handleValidationError(target.name, '');
