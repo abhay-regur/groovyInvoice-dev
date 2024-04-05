@@ -197,6 +197,11 @@ export default function ProfileComponent() {
         passwordData['currentPassword'] = '';
         passwordData['newPassword'] = '';
         passwordData['confirmPassword'] = '';
+        setPasswordValidateErrorMessage({
+            currentPassword: '',
+            newPassword: '',
+            confirmPassword: ''
+        })
         let temp = Object.assign({}, passwordData)
         setPasswordData(temp);
     }
