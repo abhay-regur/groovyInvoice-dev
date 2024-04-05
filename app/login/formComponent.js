@@ -1,7 +1,7 @@
 "use client"
 import { useState, useContext, useEffect } from 'react';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faKey } from '@fortawesome/free-solid-svg-icons';
 import FaGoogle from '@/assets/icons/faGoogle.svg';
@@ -18,7 +18,8 @@ import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils';
 
 
 export default function LoginForm() {
-    const { session } = useParams();
+    const searchParam = useSearchParams();
+    const currentSession = searchParam.get('session');
     const router = useRouter();
     const [rememberMe, setRememberMe] = useState(false);
     const [errors, setErrors] = useState([])
@@ -27,7 +28,7 @@ export default function LoginForm() {
 
 
     useEffect(() => {
-        if ((session != null || session != '') && session == 'expired') {
+        if ((currentSession != null || currentSession != '') && currentSession == 'expired') {
             setToastList([{
                 id: Math.floor((Math.random() * 101) + 1),
                 title: 'Login Expired',
