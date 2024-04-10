@@ -26,6 +26,8 @@ const UserForm = ({ data, setData, handleSubmit, errors, label, mode }) => {
     data.confirmPassword = password
     let temp = Object.assign({}, data)
     setData(temp)
+    handleValidationError('password', '')
+    handleValidationError('confirmPassword', '')
   }
 
   const handleInput = ({ target }) => {
