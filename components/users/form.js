@@ -1,5 +1,5 @@
 "use client"
-import React from 'react';
+import React, { useState } from 'react';
 import FaSave from '@/assets/icons/faSave.svg';
 import FaCircleXmark from '@/assets/icons/faCircleXmark.svg';
 import styles from "@/styles/userForm.module.scss";
@@ -10,6 +10,16 @@ import { useRouter } from 'next/navigation';
 
 const UserForm = ({ data, setData, handleSubmit, errors, label, mode }) => {
   const { replace } = useRouter();
+
+  const [formValidationMessage, setFormValidationMessage] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    cellNumber: '',
+    password: '',
+    confirmPassword: ''
+  });
+
   const genrateNewPassword = () => {
     const password = generatePassword()
     data.password = password
@@ -32,6 +42,36 @@ const UserForm = ({ data, setData, handleSubmit, errors, label, mode }) => {
     data[target.name] = !data[target.name]
     let temp = Object.assign({}, data)
     setData(temp)
+  }
+
+  const handleValidation = ({ target }) => {
+    console.log(target.value)
+    if (target.value == '') {
+      target.classList.add('is-invalid');
+      handleValidationError(target.name, 'Can not be empty');
+    } else if (target.name == 'password' || target.name == 'confirmPassword') {
+      if (target.value.length < 8 || target.value.length > 16) {
+        handleValidationError(target.name, 'Password must be of 8 to 16 characters long');
+        target.classList.add('is-invalid');
+      } else if (target.name == 'confirmPassword' && target.value != data.password) {
+        handleValidationError(target.name, 'Password do not match');
+        target.classList.add('is-invalid');
+      } else {
+        handleValidationError(target.name, '');
+        target.classList.remove('is-invalid');
+        target.classList.add('is-valid');
+      }
+    } else {
+      target.classList.remove('is-invalid');
+      target.classList.add('is-valid');
+      handleValidationError(target.name, '')
+    }
+  }
+
+  const handleValidationError = (name, msg) => {
+    formValidationMessage[name] = msg;
+    let temp = Object.assign({}, formValidationMessage)
+    setFormValidationMessage(temp);
   }
 
   return (
@@ -60,10 +100,16 @@ const UserForm = ({ data, setData, handleSubmit, errors, label, mode }) => {
                 <label className="">Name</label>
               </div>
               <div className="col-12 col-lg-3 col-xl-3">
-                <input type="text" className={`${styles.companyInvoiceUserFirstName} form-control`} placeholder='First Name' onChange={handleInput} name='firstName' value={data.firstName} />
+                <input type="text" className={`${styles.companyInvoiceUserFirstName} form-control`} id='firstName' placeholder='First Name' onChange={handleInput} name='firstName' value={data.firstName} onBlur={handleValidation} />
+                <div htmlFor="firstName" className="ms-3 invalid-data">
+                  {formValidationMessage.firstName}
+                </div>
               </div>
               <div className="col-12 col-lg-3 col-xl-3">
-                <input type="text" className={`${styles.companyInvoiceUserLastName} form-control`} placeholder='Last Name' onChange={handleInput} name='lastName' value={data.lastName} />
+                <input type="text" className={`${styles.companyInvoiceUserLastName} form-control`} id='lastName' placeholder='Last Name' onChange={handleInput} name='lastName' value={data.lastName} />
+                <div htmlFor="lastName" className="ms-3 invalid-data">
+                  {formValidationMessage.lastName}
+                </div>
               </div>
             </div>
 
@@ -71,8 +117,11 @@ const UserForm = ({ data, setData, handleSubmit, errors, label, mode }) => {
               <div className="d-flex align-items-center col-12 col-lg-2 col-xl-2">
                 <label className={`${styles.companyInvoiceUserEmailLabel}`}>Email</label>
               </div>
-              <div className="col-12 col-lg-6 col-xl-6 d-flex align-items-center">
-                <input type="email" className="form-control" id="companyInvoiceUserEmail" placeholder='Email' onChange={handleInput} name='email' value={data.email} disabled={mode == 'edit' ? true : false} />
+              <div className="col-12 col-lg-6 col-xl-6">
+                <input type="email" className="form-control" id="companyInvoiceUserEmail" placeholder='Email' onChange={handleInput} onBlur={handleValidation} name='email' value={data.email} disabled={mode == 'edit' ? true : false} />
+                <div htmlFor="companyInvoiceUserEmail" className="ms-3 invalid-data">
+                  {formValidationMessage.email}
+                </div>
               </div>
             </div>
 
@@ -82,7 +131,10 @@ const UserForm = ({ data, setData, handleSubmit, errors, label, mode }) => {
               </div>
 
               <div className="col-12 col-lg-6 col-xl-6 d-flex align-items-center">
-                <input type="tel" minLength={4} maxLength={13} className={`${styles.companyInvoiceUserMobile} form-control`} placeholder='Mobile' onChange={handleInput} name='cellNumber' value={data.cellNumber} />
+                <input type="tel" minLength={4} maxLength={13} className={`${styles.companyInvoiceUserMobile} form-control`} id='cellNumber' placeholder='Mobile' onChange={handleInput} name='cellNumber' value={data.cellNumber} />
+                <div htmlFor="cellNumber" className="ms-3 invalid-data">
+                  {formValidationMessage.cellNumber}
+                </div>
               </div>
             </div>
             {mode == 'add' ? (
@@ -91,9 +143,14 @@ const UserForm = ({ data, setData, handleSubmit, errors, label, mode }) => {
                   <div className="d-flex align-items-center col-12 col-lg-2 col-xl-2">
                     <label className={`${styles.companyInvoiceUserPasswordLabel}`}>Password</label>
                   </div>
-                  <div className="col-12 col-lg-6 col-xl-6 d-flex">
-                    <input type="text" className="form-control" value={data.password} name="password" onChange={handleInput} id="companyInvoiceUserPassword" placeholder='Password' />
-                    <button type="button" className="btn blueOutline" onClick={() => { genrateNewPassword() }}><FaGear /></button>
+                  <div className="col-12 col-lg-6 col-xl-6">
+                    <div className="d-flex">
+                      <input type="text" className="form-control" value={data.password} name="password" onChange={handleInput} id="companyInvoiceUserPassword" placeholder='Password' onBlur={handleValidation} />
+                      <button type="button" className="btn blueOutline" onClick={() => { genrateNewPassword() }}><FaGear /></button>
+                    </div>
+                    <div htmlFor="companyInvoiceUserPassword" className="ms-3 invalid-data">
+                      {formValidationMessage.password}
+                    </div>
                   </div>
                 </div>
 
@@ -102,7 +159,10 @@ const UserForm = ({ data, setData, handleSubmit, errors, label, mode }) => {
                     <label className={`${styles.companyInvoiceUserPasswordLabel}`}>Confirm Password</label>
                   </div>
                   <div className="col-12 col-lg-6 col-xl-6">
-                    <input type="text" className="form-control" id="companyInvoiceDesignation" value={data.confirmPassword} name="confirmPassword" onChange={handleInput} placeholder='Confirm Password' />
+                    <input type="text" className="form-control" id="companyInvoiceDesignation" value={data.confirmPassword} name="confirmPassword" onChange={handleInput} placeholder='Confirm Password' onBlur={handleValidation} />
+                    <div htmlFor="companyInvoiceUserPassword" className="ms-3 invalid-data">
+                      {formValidationMessage.confirmPassword}
+                    </div>
                   </div>
                 </div>
               </>
