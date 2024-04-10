@@ -103,7 +103,7 @@ const InvoiceTable = (props) => {
                                     </td>
                                     <td>
                                         <div className={`${styles.companyInvoiceTableItemQuantity}`}>
-                                            <input type='number' className='form-control' name='quantity' min={0} value={item.quantity} onChange={(e) => handleChange(idx, e)} />
+                                            <input type='number' className='form-control' name='quantity' min={1} value={item.quantity} onChange={(e) => handleChange(idx, e)} />
                                         </div>
                                     </td>
                                     <td>
