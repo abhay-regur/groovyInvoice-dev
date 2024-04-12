@@ -240,7 +240,7 @@ export default function PaymentFormComponent() {
                                         <div className="row">
                                             <div className="col-12">
                                                 <div className={`${styles.companyInvoicePreviousPaymentTableWrapper}`}>
-                                                    <InvoicePreviousPaymentTable items={previousPaymentData} styles={styles} />
+                                                    <InvoicePreviousPaymentTable items={previousPaymentData} styles={styles} totalPaidAmount={data.totalAmount} />
                                                 </div>
                                             </div>
                                         </div>
