@@ -99,7 +99,8 @@ export default function InvoiceViewComponent() {
             const paymentResult = await paymentInfoForInvoice(id);
             setPaymentInfo(paymentResult.data);
             tempInvoiceDetails.invoiceDetails.invoiceNo = data.invoiceNo;
-            tempInvoiceDetails.invoiceDetails.totalAmount = paymentResult.data.unpaidAmount;
+            tempInvoiceDetails.invoiceDetails.unpaidAmount = paymentResult.data.unpaidAmount;
+            tempInvoiceDetails.invoiceDetails.paidAmount = paymentResult.data.paidAmount;
             setInvoiceDetailsContext(tempInvoiceDetails);
 
         } catch (error) {

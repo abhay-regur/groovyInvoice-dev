@@ -32,7 +32,8 @@ export default function PaymentFormComponent() {
     const [data, setData] = useState({
         customerName: invoiceDetailsContext.customerDetails.name,
         invoiceNo: invoiceDetailsContext.invoiceDetails.invoiceNo,
-        totalAmount: invoiceDetailsContext.invoiceDetails.totalAmount,
+        unpaidAmount: invoiceDetailsContext.invoiceDetails.unpaidAmount,
+        paidAmount: invoiceDetailsContext.invoiceDetails.paidAmount,
         amount: 0,
         paymentDate: new Date(),
         panCardNumber: invoiceDetailsContext.customerDetails.panCardNumber,
@@ -143,7 +144,7 @@ export default function PaymentFormComponent() {
                                                 <label className={`${styles.companyInvoicePaymentNumberLabel}`}>Payment Invoice#<span className={`${styles.green}`}>*</span></label>
                                             </div>
                                             <div className="col-12 col-lg-10 d-flex align-items-center mt-2">
-                                                <input type="text" className="form-control" id="companyInvoicePaymentNumber" placeholder='Invoice Number' onChange={handleInput} disabled />
+                                                <input type="text" className="form-control" id="companyInvoicePaymentNumber" placeholder='Invoice Number' onChange={handleInput} value={data.invoiceNo} disabled />
                                             </div>
                                         </div>
 
@@ -156,7 +157,7 @@ export default function PaymentFormComponent() {
                                                     <div className="col-12 mt-2">
                                                         <div className="input-group">
                                                             <span className="input-group-text">{currencySymbol}</span>
-                                                            <input type="number" className="form-control" id="companyInvoiceAmountRecived" name="amount" onChange={handleInput} min={1} max={data.totalAmount} placeholder={'Total Receivables: ' + data.totalAmount} required />
+                                                            <input type="number" className="form-control" id="companyInvoiceAmountRecived" name="amount" onChange={handleInput} min={1} max={data.unpaidAmount} placeholder={'Total Receivables: ' + data.unpaidAmount} required />
                                                         </div>
                                                     </div>
                                                     <div className="col-12 mt-2">
@@ -240,7 +241,7 @@ export default function PaymentFormComponent() {
                                         <div className="row">
                                             <div className="col-12">
                                                 <div className={`${styles.companyInvoicePreviousPaymentTableWrapper}`}>
-                                                    <InvoicePreviousPaymentTable items={previousPaymentData} styles={styles} totalPaidAmount={data.totalAmount} />
+                                                    <InvoicePreviousPaymentTable items={previousPaymentData} styles={styles} totalPaidAmount={data.paidAmount} />
                                                 </div>
                                             </div>
                                         </div>
