@@ -233,7 +233,7 @@ export default function InvoiceViewComponent() {
                                                 </li>
                                                 <li className={`${styles.companyInvoiceViewInvoiceActionBarActionItem} navbar-nav nav-fill`}>
                                                     <div className="nav-link d-flex justify-content-lg-center" onClick={genrateAndEmailPDF}>
-                                                        <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}>{loading ? <div class={`spinner-border ${styles.companyInvoiceViewInvoiceSpinner}`} role="status"><span class="visually-hidden">Loading...</span></div> : <FaMail />}</span>
+                                                        <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}>{loading ? <div className={`spinner-border ${styles.companyInvoiceViewInvoiceSpinner}`} role="status"><span className="visually-hidden">Loading...</span></div> : <FaMail />}</span>
                                                         <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText}`} role="button">
                                                             Mail PDF
                                                         </span>
