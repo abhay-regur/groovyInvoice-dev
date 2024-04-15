@@ -18,3 +18,9 @@ export const updateInvoice = async (id, data) => {
         return await httpService.put('invoice/' + id, data);
     } catch (error) { throw error; }
 }
+
+export const sendInvoicePDFEmail = async (id) => {
+    try {
+        return await httpService.get('invoice/send-pdf-to-email/' + id)
+    } catch (error) { throw error; }
+}

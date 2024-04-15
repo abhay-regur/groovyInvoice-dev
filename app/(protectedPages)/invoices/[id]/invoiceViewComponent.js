@@ -11,7 +11,7 @@ import FaPDF from '@/assets/icons/faPDF.svg';
 import FaRupee from '@/assets/icons/faRupee.svg';
 import FaDropDown from '@/assets/icons/faDropDownGreen.svg';
 import { ToastMsgContext } from '@/context/ToastMsg.context';
-import { getInvoice } from '@/services/invoice.service';
+import { getInvoice, sendInvoicePDFEmail } from '@/services/invoice.service';
 import { getCustomer } from '@/services/customer.service';
 import { getPaymentTerm } from '@/services/paymentTerms.service';
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils.js';
@@ -36,7 +36,7 @@ export default function InvoiceViewComponent() {
     const [actionBarExpandedState, setactionBarExpandedState] = useState(false);
     const [dateFormat, setDateFormat] = useState('dd/MM/yyyy');
     const [currencySymbol, setCurrencySymbol] = useState('₹');
-
+    const [loading, setLoading] = useState(false);
     const [data, setData] = useState({
         customerId: 0,
         invoiceNo: '',
@@ -54,6 +54,8 @@ export default function InvoiceViewComponent() {
         adjustmentAmount: 0,
         invoiceItems: []
     })
+
+
 
     const [paymentInfo, setPaymentInfo] = useState({
         paidAmount: 0,
@@ -183,6 +185,24 @@ export default function InvoiceViewComponent() {
         getCurrencySymbol(customer.currencyId)
     }, [customer.currencyId])
 
+    const genrateAndEmailPDF = () => {
+        setLoading(true)
+        if (id != 0 && id != "") {
+            setToastList([{
+                id: Math.floor((Math.random() * 101) + 1),
+                title: 'PDF Genrating...',
+                description: 'Might take 5 to 10 mins',
+            }]);
+            sendInvoicePDFEmail(id).then(() => {
+                setToastList([{
+                    id: Math.floor((Math.random() * 101) + 1),
+                    title: 'PDF Genrated',
+                    description: 'The PDF is Genrated and is mailed to ' + customer.customerCompanyName,
+                }]);
+                setLoading(false)
+            })
+        }
+    }
 
 
     return (
@@ -211,30 +231,22 @@ export default function InvoiceViewComponent() {
                                                         <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText}`}> Edit</span>
                                                     </Link>
                                                 </li>
-                                                <li className={`${styles.companyInvoiceViewInvoiceActionBarActionItem} nav-item dropdown`}>
-                                                    <div className="nav-link d-flex justify-content-lg-center">
-                                                        <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}><FaMail /></span>
-                                                        <a className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText}`} role="button">
-                                                            Mail / SMS
-                                                        </a>
+                                                <li className={`${styles.companyInvoiceViewInvoiceActionBarActionItem} navbar-nav nav-fill`}>
+                                                    <div className="nav-link d-flex justify-content-lg-center" onClick={genrateAndEmailPDF}>
+                                                        <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}>{loading ? <div class={`spinner-border ${styles.companyInvoiceViewInvoiceSpinner}`} role="status"><span class="visually-hidden">Loading...</span></div> : <FaMail />}</span>
+                                                        <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText}`} role="button">
+                                                            Mail PDF
+                                                        </span>
                                                     </div>
-                                                    <ul className="dropdown-menu">
-                                                        <li><span className="dropdown-item">Action</span></li>
-                                                        <li><span className="dropdown-item">Another action</span></li>
-                                                        <li><span className="dropdown-item">Something else here</span></li>
-                                                    </ul>
+
                                                 </li>
-                                                <li className={`${styles.companyInvoiceViewInvoiceActionBarActionItem} nav-item dropdown`}>
-                                                    <div className="nav-link d-flex justify-content-lg-center">
+                                                <li className={`${styles.companyInvoiceViewInvoiceActionBarActionItem} navbar-nav nav-fill`}>
+                                                    <div className="nav-link d-flex justify-content-lg-center" >
                                                         <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}><FaPDF /></span>
-                                                        <a className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText}`}>
-                                                            PDF / Print
-                                                        </a>
+                                                        <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText}`}>
+                                                            Print PDF
+                                                        </span>
                                                     </div>
-                                                    <ul className="dropdown-menu">
-                                                        <li><span className="dropdown-item">Action</span></li>
-                                                        <li><span className="dropdown-item">Another action</span></li>
-                                                    </ul>
                                                 </li>
                                                 <li className={`${styles.companyInvoiceViewInvoiceActionBarActionItem} nav-item`}>
                                                     <Link href={`${id}/payment`} className="nav-link d-flex justify-content-lg-center">
@@ -250,7 +262,7 @@ export default function InvoiceViewComponent() {
                             </div>
                             <div className="col-12">
                                 <div className={`${styles.companyInvoiceViewInvoiceViewWrapper}`}>
-                                    <div className={`${styles.companyInvoiceViewInvoiceStatusRibbion} ${data.paid == "paid" ? "" : "d-none"}`}> <span>Paid</span> </div>
+                                    <div className={`${styles.companyInvoiceViewInvoiceStatusRibbion} ${data.status == "paid" ? "" : "d-none"}`}> <span>Paid</span> </div>
                                     <div className="row">
                                         <div className="col-12 col-lg-6 order-1 order-lg-0">
                                             <div className={`${styles.companyInvoiceViewInvoiceComapnyName}`}>{userInfo.companyName}</div>
