@@ -54,6 +54,7 @@
                             width: 225px;
                             border-right: 1px solid var.$action-bar-border-color;
                             min-width: 109px;
+                            cursor: pointer;
 
                             &:last-of-type {
                                 border: none;
@@ -67,6 +68,12 @@
 
                                 svg {
                                     height: 17px;
+                                }
+
+                                .companyInvoiceViewInvoiceSpinner {
+                                    height: 17px;
+                                    width: 17px;
+                                    color: var.$tertiary-color;
                                 }
                             }
 
@@ -405,6 +412,7 @@
                         .companyInvoiceViewInvoiceActionBarActionItem {
                             border-right: 1px solid var.$action-bar-border-color;
                             min-width: 109px;
+                            cursor: pointer;
 
                             &:last-of-type {
                                 border: none;
@@ -418,6 +426,12 @@
 
                                 svg {
                                     height: 17px;
+                                }
+
+                                .companyInvoiceViewInvoiceSpinner {
+                                    height: 17px;
+                                    width: 17px;
+                                    color: var.$tertiary-color;
                                 }
                             }
 
@@ -776,6 +790,7 @@
                         padding-left: 10px;
                         padding-right: 10px;
                         min-width: 109px;
+                        cursor: pointer;
 
                         &:last-of-type {
                             border: none;
@@ -791,6 +806,12 @@
 
                             svg {
                                 height: 17px;
+                            }
+
+                            .companyInvoiceViewInvoiceSpinner {
+                                height: 17px;
+                                width: 17px;
+                                color: var.$tertiary-color;
                             }
                         }
 
@@ -1142,6 +1163,7 @@
                         padding-left: 10px;
                         padding-right: 10px;
                         min-width: 109px;
+                        cursor: pointer;
 
                         &:last-of-type {
                             border: none;
@@ -1157,6 +1179,12 @@
 
                             svg {
                                 height: 17px;
+                            }
+
+                            .companyInvoiceViewInvoiceSpinner {
+                                height: 17px;
+                                width: 17px;
+                                color: var.$tertiary-color;
                             }
                         }
 
