@@ -11,6 +11,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import { NavExpandedState } from '@/context/NavState.context';
 import { useInvoiceDetails } from '@/context/invoiceDetails.context';
 import { useParams } from 'next/navigation';
+import { paymentInfoForInvoice } from '@/services/payment.service';
+import { getInvoice } from '@/services/invoice.service';
+import { getCustomer } from '@/services/customer.service';
 import ErrorList from '@/components/errorList';
 import { savePaymentForInvoice, getPaymentHistoryForInvoice } from '@/services/payment.service';
 import { ToastMsgContext } from '@/context/ToastMsg.context';
@@ -22,7 +25,7 @@ import Loading from '@/app/(protectedPages)/loading';
 export default function PaymentFormComponent() {
     const { id } = useParams();
     const { navExpandedState } = useContext(NavExpandedState);
-    const { invoiceDetailsContext } = useInvoiceDetails();
+    const { invoiceDetailsContext, setInvoiceDetailsContext } = useInvoiceDetails();
     const [errors, setErrors] = useState([]);
     const { setToastList } = useContext(ToastMsgContext);
     const [currencySymbol, setCurrencySymbol] = useState('₹');
@@ -43,8 +46,29 @@ export default function PaymentFormComponent() {
     });
 
     useEffect(() => {
-        Promise.allSettled([getPaymentHistory(), getCurrencySymbol(invoiceDetailsContext.invoiceDetails.currencyId)]).then(() => setIsloading(false))
+        if (invoiceDetailsContext.invoiceDetails.currencyId !== '') {
+            Promise.allSettled([getPaymentHistory(), getCurrencySymbol(invoiceDetailsContext.invoiceDetails.currencyId)]).then(() => { setIsloading(false) })
+        } else {
+            getMissingData(id);
+            Promise.allSettled([getPaymentHistory(), getCurrencySymbol(invoiceDetailsContext.invoiceDetails.currencyId)]).then(() => { setIsloading(false) })
+        }
     }, [])
+
+    const getMissingData = async (id) => {
+        const tempmainData = data;
+        const tempInvoiceDetails = { ...invoiceDetailsContext }
+        const result = await getInvoice(id);
+        const tempcustomerData = await getCustomer(result.data.customerId);
+        const paymentResult = await paymentInfoForInvoice(id);
+        invoiceDetailsContext.customerDetails.name = tempcustomerData.data.firstName + " " + tempcustomerData.data.lastName;
+        tempInvoiceDetails.customerDetails.panCardNumber = tempcustomerData.data.panNumber;
+        tempInvoiceDetails.invoiceDetails.currencyId = tempcustomerData.data.currencyId;
+        tempInvoiceDetails.invoiceDetails.invoiceNo = result.data.invoiceNo
+        tempInvoiceDetails.invoiceDetails.unpaidAmount = paymentResult.data.unpaidAmount;
+        tempInvoiceDetails.invoiceDetails.paidAmount = paymentResult.data.paidAmount;
+        setData({ ...tempmainData, customerName: tempcustomerData.data.firstName + " " + tempcustomerData.data.lastName, invoiceNo: result.data.invoiceNo, unpaidAmount: paymentResult.data.unpaidAmount, paidAmount: paymentResult.data.paidAmount, panCardNumber: tempcustomerData.data.panNumber })
+        setInvoiceDetailsContext(tempInvoiceDetails);
+    }
 
     const getCurrencySymbol = async (id) => {
         try {
