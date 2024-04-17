@@ -3,7 +3,7 @@ import { useCurrentUserData } from '@/context/CurrentUserData.context';
 import { formatDate } from '@/utils/date.utils';
 import { downloadImage } from '@/utils/file.utils';
 
-const InvoicePreviousPaymentsTable = ({ items = [], styles, totalPaidAmount=0 }) => {
+const InvoicePreviousPaymentsTable = ({ items = [], styles, totalPaidAmount = 0 }) => {
     const { userInfo } = useCurrentUserData();
 
     return (
@@ -31,7 +31,7 @@ const InvoicePreviousPaymentsTable = ({ items = [], styles, totalPaidAmount=0 })
                                             <td className={`${styles.companyInvoicePreviousPaymentTablePaymentDate}`} colSpan={1}>{formatDate(item.paymentDate, userInfo.datePref)}</td>
                                             <td className={`${styles.companyInvoicePreviousPaymentTableNotes}`} colSpan={1}>{item.notes}</td>
                                             <td className={`${styles.companyInvoicePreviousPaymentTableAttachment}`} colSpan={1}> {item.file ? <i onClick={() => downloadImage(item.file)}><FaDownload /></i> : ' - '}</td>
-                                            <td className={`${styles.companyInvoicePreviousPaymentTableAmountRecived}`} colSpan={1}>{item.amount}</td>
+                                            <td className={`${styles.companyInvoicePreviousPaymentTableAmountRecived} text-center`} colSpan={1}>{item.amount}</td>
                                         </tr>
                                     )
                                 })}
