@@ -115,24 +115,27 @@ export default function PaymentFormComponent() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         var myFormData = new FormData();
-        myFormData.append('invoiceId', parseInt(id))
-        myFormData.append('amount', data.amount)
-        myFormData.append('paymentDate', data.paymentDate)
-        myFormData.append('references', data.refrence)
-        myFormData.append('notes', data.notes)
-        myFormData.append('file', data.attachedFiles)
+        if (data.amount == 0) {
+            setErrors("Amount recived cannot be 0")
+        } else {
+            myFormData.append('invoiceId', parseInt(id))
+            myFormData.append('amount', data.amount)
+            myFormData.append('paymentDate', data.paymentDate)
+            myFormData.append('references', data.refrence)
+            myFormData.append('notes', data.notes)
+            myFormData.append('file', data.attachedFiles)
+            try {
+                await savePaymentForInvoice(myFormData);
+                setToastList([{
+                    id: Math.floor((Math.random() * 101) + 1),
+                    title: 'Payment added',
+                    description: 'Added Payment for the Invoice #' + invoiceDetailsContext.invoiceDetails.invoiceNo,
+                }]);
+                getPaymentHistory();
+            } catch (error) {
+                setErrors(genrateErrorMessage(error, '', setToastList));
+            }
 
-        try {
-            await savePaymentForInvoice(myFormData);
-            setToastList([{
-                id: Math.floor((Math.random() * 101) + 1),
-                title: 'Payment added',
-                description: 'Added Payment for the Invoice #' + invoiceDetailsContext.invoiceDetails.invoiceNo,
-            }]);
-            getPaymentHistory();
-        } catch (error) {
-            console.log(error);
-            setErrors(genrateErrorMessage(error, '', setToastList));
         }
     }
 
