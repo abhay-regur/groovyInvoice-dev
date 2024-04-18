@@ -7,7 +7,7 @@ import ErrorList from '@/components/errorList';
 import { ToastMsgContext } from '@/context/ToastMsg.context';
 import { getCompanyDetails, setupCompanyDetails } from '@/services/companies.service';
 import { getCurrencies, getTimeZonesList } from '@/services/common/general.service';
-import { getIndianStates, getCountries } from '@/services/countriesState.service';
+import { getStates, getCountries } from '@/services/countriesState.service';
 import CustomSelectComponent from "@/components/common/customSelectComponent";
 import IndustryModal from "@/components/industryModal";
 import FaCamera from '@/assets/icons/faCamera.svg';
@@ -30,7 +30,7 @@ export default function OrganizationSetupForm() {
     const [timeZoneList, setTimeZoneList] = useState([]);
     const [countryArray, setCountryArray] = useState([]);
     const [currencies, setCurrencies] = useState([]);
-    const [statesArray, getStateArray] = useState([]);
+    const [statesArray, setStateArray] = useState([]);
     const [imageSrc, setImageSrc] = useState('');
     const { Modal } = require("bootstrap");
 
@@ -59,21 +59,30 @@ export default function OrganizationSetupForm() {
 
     useEffect(() => {
         setIsLoading(true);
-        Promise.allSettled([getCurrenciesData(), getIndustryData(), getStatesData(), getTimeZonesData(), getCountriesData(), getCompanyData()]).then(() => setIsLoading(false))
+        Promise.allSettled([getCurrenciesData(), getIndustryData(), getTimeZonesData(), getCountriesData(), getCompanyData()]).then(() => setIsLoading(false))
     }, []);
 
-    const getStatesData = async () => {
+    useEffect(() => {
+        if (data.countryId > 0 && data.countryId != null) {
+            console.log();
+            getStatesData(data.countryId)
+        }
+    }, [data.countryId])
+
+    const getStatesData = async (id) => {
         setErrors([]);
-        try {
-            const result = await getIndianStates();
-            var data = result.data;
-            var temp = [];
-            data.forEach((elem) => {
-                temp.push({ Id: elem.id, name: elem.name })
-            })
-            getStateArray(temp);
-        } catch (error) {
-            setErrors(genrateErrorMessage(error, '', setToastList));
+        if (id != null) {
+            try {
+                const result = await getStates(id);
+                var data = result.data;
+                var temp = [];
+                data.forEach((elem) => {
+                    temp.push({ Id: elem.id, name: elem.name })
+                })
+                setStateArray(temp);
+            } catch (error) {
+                setErrors(genrateErrorMessage(error, '', setToastList));
+            }
         }
     }
 

@@ -45,14 +45,14 @@ function AuthLayout({ children }) {
             const currentUserDetails = await getCurrentUserDetails();
             const currentUserCompanyDetails = await getCompanyDetails();
             if (currentUserDetails.status == '200' && currentUserCompanyDetails.status == '200') {
-                tempData.userName = currentUserDetails.data.firstName + ' ' + currentUserDetails.data.lastName;
+                tempData.userName = (currentUserDetails.data.firstName || '') + ' ' + (currentUserDetails.data.lastName || '');
                 tempData.userProfileImage = currentUserDetails.data.profile_image;
                 tempData.companyName = currentUserCompanyDetails.data.companyName;
                 tempData.userCompanyImage = currentUserCompanyDetails.data.userComapanyImage;
                 tempData.userCompanyImage = currentUserCompanyDetails.data.userComapanyImage;
                 tempData.datePref = currentUserCompanyDetails.data.dateFormat;
-                tempData.currencyId = currentUserCompanyDetails.data.currencyId;
-                const companyState = await getState(currentUserCompanyDetails.data.stateId);
+                tempData.currencyId = (currentUserCompanyDetails.data.currencyId || 0);
+                const companyState = await getState(currentUserCompanyDetails.data.stateId || 1);
                 if (companyState.status == '200' && companyState.data.name !== null) {
                     tempData.companyAddress = companyState.data.name + ', ' + companyState.data.country.name;
                 }
