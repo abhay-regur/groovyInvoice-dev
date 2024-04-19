@@ -102,13 +102,13 @@ const UserForm = ({ data, setData, handleSubmit, errors, label, mode }) => {
                 <label className="">Name</label>
               </div>
               <div className="col-12 col-lg-3 col-xl-3 mb-3 mb-lg-0">
-                <input type="text" className={`${styles.companyInvoiceUserFirstName} form-control`} id='firstName' placeholder='First Name' onChange={handleInput} name='firstName' value={data.firstName} onBlur={handleValidation} />
+                <input type="text" className={`${styles.companyInvoiceUserFirstName} form-control`} id='firstName' placeholder='First Name' onChange={handleInput} name='firstName' value={data.firstName || ""} onBlur={handleValidation} />
                 <div htmlFor="firstName" className="ms-3 invalid-data">
                   {formValidationMessage.firstName}
                 </div>
               </div>
               <div className="col-12 col-lg-3 col-xl-3">
-                <input type="text" className={`${styles.companyInvoiceUserLastName} form-control`} id='lastName' placeholder='Last Name' onChange={handleInput} name='lastName' value={data.lastName} />
+                <input type="text" className={`${styles.companyInvoiceUserLastName} form-control`} id='lastName' placeholder='Last Name' onChange={handleInput} name='lastName' value={data.lastName || ""} />
                 <div htmlFor="lastName" className="ms-3 invalid-data">
                   {formValidationMessage.lastName}
                 </div>
