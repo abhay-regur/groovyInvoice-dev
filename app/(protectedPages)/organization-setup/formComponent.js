@@ -64,7 +64,6 @@ export default function OrganizationSetupForm() {
 
     useEffect(() => {
         if (data.countryId > 0 && data.countryId != null) {
-            console.log();
             getStatesData(data.countryId)
         }
     }, [data.countryId])
@@ -327,7 +326,7 @@ export default function OrganizationSetupForm() {
                                                     <label className={`${styles.companyInvoiceOrganizationLanguagelabel}`}>Language <span className={`${styles.green}`}>*</span></label>
                                                 </div>
                                                 <div className="col-12 col-lg-6 col-xl-7">
-                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationLanguageSelect}`} data={[{ Id: 'English', name: 'English' }]} onOptionValueChange={handleInput} optionValue={parseInt(data.language)} name={'language'} isDisabled={false} defaultText={'Select a Languange'} isInnerButtonRequired={false} />
+                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationLanguageSelect}`} data={[{ Id: 'English', name: 'English' }]} onOptionValueChange={handleInput} optionValue={1} name={'language'} isDisabled={true} defaultText={'Select a Languange'} isInnerButtonRequired={false} />
                                                 </div>
                                             </div>
 

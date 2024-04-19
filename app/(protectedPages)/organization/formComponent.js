@@ -21,8 +21,10 @@ import { useCurrentUserData } from "@/context/CurrentUserData.context";
 import { DATE_FORMATE_LIST } from "constants";
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils';
 import defaultProfile from '../../../public/images/default-company-icon.png';
+import { useRouter } from "next/navigation";
 
 export default function OrganizationUpdateForm() {
+    const { back } = useRouter()
     const { navExpandedState } = useContext(NavExpandedState);
     const { setToastList } = useContext(ToastMsgContext);
     const [errors, setErrors] = useState([]);
@@ -252,7 +254,7 @@ export default function OrganizationUpdateForm() {
     const cancelHandler = (event) => {
         event.preventDefault();
         event.stopPropagation();
-        console.log('Cancled')
+        back();
     }
 
     const imageLoader = ({ src, width, quality }) => {
@@ -326,7 +328,7 @@ export default function OrganizationUpdateForm() {
                                                         <label className={`${styles.companyInvoiceOrganizationLanguagelabel}`}>Language <span className={`${styles.green}`}>*</span></label>
                                                     </div>
                                                     <div className="col-12 col-lg-6 col-xl-7">
-                                                        <CustomSelectComponent className={`${styles.companyInvoiceOrganizationLanguageSelect}`} data={[{ Id: "1", name: 'English' }]} onOptionValueChange={handleInput} optionValue={data.language} name={'language'} isDisabled={false} defaultText={'Select a Languange'} isInnerButtonRequired={false} />
+                                                        <CustomSelectComponent className={`${styles.companyInvoiceOrganizationLanguageSelect}`} data={[{ Id: "1", name: 'English' }]} onOptionValueChange={handleInput} optionValue={1} name={'language'} isDisabled={true} defaultText={'Select a Languange'} isInnerButtonRequired={false} />
                                                     </div>
                                                 </div>
 
@@ -386,7 +388,7 @@ export default function OrganizationUpdateForm() {
                                                         <label className={`${styles.companyInvoiceOrganizationCurrentInvoicinglabel}`}>How are you managing invoicing currently? </label>
                                                     </div>
                                                     <div className="col-12 col-lg-6 col-xl-7">
-                                                        <input name='currentInvoicing' type="text" className="form-control" id="companyInvoiceOrganizationCurrentInvoicingSelect" value={data.currentInvoicing == 'undefined' ? 'N.A' : data.currentInvoicing} onChange={handleInput} placeholder=' ' />
+                                                        <input name='currentInvoicing' type="text" className="form-control" id="companyInvoiceOrganizationCurrentInvoicingSelect" value={data.currentInvoicing == 'undefined' || data.currentInvoicing == 'null' ? 'N.A' : data.currentInvoicing} onChange={handleInput} placeholder=' ' />
                                                     </div>
                                                 </div>
 
@@ -442,7 +444,7 @@ export default function OrganizationUpdateForm() {
                                                                     </span>
                                                             }
                                                         </button>
-                                                        <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={(e) => { cancleHandler(e); }}>
+                                                        <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={(e) => { cancelHandler(e); }}>
                                                             <span>
                                                                 <i className="pe-1"><FaCircleXmark /></i>
                                                                 Cancel
