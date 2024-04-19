@@ -4,7 +4,7 @@ import FaCopy from "@/assets/icons/faCopy.svg";
 import CustomSelectComponent from "../common/customSelectComponent";
 import { getStates, getCountries } from "@/services/countriesState.service";
 
-const AddressComponent = ({ data, handleInput, label, disabled = false }) => {
+const AddressComponent = ({ data, handleInput, label, disabled = false, handleCopyClick }) => {
     const [states, setStates] = useState([]);
     const [countries, setCountries] = useState([]);
 
@@ -39,7 +39,22 @@ const AddressComponent = ({ data, handleInput, label, disabled = false }) => {
     return (
         <>
             <div className="col-12 col-lg-6 mt-lg-0 mt-4">
-                <h3 className={`${styles.tabtitle}`}>{label}</h3>
+                <div className="row">
+                    <div className="col-6">
+                        <h3 className={`${styles.tabtitle}`}>{label}</h3>
+                    </div>
+                    <div className="col-6">
+                        {label == "Shipping Address" ?
+                            <div className={`${styles.companyInvoiceShippingCopyBillingWrapper} d-flex align-content-center justify-content-start justify-content-md-end mb-3`} onClick={handleCopyClick} >
+                                <i><FaCopy /></i> <span>Copy Billing Address</span>
+                            </div>
+                            : ''
+
+                        }
+                    </div>
+
+                </div>
+
                 <div className={`${styles.companyInvoiceBillingAttentionWrapper} mb-4 row`}>
                     <div className="col-12 col-md-4 d-flex align-items-center">
                         <label className={`${styles.companyInvoiceBillingAttentionlabel}`}>Attention</label>
@@ -188,10 +203,8 @@ export default function Address({ data, setData }) {
                     handleInput={handleShippingInput}
                     label="Shipping Address"
                     disabled={addressCopied}
+                    handleCopyClick={handleCopyClick}
                 />
-                <div className={`${styles.companyInvoiceShippingCopyBillingWrapper} d-flex align-content-center justify-content-start justify-content-md-end`} onClick={handleCopyClick} >
-                    <i><FaCopy /></i> <span>Copy Billing Address</span>
-                </div>
             </div>
         </div>
     )

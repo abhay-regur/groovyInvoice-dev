@@ -25,7 +25,7 @@ export default function ProfileComponent() {
     const [isLoading, setIsLoading] = useState(true);
     const [isImageSet, setIsImageSet] = useState(false);
     const [profileInfoErrors, setProfileInfoErrors] = useState([]);
-    const [imageSrc, setImageSrc] = useState('');
+    const [imageSrc, setImageSrc] = useState(defaultProfile);
     const [passwordErrors, setPasswordErrors] = useState([]);
     const [passwordData, setPasswordData] = useState({
         currentPassword: '',

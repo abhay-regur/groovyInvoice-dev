@@ -39,7 +39,12 @@ const CustomersForm = ({ data, setData, handleSubmit, errors, setErrors, mode, i
           temp_data[name] = 0;
         }
       } else if (name == 'phone' || name == 'cellNumber') {
-        temp_data[name] = (target.value == '' ? '' : (target.value).match(/[0-9]+/g)[0]);
+        let temp = (target.value).match(/[0-9]+/g) || '';
+        if (target.value != '' && temp.length > 0) {
+          temp_data[name] = temp[0];
+        } else {
+          temp_data[name] = '';
+        }
       } else {
         temp_data[name] = target.value;
       }
@@ -154,6 +159,7 @@ const CustomersForm = ({ data, setData, handleSubmit, errors, setErrors, mode, i
     setToastList: setToastList,
     ErrorList: ErrorList,
   };
+
   const resetPage = () => {
     setErrors([]);
     setActiveTabID(1);

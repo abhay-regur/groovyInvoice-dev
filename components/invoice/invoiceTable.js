@@ -80,11 +80,11 @@ const InvoiceTable = (props) => {
                 <table className={`${styles.companyInvoiceTable} table`}>
                     <thead>
                         <tr>
-                            <th scope="col" className="ps-3">Item Details</th>
+                            <th scope="col" className={`${styles.companyInvoiceItemTableNameHeader} ps-3`}>Item Details</th>
                             <th scope="col" className={`${styles.companyInvoiceItemTableQtyHeader} pe-2 text-end`}>Quantity</th>
                             <th scope="col" className={`${styles.companyInvoiceItemTableRateHeader} pe-2 text-end`}>Rate</th>
-                            <th scope="col" className="invoiceTableTaxHead"><span className='d-flex justify-content-center'> Tax Percentage <i className='d-flex align-content-center'><FaExclamationCircle /></i></span></th>
-                            <th scope="col" className="text-center">Amount</th>
+                            <th scope="col" className={`${styles.companyInvoiceItemTableTaxHeader}`}><span className='d-flex justify-content-center'> Tax Percentage <i className='d-flex align-content-center'><FaExclamationCircle /></i></span></th>
+                            <th scope="col" className={`${styles.companyInvoiceItemTableAmountHeader}`}>Amount</th>
                         </tr>
                     </thead>
                     <tbody>

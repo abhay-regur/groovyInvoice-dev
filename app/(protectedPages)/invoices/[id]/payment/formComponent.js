@@ -11,6 +11,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import { NavExpandedState } from '@/context/NavState.context';
 import { useInvoiceDetails } from '@/context/invoiceDetails.context';
 import { useParams } from 'next/navigation';
+import { paymentInfoForInvoice } from '@/services/payment.service';
+import { getInvoice } from '@/services/invoice.service';
+import { getCustomer } from '@/services/customer.service';
 import ErrorList from '@/components/errorList';
 import { savePaymentForInvoice, getPaymentHistoryForInvoice } from '@/services/payment.service';
 import { ToastMsgContext } from '@/context/ToastMsg.context';
@@ -22,7 +25,7 @@ import Loading from '@/app/(protectedPages)/loading';
 export default function PaymentFormComponent() {
     const { id } = useParams();
     const { navExpandedState } = useContext(NavExpandedState);
-    const { invoiceDetailsContext } = useInvoiceDetails();
+    const { invoiceDetailsContext, setInvoiceDetailsContext } = useInvoiceDetails();
     const [errors, setErrors] = useState([]);
     const { setToastList } = useContext(ToastMsgContext);
     const [currencySymbol, setCurrencySymbol] = useState('₹');
@@ -32,7 +35,8 @@ export default function PaymentFormComponent() {
     const [data, setData] = useState({
         customerName: invoiceDetailsContext.customerDetails.name,
         invoiceNo: invoiceDetailsContext.invoiceDetails.invoiceNo,
-        totalAmount: invoiceDetailsContext.invoiceDetails.totalAmount,
+        unpaidAmount: invoiceDetailsContext.invoiceDetails.unpaidAmount,
+        paidAmount: invoiceDetailsContext.invoiceDetails.paidAmount,
         amount: 0,
         paymentDate: new Date(),
         panCardNumber: invoiceDetailsContext.customerDetails.panCardNumber,
@@ -43,8 +47,29 @@ export default function PaymentFormComponent() {
     });
 
     useEffect(() => {
-        Promise.allSettled([getPaymentHistory(), getCurrencySymbol(invoiceDetailsContext.invoiceDetails.currencyId)]).then(() => setIsloading(false))
+        if (invoiceDetailsContext.invoiceDetails.currencyId !== '') {
+            Promise.allSettled([getPaymentHistory(), getCurrencySymbol(invoiceDetailsContext.invoiceDetails.currencyId)]).then(() => { setIsloading(false) })
+        } else {
+            getMissingData(id);
+            Promise.allSettled([getPaymentHistory(), getCurrencySymbol(invoiceDetailsContext.invoiceDetails.currencyId)]).then(() => { setIsloading(false) })
+        }
     }, [])
+
+    const getMissingData = async (id) => {
+        const tempmainData = data;
+        const tempInvoiceDetails = { ...invoiceDetailsContext }
+        const result = await getInvoice(id);
+        const tempcustomerData = await getCustomer(result.data.customerId);
+        const paymentResult = await paymentInfoForInvoice(id);
+        invoiceDetailsContext.customerDetails.name = tempcustomerData.data.firstName + " " + tempcustomerData.data.lastName;
+        tempInvoiceDetails.customerDetails.panCardNumber = tempcustomerData.data.panNumber;
+        tempInvoiceDetails.invoiceDetails.currencyId = tempcustomerData.data.currencyId;
+        tempInvoiceDetails.invoiceDetails.invoiceNo = result.data.invoiceNo
+        tempInvoiceDetails.invoiceDetails.unpaidAmount = paymentResult.data.unpaidAmount;
+        tempInvoiceDetails.invoiceDetails.paidAmount = paymentResult.data.paidAmount;
+        setData({ ...tempmainData, customerName: tempcustomerData.data.firstName + " " + tempcustomerData.data.lastName, invoiceNo: result.data.invoiceNo, unpaidAmount: paymentResult.data.unpaidAmount, paidAmount: paymentResult.data.paidAmount, panCardNumber: tempcustomerData.data.panNumber })
+        setInvoiceDetailsContext(tempInvoiceDetails);
+    }
 
     const getCurrencySymbol = async (id) => {
         try {
@@ -90,24 +115,27 @@ export default function PaymentFormComponent() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         var myFormData = new FormData();
-        myFormData.append('invoiceId', parseInt(id))
-        myFormData.append('amount', data.amount)
-        myFormData.append('paymentDate', data.paymentDate)
-        myFormData.append('references', data.refrence)
-        myFormData.append('notes', data.notes)
-        myFormData.append('file', data.attachedFiles)
+        if (data.amount == 0) {
+            setErrors("Amount recived cannot be 0")
+        } else {
+            myFormData.append('invoiceId', parseInt(id))
+            myFormData.append('amount', data.amount)
+            myFormData.append('paymentDate', data.paymentDate)
+            myFormData.append('references', data.refrence)
+            myFormData.append('notes', data.notes)
+            myFormData.append('file', data.attachedFiles)
+            try {
+                await savePaymentForInvoice(myFormData);
+                setToastList([{
+                    id: Math.floor((Math.random() * 101) + 1),
+                    title: 'Payment added',
+                    description: 'Added Payment for the Invoice #' + invoiceDetailsContext.invoiceDetails.invoiceNo,
+                }]);
+                getPaymentHistory();
+            } catch (error) {
+                setErrors(genrateErrorMessage(error, '', setToastList));
+            }
 
-        try {
-            await savePaymentForInvoice(myFormData);
-            setToastList([{
-                id: Math.floor((Math.random() * 101) + 1),
-                title: 'Payment added',
-                description: 'Added Payment for the Invoice #' + invoiceDetailsContext.invoiceDetails.invoiceNo,
-            }]);
-            getPaymentHistory();
-        } catch (error) {
-            console.log(error);
-            setErrors(genrateErrorMessage(error, '', setToastList));
         }
     }
 
@@ -143,7 +171,7 @@ export default function PaymentFormComponent() {
                                                 <label className={`${styles.companyInvoicePaymentNumberLabel}`}>Payment Invoice#<span className={`${styles.green}`}>*</span></label>
                                             </div>
                                             <div className="col-12 col-lg-10 d-flex align-items-center mt-2">
-                                                <input type="text" className="form-control" id="companyInvoicePaymentNumber" placeholder='Invoice Number' onChange={handleInput} disabled />
+                                                <input type="text" className="form-control" id="companyInvoicePaymentNumber" placeholder='Invoice Number' onChange={handleInput} value={data.invoiceNo} disabled />
                                             </div>
                                         </div>
 
@@ -156,7 +184,7 @@ export default function PaymentFormComponent() {
                                                     <div className="col-12 mt-2">
                                                         <div className="input-group">
                                                             <span className="input-group-text">{currencySymbol}</span>
-                                                            <input type="number" className="form-control" id="companyInvoiceAmountRecived" name="amount" onChange={handleInput} min={1} max={data.totalAmount} placeholder={'Total Receivables: ' + data.totalAmount} required />
+                                                            <input type="number" className="form-control" id="companyInvoiceAmountRecived" name="amount" onChange={handleInput} min={1} max={data.unpaidAmount} placeholder={'Total Receivables: ' + data.unpaidAmount} required />
                                                         </div>
                                                     </div>
                                                     <div className="col-12 mt-2">
@@ -240,7 +268,7 @@ export default function PaymentFormComponent() {
                                         <div className="row">
                                             <div className="col-12">
                                                 <div className={`${styles.companyInvoicePreviousPaymentTableWrapper}`}>
-                                                    <InvoicePreviousPaymentTable items={previousPaymentData} styles={styles} />
+                                                    <InvoicePreviousPaymentTable items={previousPaymentData} styles={styles} totalPaidAmount={data.paidAmount} />
                                                 </div>
                                             </div>
                                         </div>

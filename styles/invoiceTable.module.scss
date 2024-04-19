@@ -4,6 +4,8 @@
 @media screen and (min-width: 676px) {
     .companyInvoiceTable {
         border-radius: 10%;
+        width: 100%;
+        table-layout: fixed;
 
         thead {
             tr {
@@ -23,9 +25,28 @@
                         width: 184px;
                     }
 
-                    &.companyInvoiceItemTableQtyHeader,
+                    &.companyInvoiceItemTableNameHeader {
+                        width: 20%;
+                    }
+
+                    &.companyInvoiceItemTableQtyHeader {
+                        width: 14%;
+                    }
+
+                    &.companyInvoiceItemTableQtyHeader {
+                        width: 18%;
+                    }
+
                     &.companyInvoiceItemTableRateHeader {
-                        width: 161px;
+                        width: 20%;
+                    }
+
+                    &.companyInvoiceItemTableTaxHeader {
+                        width: 24%;
+                    }
+
+                    &.companyInvoiceItemTableAmountHeader {
+                        width: 20%;
                     }
 
                     i {
@@ -231,7 +252,7 @@
         display: flex;
         align-items: center;
 
-        &::after{
+        &::after {
             display: none;
         }
 
@@ -265,11 +286,12 @@
             }
         }
 
-        span{
+        span {
             margin-left: 5px;
-            svg{
-                 width: 10px;
-                 height: 10px;
+
+            svg {
+                width: 10px;
+                height: 10px;
             }
         }
     }
@@ -297,6 +319,30 @@
 
                     &:nth-of-type(4) {
                         width: 184px;
+                    }
+
+                    &.companyInvoiceItemTableNameHeader {
+                        width: 20%;
+                    }
+
+                    &.companyInvoiceItemTableQtyHeader {
+                        width: 14%;
+                    }
+
+                    &.companyInvoiceItemTableQtyHeader {
+                        width: 18%;
+                    }
+
+                    &.companyInvoiceItemTableRateHeader {
+                        width: 20%;
+                    }
+
+                    &.companyInvoiceItemTableTaxHeader {
+                        width: 24%;
+                    }
+
+                    &.companyInvoiceItemTableAmountHeader {
+                        width: 20%;
                     }
 
                     i {
@@ -499,7 +545,7 @@
         display: flex;
         align-items: center;
 
-        &::after{
+        &::after {
             display: none;
         }
 
@@ -510,6 +556,7 @@
             i {
                 width: 18px;
                 height: 17px;
+
                 svg {
                     path {
                         transition: 0.5s;
@@ -534,11 +581,12 @@
             }
         }
 
-        span{
+        span {
             margin-left: 5px;
-            svg{
-                 width: 10px;
-                 height: 10px;
+
+            svg {
+                width: 10px;
+                height: 10px;
             }
         }
     }

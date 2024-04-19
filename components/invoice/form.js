@@ -205,7 +205,7 @@ const InvoiceForm = ({ data, setData, handleSubmit, errors, setErrors, mode }) =
                   <div className={`${styles.companyInvoiceNumberWrapper} mb-3`}>
                     <label htmlFor="companyInvoiceNumber" className="form-label">Invoice#<span className={`${styles.green}`}>*</span></label>
                     <div className={`d-flex align-content-center`}>
-                      <input type="text" className="form-control" id="companyInvoiceNumber" aria-describedby="emailHelp" name="invoiceNo" value={data.invoiceNo} onChange={handleInput} disabled={mode == 'edit' ? true : false} />
+                      <input type="text" className="form-control" id="companyInvoiceNumber" aria-describedby="InvoiceNumber" name="invoiceNo" value={data.invoiceNo} onChange={handleInput} disabled={mode == 'edit' ? true : false} />
                       <i className={mode == 'edit' ? 'disabled' : ''} onClick={openInvoiceNumberSettingsPopup}><FaGear /></i>
                     </div>
                   </div>
@@ -214,7 +214,7 @@ const InvoiceForm = ({ data, setData, handleSubmit, errors, setErrors, mode }) =
                   <div className={`${styles.companyOrderNumberWrapper} mb-3`}>
                     <label htmlFor="companyOrderNumber" className="form-label">Order Number</label>
                     <div className={`d-flex align-content-center`}>
-                      <input type="text" className="form-control" id="companyOrderNumber" aria-describedby="emailHelp" name="orderNumber" value={data.orderNumber} onChange={handleInput} disabled={mode == 'edit' ? true : false} />
+                      <input type="text" className="form-control" id="companyOrderNumber" aria-describedby="orderNumber" name="orderNumber" value={data.orderNumber} onChange={handleInput} disabled={mode == 'edit' ? true : false} />
                     </div>
                   </div>
                 </div>
