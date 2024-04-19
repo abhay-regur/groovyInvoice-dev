@@ -31,7 +31,7 @@ export default function OrganizationSetupForm() {
     const [countryArray, setCountryArray] = useState([]);
     const [currencies, setCurrencies] = useState([]);
     const [statesArray, setStateArray] = useState([]);
-    const [imageSrc, setImageSrc] = useState('');
+    const [imageSrc, setImageSrc] = useState(null);
     const { Modal } = require("bootstrap");
 
     const [data, setData] = useState({
@@ -123,8 +123,6 @@ export default function OrganizationSetupForm() {
             setData(companyData);
             if (logo) {
                 setImageSrc(logo)
-            } else {
-                setImageSrc(defaultProfile)
             }
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));

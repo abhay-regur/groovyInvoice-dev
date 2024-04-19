@@ -36,7 +36,7 @@ export default function OrganizationUpdateForm() {
     const [statesArray, getStateArray] = useState([]);
     const [isSubmit, setIsSubmit] = useState(false);
     const { userInfo, setUserInfo } = useCurrentUserData()
-    const [imageSrc, setImageSrc] = useState("");
+    const [imageSrc, setImageSrc] = useState(null);
     const { Modal } = require("bootstrap");
 
     const [data, setData] = useState({
@@ -115,8 +115,6 @@ export default function OrganizationUpdateForm() {
             setData(companyData);
             if (logo) {
                 setImageSrc(logo)
-            } else {
-                setImageSrc(defaultProfile)
             }
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
