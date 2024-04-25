@@ -18,3 +18,10 @@ export const updateCompanyDetails = async (data) => {
         return await httpService.put('companies', data);
     } catch (error) { throw error; }
 }
+
+export const deleteCurrentLogo = async () => {
+    try {
+        return await httpService.delete('companies/logo');
+    } catch (error) { throw error; }
+}
+

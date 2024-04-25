@@ -31,7 +31,7 @@ export default function OrganizationSetupForm() {
     const [countryArray, setCountryArray] = useState([]);
     const [currencies, setCurrencies] = useState([]);
     const [statesArray, setStateArray] = useState([]);
-    const [imageSrc, setImageSrc] = useState('');
+    const [imageSrc, setImageSrc] = useState(null);
     const { Modal } = require("bootstrap");
 
     const [data, setData] = useState({
@@ -64,7 +64,6 @@ export default function OrganizationSetupForm() {
 
     useEffect(() => {
         if (data.countryId > 0 && data.countryId != null) {
-            console.log();
             getStatesData(data.countryId)
         }
     }, [data.countryId])
@@ -124,8 +123,6 @@ export default function OrganizationSetupForm() {
             setData(companyData);
             if (logo) {
                 setImageSrc(logo)
-            } else {
-                setImageSrc(defaultProfile)
             }
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
@@ -327,7 +324,7 @@ export default function OrganizationSetupForm() {
                                                     <label className={`${styles.companyInvoiceOrganizationLanguagelabel}`}>Language <span className={`${styles.green}`}>*</span></label>
                                                 </div>
                                                 <div className="col-12 col-lg-6 col-xl-7">
-                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationLanguageSelect}`} data={[{ Id: 'English', name: 'English' }]} onOptionValueChange={handleInput} optionValue={parseInt(data.language)} name={'language'} isDisabled={false} defaultText={'Select a Languange'} isInnerButtonRequired={false} />
+                                                    <CustomSelectComponent className={`${styles.companyInvoiceOrganizationLanguageSelect}`} data={[{ Id: "1", name: 'English' }]} onOptionValueChange={handleInput} optionValue={1} name={'language'} isDisabled={true} defaultText={'Select a Languange'} isInnerButtonRequired={false} />
                                                 </div>
                                             </div>
 
@@ -387,7 +384,7 @@ export default function OrganizationSetupForm() {
                                                     <label className={`${styles.companyInvoiceOrganizationCurrentInvoicinglabel}`}>How are you managing invoicing currently? </label>
                                                 </div>
                                                 <div className="col-12 col-lg-6 col-xl-7">
-                                                    <input name='currentInvoicing' type="text" className="form-control" id="companyInvoiceOrganizationCurrentInvoicingSelect" value={data.currentInvoicing || ''} onChange={handleInput} placeholder=' ' />
+                                                    <input name='currentInvoicing' type="text" className="form-control" id="companyInvoiceOrganizationCurrentInvoicingSelect" value={data.currentInvoicing == 'undefined' || data.currentInvoicing == 'null' ? 'N.A' : data.currentInvoicing} onChange={handleInput} placeholder=' ' />
                                                 </div>
                                             </div>
 

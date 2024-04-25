@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useContext, useState, useEffect, useRef } from 'react';
 import FaSave from '@/assets/icons/faSave.svg';
 import Loading from "./loading";
-import { getCurrentUserDetails, updateCurrentUserDetails, updateCurrentPassword } from '@/services/profile.service';
+import { getCurrentUserDetails, updateCurrentUserDetails, updateCurrentPassword, deleteCurrentProfilePicture } from '@/services/profile.service';
 import { generatePassword } from '@/utils/genratePassword.utils';
 import { ToastMsgContext } from '@/context/ToastMsg.context';
 import ErrorList from '@/components/errorList';
@@ -27,6 +27,7 @@ export default function ProfileComponent() {
     const [profileInfoErrors, setProfileInfoErrors] = useState([]);
     const [imageSrc, setImageSrc] = useState(defaultProfile);
     const [passwordErrors, setPasswordErrors] = useState([]);
+    const [hasProfilePic, setHasProfilePic] = useState(false)
     const [passwordData, setPasswordData] = useState({
         currentPassword: '',
         newPassword: '',
@@ -55,7 +56,7 @@ export default function ProfileComponent() {
         lastName: "",
         cellNumber: "",
         active: true,
-        profilePicFile: "/images/default_profile_icon.png"
+        profilePicFile: ""
     });
 
     const clickImageInput = function (e) {
@@ -81,8 +82,12 @@ export default function ProfileComponent() {
             var temp_profilephoto = "";
             if (data.profile_image != "" && data.profile_image != null) {
                 temp_profilephoto = data.profile_image.replaceAll('\\', '/');
-                setImageSrc(temp_profilephoto)
+                setImageSrc(temp_profilephoto);
+                setHasProfilePic(true);
                 setIsImageSet(true);
+            } else {
+                setImageSrc(defaultProfile);
+                setIsImageSet(false);
             }
 
             setUserData({
@@ -306,6 +311,16 @@ export default function ProfileComponent() {
         setPasswordData(temp);
     }
 
+    const removeCurrentImage = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        try {
+            deleteCurrentProfilePicture().then(() => { getUserDetails(); setHasProfilePic(false); });
+        } catch (error) {
+            setProfileInfoErrors(genrateErrorMessage(error, '', setToastList));
+        }
+    }
+
     return (
         <div className={styles.container}>
             {
@@ -353,6 +368,11 @@ export default function ProfileComponent() {
                                                                     }
                                                                     <input id='fileUploadInput' className={`${styles.fileUpload}`} ref={imageInputRef} type="file" accept="image/*" onChange={previewandSetImage} />
                                                                 </span>
+                                                                {hasProfilePic ?
+                                                                    <button className={`${styles.profileDeleteCurrentImageButton} btn btn-primary mt-4`} onClick={removeCurrentImage}>Delete Image</button>
+                                                                    :
+                                                                    <></>
+                                                                }
                                                             </div>
                                                         </div>
                                                         <div className="col-md-9">

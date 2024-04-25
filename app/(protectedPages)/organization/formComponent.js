@@ -1,14 +1,15 @@
 'use client'
 import Image from "next/image";
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect, useRef } from 'react';
 import $ from 'jquery';
-import { getCompanyDetails, updateCompanyDetails } from '@/services/companies.service';
+import { getCompanyDetails, updateCompanyDetails, deleteCurrentLogo } from '@/services/companies.service';
 import { getCurrencies, getTimeZonesList } from '@/services/common/general.service';
 import { getIndianStates, getCountries } from '@/services/countriesState.service';
 import { getIndustryList } from '@/services/industry.service';
 import { NavExpandedState } from '@/context/NavState.context';
 import ErrorList from '@/components/errorList';
 import FaSave from '@/assets/icons/faSave.svg';
+import FaBan from '@/assets/icons/faBan.svg';
 import IndustryModal from "@/components/industryModal";
 import Loading from "../loading";
 import FaCircleXmark from '@/assets/icons/faCircleXmark.svg';
@@ -21,8 +22,11 @@ import { useCurrentUserData } from "@/context/CurrentUserData.context";
 import { DATE_FORMATE_LIST } from "constants";
 import { genrateErrorMessage } from '@/utils/errorMessageHandler.utils';
 import defaultProfile from '../../../public/images/default-company-icon.png';
+import { useRouter } from "next/navigation";
 
 export default function OrganizationUpdateForm() {
+    const { back } = useRouter()
+    const logoInputRef = useRef(null)
     const { navExpandedState } = useContext(NavExpandedState);
     const { setToastList } = useContext(ToastMsgContext);
     const [errors, setErrors] = useState([]);
@@ -32,9 +36,10 @@ export default function OrganizationUpdateForm() {
     const [countryArray, setCountryArray] = useState([]);
     const [currencies, setCurrencies] = useState([]);
     const [statesArray, getStateArray] = useState([]);
+    const [hasLogo, setHasLogo] = useState(false)
     const [isSubmit, setIsSubmit] = useState(false);
     const { userInfo, setUserInfo } = useCurrentUserData()
-    const [imageSrc, setImageSrc] = useState("");
+    const [imageSrc, setImageSrc] = useState(null);
     const { Modal } = require("bootstrap");
 
     const [data, setData] = useState({
@@ -58,6 +63,15 @@ export default function OrganizationUpdateForm() {
         Promise.allSettled([getCurrenciesData(), getIndustryData(), getStatesData(), getTimeZonesData(), getCountriesData(), getCompanyData()]).then(() => setIsLoading(false))
 
     }, []);
+
+    useState(() => {
+        console.log('Hello');
+        if (imageSrc == '' && logoInputRef.current != null) {
+            logoInputRef.current.click();
+        }
+
+    }, [imageSrc])
+
 
     const getStatesData = async () => {
         setErrors([]);
@@ -112,9 +126,10 @@ export default function OrganizationUpdateForm() {
             const { logo, ...companyData } = result.data;
             setData(companyData);
             if (logo) {
-                setImageSrc(logo)
+                setImageSrc(logo);
+                setHasLogo(true)
             } else {
-                setImageSrc(defaultProfile)
+                setHasLogo(false)
             }
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
@@ -240,6 +255,7 @@ export default function OrganizationUpdateForm() {
                     title: 'Organization Details Updated',
                     description: '',
                 }]);
+                if (imageSrc !== "") setHasLogo(true);
                 setUserInfo(Object.assign({}, tempcurrentUserData));
                 setIsSubmit(false);
             }
@@ -252,11 +268,25 @@ export default function OrganizationUpdateForm() {
     const cancelHandler = (event) => {
         event.preventDefault();
         event.stopPropagation();
-        console.log('Cancled')
+        back();
     }
 
     const imageLoader = ({ src, width, quality }) => {
         return (`${src}?w=${width}&q=${quality || 75}`);
+    }
+
+    const deleteCurrentImage = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        try {
+            deleteCurrentLogo().then(() => {
+                setHasLogo(false);
+                setImageSrc('');
+                getCompanyData();
+            });
+        } catch (error) {
+
+        }
     }
 
     return (
@@ -326,7 +356,7 @@ export default function OrganizationUpdateForm() {
                                                         <label className={`${styles.companyInvoiceOrganizationLanguagelabel}`}>Language <span className={`${styles.green}`}>*</span></label>
                                                     </div>
                                                     <div className="col-12 col-lg-6 col-xl-7">
-                                                        <CustomSelectComponent className={`${styles.companyInvoiceOrganizationLanguageSelect}`} data={[{ Id: "1", name: 'English' }]} onOptionValueChange={handleInput} optionValue={data.language} name={'language'} isDisabled={false} defaultText={'Select a Languange'} isInnerButtonRequired={false} />
+                                                        <CustomSelectComponent className={`${styles.companyInvoiceOrganizationLanguageSelect}`} data={[{ Id: "1", name: 'English' }]} onOptionValueChange={handleInput} optionValue={1} name={'language'} isDisabled={true} defaultText={'Select a Languange'} isInnerButtonRequired={false} />
                                                     </div>
                                                 </div>
 
@@ -386,7 +416,7 @@ export default function OrganizationUpdateForm() {
                                                         <label className={`${styles.companyInvoiceOrganizationCurrentInvoicinglabel}`}>How are you managing invoicing currently? </label>
                                                     </div>
                                                     <div className="col-12 col-lg-6 col-xl-7">
-                                                        <input name='currentInvoicing' type="text" className="form-control" id="companyInvoiceOrganizationCurrentInvoicingSelect" value={data.currentInvoicing == 'undefined' ? 'N.A' : data.currentInvoicing} onChange={handleInput} placeholder=' ' />
+                                                        <input name='currentInvoicing' type="text" className="form-control" id="companyInvoiceOrganizationCurrentInvoicingSelect" value={data.currentInvoicing == 'undefined' || data.currentInvoicing == 'null' ? 'N.A' : data.currentInvoicing} onChange={handleInput} placeholder=' ' />
                                                     </div>
                                                 </div>
 
@@ -398,7 +428,12 @@ export default function OrganizationUpdateForm() {
                                                         <div className={`${styles.companyInvoiceOrganizationInputFileWrapper} d-flex`}>
                                                             {imageSrc ?
                                                                 <div className={`${styles.companyInvoiceOrganizationImageInputWrapper}`}>
-                                                                    <Image className={`${styles.companyInvoiceOrganizationImageDisplay}`} loader={imageLoader} onError={() => setImageSrc(defaultProfile)} src={imageSrc} width={250} height={125} alt="organization_logo" />
+                                                                    <span className={`${styles.companyInvoiceOrganizationImageWrapper} position-relative`}>
+                                                                        <Image className={`${styles.companyInvoiceOrganizationImageDisplay}`} loader={imageLoader} onError={() => setImageSrc(defaultProfile)} src={imageSrc} width={250} height={125} alt="organization_logo" />
+                                                                        <span className={`${styles.companyInvoiceOrganizationRemoveLogoLink} position-absolute bottom-0 right-0`} onClick={(e) => { removeSelectedImage(e) }}>
+                                                                            <FaBan />
+                                                                        </span>
+                                                                    </span>
                                                                     <span className={`${styles.companyInvoiceOrganizationImageUploadWrapper}`}>
                                                                         <p>
                                                                             This logo will be displayed in transaction PDF&apos;s and email notifications.
@@ -406,21 +441,21 @@ export default function OrganizationUpdateForm() {
                                                                         <p>
                                                                             Max File Size: 2MB
                                                                         </p>
-                                                                        <span className={`${styles.companyInvoiceOrganizationRemoveLogoLink}`} onClick={(e) => { removeSelectedImage(e) }}>
-                                                                            Remove Logo
-                                                                        </span>
                                                                     </span>
-
                                                                 </div>
                                                                 :
                                                                 <>
-                                                                    <input id="companyInvoiceOrganizationLogoInput" className={`${styles.companyInvoiceOrganizationInputFile}`} accept="image/*" type="file" onChange={setImage} />
+                                                                    <input id="companyInvoiceOrganizationLogoInput" className={`${styles.companyInvoiceOrganizationInputFile}`} ref={logoInputRef} accept="image/*" type="file" onChange={setImage} />
                                                                     <label className={`${styles.companyInvoiceOrganizationInputFileSVGButton} btn ms-0`} htmlFor="companyInvoiceOrganizationLogoInput" >
                                                                         <FaCamera />
                                                                         Upload Image
                                                                     </label>
                                                                     <label htmlFor="companyInvoiceOrganizationLogoInput">We accept JPEG, PNG...</label>
                                                                 </>}
+
+                                                            {
+                                                                hasLogo ? <button className="btn blue" onClick={deleteCurrentImage}>Delete Logo</button> : <></>
+                                                            }
                                                         </div>
                                                     </div>
                                                 </div>
@@ -442,7 +477,7 @@ export default function OrganizationUpdateForm() {
                                                                     </span>
                                                             }
                                                         </button>
-                                                        <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={(e) => { cancleHandler(e); }}>
+                                                        <button className={`${styles.companyInvoiceCancelButton} btn blueOutline`} onClick={(e) => { cancelHandler(e); }}>
                                                             <span>
                                                                 <i className="pe-1"><FaCircleXmark /></i>
                                                                 Cancel

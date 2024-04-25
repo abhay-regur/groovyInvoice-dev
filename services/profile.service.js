@@ -24,3 +24,11 @@ export const updateCurrentPassword = async (data) => {
         throw error;
     }
 }
+
+export const deleteCurrentProfilePicture = async () => {
+    try {
+        return await httpService.delete('users/profile-pic');
+    } catch (error) {
+        throw error;
+    }
+}
