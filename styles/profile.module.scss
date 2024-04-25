@@ -88,6 +88,15 @@
 
                     }
 
+                    .profileDeleteCurrentImageButton {
+                        background: var.$primary-color;
+                        font-size: 12px;
+
+                        &:hover {
+                            background: var.$primary-color-hover;
+                        }
+                    }
+
                 }
 
                 .profileSubmitWrapper {
@@ -351,6 +360,15 @@
                             display: none;
                         }
 
+                    }
+
+                    .profileDeleteCurrentImageButton {
+                        background: var.$primary-color;
+                        font-size: 12px;
+
+                        &:hover {
+                            background: var.$primary-color-hover;
+                        }
                     }
 
                 }
