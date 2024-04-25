@@ -17,16 +17,16 @@
 
     select {
       &:focus {
-          box-shadow: none !important;
-          border: var.$primary-color solid 1px !important;
+        box-shadow: none !important;
+        border: var.$primary-color solid 1px !important;
       }
     }
-    
+
     input:focus {
       box-shadow: none !important;
       border: var.$primary-color solid 1px !important;
     }
-    
+
     textarea:focus {
       box-shadow: none !important;
       border: var.$primary-color solid 1px !important;
@@ -155,8 +155,19 @@
               max-width: 200px;
             }
 
+            .companyInvoiceOrganizationImageWrapper {
+              max-height: 200px;
+              height: fit-content;
+
+              .companyInvoiceOrganizationRemoveLogoLink {
+                svg {
+                  fill: red;
+                }
+              }
+            }
+
             .companyInvoiceOrganizationImageUploadWrapper {
-              margin-left: 10px;
+              margin-left: 25px;
 
               p {
                 font-size: 14px;
@@ -238,20 +249,21 @@
 
     select {
       &:focus {
-          box-shadow: none !important;
-          border: var.$primary-color solid 1px !important;
+        box-shadow: none !important;
+        border: var.$primary-color solid 1px !important;
       }
     }
-    
+
     input:focus {
       box-shadow: none !important;
       border: var.$primary-color solid 1px !important;
     }
-    
+
     textarea:focus {
       box-shadow: none !important;
       border: var.$primary-color solid 1px !important;
     }
+
     &.expanded {
       margin: 55px 15px 0 15px;
       transition: all 0.35s;
@@ -362,9 +374,11 @@
           padding: 10px;
           align-items: center;
           cursor: pointer;
+          flex-direction: column;
 
           .companyInvoiceOrganizationImageInputWrapper {
             display: flex;
+            flex-direction: column;
             width: 100%;
             cursor: default;
 
@@ -374,7 +388,7 @@
             }
 
             .companyInvoiceOrganizationImageUploadWrapper {
-              margin-left: 10px;
+              margin-top: 25px;
 
               p {
                 font-size: 14px;
@@ -405,6 +419,19 @@
                 }
               }
             }
+
+            .companyInvoiceOrganizationImageWrapper {
+              max-height: 200px;
+              height: fit-content;
+
+              .companyInvoiceOrganizationRemoveLogoLink {
+                svg {
+                  fill: red;
+                }
+              }
+            }
+
+
           }
 
           .companyInvoiceOrganizationInputFileSVGButton {
