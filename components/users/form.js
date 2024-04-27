@@ -76,6 +76,8 @@ const UserForm = ({ data, setData, handleSubmit, errors, label, mode }) => {
     setFormValidationMessage(temp);
   }
 
+
+
   return (
     <>
       <div className={`${styles.card} card`}>
@@ -102,7 +104,7 @@ const UserForm = ({ data, setData, handleSubmit, errors, label, mode }) => {
                 <label className="">Name</label>
               </div>
               <div className="col-12 col-lg-3 col-xl-3 mb-3 mb-lg-0">
-                <input type="text" className={`${styles.companyInvoiceUserFirstName} form-control`} id='firstName' placeholder='First Name' onChange={handleInput} name='firstName' value={data.firstName || ""} onBlur={handleValidation} />
+                <input type="text" className={`${styles.companyInvoiceUserFirstName} form-control`} id='firstName' placeholder='First Name' onChange={handleInput} name='firstName' value={data.firstName || ""} required onBlur={handleValidation} />
                 <div htmlFor="firstName" className="ms-3 invalid-data">
                   {formValidationMessage.firstName}
                 </div>
@@ -120,7 +122,7 @@ const UserForm = ({ data, setData, handleSubmit, errors, label, mode }) => {
                 <label className={`${styles.companyInvoiceUserEmailLabel}`}>Email</label>
               </div>
               <div className="col-12 col-lg-6 col-xl-6">
-                <input type="email" className="form-control" id="companyInvoiceUserEmail" placeholder='Email' onChange={handleInput} onBlur={handleValidation} name='email' value={data.email} disabled={mode == 'edit' ? true : false} />
+                <input type="email" className="form-control" id="companyInvoiceUserEmail" placeholder='Email' onChange={handleInput} onBlur={handleValidation} name='email' value={data.email} required disabled={mode == 'edit' ? true : false} />
                 <div htmlFor="companyInvoiceUserEmail" className="ms-3 invalid-data">
                   {formValidationMessage.email}
                 </div>
@@ -133,7 +135,7 @@ const UserForm = ({ data, setData, handleSubmit, errors, label, mode }) => {
               </div>
 
               <div className="col-12 col-lg-6 col-xl-6 d-flex align-items-center">
-                <input type="tel" minLength={4} maxLength={13} className={`${styles.companyInvoiceUserMobile} form-control`} id='cellNumber' placeholder='Mobile' onChange={handleInput} name='cellNumber' value={data.cellNumber} />
+                <input type="number" minLength={4} maxLength={13} className={`${styles.companyInvoiceUserMobile} form-control`} id='cellNumber' placeholder='Mobile' onChange={handleInput} name='cellNumber' value={data.cellNumber} />
                 <div htmlFor="cellNumber" className="ms-3 invalid-data">
                   {formValidationMessage.cellNumber}
                 </div>
