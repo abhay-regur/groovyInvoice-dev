@@ -149,6 +149,12 @@ const InvoiceForm = ({ data, setData, handleSubmit, errors, setErrors, mode }) =
     }
   }
 
+  const setDateChange = (value, name) => {
+    data[name] = value
+    let temp = Object.assign({}, data)
+    setData(temp)
+  }
+
   const openInvoiceNumberSettingsPopup = () => {
     if (mode == 'add') {
       const invoiceNumberSettings = new Modal("#invoice-number-settings");
