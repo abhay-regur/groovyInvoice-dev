@@ -5,6 +5,7 @@ import PaymentTerms from "@/components/paymentTerms.js";
 import Breadcrumb from '@/components/common/breadcrumb';
 import { NavExpandedState } from '@/context/NavState.context';
 import IndustryComponent from '@/components/industryComponent';
+import NotificationTestComponent from '@/components/notificationTest';
 
 export default function ConfigComponent() {
     const { navExpandedState } = useContext(NavExpandedState);
@@ -20,6 +21,7 @@ export default function ConfigComponent() {
                 <hr />
                 <PaymentTerms />
                 <IndustryComponent />
+                <NotificationTestComponent />
 
             </main>
         </div>
