@@ -45,10 +45,14 @@ export default function Toast() {
                         >
                             <div className='col-10'>
                                 <p className={`${styles.toastTitle} pt-1`}>{toast.title}</p>
-                                <hr className="mb-0" />
-                                <p className={`${styles.toastMessage} pt-1`}>
-                                    {toast.description}
-                                </p>
+                                {toast.description ?
+                                    <>
+                                        <hr className="mb-0" />
+                                        <p className={`${styles.toastMessage} pt-1`}>
+                                            {toast.description}
+                                        </p>
+                                    </>
+                                    : <></>}
                             </div>
                             <div className="col-2 d-flex p-0">
                                 <button onClick={() => deleteToast(toast.id)}>
