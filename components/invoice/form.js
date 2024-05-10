@@ -84,12 +84,6 @@ const InvoiceForm = ({ data, setData, handleSubmit, errors, setErrors, mode }) =
     }
   }
 
-  useEffect(() => {
-    if (data.customerId) {
-      getCurrencySymbol()
-    }
-  }, [data.customerId])
-
   const handleInput = ({ target }) => {
     let name = target.name || target.getAttribute('name');
     if (name != '') {
@@ -161,6 +155,12 @@ const InvoiceForm = ({ data, setData, handleSubmit, errors, setErrors, mode }) =
       invoiceNumberSettings.show();
     }
   }
+
+  useEffect(() => {
+    if (data.customerId) {
+      getCurrencySymbol()
+    }
+  }, [data.customerId])
 
   useEffect(() => {
     getCustomersList();

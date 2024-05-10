@@ -55,8 +55,6 @@ export default function InvoiceViewComponent() {
         invoiceItems: []
     })
 
-
-
     const [paymentInfo, setPaymentInfo] = useState({
         paidAmount: 0,
         unpaidAmount: 0,
@@ -181,7 +179,6 @@ export default function InvoiceViewComponent() {
     }, [userInfo.datePref])
 
     useEffect(() => {
-
         getCurrencySymbol(customer.currencyId)
     }, [customer.currencyId])
 
@@ -225,12 +222,14 @@ export default function InvoiceViewComponent() {
                                         </button>
                                         <div className={`${styles.companyInvoiceViewInvoiceActionBarCollapse} ${actionBarExpandedState ? "" : styles.collapse} navbar-collapse justify-content-lg-start`} id="navbarNavDropdown">
                                             <ul className={`${styles.companyInvoiceViewInvoiceActionBarnavbarNav} navbar-nav nav-fill`}>
-                                                <li className={`${styles.companyInvoiceViewInvoiceActionBarActionItem} nav-item`}>
-                                                    <Link href={`update/${id}`} className="nav-link d-flex justify-content-lg-center">
-                                                        <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}><FaPen /></span>
-                                                        <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText}`}> Edit</span>
-                                                    </Link>
-                                                </li>
+                                                {
+                                                    data.status == "draft" ? <li className={`${styles.companyInvoiceViewInvoiceActionBarActionItem} nav-item`}>
+                                                        <Link href={`update/${id}`} className="nav-link d-flex justify-content-lg-center">
+                                                            <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}><FaPen /></span>
+                                                            <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemText}`}> Edit</span>
+                                                        </Link>
+                                                    </li> : ""
+                                                }
                                                 <li className={`${styles.companyInvoiceViewInvoiceActionBarActionItem} navbar-nav nav-fill`}>
                                                     <div className="nav-link d-flex justify-content-lg-center" onClick={genrateAndEmailPDF}>
                                                         <span className={`${styles.companyInvoiceViewInvoiceActionBarActionItemIcon}`}>{loading ? <div className={`spinner-border ${styles.companyInvoiceViewInvoiceSpinner}`} role="status"><span className="visually-hidden">Loading...</span></div> : <FaMail />}</span>
