@@ -61,7 +61,6 @@ const UserForm = ({ data, setData, handleSubmit, errors, label, mode }) => {
   }
 
   const handleValidation = ({ target }) => {
-    console.log(target.value)
     if (target.value == '') {
       target.classList.add('is-invalid');
       handleValidationError(target.name, 'Can not be empty');

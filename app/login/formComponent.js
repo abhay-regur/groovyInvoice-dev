@@ -101,7 +101,6 @@ export default function LoginForm() {
                     router.push('/organization-setup')
                 }
             } catch (error) {
-                console.log(error)
                 if (typeof error.response !== 'undefined' && typeof error.response.status !== 'undefined' && typeof error.response.data.message !== 'undefined') {
                     var status = error.response.status;
                     if (status == '404' || status == '401') {
