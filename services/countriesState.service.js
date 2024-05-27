@@ -56,4 +56,3 @@ export const addState = async (data) => {
         throw error;
     }
 }
-

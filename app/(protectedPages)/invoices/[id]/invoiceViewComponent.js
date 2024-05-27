@@ -19,6 +19,7 @@ import { formatDate } from '@/utils/date.utils';
 import Link from 'next/link';
 import { convertNumberToWord } from '@/utils/number.utils';
 import Loading from '@/app/loading';
+import { getCountry, getState } from '@/services/countriesState.service';
 import { paymentInfoForInvoice } from '@/services/payment.service';
 import { useCurrentUserData } from "@/context/CurrentUserData.context";
 import { getCurrencyById } from '@/services/common/general.service';
@@ -37,6 +38,8 @@ export default function InvoiceViewComponent() {
     const [dateFormat, setDateFormat] = useState('dd/MM/yyyy');
     const [currencySymbol, setCurrencySymbol] = useState('₹');
     const [loading, setLoading] = useState(false);
+    const [customerState, setCustomerState] = useState("");
+    const [customerCountry, setCustomerCountry] = useState("");
     const [data, setData] = useState({
         customerId: 0,
         invoiceNo: '',
@@ -93,7 +96,6 @@ export default function InvoiceViewComponent() {
             const result = await getInvoice(id);
             const data = result.data;
             setData({ ...data, invoiceDate: new Date(data.invoiceDate), dueDate: new Date(data.dueDate) })
-
             getCustomerData(data.customerId, tempInvoiceDetails);
             getPaymentTermData(data.termsId);
             const paymentResult = await paymentInfoForInvoice(id);
@@ -115,6 +117,7 @@ export default function InvoiceViewComponent() {
     const getCustomerData = async (id, tempInvoiceDetails) => {
         try {
             const customerData = await getCustomer(id);
+
             setCustomer({
                 firstName: customerData.data.firstName,
                 lastName: customerData.data.lastName,
@@ -142,7 +145,7 @@ export default function InvoiceViewComponent() {
             tempInvoiceDetails.customerDetails.name = customerData.data.firstName + " " + customerData.data.lastName;
             tempInvoiceDetails.customerDetails.panCardNumber = customerData.data.panNumber;
             tempInvoiceDetails.invoiceDetails.currencyId = customerData.data.currencyId;
-
+            getCustomerAddress(customerData.data.address);
 
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
@@ -167,6 +170,18 @@ export default function InvoiceViewComponent() {
         } catch (error) {
             setErrors(genrateErrorMessage(error, '', setToastList));
         }
+    }
+
+    const getCustomerAddress = async (address) => {
+        try {
+            const customerCountry = await getCountry(address.billingAddress.countryId);
+            const customerState = await getState(address.billingAddress.stateId);
+            setCustomerCountry(customerCountry.data.name);
+            setCustomerState(customerState.data.name);
+        } catch (error) {
+
+        }
+        // fetchAll().then()
     }
 
     useEffect(() => {
@@ -281,7 +296,9 @@ export default function InvoiceViewComponent() {
                                                 <div className={`${styles.companyInvoiceViewInvoiceBillToAddress}`}>
                                                     {customer.address.addressLine1 + ' ' + customer.address.addressLine2}
                                                     <br />
-                                                    {customer.address.city + ', ' + customer.address.zipCode}
+                                                    {customer.address.city + ', ' + customerState}
+                                                    <br />
+                                                    {customerCountry + ', ' + customer.address.zipCode}
                                                 </div>
                                             </div>
                                         </div>
