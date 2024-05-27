@@ -41,7 +41,9 @@ const AllInvoiceTable = ({ dateFormat }) => {
     const draw_action = (rowData) => {
         return (
             <span className={`${styles.companyInvoiceTableActionWrapper}`}>
-                <span className={`${styles.companyInvoiceTableActionEdit}`} onClick={() => push(`invoices/update/${rowData.id}`)}><FaPen /></span>
+                {
+                    rowData.status == "draft" ? <><span className={`${styles.companyInvoiceTableActionEdit}`} onClick={() => push(`invoices/update/${rowData.id}`)}><FaPen /></span></> : <><span className={`${styles.companyInvoiceTableActionEdit}`}></span></>
+                }
                 <span className={`${styles.companyInvoiceTableActionInfo}`}><FaExclamationCircle /></span>
             </span>
         );

@@ -14,7 +14,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 export default function InvoiceEditForm() {
     const { id } = useParams();
-    const { replace } = useRouter();
+    const { replace, back } = useRouter();
     const { navExpandedState } = useContext(NavExpandedState);
     const { setToastList } = useContext(ToastMsgContext);
     const [errors, setErrors] = useState([]);
@@ -42,6 +42,14 @@ export default function InvoiceEditForm() {
         try {
             const result = await getInvoice(id);
             setData({ ...result.data, invoiceDate: new Date(result.data.invoiceDate), dueDate: new Date(result.data.dueDate) })
+            if (result.data.status !== "draft") {
+                setToastList([{
+                    id: Math.floor((Math.random() * 101) + 1),
+                    title: 'Invalid Invoice',
+                    description: 'Cannot Update the Invoice once Saved.',
+                }]);
+                replace('/invoices');
+            }
         } catch (error) {
             if (error.response != undefined && error.response.status == 404) {
                 replace('/404');

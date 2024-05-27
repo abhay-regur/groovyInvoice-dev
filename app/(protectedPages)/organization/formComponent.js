@@ -65,7 +65,6 @@ export default function OrganizationUpdateForm() {
     }, []);
 
     useState(() => {
-        console.log('Hello');
         if (imageSrc == '' && logoInputRef.current != null) {
             logoInputRef.current.click();
         }

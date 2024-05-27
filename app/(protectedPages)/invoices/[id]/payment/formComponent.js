@@ -112,6 +112,15 @@ export default function PaymentFormComponent() {
         setData(temp);
     }
 
+    const numberInputOnWheelPreventChange = (e) => {
+        e.target.blur()
+
+        e.stopPropagation()
+        setTimeout(() => {
+            e.target.focus()
+        }, 0)
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         var myFormData = new FormData();
@@ -132,6 +141,7 @@ export default function PaymentFormComponent() {
                     description: 'Added Payment for the Invoice #' + invoiceDetailsContext.invoiceDetails.invoiceNo,
                 }]);
                 getPaymentHistory();
+                getMissingData(id);
             } catch (error) {
                 setErrors(genrateErrorMessage(error, '', setToastList));
             }
@@ -184,7 +194,7 @@ export default function PaymentFormComponent() {
                                                     <div className="col-12 mt-2">
                                                         <div className="input-group">
                                                             <span className="input-group-text">{currencySymbol}</span>
-                                                            <input type="number" className="form-control" id="companyInvoiceAmountRecived" name="amount" onChange={handleInput} min={1} max={data.unpaidAmount} placeholder={'Total Receivables: ' + data.unpaidAmount} required />
+                                                            <input type="number" className="form-control" id="companyInvoiceAmountRecived" name="amount" onChange={handleInput} min={1} max={data.unpaidAmount} onWheel={numberInputOnWheelPreventChange} placeholder={'Total Receivables: ' + data.unpaidAmount} required />
                                                         </div>
                                                     </div>
                                                     <div className="col-12 mt-2">

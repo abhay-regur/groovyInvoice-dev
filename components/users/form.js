@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import FaSave from '@/assets/icons/faSave.svg';
 import FaCircleXmark from '@/assets/icons/faCircleXmark.svg';
 import styles from "@/styles/userForm.module.scss";
@@ -10,6 +10,9 @@ import { useRouter } from 'next/navigation';
 
 const UserForm = ({ data, setData, handleSubmit, errors, label, mode }) => {
   const { replace } = useRouter();
+
+  const passwordRef = useRef(null);
+  const confirmPasswordRef = useRef(null);
 
   const [formValidationMessage, setFormValidationMessage] = useState({
     firstName: '',
@@ -25,9 +28,20 @@ const UserForm = ({ data, setData, handleSubmit, errors, label, mode }) => {
     data.password = password
     data.confirmPassword = password
     let temp = Object.assign({}, data)
-    setData(temp)
-    handleValidationError('password', '')
-    handleValidationError('confirmPassword', '')
+    setData(temp);
+
+
+    if (passwordRef.current.classList.value.search('is-invalid') > 0) {
+      handleValidationError('password', '');
+      passwordRef.current.classList.remove('is-invalid');
+      passwordRef.current.classList.add('is-valid');
+    }
+
+    if (confirmPasswordRef.current.classList.value.search('is-invalid') > 0) {
+      handleValidationError('confirmPassword', '');
+      confirmPasswordRef.current.classList.remove('is-invalid');
+      confirmPasswordRef.current.classList.add('is-valid');
+    }
   }
 
   const handleInput = ({ target }) => {
@@ -47,7 +61,6 @@ const UserForm = ({ data, setData, handleSubmit, errors, label, mode }) => {
   }
 
   const handleValidation = ({ target }) => {
-    console.log(target.value)
     if (target.value == '') {
       target.classList.add('is-invalid');
       handleValidationError(target.name, 'Can not be empty');
@@ -76,6 +89,8 @@ const UserForm = ({ data, setData, handleSubmit, errors, label, mode }) => {
     setFormValidationMessage(temp);
   }
 
+
+
   return (
     <>
       <div className={`${styles.card} card`}>
@@ -102,7 +117,7 @@ const UserForm = ({ data, setData, handleSubmit, errors, label, mode }) => {
                 <label className="">Name</label>
               </div>
               <div className="col-12 col-lg-3 col-xl-3 mb-3 mb-lg-0">
-                <input type="text" className={`${styles.companyInvoiceUserFirstName} form-control`} id='firstName' placeholder='First Name' onChange={handleInput} name='firstName' value={data.firstName || ""} onBlur={handleValidation} />
+                <input type="text" className={`${styles.companyInvoiceUserFirstName} form-control`} id='firstName' placeholder='First Name' onChange={handleInput} name='firstName' value={data.firstName || ""} required onBlur={handleValidation} />
                 <div htmlFor="firstName" className="ms-3 invalid-data">
                   {formValidationMessage.firstName}
                 </div>
@@ -120,7 +135,7 @@ const UserForm = ({ data, setData, handleSubmit, errors, label, mode }) => {
                 <label className={`${styles.companyInvoiceUserEmailLabel}`}>Email</label>
               </div>
               <div className="col-12 col-lg-6 col-xl-6">
-                <input type="email" className="form-control" id="companyInvoiceUserEmail" placeholder='Email' onChange={handleInput} onBlur={handleValidation} name='email' value={data.email} disabled={mode == 'edit' ? true : false} />
+                <input type="email" className="form-control" id="companyInvoiceUserEmail" placeholder='Email' onChange={handleInput} onBlur={handleValidation} name='email' value={data.email} required disabled={mode == 'edit' ? true : false} />
                 <div htmlFor="companyInvoiceUserEmail" className="ms-3 invalid-data">
                   {formValidationMessage.email}
                 </div>
@@ -133,7 +148,7 @@ const UserForm = ({ data, setData, handleSubmit, errors, label, mode }) => {
               </div>
 
               <div className="col-12 col-lg-6 col-xl-6 d-flex align-items-center">
-                <input type="tel" minLength={4} maxLength={13} className={`${styles.companyInvoiceUserMobile} form-control`} id='cellNumber' placeholder='Mobile' onChange={handleInput} name='cellNumber' value={data.cellNumber} />
+                <input type="number" minLength={4} maxLength={13} className={`${styles.companyInvoiceUserMobile} form-control`} id='cellNumber' placeholder='Mobile' onChange={handleInput} name='cellNumber' value={data.cellNumber} />
                 <div htmlFor="cellNumber" className="ms-3 invalid-data">
                   {formValidationMessage.cellNumber}
                 </div>
@@ -147,7 +162,7 @@ const UserForm = ({ data, setData, handleSubmit, errors, label, mode }) => {
                   </div>
                   <div className="col-12 col-lg-6 col-xl-6">
                     <div className="d-flex">
-                      <input type="text" className="form-control" value={data.password} name="password" onChange={handleInput} id="companyInvoiceUserPassword" placeholder='Password' onBlur={handleValidation} />
+                      <input type="text" className="form-control" value={data.password} ref={passwordRef} name="password" onChange={handleInput} id="companyInvoiceUserPassword" placeholder='Password' onBlur={handleValidation} />
                       <button type="button" className="btn blueOutline" onClick={() => { genrateNewPassword() }}><FaGear /></button>
                     </div>
                     <div htmlFor="companyInvoiceUserPassword" className="ms-3 invalid-data">
@@ -161,7 +176,7 @@ const UserForm = ({ data, setData, handleSubmit, errors, label, mode }) => {
                     <label className={`${styles.companyInvoiceUserPasswordLabel}`}>Confirm Password</label>
                   </div>
                   <div className="col-12 col-lg-6 col-xl-6">
-                    <input type="text" className="form-control" id="companyInvoiceDesignation" value={data.confirmPassword} name="confirmPassword" onChange={handleInput} placeholder='Confirm Password' onBlur={handleValidation} />
+                    <input type="text" className="form-control" id="companyInvoiceDesignation" value={data.confirmPassword} ref={confirmPasswordRef} name="confirmPassword" onChange={handleInput} placeholder='Confirm Password' onBlur={handleValidation} />
                     <div htmlFor="companyInvoiceUserPassword" className="ms-3 invalid-data">
                       {formValidationMessage.confirmPassword}
                     </div>
