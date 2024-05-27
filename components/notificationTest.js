@@ -25,20 +25,20 @@ export default function NotificationTestComponent() {
                 <hr />
                 <div className="row">
                     <div className="col-10 col-sm-8 col-md-8 col-lg-6">
-                        <div className={`${styles.companyInvoiceWrapper} gap-2 mb-4 row`}>
+                        <div className={`${styles.companyInvoiceNotificationHeaderWrapper} gap-2 mb-4 row`}>
                             <div className="d-flex align-items-center col-12 col-lg-4">
                                 <label className={`${styles.companyInvoiceCompanyNotificationHeader}`}>Notification Header</label>
                             </div>
                             <div className="col-12 col-lg-6 col-xl-7">
-                                <input name='companyName' type="text" className="form-control" id="companyInvoiceNotificationHeader" value={notificationHeader} onChange={e => { setNotificationHeader(e.target.value) }} placeholder='Notification Header' />
+                                <input name='companyName' type="text" className={`${styles.companyInvoiceNotificationHeaderInput} form-control`} id="companyInvoiceNotificationHeader" value={notificationHeader} onChange={e => { setNotificationHeader(e.target.value) }} placeholder='Notification Header' />
                             </div>
                         </div>
-                        <div className={`${styles.companyInvoiceOrganizationNameWrapper} gap-2 mb-4 row`}>
+                        <div className={`${styles.companyInvoiceNotificationDiscribtionWrapper} gap-2 mb-4 row`}>
                             <div className="d-flex align-items-center col-12 col-lg-4">
                                 <label className={`${styles.companyInvoiceCompanyNotificationDiscribtion}`}>Notification Discribtion</label>
                             </div>
                             <div className="col-12 col-lg-6 col-xl-7">
-                                <input name='companyName' type="text" className="form-control" id="companyInvoiceNotificationDiscribtion" value={notificationDiscribtion} onChange={e => { setNotificationDiscribtion(e.target.value) }} placeholder='Notification Discribtion' />
+                                <textarea name='companyName' type="text" className={`${styles.companyInvoiceNotificationDiscribtionText} form-control`} id="companyInvoiceNotificationDiscribtion" value={notificationDiscribtion} onChange={e => { setNotificationDiscribtion(e.target.value) }} placeholder='Notification Discribtion' />
                             </div>
                         </div>
                     </div>

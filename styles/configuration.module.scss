@@ -285,6 +285,7 @@
           border: 1px solid var.$primary-border-color;
           border-radius: 8px;
         }
+
       }
 
       .companyInvoiceOrganizationGSTWrapper {
@@ -391,8 +392,16 @@
         }
       }
     }
-  }
 
+    .companyInvoiceNotificationDiscribtionText {
+      font-weight: 400;
+      font-size: 14px;
+      color: var.$secondary-color;
+      background: var.$input-background-color;
+      border: 1px solid var.$primary-border-color;
+      border-radius: 8px;
+    }
+  }
 
 }
 
@@ -670,6 +679,7 @@
           border: 1px solid var.$primary-border-color;
           border-radius: 8px;
         }
+
       }
 
       .companyInvoiceOrganizationGSTWrapper {
@@ -776,6 +786,15 @@
           cursor: inherit;
         }
       }
+    }
+
+    .companyInvoiceNotificationDiscribtionText {
+      font-weight: 400;
+      font-size: 14px;
+      color: var.$secondary-color;
+      background: var.$input-background-color;
+      border: 1px solid var.$primary-border-color;
+      border-radius: 8px;
     }
   }
 }
